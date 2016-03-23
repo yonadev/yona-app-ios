@@ -404,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Yona/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.Yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Yona/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.Yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -486,6 +488,7 @@
 				D9D54EF31CA28CD2007805F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9D54EF41CA28CD2007805F4 /* Build configuration list for PBXNativeTarget "YonaTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +497,7 @@
 				D9D54EF61CA28CD2007805F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9D54EF71CA28CD2007805F4 /* Build configuration list for PBXNativeTarget "YonaUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +506,7 @@
 				D9D54EF91CA28CD2007805F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
