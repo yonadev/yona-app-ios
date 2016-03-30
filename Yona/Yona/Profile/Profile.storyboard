@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="7eQ-RC-jhJ">
+            <objects>
+                <viewController storyboardIdentifier="ProfileStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NT6-aP-gRD" customClass="ProfileViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jTZ-kb-D1T"/>
+                        <viewControllerLayoutGuide type="bottom" id="fM9-br-fAM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mp3-Rq-TDY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile VC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbE-8w-Qwi">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bbE-8w-Qwi" firstAttribute="centerX" secondItem="Mp3-Rq-TDY" secondAttribute="centerX" id="UuM-n6-eIO"/>
+                            <constraint firstItem="bbE-8w-Qwi" firstAttribute="centerY" secondItem="Mp3-Rq-TDY" secondAttribute="centerY" id="jv4-yT-ZQX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bbE-8w-Qwi"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="UuM-n6-eIO"/>
+                                <exclude reference="jv4-yT-ZQX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="bbE-8w-Qwi"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="UuM-n6-eIO"/>
+                                <include reference="jv4-yT-ZQX"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7I-qQ-aah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217" y="331"/>
+        </scene>
+    </scenes>
+</document>
