@@ -7,6 +7,8 @@
 //
 
 import XCTest
+//import APILoginManager
+
 @testable import Yona
 
 class YonaTests: XCTestCase {
@@ -33,4 +35,21 @@ class YonaTests: XCTestCase {
         }
     }
     
+    func testUserRequestReturnsJSON() {
+        let expectation = expectationWithDescription("")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31612345678",
+             "nickname": "RQ"]
+        let path = "http://85.222.227.142/users/"
+        APILoginManager.sharedInstance.makePostRequest(path, body: body, onCompletion: { json, err in
+            if let _ = json {
+//                XCTAssert(JSONObject,"JSON Object is emprty")
+                expectation.fulfill()
+            }
+        })
+
+        waitForExpectationsWithTimeout(5.0, handler:nil)
+    }
 }

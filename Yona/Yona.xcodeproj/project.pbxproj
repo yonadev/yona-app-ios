@@ -36,6 +36,9 @@
 		AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571FF1CABA0B4000BF880 /* SignUpViewController.swift */; };
 		AD5572071CABA0B4000BF880 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5572001CABA0B4000BF880 /* VerificationViewController.swift */; };
 		AD5572081CABA0B4000BF880 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5572011CABA0B4000BF880 /* WelcomeViewController.swift */; };
+		BEAAC7A41CABF3F70081DB61 /* APILoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* APILoginManager.swift */; };
+		BEAAC7A51CAC017D0081DB61 /* APILoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* APILoginManager.swift */; };
+		BEAAC7A61CAC1E650081DB61 /* APILoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* APILoginManager.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
 		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
@@ -93,6 +96,7 @@
 		AD5571FF1CABA0B4000BF880 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AD5572001CABA0B4000BF880 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		AD5572011CABA0B4000BF880 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		BEAAC7A31CABF3F70081DB61 /* APILoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APILoginManager.swift; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +252,14 @@
 			path = "SignIn pages";
 			sourceTree = "<group>";
 		};
+		BEAAC7A21CABF2300081DB61 /* DataService */ = {
+			isa = PBXGroup;
+			children = (
+				BEAAC7A31CABF3F70081DB61 /* APILoginManager.swift */,
+			);
+			path = DataService;
+			sourceTree = "<group>";
+		};
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +285,7 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				BEAAC7A21CABF2300081DB61 /* DataService */,
 				AD291DA21CAAA7AB008CAFB1 /* Others */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
@@ -521,6 +534,7 @@
 			files = (
 				AD5572041CABA0B4000BF880 /* IntroductoryViewController.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
+				BEAAC7A41CABF3F70081DB61 /* APILoginManager.swift in Sources */,
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */,
@@ -547,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAAC7A51CAC017D0081DB61 /* APILoginManager.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAAC7A61CAC1E650081DB61 /* APILoginManager.swift in Sources */,
 				D9D54EED1CA28CD2007805F4 /* YonaUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
