@@ -32,7 +32,7 @@
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
 		AD4E257F1CABCF9E00D02744 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD4E257D1CABCF9E00D02744 /* Main2.storyboard */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
-		AD5571F61CAAEEF6000BF880 /* SignUpViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpViewController1.swift */; };
+		AD5571F61CAAEEF6000BF880 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
 		AD5572021CABA0B4000BF880 /* ForgotPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571FB1CABA0B4000BF880 /* ForgotPWViewController.swift */; };
 		AD5572031CABA0B4000BF880 /* IntroductoryContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571FC1CABA0B4000BF880 /* IntroductoryContentViewController.swift */; };
@@ -96,6 +96,28 @@
 		D986357F1CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D98635801CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D98635821CAEA5AE00A8535C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98635811CAEA5AE00A8535C /* R.generated.swift */; };
+		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
+		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
+		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
+		D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635411CABF44000A8535C /* SF-UI-Display-Light.otf */; };
+		D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635421CABF44000A8535C /* SF-UI-Display-Medium.otf */; };
+		D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635431CABF44000A8535C /* SF-UI-Display-Regular.otf */; };
+		D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635441CABF44000A8535C /* SF-UI-Display-Semibold.otf */; };
+		D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635451CABF44000A8535C /* SF-UI-Display-Thin.otf */; };
+		D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635461CABF44000A8535C /* SF-UI-Display-Ultralight.otf */; };
+		D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635471CABF44000A8535C /* SF-UI-Text-Bold.otf */; };
+		D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635481CABF44000A8535C /* SF-UI-Text-BoldItalic.otf */; };
+		D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635491CABF44000A8535C /* SF-UI-Text-Heavy.otf */; };
+		D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354A1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf */; };
+		D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354B1CABF44000A8535C /* SF-UI-Text-Light.otf */; };
+		D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354C1CABF44000A8535C /* SF-UI-Text-LightItalic.otf */; };
+		D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354D1CABF44000A8535C /* SF-UI-Text-Medium.otf */; };
+		D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354E1CABF44000A8535C /* SF-UI-Text-MediumItalic.otf */; };
+		D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354F1CABF44000A8535C /* SF-UI-Text-Regular.otf */; };
+		D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635501CABF44000A8535C /* SF-UI-Text-RegularItalic.otf */; };
+		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
+		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
+		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
 		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
@@ -147,7 +169,7 @@
 		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageViewController.swift; sourceTree = "<group>"; };
 		AD4E257E1CABCF9E00D02744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
-		AD5571F51CAAEEF6000BF880 /* SignUpViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController1.swift; sourceTree = "<group>"; };
+		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD5571FB1CABA0B4000BF880 /* ForgotPWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPWViewController.swift; sourceTree = "<group>"; };
 		AD5571FC1CABA0B4000BF880 /* IntroductoryContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductoryContentViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +307,32 @@
 		D98635951CAEA69200A8535C /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-RegularItalic.otf"; path = "Fonts/SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		D98635961CAEA69200A8535C /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Semibold.otf"; path = "Fonts/SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		D98635971CAEA69200A8535C /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-SemiboldItalic.otf"; path = "Fonts/SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
+		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
+		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
+		D98635411CABF44000A8535C /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Light.otf"; path = "Fonts/SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
+		D98635421CABF44000A8535C /* SF-UI-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Medium.otf"; path = "Fonts/SF-UI-Display-Medium.otf"; sourceTree = "<group>"; };
+		D98635431CABF44000A8535C /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Regular.otf"; path = "Fonts/SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
+		D98635441CABF44000A8535C /* SF-UI-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Semibold.otf"; path = "Fonts/SF-UI-Display-Semibold.otf"; sourceTree = "<group>"; };
+		D98635451CABF44000A8535C /* SF-UI-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Thin.otf"; path = "Fonts/SF-UI-Display-Thin.otf"; sourceTree = "<group>"; };
+		D98635461CABF44000A8535C /* SF-UI-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Ultralight.otf"; path = "Fonts/SF-UI-Display-Ultralight.otf"; sourceTree = "<group>"; };
+		D98635471CABF44000A8535C /* SF-UI-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Bold.otf"; path = "Fonts/SF-UI-Text-Bold.otf"; sourceTree = "<group>"; };
+		D98635481CABF44000A8535C /* SF-UI-Text-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-BoldItalic.otf"; path = "Fonts/SF-UI-Text-BoldItalic.otf"; sourceTree = "<group>"; };
+		D98635491CABF44000A8535C /* SF-UI-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Heavy.otf"; path = "Fonts/SF-UI-Text-Heavy.otf"; sourceTree = "<group>"; };
+		D986354A1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-HeavyItalic.otf"; path = "Fonts/SF-UI-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
+		D986354B1CABF44000A8535C /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Light.otf"; path = "Fonts/SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
+		D986354C1CABF44000A8535C /* SF-UI-Text-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-LightItalic.otf"; path = "Fonts/SF-UI-Text-LightItalic.otf"; sourceTree = "<group>"; };
+		D986354D1CABF44000A8535C /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Medium.otf"; path = "Fonts/SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
+		D986354E1CABF44000A8535C /* SF-UI-Text-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-MediumItalic.otf"; path = "Fonts/SF-UI-Text-MediumItalic.otf"; sourceTree = "<group>"; };
+		D986354F1CABF44000A8535C /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Regular.otf"; path = "Fonts/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		D98635501CABF44000A8535C /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-RegularItalic.otf"; path = "Fonts/SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
+		D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Semibold.otf"; path = "Fonts/SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
+		D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-SemiboldItalic.otf"; path = "Fonts/SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		D98635741CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D98635751CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		D98635761CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main2.strings; sourceTree = "<group>"; };
+		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -429,7 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				AD5571F31CAAD88D000BF880 /* SignUp.storyboard */,
-				AD5571F51CAAEEF6000BF880 /* SignUpViewController1.swift */,
+				AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -691,6 +739,7 @@
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
+				D986357B1CAD62B100A8535C /* Localizable.strings */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -829,6 +878,7 @@
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
 				AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */,
+				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
 				AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */,
@@ -945,6 +995,7 @@
 				906FE2641CAD6CCA00E8057C /* APIServiceManager.swift in Sources */,
 				AD5571F61CAAEEF6000BF880 /* SignUpViewController1.swift in Sources */,
 				D98635821CAEA5AE00A8535C /* R.generated.swift in Sources */,
+				AD5571F61CAAEEF6000BF880 /* SignUpFirstStepViewController.swift in Sources */,
 				D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */,
 				AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
@@ -1043,6 +1094,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AD4E257E1CABCF9E00D02744 /* Base */,
+				D98635761CAD626F00A8535C /* nl */,
 			);
 			name = Main2.storyboard;
 			sourceTree = "<group>";
@@ -1051,14 +1103,25 @@
 			isa = PBXVariantGroup;
 			children = (
 				AD5571F81CABA022000BF880 /* Base */,
+				D98635751CAD626F00A8535C /* nl */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D986357B1CAD62B100A8535C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D986357A1CAD62B100A8535C /* nl */,
+				D986357C1CAD62B400A8535C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D9D54ED61CA28CD2007805F4 /* Base */,
+				D98635741CAD626F00A8535C /* nl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

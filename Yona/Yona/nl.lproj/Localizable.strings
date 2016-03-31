@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Yona
+
+  Created by Alessio Roberto on 31/03/16.
+  Copyright © 2016 Yona. All rights reserved.
+*/
+
+"signup.user.firstname" = "Voornaam";
+"signup.user.lastname" = "Achtenaam";

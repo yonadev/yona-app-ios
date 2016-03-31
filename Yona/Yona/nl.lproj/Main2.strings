@@ -1,0 +1,69 @@
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "0lg-oy-VJG"; */
+"0lg-oy-VJG.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "1CM-gW-kII"; */
+"1CM-gW-kII.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "      Login with Facebook"; ObjectID = "36f-It-GdS"; */
+"36f-It-GdS.normalTitle" = "      Login with Facebook";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "3hy-Iu-jCN"; */
+"3hy-Iu-jCN.placeholder" = "Last Name";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "4zo-Mp-BgC"; */
+"4zo-Mp-BgC.normalTitle" = "Send";
+
+/* Class = "UITextField"; placeholder = "Contact"; ObjectID = "7gh-aH-yNI"; */
+"7gh-aH-yNI.placeholder" = "Contact";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "8Zi-pX-Vat"; */
+"8Zi-pX-Vat.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "HSs-7n-X2q"; */
+"HSs-7n-X2q.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "IfA-bf-kTk"; */
+"IfA-bf-kTk.placeholder" = "Email";
+
+/* Class = "UIViewController"; title = "Sign In Page"; ObjectID = "Mjk-dX-cxC"; */
+"Mjk-dX-cxC.title" = "Sign In Page";
+
+/* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "SiJ-gj-yTA"; */
+"SiJ-gj-yTA.normalTitle" = "Proceed";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Th2-jy-5EU"; */
+"Th2-jy-5EU.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "ZLS-Ea-GwL"; */
+"ZLS-Ea-GwL.normalTitle" = "Sign Up";
+
+/* Class = "UIViewController"; title = "Welcome Page"; ObjectID = "ZZP-za-eOT"; */
+"ZZP-za-eOT.title" = "Welcome Page";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "dti-P3-jxa"; */
+"dti-P3-jxa.normalTitle" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "e1j-bE-mrO"; */
+"e1j-bE-mrO.normalTitle" = "Forgot your password?";
+
+/* Class = "UIViewController"; title = "Sign Up Page"; ObjectID = "huE-no-9R8"; */
+"huE-no-9R8.title" = "Sign Up Page";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "jez-TE-EAu"; */
+"jez-TE-EAu.placeholder" = "First Name";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "juf-Cz-vO2"; */
+"juf-Cz-vO2.text" = "Welcome";
+
+/* Class = "UIButton"; normalTitle = "Restart Tutorial"; ObjectID = "lLY-s3-MAq"; */
+"lLY-s3-MAq.normalTitle" = "Restart Tutorial";
+
+/* Class = "UITextField"; placeholder = "Password Confirmation"; ObjectID = "owl-Sc-LhK"; */
+"owl-Sc-LhK.placeholder" = "Password Confirmation";
+
+/* Class = "UILabel"; text = "Forgot your password?"; ObjectID = "pxA-Pl-Gfn"; */
+"pxA-Pl-Gfn.text" = "Forgot your password?";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "qGT-gi-EBy"; */
+"qGT-gi-EBy.placeholder" = "Email";
