@@ -17,10 +17,7 @@ class APIServiceManager {
         UserManager.sharedInstance.makePostRequest(path, password: password, body: body, onCompletion: { json, err in
             if let json = json {
                 //store the json in an object
-                let newUser = Users.init(firstName: json["firstName"],
-                    lastName: json["lastName"],
-                    mobileNumber: json["mobileNumber"],
-                    nickname: json["nickname"])
+                let newUser = Users.init(json)
                 onCompletion(true)
             } else {
                 onCompletion(false)

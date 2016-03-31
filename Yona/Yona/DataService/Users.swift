@@ -14,7 +14,7 @@ struct Users{
     var mobileNumber: Int
     var nickname: String
     
-    init(firstName: String, lastName: String, mobileNumber: Int, nickname: String) {
+    init(Dictionary: json) {
         self.firstName = firstName
         self.lastName = lastName
         self.mobileNumber = mobileNumber
