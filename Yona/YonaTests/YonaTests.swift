@@ -7,7 +7,6 @@
 //
 
 import XCTest
-//import APILoginManager
 
 @testable import Yona
 
@@ -35,21 +34,34 @@ class YonaTests: XCTestCase {
         }
     }
     
-    func testUserRequestReturnsJSON() {
-        let expectation = expectationWithDescription("")
+    func testUserRequestReturnsData() {
+        let expectation = expectationWithDescription("Waiting to respond")
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31612345678",
+             "mobileNumber": "+31905459377",
              "nickname": "RQ"]
         let path = "http://85.222.227.142/users/"
-        APILoginManager.sharedInstance.makePostRequest(path, body: body, onCompletion: { json, err in
-            if let _ = json {
-//                XCTAssert(JSONObject,"JSON Object is emprty")
-                expectation.fulfill()
+        let password = "1234"
+        SignUpLoginManager.sharedInstance.makePostRequest(path, password: password, body: body, onCompletion: { json, err in
+            
+            if let json = json,
+                let mobileNumber = json["mobileNumber"] as? String {
+                XCTAssertTrue(mobileNumber == body["mobileNumber"])               
+                
+                if let userID = SignUpLoginManager.sharedInstance.getUserID() {
+                    SignUpLoginManager.sharedInstance.makeDeleteRequest(path + userID, password: password, userID: userID, onCompletion: { success in
+                        XCTAssertTrue(success)
+                        expectation.fulfill()
+                })
+                }
             }
         })
 
         waitForExpectationsWithTimeout(5.0, handler:nil)
+    }
+    
+    func testDeletionOfUser() {
+        
     }
 }
