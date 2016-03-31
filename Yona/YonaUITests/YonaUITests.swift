@@ -7,30 +7,26 @@
 //
 
 import XCTest
+import Foundation
 
-class YonaUITests: XCTestCase {
-        
-    override func setUp() {
-        super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+class CucumberishInitializer: NSObject {
+    class func CucumberishSwiftInit()
+    {
+        var application : XCUIApplication!
+        //A closure that will be executed just before executing any of your features
+        beforeStart { () -> Void in
+            application = XCUIApplication()
+        }
+        //A Given step definition
+        Given("the app is running") { (args, userInfo) -> Void in
+            application.launch()
+        }
+        //Another step definition
+        And("all data cleared") { (args, userInfo) -> Void in
+            //Assume you defined an "I tap on \"(.*)\" button" step previousely, you can call it from your code as well.
+            SStep("I tap the \"Clear All Data\" button")
+        }
+        //Tell Cucumberish the name of your features folder and let it execute them for you...
+        Cucumberish.executeFeaturesInDirectory("ExampleFeatures", featureTags: nil)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
 }
