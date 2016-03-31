@@ -29,10 +29,18 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-UI-Display-Black.otf</string>
+		<string>SF-UI-Display-Light.otf</string>
+		<string>SF-UI-Display-Bold.otf</string>
+		<string>SF-UI-Display-Regular.otf</string>
+		<string>SF-UI-Display-Medium.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main2</string>
+	<string>SignUp</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -52,14 +60,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF-UI-Display-Black.otf</string>
-		<string>SF-UI-Display-Light.otf</string>
-		<string>SF-UI-Display-Bold.otf</string>
-		<string>SF-UI-Display-Regular.otf</string>
-		<string>SF-UI-Display-Medium.otf</string>
 	</array>
 </dict>
 </plist>
