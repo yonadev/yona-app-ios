@@ -1,6 +1,6 @@
 
 //
-//  SignUpViewController.swift
+//  SignUpFirstStepViewController.swift
 //  Yona
 //
 //  Created by Chandan on 29/03/16.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpViewController1: UIViewController, UITextFieldDelegate,UIScrollViewDelegate {
+class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
@@ -19,7 +19,33 @@ class SignUpViewController1: UIViewController, UITextFieldDelegate,UIScrollViewD
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Text Delegates
+        
+        self.firstnameTextField.delegate = self
+        self.lastnameTextField.delegate = self
+        self.firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
+        self.lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
+        
+        //keyboard functions
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpFirstStepViewController.DismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+        
+        //Nav bar Back button.
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "icnBack")!, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.back(_:)))
+        self.navigationItem.leftBarButtonItem = newBackButton;
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+    }
     
     
     // UIAlertView Alert
@@ -81,40 +107,6 @@ class SignUpViewController1: UIViewController, UITextFieldDelegate,UIScrollViewD
         }
     
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Text Delegates
-        
-        self.firstnameTextField.delegate = self
-        self.lastnameTextField.delegate = self
-        
-        //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpViewController1.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpViewController1.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController1.DismissKeyboard))
-        self.view.addGestureRecognizer(tap)
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "icnBack")!, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpViewController1.back(_:)))
-        self.navigationItem.leftBarButtonItem = newBackButton;
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
 //        textField.resignFirstResponder()
@@ -135,9 +127,9 @@ class SignUpViewController1: UIViewController, UITextFieldDelegate,UIScrollViewD
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
         let keyboardBarButtonItems = [
-            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpViewController1.previousTextField)),
+            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.previousTextField)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpViewController1.nextTextField))
+            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.nextTextField))
         ]
         
         keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)

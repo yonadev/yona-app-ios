@@ -12,10 +12,10 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Sign Up View Controller1-->
+        <!--Sign Up First Step View Controller-->
         <scene sceneID="wJr-LV-LhE">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController1" id="dEx-Je-Enr" customClass="SignUpViewController1" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController1" id="dEx-Je-Enr" customClass="SignUpFirstStepViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l3H-Om-yjj"/>
                         <viewControllerLayoutGuide type="bottom" id="GPe-ch-MPs"/>
@@ -97,7 +97,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hn-at-ExF" userLabel="BottomView">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="VOORNAAM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HXY-ri-N1O">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HXY-ri-N1O">
                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="PLJ-VF-FvM"/>
@@ -136,7 +136,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ACHTERNAAM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZa-GD-4Y6">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZa-GD-4Y6">
                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="XKp-ee-At9"/>
@@ -377,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLn-EK-HMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.25" y="-13.5"/>
+            <point key="canvasLocation" x="1157.5" y="4.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dyM-lm-8aR">
