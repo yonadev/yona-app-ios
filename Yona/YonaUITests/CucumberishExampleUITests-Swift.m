@@ -12,5 +12,5 @@
 __attribute__((constructor))
 void CucumberishInit()
 {
-    [YonaUITests CucumberishSwiftInit];
+    [CucumberishInitializer CucumberishSwiftInit];
 }

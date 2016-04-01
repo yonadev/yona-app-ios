@@ -9,8 +9,8 @@
 import XCTest
 import Foundation
 
-class CucumberishInitializer: NSObject {
-    class func CucumberishSwiftInit()
+public class CucumberishInitializer: NSObject {
+    public class func CucumberishSwiftInit()
     {
         var application : XCUIApplication!
         //A closure that will be executed just before executing any of your features
