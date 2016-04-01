@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Dashboard Tab Bar Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DashboardTabBarController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fd0-uo-lbg">
+                                <rect key="frame" x="0.0" y="0.0" width="422" height="686"/>
+                            </containerView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRs-QJ-w3g">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Profile" image="icnMe" selectedImage="icnMeActive" id="eLs-Oz-sA3"/>
+                                    <tabBarItem title="Friends" image="icnFriends" selectedImage="icnFriendsActive" id="KSA-1k-9qQ"/>
+                                    <tabBarItem title="Challenges" image="icnChallenges" selectedImage="icnChallengeActive" id="WRR-S8-Kxx"/>
+                                    <tabBarItem title="Settings" image="icnSettings" selectedImage="icnSettingsActive" id="kYU-Dc-mPb"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aol-2F-o4Y"/>
+                                </connections>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oRs-QJ-w3g" secondAttribute="trailing" id="5v4-pR-mYa"/>
+                            <constraint firstItem="oRs-QJ-w3g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ERc-IF-Gn5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oRs-QJ-w3g" secondAttribute="bottom" id="HVg-cs-jlP"/>
+                            <constraint firstItem="oRs-QJ-w3g" firstAttribute="top" secondItem="Fd0-uo-lbg" secondAttribute="bottom" constant="1" id="UCg-qu-Mvg"/>
+                            <constraint firstItem="Fd0-uo-lbg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="W39-4c-D2h"/>
+                            <constraint firstAttribute="trailing" secondItem="Fd0-uo-lbg" secondAttribute="trailing" constant="-8" id="apw-Ip-tMi"/>
+                            <constraint firstItem="Fd0-uo-lbg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBr-ny-mVI"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="containerView" destination="Fd0-uo-lbg" id="9hH-Pm-uOs"/>
+                        <outlet property="tabbar" destination="oRs-QJ-w3g" id="1TK-lt-TtT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1803" y="-136.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icnChallengeActive" width="26" height="27"/>
+        <image name="icnChallenges" width="32" height="32"/>
+        <image name="icnFriends" width="32" height="32"/>
+        <image name="icnFriendsActive" width="30" height="23"/>
+        <image name="icnMe" width="32" height="32"/>
+        <image name="icnMeActive" width="32" height="32"/>
+        <image name="icnSettings" width="32" height="32"/>
+        <image name="icnSettingsActive" width="32" height="32"/>
+    </resources>
+</document>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Create Account View Controller-->
+        <scene sceneID="PzE-Q1-ZW5">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rex-mj-JNO" customClass="CreateAccountViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VhA-Bl-v5e"/>
+                        <viewControllerLayoutGuide type="bottom" id="uA7-wS-69J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ftL-gQ-JMF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L12-hg-GD7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Create account"/>
+                                <connections>
+                                    <action selector="loginbutton:" destination="rex-mj-JNO" eventType="touchUpInside" id="sZc-nV-jJh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L12-hg-GD7" firstAttribute="centerY" secondItem="ftL-gQ-JMF" secondAttribute="centerY" id="5jY-xP-FDb"/>
+                            <constraint firstItem="L12-hg-GD7" firstAttribute="centerX" secondItem="ftL-gQ-JMF" secondAttribute="centerX" id="qLo-td-48x"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="L12-hg-GD7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="5jY-xP-FDb"/>
+                                <exclude reference="qLo-td-48x"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="L12-hg-GD7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="5jY-xP-FDb"/>
+                                <include reference="qLo-td-48x"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irU-cq-Buz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="193" y="369"/>
+        </scene>
+    </scenes>
+</document>

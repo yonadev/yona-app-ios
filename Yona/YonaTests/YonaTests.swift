@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import Yona
 
 class YonaTests: XCTestCase {
@@ -33,4 +34,31 @@ class YonaTests: XCTestCase {
         }
     }
     
+    func testUserRequestReturnsData() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31625459377",
+             "nickname": "RQ"]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (flag) in
+            XCTAssert(APIServiceManager.sharedInstance.newUser != nil)
+            
+            let result = APIServiceManager.sharedInstance.newUser!
+            let mobileNumber = result.mobileNumber
+            XCTAssertTrue(mobileNumber == body["mobileNumber"])
+            
+            APIServiceManager.sharedInstance.deleteUser({ (success) in
+                XCTAssertTrue(success)
+                expectation.fulfill()
+            })
+        }
+
+        waitForExpectationsWithTimeout(5.0, handler:nil)
+    }
+    
+    func testDeletionOfUser() {
+        
+    }
 }
