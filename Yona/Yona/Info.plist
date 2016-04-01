@@ -36,6 +36,11 @@
 		<string>SF-UI-Display-Bold.otf</string>
 		<string>SF-UI-Display-Regular.otf</string>
 		<string>SF-UI-Display-Medium.otf</string>
+        <string>Roboto-Black.otf</string>
+        <string>Roboto-Light.otf</string>
+        <string>Roboto-Bold.otf</string>
+        <string>Roboto-Regular.otf</string>
+        <string>Roboto-Medium.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
