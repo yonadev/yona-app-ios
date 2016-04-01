@@ -8,19 +8,20 @@
 
 import Foundation
 
-typealias APIServiceResponse = ([String: AnyObject]?, NSError?) -> Void
+typealias APIServiceResponse = (UserData?, NSError?) -> Void
 typealias APIResponse = (Bool) -> Void
 
 class UserManager: NSObject {
     static let sharedInstance = UserManager()
     
-    private var userInfo:[String: AnyObject] = [:]
+    private var userInfo:UserData = [:]
     
     private override init() {
         print("Only initialised once only")
     }
     
-    func makePostRequest(path: String, password: String, body: [String: AnyObject], onCompletion: APIServiceResponse) {
+    func makePostRequest(path: String, password: String, body: UserData, onCompletion: APIServiceResponse) {
+        print(password)
         let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password]
@@ -53,6 +54,7 @@ class UserManager: NSObject {
     
 
     func makeDeleteRequest(path: String, password: String, userID: String, onCompletion: APIResponse){
+        print(password)
         let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password, "id": userID]

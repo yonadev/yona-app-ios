@@ -331,7 +331,12 @@ public enum KeychainSwiftAccessOptions {
             return toString(kSecAttrAccessibleAlways)
             
         case .AccessibleWhenPasscodeSetThisDeviceOnly:
-            return toString(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            if #available(iOS 8.0, *) {
+                return toString(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            } else {
+                // Fallback on earlier versions
+                return ""
+            }
             
         case .AccessibleAlwaysThisDeviceOnly:
             return toString(kSecAttrAccessibleAlwaysThisDeviceOnly)
