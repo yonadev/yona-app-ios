@@ -44,7 +44,7 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
         self.view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
-
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -74,8 +74,18 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
     
     // Go To Another SignUpViewController2
     @IBAction func nextPressed(sender: UIButton) {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController")
-        self.presentViewController(controller, animated: true, completion: nil)
+        if self.firstnameTextField.text!.characters.count == 0 {
+            self.displayAlertMessage("Invalid First Name", alertDescription:
+                "Please input a First Name.")
+            
+        } else if self.lastnameTextField.text!.characters.count == 0 {
+            self.displayAlertMessage("Invalid Last Name", alertDescription:
+                "Please input a Last Name.")
+            
+        } else {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController")
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
     }
     
     
