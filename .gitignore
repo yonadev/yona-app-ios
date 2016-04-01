@@ -9,7 +9,7 @@
 ## Build generated
 build/
 DerivedData
-*.generated.swift
+#*.generated.swift
 
 ## Various settings
 *.pbxuser

@@ -41,32 +41,33 @@
 		AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571FF1CABA0B4000BF880 /* SignUpViewController.swift */; };
 		AD5572071CABA0B4000BF880 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5572001CABA0B4000BF880 /* VerificationViewController.swift */; };
 		AD5572081CABA0B4000BF880 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5572011CABA0B4000BF880 /* WelcomeViewController.swift */; };
-		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
-		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
-		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
-		D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635411CABF44000A8535C /* SF-UI-Display-Light.otf */; };
-		D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635421CABF44000A8535C /* SF-UI-Display-Medium.otf */; };
-		D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635431CABF44000A8535C /* SF-UI-Display-Regular.otf */; };
-		D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635441CABF44000A8535C /* SF-UI-Display-Semibold.otf */; };
-		D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635451CABF44000A8535C /* SF-UI-Display-Thin.otf */; };
-		D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635461CABF44000A8535C /* SF-UI-Display-Ultralight.otf */; };
-		D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635471CABF44000A8535C /* SF-UI-Text-Bold.otf */; };
-		D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635481CABF44000A8535C /* SF-UI-Text-BoldItalic.otf */; };
-		D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635491CABF44000A8535C /* SF-UI-Text-Heavy.otf */; };
-		D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354A1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf */; };
-		D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354B1CABF44000A8535C /* SF-UI-Text-Light.otf */; };
-		D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354C1CABF44000A8535C /* SF-UI-Text-LightItalic.otf */; };
-		D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354D1CABF44000A8535C /* SF-UI-Text-Medium.otf */; };
-		D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354E1CABF44000A8535C /* SF-UI-Text-MediumItalic.otf */; };
-		D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986354F1CABF44000A8535C /* SF-UI-Text-Regular.otf */; };
-		D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635501CABF44000A8535C /* SF-UI-Text-RegularItalic.otf */; };
-		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
-		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		BEAAC7A41CABF3F70081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A51CAC017D0081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A61CAC1E650081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
+		D98635531CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635541CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635551CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635561CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635571CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635581CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635591CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355A1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355B1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355C1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355D1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355E1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D986355F1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635601CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635611CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635621CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635631CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635641CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635651CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635661CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D98635671CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D986357F1CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D98635801CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
+		D98635821CAEA5AE00A8535C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98635811CAEA5AE00A8535C /* R.generated.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
 		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
@@ -128,6 +129,7 @@
 		AD5572001CABA0B4000BF880 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		AD5572011CABA0B4000BF880 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BEAAC7A31CABF3F70081DB61 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		D98635811CAEA5AE00A8535C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -291,34 +293,6 @@
 			path = "SignIn pages";
 			sourceTree = "<group>";
 		};
-		D98635681CABF44400A8535C /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */,
-				D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */,
-				D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */,
-				D98635411CABF44000A8535C /* SF-UI-Display-Light.otf */,
-				D98635421CABF44000A8535C /* SF-UI-Display-Medium.otf */,
-				D98635431CABF44000A8535C /* SF-UI-Display-Regular.otf */,
-				D98635441CABF44000A8535C /* SF-UI-Display-Semibold.otf */,
-				D98635451CABF44000A8535C /* SF-UI-Display-Thin.otf */,
-				D98635461CABF44000A8535C /* SF-UI-Display-Ultralight.otf */,
-				D98635471CABF44000A8535C /* SF-UI-Text-Bold.otf */,
-				D98635481CABF44000A8535C /* SF-UI-Text-BoldItalic.otf */,
-				D98635491CABF44000A8535C /* SF-UI-Text-Heavy.otf */,
-				D986354A1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf */,
-				D986354B1CABF44000A8535C /* SF-UI-Text-Light.otf */,
-				D986354C1CABF44000A8535C /* SF-UI-Text-LightItalic.otf */,
-				D986354D1CABF44000A8535C /* SF-UI-Text-Medium.otf */,
-				D986354E1CABF44000A8535C /* SF-UI-Text-MediumItalic.otf */,
-				D986354F1CABF44000A8535C /* SF-UI-Text-Regular.otf */,
-				D98635501CABF44000A8535C /* SF-UI-Text-RegularItalic.otf */,
-				D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */,
-				D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		BEAAC7A21CABF2300081DB61 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +302,13 @@
 				906FE2651CAD6D9A00E8057C /* KeychainSwiftDistrib.swift */,
 			);
 			path = DataService;
+			sourceTree = "<group>";
+		};
+		D98635681CABF44400A8535C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		D9D54EBE1CA28CD2007805F4 = {
@@ -369,6 +350,7 @@
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */,
 				D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */,
+				D98635811CAEA5AE00A8535C /* R.generated.swift */,
 				AD5571FA1CABA0B4000BF880 /* SignIn pages */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				AD4E257D1CABCF9E00D02744 /* Main2.storyboard */,
@@ -505,39 +487,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
-				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
-				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
-				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
-				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
-				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
-				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
-				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
-				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,
-				D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */,
+				D98635661CABF44000A8535C /* (null) in Resources */,
+				D98635541CABF44000A8535C /* (null) in Resources */,
+				D98635551CABF44000A8535C /* (null) in Resources */,
+				D98635581CABF44000A8535C /* (null) in Resources */,
+				D986355E1CABF44000A8535C /* (null) in Resources */,
+				D98635591CABF44000A8535C /* (null) in Resources */,
+				D986355B1CABF44000A8535C /* (null) in Resources */,
+				D986355F1CABF44000A8535C /* (null) in Resources */,
+				D986355A1CABF44000A8535C /* (null) in Resources */,
+				D98635601CABF44000A8535C /* (null) in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
-				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
-				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
-				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
+				D98635571CABF44000A8535C /* (null) in Resources */,
+				D98635621CABF44000A8535C /* (null) in Resources */,
+				D98635531CABF44000A8535C /* (null) in Resources */,
 				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
 				AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */,
 				AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */,
-				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
+				D98635671CABF44000A8535C /* (null) in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
 				AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */,
-				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
-				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
-				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
+				D98635561CABF44000A8535C /* (null) in Resources */,
+				D98635641CABF44000A8535C /* (null) in Resources */,
+				D986355D1CABF44000A8535C /* (null) in Resources */,
 				AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */,
 				AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */,
-				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
+				D986355C1CABF44000A8535C /* (null) in Resources */,
 				AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */,
 				AD4E257F1CABCF9E00D02744 /* Main2.storyboard in Resources */,
-				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
-				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
+				D98635611CABF44000A8535C /* (null) in Resources */,
+				D98635651CABF44000A8535C /* (null) in Resources */,
 				AD291D751CA940D9008CAFB1 /* Settings.storyboard in Resources */,
-				D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */,
+				D98635631CABF44000A8535C /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +625,7 @@
 				AD5572081CABA0B4000BF880 /* WelcomeViewController.swift in Sources */,
 				906FE2641CAD6CCA00E8057C /* APIServiceManager.swift in Sources */,
 				AD5571F61CAAEEF6000BF880 /* SignUpViewController1.swift in Sources */,
+				D98635821CAEA5AE00A8535C /* R.generated.swift in Sources */,
 				D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */,
 				AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
