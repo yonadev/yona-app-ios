@@ -18,6 +18,8 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
     @IBOutlet var lastnameTextField: UITextField!
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var nextButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,9 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
         self.firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
         self.lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         
+        self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
+        
+        
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
@@ -39,90 +44,54 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
         self.view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "icnBack")!, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.back(_:)))
-        self.navigationItem.leftBarButtonItem = newBackButton;
+
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
+        // Adding right mode image to text fields
+        let firstname = UIImageView(image: UIImage(named: "icnName"))
+        firstname.frame = CGRectMake(0.0, 0.0, firstname.image!.size.width+10.0, firstname.image!.size.height);
+        firstname.contentMode = UIViewContentMode.Center
+        self.firstnameTextField.rightView = firstname;
+        self.firstnameTextField.rightViewMode = UITextFieldViewMode.Always
+        
+        
+        let lastname = UIImageView(image: UIImage(named: "icnName"))
+        lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
+        lastname.contentMode = UIViewContentMode.Center
+        self.lastnameTextField.rightView = lastname;
+        self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
+        
     }
     
     
     // UIAlertView Alert
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        // hide activityIndicator view and display alert message
-        //        self.activityIndicatorView.hidden = true
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
     }
     
-    
-    
-    @IBAction func loginButtonPressed(sender: UIButton) {
-        // validate presense of required parameters
-        
-//        if self.emailTextField.text!.isValidEmail(self.emailTextField.text!) == false {
-//            self.displayAlertMessage("Invalid Email Address", alertDescription:
-//                "Please input valid email address. Email is Case Sensitive.")
-//        } else if self.passwordTextField.text!.characters.count < 8 {
-//            self.displayAlertMessage("Invalid Password", alertDescription:
-//                "Passwords must contain 8 values or more.")
-//        } else {
-//            //            makeSignInRequest()
-//        }
-        
-    }
-    
-    func makeSignInRequest() {
-        
-        // update userLoggedInFlag
-        self.updateUserLoggedInFlag()
-        
-        // save API AuthToken and ExpiryDate in Keychain
-    }
-    
-    // Update the NSUserDefaults flag
-    func updateUserLoggedInFlag() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("loggedIn", forKey: "userLoggedIn")
-        defaults.synchronize()
-    }
-    
-    
-    // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        if((self.presentingViewController) != nil){
-            self.dismissViewControllerAnimated(true, completion: nil)
-            NSLog("back")
-        }
-    }
-    
-    
     // Go To Another SignUpViewController2
-        @IBAction func nextPressed(sender: UIButton) {
-
-//            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpViewController2")
-//
-//            self.presentViewController(controller, animated: true, completion: nil)
-        }
+    @IBAction func nextPressed(sender: UIButton) {
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController")
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     
     
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
         if (textField == firstnameTextField) {
             lastnameTextField.becomeFirstResponder()
-
+            
         } else {
-          textField.resignFirstResponder()
+            textField.resignFirstResponder()
         }
-//        firstnameTextField.resignFirstResponder()
-//        lastnameTextField.becomeFirstResponder()
         return true
     }
     
     
-   
+    
     //MARK: - Add TextFieldInput Navigation Arrows above Keyboard
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
@@ -138,6 +107,15 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
         keyboardToolBar.sizeToFit()
         textField.inputAccessoryView = keyboardToolBar
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeField = textField
+        
+        self.firstnameTextField.delegate = self
+        self.lastnameTextField.delegate = self
+        
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
