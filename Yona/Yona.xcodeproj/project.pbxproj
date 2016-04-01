@@ -44,27 +44,6 @@
 		BEAAC7A41CABF3F70081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A51CAC017D0081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A61CAC1E650081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
-		D98635531CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635541CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635551CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635561CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635571CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635581CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635591CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355A1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355B1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355C1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355D1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355E1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D986355F1CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635601CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635611CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635621CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635631CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635641CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635651CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635661CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D98635671CABF44000A8535C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D986357F1CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D98635801CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D98635821CAEA5AE00A8535C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98635811CAEA5AE00A8535C /* R.generated.swift */; };
@@ -529,39 +508,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98635661CABF44000A8535C /* (null) in Resources */,
-				D98635541CABF44000A8535C /* (null) in Resources */,
-				D98635551CABF44000A8535C /* (null) in Resources */,
-				D98635581CABF44000A8535C /* (null) in Resources */,
-				D986355E1CABF44000A8535C /* (null) in Resources */,
-				D98635591CABF44000A8535C /* (null) in Resources */,
-				D986355B1CABF44000A8535C /* (null) in Resources */,
-				D986355F1CABF44000A8535C /* (null) in Resources */,
-				D986355A1CABF44000A8535C /* (null) in Resources */,
-				D98635601CABF44000A8535C /* (null) in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
-				D98635571CABF44000A8535C /* (null) in Resources */,
-				D98635621CABF44000A8535C /* (null) in Resources */,
-				D98635531CABF44000A8535C /* (null) in Resources */,
 				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
 				AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */,
 				AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */,
-				D98635671CABF44000A8535C /* (null) in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
 				AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */,
-				D98635561CABF44000A8535C /* (null) in Resources */,
-				D98635641CABF44000A8535C /* (null) in Resources */,
-				D986355D1CABF44000A8535C /* (null) in Resources */,
 				AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */,
 				AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */,
-				D986355C1CABF44000A8535C /* (null) in Resources */,
 				AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */,
 				AD4E257F1CABCF9E00D02744 /* Main2.storyboard in Resources */,
-				D98635611CABF44000A8535C /* (null) in Resources */,
-				D98635651CABF44000A8535C /* (null) in Resources */,
 				AD291D751CA940D9008CAFB1 /* Settings.storyboard in Resources */,
-				D98635631CABF44000A8535C /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
