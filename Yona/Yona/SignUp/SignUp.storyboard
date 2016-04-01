@@ -104,10 +104,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Privacy quote&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jc-12-cE5">
-                                                <rect key="frame" x="29" y="158" width="542" height="14"/>
+                                                <rect key="frame" x="29" y="158" width="542" height="15"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="29" y="158" width="342" height="14"/>
+                                                </variation>
                                             </label>
                                         </subviews>
                                         <constraints>
@@ -180,11 +183,12 @@
                         <outlet property="nextButton" destination="0mw-gF-MJc" id="ZfS-Kx-CIc"/>
                         <outlet property="personalQuoteLabel" destination="4jc-12-cE5" id="UIf-zt-crb"/>
                         <outlet property="scrollView" destination="NXN-bW-CZp" id="YQK-Ls-HJQ"/>
+                        <segue destination="PZ3-9z-fek" kind="show" identifier="SignUpSeconStepSegue" id="ylb-5I-9Gp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLn-EK-HMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.5" y="4.5"/>
+            <point key="canvasLocation" x="1257" y="5"/>
         </scene>
         <!--Sign Up Second Step View Controller-->
         <scene sceneID="GZA-Bv-fIR">
@@ -279,10 +283,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We gebruiken je mobile nummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een nog betere privacy." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FA1-7Y-njc">
-                                                <rect key="frame" x="29" y="158" width="542" height="28"/>
+                                                <rect key="frame" x="29" y="158" width="542" height="29"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="29" y="158" width="342" height="28"/>
+                                                </variation>
                                             </label>
                                         </subviews>
                                         <constraints>
@@ -385,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvM-TA-p2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157" y="4"/>
+            <point key="canvasLocation" x="2015" y="5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dyM-lm-8aR">
