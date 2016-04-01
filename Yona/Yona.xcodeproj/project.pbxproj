@@ -44,6 +44,8 @@
 		BEAAC7A41CABF3F70081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A51CAC017D0081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
 		BEAAC7A61CAC1E650081DB61 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAC7A31CABF3F70081DB61 /* UserManager.swift */; };
+		D986357F1CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
+		D98635801CAE7F8900A8535C /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE2631CAD6CCA00E8057C /* APIServiceManager.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
 		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
@@ -583,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D986357F1CAE7F8900A8535C /* APIServiceManager.swift in Sources */,
 				BEAAC7A51CAC017D0081DB61 /* UserManager.swift in Sources */,
 				90ACCDAC1CAD3A63000149F1 /* Users.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
@@ -593,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98635801CAE7F8900A8535C /* APIServiceManager.swift in Sources */,
 				BEAAC7A61CAC1E650081DB61 /* UserManager.swift in Sources */,
 				90ACCDAB1CAD3A62000149F1 /* Users.swift in Sources */,
 				D9D54EED1CA28CD2007805F4 /* YonaUITests.swift in Sources */,
