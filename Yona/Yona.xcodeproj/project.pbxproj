@@ -134,6 +134,7 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
+		D986357E1CAE604300A8535C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986357D1CAE604300A8535C /* R.generated.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
 		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
@@ -365,6 +366,7 @@
 		D98635761CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main2.strings; sourceTree = "<group>"; };
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D986357D1CAE604300A8535C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -1069,6 +1071,7 @@
 				AD5572051CABA0B4000BF880 /* SignInViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
+				D986357E1CAE604300A8535C /* R.generated.swift in Sources */,
 				AD5572071CABA0B4000BF880 /* VerificationViewController.swift in Sources */,
 				AD5572081CABA0B4000BF880 /* WelcomeViewController.swift in Sources */,
 				906FE2641CAD6CCA00E8057C /* APIServiceManager.swift in Sources */,
