@@ -40,10 +40,7 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         
         self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
-        //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpSecondStepViewController.DismissKeyboard))
@@ -73,6 +70,21 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //keyboard functions
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     // UIAlertView Alert
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
