@@ -43,20 +43,21 @@ class YonaTests: XCTestCase {
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
-            XCTAssert(APIServiceManager.sharedInstance.newUser != nil)
+            print("Post response")
+            XCTAssert((APIServiceManager.sharedInstance.newUser) != nil)
             
             let result = APIServiceManager.sharedInstance.newUser!
             let mobileNumber = result.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
             
             APIServiceManager.sharedInstance.deleteUser({ (success) in
+                print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()
             })
             
 
         }
-
         waitForExpectationsWithTimeout(5.0, handler:nil)
     }
     
@@ -67,7 +68,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+3123223465",
+             "mobileNumber": "+31033409377",
              "nickname": "RQ"]
         
         UserManager.sharedInstance.makePostRequest(path, password: password, body: body) { json, err in
@@ -76,7 +77,7 @@ class YonaTests: XCTestCase {
                 //store the json in an object
                 APIServiceManager.sharedInstance.newUser = Users.init(userData: json)
                 let userID = APIServiceManager.sharedInstance.newUser?.userID
-                let pathMobileConfirm = YonaPath.environments.test + YonaPath.commands.users + userID! + YonaPath.commands.mobileConfirm
+                let pathMobileConfirm = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.mobileConfirm
 
                 UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:["code": code], httpMethod: "POST", onCompletion: { success in
                     XCTAssertTrue(success)

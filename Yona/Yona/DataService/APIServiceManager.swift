@@ -8,38 +8,25 @@
 
 import Foundation
 
-struct YonaPath {
-    struct environments {
-        static let test = "http://85.222.227.142/"
-        static let production = ""
-    }
-    
-    struct commands {
-        static let users = "users/"
-        static let mobileConfirm = "/confirmMobileNumber"
-    }
-    
-    struct httpMethods{
-        static let post = "POST"
-        static let delete = "DELETE"
-        static let get = "GET"
-    }
-}
-
 public typealias UserData = [String: AnyObject]
 
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    private init() {}
+    private init() {
+        self.createYonaPassword()
+    }
     
     var newUser: Users?
-    lazy var yonaPassword: String = { //Yona password set from the UUID of device so unique
-        return NSUUID().UUIDString
-    }()
-    
+
     func postUser(body: UserData, onCompletion: APIResponse) {
-        let path = YonaPath.environments.test + YonaPath.commands.users
+        let path = YonaConstants.environments.test + YonaConstants.commands.users
+        
+        guard let yonaPassword = getYonaPassword() else {
+            onCompletion(false)
+            return
+        }
+        
         UserManager.sharedInstance.makePostRequest(path, password: yonaPassword, body: body, onCompletion: { json, err in
             if let json = json {
                 //store the json in an object
@@ -55,28 +42,53 @@ class APIServiceManager {
         if let newUser = newUser,
             let editLink = newUser.editLink,
             let userID = newUser.userID {
-            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaPath.httpMethods.delete, onCompletion: { success in
+            guard let yonaPassword = getYonaPassword() else {
+                onCompletion(false)
+                return
+            }
+            
+            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
                     onCompletion(false)
                 }
             })
-        }
+        } else { onCompletion(false) }
     }
     
     func confirmMobileNumber(body: UserData, onCompletion: APIResponse) {
         if let newUser = newUser,
             let userID = newUser.userID {
-            let path = YonaPath.environments.test + YonaPath.commands.users + userID + YonaPath.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
-            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaPath.httpMethods.post, onCompletion: { success in
+            guard let yonaPassword = getYonaPassword() else {
+                onCompletion(false)
+                return
+            }
+            
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
+            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
                     onCompletion(false)
                 }
             })
-        }
+        } else { onCompletion(false) }
     }
     
+    private func createYonaPassword() {
+        let password = NSUUID().UUIDString
+        
+        let keychain = KeychainSwift()
+        
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+    }
+    
+    private func getYonaPassword() -> String? {
+        let keychain = KeychainSwift()
+        
+        guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
+        
+        return password
+    }
 }

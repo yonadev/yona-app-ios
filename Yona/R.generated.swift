@@ -25,13 +25,10 @@ struct R {
     storyboard.settings.validateViewControllers()
     storyboard.main.validateImages()
     storyboard.main.validateViewControllers()
-    storyboard.main2.validateImages()
-    storyboard.main2.validateViewControllers()
   }
   
   struct file {
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
-    static var main2Strings: NSURL? { return _R.hostingBundle?.URLForResource("Main2", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }
     static var robotoBlackItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-BlackItalic", withExtension: "ttf") }
     static var robotoBlackTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-Black", withExtension: "ttf") }
@@ -374,36 +371,6 @@ struct R {
       
       static func validateViewControllers() {
         
-      }
-    }
-    
-    struct main2 {
-      static var forgotPWVC: ForgotPWViewController? { return instance.instantiateViewControllerWithIdentifier("forgotPWVC") as? ForgotPWViewController }
-      static var frontViewController: IntroductoryViewController? { return instance.instantiateViewControllerWithIdentifier("frontViewController") as? IntroductoryViewController }
-      static var initialViewController: IntroductoryViewController? { return instance.instantiateInitialViewController() as? IntroductoryViewController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "Main2", bundle: _R.hostingBundle) }
-      static var introPageViewController: UIPageViewController? { return instance.instantiateViewControllerWithIdentifier("IntroPageViewController") as? UIPageViewController }
-      static var introductoryContentVC: IntroductoryContentViewController? { return instance.instantiateViewControllerWithIdentifier("introductoryContentVC") as? IntroductoryContentViewController }
-      static var signInVC: SignInViewController? { return instance.instantiateViewControllerWithIdentifier("signInVC") as? SignInViewController }
-      static var signUpVC: SignUpViewController? { return instance.instantiateViewControllerWithIdentifier("signUpVC") as? SignUpViewController }
-      static var welcomeViewController: WelcomeViewController? { return instance.instantiateViewControllerWithIdentifier("WelcomeViewController") as? WelcomeViewController }
-      
-      static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Main2', but couldn't be loaded.")
-        assert(UIImage(named: "eye_off") != nil, "[R.swift] Image named 'eye_off' is used in storyboard 'Main2', but couldn't be loaded.")
-        assert(UIImage(named: "cyanOutfill") != nil, "[R.swift] Image named 'cyanOutfill' is used in storyboard 'Main2', but couldn't be loaded.")
-        assert(UIImage(named: "eye") != nil, "[R.swift] Image named 'eye' is used in storyboard 'Main2', but couldn't be loaded.")
-        assert(UIImage(named: "coralRedOutfill") != nil, "[R.swift] Image named 'coralRedOutfill' is used in storyboard 'Main2', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(welcomeViewController != nil, "[R.swift] ViewController with identifier 'welcomeViewController' could not be loaded from storyboard 'Main2' as 'WelcomeViewController'.")
-        assert(signInVC != nil, "[R.swift] ViewController with identifier 'signInVC' could not be loaded from storyboard 'Main2' as 'SignInViewController'.")
-        assert(signUpVC != nil, "[R.swift] ViewController with identifier 'signUpVC' could not be loaded from storyboard 'Main2' as 'SignUpViewController'.")
-        assert(forgotPWVC != nil, "[R.swift] ViewController with identifier 'forgotPWVC' could not be loaded from storyboard 'Main2' as 'ForgotPWViewController'.")
-        assert(frontViewController != nil, "[R.swift] ViewController with identifier 'frontViewController' could not be loaded from storyboard 'Main2' as 'IntroductoryViewController'.")
-        assert(introPageViewController != nil, "[R.swift] ViewController with identifier 'introPageViewController' could not be loaded from storyboard 'Main2' as 'UIPageViewController'.")
-        assert(introductoryContentVC != nil, "[R.swift] ViewController with identifier 'introductoryContentVC' could not be loaded from storyboard 'Main2' as 'IntroductoryContentViewController'.")
       }
     }
     
