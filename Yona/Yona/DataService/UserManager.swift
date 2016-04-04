@@ -82,18 +82,14 @@ class UserManager: NSObject {
         }
         request.HTTPMethod = "POST"
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            do {
-                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                print(jsonObject)
-                if let response = response, let httpResponse = response as? NSHTTPURLResponse {
-                    let code = httpResponse.statusCode
-                    if(code == 200) { //confirm successful you get 200 back
-                        onCompletion(true)
-                    } else {
-                        onCompletion(false)
-                    }
+            if let response = response, let httpResponse = response as? NSHTTPURLResponse {
+                let code = httpResponse.statusCode
+                if(code == 200) { //confirm successful you get 200 back
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
                 }
-            } catch {}
+            }
 
         })
         task.resume()
