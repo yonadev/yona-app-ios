@@ -39,7 +39,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31625559377",
+             "mobileNumber": "+31033409377",
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
@@ -55,8 +55,43 @@ class YonaTests: XCTestCase {
                 XCTAssertTrue(success)
                 expectation.fulfill()
             })
-        }
+            
 
+        }
+        waitForExpectationsWithTimeout(5.0, handler:nil)
+    }
+    
+    func testConfirmMobile() {
+        let path = "http://85.222.227.142/users/"
+        let password = NSUUID().UUIDString
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31033409377",
+             "nickname": "RQ"]
+        
+        UserManager.sharedInstance.makePostRequest(path, password: password, body: body) { json, err in
+            if let json = json,
+                let code = json["mobileNumberConfirmationCode"]{
+                //store the json in an object
+                APIServiceManager.sharedInstance.newUser = Users.init(userData: json)
+                let userID = APIServiceManager.sharedInstance.newUser?.userID
+                let pathMobileConfirm = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.mobileConfirm
+
+                UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:["code": code], httpMethod: "POST", onCompletion: { success in
+                    XCTAssertTrue(success)
+                    let deletePath = path + userID!
+                    UserManager.sharedInstance.makeRequest(deletePath, password: password, userID: userID!, body:[:], httpMethod: "DELETE", onCompletion: { success in
+                        if(success){
+                            expectation.fulfill()
+                        }
+                    })
+                })
+                
+            }
+        }
         waitForExpectationsWithTimeout(15.0, handler:nil)
     }
+
 }

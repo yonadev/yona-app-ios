@@ -16,8 +16,15 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
+        static let mobileConfirm = "/confirmMobileNumber"
     }
     
+    struct httpMethods{
+        static let post = "POST"
+        static let delete = "DELETE"
+        static let get = "GET"
+    }
+
     struct keychain {
         static let yonaPassword = "kYonaPassword"
     }

@@ -37,7 +37,7 @@ class UserManager: NSObject {
             do {
                 let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let dict = jsonObject as? [String: AnyObject] {
-                    if dict.count == 2 {
+                    if dict.count == 2 { //we get a response of 2 items if there is nothing returned
                         onCompletion(nil, nil)
                     } else {
                         self.userInfo = dict
@@ -52,24 +52,28 @@ class UserManager: NSObject {
         task.resume()
     }
     
-
-    func makeDeleteRequest(path: String, password: String, userID: String, onCompletion: APIResponse){
-        print(password)
+    func makeRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, onCompletion: APIResponse){
         let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password, "id": userID]
-        request.HTTPMethod = "DELETE"
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
+        } catch {
+            print("Error")
+        }
+        request.HTTPMethod = httpMethod
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
                 let code = httpResponse.statusCode
-                if(code == 200) {
+                if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
                     onCompletion(true)
                 } else {
                     onCompletion(false)
                 }
             }
+            
         })
         task.resume()
     }
-    
+
 }

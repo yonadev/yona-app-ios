@@ -42,13 +42,31 @@ class APIServiceManager {
         if let newUser = newUser,
             let editLink = newUser.editLink,
             let userID = newUser.userID {
-            
             guard let yonaPassword = getYonaPassword() else {
                 onCompletion(false)
                 return
             }
             
-            UserManager.sharedInstance.makeDeleteRequest(editLink, password: yonaPassword, userID: userID, onCompletion: { success in
+            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success in
+                if (success){
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            })
+        } else { onCompletion(false) }
+    }
+    
+    func confirmMobileNumber(body: UserData, onCompletion: APIResponse) {
+        if let newUser = newUser,
+            let userID = newUser.userID {
+            guard let yonaPassword = getYonaPassword() else {
+                onCompletion(false)
+                return
+            }
+            
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
+            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {

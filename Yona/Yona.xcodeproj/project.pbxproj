@@ -334,8 +334,8 @@
 		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
 				D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */,
+				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
 				D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */,
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 			);
