@@ -46,12 +46,13 @@
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
-		D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */; };
 		D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BC1CB26E3A00ABE0F8 /* Users.swift */; };
 		D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C21CB27AE500ABE0F8 /* Extensions.swift */; };
 		D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
+		D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
+		D94A93CC1CB2B3C400ABE0F8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93CB1CB2B3C400ABE0F8 /* StringExtensions.swift */; };
 		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
 		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
 		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
@@ -139,12 +140,13 @@
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
-		D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainSwiftDistrib.swift; path = ../DataService/KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
 		D94A93C21CB27AE500ABE0F8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D94A93C41CB291FC00ABE0F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		D94A93CB1CB2B3C400ABE0F8 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -293,7 +295,6 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */,
@@ -304,6 +305,7 @@
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 				D98635681CABF44400A8535C /* Fonts */,
+				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
@@ -347,10 +349,6 @@
 		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< ea5d91e8d8205c83d5944f5a1b32ff89ebaa5009
-				D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */,
-=======
->>>>>>> Create a keychain manager
 				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
 				D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */,
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
@@ -364,6 +362,7 @@
 			children = (
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
 				D94A93C21CB27AE500ABE0F8 /* Extensions.swift */,
+				D94A93CB1CB2B3C400ABE0F8 /* StringExtensions.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -372,7 +371,7 @@
 		D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */,
+				D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */,
 				D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */,
 			);
 			name = "Keychain Manager";
@@ -712,6 +711,7 @@
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */,
+				D94A93CC1CB2B3C400ABE0F8 /* StringExtensions.swift in Sources */,
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
@@ -720,10 +720,10 @@
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
+				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
-				D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,

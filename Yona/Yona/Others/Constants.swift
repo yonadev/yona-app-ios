@@ -27,5 +27,6 @@ struct YonaConstants {
 
     struct keychain {
         static let yonaPassword = "kYonaPassword"
+        static let PINCode = "kPINCode"
     }
 }

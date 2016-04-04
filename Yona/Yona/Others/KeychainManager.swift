@@ -13,21 +13,33 @@ final class KeychainManager {
     
     private let keychain = KeychainSwift()
     
-    private init() {
-        self.createYonaPassword()
-    }
-    
-    private func createYonaPassword() {
+    private init() {}
+}
+
+//MARK: - getYonaPassword
+extension KeychainManager {
+    func createYonaPassword() {
         let password = NSUUID().UUIDString
         
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
     }
-}
-
-extension KeychainManager {
+    
     func getYonaPassword() -> String? {
         guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
         
         return password
+    }
+}
+
+//MARK: - PIN Code
+extension KeychainManager {
+    func savePINCode(pinCode: String) {
+        keychain.set(pinCode, forKey: YonaConstants.keychain.PINCode)
+    }
+    
+    func getPINCode() -> String? {
+        guard let pin = keychain.get(YonaConstants.keychain.PINCode) else { return nil }
+        
+        return pin
     }
 }

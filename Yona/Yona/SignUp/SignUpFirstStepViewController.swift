@@ -32,8 +32,8 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
         
     }
     
@@ -107,6 +107,8 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
 }
 
+//MARK: - UITextFieldDelegate
+
 extension SignUpFirstStepViewController: UITextFieldDelegate {
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -121,13 +123,13 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     
     
     
-    //MARK: - Add TextFieldInput Navigation Arrows above Keyboard
+    //MARK: Add TextFieldInput Navigation Arrows above Keyboard
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
         let keyboardBarButtonItems = [
-            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.previousTextField)),
+            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.previousTextField),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpFirstStepViewController.nextTextField))
+            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.nextTextField)
         ]
         
         keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
@@ -163,7 +165,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     }
     
     
-    //MARK: - Keyboard Functions
+    //MARK: Keyboard Functions
     func keyboardWasShown (notification: NSNotification) {
         let viewHeight = self.view.frame.size.height
         let info : NSDictionary = notification.userInfo!
@@ -192,6 +194,14 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+}
+
+private extension Selector {
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
     
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
     
+    static let previousTextField = #selector(SignUpSecondStepViewController.previousTextField)
+    
+    static let nextTextField = #selector(SignUpSecondStepViewController.nextTextField)
 }

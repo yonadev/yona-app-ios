@@ -18,6 +18,8 @@ class APIServiceManager {
     var newUser: Users?
 
     func postUser(body: UserData, onCompletion: APIResponse) {
+        KeychainManager.sharedInstance.createYonaPassword()
+        
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         
         guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
@@ -37,14 +39,14 @@ class APIServiceManager {
     }
     
     func deleteUser(onCompletion: APIResponse) {
+        guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
+            onCompletion(false)
+            return
+        }
+        
         if let newUser = newUser,
             let editLink = newUser.editLink,
             let userID = newUser.userID {
-            guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
-                onCompletion(false)
-                return
-            }
-            
             UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success in
                 if (success){
                     onCompletion(true)
@@ -56,13 +58,13 @@ class APIServiceManager {
     }
     
     func confirmMobileNumber(body: UserData, onCompletion: APIResponse) {
+        guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
+            onCompletion(false)
+            return
+        }
+        
         if let newUser = newUser,
             let userID = newUser.userID {
-            guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
-                onCompletion(false)
-                return
-            }
-            
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
             UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success in
                 if (success){
