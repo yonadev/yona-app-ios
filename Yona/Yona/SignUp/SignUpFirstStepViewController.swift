@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScrollViewDelegate {
+class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate,UITextFieldDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
@@ -151,8 +151,15 @@ class SignUpFirstStepViewController: UIViewController, UITextFieldDelegate,UIScr
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
         
-        self.scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        //TODO: 260 is top view's height, need to improve this :(
+        let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
         
+        
+        if (txtpos > (viewHeight-keyboardSize.height)) {
+            scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
+        } else {
+        scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        }
     }
     
     
