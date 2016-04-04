@@ -51,27 +51,8 @@ class UserManager: NSObject {
         })
         task.resume()
     }
-
-    func makeDeleteRequest(path: String, password: String, userID: String, onCompletion: APIResponse){
-        print(password)
-        let session = NSURLSession.sharedSession()
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password, "id": userID]
-        request.HTTPMethod = "DELETE"
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            if let response = response, let httpResponse = response as? NSHTTPURLResponse {
-                let code = httpResponse.statusCode
-                if(code == 200) { //delete successful you get 200 back
-                    onCompletion(true)
-                } else {
-                    onCompletion(false)
-                }
-            }
-        })
-        task.resume()
-    }
     
-    func makeConfirmMobile(path: String, password: String, userID: String, body: UserData, onCompletion: APIResponse){
+    func makeRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, onCompletion: APIResponse){
         let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password, "id": userID]
@@ -80,17 +61,17 @@ class UserManager: NSObject {
         } catch {
             print("Error")
         }
-        request.HTTPMethod = "POST"
+        request.HTTPMethod = httpMethod
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
                 let code = httpResponse.statusCode
-                if(code == 200) { //confirm successful you get 200 back
+                if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
                     onCompletion(true)
                 } else {
                     onCompletion(false)
                 }
             }
-
+            
         })
         task.resume()
     }

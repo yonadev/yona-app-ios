@@ -39,7 +39,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31025409377",
+             "mobileNumber": "+31033409377",
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
@@ -78,10 +78,10 @@ class YonaTests: XCTestCase {
                 let userID = APIServiceManager.sharedInstance.newUser?.userID
                 let pathMobileConfirm = YonaPath.environments.test + YonaPath.commands.users + userID! + YonaPath.commands.mobileConfirm
 
-                UserManager.sharedInstance.makeConfirmMobile(pathMobileConfirm, password: password, userID: userID!, body: ["code": code], onCompletion: { success in
+                UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:["code": code], httpMethod: "POST", onCompletion: { success in
                     XCTAssertTrue(success)
                     let deletePath = path + userID!
-                    UserManager.sharedInstance.makeDeleteRequest(deletePath, password: password, userID: userID!, onCompletion: { success in
+                    UserManager.sharedInstance.makeRequest(deletePath, password: password, userID: userID!, body:[:], httpMethod: "DELETE", onCompletion: { success in
                         if(success){
                             expectation.fulfill()
                         }

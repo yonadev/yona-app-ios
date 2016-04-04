@@ -18,6 +18,12 @@ struct YonaPath {
         static let users = "users/"
         static let mobileConfirm = "/confirmMobileNumber"
     }
+    
+    struct httpMethods{
+        static let post = "POST"
+        static let delete = "DELETE"
+        static let get = "GET"
+    }
 }
 
 public typealias UserData = [String: AnyObject]
@@ -49,7 +55,7 @@ class APIServiceManager {
         if let newUser = newUser,
             let editLink = newUser.editLink,
             let userID = newUser.userID {
-            UserManager.sharedInstance.makeDeleteRequest(editLink, password: yonaPassword, userID: userID, onCompletion: { success in
+            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaPath.httpMethods.delete, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
@@ -63,7 +69,7 @@ class APIServiceManager {
         if let newUser = newUser,
             let userID = newUser.userID {
             let path = YonaPath.environments.test + YonaPath.commands.users + userID + YonaPath.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
-            UserManager.sharedInstance.makeConfirmMobile(path, password: yonaPassword, userID: userID, body: body, onCompletion: { success in
+            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaPath.httpMethods.post, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
