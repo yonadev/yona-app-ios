@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Yona
+
+  Created by Alessio Roberto on 31/03/16.
+  Copyright © 2016 Yona. All rights reserved.
+*/
+
+"signup.user.firstname" = "Firstname";
+"signup.user.lastname" = "Lastname";
+"signup.button.next" = "Next";
+"signup.button.previous" = "Previous";
+
+"signup.user.mobileNumber" = "Mobile Number";
+"signup.user.nickname" = "Nick Name";
+"signup.user.infoText" = "We use your mobile number for secure registration. Your nickname is mandatory and allows for better privacy.";
+
