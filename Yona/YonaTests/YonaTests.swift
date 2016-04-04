@@ -78,11 +78,11 @@ class YonaTests: XCTestCase {
                 APIServiceManager.sharedInstance.newUser = Users.init(userData: json)
                 let userID = APIServiceManager.sharedInstance.newUser?.userID
                 let pathMobileConfirm = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.mobileConfirm
-
-                UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:["code": code], httpMethod: "POST", onCompletion: { success in
+                let httpHeader = ["Content-Type": "application/json", "Yona-Password": password,"id":userID!]
+                UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:["code": code], httpMethod: "POST", httpHeader: httpHeader, onCompletion: { success in
                     XCTAssertTrue(success)
                     let deletePath = path + userID!
-                    UserManager.sharedInstance.makeRequest(deletePath, password: password, userID: userID!, body:[:], httpMethod: "DELETE", onCompletion: { success in
+                    UserManager.sharedInstance.makeRequest(deletePath, password: password, userID: userID!, body:[:], httpMethod: "DELETE", httpHeader: httpHeader, onCompletion: { success in
                         if(success){
                             expectation.fulfill()
                         }
@@ -92,6 +92,76 @@ class YonaTests: XCTestCase {
             }
         }
         waitForExpectationsWithTimeout(15.0, handler:nil)
+    }
+    
+    func testConfirmMobileOTPResend() {
+        let path = "http://85.222.227.142/users/"
+        let password = NSUUID().UUIDString
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31622324577",
+             "nickname": "RQ"]
+        
+        UserManager.sharedInstance.makePostRequest(path, password: password, body: body) { json, err in
+            if let json = json {
+                //store the json in an object
+                APIServiceManager.sharedInstance.newUser = Users.init(userData: json)
+                let userID = APIServiceManager.sharedInstance.newUser?.userID
+                let pathMobileConfirm = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.mobileConfirm
+                let httpHeader = ["Content-Type": "application/json", "Yona-Password": password,"id":userID!]
+
+                UserManager.sharedInstance.makeRequest(pathMobileConfirm, password: password, userID: userID!, body:[:], httpMethod: "POST", httpHeader: httpHeader, onCompletion: { success in
+                        XCTAssertTrue(success)
+                        let deletePath = path + userID!
+                        UserManager.sharedInstance.makeRequest(deletePath, password: password, userID: userID!, body:[:], httpMethod: "DELETE", httpHeader: httpHeader, onCompletion: { success in
+                            if(success){
+                                expectation.fulfill()
+                            }
+                        })
+                })
+            }
+        }
+        waitForExpectationsWithTimeout(15.0, handler:nil)
+    }
+    
+    func testUserReturned() {
+        let path = "http://85.222.227.142/users/"
+        let keychain = KeychainSwift()
+        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+39942324977",
+             "nickname": "RQ"]
+        UserManager.sharedInstance.makePostRequest(path, password: yonaPassword, body: body) { json, err in
+            if let json = json {
+                let user = Users.init(userData: json)
+                //store the json in an object
+                APIServiceManager.sharedInstance.newUser = user
+                let userID = user.userID
+                let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID!, "includePrivateData":"true"]
+
+                UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID!, body: [:], httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success in
+                    XCTAssert((APIServiceManager.sharedInstance.newUser) != nil)
+                    
+                    let result = APIServiceManager.sharedInstance.newUser!
+                    let mobileNumber = result.mobileNumber
+                    XCTAssertTrue(mobileNumber == body["mobileNumber"])
+                    XCTAssertTrue(success)
+                    let deletePath = path + userID!
+                    UserManager.sharedInstance.makeRequest(deletePath, password: yonaPassword, userID: userID!, body:[:], httpMethod: "DELETE", httpHeader: httpHeader, onCompletion: { success in
+                        if(success){
+                            expectation.fulfill()
+                        }
+                    })
+                })
+            }
+        }
+        waitForExpectationsWithTimeout(15.0, handler:nil)
+
     }
 
 }

@@ -52,10 +52,10 @@ class UserManager: NSObject {
         task.resume()
     }
     
-    func makeRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, onCompletion: APIResponse){
+    func makeRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIResponse){
         let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password, "id": userID]
+        request.allHTTPHeaderFields = httpHeader
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         } catch {
@@ -68,6 +68,10 @@ class UserManager: NSObject {
                 if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
                     onCompletion(true)
                 } else {
+                    do {
+                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                        print(jsonObject)
+                    } catch {}
                     onCompletion(false)
                 }
             }

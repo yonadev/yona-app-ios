@@ -9,7 +9,7 @@
 import Foundation
 
 struct Users{
-    var userID: String?
+    var userID: String!
     var firstName: String
     var lastName: String
     var mobileNumber: String
@@ -21,7 +21,7 @@ struct Users{
         lastName = userData["lastName"] as! String
         mobileNumber = userData["mobileNumber"] as! String
         nickname = userData["nickname"] as? String
-       
+        
         if let links = userData["_links"],
             let edit = links["edit"],
             let href = edit?["href"],

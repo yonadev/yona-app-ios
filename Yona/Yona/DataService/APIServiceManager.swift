@@ -38,6 +38,26 @@ class APIServiceManager {
         })
     }
     
+    func getUser(onCompletion: APIResponse) {
+        if let newUser = newUser,
+            let userID = newUser.userID {
+            guard let yonaPassword = getYonaPassword() else {
+                onCompletion(false)
+                return
+            }
+            
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID //GET /users/{id}
+            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID, "includePrivateData": "true"]
+            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success in
+                if (success){
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            })
+        } else { onCompletion(false) }
+    }
+    
     func deleteUser(onCompletion: APIResponse) {
         if let newUser = newUser,
             let editLink = newUser.editLink,
@@ -46,8 +66,8 @@ class APIServiceManager {
                 onCompletion(false)
                 return
             }
-            
-            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success in
+            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
+            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
@@ -66,7 +86,8 @@ class APIServiceManager {
             }
             
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
-            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success in
+            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
+            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success in
                 if (success){
                     onCompletion(true)
                 } else {
