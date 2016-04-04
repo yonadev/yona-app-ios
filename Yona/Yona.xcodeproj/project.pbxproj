@@ -57,6 +57,7 @@
 		D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */; };
 		D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BC1CB26E3A00ABE0F8 /* Users.swift */; };
+		D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C21CB27AE500ABE0F8 /* Extensions.swift */; };
 		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
 		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
 		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
@@ -155,6 +156,7 @@
 		D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainSwiftDistrib.swift; path = DataService/KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
+		D94A93C21CB27AE500ABE0F8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -369,6 +371,14 @@
 			name = DataService;
 			sourceTree = "<group>";
 		};
+		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93C21CB27AE500ABE0F8 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		D98635681CABF44400A8535C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,26 +433,27 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93B81CB26E2D00ABE0F8 /* DataService */,
-				D98635681CABF44400A8535C /* Fonts */,
-				AD291DA21CAAA7AB008CAFB1 /* Others */,
-				AD291D291CA9286C008CAFB1 /* WalkThrough */,
-				AD5571F21CAAD87B000BF880 /* SignUp */,
-				AD291D281CA9286C008CAFB1 /* CreateAccount */,
-				AD291D241CA92808008CAFB1 /* Challenges */,
-				AD291D251CA92808008CAFB1 /* Friends */,
-				AD291D261CA92808008CAFB1 /* Profile */,
-				AD291D271CA92808008CAFB1 /* Settings */,
-				AD291CE01CA90202008CAFB1 /* DashBoard */,
+				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
-				AD5571FA1CABA0B4000BF880 /* SignIn pages */,
-				AD5571F71CABA022000BF880 /* Main.storyboard */,
-				AD4E257D1CABCF9E00D02744 /* Main2.storyboard */,
+				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
-				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
-				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
+				AD5571F71CABA022000BF880 /* Main.storyboard */,
+				AD4E257D1CABCF9E00D02744 /* Main2.storyboard */,
+				AD291D241CA92808008CAFB1 /* Challenges */,
+				AD291D281CA9286C008CAFB1 /* CreateAccount */,
+				AD291CE01CA90202008CAFB1 /* DashBoard */,
+				D94A93B81CB26E2D00ABE0F8 /* DataService */,
+				D98635681CABF44400A8535C /* Fonts */,
+				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
+				AD291D251CA92808008CAFB1 /* Friends */,
+				AD291DA21CAAA7AB008CAFB1 /* Others */,
+				AD291D261CA92808008CAFB1 /* Profile */,
+				AD291D271CA92808008CAFB1 /* Settings */,
+				AD5571FA1CABA0B4000BF880 /* SignIn pages */,
+				AD5571F21CAAD87B000BF880 /* SignUp */,
+				AD291D291CA9286C008CAFB1 /* WalkThrough */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -729,6 +740,7 @@
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
 				AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
+				D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */,
 				D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				AD5572021CABA0B4000BF880 /* ForgotPWViewController.swift in Sources */,

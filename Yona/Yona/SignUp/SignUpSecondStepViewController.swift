@@ -14,6 +14,9 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
+    var userFirstName: String?
+    var userLastName: String?
+    
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var infoLabel: UILabel!
@@ -98,20 +101,28 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
-        if((self.presentingViewController) != nil){
-            self.dismissViewControllerAnimated(true, completion: nil)
-            NSLog("back")
-        }
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     
     // Go To Another ViewController
-        @IBAction func nextPressed(sender: UIButton) {
-
-//            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpViewController2")
-//
-//            self.presentViewController(controller, animated: true, completion: nil)
+    @IBAction func nextPressed(sender: UIButton) {
+        
+        guard let trimmedString = mobileTextField.text?.removeWhitespace() else { return }
+        
+        let body =
+            ["firstName": userFirstName!,
+             "lastName": userLastName!,
+             "mobileNumber": trimmedString,
+             "nickname": nicknameTextField.text ?? ""]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (flag) in
+            //TODO: Remove the deleteUser request, added only for test purpose
+            APIServiceManager.sharedInstance.deleteUser({ (flag) in
+                print(flag)
+            })
         }
+    }
     
     
     // Text Field Return Resign First Responder
@@ -163,15 +174,13 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     
     //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    print((range.location))
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 14 {
                     textField.text = String(textField.text!.characters.dropLast())
                     textField.text = String(textField.text!.characters.dropLast())
                 }
-            
-            }else  {
+            } else  {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 14 {
                     let space = " "
                     
@@ -180,7 +189,7 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
             previousRange = range
             
             if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 5 {
-                textField.text = "+315 "
+                textField.text = "+316 "
             }
             
                 return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 18
@@ -206,7 +215,6 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         let keyboardInset = keyboardSize.height - viewHeight/3
         
         self.scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-        
     }
     
     

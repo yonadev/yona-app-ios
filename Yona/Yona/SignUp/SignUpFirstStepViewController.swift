@@ -43,19 +43,27 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == R.segue.signUpFirstStepViewController.signUpSeconStepSegue.identifier,
+            let vc = segue.destinationViewController as? SignUpSecondStepViewController {
+            vc.userFirstName = firstnameTextField.text
+            vc.userLastName = lastnameTextField.text
+        }
+    }
+    
     private func setupUI() {
         // Text Delegates
-        
-        self.firstnameTextField.delegate = self
-        self.lastnameTextField.delegate = self
-        self.firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
-        self.lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
-        
-        self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
+       
+       firstnameTextField.delegate = self
+       lastnameTextField.delegate = self
+       firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
+       lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
+       
+       nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpFirstStepViewController.DismissKeyboard))
-        self.view.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
         
@@ -95,8 +103,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 "Please input a Last Name.")
             
         } else {
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController")
-            self.presentViewController(controller, animated: true, completion: nil)
+            performSegueWithIdentifier(R.segue.signUpFirstStepViewController.signUpSeconStepSegue, sender: self)
         }
     }
 }
