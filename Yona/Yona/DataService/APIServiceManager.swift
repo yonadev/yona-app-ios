@@ -13,16 +13,14 @@ public typealias UserData = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    private init() {
-        self.createYonaPassword()
-    }
+    private init() {}
     
     var newUser: Users?
 
     func postUser(body: UserData, onCompletion: APIResponse) {
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         
-        guard let yonaPassword = getYonaPassword() else {
+        guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
             onCompletion(false)
             return
         }
@@ -42,7 +40,7 @@ class APIServiceManager {
         if let newUser = newUser,
             let editLink = newUser.editLink,
             let userID = newUser.userID {
-            guard let yonaPassword = getYonaPassword() else {
+            guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
                 onCompletion(false)
                 return
             }
@@ -60,7 +58,7 @@ class APIServiceManager {
     func confirmMobileNumber(body: UserData, onCompletion: APIResponse) {
         if let newUser = newUser,
             let userID = newUser.userID {
-            guard let yonaPassword = getYonaPassword() else {
+            guard let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() else {
                 onCompletion(false)
                 return
             }
@@ -74,21 +72,5 @@ class APIServiceManager {
                 }
             })
         } else { onCompletion(false) }
-    }
-    
-    private func createYonaPassword() {
-        let password = NSUUID().UUIDString
-        
-        let keychain = KeychainSwift()
-        
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
-    }
-    
-    private func getYonaPassword() -> String? {
-        let keychain = KeychainSwift()
-        
-        guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
-        
-        return password
     }
 }
