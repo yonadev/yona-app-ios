@@ -52,7 +52,11 @@
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
-		D94A93AA1CB256F900ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93A91CB256F900ABE0F8 /* R.generated.swift */; };
+		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
+		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
+		D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */; };
+		D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */; };
+		D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BC1CB26E3A00ABE0F8 /* Users.swift */; };
 		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
 		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
 		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
@@ -76,8 +80,6 @@
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
-		D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */; };
-		D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EE11CA28CD2007805F4 /* YonaTests.swift */; };
@@ -148,7 +150,11 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
-		D94A93A91CB256F900ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
+		D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainSwiftDistrib.swift; path = DataService/KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
+		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
 		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -177,8 +183,6 @@
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9D54ED61CA28CD2007805F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9D54ED81CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -354,6 +358,17 @@
 			path = "Fonts/Roboto Fonts";
 			sourceTree = "<group>";
 		};
+		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
+				D94A93BA1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift */,
+				D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */,
+				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
+			);
+			name = DataService;
+			sourceTree = "<group>";
+		};
 		D98635681CABF44400A8535C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +423,7 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93A91CB256F900ABE0F8 /* R.generated.swift */,
+				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				D98635681CABF44400A8535C /* Fonts */,
 				AD291DA21CAAA7AB008CAFB1 /* Others */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
@@ -420,8 +435,6 @@
 				AD291D271CA92808008CAFB1 /* Settings */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
-				D9D54ECC1CA28CD2007805F4 /* FirstViewController.swift */,
-				D9D54ECE1CA28CD2007805F4 /* SecondViewController.swift */,
 				AD5571FA1CABA0B4000BF880 /* SignIn pages */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				AD4E257D1CABCF9E00D02744 /* Main2.storyboard */,
@@ -429,6 +442,7 @@
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
+				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -694,26 +708,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD5572041CABA0B4000BF880 /* IntroductoryViewController.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
-				D94A93AA1CB256F900ABE0F8 /* R.generated.swift in Sources */,
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
-				D9D54ECF1CA28CD2007805F4 /* SecondViewController.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
+				D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */,
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD5572031CABA0B4000BF880 /* IntroductoryContentViewController.swift in Sources */,
 				AD5572051CABA0B4000BF880 /* SignInViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
+				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
+				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				AD5572071CABA0B4000BF880 /* VerificationViewController.swift in Sources */,
 				AD5572081CABA0B4000BF880 /* WelcomeViewController.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
-				D9D54ECD1CA28CD2007805F4 /* FirstViewController.swift in Sources */,
 				AD5572061CABA0B4000BF880 /* SignUpViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
+				D94A93BE1CB26E3A00ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				AD5572021CABA0B4000BF880 /* ForgotPWViewController.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
