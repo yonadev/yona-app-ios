@@ -134,7 +134,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+39942324977",
+             "mobileNumber": "+39992727777",
              "nickname": "RQ"]
         UserManager.sharedInstance.makePostRequest(path, password: yonaPassword, body: body) { json, err in
             if let json = json {
@@ -143,8 +143,9 @@ class YonaTests: XCTestCase {
                 APIServiceManager.sharedInstance.newUser = user
                 let userID = user.userID
                 let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID!, "includePrivateData":"true"]
-
-                UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID!, body: [:], httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success in
+                let getUserPath = path + userID!
+                
+                UserManager.sharedInstance.makeRequest(getUserPath, password: yonaPassword, userID: userID!, body: [:], httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success in
                     XCTAssert((APIServiceManager.sharedInstance.newUser) != nil)
                     
                     let result = APIServiceManager.sharedInstance.newUser!
