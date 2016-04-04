@@ -39,26 +39,24 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31625459377",
+             "mobileNumber": "+31625559377",
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
-            XCTAssert(APIServiceManager.sharedInstance.newUser != nil)
+            print("Post response")
+            XCTAssert((APIServiceManager.sharedInstance.newUser) != nil)
             
             let result = APIServiceManager.sharedInstance.newUser!
             let mobileNumber = result.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
             
             APIServiceManager.sharedInstance.deleteUser({ (success) in
+                print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()
             })
         }
 
-        waitForExpectationsWithTimeout(5.0, handler:nil)
-    }
-    
-    func testDeletionOfUser() {
-        
+        waitForExpectationsWithTimeout(15.0, handler:nil)
     }
 }

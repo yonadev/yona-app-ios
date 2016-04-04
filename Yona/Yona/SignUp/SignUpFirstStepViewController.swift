@@ -92,7 +92,6 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         errorAlert.show()
     }
     
-    // Go To Another SignUpViewController2
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:

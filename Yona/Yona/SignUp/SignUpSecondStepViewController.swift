@@ -9,13 +9,15 @@
 
 import UIKit
 
-class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UIScrollViewDelegate {
+class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
     var userFirstName: String?
     var userLastName: String?
+    
+    private let nederlandPhonePrefix = "+316 "
     
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
@@ -48,16 +50,18 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     
     private func setupUI() {
         // Text Delegates
-        if var label = self.previousRange{
+        if var label = previousRange {
             label.length = 1
         }
         
-        self.mobileTextField.delegate = self
-        self.nicknameTextField.delegate = self
-        self.mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
-        self.nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
+        mobileTextField.delegate = self
+        nicknameTextField.delegate = self
+        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
+        nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
+
+        mobileTextField.text = nederlandPhonePrefix
         
-        self.infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "").uppercaseString
         
         self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -69,7 +73,7 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "icnBack")!, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpSecondStepViewController.back(_:)))
+        let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpSecondStepViewController.back(_:)))
         self.navigationItem.leftBarButtonItem = newBackButton;
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -77,13 +81,13 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         
         
         // Adding right mode image to text fields
-        let mobileImage = UIImageView(image: UIImage(named: "icnMobile"))
+        let mobileImage = UIImageView(image: R.image.icnMobile)
         mobileImage.frame = CGRectMake(0.0, 0.0, mobileImage.image!.size.width+10.0, mobileImage.image!.size.height);
         mobileImage.contentMode = UIViewContentMode.Center
         self.mobileTextField.rightView = mobileImage;
         self.mobileTextField.rightViewMode = UITextFieldViewMode.Always
         
-        let nicknameImage = UIImageView(image: UIImage(named: "icnNickname"))
+        let nicknameImage = UIImageView(image: R.image.icnNickname)
         nicknameImage.frame = CGRectMake(0.0, 0.0, nicknameImage.image!.size.width+10.0, nicknameImage.image!.size.height);
         mobileImage.contentMode = UIViewContentMode.Center
         self.nicknameTextField.rightView = nicknameImage;
@@ -123,13 +127,13 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
             })
         }
     }
-    
-    
+}
+
+extension SignUpSecondStepViewController: UITextFieldDelegate {
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
-
         } else {
           textField.resignFirstResponder()
         }
@@ -156,14 +160,6 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        activeField = textField
-        if (activeField == mobileTextField) {
-            
-            mobileTextField.text = "+316 "
-        }
-        self.mobileTextField.delegate = self
-        self.nicknameTextField.delegate = self
-        
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
     }
     
@@ -189,13 +185,14 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
             previousRange = range
             
             if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 5 {
-                textField.text = "+316 "
+                textField.text = nederlandPhonePrefix
             }
             
-                return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 18
+            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 18
         }
         return true
     }
+    
     func nextTextField() {
         mobileTextField.resignFirstResponder()
         nicknameTextField.becomeFirstResponder()
@@ -228,6 +225,4 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
-    
 }
