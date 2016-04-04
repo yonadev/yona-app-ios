@@ -24,13 +24,31 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        //keyboard functions
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    private func setupUI() {
         // Text Delegates
-//        self.previousRange!.location = 0
         if var label = self.previousRange{
             label.length = 1
         }
-//        self.previousRange?.length = 1
+        
         self.mobileTextField.delegate = self
         self.nicknameTextField.delegate = self
         self.mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
@@ -67,23 +85,6 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         mobileImage.contentMode = UIViewContentMode.Center
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // UIAlertView Alert
@@ -115,15 +116,12 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
 
         } else {
           textField.resignFirstResponder()
         }
-//        firstnameTextField.resignFirstResponder()
-//        lastnameTextField.becomeFirstResponder()
         return true
     }
     
@@ -151,7 +149,6 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
         if (activeField == mobileTextField) {
             
             mobileTextField.text = "+316 "
-//            textRange =  mobileTextField.characterRangeAtPoint(<#T##point: CGPoint##CGPoint#>)
         }
         self.mobileTextField.delegate = self
         self.nicknameTextField.delegate = self
@@ -167,18 +164,11 @@ class SignUpSecondStepViewController: UIViewController, UITextFieldDelegate,UISc
     //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     print((range.location))
-//        if ((previousRange?.location >= range.location) ) {
-//            print("back")
-//        }else  {
-//            print("next")
-//        }
-//        previousRange = range
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 14 {
                     textField.text = String(textField.text!.characters.dropLast())
                     textField.text = String(textField.text!.characters.dropLast())
-//                    textField.text = "\(textField.text!) \(space)"
                 }
             
             }else  {

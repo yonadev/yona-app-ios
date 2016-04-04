@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate,UITextFieldDelegate {
+class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
@@ -24,6 +24,26 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate,UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //keyboard functions
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    private func setupUI() {
         // Text Delegates
         
         self.firstnameTextField.delegate = self
@@ -44,37 +64,19 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate,UITex
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         // Adding right mode image to text fields
-        let firstname = UIImageView(image: UIImage(named: "icnName"))
+        let firstname = UIImageView(image: R.image.icnName)
         firstname.frame = CGRectMake(0.0, 0.0, firstname.image!.size.width+10.0, firstname.image!.size.height);
         firstname.contentMode = UIViewContentMode.Center
         self.firstnameTextField.rightView = firstname;
         self.firstnameTextField.rightViewMode = UITextFieldViewMode.Always
         
         
-        let lastname = UIImageView(image: UIImage(named: "icnName"))
+        let lastname = UIImageView(image: R.image.icnName)
         lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
         lastname.contentMode = UIViewContentMode.Center
         self.lastnameTextField.rightView = lastname;
         self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
-        
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     
     // UIAlertView Alert
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
@@ -97,8 +99,9 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate,UITex
             self.presentViewController(controller, animated: true, completion: nil)
         }
     }
-    
-    
+}
+
+extension SignUpFirstStepViewController: UITextFieldDelegate {
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == firstnameTextField) {
