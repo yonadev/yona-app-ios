@@ -80,6 +80,10 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
+		D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744E71CB3CA7B008E463A /* KeychainTests.swift */; };
+		D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
+		D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
+		D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
 		D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
@@ -184,6 +188,7 @@
 		D98635751CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D9C744E71CB3CA7B008E463A /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -776,6 +781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
