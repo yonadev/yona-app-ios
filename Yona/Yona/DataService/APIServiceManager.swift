@@ -19,7 +19,6 @@ class APIServiceManager {
 
     func postUser(body: UserData, onCompletion: APIResponse) {
         KeychainManager.sharedInstance.createYonaPassword()
-        
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         callUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
             if success {
@@ -28,6 +27,20 @@ class APIServiceManager {
                 onCompletion(false)
             }
         })
+    }
+    
+    func updateUser(body: UserData, onCompletion: APIResponse) {
+        if let newUser = newUser {
+            if let getUserLink = newUser.editLink {
+                callUserRequest(getUserLink, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
+                    if success {
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                })
+            }
+        }
     }
     
     func getUser(onCompletion: APIResponse) {

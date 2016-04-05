@@ -149,7 +149,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31888233677",
+             "mobileNumber": "+31888233699",
              "nickname": "RQ"]
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
 
@@ -181,6 +181,65 @@ class YonaTests: XCTestCase {
                             let httpHeaderDelete = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
 
                             UserManager.sharedInstance.makeRequest(deletePath, body:nil, httpMethod: "DELETE", httpHeader: httpHeaderDelete, onCompletion: { success in
+                                if(success){
+                                    expectation.fulfill()
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+        })
+        waitForExpectationsWithTimeout(15.0, handler:nil)
+
+    }
+    
+    func testUpdateUser(){
+        let path = "http://85.222.227.142/users/"
+        let keychain = KeychainSwift()
+        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31548576199",
+             "nickname": "RQ"]
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        
+        //post new user data
+        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { json, err in
+            if let json = json {
+                //get the response of new user and store it
+                let originalUser = Users.init(userData: json)
+                
+                //if the response is not nil
+                APIServiceManager.sharedInstance.newUser = originalUser
+                
+                if let getEditLink = originalUser.editLink, let userID = originalUser.userID {
+                    let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+                    
+                    let bodyUpdate =
+                        ["firstName": "Ben",
+                            "lastName": "Smith",
+                            "mobileNumber": "+3199999999",
+                            "nickname": "BTS"]
+                    
+                    //get request to get user we just created!
+                    UserManager.sharedInstance.makeUserRequest(getEditLink, body: bodyUpdate, httpMethod: YonaConstants.httpMethods.put, httpHeader: httpHeader, onCompletion: { json, err in
+                        
+                        if let json = json{
+                            let userReturned = Users.init(userData: json)
+                            //test if name returned is updated
+                            XCTAssertTrue(bodyUpdate["firstName"] == userReturned.firstName)
+                            //name returned is different to what was originally posted
+                            XCTAssertFalse(bodyUpdate["firstName"] == originalUser.firstName)
+
+                        }
+                        //now tidy up and delete the user
+                        if let deletePath = originalUser.editLink{
+                            let httpHeaderDelete = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
+                            
+                            UserManager.sharedInstance.makeRequest(deletePath, body:bodyUpdate, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeaderDelete, onCompletion: { success in
                                 if(success){
                                     expectation.fulfill()
                                 }

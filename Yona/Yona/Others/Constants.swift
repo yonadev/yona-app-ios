@@ -23,6 +23,7 @@ struct YonaConstants {
         static let post = "POST"
         static let delete = "DELETE"
         static let get = "GET"
+        static let put = "PUT"
     }
 
     struct keychain {
