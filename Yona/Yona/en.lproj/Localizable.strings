@@ -15,3 +15,16 @@
 "signup.user.nickname" = "Nick Name";
 "signup.user.infoText" = "We use your mobile number for secure registration. Your nickname is mandatory and allows for better privacy.";
 
+"smsvalidation.user.errormessage" = "The code is not correct. Try again";
+"smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
+"smsvalidation.button.resendCode" = "Send code again";
+"smsvalidation.user.headerTitle" = "Account Login";
+
+"passcode.user.headerTitle" = "Account has been created";
+"passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";
+
+
+"confirmpasscode.user.headerTitle" = "Confirm PIN";
+"confirmpasscode.user.infomessage" = "Enter your PIN again to confirm.";
+
+
