@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let path = NSBundle.mainBundle().pathForResource("SecretKeys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
+        } else {
+            assertionFailure("You need the SecretKeys.plist file")
         }
         
         if let dict = keys {
