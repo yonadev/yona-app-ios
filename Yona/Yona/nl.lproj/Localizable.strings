@@ -15,4 +15,14 @@
 "signup.user.nickname" = "Nick Name";
 "signup.user.infoText" = "We gebruiken je mobile nummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een nog betere privacy.";
 
+"smsvalidation.user.errormessage" = "De code is niet correct. Probeer nog een keer";
+"smsvalidation.user.infomessage" = "Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen.";
+"smsvalidation.button.resendCode" = "Stuur code opnieuw";
+"smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
 
+"passcode.user.headerTitle" = "Account is aangemaakt";
+
+"passcode.user.infomessage" = "Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. Stel je pincode hieronder in.";
+
+"confirmpasscode.user.headerTitle" = "Bevestig pincode";
+"confirmpasscode.user.infomessage" = "Vul je pincode nog een keer in ter bevestiging.";

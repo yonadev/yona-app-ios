@@ -13,16 +13,18 @@ struct R {
     storyboard.profile.validateViewControllers()
     storyboard.signUp.validateImages()
     storyboard.signUp.validateViewControllers()
+    storyboard.sMSValidationViewController.validateImages()
+    storyboard.sMSValidationViewController.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
-    storyboard.launchScreen.validateImages()
-    storyboard.launchScreen.validateViewControllers()
     storyboard.challenges.validateImages()
     storyboard.challenges.validateViewControllers()
     storyboard.settings.validateImages()
     storyboard.settings.validateViewControllers()
+    storyboard.launchScreen.validateImages()
+    storyboard.launchScreen.validateViewControllers()
     storyboard.main.validateImages()
     storyboard.main.validateViewControllers()
   }
@@ -66,6 +68,7 @@ struct R {
     static var sFUITextRegularOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Regular", withExtension: "otf") }
     static var sFUITextSemiboldItalicOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-SemiboldItalic", withExtension: "otf") }
     static var sFUITextSemiboldOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Semibold", withExtension: "otf") }
+    static var secretKeysPlist: NSURL? { return _R.hostingBundle?.URLForResource("SecretKeys", withExtension: "plist") }
   }
   
   struct font {
@@ -270,6 +273,7 @@ struct R {
     static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
     static var walkthroughPage: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "walkthroughPage") } }
+    static var welcomeScreen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "welcomeScreen") } }
     static var yonaLogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "yonaLogo") } }
   }
   
@@ -282,6 +286,14 @@ struct R {
   }
   
   struct segue {
+    struct sMSValidationViewController {
+      static var passcodeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SMSValidationViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "PasscodeSegue") }
+    }
+    
+    struct setPasscodeViewController {
+      static var confirmPasscodeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SetPasscodeViewController, ConfirmPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "ConfirmPasscodeSegue") }
+    }
+    
     struct signUpFirstStepViewController {
       static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
     }
@@ -387,6 +399,26 @@ struct R {
       }
     }
     
+    struct sMSValidationViewController {
+      static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
+      static var instance: UIStoryboard { return UIStoryboard(name: "SMSValidationViewController", bundle: _R.hostingBundle) }
+      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("SMSValidationViewController") as? SMSValidationViewController }
+      static var setPasscodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("SetPasscodeViewController") as? SetPasscodeViewController }
+      
+      static func validateImages() {
+        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
+        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
+      }
+      
+      static func validateViewControllers() {
+        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'SMSValidationViewController'.")
+        assert(setPasscodeViewController != nil, "[R.swift] ViewController with identifier 'setPasscodeViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'SetPasscodeViewController'.")
+        assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'ConfirmPasscodeViewController'.")
+      }
+    }
+    
     struct settings {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
       static var settingsStoryboard: SettingsViewController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? SettingsViewController }
@@ -440,7 +472,7 @@ struct R {
 }
 
 struct _R {
-  static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
+  static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.xaton.yona") }
   
   struct nib {
     
