@@ -30,7 +30,6 @@ class ConfirmPasscodeViewController:  UIViewController,CodeInputViewDelegate {
         let codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
         codeInputView.delegate = self
-        codeInputView.tag = 111
         codeView.addSubview(codeInputView)
         
         codeInputView.becomeFirstResponder()
