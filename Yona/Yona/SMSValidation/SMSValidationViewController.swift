@@ -9,10 +9,7 @@
 import UIKit
 
 
-class SMSValidationViewController:  UIViewController,CodeInputViewDelegate {
-    var activeTextField:UITextField?
-    var colorX : UIColor = UIColor.yiWhiteColor()
-    var posi:CGFloat!
+class SMSValidationViewController:  UIViewController {
     @IBOutlet var progressView:UIView!
     @IBOutlet var codeView:UIView!
     
@@ -22,31 +19,21 @@ class SMSValidationViewController:  UIViewController,CodeInputViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var resendCodeButton: UIButton!
     
-    
+    private var colorX : UIColor = UIColor.yiWhiteColor()
+    private var posi:CGFloat = 0.0
+    private var codeInputView: CodeInputView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        posi = 0.0
-        let codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
-        codeInputView.delegate = self
-        codeInputView.tag = 111
-        codeView.addSubview(codeInputView)
-        
-        codeInputView.becomeFirstResponder()
-  
-        
-
-               //Nav bar Back button.
+        //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
 
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
-        
 
-        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "").uppercaseString
@@ -55,34 +42,19 @@ class SMSValidationViewController:  UIViewController,CodeInputViewDelegate {
         
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
-        
-      
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.activeTextField?.becomeFirstResponder()
-    }
-    
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let title = code == "1234" ? "Correct!" : "Wrong!"
-        
-        if (title == "Correct!") {
-            print("go to next view")
-            performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue, sender: self)
-        } else {
-            print("incorrect sms code")
-            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-            errorAlert.show()
-            (self.view.viewWithTag(111) as! CodeInputView).clear()
-
-        }
-    }
-
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+        
+        if codeInputView != nil {
+            codeInputView!.delegate = self
+            codeView.addSubview(codeInputView!)
+            
+            codeInputView!.becomeFirstResponder()
+        }
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -125,6 +97,24 @@ class SMSValidationViewController:  UIViewController,CodeInputViewDelegate {
         if (posi > 0) {
             self.view.frame.origin.y += posi
             posi = 0.0
+        }
+    }
+}
+
+extension SMSValidationViewController: CodeInputViewDelegate {
+    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+        let title = code == "1234" ? "Correct!" : "Wrong!"
+        
+        if (title == "Correct!") {
+            print("go to next view")
+            codeInputView.resignFirstResponder()
+            performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue, sender: self)
+        } else {
+            print("incorrect sms code")
+            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
+            errorAlert.show()
+            (self.view.viewWithTag(111) as! CodeInputView).clear()
+            
         }
     }
 }

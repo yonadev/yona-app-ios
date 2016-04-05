@@ -69,8 +69,8 @@
                                                     <constraint firstAttribute="width" constant="64" id="tjt-D2-w0R"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account wordt aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk8-eD-rcW">
-                                                <rect key="frame" x="161" y="201" width="279.5" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="Account wordt aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk8-eD-rcW">
+                                                <rect key="frame" x="161" y="201" width="280" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -202,8 +202,8 @@
                                                     <constraint firstAttribute="height" constant="48" id="Wro-WC-qA2"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account is aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
-                                                <rect key="frame" x="182" y="201" width="237.5" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="Account is aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
+                                                <rect key="frame" x="182" y="201" width="238" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -216,7 +216,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-63-J6j">
-                                                <rect key="frame" x="15" y="283" width="570" height="33.5"/>
+                                                <rect key="frame" x="15" y="283" width="570" height="34"/>
                                                 <string key="text">Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. 
 Stel je pincode hieronder in. </string>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
@@ -224,7 +224,7 @@ Stel je pincode hieronder in. </string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hq3-T3-bt8">
-                                                <rect key="frame" x="170" y="346.5" width="260" height="55"/>
+                                                <rect key="frame" x="170" y="347" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="kfN-z1-piR"/>
                                                     <constraint firstAttribute="height" constant="55" id="vPH-sz-Bml"/>
@@ -327,8 +327,8 @@ Stel je pincode hieronder in. </string>
                                                     <constraint firstAttribute="height" constant="48" id="qhP-cM-C9i"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account is aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-iM-4IC">
-                                                <rect key="frame" x="182" y="201" width="237.5" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="Account is aangemaakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-iM-4IC">
+                                                <rect key="frame" x="182" y="201" width="238" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -341,7 +341,7 @@ Stel je pincode hieronder in. </string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09h-RE-FIx">
-                                                <rect key="frame" x="15" y="283" width="570" height="33.5"/>
+                                                <rect key="frame" x="15" y="283" width="570" height="34"/>
                                                 <string key="text">Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. 
 Stel je pincode hieronder in. </string>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
@@ -349,7 +349,7 @@ Stel je pincode hieronder in. </string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-Aa-DYz">
-                                                <rect key="frame" x="170" y="346.5" width="260" height="55"/>
+                                                <rect key="frame" x="170" y="347" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="ja4-ci-1Pq"/>
                                                     <constraint firstAttribute="height" constant="55" id="qW4-Yg-ppd"/>
