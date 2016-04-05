@@ -94,9 +94,11 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         if (passcode == code) {
             KeychainManager.sharedInstance.savePINCode(code)
-            print("saved to keychain, Now move to Dashboard ;)")
+            
+            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                navigationController?.pushViewController(dashboardStoryboard, animated: true)
+            }
         } else {
-            print("show error")
             codeInputView.clear()
         }
     }

@@ -326,7 +326,8 @@ struct R {
     }
     
     struct dashboard {
-      static var initialViewController: DashboardTabBarController? { return instance.instantiateInitialViewController() as? DashboardTabBarController }
+      static var dashboardStoryboard: DashboardTabBarController? { return instance.instantiateViewControllerWithIdentifier("DashboardStoryboard") as? DashboardTabBarController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Dashboard", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -341,7 +342,7 @@ struct R {
       }
       
       static func validateViewControllers() {
-        
+        assert(dashboardStoryboard != nil, "[R.swift] ViewController with identifier 'dashboardStoryboard' could not be loaded from storyboard 'Dashboard' as 'DashboardTabBarController'.")
       }
     }
     
