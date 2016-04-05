@@ -20,18 +20,25 @@ class UserManager: NSObject {
         print("Only initialised once only")
     }
     
-    func makePostRequest(path: String, password: String, body: UserData, onCompletion: APIServiceResponse) {
-        print(password)
-        let session = NSURLSession.sharedSession()
+    private func setupRequest(path: String, body: UserData?, httpHeader: [String:String], httpMethod: String) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        request.allHTTPHeaderFields = ["Content-Type": "application/json", "Yona-Password": password]
+        request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
+            if let body = body {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
+            }
         } catch {
             print("Error")
         }
         
-        request.HTTPMethod = "POST"
+        request.HTTPMethod = httpMethod
+        
+        return request
+    }
+    
+    func makeUserRequest(path: String, body: UserData?, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
+        let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+        let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             do {
@@ -52,16 +59,10 @@ class UserManager: NSObject {
         task.resume()
     }
     
-    func makeRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIResponse){
+    func makeRequest(path: String, body: UserData?, httpMethod: String, httpHeader:[String:String], onCompletion: APIResponse){
+        let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
         let session = NSURLSession.sharedSession()
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        request.allHTTPHeaderFields = httpHeader
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
-        } catch {
-            print("Error")
-        }
-        request.HTTPMethod = httpMethod
+        
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
                 let code = httpResponse.statusCode
@@ -71,7 +72,11 @@ class UserManager: NSObject {
                     do {
                         let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                         print(jsonObject)
-                    } catch {}
+                        if let error = error {
+                            print(error.description)
+                        }
+                    } catch {
+                    }
                     onCompletion(false)
                 }
             }

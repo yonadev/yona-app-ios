@@ -21,16 +21,8 @@ class APIServiceManager {
 
     func postUser(body: UserData, onCompletion: APIResponse) {
         let path = YonaConstants.environments.test + YonaConstants.commands.users
-        
-        guard let yonaPassword = getYonaPassword() else {
-            onCompletion(false)
-            return
-        }
-        
-        UserManager.sharedInstance.makePostRequest(path, password: yonaPassword, body: body, onCompletion: { json, err in
-            if let json = json {
-                //store the json in an object
-                self.newUser = Users.init(userData: json)
+        callUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
+            if success {
                 onCompletion(true)
             } else {
                 onCompletion(false)
@@ -39,62 +31,84 @@ class APIServiceManager {
     }
     
     func getUser(onCompletion: APIResponse) {
-        if let newUser = newUser,
-            let userID = newUser.userID {
-            guard let yonaPassword = getYonaPassword() else {
-                onCompletion(false)
-                return
+        if let newUser = newUser {
+            if let getUserLink = newUser.getSelfLink {
+                callUserRequest(getUserLink, body: nil, httpMethod: YonaConstants.httpMethods.get, onCompletion: { (success) in
+                    if success {
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                })
             }
-            
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID //GET /users/{id}
-            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID, "includePrivateData": "true"]
-            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success in
-                if (success){
-                    onCompletion(true)
-                } else {
-                    onCompletion(false)
-                }
-            })
+
         } else { onCompletion(false) }
     }
     
     func deleteUser(onCompletion: APIResponse) {
         if let newUser = newUser,
-            let editLink = newUser.editLink,
-            let userID = newUser.userID {
-            guard let yonaPassword = getYonaPassword() else {
-                onCompletion(false)
-                return
-            }
-            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
-            UserManager.sharedInstance.makeRequest(editLink, password: yonaPassword, userID: userID, body: [:], httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success in
+            let userID = newUser.userID,
+            let path = newUser.editLink {
+                callRequest(nil, userID: userID, path: path, httpMethod: YonaConstants.httpMethods.delete) { (success) in
+                    if (success){
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                }
+        } else { onCompletion(false) }
+        
+    }
+    
+    func confirmMobileNumber(body: UserData?, onCompletion: APIResponse) {
+        if let newUser = newUser,
+            let userID = newUser.userID,
+            let path = newUser.confirmMobileLink{
+            callRequest(body,userID: userID, path: path, httpMethod: YonaConstants.httpMethods.post) { (success) in
                 if (success){
                     onCompletion(true)
                 } else {
                     onCompletion(false)
                 }
-            })
+            }
         } else { onCompletion(false) }
     }
     
-    func confirmMobileNumber(body: UserData, onCompletion: APIResponse) {
-        if let newUser = newUser,
-            let userID = newUser.userID {
-            guard let yonaPassword = getYonaPassword() else {
+    private func callRequest(body: UserData?, userID: String, path: String, httpMethod: String, onCompletion:APIResponse){
+        
+        guard let yonaPassword = getYonaPassword() else {
+            onCompletion(false)
+            return
+        }
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
+
+        //POST /users/{id}/confirmMobileNumber
+        UserManager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success in
+            if (success){
+                onCompletion(true)
+            } else {
                 onCompletion(false)
-                return
             }
+        })
             
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.mobileConfirm //POST /users/{id}/confirmMobileNumber
-            let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
-            UserManager.sharedInstance.makeRequest(path, password: yonaPassword, userID: userID, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success in
-                if (success){
-                    onCompletion(true)
-                } else {
-                    onCompletion(false)
-                }
-            })
-        } else { onCompletion(false) }
+        
+    }
+    
+    private func callUserRequest(path: String, body: UserData?, httpMethod: String, onCompletion: APIResponse) {
+        guard let yonaPassword = getYonaPassword() else {
+            onCompletion(false)
+            return
+        }
+        
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { json, err in
+            if let json = json {
+                self.newUser = Users.init(userData: json)
+                onCompletion(true)
+            } else {
+                onCompletion(false)
+            }
+        })
     }
     
     private func createYonaPassword() {
