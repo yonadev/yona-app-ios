@@ -37,8 +37,8 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
         
     }
     
@@ -68,12 +68,12 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         
         
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpSecondStepViewController.DismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         self.view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpSecondStepViewController.back(_:)))
+        let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: Selector.back)
         self.navigationItem.leftBarButtonItem = newBackButton;
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -146,9 +146,9 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 10))
         let keyboardBarButtonItems = [
-            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpSecondStepViewController.previousTextField)),
+            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.previousTextField),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpSecondStepViewController.nextTextField))
+            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.nextTextField)
         ]
         
         keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
@@ -221,8 +221,22 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     //Calls this function when the tap is recognized.
-    func DismissKeyboard(){
+    func dismissKeyboard(){
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+}
+
+private extension Selector {
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
+    
+    static let dismissKeyboard = #selector(SignUpSecondStepViewController.dismissKeyboard)
+    
+    static let back = #selector(SignUpSecondStepViewController.back(_:))
+    
+    static let previousTextField = #selector(SignUpSecondStepViewController.previousTextField)
+    
+    static let nextTextField = #selector(SignUpSecondStepViewController.nextTextField)
 }
