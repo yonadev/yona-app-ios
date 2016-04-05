@@ -25,7 +25,7 @@ class SMSValidationViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
 
@@ -113,7 +113,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             print("incorrect sms code")
             let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
             errorAlert.show()
-            (self.view.viewWithTag(111) as! CodeInputView).clear()
+            codeInputView.clear()
+//            (self.view.viewWithTag(111) as! CodeInputView).clear()
             
         }
     }

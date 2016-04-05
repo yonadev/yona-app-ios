@@ -18,6 +18,7 @@ class SetPasscodeViewController:  UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    var passcodeString: String?
     private var colorX : UIColor = UIColor.yiWhiteColor()
     private var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
@@ -68,6 +69,13 @@ class SetPasscodeViewController:  UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == R.segue.setPasscodeViewController.confirmPasscodeSegue.identifier,
+            let vc = segue.destinationViewController as? ConfirmPasscodeViewController {
+            vc.passcode = passcodeString
+        }
+    }
+    
     // UIAlertView Alert
     private func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
        
@@ -85,7 +93,7 @@ class SetPasscodeViewController:  UIViewController {
         let keyboardInset = keyboardSize.height - viewHeight/3
         
         
-        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)!
+        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
         
         
         if (pos > (viewHeight-keyboardSize.height)) {
@@ -108,21 +116,7 @@ class SetPasscodeViewController:  UIViewController {
 
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let title = code == "1234" ? "Correct!" : "Wrong!"
-        //        let alert = UIAlertView(title: title, message: nil, delegate: AnyObject)
-        //        alert.addAction(UIAlertView(title: "OK", style: .Cancel) { _ in
-        //            (self.view.viewWithTag(111) as! CodeInputView).clear()
-        //            })
-        //        presentViewController(alert, animated: true, completion: nil)
-        
-        if (title == "Correct!") {
-            print("go to next view")
-            performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
-        } else {
-            print("incorrect sms code")
-            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-            errorAlert.show()
-            
-        }
+        passcodeString = code
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
 }

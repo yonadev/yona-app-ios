@@ -335,7 +335,7 @@ Stel je pincode hieronder in. </string>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLb-Tc-U4F">
                                                 <rect key="frame" x="30" y="251" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="Azz-mP-9IR"/>
                                                 </constraints>
