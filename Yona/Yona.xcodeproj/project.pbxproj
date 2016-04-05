@@ -485,6 +485,7 @@
 			children = (
 				D9D54EE11CA28CD2007805F4 /* YonaTests.swift */,
 				D9D54EE31CA28CD2007805F4 /* Info.plist */,
+				D9C744E71CB3CA7B008E463A /* KeychainTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -777,6 +778,9 @@
 			files = (
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
+				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
+				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
+				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,7 +875,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -910,7 +914,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
