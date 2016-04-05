@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
-extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
-    }
-    
-    func removeWhitespace() -> String {
-        return self.replace(" ", replacement: "")
+extension UIViewController {
+    func resetTheView(position: CGFloat, scrollView: UIScrollView, view: UIView) -> CGFloat? {
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
+        if (position > 0) {
+            view.frame.origin.y += position
+            return 0.0
+        }
+        
+        return nil
     }
 }

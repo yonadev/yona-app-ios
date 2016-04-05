@@ -13,13 +13,13 @@ public typealias UserData = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    private init() {
-        self.createYonaPassword()
-    }
+    private init() {}
     
     var newUser: Users?
 
     func postUser(body: UserData, onCompletion: APIResponse) {
+        KeychainManager.sharedInstance.createYonaPassword()
+        
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         callUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
             if success {
