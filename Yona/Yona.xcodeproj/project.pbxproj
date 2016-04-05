@@ -173,10 +173,10 @@
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
-		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9D54ED61CA28CD2007805F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D9D54ED81CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		D9D54ED81CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D54EDD1CA28CD2007805F4 /* YonaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YonaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54EE11CA28CD2007805F4 /* YonaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YonaTests.swift; sourceTree = "<group>"; };
 		D9D54EE31CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -295,20 +295,14 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */,
 				AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */,
 				D94A93C41CB291FC00ABE0F8 /* Constants.swift */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
-				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
-				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
-				D986357B1CAD62B100A8535C /* Localizable.strings */,
-				AD5571F71CABA022000BF880 /* Main.storyboard */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -432,6 +426,12 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
+				D986357B1CAD62B100A8535C /* Localizable.strings */,
+				AD5571F71CABA022000BF880 /* Main.storyboard */,
+				D9D54ED81CA28CD2007805F4 /* Info.plist */,
+				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
+				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
 				AD291D281CA9286C008CAFB1 /* CreateAccount */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
@@ -769,7 +769,6 @@
 				D98635751CAD626F00A8535C /* nl */,
 			);
 			name = Main.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D986357B1CAD62B100A8535C /* Localizable.strings */ = {
@@ -779,7 +778,6 @@
 				D986357C1CAD62B400A8535C /* en */,
 			);
 			name = Localizable.strings;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */ = {
@@ -789,7 +787,6 @@
 				D98635741CAD626F00A8535C /* nl */,
 			);
 			name = LaunchScreen.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
