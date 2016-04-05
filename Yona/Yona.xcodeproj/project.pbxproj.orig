@@ -48,8 +48,11 @@
 		ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */; };
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
+<<<<<<< HEAD
 		BE779B191CB3C91F001766B2 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE779B181CB3C91F001766B2 /* SecretKeys.plist */; };
+=======
 		D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */; };
+>>>>>>> develop
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
@@ -204,8 +207,11 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		BE779B181CB3C91F001766B2 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+=======
 		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+>>>>>>> develop
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
@@ -806,8 +812,11 @@
 			children = (
 				D9D54EE11CA28CD2007805F4 /* YonaTests.swift */,
 				D9D54EE31CA28CD2007805F4 /* Info.plist */,
+<<<<<<< HEAD
 				BE779B181CB3C91F001766B2 /* SecretKeys.plist */,
+=======
 				D9C744E71CB3CA7B008E463A /* KeychainTests.swift */,
+>>>>>>> develop
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
