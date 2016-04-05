@@ -20,7 +20,7 @@ class SetPasscodeViewController:  UIViewController {
     
     var passcodeString: String?
     private var colorX : UIColor = UIColor.yiWhiteColor()
-    private var posi:CGFloat = 0.0
+    var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
     
     override func viewDidLoad() {
@@ -55,8 +55,8 @@ class SetPasscodeViewController:  UIViewController {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SetPasscodeViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SetPasscodeViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,9 +82,9 @@ class SetPasscodeViewController:  UIViewController {
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
     }
-    
-    
-    //MARK: - Keyboard Functions
+}
+
+extension SetPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
         let viewHeight = self.view.frame.size.height
@@ -106,10 +106,8 @@ class SetPasscodeViewController:  UIViewController {
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        if (posi > 0) {
-            self.view.frame.origin.y += posi
-            posi = 0.0
+        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
+            posi = position
         }
     }
 }
@@ -119,4 +117,10 @@ extension SetPasscodeViewController: CodeInputViewDelegate {
         passcodeString = code
         performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
+}
+
+private extension Selector {
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
 }

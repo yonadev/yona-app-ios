@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class ConfirmPasscodeViewController:  UIViewController {
+final class ConfirmPasscodeViewController:  UIViewController {
     @IBOutlet var progressView:UIView!
     @IBOutlet var codeView:UIView!
     
@@ -21,7 +20,7 @@ class ConfirmPasscodeViewController:  UIViewController {
     var passcode: String?
     
     var colorX : UIColor = UIColor.yiWhiteColor()
-    private var posi:CGFloat = 0.0
+    var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
     
     
@@ -48,8 +47,8 @@ class ConfirmPasscodeViewController:  UIViewController {
         }
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(ConfirmPasscodeViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(ConfirmPasscodeViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
         
         
     }
@@ -63,8 +62,9 @@ class ConfirmPasscodeViewController:  UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    //MARK: - Keyboard Functions
+}
+
+extension ConfirmPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
         let viewHeight = self.view.frame.size.height
@@ -84,10 +84,8 @@ class ConfirmPasscodeViewController:  UIViewController {
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        if (posi > 0) {
-            self.view.frame.origin.y += posi
-            posi = 0.0
+        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
+            posi = position
         }
     }
 }
@@ -101,6 +99,11 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             print("show error")
             codeInputView.clear()
         }
-      
     }
+}
+
+private extension Selector {
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
 }

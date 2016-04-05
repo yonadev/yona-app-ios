@@ -20,7 +20,6 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

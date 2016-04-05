@@ -80,6 +80,8 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
+		D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
+		D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
@@ -182,6 +184,7 @@
 		D98635751CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
+				D9C744EC1CB3DFCA008E463A /* Protocols */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -422,6 +426,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		D9C744EC1CB3DFCA008E463A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +459,6 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
-				ADAEAFD51CB2BCB3005ED7B4 /* SMSValidation */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
@@ -463,6 +474,7 @@
 				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
+				ADAEAFD51CB2BCB3005ED7B4 /* SMSValidation */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
 			);
 			path = Yona;
@@ -741,6 +753,7 @@
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
+				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				ADAEAFDD1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift in Sources */,
 				ADAEAFDF1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
@@ -762,6 +775,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

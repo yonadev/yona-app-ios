@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SMSValidationViewController:  UIViewController {
+final class SMSValidationViewController:  UIViewController {
     @IBOutlet var progressView:UIView!
     @IBOutlet var codeView:UIView!
     
@@ -20,7 +20,7 @@ class SMSValidationViewController:  UIViewController {
     @IBOutlet var resendCodeButton: UIButton!
     
     private var colorX : UIColor = UIColor.yiWhiteColor()
-    private var posi:CGFloat = 0.0
+    var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
     
     override func viewDidLoad() {
@@ -58,8 +58,8 @@ class SMSValidationViewController:  UIViewController {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(SMSValidationViewController.keyboardWasShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(SMSValidationViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
         
 
     }
@@ -69,11 +69,11 @@ class SMSValidationViewController:  UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    
-    //MARK: - Keyboard Functions
-    func keyboardWasShown (notification: NSNotification) {
+}
 
+extension SMSValidationViewController: KeyboardProtocol {
+    func keyboardWasShown (notification: NSNotification) {
+        
         let viewHeight = self.view.frame.size.height
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
@@ -86,17 +86,15 @@ class SMSValidationViewController:  UIViewController {
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
             self.view.frame.origin.y -= posi
-
+            
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
     }
-  
+    
     func keyboardWillBeHidden(notification: NSNotification) {
-        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        if (posi > 0) {
-            self.view.frame.origin.y += posi
-            posi = 0.0
+        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
+            posi = position
         }
     }
 }
@@ -114,8 +112,12 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
             errorAlert.show()
             codeInputView.clear()
-//            (self.view.viewWithTag(111) as! CodeInputView).clear()
-            
         }
     }
+}
+
+private extension Selector {
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
 }
