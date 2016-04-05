@@ -95,19 +95,14 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
         if (passcode == code) {
             KeychainManager.sharedInstance.savePINCode(code)
             
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Dashboard", bundle:nil)
-        self.navigationController!.pushViewController(storyBoard.instantiateViewControllerWithIdentifier("DashboardStoryboard") as! DashboardTabBarController, animated: true)
-            
+            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                navigationController?.pushViewController(dashboardStoryboard, animated: true)
+            }
         } else {
-//            print("show error")
             codeInputView.clear()
         }
     }
 }
-
-
-
-
 
 private extension Selector {
     static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
