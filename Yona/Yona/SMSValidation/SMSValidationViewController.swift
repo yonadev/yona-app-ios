@@ -52,8 +52,12 @@ final class SMSValidationViewController:  UIViewController {
         if codeInputView != nil {
             codeInputView!.delegate = self
             codeView.addSubview(codeInputView!)
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.codeInputView!.becomeFirstResponder()
+            })
             
-            codeInputView!.becomeFirstResponder()
+            
         }
         
         //keyboard functions
@@ -70,6 +74,13 @@ final class SMSValidationViewController:  UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
+
+//func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    if segue.identifier == R.segue.sMSValidationViewController.passcodeSegue.identifier,
+//        let vc = segue.destinationViewController as? SetPasscodeViewController {
+//        
+//    }
+//}
 
 extension SMSValidationViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
@@ -90,6 +101,10 @@ extension SMSValidationViewController: KeyboardProtocol {
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
+//        if let position = adjustTheCodeView(scrollView, view: view, codeView: codeView, notification: notification) {
+//            self.view.frame.origin.y = position
+//        }
+
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
@@ -101,17 +116,22 @@ extension SMSValidationViewController: KeyboardProtocol {
 
 extension SMSValidationViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let title = code == "1234" ? "Correct!" : "Wrong!"
+        let body =
+            [
+                "code": code
+            ]
         
-        if (title == "Correct!") {
-            print("go to next view")
-            codeInputView.resignFirstResponder()
-            performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue, sender: self)
-        } else {
-            print("incorrect sms code")
-            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-            errorAlert.show()
-            codeInputView.clear()
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { flag in
+            if flag == true {
+               
+                dispatch_async(dispatch_get_main_queue()) {
+                     codeInputView.resignFirstResponder()
+                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
+                }
+//                let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
+//                errorAlert.show()
+//                codeInputView.clear()
+            }
         }
     }
 }

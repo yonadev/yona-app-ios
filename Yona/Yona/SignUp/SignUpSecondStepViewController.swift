@@ -125,7 +125,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                 dispatch_async(dispatch_get_main_queue()) {
                     // update some UI
                     if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                        self.navigationController?.pushViewController(smsValidation, animated: true)
+                        self.navigationController?.pushViewController(smsValidation, animated: false)
                     }
                 }
                 
@@ -169,6 +169,7 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        activeField = textField
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
     }
     
@@ -220,7 +221,14 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
         
-        self.scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
+        
+        
+        if (txtpos > (viewHeight-keyboardSize.height)) {
+            scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
+        } else {
+            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        }
     }
     
     

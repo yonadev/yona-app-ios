@@ -50,6 +50,7 @@ class SetPasscodeViewController:  UIViewController {
         
         if codeInputView != nil {
             codeInputView!.delegate = self
+            codeInputView?.secure = true
             codeView.addSubview(codeInputView!)
         }
         

@@ -83,9 +83,6 @@
                                                 <state key="normal" title="PIN reset">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="jVf-nn-VP2" kind="show" id="aoD-uc-izH"/>
-                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="you are not alone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-u0-8lk">
                                                 <rect key="frame" x="213" y="185" width="173" height="29"/>

@@ -550,7 +550,7 @@ protocol NibResource {
 }
 
 protocol Reusable {
-  associatedtype T
+  typealias T
   
   var reuseIdentifier: ReuseIdentifier<T> { get }
 }
