@@ -19,18 +19,18 @@ struct Users{
     var getSelfLink: String?
 
     init(userData: UserData) {
-        firstName = userData["firstName"] as! String
-        lastName = userData["lastName"] as! String
-        mobileNumber = userData["mobileNumber"] as! String
-        nickname = userData["nickname"] as? String
+        firstName = userData[YonaConstants.jsonKeys.firstNameKey] as! String
+        lastName = userData[YonaConstants.jsonKeys.lastNameKeys] as! String
+        mobileNumber = userData[YonaConstants.jsonKeys.mobileNumberKeys] as! String
+        nickname = userData[YonaConstants.jsonKeys.nicknameKeys] as? String
         
-        if let links = userData["_links"],
-            let edit = links["edit"],
-            let href = edit?["href"],
-            let selfLinks = links["self"],
-            let hrefSelfLinks = selfLinks?["href"],
-            let confirmLinks = links["yona:confirmMobileNumber"],
-            let hrefConfirmLinks =  confirmLinks?["href"],
+        if let links = userData[YonaConstants.jsonKeys.linksKeys],
+            let edit = links[YonaConstants.jsonKeys.editLinkKeys],
+            let href = edit?[YonaConstants.jsonKeys.hrefKey],
+            let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
+            let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey],
+            let confirmLinks = links[YonaConstants.jsonKeys.confirmMobileLinkKeys],
+            let hrefConfirmLinks =  confirmLinks?[YonaConstants.jsonKeys.hrefKey],
             let editLink = href as? String {
                 self.editLink = editLink
                 if let lastPath = NSURL(string: editLink)?.lastPathComponent {
