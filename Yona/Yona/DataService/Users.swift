@@ -28,7 +28,7 @@ struct Users{
             let edit = links[YonaConstants.jsonKeys.editLinkKeys],
             let href = edit?[YonaConstants.jsonKeys.hrefKey],
             let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-            let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefSelfLinks],
+            let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey],
             let confirmLinks = links[YonaConstants.jsonKeys.confirmMobileLinkKeys],
             let hrefConfirmLinks =  confirmLinks?[YonaConstants.jsonKeys.hrefKey],
             let editLink = href as? String {
