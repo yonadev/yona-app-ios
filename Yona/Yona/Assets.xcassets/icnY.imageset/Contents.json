@@ -1,6 +1,20 @@
 {
   "images" : [
-
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "icnY.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "icnY@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "icnY@3x.png"
+    }
   ],
   "info" : {
     "author" : "zeplin",

@@ -6,6 +6,9 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
+"welcome.button.signup" = "JOIN";
+"welcome.button.login" = "LOGIN";
+
 "signup.user.firstname" = "Firstname";
 "signup.user.lastname" = "Lastname";
 "signup.button.next" = "Next";
