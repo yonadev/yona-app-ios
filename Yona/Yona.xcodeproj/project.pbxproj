@@ -137,7 +137,6 @@
 		D9C745911CB3F317008E463A /* NSObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745611CB3F317008E463A /* NSObject+Dictionary.m */; };
 		D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745631CB3F317008E463A /* NSString+Formatter.m */; };
 		D9C745941CB3F37D008E463A /* Folders in Resources */ = {isa = PBXBuildFile; fileRef = D9C745931CB3F37D008E463A /* Folders */; };
-		D9B8A69C1CB3BB170033DE34 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9B8A69B1CB3BB170033DE34 /* SecretKeys.plist */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
@@ -351,7 +350,6 @@
 		D9C745621CB3F317008E463A /* NSString+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Formatter.h"; sourceTree = "<group>"; };
 		D9C745631CB3F317008E463A /* NSString+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Formatter.m"; sourceTree = "<group>"; };
 		D9C745931CB3F37D008E463A /* Folders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Folders; sourceTree = "<group>"; };
-		D9B8A69B1CB3BB170033DE34 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
