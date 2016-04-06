@@ -1,30 +1,27 @@
 
 //
-//  SignUpSecondStepViewController.swift
+//  AddDeviceViewController.swift
 //  Yona
 //
-//  Created by Chandan on 31/03/16.
+//  Created by Chandan on 06/04/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
 import UIKit
 
-class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
+class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
-    var userFirstName: String?
-    var userLastName: String?
-    
     private let nederlandPhonePrefix = "+316 "
     
     @IBOutlet var mobileTextField: UITextField!
-    @IBOutlet var nicknameTextField: UITextField!
+    @IBOutlet var passcodeTextField: UITextField!
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var nextButton: UIButton!
-    @IBOutlet var previousButton: UIButton!
+    @IBOutlet var loginButton: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -55,21 +52,14 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         }
         
         mobileTextField.delegate = self
-        nicknameTextField.delegate = self
-        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
-        nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
+        passcodeTextField.delegate = self
+        mobileTextField.placeholder = NSLocalizedString("adddevice.user.mobileNumber", comment: "").uppercaseString
+        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.nickname", comment: "").uppercaseString
 
         mobileTextField.text = nederlandPhonePrefix
         
-        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "").uppercaseString
         
-        self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
-        
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
-        self.view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
@@ -87,11 +77,11 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.mobileTextField.rightView = mobileImage;
         self.mobileTextField.rightViewMode = UITextFieldViewMode.Always
         
-        let nicknameImage = UIImageView(image: R.image.icnNickname)
-        nicknameImage.frame = CGRectMake(0.0, 0.0, nicknameImage.image!.size.width+10.0, nicknameImage.image!.size.height);
+        let passcodeImage = UIImageView(image: R.image.icnName)
+        passcodeImage.frame = CGRectMake(0.0, 0.0, passcodeImage.image!.size.width+10.0, passcodeImage.image!.size.height);
         mobileImage.contentMode = UIViewContentMode.Center
-        self.nicknameTextField.rightView = nicknameImage;
-        self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
+        self.passcodeTextField.rightView = passcodeImage;
+        self.passcodeTextField.rightViewMode = UITextFieldViewMode.Always
     }
     
     // UIAlertView Alert
@@ -110,39 +100,17 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     // Go To Another ViewController
-    @IBAction func nextPressed(sender: UIButton) {
+    @IBAction func loginPressed(sender: UIButton) {
         
-        guard let trimmedString = mobileTextField.text?.removeWhitespace() else { return }
-        
-        let body =
-            ["firstName": userFirstName!,
-             "lastName": userLastName!,
-             "mobileNumber": trimmedString,
-             "nickname": nicknameTextField.text ?? ""]
-        
-        APIServiceManager.sharedInstance.postUser(body) { flag in
-            if flag {
-                dispatch_async(dispatch_get_main_queue()) {
-                    // update some UI
-                    if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                        self.navigationController?.pushViewController(smsValidation, animated: false)
-                    }
-                }
-                
-            }
-            //TODO: Remove the deleteUser request, added only for test purpose
-//            APIServiceManager.sharedInstance.deleteUser({ (flag) in
-//                print(flag)
-//            })
-        }
+   
     }
 }
 
-extension SignUpSecondStepViewController: UITextFieldDelegate {
+extension AddDeviceViewController: UITextFieldDelegate {
     // Text Field Return Resign First Responder
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
-            nicknameTextField.becomeFirstResponder()
+            passcodeTextField.becomeFirstResponder()
         } else {
           textField.resignFirstResponder()
         }
@@ -205,11 +173,11 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     
     func nextTextField() {
         mobileTextField.resignFirstResponder()
-        nicknameTextField.becomeFirstResponder()
+        passcodeTextField.becomeFirstResponder()
     }
     
     func previousTextField() {
-        nicknameTextField.resignFirstResponder()
+        passcodeTextField.resignFirstResponder()
         mobileTextField.becomeFirstResponder()
     }
     
@@ -220,15 +188,13 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
-        
         let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
-        
-        
         if (txtpos > (viewHeight-keyboardSize.height)) {
             scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
+
     }
     
     
@@ -237,23 +203,16 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         
     }
     
-    //Calls this function when the tap is recognized.
-    func dismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    static let keyboardWasShown = #selector(AddDeviceViewController.keyboardWasShown(_:))
     
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
+    static let keyboardWillBeHidden = #selector(AddDeviceViewController.keyboardWillBeHidden(_:))
     
-    static let dismissKeyboard = #selector(SignUpSecondStepViewController.dismissKeyboard)
+    static let back = #selector(AddDeviceViewController.back(_:))
     
-    static let back = #selector(SignUpSecondStepViewController.back(_:))
+    static let previousTextField = #selector(AddDeviceViewController.previousTextField)
     
-    static let previousTextField = #selector(SignUpSecondStepViewController.previousTextField)
-    
-    static let nextTextField = #selector(SignUpSecondStepViewController.nextTextField)
+    static let nextTextField = #selector(AddDeviceViewController.nextTextField)
 }

@@ -3,7 +3,8 @@ import UIKit
 class CodeInputView: UIView, UIKeyInput {
     var delegate: CodeInputViewDelegate?
     var nextTag = 1
-
+    var secureCode = ""
+    var secure:Bool = false
     // MARK: - UIResponder
 
     override func canBecomeFirstResponder() -> Bool {
@@ -39,17 +40,31 @@ class CodeInputView: UIView, UIKeyInput {
         return nextTag > 1 ? true : false
     }
 
+   
+    
     func insertText(text: String) {
+        
         if nextTag < 5 {
             (self.viewWithTag(nextTag) as! UILabel).text = text
+            
+            if (nextTag == 1){
+             secureCode = (self.viewWithTag(nextTag) as! UILabel).text!
+            } else {
+             secureCode += (self.viewWithTag(nextTag) as! UILabel).text!
+            }
+            if secure == true {
+                (self.viewWithTag(nextTag) as! UILabel).text! = "\u{2022}"
+            }
+            
             nextTag += 1
-
+            
             if nextTag == 5 {
-                var code = (self.viewWithTag(1) as! UILabel).text!
-                for index in 2..<nextTag {
-                    code += (self.viewWithTag(index) as! UILabel).text!
-                }
-                delegate?.codeInputView(self, didFinishWithCode: code)
+//                var code = (self.viewWithTag(1) as! UILabel).text!
+//                for index in 2..<nextTag {
+//                    code += (self.viewWithTag(index) as! UILabel).text!
+//                }
+                delegate?.codeInputView(self, didFinishWithCode: secureCode)
+                
             }
         }
     }
@@ -58,6 +73,8 @@ class CodeInputView: UIView, UIKeyInput {
         if nextTag > 1 {
             nextTag -= 1
             (self.viewWithTag(nextTag) as! UILabel).text = " "
+            
+            secureCode = String(secureCode.characters.dropLast())
         }
     }
 
@@ -74,4 +91,5 @@ class CodeInputView: UIView, UIKeyInput {
 
 protocol CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String)
+//    func codeInputView1(codeInputView: CodeInputView, didFinishWithCode code1: String)
 }
