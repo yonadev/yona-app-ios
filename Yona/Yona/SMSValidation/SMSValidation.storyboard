@@ -41,7 +41,7 @@
         <!--Validation View Controller-->
         <scene sceneID="yt2-PP-BDh">
             <objects>
-                <viewController storyboardIdentifier="SMSValidationViewController" id="Mnl-Nx-TV9" customClass="SMSValidationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sMSValidationViewController" id="Mnl-Nx-TV9" customClass="SMSValidationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dbk-MT-JXe"/>
                         <viewControllerLayoutGuide type="bottom" id="It4-At-g8z"/>

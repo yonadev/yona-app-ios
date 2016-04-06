@@ -23,8 +23,8 @@ struct R {
     storyboard.challenges.validateViewControllers()
     storyboard.settings.validateImages()
     storyboard.settings.validateViewControllers()
-    storyboard.sMSValidationViewController.validateImages()
-    storyboard.sMSValidationViewController.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
     storyboard.welcome.validateImages()
@@ -421,23 +421,23 @@ struct R {
       }
     }
     
-    struct sMSValidationViewController {
+    struct sMSValidation {
       static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "SMSValidationViewController", bundle: _R.hostingBundle) }
-      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("SMSValidationViewController") as? SMSValidationViewController }
+      static var instance: UIStoryboard { return UIStoryboard(name: "SMSValidation", bundle: _R.hostingBundle) }
+      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
       static var setPasscodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("SetPasscodeViewController") as? SetPasscodeViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
-        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'SMSValidationViewController', but couldn't be loaded.")
+        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'SMSValidation', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SMSValidation', but couldn't be loaded.")
+        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'SMSValidation', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'SMSValidationViewController'.")
-        assert(setPasscodeViewController != nil, "[R.swift] ViewController with identifier 'setPasscodeViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'SetPasscodeViewController'.")
-        assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'SMSValidationViewController' as 'ConfirmPasscodeViewController'.")
+        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'SMSValidation' as 'SMSValidationViewController'.")
+        assert(setPasscodeViewController != nil, "[R.swift] ViewController with identifier 'setPasscodeViewController' could not be loaded from storyboard 'SMSValidation' as 'SetPasscodeViewController'.")
+        assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'SMSValidation' as 'ConfirmPasscodeViewController'.")
       }
     }
     
@@ -550,7 +550,7 @@ protocol NibResource {
 }
 
 protocol Reusable {
-  typealias T
+  associatedtype T
   
   var reuseIdentifier: ReuseIdentifier<T> { get }
 }

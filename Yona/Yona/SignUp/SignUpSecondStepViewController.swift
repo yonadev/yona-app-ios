@@ -120,11 +120,20 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
              "mobileNumber": trimmedString,
              "nickname": nicknameTextField.text ?? ""]
         
-        APIServiceManager.sharedInstance.postUser(body) { (flag) in
+        APIServiceManager.sharedInstance.postUser(body) { flag in
+            if flag {
+                dispatch_async(dispatch_get_main_queue()) {
+                    // update some UI
+                    if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                        self.navigationController?.pushViewController(smsValidation, animated: true)
+                    }
+                }
+                
+            }
             //TODO: Remove the deleteUser request, added only for test purpose
-            APIServiceManager.sharedInstance.deleteUser({ (flag) in
-                print(flag)
-            })
+//            APIServiceManager.sharedInstance.deleteUser({ (flag) in
+//                print(flag)
+//            })
         }
     }
 }
