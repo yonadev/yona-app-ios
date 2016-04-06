@@ -119,22 +119,24 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         let body =
             [
                 "code": code
-            ]
+        ]
         
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { flag in
-            if flag == true {
-               
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
+            if success {
+                
                 dispatch_async(dispatch_get_main_queue()) {
-                     codeInputView.resignFirstResponder()
+                    codeInputView.resignFirstResponder()
                     self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
                 }
-//                let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-//                errorAlert.show()
-//                codeInputView.clear()
+            } else {
+                let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
+                errorAlert.show()
+                codeInputView.clear()
             }
         }
     }
 }
+
 
 private extension Selector {
     static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
