@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--Welcome View Controller-->
+        <scene sceneID="wJr-LV-LhE">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dEx-Je-Enr" customClass="WelcomeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l3H-Om-yjj"/>
+                        <viewControllerLayoutGuide type="bottom" id="GPe-ch-MPs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S7o-bB-jMm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
+                                <rect key="frame" x="113" y="-34" width="375" height="668"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-cZ-1Wg">
+                                <rect key="frame" x="301" y="540" width="299" height="60"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Mfw-BH-maZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <state key="normal" title="INLOGGEN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="dEx-Je-Enr" eventType="touchUpInside" id="Kf7-R7-tes"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuO-p0-ekh">
+                                <rect key="frame" x="0.0" y="540" width="299" height="60"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <state key="normal" title="DOE MEE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="dEx-Je-Enr" eventType="touchUpInside" id="6D6-f7-Jgm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tuO-p0-ekh" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="9G1-CX-RiA"/>
+                            <constraint firstAttribute="trailing" secondItem="j8k-cZ-1Wg" secondAttribute="trailing" id="A4Q-NE-D8e"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="2" id="EJA-aW-N14"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerX" secondItem="S7o-bB-jMm" secondAttribute="centerX" id="G6y-rF-hpI"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="width" secondItem="tuO-p0-ekh" secondAttribute="width" id="NJ3-Jb-gBr"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerY" secondItem="S7o-bB-jMm" secondAttribute="centerY" id="Q0V-Fk-vcv"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="height" secondItem="tuO-p0-ekh" secondAttribute="height" id="c7k-iZ-PV3"/>
+                            <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="tuO-p0-ekh" secondAttribute="bottom" id="jPn-zV-HGF"/>
+                            <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="j8k-cZ-1Wg" secondAttribute="bottom" id="sAE-Vd-LJP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vc8-lA-K8m"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="loginButton" destination="j8k-cZ-1Wg" id="tdn-lm-Ioy"/>
+                        <outlet property="signUpButton" destination="tuO-p0-ekh" id="Dr0-uM-30X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PLn-EK-HMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dyM-lm-8aR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BVV-Xz-ZoM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BkW-V5-f9t">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dEx-Je-Enr" kind="relationship" relationship="rootViewController" id="k68-sP-1Ux"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hGJ-AV-BBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="447" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="welcomeScreen" width="375" height="667"/>
+    </resources>
+</document>
