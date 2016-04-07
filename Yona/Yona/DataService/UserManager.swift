@@ -50,9 +50,6 @@ class UserManager: NSObject {
                         self.userInfo = dict
                         #if DEBUG
                         if let code = dict["mobileNumberConfirmationCode"] { print(">>>>>>>>>>>> SMS Confimation code: " + "\(code)" + "<<<<<<<<<<<<<") }
-                            
-                            
-
                         #endif
                         onCompletion(dict, nil)
                     }

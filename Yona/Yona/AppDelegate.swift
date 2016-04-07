@@ -53,24 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: User Methods
     func getScreenNameToDisplay() -> UINavigationController{
-        
-        
-        let viewName = getViewControllerToDisplay("ScreenToDisplay") as! String
-        var rootController : UIViewController
-        switch viewName {
-            
-        case "SMSValidation":
-            rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController
-        case "Passcode":
-            rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
-        case "Login":
-            rootController = R.storyboard.login.loginStoryboard! as LoginViewController
-        default:
-            rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+        var rootController: UIViewController = UINavigationController.init()
+        if let viewName = getViewControllerToDisplay("ScreenToDisplay") as? String {
+            switch viewName {
+                case "SMSValidation":
+                    rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController
+                case "Passcode":
+                    rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
+                case "Login":
+                    rootController = R.storyboard.login.loginStoryboard! as LoginViewController
+                default:
+                    rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+                }
+            return UINavigationController(rootViewController: rootController)
         }
-        
-        let a : UINavigationController? = UINavigationController(rootViewController: rootController)
-        return a!
+        return UINavigationController(rootViewController: rootController)
     }
 
 }

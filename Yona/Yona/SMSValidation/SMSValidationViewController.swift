@@ -56,16 +56,12 @@ final class SMSValidationViewController:  UIViewController {
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.codeInputView!.becomeFirstResponder()
             })
-            
-            
         }
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-        
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -94,10 +90,6 @@ extension SMSValidationViewController: KeyboardProtocol {
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
-//        if let position = adjustTheCodeView(scrollView, view: view, codeView: codeView, notification: notification) {
-//            self.view.frame.origin.y = position
-//        }
-
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
@@ -116,16 +108,13 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         
         APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
             if success {
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     codeInputView.resignFirstResponder()
-//                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
                     //Update flag
                     setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
                     
                     if let passcode = R.storyboard.passcode.passcodeStoryboard {
                         self.navigationController?.pushViewController(passcode, animated: false)
-                    
                     }
                 }
             } else {
@@ -137,9 +126,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
     }
 }
 
-
 private extension Selector {
     static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
-    
     static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
 }

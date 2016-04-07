@@ -32,7 +32,7 @@ func getViewControllerToDisplay(key: String)-> AnyObject? {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.objectForKey(key)
     if defaults.objectForKey(key) == nil {
-    setViewControllerToDisplay("Welcome",key: key)
+        setViewControllerToDisplay("Welcome",key: key)
     }
     return defaults.objectForKey(key)
 }

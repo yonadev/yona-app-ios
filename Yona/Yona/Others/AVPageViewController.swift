@@ -39,7 +39,7 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
     }
     
     func setupViewControllerIndex(viewControllers: Array<UIViewController>) {
-        for var i = 0; i < viewControllers.count - 1; i++ {
+        for var i = 0; i < viewControllers.count - 1; i += 1 {
             let vc = self.contentViews![i] as! AVPageContentViewController
             vc.viewControllerIndex = i
         }
