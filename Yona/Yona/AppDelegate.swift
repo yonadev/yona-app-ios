@@ -47,9 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        getScreenNameToDisplay
     }
 
-        return true
-    }
-
     private func hockeyAppSetup() {
         var keys: NSDictionary?
         
