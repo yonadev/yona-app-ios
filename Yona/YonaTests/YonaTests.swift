@@ -61,7 +61,8 @@ class YonaTests: XCTestCase {
         waitForExpectationsWithTimeout(50.0, handler:nil)
     }
     
-    func testConfirmMobile() {
+    func testConfirmMobileReturnsData(){
+
         //setup
         let path = "http://85.222.227.142/users/"
         let keychain = KeychainSwift()
@@ -251,6 +252,46 @@ class YonaTests: XCTestCase {
         })
         waitForExpectationsWithTimeout(15.0, handler:nil)
 
+    }
+    
+    func testConfirmMobileNumber(){
+        //setup
+        let path = "http://85.222.227.142/users/"
+        let keychain = KeychainSwift()
+        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
+        let expectation = expectationWithDescription("Waiting to respond")
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31888259687878",
+             "nickname": "RQ"]
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        
+        //Post user data
+        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { json, err in
+            if let json = json,
+                let code = json["mobileNumberConfirmationCode"]{
+                //store the json in an object
+                let user = Users.init(userData: json)
+                APIServiceManager.sharedInstance.newUser = user
+                //confirm mobile number check
+                APIServiceManager.sharedInstance.confirmMobileNumber(["code":code], onCompletion: { (success) in
+                    if(success){
+                        expectation.fulfill()
+                    }
+                    //now tidy up and delete the user
+                    if let deletePath = user.editLink{
+                        UserManager.sharedInstance.makeRequest(deletePath, body:body, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success in
+                            if(success){
+                                expectation.fulfill()
+                            }
+                        })
+                    }
+                })
+                
+            }
+        })
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
 
 }
