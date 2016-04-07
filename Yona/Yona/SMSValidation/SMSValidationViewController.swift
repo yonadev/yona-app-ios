@@ -112,7 +112,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         let body =
             [
                 "code": code
-        ]
+            ]
         
         APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
             if success {

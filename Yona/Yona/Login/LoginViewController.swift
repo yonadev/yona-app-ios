@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var pinResetButton: UIButton!
+    @IBOutlet var errorLabel: UILabel!
     
     private var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
@@ -93,8 +94,9 @@ extension LoginViewController: CodeInputViewDelegate {
                 navigationController?.pushViewController(dashboardStoryboard, animated: true)
             }
         } else {
-            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-                        errorAlert.show()
+            errorLabel.hidden = false
+//            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
+//                        errorAlert.show()
                         codeInputView.clear()
         }
         
