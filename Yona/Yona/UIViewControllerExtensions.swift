@@ -20,6 +20,11 @@ extension UIViewController {
         
         return nil
     }
+    
+    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
+        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
+        errorAlert.show()
+    }
 }
 
 func setViewControllerToDisplay(value: String, key: String) {

@@ -94,13 +94,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
     }
     
-    // UIAlertView Alert
-    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
-    
-    
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -109,7 +102,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
-
         if self.mobileTextField.text!.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 "Please input Phone number.")

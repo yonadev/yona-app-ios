@@ -40,7 +40,11 @@ final class SMSValidationViewController:  UIViewController {
         self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
         self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
-        
+        #if DEBUG
+        if let pincode = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.pincode) as? String {
+            self.displayAlertMessage(pincode, alertDescription:"Pincode")
+        }
+        #endif
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
 
@@ -105,7 +109,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             [
                 "code": code
             ]
-        
+
         APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
             if success {
                 dispatch_async(dispatch_get_main_queue()) {
