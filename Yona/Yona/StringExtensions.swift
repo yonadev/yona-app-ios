@@ -32,20 +32,15 @@ extension String {
         
     }
     
-    func validate() -> Bool {
-        
-        let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
-        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
-        let result =  phoneTest.evaluateWithObject(self)
-        
-        if result {
-            let character  = NSCharacterSet(charactersInString: "+0123456789").invertedSet
-            var filtered:NSString!
-            let inputString:NSArray = self.componentsSeparatedByCharactersInSet(character)
-            filtered = inputString.componentsJoinedByString("")
-            return self == filtered
-        } else {
+    func validateMobileNumber() -> Bool {
+        let character  = NSCharacterSet(charactersInString: "+0123456789").invertedSet
+        let inputString:NSArray = self.componentsSeparatedByCharactersInSet(character)
+        let filtered = inputString.componentsJoinedByString("")
+ 
+        if (self != filtered || self.characters.count == 0 || self.characters.count <= YonaConstants.mobilePhoneLength.netherlands || self == "+31") {
             return false
+        } else {
+            return true
         }
     }
 }
