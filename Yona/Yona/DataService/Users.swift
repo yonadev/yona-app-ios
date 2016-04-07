@@ -41,8 +41,6 @@ struct Users{
             
             NSUserDefaults.standardUserDefaults().setObject(self.userID, forKey: YonaConstants.nsUserDefaultsKeys.userID)
             NSUserDefaults.standardUserDefaults().setObject(self.confirmMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL)
-            
-
         }
     }
 }

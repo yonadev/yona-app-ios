@@ -74,10 +74,14 @@ class APIServiceManager {
     }
     
     func confirmMobileNumber(body: UserData?, onCompletion: APIResponse) {
-        if let newUser = newUser,
-            let userID = newUser.userID,
-            let path = newUser.confirmMobileLink{
-            callRequest(body,userID: userID, path: path, httpMethod: YonaConstants.httpMethods.post) { (success) in
+        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
+            let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
+            #if DEBUG
+            print(userID)
+            print(confirmMobileLink)
+            #endif
+
+            callRequest(body,userID: userID, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { (success) in
                 if (success){
                     onCompletion(true)
                 } else {
@@ -85,6 +89,7 @@ class APIServiceManager {
                 }
             }
         } else { onCompletion(false) }
+    
     }
     
     private func callRequest(body: UserData?, userID: String, path: String, httpMethod: String, onCompletion:APIResponse){
