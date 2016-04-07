@@ -95,9 +95,7 @@ extension LoginViewController: CodeInputViewDelegate {
             }
         } else {
             errorLabel.hidden = false
-//            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-//                        errorAlert.show()
-                        codeInputView.clear()
+            codeInputView.clear()
         }
         
     }
