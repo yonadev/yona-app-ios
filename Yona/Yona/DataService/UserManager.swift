@@ -50,6 +50,10 @@ class UserManager: NSObject {
                         self.userInfo = dict
                         #if DEBUG
                         if let code = dict["mobileNumberConfirmationCode"] { print(">>>>>>>>>>>> SMS Confimation code: " + "\(code)" + "<<<<<<<<<<<<<") }
+                            
+                            let alert = UIAlertView(title:code, message:nil, delegate:nil, cancelButtonTitle:"OK")
+                            alert.show()
+
                         #endif
                         onCompletion(dict, nil)
                     }

@@ -1,5 +1,5 @@
 //
-//  SetPasscodeViewController.swift
+//  ConfirmPasscodeViewController.swift
 //  Yona
 //
 //  Created by Chandan on 04/04/16.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class SetPasscodeViewController:  UIViewController {
+final class ConfirmPasscodeViewController:  UIViewController {
     @IBOutlet var progressView:UIView!
     @IBOutlet var codeView:UIView!
     
@@ -18,27 +17,21 @@ class SetPasscodeViewController:  UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     
-    var passcodeString: String?
-    private var colorX : UIColor = UIColor.yiWhiteColor()
+    var passcode: String?
+    
+    var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-
-        let viewWidth = self.view.frame.size.width
-        let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
-        customView.backgroundColor=UIColor.yiDarkishPinkColor()
-        self.progressView.addSubview(customView)
-        
-
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("passcode.user.infomessage", comment: "").uppercaseString
-        self.headerTitleLabel.text = NSLocalizedString("passcode.user.headerTitle", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "").uppercaseString
+        self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
@@ -53,11 +46,12 @@ class SetPasscodeViewController:  UIViewController {
             codeInputView?.secure = true
             codeView.addSubview(codeInputView!)
         }
-        
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,23 +63,9 @@ class SetPasscodeViewController:  UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == R.segue.setPasscodeViewController.confirmPasscodeSegue.identifier,
-            let vc = segue.destinationViewController as? ConfirmPasscodeViewController {
-            vc.passcode = passcodeString
-        }
-    }
-    
-    // UIAlertView Alert
-    private func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-       
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
 }
 
-extension SetPasscodeViewController: KeyboardProtocol {
+extension ConfirmPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
         let viewHeight = self.view.frame.size.height
@@ -93,9 +73,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
         
-        
         let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
-        
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
@@ -113,10 +91,20 @@ extension SetPasscodeViewController: KeyboardProtocol {
     }
 }
 
-extension SetPasscodeViewController: CodeInputViewDelegate {
+extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
+        if (passcode == code) {
+            KeychainManager.sharedInstance.savePINCode(code)
+            
+            //Update flag
+            setViewControllerToDisplay("Login", key: "ScreenToDisplay")
+            
+            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                navigationController?.pushViewController(dashboardStoryboard, animated: true)
+            }
+        } else {
+            codeInputView.clear()
+        }
     }
 }
 

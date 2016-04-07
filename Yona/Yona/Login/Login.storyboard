@@ -42,7 +42,7 @@
         <!--Login View Controller-->
         <scene sceneID="yt2-PP-BDh">
             <objects>
-                <viewController storyboardIdentifier="LoginStoryboard" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dbk-MT-JXe"/>
                         <viewControllerLayoutGuide type="bottom" id="It4-At-g8z"/>

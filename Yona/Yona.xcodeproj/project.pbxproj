@@ -30,13 +30,14 @@
 		ADAEAFD81CB2BCB3005ED7B4 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */; };
 		ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
-		ADAEAFDD1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */; };
-		ADAEAFDF1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */; };
 		ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
 		ADAEAFE81CB43245005ED7B4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE61CB43245005ED7B4 /* Login.storyboard */; };
 		ADAEAFE91CB43245005ED7B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE71CB43245005ED7B4 /* LoginViewController.swift */; };
 		ADAEAFEB1CB44E80005ED7B4 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */; };
+		ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */; };
+		ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */; };
+		ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
 		ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */; };
 		ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */; };
@@ -191,13 +192,14 @@
 		ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SMSValidation.storyboard; sourceTree = "<group>"; };
 		ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
 		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
-		ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
-		ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFE61CB43245005ED7B4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		ADAEAFE71CB43245005ED7B4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
+		ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
+		ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
+		ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
 		ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -508,8 +510,6 @@
 			isa = PBXGroup;
 			children = (
 				ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */,
-				ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */,
-				ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */,
 				ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */,
 			);
 			path = SMSValidation;
@@ -532,6 +532,16 @@
 				ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ADAEAFEC1CB650A4005ED7B4 /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */,
+				ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */,
+				ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */,
+			);
+			path = Passcode;
 			sourceTree = "<group>";
 		};
 		ADEF8EEF1CADFD0C001D5EED /* Roboto Fonts */ = {
@@ -825,6 +835,7 @@
 				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
+				ADAEAFEC1CB650A4005ED7B4 /* Passcode */,
 				ADAEAFD51CB2BCB3005ED7B4 /* SMSValidation */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				ADAEAFE51CB43245005ED7B4 /* Login */,
@@ -982,6 +993,7 @@
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
+				ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */,
 				ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
@@ -1121,12 +1133,12 @@
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
-				ADAEAFDD1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift in Sources */,
-				ADAEAFDF1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
+				ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
+				ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */,

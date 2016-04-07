@@ -75,13 +75,6 @@ final class SMSValidationViewController:  UIViewController {
     }
 }
 
-//func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    if segue.identifier == R.segue.sMSValidationViewController.passcodeSegue.identifier,
-//        let vc = segue.destinationViewController as? SetPasscodeViewController {
-//        
-//    }
-//}
-
 extension SMSValidationViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -126,7 +119,14 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     codeInputView.resignFirstResponder()
-                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
+//                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
+                    //Update flag
+                    setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+                    
+                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                        self.navigationController?.pushViewController(passcode, animated: false)
+                    
+                    }
                 }
             } else {
                 let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
