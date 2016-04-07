@@ -10,6 +10,7 @@
         </mutableArray>
         <mutableArray key="SF-UI-Display-Light.otf">
             <string>SFUIDisplay-Light</string>
+            <string>SFUIDisplay-Light</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Medium.otf">
             <string>SFUIDisplay-Medium</string>
@@ -42,7 +43,7 @@
         <!--Login View Controller-->
         <scene sceneID="yt2-PP-BDh">
             <objects>
-                <viewController storyboardIdentifier="LoginStoryboard" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dbk-MT-JXe"/>
                         <viewControllerLayoutGuide type="bottom" id="It4-At-g8z"/>
@@ -70,15 +71,21 @@
                                                     <constraint firstAttribute="width" constant="48" id="tjt-D2-w0R"/>
                                                 </constraints>
                                             </imageView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
+                                                <rect key="frame" x="249" y="251" width="100.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngp-Jb-LFA">
-                                                <rect key="frame" x="170" y="300" width="260" height="55"/>
+                                                <rect key="frame" x="170" y="288" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="7T2-6Z-G9j"/>
                                                     <constraint firstAttribute="height" constant="55" id="sC0-Tx-WSj"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
-                                                <rect key="frame" x="273.5" y="374" width="53" height="28"/>
+                                                <rect key="frame" x="273" y="362" width="53" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="PIN reset">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,15 +101,17 @@
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="5dw-qe-qyA"/>
+                                            <constraint firstItem="MpR-Wr-PFo" firstAttribute="top" secondItem="HGP-u0-8lk" secondAttribute="bottom" constant="37" id="C8q-Sa-P71"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="VYX-79-0ZW"/>
+                                            <constraint firstItem="Ngp-Jb-LFA" firstAttribute="top" secondItem="MpR-Wr-PFo" secondAttribute="bottom" constant="20" id="Vvm-s4-UNz"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="top" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="25" id="W8P-fL-Tzy"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" constant="-8" id="asB-nr-lQx"/>
+                                            <constraint firstItem="MpR-Wr-PFo" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="bef-hE-v4H"/>
                                             <constraint firstItem="Yf9-fJ-1ck" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="flB-zk-XYz"/>
                                             <constraint firstAttribute="bottom" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="440" id="iOO-ed-NH8"/>
                                             <constraint firstItem="Yf9-fJ-1ck" firstAttribute="top" secondItem="U44-VS-5Hu" secondAttribute="top" constant="33" id="jeo-bF-bKn"/>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="kKA-ut-b0b"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="top" secondItem="Yf9-fJ-1ck" secondAttribute="bottom" constant="62" id="lYt-fM-MDz"/>
-                                            <constraint firstItem="Ngp-Jb-LFA" firstAttribute="top" secondItem="HGP-u0-8lk" secondAttribute="bottom" constant="86" id="tNB-Mb-YPt"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="wg7-NH-SqD"/>
                                         </constraints>
                                     </view>
@@ -140,6 +149,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
+                        <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
                         <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
                         <outlet property="pinResetButton" destination="3r8-GS-xeb" id="uul-gT-Dd0"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>

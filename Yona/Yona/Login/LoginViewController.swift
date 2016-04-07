@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var pinResetButton: UIButton!
+    @IBOutlet var errorLabel: UILabel!
     
     private var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
@@ -84,16 +85,19 @@ extension LoginViewController: KeyboardProtocol {
 
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let title = code == "1234" ? "Correct!" : "Wrong!"
         
-        if (title == "Correct!") {
+        
+        let passcode = KeychainManager.sharedInstance.getPINCode()
+        if code ==  passcode {
             codeInputView.resignFirstResponder()
-
+            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                navigationController?.pushViewController(dashboardStoryboard, animated: true)
+            }
         } else {
-            let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-            errorAlert.show()
+            errorLabel.hidden = false
             codeInputView.clear()
         }
+        
     }
 }
 

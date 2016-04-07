@@ -30,7 +30,7 @@ final class ConfirmPasscodeViewController:  UIViewController {
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -95,6 +95,9 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         if (passcode == code) {
             KeychainManager.sharedInstance.savePINCode(code)
+            
+            //Update flag
+            setViewControllerToDisplay("Login", key: "ScreenToDisplay")
             
             if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
                 navigationController?.pushViewController(dashboardStoryboard, animated: true)

@@ -90,6 +90,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
     }
+
     
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {

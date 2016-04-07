@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
                                 <rect key="frame" x="113" y="-34" width="375" height="668"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-cZ-1Wg">

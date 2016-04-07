@@ -53,12 +53,13 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         passcodeTextField.delegate = self
+        
         mobileTextField.placeholder = NSLocalizedString("adddevice.user.mobileNumber", comment: "").uppercaseString
-        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.nickname", comment: "").uppercaseString
+        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.passcode", comment: "").uppercaseString
 
         mobileTextField.text = nederlandPhonePrefix
         
-        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "")
         
         
         //Nav bar Back button.

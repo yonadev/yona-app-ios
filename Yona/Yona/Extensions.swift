@@ -21,3 +21,18 @@ extension UIViewController {
         return nil
     }
 }
+
+func setViewControllerToDisplay(value: String, key: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(value, forKey: key)
+    defaults.synchronize()
+}
+
+func getViewControllerToDisplay(key: String)-> AnyObject? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
+    if defaults.objectForKey(key) == nil {
+        setViewControllerToDisplay("Welcome",key: key)
+    }
+    return defaults.objectForKey(key)
+}

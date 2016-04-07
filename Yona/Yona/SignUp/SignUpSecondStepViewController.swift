@@ -17,7 +17,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     var userFirstName: String?
     var userLastName: String?
     
-    private let nederlandPhonePrefix = "+316 "
+    private let nederlandPhonePrefix = "+31 (0) "
     
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
@@ -61,7 +61,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
 
         mobileTextField.text = nederlandPhonePrefix
         
-        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "")
         
         self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -88,7 +88,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.mobileTextField.rightViewMode = UITextFieldViewMode.Always
         
         let nicknameImage = UIImageView(image: R.image.icnNickname)
-        nicknameImage.frame = CGRectMake(0.0, 0.0, nicknameImage.image!.size.width+10.0, nicknameImage.image!.size.height);
+        nicknameImage.frame = CGRectMake(0.0, 0.0, nicknameImage.image!.size.width, nicknameImage.image!.size.height);
         mobileImage.contentMode = UIViewContentMode.Center
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
@@ -96,8 +96,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     // UIAlertView Alert
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        // hide activityIndicator view and display alert message
-        //        self.activityIndicatorView.hidden = true
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
     }
@@ -111,30 +109,38 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
-        
-        guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
-        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-        
-        let body =
-            ["firstName": userFirstName!,
-             "lastName": userLastName!,
-             "mobileNumber": trimmedString,
-             "nickname": nicknameTextField.text ?? ""]
-        
-        APIServiceManager.sharedInstance.postUser(body) { flag in
-            if flag {
-                dispatch_async(dispatch_get_main_queue()) {
-                    // update some UI
-                    if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                        self.navigationController?.pushViewController(smsValidation, animated: false)
+
+        if self.mobileTextField.text!.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                "Please input Phone number.")
+            
+        } else if self.nicknameTextField.text!.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                "Please input Nickname.")
+            
+        } else {
+            guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
+            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+            
+            let body =
+                ["firstName": userFirstName!,
+                 "lastName": userLastName!,
+                 "mobileNumber": trimmedString,
+                 "nickname": nicknameTextField.text ?? ""]
+            
+            APIServiceManager.sharedInstance.postUser(body) { flag in
+                if flag {
+                    //Update flag
+                    setViewControllerToDisplay("SMSValidation", key: "ScreenToDisplay")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // update some UI
+                        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                            self.navigationController?.pushViewController(smsValidation, animated: false)
+                        }
                     }
+                    
                 }
-                
             }
-            //TODO: Remove the deleteUser request, added only for test purpose
-//            APIServiceManager.sharedInstance.deleteUser({ (flag) in
-//                print(flag)
-//            })
         }
     }
 }
@@ -181,25 +187,26 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     
     //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 14 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 12 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 17 {
                     textField.text = String(textField.text!.characters.dropLast())
                     textField.text = String(textField.text!.characters.dropLast())
                 }
             } else  {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 14 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 12 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 17 {
                     let space = " "
                     
                     textField.text = "\(textField.text!) \(space)"
                 }            }
             previousRange = range
             
-            if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 5 {
+            if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 8 {
                 textField.text = nederlandPhonePrefix
             }
             
-            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 18
+            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 21
         }
         return true
     }
