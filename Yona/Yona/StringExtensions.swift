@@ -16,4 +16,9 @@ extension String {
     func removeWhitespace() -> String {
         return self.replace(" ", replacement: "")
     }
+    
+    func removeBrackets() -> String {
+        return self.replace("(0)", replacement: "")
+    }
+
 }

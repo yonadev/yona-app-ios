@@ -53,12 +53,13 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         passcodeTextField.delegate = self
+        
         mobileTextField.placeholder = NSLocalizedString("adddevice.user.mobileNumber", comment: "").uppercaseString
-        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.nickname", comment: "").uppercaseString
+        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.passcode", comment: "").uppercaseString
 
         mobileTextField.text = nederlandPhonePrefix
         
-        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "")
         
         
         //Nav bar Back button.
@@ -83,15 +84,6 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         self.passcodeTextField.rightView = passcodeImage;
         self.passcodeTextField.rightViewMode = UITextFieldViewMode.Always
     }
-    
-    // UIAlertView Alert
-    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        // hide activityIndicator view and display alert message
-        //        self.activityIndicatorView.hidden = true
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
-    
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {

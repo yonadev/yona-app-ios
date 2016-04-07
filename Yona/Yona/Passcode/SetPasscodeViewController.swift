@@ -37,10 +37,11 @@ class SetPasscodeViewController:  UIViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("passcode.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("passcode.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("passcode.user.headerTitle", comment: "").uppercaseString
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,13 +76,6 @@ class SetPasscodeViewController:  UIViewController {
             let vc = segue.destinationViewController as? ConfirmPasscodeViewController {
             vc.passcode = passcodeString
         }
-    }
-    
-    // UIAlertView Alert
-    private func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-       
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
     }
 }
 

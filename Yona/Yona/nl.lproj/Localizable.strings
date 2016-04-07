@@ -29,3 +29,10 @@
 
 "confirmpasscode.user.headerTitle" = "Bevestig pincode";
 "confirmpasscode.user.infomessage" = "Vul je pincode nog een keer in ter bevestiging.";
+
+"adddevice.user.mobileNumber" = "MOBIEL TELEFOONNUMMER";
+"adddevice.user.passcode" = "PASSCODE";
+"adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
+
+
+

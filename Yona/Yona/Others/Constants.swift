@@ -42,4 +42,13 @@ struct YonaConstants {
         static let  confirmMobileLinkKeys = "yona:confirmMobileNumber"
         static let  hrefKey = "href"
     }
+    
+    struct nsUserDefaultsKeys{
+        static let userID = "userID"
+        static let confirmMobileKeyURL = "confirmMobileLink"
+        #if DEBUG
+        static let pincode = "mobileNumberConfirmationCode"
+        #endif
+    }
+
 }

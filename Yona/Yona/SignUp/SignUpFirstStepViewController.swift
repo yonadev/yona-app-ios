@@ -85,12 +85,6 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
     }
     
-    // UIAlertView Alert
-    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
-    
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:

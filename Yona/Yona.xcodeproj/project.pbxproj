@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
+		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
 		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
@@ -30,13 +31,14 @@
 		ADAEAFD81CB2BCB3005ED7B4 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */; };
 		ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
-		ADAEAFDD1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */; };
-		ADAEAFDF1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */; };
 		ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
 		ADAEAFE81CB43245005ED7B4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE61CB43245005ED7B4 /* Login.storyboard */; };
 		ADAEAFE91CB43245005ED7B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE71CB43245005ED7B4 /* LoginViewController.swift */; };
 		ADAEAFEB1CB44E80005ED7B4 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */; };
+		ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */; };
+		ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */; };
+		ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
 		ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */; };
 		ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */; };
@@ -53,14 +55,13 @@
 		ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */; };
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
-		BE779B191CB3C91F001766B2 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE779B181CB3C91F001766B2 /* SecretKeys.plist */; };
 		D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
 		D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */; };
 		D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BC1CB26E3A00ABE0F8 /* Users.swift */; };
-		D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C21CB27AE500ABE0F8 /* Extensions.swift */; };
+		D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */; };
 		D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
@@ -167,6 +168,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -192,13 +194,14 @@
 		ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SMSValidation.storyboard; sourceTree = "<group>"; };
 		ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
 		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
-		ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
-		ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFE61CB43245005ED7B4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		ADAEAFE71CB43245005ED7B4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
+		ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
+		ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
+		ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
 		ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -215,13 +218,12 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
-		BE779B181CB3C91F001766B2 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = YonaTests/SecretKeys.plist; sourceTree = SOURCE_ROOT; };
 		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
-		D94A93C21CB27AE500ABE0F8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		D94A93C41CB291FC00ABE0F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
@@ -510,8 +512,6 @@
 			isa = PBXGroup;
 			children = (
 				ADAEAFD61CB2BCB3005ED7B4 /* SMSValidation.storyboard */,
-				ADAEAFDE1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift */,
-				ADAEAFDC1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift */,
 				ADAEAFD71CB2BCB3005ED7B4 /* SMSValidationViewController.swift */,
 			);
 			path = SMSValidation;
@@ -534,6 +534,16 @@
 				ADAEAFEA1CB44E80005ED7B4 /* AddDeviceViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ADAEAFEC1CB650A4005ED7B4 /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				ADAEAFED1CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift */,
+				ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */,
+				ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */,
+			);
+			path = Passcode;
 			sourceTree = "<group>";
 		};
 		ADEF8EEF1CADFD0C001D5EED /* Roboto Fonts */ = {
@@ -575,7 +585,7 @@
 			children = (
 				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
-				D94A93C21CB27AE500ABE0F8 /* Extensions.swift */,
+				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -816,7 +826,7 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				BE779B181CB3C91F001766B2 /* SecretKeys.plist */,
+				9039292C1CB69ED600521F5D /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
@@ -827,6 +837,7 @@
 				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
+				ADAEAFEC1CB650A4005ED7B4 /* Passcode */,
 				ADAEAFD51CB2BCB3005ED7B4 /* SMSValidation */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				ADAEAFE51CB43245005ED7B4 /* Login */,
@@ -987,7 +998,9 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
+				9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
+				ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */,
 				ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
@@ -1029,7 +1042,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE779B191CB3C91F001766B2 /* SecretKeys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,15 +1153,15 @@
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
-				ADAEAFDD1CB2EF3F005ED7B4 /* SetPasscodeViewController.swift in Sources */,
-				ADAEAFDF1CB2F76B005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
+				ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
+				ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
-				D94A93C31CB27AE500ABE0F8 /* Extensions.swift in Sources */,
+				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
@@ -1314,6 +1326,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -1351,7 +1364,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
@@ -1365,6 +1378,7 @@
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

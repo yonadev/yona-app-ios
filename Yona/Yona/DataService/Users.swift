@@ -39,6 +39,13 @@ struct Users{
             self.confirmMobileLink = hrefConfirmLinks as? String
             self.getSelfLink = hrefSelfLinks as? String
             
+            NSUserDefaults.standardUserDefaults().setObject(self.userID, forKey: YonaConstants.nsUserDefaultsKeys.userID)
+            NSUserDefaults.standardUserDefaults().setObject(self.confirmMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL)
+            #if DEBUG
+            if let code = userData[YonaConstants.nsUserDefaultsKeys.pincode] as? String{
+                NSUserDefaults.standardUserDefaults().setObject(code, forKey: YonaConstants.nsUserDefaultsKeys.pincode)
+            }
+            #endif
         }
     }
 }

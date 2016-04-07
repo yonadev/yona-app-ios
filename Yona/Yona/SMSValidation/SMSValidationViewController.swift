@@ -36,11 +36,15 @@ final class SMSValidationViewController:  UIViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
-        self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
-        
+        #if DEBUG
+        if let pincode = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.pincode) as? String {
+            self.displayAlertMessage(pincode, alertDescription:"Pincode")
+        }
+        #endif
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
 
@@ -56,16 +60,12 @@ final class SMSValidationViewController:  UIViewController {
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.codeInputView!.becomeFirstResponder()
             })
-            
-            
         }
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-        
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -74,13 +74,6 @@ final class SMSValidationViewController:  UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
-
-//func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    if segue.identifier == R.segue.sMSValidationViewController.passcodeSegue.identifier,
-//        let vc = segue.destinationViewController as? SetPasscodeViewController {
-//        
-//    }
-//}
 
 extension SMSValidationViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
@@ -101,10 +94,6 @@ extension SMSValidationViewController: KeyboardProtocol {
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
-//        if let position = adjustTheCodeView(scrollView, view: view, codeView: codeView, notification: notification) {
-//            self.view.frame.origin.y = position
-//        }
-
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
@@ -119,14 +108,18 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         let body =
             [
                 "code": code
-        ]
-        
+            ]
+
         APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
             if success {
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     codeInputView.resignFirstResponder()
-                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.passcodeSegue.identifier, sender: self)
+                    //Update flag
+                    setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+                    
+                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                        self.navigationController?.pushViewController(passcode, animated: false)
+                    }
                 }
             } else {
                 let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
@@ -137,9 +130,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
     }
 }
 
-
 private extension Selector {
     static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
-    
     static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
 }

@@ -43,3 +43,10 @@ extension KeychainManager {
         return pin
     }
 }
+
+extension KeychainManager {
+    func clearPINCode() {
+        keychain.clear()
+    }
+    
+}
