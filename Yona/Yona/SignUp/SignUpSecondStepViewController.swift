@@ -112,7 +112,8 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
         
-        guard let trimmedString = mobileTextField.text?.removeWhitespace() else { return }
+        guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
+        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
         
         let body =
             ["firstName": userFirstName!,
