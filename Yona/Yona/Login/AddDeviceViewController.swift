@@ -85,15 +85,6 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         self.passcodeTextField.rightViewMode = UITextFieldViewMode.Always
     }
     
-    // UIAlertView Alert
-    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        // hide activityIndicator view and display alert message
-        //        self.activityIndicatorView.hidden = true
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
-    
-    
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)

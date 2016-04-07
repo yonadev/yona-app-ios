@@ -77,13 +77,6 @@ class SetPasscodeViewController:  UIViewController {
             vc.passcode = passcodeString
         }
     }
-    
-    // UIAlertView Alert
-    private func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-       
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
-    }
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
