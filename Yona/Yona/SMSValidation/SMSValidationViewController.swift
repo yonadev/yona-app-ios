@@ -36,9 +36,9 @@ final class SMSValidationViewController:  UIViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
-        self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)

@@ -30,7 +30,7 @@ final class ConfirmPasscodeViewController:  UIViewController {
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)

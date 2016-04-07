@@ -37,7 +37,7 @@ class SetPasscodeViewController:  UIViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("passcode.user.infomessage", comment: "").uppercaseString
+        self.infoLabel.text = NSLocalizedString("passcode.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("passcode.user.headerTitle", comment: "").uppercaseString
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
