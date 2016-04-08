@@ -34,5 +34,4 @@
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
 
-
-
+"login.user.errorinfoText" = "Je account is geblokkeerd om veiligheidsredenen , gebruikt u de optie reset toegangscode op onze rekening in te schakelen.";

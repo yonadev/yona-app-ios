@@ -49,15 +49,17 @@ class LoginViewController: UIViewController {
         
         if let attempts = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) as? Bool {
             if attempts  {
-                self.displayAlertMessage("Login", alertDescription: "Your account has been locked for security reasons, use the reset passcode option to enable our account.")
+                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView!.resignFirstResponder()
                 codeInputView!.userInteractionEnabled = false
                 errorLabel.hidden = false
-                errorLabel.text = "Your account has been locked for security reasons, use the reset passcode option to enable our account."
+                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
                 return;
             }
-            
         }
+        
+//        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
+
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
