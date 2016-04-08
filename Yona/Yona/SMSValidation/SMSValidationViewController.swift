@@ -110,9 +110,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 "code": code
             ]
 
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, dict, err in
             dispatch_async(dispatch_get_main_queue()) {
-                if success {
+                if (success) {
 
                         codeInputView.resignFirstResponder()
                         //Update flag
@@ -123,8 +123,12 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
+                    if((dict!["code"]?.isEqualToString("error.too.many.wrong.attempts")) != nil){
+                        self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                    } else {
+                        self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                    }
                     codeInputView.clear()
-                    self.displayAlertMessage("Invalid code", alertDescription: "Try again")
                 }
             }
         }
