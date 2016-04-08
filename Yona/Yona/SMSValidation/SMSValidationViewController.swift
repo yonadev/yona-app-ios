@@ -123,10 +123,12 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
-                    if((dict!["code"]?.isEqualToString("error.too.many.wrong.attempts")) != nil){
-                        self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
-                    } else {
-                        self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                    if let codeMessage = dict!["code"] {
+                        if(codeMessage.isEqualToString("error.too.many.wrong.attempts")){
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                        } else {
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                        }
                     }
                     codeInputView.clear()
                 }
