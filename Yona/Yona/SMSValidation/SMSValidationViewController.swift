@@ -122,9 +122,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     }
                 }
             } else {
-                let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-                errorAlert.show()
                 codeInputView.clear()
+                self.displayAlertMessage("Invalid code", alertDescription: "Try again")
+                
             }
         }
     }
