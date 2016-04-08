@@ -134,8 +134,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     }
                     codeInputView.clear()
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
-
                 }
             }
         }
