@@ -102,18 +102,17 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
-        if self.mobileTextField.text!.characters.count == 0 {
+        guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
+        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+        
+        if trimmedString.validateMobileNumber() == false {
             self.displayAlertMessage("", alertDescription:
-                "Please input Phone number.")
-            
+                "Please input valid Phone number.")
         } else if self.nicknameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 "Please input Nickname.")
             
         } else {
-            guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
-            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-            
             let body =
                 ["firstName": userFirstName!,
                  "lastName": userLastName!,
@@ -130,7 +129,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                             self.navigationController?.pushViewController(smsValidation, animated: false)
                         }
                     }
-                    
                 }
             }
         }

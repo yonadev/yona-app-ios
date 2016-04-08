@@ -111,20 +111,21 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             ]
 
         APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
-            if success {
-                dispatch_async(dispatch_get_main_queue()) {
-                    codeInputView.resignFirstResponder()
-                    //Update flag
-                    setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+            dispatch_async(dispatch_get_main_queue()) {
+                if success {
+
+                        codeInputView.resignFirstResponder()
+                        //Update flag
+                        setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+                        
+                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                            self.navigationController?.pushViewController(passcode, animated: false)
+                        }
                     
-                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                        self.navigationController?.pushViewController(passcode, animated: false)
-                    }
+                } else {
+                    codeInputView.clear()
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
                 }
-            } else {
-                let errorAlert = UIAlertView(title:"Invalid code", message:"Try again", delegate:nil, cancelButtonTitle:"OK")
-                errorAlert.show()
-                codeInputView.clear()
             }
         }
     }
