@@ -122,7 +122,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
             APIServiceManager.sharedInstance.postUser(body) { flag in
                 if flag {
                     //Update flag
-                    setViewControllerToDisplay("SMSValidation", key: "ScreenToDisplay")
+                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     dispatch_async(dispatch_get_main_queue()) {
                         // update some UI
                         if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {

@@ -116,7 +116,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
 
                         codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)

@@ -52,13 +52,13 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     private func setupUI() {
         // Text Delegates
-       
-       firstnameTextField.delegate = self
-       lastnameTextField.delegate = self
-       firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
-       lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
-       
-       nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
+        
+        firstnameTextField.delegate = self
+        lastnameTextField.delegate = self
+        firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
+        lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
+        
+        nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpFirstStepViewController.DismissKeyboard))
@@ -172,7 +172,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         if (txtpos > (viewHeight-keyboardSize.height)) {
             scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
         } else {
-        scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
         }
     }
     
