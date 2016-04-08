@@ -22,6 +22,7 @@
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
+"smsvalidation.user.pincodeattempted5times" = "Too many wrong attempts";
 
 "passcode.user.headerTitle" = "Account has been created";
 "passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";

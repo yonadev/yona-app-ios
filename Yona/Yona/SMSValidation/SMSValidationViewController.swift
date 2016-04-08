@@ -110,9 +110,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 "code": code
             ]
 
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, dict, err in
             dispatch_async(dispatch_get_main_queue()) {
-                if success {
+                if (success) {
 
                         codeInputView.resignFirstResponder()
                         //Update flag
@@ -123,8 +123,19 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
+                    if let codeMessage = dict!["code"] {
+                        if(codeMessage.isEqualToString("error.too.many.wrong.attempts")){
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                            //for now just disable the pincode enter screen and not let them interact...
+                            codeInputView.resignFirstResponder()
+                            codeInputView.userInteractionEnabled = false
+                        } else {
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                        }
+                    }
                     codeInputView.clear()
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+
                 }
             }
         }

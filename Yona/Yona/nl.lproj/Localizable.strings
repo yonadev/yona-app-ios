@@ -22,6 +22,7 @@
 "smsvalidation.user.infomessage" = "Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen.";
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
+"smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
 

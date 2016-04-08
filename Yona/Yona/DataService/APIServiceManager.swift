@@ -62,7 +62,7 @@ class APIServiceManager {
         if let newUser = newUser,
             let userID = newUser.userID,
             let path = newUser.editLink {
-                callRequest(nil, userID: userID, path: path, httpMethod: YonaConstants.httpMethods.delete) { (success) in
+                callRequest(nil, userID: userID, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, dict, err in
                     if (success){
                         onCompletion(true)
                     } else {
@@ -73,7 +73,7 @@ class APIServiceManager {
         
     }
     
-    func confirmMobileNumber(body: UserData?, onCompletion: APIResponse) {
+    func confirmMobileNumber(body: UserData?, onCompletion: APIServiceResponse) {
         if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
             let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
             #if DEBUG
@@ -81,31 +81,31 @@ class APIServiceManager {
             print(confirmMobileLink)
             #endif
 
-            callRequest(body,userID: userID, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { (success) in
+            callRequest(body,userID: userID, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
                 if (success){
-                    onCompletion(true)
+                    onCompletion(true, dict , err)
                 } else {
-                    onCompletion(false)
+                    onCompletion(false, dict , err)
                 }
             }
-        } else { onCompletion(false) }
+        } else { onCompletion(false, nil , nil) }
     
     }
     
-    private func callRequest(body: UserData?, userID: String, path: String, httpMethod: String, onCompletion:APIResponse){
+    private func callRequest(body: UserData?, userID: String, path: String, httpMethod: String, onCompletion:APIServiceResponse){
         
         guard let yonaPassword = getYonaPassword() else {
-            onCompletion(false)
+            onCompletion(false,nil,nil)
             return
         }
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
 
         //POST /users/{id}/confirmMobileNumber
-        UserManager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success in
+        UserManager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
-                onCompletion(true)
+                onCompletion(true, dict , err)
             } else {
-                onCompletion(false)
+                onCompletion(false, dict , err)
             }
         })
             
@@ -119,7 +119,7 @@ class APIServiceManager {
         }
         
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { json, err in
+        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
                 self.newUser = Users.init(userData: json)
                 onCompletion(true)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias APIServiceResponse = (UserData?, NSError?) -> Void
+typealias APIServiceResponse = (Bool, UserData?, NSError?) -> Void
 typealias APIResponse = (Bool) -> Void
 
 class UserManager: NSObject {
@@ -45,43 +45,51 @@ class UserManager: NSObject {
                 let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let dict = jsonObject as? [String: AnyObject] {
                     if dict.count == 2 { //we get a response of 2 items if there is nothing returned
-                        onCompletion(nil, nil)
+                        onCompletion(false, nil, nil)
                     } else {
                         self.userInfo = dict
                         #if DEBUG
                         if let code = dict["mobileNumberConfirmationCode"] { print(">>>>>>>>>>>> SMS Confimation code: " + "\(code)" + "<<<<<<<<<<<<<") }
                         #endif
-                        onCompletion(dict, nil)
+                        onCompletion(true, dict, nil)
                     }
                 }
             } catch {
                 print("error serializing JSON: \(error)")
-                onCompletion(nil, nil)
+                onCompletion(false, nil, nil)
             }
         })
         task.resume()
     }
     
-    func makeRequest(path: String, body: UserData?, httpMethod: String, httpHeader:[String:String], onCompletion: APIResponse){
+    func makeRequest(path: String, body: UserData?, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse){
         let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
-                let code = httpResponse.statusCode
-                if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
-                    onCompletion(true)
-                } else {
-                    do {
-                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                        print(jsonObject)
-                        if let error = error {
-                            print(error.description)
-                        }
-                    } catch {
+                do {
+                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                    print(jsonObject)
+                    if let error = error {
+                        print(error.description)
                     }
-                    onCompletion(false)
+                    
+                    let code = httpResponse.statusCode
+                    if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
+                        if let dict = jsonObject as? [String: AnyObject] {
+                            onCompletion(true, dict , error)
+                        }
+                    } else {
+                        if let dict = jsonObject as? [String: AnyObject] {
+                            onCompletion(false, dict, error)
+                        }
+                    }
+                } catch {
+                    onCompletion(false, nil, nil)
                 }
+                
+
             }
             
         })

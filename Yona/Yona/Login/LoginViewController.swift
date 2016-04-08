@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
             codeInputView!.becomeFirstResponder()
         }
         
-        if let attempts = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) as? Bool {
+        if let attempts:Bool = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             if attempts  {
                 self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView!.resignFirstResponder()
@@ -58,8 +58,6 @@ class LoginViewController: UIViewController {
             }
         }
         
-//        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
-
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
