@@ -49,15 +49,17 @@ class LoginViewController: UIViewController {
         
         if let attempts = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) as? Bool {
             if attempts  {
-                self.displayAlertMessage("Login", alertDescription: "Your account has been locked for security reasons, use the reset passcode option to enable our account.")
+                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView!.resignFirstResponder()
                 codeInputView!.userInteractionEnabled = false
                 errorLabel.hidden = false
-                errorLabel.text = "Your account has been locked for security reasons, use the reset passcode option to enable our account."
+                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
                 return;
             }
-            
         }
+        
+//        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
+
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
@@ -99,25 +101,6 @@ extension LoginViewController: KeyboardProtocol {
 
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-//        if loginAttempts == totalAttempts {
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-//            defaults.synchronize()
-//            self.displayAlertMessage("Login", alertDescription: "Your account has been locked for security reasons, use the reset passcode option to enable our account.")
-//            codeInputView.userInteractionEnabled = false
-//            codeInputView.resignFirstResponder()
-//            errorLabel.hidden = false
-//            errorLabel.text = "Your account has been locked for security reasons, use the reset passcode option to enable our account."
-//        }
-//        else {
-//            loginAttempts += 1
-//        }
-        
-//        if let code = userData[YonaConstants.nsUserDefaultsKeys.pincode] as? String{
-//            NSUserDefaults.standardUserDefaults().setObject(code, forKey: YonaConstants.nsUserDefaultsKeys.pincode)
-//            NSUserDefaults.standardUserDefaults().setObject(self.confirmMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL)
-        
-        
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             codeInputView.resignFirstResponder()
@@ -133,11 +116,11 @@ extension LoginViewController: CodeInputViewDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
-                self.displayAlertMessage("Login", alertDescription: "Your account has been locked for security reasons, use the reset passcode option to enable our account.")
+                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView.userInteractionEnabled = false
                 codeInputView.resignFirstResponder()
                 errorLabel.hidden = false
-                errorLabel.text = "Your account has been locked for security reasons, use the reset passcode option to enable our account."
+                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {
                 loginAttempts += 1

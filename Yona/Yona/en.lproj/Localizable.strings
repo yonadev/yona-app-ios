@@ -34,4 +34,4 @@
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "You have not previously logged in on this device. Go to your primary device (probably your mobile) , open the app Yona , then 'Add Device' to settings and click . Then fill in the fields below .";
 
-
+"login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
