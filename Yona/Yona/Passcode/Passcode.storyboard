@@ -46,8 +46,8 @@
                                                     <constraint firstAttribute="height" constant="48" id="Wro-WC-qA2"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account wordt aangemaakt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
-                                                <rect key="frame" x="160" y="201" width="280" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account wordt aangemaakt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
+                                                <rect key="frame" x="15" y="201" width="570" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -80,6 +80,7 @@
                                             <constraint firstItem="afW-tT-vUB" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="Ba4-es-38E"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="Efa-QZ-TL3"/>
                                             <constraint firstAttribute="trailing" secondItem="F3x-wX-Dki" secondAttribute="trailing" constant="30" id="HOs-ke-zqJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="i3D-Co-7A4" secondAttribute="trailing" constant="15" id="TqD-oG-vTf"/>
                                             <constraint firstItem="afW-tT-vUB" firstAttribute="top" secondItem="IYK-aF-xSH" secondAttribute="top" constant="33" id="V2w-SJ-snv"/>
                                             <constraint firstItem="E2o-LE-vVd" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" constant="-8" id="XTR-pf-9ab"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="top" secondItem="E2o-LE-vVd" secondAttribute="bottom" constant="41" id="d7u-wN-ENc"/>
@@ -89,6 +90,7 @@
                                             <constraint firstItem="E2o-LE-vVd" firstAttribute="top" secondItem="afW-tT-vUB" secondAttribute="bottom" constant="62" id="hFS-Nj-u5L"/>
                                             <constraint firstItem="F3x-wX-Dki" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="30" id="i8Y-xn-gzO"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="top" secondItem="bZH-63-J6j" secondAttribute="bottom" constant="30" id="jgl-sR-oi5"/>
+                                            <constraint firstItem="i3D-Co-7A4" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="15" id="jh7-zr-8dL"/>
                                             <constraint firstAttribute="bottom" secondItem="E2o-LE-vVd" secondAttribute="bottom" constant="440" id="qsf-u1-G1o"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="tXy-dg-p54"/>
                                         </constraints>
@@ -157,7 +159,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-qU-aIj">
-                                                <rect key="frame" x="267.5" y="33" width="65" height="17"/>
+                                                <rect key="frame" x="268" y="33" width="65" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
