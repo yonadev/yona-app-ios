@@ -53,6 +53,9 @@ struct YonaConstants {
         #if DEBUG
         static let pincode = "mobileNumberConfirmationCode"
         #endif
+        static let isBlocked = "isBlocked"
+        static let screenToDisplay = "screenToDisplay"
+        
     }
 
 }

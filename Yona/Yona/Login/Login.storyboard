@@ -71,8 +71,8 @@
                                                     <constraint firstAttribute="width" constant="48" id="tjt-D2-w0R"/>
                                                 </constraints>
                                             </imageView>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
-                                                <rect key="frame" x="249" y="251" width="100.5" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
+                                                <rect key="frame" x="15" y="251" width="570" height="17"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -101,7 +101,9 @@
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="5dw-qe-qyA"/>
+                                            <constraint firstItem="MpR-Wr-PFo" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="15" id="6dz-zP-NZ1"/>
                                             <constraint firstItem="MpR-Wr-PFo" firstAttribute="top" secondItem="HGP-u0-8lk" secondAttribute="bottom" constant="37" id="C8q-Sa-P71"/>
+                                            <constraint firstAttribute="trailing" secondItem="MpR-Wr-PFo" secondAttribute="trailing" constant="15" id="SqK-oe-SCB"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="VYX-79-0ZW"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="top" secondItem="MpR-Wr-PFo" secondAttribute="bottom" constant="20" id="Vvm-s4-UNz"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="top" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="25" id="W8P-fL-Tzy"/>

@@ -97,7 +97,7 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             KeychainManager.sharedInstance.savePINCode(code)
             
             //Update flag
-            setViewControllerToDisplay("Login", key: "ScreenToDisplay")
+            setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             
             if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
                 navigationController?.pushViewController(dashboardStoryboard, animated: true)

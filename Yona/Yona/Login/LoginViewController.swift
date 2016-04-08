@@ -18,16 +18,19 @@ class LoginViewController: UIViewController {
     
     private var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
+    var loginAttempts:Int = 1
     private var codeInputView: CodeInputView?
-    
+    private var totalAttempts : Int = 5
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
         
     }
     
@@ -44,6 +47,19 @@ class LoginViewController: UIViewController {
             codeInputView!.becomeFirstResponder()
         }
         
+        if let attempts = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) as? Bool {
+            if attempts  {
+                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
+                codeInputView!.resignFirstResponder()
+                codeInputView!.userInteractionEnabled = false
+                errorLabel.hidden = false
+                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+                return;
+            }
+        }
+        
+//        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
+
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
@@ -85,17 +101,30 @@ extension LoginViewController: KeyboardProtocol {
 
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        
-        
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             codeInputView.resignFirstResponder()
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
             if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
                 navigationController?.pushViewController(dashboardStoryboard, animated: true)
             }
         } else {
             errorLabel.hidden = false
             codeInputView.clear()
+            if loginAttempts == totalAttempts {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                defaults.synchronize()
+                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
+                codeInputView.userInteractionEnabled = false
+                codeInputView.resignFirstResponder()
+                errorLabel.hidden = false
+                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+            }
+            else {
+                loginAttempts += 1
+            }
         }
         
     }
