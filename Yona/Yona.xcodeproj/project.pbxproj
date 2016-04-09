@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
-		907DA5171CB7D2340031850E /* NavigationHideScrollBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA50D1CB7D2340031850E /* NavigationHideScrollBehavior.swift */; };
-		907DA5181CB7D2340031850E /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA50F1CB7D2340031850E /* Behavior.swift */; };
-		907DA5191CB7D2340031850E /* TextFieldResponderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5111CB7D2340031850E /* TextFieldResponderBehavior.swift */; };
-		907DA51A1CB7D2340031850E /* TextFieldScrollBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5121CB7D2340031850E /* TextFieldScrollBehavior.swift */; };
-		907DA51B1CB7D2340031850E /* TextFieldValidatorBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5131CB7D2340031850E /* TextFieldValidatorBehavior.swift */; };
-		907DA51C1CB7D2340031850E /* ViewPositionKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5141CB7D2340031850E /* ViewPositionKeyboardBehavior.swift */; };
-		907DA51D1CB7D2340031850E /* ScrollingTriggerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5161CB7D2340031850E /* ScrollingTriggerBehavior.swift */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
 		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
@@ -175,13 +168,6 @@
 
 /* Begin PBXFileReference section */
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
-		907DA50D1CB7D2340031850E /* NavigationHideScrollBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHideScrollBehavior.swift; sourceTree = "<group>"; };
-		907DA50F1CB7D2340031850E /* Behavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
-		907DA5111CB7D2340031850E /* TextFieldResponderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldResponderBehavior.swift; sourceTree = "<group>"; };
-		907DA5121CB7D2340031850E /* TextFieldScrollBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldScrollBehavior.swift; sourceTree = "<group>"; };
-		907DA5131CB7D2340031850E /* TextFieldValidatorBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldValidatorBehavior.swift; sourceTree = "<group>"; };
-		907DA5141CB7D2340031850E /* ViewPositionKeyboardBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPositionKeyboardBehavior.swift; sourceTree = "<group>"; };
-		907DA5161CB7D2340031850E /* ScrollingTriggerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingTriggerBehavior.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -429,52 +415,6 @@
 				907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		907DA50B1CB7D2340031850E /* Behaviors */ = {
-			isa = PBXGroup;
-			children = (
-				907DA50C1CB7D2340031850E /* Animations */,
-				907DA50E1CB7D2340031850E /* Core */,
-				907DA5101CB7D2340031850E /* Forms */,
-				907DA5151CB7D2340031850E /* Triggers */,
-			);
-			path = Behaviors;
-			sourceTree = "<group>";
-		};
-		907DA50C1CB7D2340031850E /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				907DA50D1CB7D2340031850E /* NavigationHideScrollBehavior.swift */,
-			);
-			path = Animations;
-			sourceTree = "<group>";
-		};
-		907DA50E1CB7D2340031850E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				907DA50F1CB7D2340031850E /* Behavior.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		907DA5101CB7D2340031850E /* Forms */ = {
-			isa = PBXGroup;
-			children = (
-				907DA5111CB7D2340031850E /* TextFieldResponderBehavior.swift */,
-				907DA5121CB7D2340031850E /* TextFieldScrollBehavior.swift */,
-				907DA5131CB7D2340031850E /* TextFieldValidatorBehavior.swift */,
-				907DA5141CB7D2340031850E /* ViewPositionKeyboardBehavior.swift */,
-			);
-			path = Forms;
-			sourceTree = "<group>";
-		};
-		907DA5151CB7D2340031850E /* Triggers */ = {
-			isa = PBXGroup;
-			children = (
-				907DA5161CB7D2340031850E /* ScrollingTriggerBehavior.swift */,
-			);
-			path = Triggers;
 			sourceTree = "<group>";
 		};
 		AD291CE01CA90202008CAFB1 /* DashBoard */ = {
@@ -879,7 +819,6 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
-				907DA50B1CB7D2340031850E /* Behaviors */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
@@ -1192,28 +1131,21 @@
 				ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */,
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
-				907DA51D1CB7D2340031850E /* ScrollingTriggerBehavior.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
-				907DA51A1CB7D2340031850E /* TextFieldScrollBehavior.swift in Sources */,
 				ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
-				907DA51C1CB7D2340031850E /* ViewPositionKeyboardBehavior.swift in Sources */,
 				ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */,
-				907DA5171CB7D2340031850E /* NavigationHideScrollBehavior.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
-				907DA5181CB7D2340031850E /* Behavior.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
-				907DA5191CB7D2340031850E /* TextFieldResponderBehavior.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
-				907DA51B1CB7D2340031850E /* TextFieldValidatorBehavior.swift in Sources */,
 				D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
 			);
