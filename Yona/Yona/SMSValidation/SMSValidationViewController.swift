@@ -134,6 +134,11 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     }
                     codeInputView.clear()
+                    #if DEBUG
+                    //unsure of how to implement in the UI if the sms validation fails 5 times
+                    // do we display an alert message or show in the UI? Need designs and clarification
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                    #endif
                 }
             }
         }
