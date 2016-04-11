@@ -8,34 +8,8 @@
 
 import Foundation
 
-typealias APIServiceResponse = (Bool, UserData?, NSError?) -> Void
-typealias APIResponse = (Bool) -> Void
+extension Manager {
 
-class UserManager: NSObject {
-    static let sharedInstance = UserManager()
-    
-    private var userInfo:UserData = [:]
-    
-    private override init() {
-        print("Only initialised once only")
-    }
-    
-    private func setupRequest(path: String, body: UserData?, httpHeader: [String:String], httpMethod: String) -> NSURLRequest {
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
-        do {
-            if let body = body {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
-            }
-        } catch {
-            print("Error")
-        }
-        
-        request.HTTPMethod = httpMethod
-        
-        return request
-    }
-    
     func makeUserRequest(path: String, body: UserData?, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
         let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
         let session = NSURLSession.sharedSession()

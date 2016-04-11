@@ -101,7 +101,7 @@ class APIServiceManager {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
 
         //POST /users/{id}/confirmMobileNumber
-        UserManager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
                 onCompletion(true, dict , err)
             } else {
@@ -119,7 +119,7 @@ class APIServiceManager {
         }
         
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
                 self.newUser = Users.init(userData: json)
                 onCompletion(true)
