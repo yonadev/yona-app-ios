@@ -45,7 +45,7 @@ class UserManager: NSObject {
                 let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let dict = jsonObject as? [String: AnyObject] {
                     if dict.count == 2 { //we get a response of 2 items if there is nothing returned
-                        onCompletion(false, nil, nil)
+                        onCompletion(false, dict, nil)
                     } else {
                         self.userInfo = dict
                         #if DEBUG
@@ -56,7 +56,7 @@ class UserManager: NSObject {
                 }
             } catch {
                 print("error serializing JSON: \(error)")
-                onCompletion(false, nil, nil)
+                onCompletion(false, [:], nil)
             }
         })
         task.resume()
@@ -86,7 +86,7 @@ class UserManager: NSObject {
                         }
                     }
                 } catch {
-                    onCompletion(false, nil, nil)
+                    onCompletion(false, [:], nil)
                 }
                 
 

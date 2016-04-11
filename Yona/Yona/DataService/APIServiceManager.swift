@@ -88,7 +88,7 @@ class APIServiceManager {
                     onCompletion(false, dict , err)
                 }
             }
-        } else { onCompletion(false, nil , nil) }
+        } else { onCompletion(false, [:] , nil) }
     
     }
     
