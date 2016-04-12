@@ -49,7 +49,7 @@ class UserManager: NSObject {
                     } else {
                         self.userInfo = dict
                         #if DEBUG
-                        if let code = dict["mobileNumberConfirmationCode"] { print(">>>>>>>>>>>> SMS Confimation code: " + "\(code)" + "<<<<<<<<<<<<<") }
+                        print(">>>>>>>>>>>> SMS Confimation code: " + "(1234)" + "<<<<<<<<<<<<<")
                         #endif
                         onCompletion(true, dict, nil)
                     }
@@ -68,6 +68,7 @@ class UserManager: NSObject {
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
+                let code = httpResponse.statusCode
                 do {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                     print(jsonObject)
@@ -75,7 +76,6 @@ class UserManager: NSObject {
                         print(error.description)
                     }
                     
-                    let code = httpResponse.statusCode
                     if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
                         if let dict = jsonObject as? [String: AnyObject] {
                             onCompletion(true, dict , error)
@@ -86,7 +86,12 @@ class UserManager: NSObject {
                         }
                     }
                 } catch {
-                    onCompletion(false, [:], nil)
+                    if(code == 200) {
+                        onCompletion(true, [:], nil)
+                    } else {
+                        onCompletion(false, [:], nil)
+
+                    }
                 }
                 
 
