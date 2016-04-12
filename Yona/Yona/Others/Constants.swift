@@ -40,16 +40,22 @@ struct YonaConstants {
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"
         static let  confirmMobileLinkKeys = "yona:confirmMobileNumber"
+        static let  otpResendMobileLinkKey = "yona:resendMobileNumberConfirmationCode"
         static let  hrefKey = "href"
     }
     struct mobilePhoneLength{
         static let netherlands = 11
     }
-
     
+    struct testKeys{
+        static let code = "1234"
+    }
+
     struct nsUserDefaultsKeys{
         static let userID = "userID"
         static let confirmMobileKeyURL = "confirmMobileLink"
+        static let otpResendMobileKeyURL = "otpResendMobileLink"
+
         #if DEBUG
         static let pincode = "mobileNumberConfirmationCode"
         #endif

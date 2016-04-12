@@ -73,6 +73,25 @@ class APIServiceManager {
         
     }
     
+    func otpResendMobile(body: UserData?, onCompletion: APIServiceResponse) {
+        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
+            let otpResendMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL) as? String{
+            #if DEBUG
+                print(userID)
+                print(otpResendMobileLink)
+            #endif
+            
+            callRequest(body,userID: userID, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
+                if (success){
+                    onCompletion(true, dict , err)
+                } else {
+                    onCompletion(false, dict , err)
+                }
+            }
+        } else { onCompletion(false, [:] , nil) }
+        
+    }
+    
     func confirmMobileNumber(body: UserData?, onCompletion: APIServiceResponse) {
         if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
             let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
@@ -88,7 +107,7 @@ class APIServiceManager {
                     onCompletion(false, dict , err)
                 }
             }
-        } else { onCompletion(false, nil , nil) }
+        } else { onCompletion(false, [:] , nil) }
     
     }
     

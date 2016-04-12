@@ -45,18 +45,18 @@ class UserManager: NSObject {
                 let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let dict = jsonObject as? [String: AnyObject] {
                     if dict.count == 2 { //we get a response of 2 items if there is nothing returned
-                        onCompletion(false, nil, nil)
+                        onCompletion(false, dict, nil)
                     } else {
                         self.userInfo = dict
                         #if DEBUG
-                        if let code = dict["mobileNumberConfirmationCode"] { print(">>>>>>>>>>>> SMS Confimation code: " + "\(code)" + "<<<<<<<<<<<<<") }
+                        print(">>>>>>>>>>>> SMS Confimation code: " + "(1234)" + "<<<<<<<<<<<<<")
                         #endif
                         onCompletion(true, dict, nil)
                     }
                 }
             } catch {
                 print("error serializing JSON: \(error)")
-                onCompletion(false, nil, nil)
+                onCompletion(false, [:], nil)
             }
         })
         task.resume()
@@ -68,6 +68,7 @@ class UserManager: NSObject {
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let response = response, let httpResponse = response as? NSHTTPURLResponse {
+                let code = httpResponse.statusCode
                 do {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                     print(jsonObject)
@@ -75,7 +76,6 @@ class UserManager: NSObject {
                         print(error.description)
                     }
                     
-                    let code = httpResponse.statusCode
                     if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
                         if let dict = jsonObject as? [String: AnyObject] {
                             onCompletion(true, dict , error)
@@ -86,7 +86,12 @@ class UserManager: NSObject {
                         }
                     }
                 } catch {
-                    onCompletion(false, nil, nil)
+                    if(code == 200) {
+                        onCompletion(true, [:], nil)
+                    } else {
+                        onCompletion(false, [:], nil)
+
+                    }
                 }
                 
 
