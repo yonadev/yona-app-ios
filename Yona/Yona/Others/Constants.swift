@@ -46,6 +46,8 @@ struct YonaConstants {
         static let  goalType = "@type"
         static let  maxDuration = "maxDurationMinutes"
         static let  activityCategoryName = "activityCategoryName"
+        static let  embedded = "_embedded"
+        static let  goals = "yona:goals"
     }
     struct mobilePhoneLength{
         static let netherlands = 11

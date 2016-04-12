@@ -59,7 +59,7 @@ extension APIServiceManager {
             callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                 guard success == true else { onCompletion(false); return}
                 if let json = json {
-//                    self.newGoal = Goal.init(userData: json)
+                    self.newGoal = Goal.init(goalData: json)
                     onCompletion(true)
                 } else {
                     onCompletion(false)
@@ -75,7 +75,7 @@ extension APIServiceManager {
             callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                 guard success == true else { onCompletion(false); return}
                 if let json = json {
-                    self.newGoal = Goal.init(userData: json)
+                    self.newGoal = Goal.init(goalData: json)
                     onCompletion(true)
                 } else {
                     onCompletion(false)

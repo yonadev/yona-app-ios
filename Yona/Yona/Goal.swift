@@ -14,24 +14,37 @@ struct Goal {
     var selfLinks: String?
     var editLinks: String?
     var goalType: String?
-    
-    init(userData: BodyDataDictionary) {
-        if let activityCategoryName = userData[YonaConstants.jsonKeys.activityCategoryName] as? String {
-            self.activityCategoryName = activityCategoryName
-        }
-        if let maxDurationMinutes = userData[YonaConstants.jsonKeys.maxDuration] as? String {
-            self.maxDurationMinutes = maxDurationMinutes
-        }
-        if let goalType = userData[YonaConstants.jsonKeys.goalType] as? String {
-            self.goalType = goalType
-        }
+    var goals:[Goal] = []
+
+    init(goalData: BodyDataDictionary) {
         
-        if let links = userData[YonaConstants.jsonKeys.linksKeys],
-            let edit = links[YonaConstants.jsonKeys.editLinkKeys],
-            let editLink = edit?[YonaConstants.jsonKeys.hrefKey] as? String,
-            let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? String{
-                self.selfLinks = selfLink
-                self.editLinks = editLink
+        if let embedded = goalData[YonaConstants.jsonKeys.embedded],
+            let embeddedGoals = embedded[YonaConstants.jsonKeys.goals] as? NSArray{
+                for goal in embeddedGoals {
+                    if let activityCategoryName = goal[YonaConstants.jsonKeys.activityCategoryName] as? String {
+                        self.activityCategoryName = activityCategoryName
+                    }
+                    if let maxDurationMinutes = goal[YonaConstants.jsonKeys.maxDuration] as? String {
+                        self.maxDurationMinutes = maxDurationMinutes
+                    }
+                    if let goalType = goal[YonaConstants.jsonKeys.goalType] as? String {
+                        self.goalType = goalType
+                    }
+                    
+                    if let links = goal[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+                        if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
+                            let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
+                            self.editLinks = editLink
+                        }
+                        if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? String{
+                            self.selfLinks = selfLink
+                        }
+                    }
+                    self.goals.append(self)
+                }
         }
+
+        
     }
+
 }
