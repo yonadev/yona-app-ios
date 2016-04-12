@@ -19,7 +19,7 @@ struct Users{
     var otpResendMobileLink: String?
     var getSelfLink: String?
 
-    init(userData: UserData) {
+    init(userData: BodyDataDictionary) {
         if let firstName = userData[YonaConstants.jsonKeys.firstNameKey] as? String {
             self.firstName = firstName
         }

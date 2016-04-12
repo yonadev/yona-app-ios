@@ -16,6 +16,7 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
+        static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
     }
     

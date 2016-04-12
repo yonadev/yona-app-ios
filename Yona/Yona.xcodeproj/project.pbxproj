@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
-		AD01F7241CBCC560006E6157 /* ChallengesFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* ChallengesFirstStepViewController.swift */; };
-		907DA5221CBB9C9D0031850E /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5211CBB9C9D0031850E /* GoalManager.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
+		AD01F7241CBCC560006E6157 /* ChallengesFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* ChallengesFirstStepViewController.swift */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
 		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
@@ -59,11 +58,11 @@
 		ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */; };
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
+		BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */; };
 		D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
-		D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */; };
 		D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93BC1CB26E3A00ABE0F8 /* Users.swift */; };
 		D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */; };
 		D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
@@ -149,7 +148,7 @@
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
-		D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EE11CA28CD2007805F4 /* YonaTests.swift */; };
+		D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */; };
 		D9D54EED1CA28CD2007805F4 /* YonaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +171,6 @@
 
 /* Begin PBXFileReference section */
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
-		907DA5211CBB9C9D0031850E /* GoalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,10 +223,10 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAPIServiceTests.swift; sourceTree = "<group>"; };
 		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
-		D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = DataService/UserManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
 		D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		D94A93C41CB291FC00ABE0F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -374,7 +372,7 @@
 		D9D54ED61CA28CD2007805F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9D54ED81CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D54EDD1CA28CD2007805F4 /* YonaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YonaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9D54EE11CA28CD2007805F4 /* YonaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YonaTests.swift; sourceTree = "<group>"; };
+		D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIServiceTests.swift; sourceTree = "<group>"; };
 		D9D54EE31CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D54EE81CA28CD2007805F4 /* YonaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YonaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YonaUITests.swift; sourceTree = "<group>"; };
@@ -580,10 +578,8 @@
 			isa = PBXGroup;
 			children = (
 				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
-				D94A93BB1CB26E3A00ABE0F8 /* UserManager.swift */,
-				907DA5211CBB9C9D0031850E /* GoalManager.swift */,
-				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 				907DA5231CBBD0400031850E /* Manager.swift */,
+				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 			);
 			name = DataService;
 			path = ..;
@@ -859,9 +855,10 @@
 		D9D54EE01CA28CD2007805F4 /* YonaTests */ = {
 			isa = PBXGroup;
 			children = (
-				D9D54EE11CA28CD2007805F4 /* YonaTests.swift */,
+				D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */,
 				D9D54EE31CA28CD2007805F4 /* Info.plist */,
 				D9C744E71CB3CA7B008E463A /* KeychainTests.swift */,
+				BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1132,7 +1129,6 @@
 			files = (
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
-				907DA5221CBB9C9D0031850E /* GoalManager.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
@@ -1140,7 +1136,6 @@
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				ADAEAFE91CB43245005ED7B4 /* LoginViewController.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
-				D94A93BF1CB26E3A00ABE0F8 /* UserManager.swift in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */,
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
@@ -1173,8 +1168,9 @@
 			files = (
 				D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
-				D9D54EE21CA28CD2007805F4 /* YonaTests.swift in Sources */,
+				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
+				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
 				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,
 			);

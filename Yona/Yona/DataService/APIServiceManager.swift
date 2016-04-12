@@ -8,118 +8,21 @@
 
 import Foundation
 
-public typealias UserData = [String: AnyObject]
+public typealias BodyDataDictionary = [String: AnyObject]
 
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
-    
+    var newUser: Users?
     private init() {}
     
-    var newUser: Users?
-
-    func postUser(body: UserData, onCompletion: APIResponse) {
-        KeychainManager.sharedInstance.createYonaPassword()
-        let path = YonaConstants.environments.test + YonaConstants.commands.users
-        callUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
-            if success {
-                onCompletion(true)
-            } else {
-                onCompletion(false)
-            }
-        })
-    }
-    
-    func updateUser(body: UserData, onCompletion: APIResponse) {
-        if let newUser = newUser {
-            if let getUserLink = newUser.editLink {
-                callUserRequest(getUserLink, body: body, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success) in
-                    if success {
-                        onCompletion(true)
-                    } else {
-                        onCompletion(false)
-                    }
-                })
-            }
-        }
-    }
-    
-    func getUser(onCompletion: APIResponse) {
-        if let newUser = newUser {
-            if let getUserLink = newUser.getSelfLink {
-                callUserRequest(getUserLink, body: nil, httpMethod: YonaConstants.httpMethods.get, onCompletion: { (success) in
-                    if success {
-                        onCompletion(true)
-                    } else {
-                        onCompletion(false)
-                    }
-                })
-            }
-
-        } else { onCompletion(false) }
-    }
-    
-    func deleteUser(onCompletion: APIResponse) {
-        if let newUser = newUser,
-            let userID = newUser.userID,
-            let path = newUser.editLink {
-                callRequest(nil, userID: userID, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, dict, err in
-                    if (success){
-                        onCompletion(true)
-                    } else {
-                        onCompletion(false)
-                    }
-                }
-        } else { onCompletion(false) }
-        
-    }
-    
-    func otpResendMobile(body: UserData?, onCompletion: APIServiceResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
-            let otpResendMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL) as? String{
-            #if DEBUG
-                print(userID)
-                print(otpResendMobileLink)
-            #endif
-            
-            callRequest(body,userID: userID, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
-                if (success){
-                    onCompletion(true, dict , err)
-                } else {
-                    onCompletion(false, dict , err)
-                }
-            }
-        } else { onCompletion(false, [:] , nil) }
-        
-    }
-    
-    func confirmMobileNumber(body: UserData?, onCompletion: APIServiceResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
-            let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
-            #if DEBUG
-            print(userID)
-            print(confirmMobileLink)
-            #endif
-
-            callRequest(body,userID: userID, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
-                if (success){
-                    onCompletion(true, dict , err)
-                } else {
-                    onCompletion(false, dict , err)
-                }
-            }
-        } else { onCompletion(false, [:] , nil) }
-    
-    }
-    
-    private func callRequest(body: UserData?, userID: String, path: String, httpMethod: String, onCompletion:APIServiceResponse){
+    private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
         
         guard let yonaPassword = getYonaPassword() else {
             onCompletion(false,nil,nil)
             return
         }
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
 
-        //POST /users/{id}/confirmMobileNumber
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
                 onCompletion(true, dict , err)
@@ -127,26 +30,8 @@ class APIServiceManager {
                 onCompletion(false, dict , err)
             }
         })
-            
-        
     }
-    
-    private func callUserRequest(path: String, body: UserData?, httpMethod: String, onCompletion: APIResponse) {
-        guard let yonaPassword = getYonaPassword() else {
-            onCompletion(false)
-            return
-        }
-        
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeUserRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, json, err in
-            if let json = json {
-                self.newUser = Users.init(userData: json)
-                onCompletion(true)
-            } else {
-                onCompletion(false)
-            }
-        })
-    }
+
     
     private func createYonaPassword() {
         let password = NSUUID().UUIDString
@@ -163,4 +48,129 @@ class APIServiceManager {
         
         return password
     }
+}
+
+//MARK: - Goal APIService
+extension APIServiceManager {
+    func getUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
+        onCompletion(false)
+    }
+    
+    func postUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
+        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String {
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.goals
+            callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, dict, err in
+                if success {
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            })
+        }
+    }
+
+}
+
+//MARK: - User APIService
+extension APIServiceManager {
+
+    func postUser(body: BodyDataDictionary, onCompletion: APIResponse) {
+        //create a password for the user
+        KeychainManager.sharedInstance.createYonaPassword()
+        //set the path to post
+        let path = YonaConstants.environments.test + YonaConstants.commands.users
+        callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+            if let json = json {
+                self.newUser = Users.init(userData: json)
+                onCompletion(true)
+            } else {
+                onCompletion(false)
+            }
+        })
+    }
+    
+    func updateUser(body: BodyDataDictionary, onCompletion: APIResponse) {
+        //get the new user object
+        if let newUser = newUser {
+            //get the edit link
+            if let getUserLink = newUser.editLink {
+                ///now post updated user data
+                callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                    if let json = json {
+                        self.newUser = Users.init(userData: json)
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                })
+            }
+        }
+    }
+    
+    func getUser(onCompletion: APIResponse) {
+        if let newUser = newUser {
+            if let getUserLink = newUser.getSelfLink {
+                callRequestWithAPIServiceResponse(nil, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, dict, err in
+                    if success {
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                })
+            }
+
+        } else { onCompletion(false) }
+    }
+    
+    func deleteUser(onCompletion: APIResponse) {
+        if let newUser = newUser,
+            let path = newUser.editLink {
+                callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, dict, err in
+                    if (success){
+                        onCompletion(true)
+                    } else {
+                        onCompletion(false)
+                    }
+                }
+        } else { onCompletion(false) }
+        
+    }
+    
+    func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
+        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
+            let otpResendMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL) as? String{
+            #if DEBUG
+                print(userID)
+                print(otpResendMobileLink)
+            #endif
+            
+            callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
+                if (success){
+                    onCompletion(true, dict , err)
+                } else {
+                    onCompletion(false, dict , err)
+                }
+            }
+        } else { onCompletion(false, [:] , nil) }
+        
+    }
+    
+    func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
+        if let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
+            #if DEBUG
+            print(confirmMobileLink)
+            #endif
+
+            callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
+                if (success){
+                    onCompletion(true, dict , err)
+                } else {
+                    onCompletion(false, dict , err)
+                }
+            }
+        } else { onCompletion(false, [:] , nil) }
+    
+    }
+    
+
 }
