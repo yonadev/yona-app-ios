@@ -13,6 +13,7 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     var newUser: Users?
+    var newGoal: Goal?
     private init() {}
     
     private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
@@ -52,15 +53,29 @@ class APIServiceManager {
 
 //MARK: - Goal APIService
 extension APIServiceManager {
-    func getUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
+    func getUserGoals(onCompletion: APIResponse) {
+        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String {
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
+            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                guard success == true else { onCompletion(false); return}
+                if let json = json {
+//                    self.newGoal = Goal.init(userData: json)
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            })
+        }
         onCompletion(false)
     }
     
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
         if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String {
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + YonaConstants.commands.goals
-            callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, dict, err in
-                if success {
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
+            callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                guard success == true else { onCompletion(false); return}
+                if let json = json {
+                    self.newGoal = Goal.init(userData: json)
                     onCompletion(true)
                 } else {
                     onCompletion(false)
@@ -80,6 +95,7 @@ extension APIServiceManager {
         //set the path to post
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+            guard success == true else { onCompletion(false); return }
             if let json = json {
                 self.newUser = Users.init(userData: json)
                 onCompletion(true)
@@ -96,6 +112,7 @@ extension APIServiceManager {
             if let getUserLink = newUser.editLink {
                 ///now post updated user data
                 callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                    guard success == true else { onCompletion(false); return }
                     if let json = json {
                         self.newUser = Users.init(userData: json)
                         onCompletion(true)

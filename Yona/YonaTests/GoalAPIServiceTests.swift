@@ -53,12 +53,11 @@ class GoalAPIServiceTests: XCTestCase {
                 let user = Users.init(userData: json)
                 APIServiceManager.sharedInstance.newUser = user
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.getUserGoals([:], onCompletion: {
-                    success in
+                APIServiceManager.sharedInstance.getUserGoals{ (success) in
                     if(success){
                         expectation.fulfill()
                     }
-                })
+                }
             }
         })
         waitForExpectationsWithTimeout(10.0, handler:nil)
@@ -90,7 +89,7 @@ class GoalAPIServiceTests: XCTestCase {
                 if let json = json {
                     let postGoalBody = [
                         "@type": "BudgetGoal",
-                        "activityCategoryName": "Gambling"
+                        "activityCategoryName": "gambling"
                     ]
                     //store the json in an object
                     let user = Users.init(userData: json)

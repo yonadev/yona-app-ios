@@ -59,6 +59,7 @@
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
 		BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */; };
+		BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B02A1CBD6CBF0063802E /* Goal.swift */; };
 		D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
@@ -224,6 +225,7 @@
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAPIServiceTests.swift; sourceTree = "<group>"; };
+		BE03B02A1CBD6CBF0063802E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
 				907DA5231CBBD0400031850E /* Manager.swift */,
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
+				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
 			);
 			name = DataService;
 			path = ..;
@@ -1159,6 +1162,7 @@
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
+				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

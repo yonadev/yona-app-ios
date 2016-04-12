@@ -52,21 +52,24 @@ extension Manager {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                     print(jsonObject)
 
-                    if(code == 200) { // successful you get 200 back, anything else...Houston we gotta a problem
+                    if case YonaConstants.responseCodes.ok200 ... YonaConstants.responseCodes.ok204 = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
                         if let dict = jsonObject as? [String: AnyObject] {
                             self.userInfo = dict
                             onCompletion(true, dict , error)
                         }
                     } else {
+                        print("error Code: \(code)")
+                        print("error Code: \(code)")
                         if let dict = jsonObject as? [String: AnyObject] {
                             onCompletion(false, dict, error)
                         }
                     }
                 } catch {
                     print("error serializing JSON: \(error)")
-                    if(code == 200) {
+                    if case YonaConstants.responseCodes.ok200 ... YonaConstants.responseCodes.ok204 = code {
                         onCompletion(true, [:], nil)
                     } else {
+                        print("error Code: \(code)")
                         onCompletion(false, [:], nil)
                         
                     }
