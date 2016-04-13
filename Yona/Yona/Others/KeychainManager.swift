@@ -44,8 +44,47 @@ extension KeychainManager {
     }
 }
 
+//MARK: - USER ID
 extension KeychainManager {
-    func clearPINCode() {
+    func saveUserID(userID: String) {
+        keychain.set(userID, forKey: YonaConstants.keychain.userID)
+    }
+    
+    func getUserID() -> String? {
+        guard let userID = keychain.get(YonaConstants.keychain.userID) else { return nil }
+        
+        return userID
+    }
+}
+
+//MARK: - confirmMobileKeyURL
+extension KeychainManager {
+    func saveConfirmMobileLink(confirmMobileLink: String) {
+        keychain.set(confirmMobileLink, forKey: YonaConstants.keychain.confirmMobileKeyURL)
+    }
+    
+    func getConfirmMobileLink() -> String? {
+        guard let confirmMobileLink = keychain.get(YonaConstants.keychain.confirmMobileKeyURL) else { return nil }
+        
+        return confirmMobileLink
+    }
+}
+
+//MARK: - otpResendMobileLink
+extension KeychainManager {
+    func saveOtpResendMobileLink(otpResendMobileLink: String) {
+        keychain.set(otpResendMobileLink, forKey: YonaConstants.keychain.otpResendMobileKeyURL)
+    }
+    
+    func getOtpResendMobileLink() -> String? {
+        guard let otpResendMobileLink = keychain.get(YonaConstants.keychain.otpResendMobileKeyURL) else { return nil }
+        
+        return otpResendMobileLink
+    }
+}
+
+extension KeychainManager {
+    func clearKeyChain() {
         keychain.clear()
     }
     

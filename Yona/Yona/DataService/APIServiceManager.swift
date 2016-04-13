@@ -74,8 +74,8 @@ class APIServiceManager {
     }
     
     func otpResendMobile(body: UserData?, onCompletion: APIServiceResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
-            let otpResendMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL) as? String{
+        if let userID = KeychainManager.sharedInstance.getUserID(),
+            let otpResendMobileLink = KeychainManager.sharedInstance.getOtpResendMobileLink(){
             #if DEBUG
                 print(userID)
                 print(otpResendMobileLink)
@@ -93,8 +93,8 @@ class APIServiceManager {
     }
     
     func confirmMobileNumber(body: UserData?, onCompletion: APIServiceResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
-            let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
+        if let userID = KeychainManager.sharedInstance.getUserID(),
+            let confirmMobileLink = KeychainManager.sharedInstance.getConfirmMobileLink(){
             #if DEBUG
             print(userID)
             print(confirmMobileLink)
