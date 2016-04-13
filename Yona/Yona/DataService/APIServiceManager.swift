@@ -58,7 +58,10 @@ extension APIServiceManager {
     func getActivityCategories(onCompletion: APIResponse){
         let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
         callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-            guard success == true else { onCompletion(false); return}
+            guard success == true else {
+                onCompletion(false)
+                return
+            }
             if let json = json {
                 self.newActivities = Activities.init(activityData: json)
                 onCompletion(true)
@@ -72,7 +75,10 @@ extension APIServiceManager {
         //if the newActivites object has been filled then we can get the link to display activity
         let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
         callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-            guard success == true else { onCompletion(false, json, err); return}
+            guard success == true else {
+                onCompletion(false, json, err)
+                return
+            }
             if let json = json {
                 print(json)
                 onCompletion(true, json, err)
@@ -90,7 +96,10 @@ extension APIServiceManager {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-                guard success == true else { onCompletion(false); return}
+                guard success == true else {
+                    onCompletion(false)
+                    return
+                }
                 if let json = json {
                     self.newGoal = Goal.init(goalData: json)
                     onCompletion(true)
@@ -106,7 +115,10 @@ extension APIServiceManager {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-                guard success == true else { onCompletion(false); return}
+                guard success == true else {
+                    onCompletion(false)
+                    return
+                }
                 if let json = json {
                     self.newGoal = Goal.init(goalData: json)
                     onCompletion(true)
@@ -116,7 +128,6 @@ extension APIServiceManager {
             })
         }
     }
-
 }
 
 //MARK: - User APIService
@@ -128,7 +139,10 @@ extension APIServiceManager {
         //set the path to post
         let path = YonaConstants.environments.test + YonaConstants.commands.users
         callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-            guard success == true else { onCompletion(false); return }
+            guard success == true else {
+                onCompletion(false)
+                return
+            }
             if let json = json {
                 self.newUser = Users.init(userData: json)
                 onCompletion(true)
@@ -145,7 +159,10 @@ extension APIServiceManager {
             if let getUserLink = newUser.editLink {
                 ///now post updated user data
                 callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-                    guard success == true else { onCompletion(false); return }
+                    guard success == true else {
+                        onCompletion(false)
+                        return
+                    }
                     if let json = json {
                         self.newUser = Users.init(userData: json)
                         onCompletion(true)

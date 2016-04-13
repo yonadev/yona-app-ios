@@ -54,11 +54,12 @@ struct YonaConstants {
         static let  maxDuration = "maxDurationMinutes"
         static let  activityCategoryName = "activityCategoryName"
         static let  embedded = "_embedded"
-        static let  goals = "yona:goals"
+        static let  yonaGoals = "yona:goals"
         static let  activityCategories = "yona:activityCategories"
         static let  name = "name"
         static let  applications = "applications"
         static let  mandatoryNoGo = "mandatoryNoGo"
+        static let  zones = "zones"
     }
 
     struct serverMessages{
