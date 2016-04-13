@@ -25,27 +25,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
-        //        tegoedView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //        //keyboard functions
-        //        let notificationCenter = NSNotificationCenter.defaultCenter()
-        //        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
-        //        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        //        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     
     private func setSelectedCategory(categoryView: UIView) {
         categoryView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
