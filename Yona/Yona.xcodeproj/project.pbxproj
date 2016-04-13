@@ -863,9 +863,9 @@
 		D9D54EE01CA28CD2007805F4 /* YonaTests */ = {
 			isa = PBXGroup;
 			children = (
-				D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */,
 				D9D54EE31CA28CD2007805F4 /* Info.plist */,
 				D9C744E71CB3CA7B008E463A /* KeychainTests.swift */,
+				D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */,
 				BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */,
 				907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */,
 			);
