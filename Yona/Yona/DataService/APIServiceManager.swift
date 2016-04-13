@@ -111,20 +111,33 @@ extension APIServiceManager {
         onCompletion(false)
     }
     
-    func postUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
+    func postUserGoals(body: BodyDataDictionary, onCompletion: APIServiceResponse) {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                 guard success == true else {
-                    onCompletion(false)
+                    onCompletion(false, json, err)
                     return
                 }
                 if let json = json {
                     self.newGoal = Goal.init(goalData: json)
-                    onCompletion(true)
+                    onCompletion(true, json, err)
                 } else {
-                    onCompletion(false)
+                    onCompletion(false, json, err)
                 }
+            })
+        }
+    }
+    
+    func deleteUserGoal(goalID: String, onCompletion: APIResponse) {
+        if let userID = KeychainManager.sharedInstance.getUserID() {
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
+            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                guard success == true else {
+                    onCompletion(false)
+                    return
+                }
+                onCompletion(true)
             })
         }
     }
@@ -194,6 +207,7 @@ extension APIServiceManager {
             let path = newUser.editLink {
                 callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, dict, err in
                     if (success){
+                        KeychainManager.sharedInstance.clearKeyChain()
                         onCompletion(true)
                     } else {
                         onCompletion(false)
