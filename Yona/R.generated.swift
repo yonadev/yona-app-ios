@@ -303,15 +303,20 @@ struct R {
   
   struct storyboard {
     struct challenges {
+      static var challengesFirstStepStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesFirstStepStoryboard") as? ChallengesFirstStepViewController }
       static var challengesStoryboard: ChallengesViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesViewController }
+      static var initialViewController: ChallengesFirstStepViewController? { return instance.instantiateInitialViewController() as? ChallengesFirstStepViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesViewController'.")
+        assert(challengesFirstStepStoryboard != nil, "[R.swift] ViewController with identifier 'challengesFirstStepStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
       }
     }
     

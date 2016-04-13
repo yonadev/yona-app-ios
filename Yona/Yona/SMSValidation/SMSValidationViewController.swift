@@ -121,11 +121,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
-                    if let codeMessage = dict!["code"] {
-                        if(codeMessage.isEqualToString("error.too.many.wrong.attempts")){
+                    if let codeMessage = dict![YonaConstants.serverMessages.tooManyOTPAttemps] {
+                        if(codeMessage.isEqualToString(YonaConstants.serverMessages.tooManyOTPAttemps)){
                             #if DEBUG
-                            //unsure of how to implement in the UI if the sms validation fails 5 times
-                            // do we display an alert message or show in the UI? Need designs and clarification
                             self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
                             #endif
                             //for now just disable the pincode enter screen and not let them interact...

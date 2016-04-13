@@ -16,7 +16,9 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
+        static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
+        static let activityCategories = "activityCategories/"
     }
     
     struct httpMethods{
@@ -48,13 +50,32 @@ struct YonaConstants {
         static let  confirmMobileLinkKeys = "yona:confirmMobileNumber"
         static let  otpResendMobileLinkKey = "yona:resendMobileNumberConfirmationCode"
         static let  hrefKey = "href"
+        static let  goalType = "@type"
+        static let  maxDuration = "maxDurationMinutes"
+        static let  activityCategoryName = "activityCategoryName"
+        static let  embedded = "_embedded"
+        static let  goals = "yona:goals"
+        static let  activityCategories = "yona:activityCategories"
+        static let  name = "name"
+        static let  applications = "applications"
+        static let  mandatoryNoGo = "mandatoryNoGo"
     }
+
+    struct serverMessages{
+        static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
+    }
+
     struct mobilePhoneLength{
         static let netherlands = 11
     }
     
     struct testKeys{
         static let otpTestCode = "1234"
+    }
+
+    struct responseCodes{
+        static let ok200 = 200
+        static let ok204 = 204
     }
 
     struct nsUserDefaultsKeys{

@@ -10,7 +10,7 @@ import XCTest
 
 @testable import Yona
 
-class YonaTests: XCTestCase {
+class UserAPIServiceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,11 +22,6 @@ class YonaTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {
@@ -36,10 +31,12 @@ class YonaTests: XCTestCase {
     
     func testUserRequestReturnsData() {
         let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31633453454354534271",
+             "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
@@ -79,7 +76,7 @@ class YonaTests: XCTestCase {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
 
         //Post user data
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
                 let code = YonaConstants.testKeys.otpTestCode
                 //store the json in an object
@@ -90,12 +87,12 @@ class YonaTests: XCTestCase {
                 let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID!]
                 
                 //Request user data
-                UserManager.sharedInstance.makeRequest(pathMobileConfirm, body:["code": code], httpMethod: "POST", httpHeader: httpHeader, onCompletion: { success, json, err in
+                Manager.sharedInstance.makeRequest(pathMobileConfirm, body:["code": code], httpMethod: "POST", httpHeader: httpHeader, onCompletion: { success, json, err in
                     //if mobile confirm success
                     XCTAssertTrue(success)
                     if let deletePath = user.editLink{
                         //delete user so works on next test
-                        UserManager.sharedInstance.makeRequest(deletePath, body:nil, httpMethod: "DELETE", httpHeader: httpHeader, onCompletion: { success, json, err in
+                        Manager.sharedInstance.makeRequest(deletePath, body:nil, httpMethod: "DELETE", httpHeader: httpHeader, onCompletion: { success, json, err in
                             if(success){
                                 expectation.fulfill()
                             }
@@ -121,7 +118,7 @@ class YonaTests: XCTestCase {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
 
         //Post user data
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json{
                 //store the json in an object
                 let user = Users.init(userData: json)
@@ -133,7 +130,7 @@ class YonaTests: XCTestCase {
                     }
                     //now tidy up and delete the user
                     if let deletePath = user.editLink{
-                        UserManager.sharedInstance.makeRequest(deletePath, body:body, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success, json, err in
+                        Manager.sharedInstance.makeRequest(deletePath, body:body, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success, json, err in
                             if(success){
                                 expectation.fulfill()
                             }
@@ -161,7 +158,7 @@ class YonaTests: XCTestCase {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
 
         //post new user data
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
                 //get the response of new user and store it
                 let user = Users.init(userData: json)
@@ -176,7 +173,7 @@ class YonaTests: XCTestCase {
                     let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
                     
                     //get request to get user we just created!
-                    UserManager.sharedInstance.makeUserRequest(getSelfLink, body: nil, httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success, json, err in
+                    Manager.sharedInstance.makeRequest(getSelfLink, body: nil, httpMethod: YonaConstants.httpMethods.get, httpHeader: httpHeader, onCompletion: { success, json, err in
                         
                         if let json = json{
                             let userReturned = Users.init(userData: json)
@@ -187,7 +184,7 @@ class YonaTests: XCTestCase {
                         if let deletePath = user.editLink{
                             let httpHeaderDelete = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID]
 
-                            UserManager.sharedInstance.makeRequest(deletePath, body:nil, httpMethod: "DELETE", httpHeader: httpHeaderDelete, onCompletion: { success, json, err in
+                            Manager.sharedInstance.makeRequest(deletePath, body:nil, httpMethod: "DELETE", httpHeader: httpHeaderDelete, onCompletion: { success, json, err in
                                 if(success){
                                     expectation.fulfill()
                                 }
@@ -214,7 +211,7 @@ class YonaTests: XCTestCase {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         
         //post new user data
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
                 //get the response of new user and store it
                 let originalUser = Users.init(userData: json)
@@ -232,7 +229,7 @@ class YonaTests: XCTestCase {
                             "nickname": "BTS"]
                     
                     //get request to get user we just created!
-                    UserManager.sharedInstance.makeUserRequest(getEditLink, body: bodyUpdate, httpMethod: YonaConstants.httpMethods.put, httpHeader: httpHeader, onCompletion: { success, json, err in
+                    Manager.sharedInstance.makeRequest(getEditLink, body: bodyUpdate, httpMethod: YonaConstants.httpMethods.put, httpHeader: httpHeader, onCompletion: { success, json, err in
                         
                         if let json = json{
                             let userReturned = Users.init(userData: json)
@@ -246,7 +243,7 @@ class YonaTests: XCTestCase {
                         if let deletePath = originalUser.editLink{
                             let httpHeaderDelete = ["Content-Type": "application/json", "Yona-Password": yonaPassword, "id":userID]
                             
-                            UserManager.sharedInstance.makeRequest(deletePath, body:bodyUpdate, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeaderDelete, onCompletion: { success, json, err in
+                            Manager.sharedInstance.makeRequest(deletePath, body:bodyUpdate, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeaderDelete, onCompletion: { success, json, err in
                                 if(success){
                                     expectation.fulfill()
                                 }
@@ -275,7 +272,7 @@ class YonaTests: XCTestCase {
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         
         //Post user data
-        UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json{
                 //store the json in an object
                 let user = Users.init(userData: json)
@@ -287,7 +284,7 @@ class YonaTests: XCTestCase {
                     }
                     //now tidy up and delete the user
                     if let deletePath = user.editLink{
-                        UserManager.sharedInstance.makeRequest(deletePath, body:body, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success, json, err in
+                        Manager.sharedInstance.makeRequest(deletePath, body:body, httpMethod: YonaConstants.httpMethods.delete, httpHeader: httpHeader, onCompletion: { success, json, err in
                             if(success){
                                 expectation.fulfill()
                             }
