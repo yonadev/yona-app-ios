@@ -10,6 +10,8 @@
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
+		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
+		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
 		AD01F7241CBCC560006E6157 /* ChallengesFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* ChallengesFirstStepViewController.swift */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
@@ -173,6 +175,8 @@
 /* Begin PBXFileReference section */
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
+		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD01F7211CBCC560006E6157 /* ChallengesFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesFirstStepViewController.swift; sourceTree = "<group>"; };
@@ -583,6 +587,7 @@
 				907DA5231CBBD0400031850E /* Manager.swift */,
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
+				907DA5271CBE5C5D0031850E /* Activities.swift */,
 			);
 			name = DataService;
 			path = ..;
@@ -862,6 +867,7 @@
 				D9D54EE31CA28CD2007805F4 /* Info.plist */,
 				D9C744E71CB3CA7B008E463A /* KeychainTests.swift */,
 				BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */,
+				907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1130,6 +1136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
@@ -1173,6 +1180,7 @@
 				D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
+				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,

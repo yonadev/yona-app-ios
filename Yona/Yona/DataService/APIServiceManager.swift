@@ -14,6 +14,8 @@ class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     var newUser: Users?
     var newGoal: Goal?
+    var newActivities: Activities?
+
     private init() {}
     
     private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
@@ -30,7 +32,7 @@ class APIServiceManager {
             } else {
                 onCompletion(false, dict , err)
             }
-        })
+        })   
     }
 
     
@@ -48,6 +50,37 @@ class APIServiceManager {
         guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
         
         return password
+    }
+}
+
+//MARK: - Activities APIService
+extension APIServiceManager {
+    func getActivityCategories(onCompletion: APIResponse){
+        let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
+        callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+            guard success == true else { onCompletion(false); return}
+            if let json = json {
+                self.newActivities = Activities.init(activityData: json)
+                onCompletion(true)
+            } else {
+                onCompletion(false)
+            }
+        })
+    }
+    
+    func getActivityCategoryWithID(activityID: String, onCompletion: APIServiceResponse){
+        //if the newActivites object has been filled then we can get the link to display activity
+        let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
+        callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+            guard success == true else { onCompletion(false, json, err); return}
+            if let json = json {
+                print(json)
+                onCompletion(true, json, err)
+            } else {
+                onCompletion(false, json, err)
+            }
+        })
+        
     }
 }
 

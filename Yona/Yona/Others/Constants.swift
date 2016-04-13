@@ -18,6 +18,7 @@ struct YonaConstants {
         static let users = "users/"
         static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
+        static let activityCategories = "activityCategories/"
     }
     
     struct httpMethods{
@@ -48,7 +49,12 @@ struct YonaConstants {
         static let  activityCategoryName = "activityCategoryName"
         static let  embedded = "_embedded"
         static let  goals = "yona:goals"
+        static let  activityCategories = "yona:activityCategories"
+        static let  name = "name"
+        static let  applications = "applications"
+        static let  mandatoryNoGo = "mandatoryNoGo"
     }
+    
     struct mobilePhoneLength{
         static let netherlands = 11
     }
