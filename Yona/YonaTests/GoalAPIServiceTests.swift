@@ -53,9 +53,23 @@ class GoalAPIServiceTests: XCTestCase {
                 let user = Users.init(userData: json)
                 APIServiceManager.sharedInstance.newUser = user
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.getUserGoals{ (success) in
+                APIServiceManager.sharedInstance.getUserGoals{ (success, json, goals) in
                     if(success){
+                        for goal in goals! {
+                            print(goal.goalType)
+                            print(goal.activityCategoryName)
+                            //delete user goals
+                            APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success) in
+                                if success == false {
+                                    XCTFail("Failed to delete goal" + goal.goalID!)
+                                }
+                            })
+                        }
                         expectation.fulfill()
+                    } else {
+                        if let json = json {
+                            XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
+                        }
                     }
                 }
             }
@@ -87,28 +101,39 @@ class GoalAPIServiceTests: XCTestCase {
                 }
                 let activityID = "cb580b4e-9670-4454-a5ca-3414f79f17b3"
 
-                if let json = json {
-                    //store the json in an object
-                    let user = Users.init(userData: json)
-                    APIServiceManager.sharedInstance.newUser = user
-                    APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { success, json, err in
-                        if success{
-                            print(json)
-                            let postGoalBody = [
-                                "@type": "BudgetGoal",
-                                "activityCategoryName": "gambling"
-                            ]
-
-                            //confirm mobile number check, static code
-                            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                success, json, err in
-                                if(success){
-                                    expectation.fulfill()
-                                }
-                            })                        }
-                    })
-
-                }
+                //store the json in an object
+                APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { success, json, activity, err in
+                    if success{
+                        print(json)
+                        print(activity?.activityCategoryName)
+                        
+                        let postGoalBody = [
+                            "@type": "BudgetGoal",
+                            "activityCategoryName": (activity?.activityCategoryName)! + ""
+                        ]
+                        
+                        //delete the user goal for test purposes
+                        APIServiceManager.sharedInstance.deleteUserGoal(activityID, onCompletion: { (success) in
+                            if success == false {
+                                //confirm mobile number check, static code
+                                APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                                    (success, json, goal, error) in
+                                    if(success){
+                                        print(json)
+                                        print(goal?.activityCategoryName)
+                                        expectation.fulfill()
+                                    } else {
+                                        XCTFail(json!["message"] as! String)
+                                    }
+                                })
+                            } else {
+                                XCTFail("Failed to delete goal" + activityID)
+                            }
+                            
+                        })
+                        
+                    }
+                })
         })
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
@@ -140,42 +165,34 @@ class GoalAPIServiceTests: XCTestCase {
                 let user = Users.init(userData: json)
                 APIServiceManager.sharedInstance.newUser = user
                 
-                //get possible activities
-                APIServiceManager.sharedInstance.getActivityCategories({ (success) in
-                    if success {
-                        APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { success, json, err in
-                            if success{
-                                print(json)
-                                let activity = APIServiceManager.sharedInstance.newActivities!.activities[0]
-                                let categoryName = activity.activityCategoryName! as String
-                                let postGoalBody = [
-                                    "@type": "TimeZoneGoal" ,
-                                    "activityCategoryName": categoryName
-                                ]
-                                
-                                //Add a users goals
-                                APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                    success, json, err in
-                                    if success == false {
-                                        print(json!["message"] as! [BodyDataDictionary])
-                                    }
+                APIServiceManager.sharedInstance.deleteUserGoal(activityID, onCompletion: { (success) in
+                    //get acitvity
+                    APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { (success, json, activity, error) in
+                        if success{
+                            print(json)
+                            let categoryName = activity!.activityCategoryName! as String
+                            let postGoalBody = [
+                                "@type": "TimeZoneGoal" ,
+                                "activityCategoryName": categoryName
+                            ]
+                            
+                            //Add a users goals
+                            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                                (success, json, goal, err) in
+                                if success == false {
+                                    XCTFail(json!["message"] as! String)
+                                } else {
                                     //delete user goals
-//                                    APIServiceManager.sharedInstance.deleteUserGoal(<#T##goalID: String##String#>, onCompletion: <#T##APIResponse##APIResponse##(Bool) -> Void#>)({ (success) in
-//                                        if(success){
-//                                            expectation.fulfill()
-//                                        }
-//                                    })
-                                    
-                                })
-                            }
-                        })
-                    }
+                                    expectation.fulfill()
+                                }
+                                
+                            })
+                        }
+                    })
                 })
-
-                
             }
         })
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(50.0, handler:nil)
         
     }
 

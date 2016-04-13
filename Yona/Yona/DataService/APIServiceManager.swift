@@ -14,7 +14,9 @@ class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     var newUser: Users?
     var newGoal: Goal?
-    var newActivities: Activities?
+    var newActivity: Activities?
+    var goals:[Goal] = [] //Array returning all the goals returned by getGoals
+    var activities:[Activities] = [] //array containing all the activities returned by getActivities
 
     private init() {}
     
@@ -55,35 +57,46 @@ class APIServiceManager {
 
 //MARK: - Activities APIService
 extension APIServiceManager {
-    func getActivityCategories(onCompletion: APIResponse){
+    func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
         let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
         callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
             guard success == true else {
-                onCompletion(false)
+                onCompletion(false, json, nil)
                 return
             }
             if let json = json {
-                self.newActivities = Activities.init(activityData: json)
-                onCompletion(true)
+                //reset the array so start with new set of activities
+                self.activities = []
+                if let embedded = json[YonaConstants.jsonKeys.embedded],
+                    let embeddedActivities = embedded[YonaConstants.jsonKeys.activityCategories] as? NSArray{
+                    for activity in embeddedActivities {
+                        if let activity = activity as? BodyDataDictionary {
+                            self.newActivity = Activities.init(activityData: activity)
+                            self.activities.append(self.newActivity!)
+                        }
+                    }
+                    onCompletion(true, json, self.activities)
+                }
             } else {
-                onCompletion(false)
+                onCompletion(false, nil, nil)
             }
         })
     }
     
-    func getActivityCategoryWithID(activityID: String, onCompletion: APIServiceResponse){
+    func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
         //if the newActivites object has been filled then we can get the link to display activity
         let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
         callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
             guard success == true else {
-                onCompletion(false, json, err)
+                onCompletion(false, json, nil, err)
                 return
             }
             if let json = json {
                 print(json)
-                onCompletion(true, json, err)
+                self.newActivity = Activities.init(activityData: json)
+                onCompletion(true, json, self.newActivity, err)
             } else {
-                onCompletion(false, json, err)
+                onCompletion(false, json, nil, err)
             }
         })
         
@@ -92,38 +105,46 @@ extension APIServiceManager {
 
 //MARK: - Goal APIService
 extension APIServiceManager {
-    func getUserGoals(onCompletion: APIResponse) {
+    func getUserGoals(onCompletion: APIGoalArrayResponse) {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                 guard success == true else {
-                    onCompletion(false)
+                    onCompletion(false, json, nil)
                     return
                 }
                 if let json = json {
-                    self.newGoal = Goal.init(goalData: json)
-                    onCompletion(true)
+                    self.goals = []
+                    if let embedded = json[YonaConstants.jsonKeys.embedded],
+                        let embeddedGoals = embedded[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                        for goal in embeddedGoals {
+                            if let goal = goal as? BodyDataDictionary {
+                                self.newGoal = Goal.init(goalData: goal)
+                                self.goals.append(self.newGoal!)
+                            }
+                        }
+                        onCompletion(true, json, self.goals)
+                    }
                 } else {
-                    onCompletion(false)
+                    onCompletion(false, nil, nil)
                 }
             })
         }
-        onCompletion(false)
     }
     
-    func postUserGoals(body: BodyDataDictionary, onCompletion: APIServiceResponse) {
+    func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                 guard success == true else {
-                    onCompletion(false, json, err)
+                    onCompletion(false, json, nil, err)
                     return
                 }
                 if let json = json {
                     self.newGoal = Goal.init(goalData: json)
-                    onCompletion(true, json, err)
+                    onCompletion(true, json, self.newGoal, err)
                 } else {
-                    onCompletion(false, json, err)
+                    onCompletion(false, json, nil, err)
                 }
             })
         }
