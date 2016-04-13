@@ -48,31 +48,27 @@ class GoalAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
-            if let json = json {
-                //store the json in an object
-                let user = Users.init(userData: json)
-                APIServiceManager.sharedInstance.newUser = user
-                //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.getUserGoals{ (success, json, goals) in
-                    if(success){
-                        for goal in goals! {
-                            print(goal.goalType)
-                            print(goal.activityCategoryName)
-                            //delete user goals
-                            APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success) in
-                                if success == false {
-                                    XCTFail("Failed to delete goal" + goal.goalID!)
-                                }
-                            })
-                        }
-                        expectation.fulfill()
-                    } else {
-                        if let json = json {
-                            XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
-                        }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.getUserGoals{ (success, json, goals) in
+                if(success){
+                    for goal in goals! {
+                        print(goal.goalType)
+                        print(goal.activityCategoryName)
+                        //delete user goals
+                        APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success) in
+                            if success == false {
+                                XCTFail("Failed to delete goal" + goal.goalID!)
+                            }
+                        })
+                    }
+                    expectation.fulfill()
+                } else {
+                    if let json = json {
+                        XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
                     }
                 }
             }
+            
         })
         waitForExpectationsWithTimeout(10.0, handler:nil)
         
@@ -139,6 +135,46 @@ class GoalAPIServiceTests: XCTestCase {
 
     }
     
+    func testGetGoalWithID() {
+        //create a user
+        //setup
+        let path = "http://85.222.227.142/users/"
+        let keychain = KeychainSwift()
+        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+            if success {
+                APIServiceManager.sharedInstance.getUserGoals{ (success, json, goals) in
+                    if(success){
+                        for goal in goals! {
+                            print(goal.goalType)
+                            print(goal.activityCategoryName)
+                        }
+//                        APIServiceManager.sharedInstance.getUserGo
+                        XCTFail(json![YonaConstants.serverResponseKeys.message] as! String)
+
+                    } else {
+                        if let json = json {
+                            XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
+                        }
+                    }
+                }
+            } else{
+                XCTFail(json![YonaConstants.serverResponseKeys.message] as! String)
+            }
+        })
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+
+    }
+    
     func testDeleteGoal() {
         //create a user
         //setup
@@ -160,39 +196,34 @@ class GoalAPIServiceTests: XCTestCase {
             }
             let activityID = "cb580b4e-9670-4454-a5ca-3414f79f17b3"
             
-            if let json = json {
-                //store the json in an object
-                let user = Users.init(userData: json)
-                APIServiceManager.sharedInstance.newUser = user
-                
-                APIServiceManager.sharedInstance.deleteUserGoal(activityID, onCompletion: { (success) in
-                    //get acitvity
-                    APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { (success, json, activity, error) in
-                        if success{
-                            print(json)
-                            let categoryName = activity!.activityCategoryName! as String
-                            let postGoalBody = [
-                                "@type": "TimeZoneGoal" ,
-                                "activityCategoryName": categoryName
-                            ]
+            //store the json in an object
+            APIServiceManager.sharedInstance.deleteUserGoal(activityID, onCompletion: { (success) in
+                //get acitvity
+                APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { (success, json, activity, error) in
+                    if success{
+                        print(json)
+                        let categoryName = activity!.activityCategoryName! as String
+                        let postGoalBody = [
+                            "@type": "TimeZoneGoal" ,
+                            "activityCategoryName": categoryName
+                        ]
+                        
+                        //Add a users goals
+                        APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                            (success, json, goal, err) in
+                            if success == false {
+                                XCTFail(json!["message"] as! String)
+                            } else {
+                                //delete user goals
+                                expectation.fulfill()
+                            }
                             
-                            //Add a users goals
-                            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                (success, json, goal, err) in
-                                if success == false {
-                                    XCTFail(json!["message"] as! String)
-                                } else {
-                                    //delete user goals
-                                    expectation.fulfill()
-                                }
-                                
-                            })
-                        }
-                    })
+                        })
+                    }
                 })
-            }
+            })
         })
-        waitForExpectationsWithTimeout(50.0, handler:nil)
+        waitForExpectationsWithTimeout(10.0, handler:nil)
         
     }
 

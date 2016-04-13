@@ -141,6 +141,23 @@ extension APIServiceManager {
                     return
                 }
                 if let json = json {
+                    onCompletion(true, json, nil, err)
+                } else {
+                    onCompletion(false, json, nil, err)
+                }
+            })
+        }
+    }
+    
+    func getUsersGoalWithID(goalID: String, onCompletion: APIGoalResponse) {
+        if let userID = KeychainManager.sharedInstance.getUserID() {
+            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
+            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                guard success == true else {
+                    onCompletion(false, json, nil, err)
+                    return
+                }
+                if let json = json {
                     self.newGoal = Goal.init(goalData: json)
                     onCompletion(true, json, self.newGoal, err)
                 } else {
@@ -153,7 +170,7 @@ extension APIServiceManager {
     func deleteUserGoal(goalID: String, onCompletion: APIResponse) {
         if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
-            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
                 guard success == true else {
                     onCompletion(false)
                     return
