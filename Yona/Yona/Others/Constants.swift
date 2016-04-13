@@ -54,7 +54,11 @@ struct YonaConstants {
         static let  applications = "applications"
         static let  mandatoryNoGo = "mandatoryNoGo"
     }
-    
+
+    struct serverMessages{
+        static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
+    }
+
     struct mobilePhoneLength{
         static let netherlands = 11
     }
