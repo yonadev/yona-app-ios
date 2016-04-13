@@ -39,7 +39,7 @@ class YonaTests: XCTestCase {
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+3163323099271",
+             "mobileNumber": "+31633453454354534271",
              "nickname": "RQ"]
         
         APIServiceManager.sharedInstance.postUser(body) { (flag) in
@@ -81,7 +81,7 @@ class YonaTests: XCTestCase {
         //Post user data
         UserManager.sharedInstance.makeUserRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
             if let json = json {
-                let code = YonaConstants.testKeys.code
+                let code = YonaConstants.testKeys.otpTestCode
                 //store the json in an object
                 let user = Users.init(userData: json)
                 APIServiceManager.sharedInstance.newUser = user
@@ -281,7 +281,7 @@ class YonaTests: XCTestCase {
                 let user = Users.init(userData: json)
                 APIServiceManager.sharedInstance.newUser = user
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.code], onCompletion: { success, json, err in
+                APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, json, err in
                     if(success){
                         expectation.fulfill()
                     }
