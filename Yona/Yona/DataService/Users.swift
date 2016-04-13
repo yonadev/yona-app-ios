@@ -42,20 +42,23 @@ struct Users{
             let hrefConfirmLinks =  confirmLinks?[YonaConstants.jsonKeys.hrefKey],
             let otpResendMobileLink = links[YonaConstants.jsonKeys.otpResendMobileLinkKey],
             let editLink = href as? String {
-                self.editLink = editLink
-                if let lastPath = NSURL(string: editLink)?.lastPathComponent {
-                    userID = lastPath
+                    self.editLink = editLink
+                    if let lastPath = NSURL(string: editLink)?.lastPathComponent {
+                        self.userID = lastPath
+                        KeychainManager.sharedInstance.saveUserID(self.userID!)
+                    }
+                if let confirmMobileLink = hrefConfirmLinks as? String{
+                    self.confirmMobileLink = confirmMobileLink
+                    KeychainManager.sharedInstance.saveConfirmMobileLink(confirmMobileLink)
+
+                }
+            if let otpResendMobileLink = otpResendMobileLink as? String {
+                self.otpResendMobileLink = otpResendMobileLink
+                KeychainManager.sharedInstance.saveOtpResendMobileLink(otpResendMobileLink)
+
             }
-            self.confirmMobileLink = hrefConfirmLinks as? String
-            self.otpResendMobileLink = otpResendMobileLink as? String
             self.getSelfLink = hrefSelfLinks as? String
-            
-            NSUserDefaults.standardUserDefaults().setObject(self.userID, forKey: YonaConstants.nsUserDefaultsKeys.userID)
-            NSUserDefaults.standardUserDefaults().setObject(self.confirmMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL)
-            NSUserDefaults.standardUserDefaults().setObject(self.otpResendMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL)
-            #if DEBUG
-            NSUserDefaults.standardUserDefaults().setObject(YonaConstants.testKeys.code, forKey: YonaConstants.nsUserDefaultsKeys.pincode)
-            #endif
+                
         }
     }
 }

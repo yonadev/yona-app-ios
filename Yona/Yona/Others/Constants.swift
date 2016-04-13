@@ -31,6 +31,12 @@ struct YonaConstants {
     struct keychain {
         static let yonaPassword = "kYonaPassword"
         static let PINCode = "kPINCode"
+        static let userID = "userID"
+        static let confirmMobileKeyURL = "confirmMobileLink"
+        static let otpResendMobileKeyURL = "otpResendMobileLink"
+        #if DEBUG
+        static let oneTimePassword = "mobileNumberConfirmationCode"
+        #endif
     }
     
     struct jsonKeys{
@@ -64,7 +70,7 @@ struct YonaConstants {
     }
     
     struct testKeys{
-        static let code = "1234"
+        static let otpTestCode = "1234"
     }
 
     struct responseCodes{
@@ -73,13 +79,6 @@ struct YonaConstants {
     }
 
     struct nsUserDefaultsKeys{
-        static let userID = "userID"
-        static let confirmMobileKeyURL = "confirmMobileLink"
-        static let otpResendMobileKeyURL = "otpResendMobileLink"
-
-        #if DEBUG
-        static let pincode = "mobileNumberConfirmationCode"
-        #endif
         static let isBlocked = "isBlocked"
         static let screenToDisplay = "screenToDisplay"
         

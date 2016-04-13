@@ -87,7 +87,7 @@ extension APIServiceManager {
 //MARK: - Goal APIService
 extension APIServiceManager {
     func getUserGoals(onCompletion: APIResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String {
+        if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                 guard success == true else { onCompletion(false); return}
@@ -103,7 +103,7 @@ extension APIServiceManager {
     }
     
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String {
+        if let userID = KeychainManager.sharedInstance.getUserID() {
             let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
             callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                 guard success == true else { onCompletion(false); return}
@@ -187,8 +187,8 @@ extension APIServiceManager {
     }
     
     func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
-        if let userID = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userID) as? String,
-            let otpResendMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.otpResendMobileKeyURL) as? String{
+        if let userID = KeychainManager.sharedInstance.getUserID(),
+            let otpResendMobileLink = KeychainManager.sharedInstance.getOtpResendMobileLink(){
             #if DEBUG
                 print(userID)
                 print(otpResendMobileLink)
@@ -205,8 +205,9 @@ extension APIServiceManager {
         
     }
     
+
     func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
-        if let confirmMobileLink = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.confirmMobileKeyURL) as? String{
+        if let confirmMobileLink = KeychainManager.sharedInstance.getConfirmMobileLink(){
             #if DEBUG
             print(confirmMobileLink)
             #endif
@@ -221,6 +222,4 @@ extension APIServiceManager {
         } else { onCompletion(false, [:] , nil) }
     
     }
-    
-
 }
