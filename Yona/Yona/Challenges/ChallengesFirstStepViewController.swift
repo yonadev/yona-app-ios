@@ -11,6 +11,7 @@ import UIKit
 
 class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
+    @IBOutlet var gradientView: GradientView!
     @IBOutlet var tegoedView: UIView!
     @IBOutlet var tegoedBadgeLabel: UILabel!
     
@@ -22,12 +23,19 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    var selectedCategoryArray: NSArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.selectedCategoryArray = NSArray(objects: "Social", "Dating", "Games")
+        
         setupUI()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+    }
     private func setSelectedCategory(categoryView: UIView) {
         categoryView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
         categoryView.alpha = 1.0
