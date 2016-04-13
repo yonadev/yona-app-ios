@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+    //TODO: - work in progress    
 //        var rootController : UINavigationController
 //
 //        rootController = getScreenNameToDisplay()
