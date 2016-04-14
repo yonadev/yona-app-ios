@@ -12,14 +12,14 @@ public typealias BodyDataDictionary = [String: AnyObject]
 
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
-    var newUser: Users?
-    var newGoal: Goal?
-    var newActivity: Activities?
-    var goals:[Goal] = [] //Array returning all the goals returned by getGoals
-    var activities:[Activities] = [] //array containing all the activities returned by getActivities
+    private var newUser: Users?
+    private var newGoal: Goal?
+    private var newActivity: Activities?
+    private var goals:[Goal] = [] //Array returning all the goals returned by getGoals
+    private var activities:[Activities] = [] //array containing all the activities returned by getActivities
 
-    var serverMessage: ServerMessage? = "Everything OK"
-    var serverCode: ServerCode? = "Everything OK"
+    private var serverMessage: ServerMessage? = "Everything OK"
+    private var serverCode: ServerCode? = "Everything OK"
 
     private init() {}
     
@@ -63,6 +63,27 @@ class APIServiceManager {
                 self.serverMessage = message
                 self.serverCode = code
         }
+    }
+    
+    func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
+        guard self.activities.count != 0 else {
+            self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
+                onCompletion(success, serverMessage, serverCode, activities, error)
+            }
+            return
+        }
+        onCompletion(true, serverMessage, serverCode, activities, nil)
+    }
+    
+    
+    func getGoalsArray(onCompletion: APIGoalArrayResponse) {
+        guard self.activities.count != 0 else {
+            self.getGoalsArray{ (success, serverMessage, serverCode, goals, error) in
+                onCompletion(success, serverMessage, serverCode, goals, error)
+            }
+            return
+        }
+        onCompletion(true, serverMessage, serverCode, goals, nil)
     }
 }
 
@@ -207,7 +228,7 @@ extension APIServiceManager {
 //MARK: - User APIService
 extension APIServiceManager {
 
-    func postUser(body: BodyDataDictionary, onCompletion: APIResponse) {
+    func postUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
         //create a password for the user
         KeychainManager.sharedInstance.createYonaPassword()
         //set the path to post
@@ -216,13 +237,13 @@ extension APIServiceManager {
             if let json = json {
                 self.setServerCodeMessage(json)
                 guard success == true else {
-                    onCompletion(false, self.serverMessage, self.serverCode)
+                    onCompletion(false, self.serverMessage, self.serverCode,nil)
                     return
                 }
                 self.newUser = Users.init(userData: json)
-                onCompletion(true, self.serverMessage, self.serverCode)
+                onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
             } else {
-                onCompletion(false, self.serverMessage, self.serverCode)
+                onCompletion(false, self.serverMessage, self.serverCode,nil)
             }
         })
     }

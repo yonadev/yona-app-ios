@@ -71,6 +71,10 @@ struct YonaConstants {
         static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
     }
     
+    struct serverMessages{
+        static let needToGetSomeActivities = "Call get activities to populate array"
+    }
+    
     struct serverResponseKeys{
         static let message = "message"
         static let code = "code"
