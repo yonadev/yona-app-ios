@@ -8,12 +8,13 @@
 
 import Foundation
 
+
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
-typealias APIResponse = (Bool) -> Void
-typealias APIGoalResponse = (Bool, BodyDataDictionary?, Goal?, NSError?) -> Void
-typealias APIGoalArrayResponse = (Bool, BodyDataDictionary?, Array<Goal>?) -> Void
-typealias APIActivitiesArrayResponse = (Bool, BodyDataDictionary?, Array<Activities>?) -> Void
-typealias APIActivityResponse = (Bool, BodyDataDictionary?, Activities?, NSError?) -> Void
+typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
+typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, NSError?) -> Void
+typealias APIGoalArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Goal>?, NSError?) -> Void
+typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
+typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 
 class Manager: NSObject {
 

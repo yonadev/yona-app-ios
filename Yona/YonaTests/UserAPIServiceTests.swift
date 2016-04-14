@@ -47,7 +47,7 @@ class UserAPIServiceTests: XCTestCase {
             let mobileNumber = result.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
             
-            APIServiceManager.sharedInstance.deleteUser({ (success) in
+            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
                 print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()

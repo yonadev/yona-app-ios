@@ -30,7 +30,7 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategories() {
         let expectation = expectationWithDescription("Waiting to respond")
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, json, activities) in
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 for activity in activities! {
                     print(activity.activityCategoryName)
@@ -43,14 +43,20 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategoryWithID() {
         let expectation = expectationWithDescription("Waiting to respond")
-        let activityID = "cb580b4e-9670-4454-a5ca-3414f79f17b3"
-        APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { success, json, activity, err in
-            if success{
-                print(json)
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+            if success {
+                let activity = activities![0]
                 print(activity)
-                expectation.fulfill()
+
+                APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                    if success{
+                        print(activity)
+                        expectation.fulfill()
+                    }
+                })
             }
-        })
+        }
+
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
 }

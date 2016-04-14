@@ -119,7 +119,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                  "mobileNumber": trimmedString,
                  "nickname": nicknameTextField.text ?? ""]
             
-            APIServiceManager.sharedInstance.postUser(body) { flag in
+            APIServiceManager.sharedInstance.postUser(body, onCompletion: { (flag, serverMessage, serverCode) in
                 if flag {
                     //Update flag
                     setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
@@ -130,7 +130,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                         }
                     }
                 }
-            }
+            })
         }
     }
 }
