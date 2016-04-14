@@ -8,6 +8,9 @@
 
 import Foundation
 
+typealias ServerMessage = String?
+typealias ServerCode = String?
+
 struct YonaConstants {
     struct environments {
         static let test = "http://85.222.227.142/"
@@ -62,12 +65,19 @@ struct YonaConstants {
         static let  zones = "zones"
     }
 
-    struct serverMessages{
+    struct serverCodes{
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
+        static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
+        static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
+    }
+    
+    struct serverMessages{
+        static let needToGetSomeActivities = "Call get activities to populate array"
     }
     
     struct serverResponseKeys{
         static let message = "message"
+        static let code = "code"
     }
 
     struct mobilePhoneLength{

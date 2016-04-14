@@ -39,15 +39,14 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (flag) in
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
             print("Post response")
-            XCTAssert((APIServiceManager.sharedInstance.newUser) != nil)
+            XCTAssert((user) != nil)
             
-            let result = APIServiceManager.sharedInstance.newUser!
-            let mobileNumber = result.mobileNumber
+            let mobileNumber = user!.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
             
-            APIServiceManager.sharedInstance.deleteUser({ (success) in
+            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
                 print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()
@@ -81,8 +80,7 @@ class UserAPIServiceTests: XCTestCase {
                 let code = YonaConstants.testKeys.otpTestCode
                 //store the json in an object
                 let user = Users.init(userData: json)
-                APIServiceManager.sharedInstance.newUser = user
-                let userID = APIServiceManager.sharedInstance.newUser?.userID
+                let userID = user.userID
                 let pathMobileConfirm = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.mobileConfirm
                 let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword,"id":userID!]
                 
@@ -122,7 +120,6 @@ class UserAPIServiceTests: XCTestCase {
             if let json = json{
                 //store the json in an object
                 let user = Users.init(userData: json)
-                APIServiceManager.sharedInstance.newUser = user
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.otpResendMobile(nil, onCompletion: { success, json, err in
                     if(success){
@@ -165,9 +162,7 @@ class UserAPIServiceTests: XCTestCase {
                 //store the json in an object
                 
                 //if the response is not nil
-                APIServiceManager.sharedInstance.newUser = user
                 let mobileNumber = user.mobileNumber
-                
                 
                 if let getSelfLink = user.getSelfLink, let userID = user.userID {
                     let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
@@ -217,8 +212,6 @@ class UserAPIServiceTests: XCTestCase {
                 let originalUser = Users.init(userData: json)
                 
                 //if the response is not nil
-                APIServiceManager.sharedInstance.newUser = originalUser
-                
                 if let getEditLink = originalUser.editLink, let userID = originalUser.userID {
                     let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
                     
@@ -276,7 +269,6 @@ class UserAPIServiceTests: XCTestCase {
             if let json = json{
                 //store the json in an object
                 let user = Users.init(userData: json)
-                APIServiceManager.sharedInstance.newUser = user
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, json, err in
                     if(success){

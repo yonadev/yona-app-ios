@@ -121,8 +121,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
-                    if let codeMessage = dict![YonaConstants.serverMessages.tooManyOTPAttemps] {
-                        if(codeMessage.isEqualToString(YonaConstants.serverMessages.tooManyOTPAttemps)){
+                    if let codeMessage = dict![YonaConstants.serverCodes.tooManyOTPAttemps] {
+                        if(codeMessage.isEqualToString(YonaConstants.serverCodes.tooManyOTPAttemps)){
                             #if DEBUG
                             self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
                             #endif

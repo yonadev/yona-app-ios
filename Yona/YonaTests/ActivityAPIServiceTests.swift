@@ -30,7 +30,7 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategories() {
         let expectation = expectationWithDescription("Waiting to respond")
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, json, activities) in
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 for activity in activities! {
                     print(activity.activityCategoryName)
@@ -43,14 +43,50 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategoryWithID() {
         let expectation = expectationWithDescription("Waiting to respond")
-        let activityID = "cb580b4e-9670-4454-a5ca-3414f79f17b3"
-        APIServiceManager.sharedInstance.getActivityCategoryWithID(activityID, onCompletion: { success, json, activity, err in
-            if success{
-                print(json)
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+            if success {
+                let activity = activities![0]
                 print(activity)
-                expectation.fulfill()
+
+                APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                    if success{
+                        print(activity)
+                        expectation.fulfill()
+                    }
+                })
             }
-        })
+        }
+
         waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
+    func testGetActivitiesArray() {
+        //setup
+        let path = "http://85.222.227.142/users/"
+        let keychain = KeychainSwift()
+        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
+        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        
+        //Get user goals
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+            if success == false{
+                XCTFail()
+            }
+            
+            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
+                print(activities)
+                XCTAssertTrue(success, "Received Activities")
+                expectation.fulfill()
+            })
+        })
     }
 }
