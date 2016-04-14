@@ -19,7 +19,7 @@ class APIServiceManager {
     var activities:[Activities] = [] //array containing all the activities returned by getActivities
 
     var serverMessage: ServerMessage? = "Everything OK"
-    var serverCode: ServerMessage? = "Everything OK"
+    var serverCode: ServerCode? = "Everything OK"
 
     private init() {}
     
