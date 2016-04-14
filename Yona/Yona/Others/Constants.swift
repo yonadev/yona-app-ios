@@ -65,6 +65,10 @@ struct YonaConstants {
     struct serverMessages{
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
     }
+    
+    struct serverResponseKeys{
+        static let message = "message"
+    }
 
     struct mobilePhoneLength{
         static let netherlands = 11
