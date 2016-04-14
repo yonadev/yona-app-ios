@@ -278,6 +278,10 @@ struct R {
     static var imgTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTime") } }
     static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
+    static var slideDelen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "slideDelen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "slideDelen") } }
+    static var slideGrenzen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "slideGrenzen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "slideGrenzen") } }
+    static var slideTijdsbesteding: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "slideTijdsbesteding", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "slideTijdsbesteding") } }
+    static var slideTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "slideTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "slideTransparantie") } }
     static var walkthroughPage: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "walkthroughPage") } }
     static var welcomeScreen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "welcomeScreen") } }
     static var yonaLogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "yonaLogo") } }
@@ -288,7 +292,7 @@ struct R {
   }
   
   struct reuseIdentifier {
-    
+    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
   }
   
   struct segue {
@@ -303,20 +307,18 @@ struct R {
   
   struct storyboard {
     struct challenges {
-      static var challengesFirstStepStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesFirstStepStoryboard") as? ChallengesFirstStepViewController }
-      static var challengesStoryboard: ChallengesViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesViewController }
-      static var initialViewController: ChallengesFirstStepViewController? { return instance.instantiateInitialViewController() as? ChallengesFirstStepViewController }
+      static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
         assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesViewController'.")
-        assert(challengesFirstStepStoryboard != nil, "[R.swift] ViewController with identifier 'challengesFirstStepStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
+        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
       }
     }
     

@@ -10,20 +10,23 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    //TODO: - work in progress    
-//        var rootController : UINavigationController
-//
-//        rootController = getScreenNameToDisplay()
-//        
-//        if let window = self.window {
-//            window.rootViewController = rootController
-//        }
-// 
+        //TODO: - work in progress
+        var rootController : UINavigationController
+        
+        rootController = getScreenNameToDisplay()
+        
+        if let window = self.window {
+            window.rootViewController = rootController
+        }
+        
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
         return true
         
     }
@@ -32,43 +35,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(application: UIApplication) {
         
-//        getScreenNameToDisplay
+        //        getScreenNameToDisplay
     }
-
+    
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
     //MARK: User Methods
     func getScreenNameToDisplay() -> UINavigationController{
         var rootController: UIViewController = UINavigationController.init()
         if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
             switch viewName {
-                case "SMSValidation":
-                    rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController
-                case "Passcode":
-                    rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
-                case "Login":
-                    rootController = R.storyboard.login.loginStoryboard! as LoginViewController
-                default:
-                    rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
-                }
+            case "SMSValidation":
+                rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController
+            case "Passcode":
+                rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
+            case "Login":
+                rootController = R.storyboard.login.loginStoryboard! as LoginViewController
+            default:
+                rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+            }
             return UINavigationController(rootViewController: rootController)
         }
         return UINavigationController(rootViewController: rootController)
     }
-
+    
 }
 
