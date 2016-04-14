@@ -8,6 +8,9 @@
 
 import Foundation
 
+typealias ServerMessage = String?
+typealias ServerCode = String?
+
 struct YonaConstants {
     struct environments {
         static let test = "http://85.222.227.142/"
@@ -16,7 +19,9 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
+        static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
+        static let activityCategories = "activityCategories/"
     }
     
     struct httpMethods{
@@ -29,6 +34,12 @@ struct YonaConstants {
     struct keychain {
         static let yonaPassword = "kYonaPassword"
         static let PINCode = "kPINCode"
+        static let userID = "userID"
+        static let confirmMobileKeyURL = "confirmMobileLink"
+        static let otpResendMobileKeyURL = "otpResendMobileLink"
+        #if DEBUG
+        static let oneTimePassword = "mobileNumberConfirmationCode"
+        #endif
     }
     
     struct jsonKeys{
@@ -40,19 +51,52 @@ struct YonaConstants {
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"
         static let  confirmMobileLinkKeys = "yona:confirmMobileNumber"
+        static let  otpResendMobileLinkKey = "yona:resendMobileNumberConfirmationCode"
         static let  hrefKey = "href"
+        static let  goalType = "@type"
+        static let  maxDuration = "maxDurationMinutes"
+        static let  activityCategoryName = "activityCategoryName"
+        static let  embedded = "_embedded"
+        static let  yonaGoals = "yona:goals"
+        static let  activityCategories = "yona:activityCategories"
+        static let  name = "name"
+        static let  applications = "applications"
+        static let  mandatoryNoGo = "mandatoryNoGo"
+        static let  zones = "zones"
     }
+
+    struct serverCodes{
+        static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
+        static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
+        static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
+    }
+    
+    struct serverMessages{
+        static let needToGetSomeActivities = "Call get activities to populate array"
+    }
+    
+    struct serverResponseKeys{
+        static let message = "message"
+        static let code = "code"
+    }
+
     struct mobilePhoneLength{
         static let netherlands = 11
     }
-
     
+    struct testKeys{
+        static let otpTestCode = "1234"
+    }
+
+    struct responseCodes{
+        static let ok200 = 200
+        static let ok204 = 204
+    }
+
     struct nsUserDefaultsKeys{
-        static let userID = "userID"
-        static let confirmMobileKeyURL = "confirmMobileLink"
-        #if DEBUG
-        static let pincode = "mobileNumberConfirmationCode"
-        #endif
+        static let isBlocked = "isBlocked"
+        static let screenToDisplay = "screenToDisplay"
+        
     }
 
 }

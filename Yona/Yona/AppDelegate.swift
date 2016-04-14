@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: User Methods
     func getScreenNameToDisplay() -> UINavigationController{
         var rootController: UIViewController = UINavigationController.init()
-        if let viewName = getViewControllerToDisplay("ScreenToDisplay") as? String {
+        if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
             switch viewName {
                 case "SMSValidation":
                     rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController

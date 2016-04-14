@@ -22,6 +22,7 @@
 "smsvalidation.user.infomessage" = "Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen.";
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
+"smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
 
@@ -34,5 +35,4 @@
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
 
-
-
+"login.user.errorinfoText" = "Jouw account is geblokkeerd om veiligheidsredenen, gebruik de optie reset-toegangscode om jouw account te activeren.";

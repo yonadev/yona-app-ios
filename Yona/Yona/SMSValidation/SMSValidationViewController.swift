@@ -41,9 +41,7 @@ final class SMSValidationViewController:  UIViewController {
         self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         #if DEBUG
-        if let pincode = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.pincode) as? String {
-            self.displayAlertMessage(pincode, alertDescription:"Pincode")
-        }
+        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
@@ -110,21 +108,34 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 "code": code
             ]
 
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success in
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, dict, err in
             dispatch_async(dispatch_get_main_queue()) {
-                if success {
+                if (success) {
 
                         codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: "ScreenToDisplay")
+                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     
                 } else {
+                    if let codeMessage = dict![YonaConstants.serverCodes.tooManyOTPAttemps] {
+                        if(codeMessage.isEqualToString(YonaConstants.serverCodes.tooManyOTPAttemps)){
+                            #if DEBUG
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                            #endif
+                            //for now just disable the pincode enter screen and not let them interact...
+                            codeInputView.resignFirstResponder()
+                            codeInputView.userInteractionEnabled = false
+                        } else {
+                            #if DEBUG
+                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                            #endif
+                        }
+                    }
                     codeInputView.clear()
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
                 }
             }
         }

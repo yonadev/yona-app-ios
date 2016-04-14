@@ -22,6 +22,7 @@
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
+"smsvalidation.user.pincodeattempted5times" = "Too many wrong attempts";
 
 "passcode.user.headerTitle" = "Account has been created";
 "passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";
@@ -34,4 +35,4 @@
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "You have not previously logged in on this device. Go to your primary device (probably your mobile) , open the app Yona , then 'Add Device' to settings and click . Then fill in the fields below .";
 
-
+"login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
