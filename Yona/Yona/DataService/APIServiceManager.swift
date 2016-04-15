@@ -66,7 +66,7 @@ class APIServiceManager {
     }
     
     func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
-        guard self.activities.count != 0 else {
+        guard self.activities.isEmpty == true else { //go get our activities and return the arry
             self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
                 onCompletion(success, serverMessage, serverCode, activities, error)
             }
@@ -77,8 +77,8 @@ class APIServiceManager {
     
     
     func getGoalsArray(onCompletion: APIGoalArrayResponse) {
-        guard self.activities.count != 0 else {
-            self.getGoalsArray{ (success, serverMessage, serverCode, goals, error) in
+        guard self.goals.isEmpty == true else { //go get our goals and return array
+            self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
                 onCompletion(success, serverMessage, serverCode, goals, error)
             }
             return
