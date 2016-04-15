@@ -41,6 +41,7 @@ struct Users{
             let confirmLinks = links[YonaConstants.jsonKeys.confirmMobileLinkKeys],
             let hrefConfirmLinks =  confirmLinks?[YonaConstants.jsonKeys.hrefKey],
             let otpResendMobileLink = links[YonaConstants.jsonKeys.otpResendMobileLinkKey],
+            let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey],
             let editLink = href as? String {
                     self.editLink = editLink
                     if let lastPath = NSURL(string: editLink)?.lastPathComponent {
@@ -52,7 +53,7 @@ struct Users{
                     KeychainManager.sharedInstance.saveConfirmMobileLink(confirmMobileLink)
 
                 }
-            if let otpResendMobileLink = otpResendMobileLink as? String {
+            if let otpResendMobileLink = hrefOTPesendMobileLink as? String {
                 self.otpResendMobileLink = otpResendMobileLink
                 KeychainManager.sharedInstance.saveOtpResendMobileLink(otpResendMobileLink)
 

@@ -29,9 +29,6 @@ class GoalAPIServiceTests: XCTestCase {
     
     func testGetGoalArray() {
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
@@ -40,11 +37,8 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        
         //Get user goals
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -54,14 +48,13 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTAssertTrue(success, "Received Goals")
                 expectation.fulfill()
             })
-        })
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+
     }
     
     func testGetUserGoal(){
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
@@ -70,11 +63,8 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        
-        //Get user goals
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -87,28 +77,22 @@ class GoalAPIServiceTests: XCTestCase {
                         //delete user goals
                         APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success, serverMessage, serverCode) in
                             if success == false {
-                                XCTFail("Failed to delete goal" + goal.goalID!)
+                                XCTFail(serverMessage! + goal.goalID! ?? "Unknown error")
                             }
                         })
                     }
                     expectation.fulfill()
                 } else {
-                    if let json = json {
-                        XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
-                    }
+                    XCTFail(serverMessage ?? "Unknown error")
                 }
             }
-            
-        })
+        }
         waitForExpectationsWithTimeout(10.0, handler:nil)
         
     }
     
     func testPostUserGoal(){
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
@@ -117,11 +101,10 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         
         //Create user
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
                 if success == false{
                     XCTFail()
                 }
@@ -213,16 +196,13 @@ class GoalAPIServiceTests: XCTestCase {
                     }
                     
                 }
-            })
+            }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
     }
     
     func testPostSameGoalTwiceCheckCorrectServerResponse() {
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
@@ -231,11 +211,9 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        
+
         //Create user
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -252,20 +230,17 @@ class GoalAPIServiceTests: XCTestCase {
                 //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                 if let serverCode = serverCode,
                     let serverMessage = serverMessage {
-                    XCTAssertTrue(serverCode == YonaConstants.serverCodes.cannotAddSecondGoalOnSameCategory, serverMessage!)
+                    XCTAssertTrue(serverCode == YonaConstants.serverCodes.cannotAddSecondGoalOnSameCategory, serverMessage ?? "Unknown error")
                     expectation.fulfill()
                     print(serverMessage)
                 }
             })
-        })
+        }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
     func testDeleteAMandatoryGoal() {
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
@@ -274,15 +249,13 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        
         //Create user
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             print(KeychainManager.sharedInstance.getYonaPassword())
+            print(KeychainManager.sharedInstance.getUserID())
             
             //Get their goals (usere are always created with a gambling goal that cannot be removed
             APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
@@ -300,35 +273,30 @@ class GoalAPIServiceTests: XCTestCase {
                         if let serverCode = serverCode,
                             let serverMessage = serverMessage{
                             //we expect the server to say you cannot delete a mandatory goal like gambling
-                            XCTAssertTrue(serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal, serverMessage!)
+                            XCTAssertTrue(serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal, serverMessage)
                             expectation.fulfill()
                         }
                     })
                 }
-                
             }
-        })
+        }
+
         waitForExpectationsWithTimeout(10.0, handler:nil)
         
     }
     
     
     func testGetGoalWithID() {
-        //create a user
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
-        
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success {
                 APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
                     if(success){
@@ -349,25 +317,23 @@ class GoalAPIServiceTests: XCTestCase {
                         }
 
                     } else {
-                        if let json = json {
-                            XCTFail(json[YonaConstants.serverResponseKeys.message] as! String)
+                        if let messageUnwrapped = serverMessage{
+                            XCTFail(messageUnwrapped ?? "Unknown error")
                         }
                     }
                 }
             } else {
-                XCTFail(json![YonaConstants.serverResponseKeys.message] as! String)
+                if let messageUnwrapped = message{
+                    XCTFail(messageUnwrapped ?? "Unknown error")
+                }
             }
-        })
+        }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
     }
     
     func testDeleteGoal() {
-        //create a user
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
@@ -376,8 +342,8 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -421,7 +387,7 @@ class GoalAPIServiceTests: XCTestCase {
                     }
                 }
             }
-        })
+        }
         waitForExpectationsWithTimeout(100.0, handler:nil)
         
     }

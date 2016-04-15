@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SystemConfiguration
 
 public typealias BodyDataDictionary = [String: AnyObject]
 
@@ -18,8 +19,8 @@ class APIServiceManager {
     private var goals:[Goal] = [] //Array returning all the goals returned by getGoals
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
 
-    private var serverMessage: ServerMessage? = "Everything OK"
-    private var serverCode: ServerCode? = "Everything OK"
+    private var serverMessage: ServerMessage?
+    private var serverCode: ServerCode?
 
     private init() {}
     
@@ -57,16 +58,25 @@ class APIServiceManager {
         return password
     }
     
-    private func setServerCodeMessage(json:BodyDataDictionary) {
-        if let message = json[YonaConstants.serverResponseKeys.message] as? String,
-            let code = json[YonaConstants.serverResponseKeys.code] as? String {
+    private func setServerCodeMessage(json:BodyDataDictionary?) {
+        //check if json is empty
+        if let jsonUnwrapped = json {
+            if let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String,
+                let code = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String {
                 self.serverMessage = message
                 self.serverCode = code
+            } else { //if we have json but it is not an error then say everything is oK!
+                self.serverMessage = YonaConstants.serverMessages.OK
+                self.serverCode = YonaConstants.serverCodes.OK
+            }
+        } else {
+            self.serverMessage = YonaConstants.serverMessages.noJsonReturned
+            self.serverCode = YonaConstants.serverCodes.noJsonReturned
         }
     }
     
     func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
-        guard self.activities.isEmpty == true else { //go get our activities and return the arry
+        guard self.activities.isEmpty == false else { //go get our activities and return the arry
             self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
                 onCompletion(success, serverMessage, serverCode, activities, error)
             }
@@ -77,7 +87,7 @@ class APIServiceManager {
     
     
     func getGoalsArray(onCompletion: APIGoalArrayResponse) {
-        guard self.goals.isEmpty == true else { //go get our goals and return array
+        guard self.goals.isEmpty == false else { //go get our goals and return array
             self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
                 onCompletion(success, serverMessage, serverCode, goals, error)
             }
@@ -85,142 +95,234 @@ class APIServiceManager {
         }
         onCompletion(true, serverMessage, serverCode, goals, nil)
     }
+    
+    /**
+     Check if there is an active network connection for the device
+     
+     - returns: Network connetion status (Bool)
+     */
+    func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
+    
+    func APIServiceCheck(onCompletion: APIResponse) {
+        //initialise server code and messages to OK
+        self.serverMessage = YonaConstants.serverMessages.OK
+        self.serverCode = YonaConstants.serverCodes.OK
+        //check for network connection
+        guard isConnectedToNetwork() else {
+            //if it fails then send messages back saying no connection
+            onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+            return
+        }
+        //if not then return success
+        onCompletion(true, self.serverMessage, self.serverCode)
+    }
 }
 
 //MARK: - Activities APIService
 extension APIServiceManager {
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
-        let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
-        callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-            if let json = json {
-                self.setServerCodeMessage(json)
-                guard success == true else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                    return
-                }
-                //reset the array so start with new set of activities
-                self.activities = []
-                if let embedded = json[YonaConstants.jsonKeys.embedded],
-                    let embeddedActivities = embedded[YonaConstants.jsonKeys.activityCategories] as? NSArray{
-                    for activity in embeddedActivities {
-                        if let activity = activity as? BodyDataDictionary {
-                            self.newActivity = Activities.init(activityData: activity)
-                            self.activities.append(self.newActivity!)
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                    if let json = json {
+                        self.setServerCodeMessage(json)
+                        guard success == true else {
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                            return
                         }
+                        //reset the array so start with new set of activities
+                        self.activities = []
+                        if let embedded = json[YonaConstants.jsonKeys.embedded],
+                            let embeddedActivities = embedded[YonaConstants.jsonKeys.activityCategories] as? NSArray{
+                            for activity in embeddedActivities {
+                                if let activity = activity as? BodyDataDictionary {
+                                    self.newActivity = Activities.init(activityData: activity)
+                                    self.activities.append(self.newActivity!)
+                                }
+                            }
+                            onCompletion(true, self.serverMessage, self.serverCode, self.activities, err)
+                        }
+                    } else {
+                        //response from request failed
+                        self.setServerCodeMessage(json)
+                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                     }
-                    onCompletion(true, self.serverMessage, self.serverCode, self.activities, err)
-                }
+                })
             } else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                //return response from APIService Check, no network
+                onCompletion(false, message, code, nil, nil)
             }
-        })
+        }
     }
     
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
-        //if the newActivites object has been filled then we can get the link to display activity
-        let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
-        callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-            if let json = json {
-                self.setServerCodeMessage(json)
-                guard success == true else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                    return
-                }
-                print(json)
-                self.newActivity = Activities.init(activityData: json)
-                onCompletion(true, self.serverMessage, self.serverCode, self.newActivity, err)
+        APIServiceCheck { (success, message, code) in
+            if success {
+                //if the newActivites object has been filled then we can get the link to display activity
+                let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                    if let json = json {
+                        self.setServerCodeMessage(json)
+                        guard success == true else {
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                            return
+                        }
+                        print(json)
+                        self.newActivity = Activities.init(activityData: json)
+                        onCompletion(true, self.serverMessage, self.serverCode, self.newActivity, err)
+                    } else {
+                        //response from request failed
+                        self.setServerCodeMessage(json)
+                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                    }
+                })
             } else {
-                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                //network fail
+                onCompletion(false, message, code, nil, nil)
             }
-        })
-        
+        }
     }
 }
 
 //MARK: - Goal APIService
 extension APIServiceManager {
     func getUserGoals(onCompletion: APIGoalArrayResponse) {
-        if let userID = KeychainManager.sharedInstance.getUserID() {
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
-            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let userID = KeychainManager.sharedInstance.getUserID() {
+                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
+                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
 
-                if let json = json {
-                    self.setServerCodeMessage(json)
-                    guard success == true else {
-                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                        return
-                    }
-                    self.goals = []
-                    if let embedded = json[YonaConstants.jsonKeys.embedded],
-                        let embeddedGoals = embedded[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
-                        for goal in embeddedGoals {
-                            if let goal = goal as? BodyDataDictionary {
-                                self.newGoal = Goal.init(goalData: goal)
-                                self.goals.append(self.newGoal!)
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                return
                             }
+                            self.goals = []
+                            if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                let embeddedGoals = embedded[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                                for goal in embeddedGoals {
+                                    if let goal = goal as? BodyDataDictionary {
+                                        self.newGoal = Goal.init(goalData: goal)
+                                        self.goals.append(self.newGoal!)
+                                    }
+                                }
+                                onCompletion(true, self.serverMessage, self.serverCode, self.goals, err)
+                            }
+                        } else {
+                            //response from request failed
+                            self.setServerCodeMessage(json)
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                         }
-                        onCompletion(true, self.serverMessage, self.serverCode, self.goals, err)
-                    }
-                } else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                    })
                 }
-            })
+            } else {
+                onCompletion(false, message, code, nil, nil)
+            }
         }
     }
     
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
-        if let userID = KeychainManager.sharedInstance.getUserID() {
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
-            callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-                if let json = json {
-                    self.setServerCodeMessage(json)
-                    guard success == true else {
-                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                        return
-                    }
-                    self.newGoal = Goal.init(goalData: json)
-                    onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let userID = KeychainManager.sharedInstance.getUserID() {
+                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
+                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                return
+                            }
+                            self.newGoal = Goal.init(goalData: json)
+                            onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+                        } else {
+                            //response from request failed, json is nil
+                            self.setServerCodeMessage(json)
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                        }
+                    })
                 } else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                //response from request failed, json is nil
+                    //Failed to retrive details for GET user details request
+                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals])
+                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil)
                 }
-            })
+            } else {
+                onCompletion(false, message, code, nil, nil)
+            }
         }
     }
     
     func getUsersGoalWithID(goalID: String, onCompletion: APIGoalResponse) {
-        if let userID = KeychainManager.sharedInstance.getUserID() {
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
-            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-                if let json = json {
-                    self.setServerCodeMessage(json)
-                    guard success == true else {
-                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                        return
-                    }
-                    self.newGoal = Goal.init(goalData: json)
-                    onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
-                } else {
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let userID = KeychainManager.sharedInstance.getUserID() {
+                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
+                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                return
+                            }
+                            self.newGoal = Goal.init(goalData: json)
+                            onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+                        } else {
+                            //response from request failed, json is nil
+                            self.setServerCodeMessage(json)
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                        }
+                    })
                 }
-            })
+            } else {
+                //passes back network failed messages
+                onCompletion(false, message, code, nil, nil)
+            }
         }
     }
     
     func deleteUserGoal(goalID: String, onCompletion: APIResponse) {
-        if let userID = KeychainManager.sharedInstance.getUserID() {
-            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
-            callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
-                if let json = json {
-                    self.setServerCodeMessage(json)
-                    guard success == true else {
-                        onCompletion(false, self.serverMessage, self.serverCode)
-                        return
-                    }
-                    onCompletion(true, self.serverMessage, self.serverCode)
-                } else {
-                    onCompletion(false, self.serverMessage, self.serverCode)
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let userID = KeychainManager.sharedInstance.getUserID() {
+                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
+                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                                return
+                            }
+                            onCompletion(true, self.serverMessage, self.serverCode)
+                        } else {
+                            //response from request failed
+                            self.setServerCodeMessage(json)
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                        }
+                    })
                 }
-            })
+            } else {
+                onCompletion(false, message, code)
+            }
         }
     }
 }
@@ -229,124 +331,200 @@ extension APIServiceManager {
 extension APIServiceManager {
 
     func postUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
-        //create a password for the user
-        KeychainManager.sharedInstance.createYonaPassword()
-        //set the path to post
-        let path = YonaConstants.environments.test + YonaConstants.commands.users
-        callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-            if let json = json {
-                self.setServerCodeMessage(json)
-                guard success == true else {
-                    onCompletion(false, self.serverMessage, self.serverCode,nil)
-                    return
-                }
-                self.newUser = Users.init(userData: json)
-                onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
-            } else {
-                onCompletion(false, self.serverMessage, self.serverCode,nil)
-            }
-        })
-    }
-    
-    func updateUser(body: BodyDataDictionary, onCompletion: APIResponse) {
-        //get the new user object
-        if let newUser = newUser {
-            //get the edit link
-            if let getUserLink = newUser.editLink {
-                ///now post updated user data
-                callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+        APIServiceCheck { (success, message, code) in
+            if success {
+                //create a password for the user
+                KeychainManager.sharedInstance.createYonaPassword()
+                //set the path to post
+                let path = YonaConstants.environments.test + YonaConstants.commands.users
+                self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                     if let json = json {
                         self.setServerCodeMessage(json)
                         guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode)
+                            onCompletion(false, self.serverMessage, self.serverCode,nil)
                             return
                         }
                         self.newUser = Users.init(userData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode)
+                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                     } else {
-                        onCompletion(false, self.serverMessage, self.serverCode)
+                        //response from request failed
+                        self.setServerCodeMessage(json)
+                        onCompletion(false, self.serverMessage, self.serverCode,nil)
                     }
                 })
+            } else {
+                //network fail
+                onCompletion(false, message, code, nil)
             }
         }
     }
     
-    func getUser(onCompletion: APIResponse) {
-        if let newUser = newUser {
-            if let getUserLink = newUser.getSelfLink {
-                callRequestWithAPIServiceResponse(nil, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-                    if let json = json {
-                        self.setServerCodeMessage(json)
-                        guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode)
-                            return
-                        }
-                        self.newUser = Users.init(userData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode)
-                    } else {
-                        onCompletion(false, self.serverMessage, self.serverCode)
-                    }
-                })
+    func updateUser(body: BodyDataDictionary, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                //get the new user object
+                if let newUser = self.newUser,
+                    let getUserLink = newUser.editLink {
+                        ///now post updated user data
+                        self.callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                            if let json = json {
+                                self.setServerCodeMessage(json)
+                                guard success == true else {
+                                    onCompletion(false, self.serverMessage, self.serverCode)
+                                    return
+                                }
+                                self.newUser = Users.init(userData: json)
+                                onCompletion(true, self.serverMessage, self.serverCode)
+                            } else {
+                                //response from request failed
+                                self.setServerCodeMessage(json)
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                            }
+                        })
+                } else {
+                    //Failed to retrive details for POST user details request
+                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails,
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails])
+                    onCompletion(false, self.serverMessage, self.serverCode)
+                }
+            } else {
+                onCompletion(false, message, code)
             }
+        }
+    }
+    
+    func getUser(onCompletion: APIUserResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let newUser = self.newUser {
+                    if let getUserLink = newUser.getSelfLink {
+                        self.callRequestWithAPIServiceResponse(nil, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                            if let json = json {
+                                self.setServerCodeMessage(json)
+                                guard success == true else {
+                                    onCompletion(false, self.serverMessage, self.serverCode,nil)
+                                    return
+                                }
+                                self.newUser = Users.init(userData: json)
+                                onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
+                            } else {
+                                //response from request failed
+                                self.setServerCodeMessage(json)
+                                onCompletion(false, self.serverMessage, self.serverCode,nil)
+                            }
+                        })
+                    }
 
-        } else { onCompletion(false, self.serverMessage, self.serverCode) }
+                } else {
+                    //Failed to retrive details for GET user details request
+                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails,
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails])
+                    onCompletion(false, self.serverMessage, self.serverCode,nil)
+                }
+            } else {
+                onCompletion(false, message, code,nil)
+            }
+        }
     }
     
     func deleteUser(onCompletion: APIResponse) {
-        if let newUser = newUser,
-            let path = newUser.editLink {
-                callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, json, err in
-                    if let json = json {
-                        self.setServerCodeMessage(json)
-                        guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode)
-                            return
+        APIServiceCheck { (success, message, code) in
+            if success{
+                if let newUser = self.newUser,
+                    let path = newUser.editLink {
+                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, json, err in
+                            if let json = json {
+                                self.setServerCodeMessage(json)
+                                guard success == true else {
+                                    onCompletion(false, self.serverMessage, self.serverCode)
+                                    return
+                                }
+                                KeychainManager.sharedInstance.clearKeyChain()
+                                self.newUser = Users.init(userData: json)
+                                onCompletion(true, self.serverMessage, self.serverCode)
+                            } else {
+                                //response from request failed
+                                self.setServerCodeMessage(json)
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                            }
                         }
-                        KeychainManager.sharedInstance.clearKeyChain()
-                        self.newUser = Users.init(userData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode)
                     } else {
+                        //Failed to retrive details for delete user request
+                        self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser,
+                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser])
                         onCompletion(false, self.serverMessage, self.serverCode)
                     }
-                }
-        } else { onCompletion(false, self.serverMessage, self.serverCode) }
-        
+                } else {
+                onCompletion(false, message, code)
+            }
+        }
     }
     
-    func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
-        if let userID = KeychainManager.sharedInstance.getUserID(),
-            let otpResendMobileLink = KeychainManager.sharedInstance.getOtpResendMobileLink(){
-            #if DEBUG
-                print(userID)
-                print(otpResendMobileLink)
-            #endif
-            
-            callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
-                if (success){
-                    onCompletion(true, dict , err)
+    func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let userID = KeychainManager.sharedInstance.getUserID(),
+                    let otpResendMobileLink = KeychainManager.sharedInstance.getOtpResendMobileLink(){
+                    #if DEBUG
+                        print(userID)
+                        print(otpResendMobileLink)
+                    #endif
+                    
+                    self.callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                                return
+                            }
+                            onCompletion(true, self.serverMessage, self.serverCode)
+                        } else {
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                        }
+                    }
                 } else {
-                    onCompletion(false, dict , err)
+                    //Failed to retrive details for otp resend request
+                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveOTP,
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveOTP])
+                    onCompletion(false, self.serverMessage, self.serverCode)
                 }
+            } else {
+                //no network connection
+                onCompletion(false, self.serverMessage, self.serverCode)
             }
-        } else { onCompletion(false, [:] , nil) }
-        
+        }
     }
     
-
-    func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIServiceResponse) {
-        if let confirmMobileLink = KeychainManager.sharedInstance.getConfirmMobileLink(){
-            #if DEBUG
-            print(confirmMobileLink)
-            #endif
-
-            callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, dict, err in
-                if (success){
-                    onCompletion(true, dict , err)
+    func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let confirmMobileLink = KeychainManager.sharedInstance.getConfirmMobileLink(){
+                    #if DEBUG
+                        print(confirmMobileLink)
+                    #endif
+                    
+                    self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                                return
+                            }
+                            onCompletion(true, self.serverMessage, self.serverCode)
+                        } else {
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                        }
+                    }
                 } else {
-                    onCompletion(false, dict , err)
+                    //Failed to retrive details for confirm mobile request
+                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile,
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile])
+                    onCompletion(false, self.serverMessage, self.serverCode)
                 }
+            } else {
+                //network fail
+                onCompletion(false, self.serverMessage, self.serverCode)
             }
-        } else { onCompletion(false, [:] , nil) }
-    
+        }
     }
 }
