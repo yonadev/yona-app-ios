@@ -96,7 +96,11 @@ struct YonaConstants {
     struct nsUserDefaultsKeys{
         static let isBlocked = "isBlocked"
         static let screenToDisplay = "screenToDisplay"
-        
     }
 
+    struct screenNames{
+        static let smsValidation = "SMSValidation"
+        static let passcode = "Passcode"
+        static let login = "Login"
+    }
 }
