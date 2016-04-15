@@ -110,7 +110,6 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     private func setupUI() {
-        
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
