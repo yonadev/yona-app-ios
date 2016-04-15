@@ -17,11 +17,20 @@ class APIServiceManager {
     private var newGoal: Goal?
     private var newActivity: Activities?
     private var goals:[Goal] = [] //Array returning all the goals returned by getGoals
+    private var budgetGoals:[Goal] = [] //Array returning budget goals
+    private var timezoneGoals:[Goal] = [] //Array returning timezone goals
+    private var noGoGoals:[Goal] = [] //Array returning no go goals
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
 
     private var serverMessage: ServerMessage?
     private var serverCode: ServerCode?
 
+    enum GoalType: String {
+        case BudgetGoal = "BudgetGoal"
+        case TimeZoneGoal = "TimeZoneGoal"
+        case NoGo = "NoGo"
+    }
+    
     private init() {}
     
     private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
@@ -96,6 +105,47 @@ class APIServiceManager {
         onCompletion(true, serverMessage, serverCode, goals, nil)
     }
     
+    func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalArrayResponse) {
+        guard self.goals.isEmpty == false else { //go get our goals and return array
+            self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
+                self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
+                    onCompletion(success, serverMessage, serverCode, goals, error)
+                })
+            }
+            return
+        }
+        sortGoalsIntoArray(goalType) { (success, message, code, goals, error) in
+            onCompletion(success, message, code, goals, error)
+        }
+    }
+    
+    private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalArrayResponse){
+        //sort out the goals
+        for goal in goals {
+            switch goal.goalType! {
+            case goalType.rawValue:
+                budgetGoals.append(goal)
+            case goalType.rawValue:
+                timezoneGoals.append(goal)
+            case goalType.rawValue:
+                noGoGoals.append(goal)
+            default:
+                break
+            }
+        }
+        
+        switch goalType {
+        case GoalType.BudgetGoal:
+            onCompletion(true, serverMessage, serverCode, budgetGoals, nil)
+        case GoalType.TimeZoneGoal:
+            onCompletion(true, serverMessage, serverCode, timezoneGoals, nil)
+        case GoalType.NoGo:
+            onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
+        }
+    }
+
+    func getGoalTimeZoneGoals(onCompletion: APIGoalArrayResponse) {
+    }
     /**
      Check if there is an active network connection for the device
      
