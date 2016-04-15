@@ -27,6 +27,114 @@ class GoalAPIServiceTests: XCTestCase {
         }
     }
     
+    func testGetGoalsOfTypeBudgetGoal(){
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            let bodyGoal = [
+                "@type": "BudgetGoal",
+                    "activityCategoryName": "social"
+            ]
+            //add budget goal
+            APIServiceManager.sharedInstance.postUserGoals(bodyGoal, onCompletion: { (succes, message, code, goal, error) in
+                
+                let bodyGoal2 = [
+                    "@type": "BudgetGoal",
+                    "activityCategoryName": "news"
+                ]
+                APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
+                    if success {
+                        //no
+                        APIServiceManager.sharedInstance.getGoalsOfType(APIServiceManager.GoalType.BudgetGoal, onCompletion: { (success, message, code, goals, err) in
+                            if let goalsUnwrap = goals {
+                                if success {
+                                    for goal in goalsUnwrap {
+                                        print(goal.goalType)
+                                        XCTAssertFalse(goal.goalType! != APIServiceManager.GoalType.BudgetGoal.rawValue)
+                                    }
+                                    expectation.fulfill()
+                                } else {
+                                    XCTFail(message!)
+                                }
+                            }
+                        })
+                    } else {
+                        XCTFail(message!)
+                    }
+                })
+            })
+
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+
+    }
+    
+    func testGetGoalsOfTypeTimeZone(){
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            let bodyGoal = [
+                "@type": "TimeZoneGoal",
+                "activityCategoryName": "social",
+                "zones":[ "6:00-10:00", "6:00-10:00"]
+            ]
+            //add budget goal
+            APIServiceManager.sharedInstance.postUserGoals(bodyGoal, onCompletion: { (succes, message, code, goal, error) in
+                
+                let bodyGoal2 = [
+                    "@type": "TimeZoneGoal",
+                    "activityCategoryName": "news",
+                    "zones":[ "8:00-11:00"]
+                ]
+                APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
+                    if success {
+                        //no
+                        APIServiceManager.sharedInstance.getGoalsOfType(APIServiceManager.GoalType.TimeZoneGoal, onCompletion: { (success, message, code, goals, err) in
+                            if let goalsUnwrap = goals {
+                                if success {
+                                    for goal in goalsUnwrap {
+                                        print(goal.goalType)
+                                        XCTAssertFalse(goal.goalType! != APIServiceManager.GoalType.TimeZoneGoal.rawValue)
+                                    }
+                                    expectation.fulfill()
+                                } else {
+                                    XCTFail(message!)
+                                }
+                            }
+                        })
+                    } else {
+                        XCTFail(message!)
+                    }
+                })
+            })
+            
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+        
+    }
+    
     func testGetGoalArray() {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
@@ -68,6 +176,7 @@ class GoalAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
+            print("PASSWORD:" + KeychainManager.sharedInstance.getYonaPassword()!)
             //Get all the goals
             APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
                 if(success){

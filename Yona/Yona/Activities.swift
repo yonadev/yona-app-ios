@@ -26,6 +26,10 @@ struct Activities {
             }
         }
         
+        if let mandatoryNoGo = activityData[YonaConstants.jsonKeys.mandatoryNoGo] as? Bool {
+            self.mandatoryNoGo = mandatoryNoGo
+        }
+        
         if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
             if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
                 let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
