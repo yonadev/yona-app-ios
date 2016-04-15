@@ -239,6 +239,7 @@ struct R {
     static var bdgEncouragementBestTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgEncouragementBestTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgEncouragementBestTime") } }
     static var bdgTenDay: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgTenDay", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgTenDay") } }
     static var brandAssets: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "Brand Assets") } }
+    static var confinesSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "confinesSlide") } }
     static var first: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "first") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
     static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
@@ -278,6 +279,9 @@ struct R {
     static var imgTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTime") } }
     static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
+    static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
+    static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
+    static var transparencySlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "transparencySlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "transparencySlide") } }
     static var walkthroughPage: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "walkthroughPage") } }
     static var welcomeScreen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "welcomeScreen") } }
     static var yonaLogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "yonaLogo") } }
@@ -288,7 +292,7 @@ struct R {
   }
   
   struct reuseIdentifier {
-    
+    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
   }
   
   struct segue {
@@ -303,20 +307,18 @@ struct R {
   
   struct storyboard {
     struct challenges {
-      static var challengesFirstStepStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesFirstStepStoryboard") as? ChallengesFirstStepViewController }
-      static var challengesStoryboard: ChallengesViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesViewController }
-      static var initialViewController: ChallengesFirstStepViewController? { return instance.instantiateInitialViewController() as? ChallengesFirstStepViewController }
+      static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
         assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesViewController'.")
-        assert(challengesFirstStepStoryboard != nil, "[R.swift] ViewController with identifier 'challengesFirstStepStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
+        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
       }
     }
     

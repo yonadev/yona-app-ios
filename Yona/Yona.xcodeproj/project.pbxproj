@@ -44,6 +44,7 @@
 		ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */; };
 		ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */; };
 		ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */; };
+		ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0321CBE49EB009FEF31 /* GradientView.swift */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
 		ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */; };
 		ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */; };
@@ -212,6 +213,7 @@
 		ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
 		ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
 				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
 				ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */,
@@ -1140,6 +1143,7 @@
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
+				ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */,
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				ADAEAFEB1CB44E80005ED7B4 /* AddDeviceViewController.swift in Sources */,

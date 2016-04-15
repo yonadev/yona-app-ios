@@ -11,37 +11,102 @@ import UIKit
 
 class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
-    @IBOutlet var tegoedView: UIView!
-    @IBOutlet var tegoedBadgeLabel: UILabel!
+    enum SelectedCategoryHeader {
+        case BudgetGoal
+        case BudgetCategory
+        case TimezoneGoal
+        case TimezoneCategory
+        case NogoGoal
+        case NogoCategory
+    }
     
-    @IBOutlet var tijdzoneView: UIView!
-    @IBOutlet var tijdzoneBadgeLabel: UILabel!
+    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var headerView: UIView!
+    @IBOutlet var headerLabel: UILabel!
+    
+    @IBOutlet var budgetView: UIView!
+    @IBOutlet var budgetBadgeLabel: UILabel!
+    
+    @IBOutlet var timezoneView: UIView!
+    @IBOutlet var timezoneBadgeLabel: UILabel!
     
     @IBOutlet var nogoView: UIView!
     @IBOutlet var nogoBadgeLabel: UILabel!
     
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var tableView: UITableView!
     
+    var selectedCategoryView: UIView!
+    var activityCategoriesArray = [Activities]()
+    var goalsArray = [Goal]()
     
+    var categoryHeader = SelectedCategoryHeader.BudgetGoal
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+    }
+    
+    // MARK: - private functions
     private func setSelectedCategory(categoryView: UIView) {
+        selectedCategoryView = categoryView
         categoryView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
         categoryView.alpha = 1.0
+        if categoryView == budgetView {
+            categoryHeader = .BudgetGoal
+        } else if categoryView == timezoneView {
+            categoryHeader = .TimezoneGoal
+        } else if categoryView == nogoView {
+            categoryHeader = .NogoGoal
+        }
         
+        self.setHeaderTitleLabel()
     }
     
     private func setDeselectOtherCategory() {
-        tegoedView.addBottomBorderWithColor(UIColor.yiPeaColor(), width: 4.0)
-        tijdzoneView.addBottomBorderWithColor(UIColor.yiPeaColor(), width: 4.0)
+        budgetView.addBottomBorderWithColor(UIColor.yiPeaColor(), width: 4.0)
+        timezoneView.addBottomBorderWithColor(UIColor.yiPeaColor(), width: 4.0)
         nogoView.addBottomBorderWithColor(UIColor.yiPeaColor(), width: 4.0)
         
-        tegoedView.alpha = 0.5
-        tijdzoneView.alpha = 0.5
+        budgetView.alpha = 0.5
+        timezoneView.alpha = 0.5
         nogoView.alpha = 0.5
+    }
+    
+    private func callGoals() {
+        APIServiceManager.sharedInstance.getUserGoals { (success, message, code, goals, error) in
+            if(success){
+                if let goals = goals {
+                self.goalsArray  = goals
+                
+                #if DEBUG
+                    for goal in goals {
+                        print(goal.goalType)
+                    }
+                #endif
+                self.tableView.reloadData()
+                }
+            } else {
+                print("error in goals")
+            }
+        }
+    }
+
+    private func callActivityCategory() {
+        
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, message,json, activities,error) in
+            if success{
+                self.activityCategoriesArray = activities!
+            } else {
+                print("error in callActivityCategory")
+            }
+        }
     }
     
     private func setupUI() {
@@ -51,25 +116,93 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //    Looks for single or multiple taps.
-        let tegoedTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
-        self.tegoedView.addGestureRecognizer(tegoedTap)
+        let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
+        self.budgetView.addGestureRecognizer(budgetTap)
         
-        let tijdzoneTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
-        self.tijdzoneView.addGestureRecognizer(tijdzoneTap)
+        let timezoneTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
+        self.timezoneView.addGestureRecognizer(timezoneTap)
         
         let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
         self.nogoView.addGestureRecognizer(nogoTap)
         
         setDeselectOtherCategory()
-        setSelectedCategory(self.tegoedView)
+        setSelectedCategory(self.budgetView)
+        
+        
+        self.callActivityCategory()
+        self.callGoals()
+        
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    //Calls this function when the tap is recognized.
+    func setHeaderTitleLabel() {
+        switch categoryHeader {
+            
+        case .BudgetGoal:
+            headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
+        case .BudgetCategory:
+            headerLabel.text = NSLocalizedString("challenges.user.budgetCategoryHeader", comment: "")
+        case .TimezoneGoal:
+            headerLabel.text = NSLocalizedString("challenges.user.timezoneGoalHeader", comment: "")
+        case .TimezoneCategory:
+            headerLabel.text = NSLocalizedString("challenges.user.timezoneCategoryHeader", comment: "")
+        case .NogoGoal:
+            headerLabel.text = NSLocalizedString("challenges.user.nogoGoalHeader", comment: "")
+        case .NogoCategory:
+            headerLabel.text = NSLocalizedString("challenges.user.nogoCategoryHeader", comment: "")
+        }
+        
+    }
+    
+    
+    // MARK: - Tapgesture category view tap events
     func categoryTapEvent(sender: UITapGestureRecognizer? = nil) {
         
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
-      
+        
+        
+        
+    }
+    
+    
+    // MARK: - Actions
+    @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
+        if selectedCategoryView == budgetView {
+            categoryHeader = .BudgetCategory
+        } else if selectedCategoryView == timezoneView {
+            categoryHeader = .TimezoneCategory
+        } else if selectedCategoryView == nogoView {
+            categoryHeader = .NogoCategory
+        }
+        self.setHeaderTitleLabel()
+    }
+    
+    
+    // MARK: - Table view data source
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.goalsArray.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        
+        cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+        cell.textLabel?.numberOfLines = 0
+        
+        cell.detailTextLabel?.text = self.goalsArray[indexPath.row].goalType!
+        return cell
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
 }
@@ -85,7 +218,6 @@ extension CALayer {
         set {
             self.borderColor = newValue.CGColor
         }
-        
         get {
             return UIColor(CGColor: self.borderColor!)
         }
