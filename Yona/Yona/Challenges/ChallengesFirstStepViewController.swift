@@ -80,11 +80,15 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     private func callGoals() {
-        APIServiceManager.sharedInstance.getUserGoals { (success, json, goals) in
+        
+        APIServiceManager.sharedInstance.getUserGoals { (success, message, code, goals, error) in
             if(success){
                 self.goalsArray  = goals!
-                self.tableView.reloadData()
                 
+                for goal in goals! {
+                    print(goal.goalType)
+                }
+                self.tableView.reloadData()
             } else {
                 print("error in goals")
             }
@@ -92,7 +96,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     private func callActivityCategory() {
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, json, activities) in
+        
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, message,json, activities,error) in
             if success{
                 self.activityCategoriesArray = activities!
             } else {
@@ -183,6 +188,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
         
         cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
         cell.textLabel?.numberOfLines = 0
