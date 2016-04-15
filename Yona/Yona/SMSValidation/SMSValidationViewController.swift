@@ -108,7 +108,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 "code": code
             ]
 
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, dict, err in
+        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
             dispatch_async(dispatch_get_main_queue()) {
                 if (success) {
 
@@ -121,8 +121,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     
                 } else {
-                    if let codeMessage = dict![YonaConstants.serverCodes.tooManyOTPAttemps] {
-                        if(codeMessage.isEqualToString(YonaConstants.serverCodes.tooManyOTPAttemps)){
+                    if let codeMessage = code{
+                        if(codeMessage == YonaConstants.serverCodes.tooManyOTPAttemps){
                             #if DEBUG
                             self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
                             #endif

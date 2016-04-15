@@ -36,7 +36,8 @@ class KeychainTests: XCTestCase {
         let keychain = KeychainManager.sharedInstance
         
         let pin = "1234"
-        
+        keychain.savePINCode(pin)
+
         let result = keychain.getPINCode()
         
         XCTAssertEqual(result, pin)

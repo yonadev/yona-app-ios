@@ -503,7 +503,6 @@
 				AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */,
 				D94A93C41CB291FC00ABE0F8 /* Constants.swift */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
-				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
 				D9C744EC1CB3DFCA008E463A /* Protocols */,
@@ -590,6 +589,7 @@
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
 				907DA5271CBE5C5D0031850E /* Activities.swift */,
+				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 			);
 			name = DataService;
 			path = ..;
@@ -605,7 +605,6 @@
 				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
 			);
 			name = Extensions;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */ = {
