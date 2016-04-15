@@ -120,7 +120,7 @@ class APIServiceManager {
     }
     
     private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalArrayResponse){
-        //sort out the goals
+        //sort out the goals into their arrays
         for goal in goals {
             switch goal.goalType! {
             case goalType.rawValue:
@@ -133,7 +133,7 @@ class APIServiceManager {
                 break
             }
         }
-        
+        //which array shall we send back?
         switch goalType {
         case GoalType.BudgetGoal:
             onCompletion(true, serverMessage, serverCode, budgetGoals, nil)
@@ -143,9 +143,7 @@ class APIServiceManager {
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
         }
     }
-
-    func getGoalTimeZoneGoals(onCompletion: APIGoalArrayResponse) {
-    }
+å
     /**
      Check if there is an active network connection for the device
      
