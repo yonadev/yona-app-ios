@@ -143,7 +143,7 @@ class APIServiceManager {
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
         }
     }
-å
+
     /**
      Check if there is an active network connection for the device
      
