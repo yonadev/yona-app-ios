@@ -149,6 +149,7 @@
 		D9C745911CB3F317008E463A /* NSObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745611CB3F317008E463A /* NSObject+Dictionary.m */; };
 		D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745631CB3F317008E463A /* NSString+Formatter.m */; };
 		D9C745941CB3F37D008E463A /* Folders in Resources */ = {isa = PBXBuildFile; fileRef = D9C745931CB3F37D008E463A /* Folders */; };
+		D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
@@ -374,6 +375,7 @@
 		D9C745621CB3F317008E463A /* NSString+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Formatter.h"; sourceTree = "<group>"; };
 		D9C745631CB3F317008E463A /* NSString+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Formatter.m"; sourceTree = "<group>"; };
 		D9C745931CB3F37D008E463A /* Folders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Folders; sourceTree = "<group>"; };
+		D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarSegue.swift; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D54ED31CA28CD2007805F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			children = (
 				AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */,
 				AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */,
+				D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */,
 			);
 			path = DashBoard;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
+				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				ADAEAFF11CB650A4005ED7B4 /* ConfirmPasscodeViewController.swift in Sources */,

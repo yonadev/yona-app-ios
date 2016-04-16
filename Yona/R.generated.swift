@@ -296,6 +296,13 @@ struct R {
   }
   
   struct segue {
+    struct dashboardTabBarController {
+      static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
+      static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
+      static var profile: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Profile") }
+      static var settings: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Settings") }
+    }
+    
     struct setPasscodeViewController {
       static var confirmPasscodeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SetPasscodeViewController, ConfirmPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "ConfirmPasscodeSegue") }
     }
