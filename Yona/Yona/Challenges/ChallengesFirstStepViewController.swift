@@ -115,13 +115,13 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //    Looks for single or multiple taps.
-        let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
+        let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.budgetView.addGestureRecognizer(budgetTap)
         
-        let timezoneTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
+        let timezoneTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.timezoneView.addGestureRecognizer(timezoneTap)
         
-        let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChallengesFirstStepViewController.categoryTapEvent(_:)))
+        let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.nogoView.addGestureRecognizer(nogoTap)
         
         setDeselectOtherCategory()
@@ -156,12 +156,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     // MARK: - Tapgesture category view tap events
     func categoryTapEvent(sender: UITapGestureRecognizer? = nil) {
-        
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
-        
-        
-        
     }
     
     
@@ -212,14 +208,5 @@ private extension Selector {
     
 }
 
-extension CALayer {
-    var borderUIColor: UIColor {
-        set {
-            self.borderColor = newValue.CGColor
-        }
-        get {
-            return UIColor(CGColor: self.borderColor!)
-        }
-    }
-}
+
 

@@ -17,10 +17,6 @@ class GradientView: UIView {
         }
     }
     
-    override func drawRect(rect: CGRect) {
-//        setGradient(colors[0], color2: colors[1])
-}
-    
     func setGradient(color1: UIColor, color2: UIColor) {
         let mask = CAShapeLayer()
         mask.frame = self.layer.bounds
@@ -51,10 +47,4 @@ class GradientView: UIView {
         self.layer.insertSublayer(shape, atIndex: 0)
         
     }
-    override func layoutSubviews() {
-        
-        // Ensure view has a transparent background color (not required)
-//        backgroundColor = UIColor.clearColor()
-    }
-    
 }
