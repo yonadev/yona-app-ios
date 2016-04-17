@@ -10,12 +10,29 @@ import UIKit
 
 class TabBarSegue: UIStoryboardSegue {
     
+    enum SegueId: String {
+        case Profile
+        case Challenges
+        case Friends
+        case Settings
+    }
+    
     override func perform() {
         let tabBarController = self.sourceViewController as! DashboardTabBarController
         
         
         let storyboard = UIStoryboard(name: self.identifier!, bundle: nil)
-        let destinationViewController = storyboard.instantiateViewControllerWithIdentifier(self.identifier! + "Storyboard")
+        var destinationViewController = storyboard.instantiateViewControllerWithIdentifier(self.identifier! + "Storyboard")
+        
+        switch self.identifier! {
+        case SegueId.Challenges.rawValue:
+            if let vc = tabBarController.currentViewControllers.challengesViewController {
+                destinationViewController = vc
+            } else {
+                tabBarController.currentViewControllers.challengesViewController = destinationViewController as? ChallengesFirstStepViewController
+            }
+        default:()
+        }
         
         for view in tabBarController.containerView.subviews as [UIView] {
             view.removeFromSuperview();
@@ -35,5 +52,4 @@ class TabBarSegue: UIStoryboardSegue {
         tabBarController.containerView.layoutIfNeeded()
         destinationViewController.didMoveToParentViewController(tabBarController)
     }
-    
 }

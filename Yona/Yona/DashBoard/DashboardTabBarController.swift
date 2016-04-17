@@ -8,11 +8,19 @@
 
 import UIKit
 
+struct ViewControllerStatus {
+    var profileViewController: ProfileViewController?
+    var friendsViewController: FriendsViewController?
+    var challengesViewController: ChallengesFirstStepViewController?
+    var settingsViewController: SettingsViewController?
+}
+
 class DashboardTabBarController: UIViewController {
     
     @IBOutlet var containerView : UIView!
     @IBOutlet var tabbar: UITabBar!
     
+    var currentViewControllers = ViewControllerStatus()
     var currentViewController: UIViewController?
     
     override func viewWillAppear(animated: Bool) {
