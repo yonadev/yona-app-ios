@@ -14,7 +14,7 @@ struct Goal {
     var maxDurationMinutes: Int?
     var selfLinks: String?
     var editLinks: String?
-    var goalType: String?
+    var goalType: YonaConstants.GoalType?
     var zonesStore:[String] = []
     var isMandatory: Bool?
 
@@ -32,7 +32,17 @@ struct Goal {
                 self.maxDurationMinutes = maxDurationMinutes
             }
             if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
-                self.goalType = goalType
+                
+                switch goalType {
+                case "BudgetGoal":
+                    self.goalType = YonaConstants.GoalType.BudgetGoal
+                case "TimeZoneGoal":
+                    self.goalType = YonaConstants.GoalType.TimeZoneGoal
+                case "NoGo":
+                    self.goalType = YonaConstants.GoalType.NoGo
+                default:
+                    break
+                }
             }
             
             if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{

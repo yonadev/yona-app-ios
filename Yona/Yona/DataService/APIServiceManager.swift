@@ -115,13 +115,16 @@ class APIServiceManager {
     
     private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
         //sort out the goals into their arrays
+        budgetGoals = []
+        timezoneGoals = []
+        noGoGoals = []
         for goal in goals {
             switch goal.goalType! {
-            case goalType.rawValue:
+            case YonaConstants.GoalType.BudgetGoal:
                 budgetGoals.append(goal)
-            case goalType.rawValue:
+            case YonaConstants.GoalType.TimeZoneGoal:
                 timezoneGoals.append(goal)
-            case goalType.rawValue:
+            case YonaConstants.GoalType.NoGo:
                 noGoGoals.append(goal)
             default:
                 break
@@ -135,6 +138,9 @@ class APIServiceManager {
             onCompletion(true, serverMessage, serverCode, timezoneGoals, nil)
         case YonaConstants.GoalType.NoGo:
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
+        default:
+            onCompletion(false, serverMessage, serverCode, nil, nil)
+
         }
     }
 
