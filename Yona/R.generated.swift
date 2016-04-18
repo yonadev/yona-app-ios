@@ -315,17 +315,20 @@ struct R {
   struct storyboard {
     struct challenges {
       static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
+      static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
+        assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
       }
     }
     

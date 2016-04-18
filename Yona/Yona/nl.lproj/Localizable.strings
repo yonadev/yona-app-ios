@@ -44,3 +44,6 @@
 "challenges.user.budgetCategoryHeader" = "Kies een categorie waar je een tegoed voor wilt vastleggen";
 "challenges.user.timezoneCategoryHeader" = "Kies een categorie waar je een tijdzone voor wilt instellen";
 "challenges.user.nogoCategoryHeader" = "Kies een categorie waar je een no go voor wilt instellen";
+
+"challenges.user.budgetGoalDescriptionTextfirst" = "je kunt doorbrengen ";
+"challenges.user.budgetGoalDescriptionTextsecond" = " Minuten per dag";
