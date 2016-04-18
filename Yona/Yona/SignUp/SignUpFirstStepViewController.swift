@@ -61,7 +61,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpFirstStepViewController.DismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)
         
         //Nav bar Back button.
@@ -183,13 +183,15 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     }
     
     //Calls this function when the tap is recognized.
-    func DismissKeyboard(){
+    func dismissKeyboard(){
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
 }
 
 private extension Selector {
+    static let dismissKeyboard = #selector(SignUpFirstStepViewController.dismissKeyboard)
+    
     static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
     
     static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
