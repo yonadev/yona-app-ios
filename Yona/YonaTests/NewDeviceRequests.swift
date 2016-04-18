@@ -30,7 +30,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
     
     func testPutNewDevice() {
         let expectation = expectationWithDescription("Waiting to respond")
-        var randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
         let password = NSUUID().UUIDString
         let keychain = KeychainSwift()
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
@@ -46,11 +46,23 @@ class NewDeviceAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             
-            APIServiceManager.sharedInstance.putNewDevice("+31343" + String(randomPhoneNumber), onCompletion: { (success, message, code) in
-                if success{
-                    expectation.fulfill()
+            let bodyConfirm =
+            [
+                "code": "1234"
+            ]
+            print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
+            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm, onCompletion: { (success, message, server) in
+                if success {
+                    APIServiceManager.sharedInstance.putNewDevice("+31343" + String(randomPhoneNumber), onCompletion: { (success, message, code) in
+                        if success{
+                            expectation.fulfill()
+                        }
+                    })
                 }
             })
+            
+
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }

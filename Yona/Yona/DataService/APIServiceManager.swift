@@ -168,12 +168,11 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 let path = YonaConstants.environments.test + YonaConstants.commands.newDeviceRequests + mobileNumber
-                KeychainManager.sharedInstance.createYonaPassword()
-                if let newDevicePassword = KeychainManager.sharedInstance.getYonaPassword() {
+                if let password = KeychainManager.sharedInstance.getYonaPassword() {
                     let bodyNewDevice = [
-                        "newDeviceRequestPassword": newDevicePassword
+                        "newDeviceRequestPassword": password
                     ]
-                    self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success, json, error) in
+                    self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.put, onCompletion: { (success, json, error) in
                         if let json = json {
                             self.setServerCodeMessage(json)
                             guard success == true else {
