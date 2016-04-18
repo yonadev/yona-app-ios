@@ -56,12 +56,12 @@ class GoalAPIServiceTests: XCTestCase {
                 APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
                     if success {
                         //no
-                        APIServiceManager.sharedInstance.getGoalsOfType(YonaConstants.GoalType.BudgetGoal, onCompletion: { (success, message, code, goals, err) in
+                        APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
                             if let goalsUnwrap = goals {
                                 if success {
                                     for goal in goalsUnwrap {
                                         print(goal.goalType)
-                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.BudgetGoal.rawValue)
+//                                        XCTAssertFalse(goal.goalType! != .BudgetGoalString.rawValue)
                                     }
                                     expectation.fulfill()
                                 } else {
@@ -111,12 +111,12 @@ class GoalAPIServiceTests: XCTestCase {
                 APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
                     if success {
                         //no
-                        APIServiceManager.sharedInstance.getGoalsOfType(YonaConstants.GoalType.TimeZoneGoal, onCompletion: { (success, message, code, goals, err) in
+                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
                             if let goalsUnwrap = goals {
                                 if success {
                                     for goal in goalsUnwrap {
                                         print(goal.goalType)
-                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.TimeZoneGoal.rawValue)
+//                                        XCTAssertFalse(goal.goalType! != .TimeZoneGoalString.rawValue)
                                     }
                                     expectation.fulfill()
                                 } else {

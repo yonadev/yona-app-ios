@@ -114,6 +114,9 @@ class APIServiceManager {
     }
     
     private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
+        budgetGoals = []
+        timezoneGoals = []
+        noGoGoals = []
         //sort out the goals into their arrays
         for goal in goals {
             switch goal.goalType! {
@@ -129,11 +132,11 @@ class APIServiceManager {
         }
         //which array shall we send back?
         switch goalType {
-        case YonaConstants.GoalType.BudgetGoal:
+        case YonaConstants.GoalType.BudgetGoalString:
             onCompletion(true, serverMessage, serverCode, budgetGoals, nil)
-        case YonaConstants.GoalType.TimeZoneGoal:
+        case YonaConstants.GoalType.TimeZoneGoalString:
             onCompletion(true, serverMessage, serverCode, timezoneGoals, nil)
-        case YonaConstants.GoalType.NoGo:
+        case YonaConstants.GoalType.NoGoGoalString:
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
         }
     }
