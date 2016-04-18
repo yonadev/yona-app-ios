@@ -568,11 +568,13 @@ extension APIServiceManager {
                         if let json = json {
                             self.setServerCodeMessage(json)
                             guard success == true else {
+                                print(err)
                                 onCompletion(false, self.serverMessage, self.serverCode)
                                 return
                             }
                             onCompletion(true, self.serverMessage, self.serverCode)
                         } else {
+                            print(err)
                             onCompletion(false, self.serverMessage, self.serverCode)
                         }
                     }

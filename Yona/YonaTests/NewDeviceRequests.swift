@@ -56,10 +56,17 @@ class NewDeviceAPIServiceTests: XCTestCase {
                 if success {
                     APIServiceManager.sharedInstance.putNewDevice("+31343" + String(randomPhoneNumber), onCompletion: { (success, message, code) in
                         if success{
-                            expectation.fulfill()
+                            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+                                if success {
+                                    expectation.fulfill()
+                                } else {
+                                    print("Delete response" + serverMessage!)
+                                }
+                            })
                         }
                     })
                 }
+
             })
             
 
