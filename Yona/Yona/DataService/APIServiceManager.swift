@@ -115,6 +115,9 @@ class APIServiceManager {
     
     private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
         //sort out the goals into their arrays
+        budgetGoals = []
+        timezoneGoals = []
+        noGoGoals = []
         for goal in goals {
             switch goal.goalType! {
             case goalType.rawValue:
