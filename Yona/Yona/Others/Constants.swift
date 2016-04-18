@@ -13,15 +13,15 @@ typealias ServerCode = String
 
 struct YonaConstants {
     enum GoalType: String {
-        case BudgetGoal = "BudgetGoal"
-        case TimeZoneGoal = "TimeZoneGoal"
-        case NoGo = "NoGo"
+        case BudgetGoalString = "BudgetGoal"
+        case TimeZoneGoalString = "TimeZoneGoal"
+        case NoGoGoalString = "NoGo"
     }
     
     enum CategoryName: String {
-        case news = "news"
-        case social = "social"
-        case gambling = "gambling"
+        case newsString = "news"
+        case socialString = "social"
+        case gamblingString = "gambling"
     }
     
     struct environments {
