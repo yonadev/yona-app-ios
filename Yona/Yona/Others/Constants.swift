@@ -34,6 +34,7 @@ struct YonaConstants {
         static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
         static let activityCategories = "activityCategories/"
+        static let newDeviceRequests = "newDeviceRequests/"
     }
     
     struct httpMethods{

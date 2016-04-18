@@ -29,7 +29,7 @@ class APIServiceManager {
     
     private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
         
-        guard let yonaPassword = getYonaPassword() else {
+        guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
             onCompletion(false,nil,nil)
             return
         }
@@ -44,23 +44,6 @@ class APIServiceManager {
         })   
     }
 
-    
-    private func createYonaPassword() {
-        let password = NSUUID().UUIDString
-        
-        let keychain = KeychainSwift()
-        
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
-    }
-    
-    private func getYonaPassword() -> String? {
-        let keychain = KeychainSwift()
-        
-        guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
-        
-        return password
-    }
-    
     private func setServerCodeMessage(json:BodyDataDictionary?) {
         //check if json is empty
         if let jsonUnwrapped = json {
@@ -178,6 +161,40 @@ class APIServiceManager {
     }
 }
 
+
+//MARK: - New Device Requests APIService
+extension APIServiceManager {
+    func putNewDevice(mobileNumber: String, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let path = YonaConstants.environments.test + YonaConstants.commands.newDeviceRequests + mobileNumber
+                KeychainManager.sharedInstance.createYonaPassword()
+                if let newDevicePassword = KeychainManager.sharedInstance.getYonaPassword() {
+                    let bodyNewDevice = [
+                        "newDeviceRequestPassword": newDevicePassword
+                    ]
+                    self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { (success, json, error) in
+                        if let json = json {
+                            self.setServerCodeMessage(json)
+                            guard success == true else {
+                                onCompletion(false, self.serverMessage, self.serverCode)
+                                return
+                            }
+                            onCompletion(true, self.serverMessage, self.serverCode)
+                        } else {
+                            //response from request failed
+                            self.setServerCodeMessage(json)
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                        }
+                    })
+                }
+            } else {
+                onCompletion(false, message, code)
+            }
+        }
+    }
+    
+}
 //MARK: - Activities APIService
 extension APIServiceManager {
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
@@ -211,7 +228,7 @@ extension APIServiceManager {
                 })
             } else {
                 //return response from APIService Check, no network
-                onCompletion(false, message, code, nil, nil)
+                onCompletion(false, message, code, self.activities, nil)
             }
         }
     }
@@ -279,7 +296,7 @@ extension APIServiceManager {
                     })
                 }
             } else {
-                onCompletion(false, message, code, nil, nil)
+                onCompletion(false, message, code, self.goals, nil)
             }
         }
     }

@@ -61,7 +61,7 @@ class GoalAPIServiceTests: XCTestCase {
                                 if success {
                                     for goal in goalsUnwrap {
                                         print(goal.goalType)
-//                                        XCTAssertFalse(goal.goalType! != .BudgetGoalString.rawValue)
+                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.BudgetGoalString.rawValue)
                                     }
                                     expectation.fulfill()
                                 } else {
@@ -116,7 +116,7 @@ class GoalAPIServiceTests: XCTestCase {
                                 if success {
                                     for goal in goalsUnwrap {
                                         print(goal.goalType)
-//                                        XCTAssertFalse(goal.goalType! != .TimeZoneGoalString.rawValue)
+                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.TimeZoneGoalString.rawValue)
                                     }
                                     expectation.fulfill()
                                 } else {
