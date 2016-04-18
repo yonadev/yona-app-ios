@@ -24,12 +24,6 @@ class APIServiceManager {
 
     private var serverMessage: ServerMessage?
     private var serverCode: ServerCode?
-
-    enum GoalType: String {
-        case BudgetGoal = "BudgetGoal"
-        case TimeZoneGoal = "TimeZoneGoal"
-        case NoGo = "NoGo"
-    }
     
     private init() {}
     
@@ -105,7 +99,7 @@ class APIServiceManager {
         onCompletion(true, serverMessage, serverCode, goals, nil)
     }
     
-    func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalArrayResponse) {
+    func getGoalsOfType(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse) {
         guard self.goals.isEmpty == false else { //go get our goals and return array
             self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
                 self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
@@ -119,7 +113,7 @@ class APIServiceManager {
         }
     }
     
-    private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalArrayResponse){
+    private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
         //sort out the goals into their arrays
         for goal in goals {
             switch goal.goalType! {
@@ -135,11 +129,11 @@ class APIServiceManager {
         }
         //which array shall we send back?
         switch goalType {
-        case GoalType.BudgetGoal:
+        case YonaConstants.GoalType.BudgetGoal:
             onCompletion(true, serverMessage, serverCode, budgetGoals, nil)
-        case GoalType.TimeZoneGoal:
+        case YonaConstants.GoalType.TimeZoneGoal:
             onCompletion(true, serverMessage, serverCode, timezoneGoals, nil)
-        case GoalType.NoGo:
+        case YonaConstants.GoalType.NoGo:
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
         }
     }
