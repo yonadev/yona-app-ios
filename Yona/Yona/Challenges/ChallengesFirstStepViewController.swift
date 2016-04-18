@@ -11,15 +11,6 @@ import UIKit
 
 class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
-    enum SelectedCategoryHeader {
-        case BudgetGoal
-        case BudgetCategory
-        case TimezoneGoal
-        case TimezoneCategory
-        case NogoGoal
-        case NogoCategory
-    }
-    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var headerLabel: UILabel!
@@ -40,7 +31,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     var activityCategoriesArray = [Activities]()
     var goalsArray = [Goal]()
     
-    var categoryHeader = SelectedCategoryHeader.BudgetGoal
+    var categoryHeader = YonaConstants.GoalType.BudgetGoal
     
     // MARK: - View
     override func viewDidLoad() {
@@ -59,11 +50,11 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         categoryView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
         categoryView.alpha = 1.0
         if categoryView == budgetView {
-            categoryHeader = .BudgetGoal
+            categoryHeader = YonaConstants.GoalType.BudgetGoal
         } else if categoryView == timezoneView {
-            categoryHeader = .TimezoneGoal
+            categoryHeader = YonaConstants.GoalType.TimeZoneGoal
         } else if categoryView == nogoView {
-            categoryHeader = .NogoGoal
+            categoryHeader = YonaConstants.GoalType.NoGo
         }
         
         self.setHeaderTitleLabel()
@@ -137,17 +128,17 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     func setHeaderTitleLabel() {
         switch categoryHeader {
             
-        case .BudgetGoal:
+        case YonaConstants.GoalType.BudgetGoal:
             headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
-        case .BudgetCategory:
+        case YonaConstants.GoalType.BudgetActivity:
             headerLabel.text = NSLocalizedString("challenges.user.budgetCategoryHeader", comment: "")
-        case .TimezoneGoal:
+        case YonaConstants.GoalType.TimeZoneGoal:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneGoalHeader", comment: "")
-        case .TimezoneCategory:
+        case YonaConstants.GoalType.TimezoneActivity:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneCategoryHeader", comment: "")
-        case .NogoGoal:
+        case YonaConstants.GoalType.NoGo:
             headerLabel.text = NSLocalizedString("challenges.user.nogoGoalHeader", comment: "")
-        case .NogoCategory:
+        case YonaConstants.GoalType.NogoActivity:
             headerLabel.text = NSLocalizedString("challenges.user.nogoCategoryHeader", comment: "")
         }
         
@@ -164,11 +155,11 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     // MARK: - Actions
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
         if selectedCategoryView == budgetView {
-            categoryHeader = .BudgetCategory
+            categoryHeader = YonaConstants.GoalType.BudgetActivity
         } else if selectedCategoryView == timezoneView {
-            categoryHeader = .TimezoneCategory
+            categoryHeader = YonaConstants.GoalType.TimezoneActivity
         } else if selectedCategoryView == nogoView {
-            categoryHeader = .NogoCategory
+            categoryHeader = YonaConstants.GoalType.NogoActivity
         }
         self.setHeaderTitleLabel()
     }
