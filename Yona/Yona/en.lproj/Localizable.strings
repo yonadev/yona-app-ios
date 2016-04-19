@@ -48,3 +48,4 @@
 "challenges.user.budgetGoalDescriptionTextfirst" = "you can spend ";
 "challenges.user.budgetGoalDescriptionTextsecond" = " Minutes per day";
 
+"challenges.user.budgetGoalDescriptionText" = "you can spend \(updatedText) Minutes per day";
