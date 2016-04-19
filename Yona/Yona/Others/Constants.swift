@@ -69,6 +69,7 @@ struct YonaConstants {
         static let  goalType = "@type"
         static let  maxDuration = "maxDurationMinutes"
         static let  activityCategoryName = "activityCategoryName"
+        static let  yonaActivityCategory = "yona:activityCategory"
         static let  embedded = "_embedded"
         static let  yonaGoals = "yona:goals"
         static let  activityCategories = "yona:activityCategories"

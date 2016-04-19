@@ -19,9 +19,6 @@ struct Goal {
     var isMandatory: Bool?
 
     init(goalData: BodyDataDictionary) {
-            if let activityCategoryName = goalData[YonaConstants.jsonKeys.activityCategoryName] as? String {
-                self.activityCategoryName = activityCategoryName
-            }
             if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
                 for zone in zones {
                     zonesStore.append(zone as! String)

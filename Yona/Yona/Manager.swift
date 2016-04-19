@@ -57,6 +57,7 @@ extension Manager {
                 do {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                     print(jsonObject)
+                    APIServiceManager.sharedInstance.setServerCodeMessage(jsonObject as? [String: AnyObject], code: httpResponse.statusCode)
 
                     if case YonaConstants.responseCodes.ok200 ... YonaConstants.responseCodes.ok204 = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
                         if let dict = jsonObject as? [String: AnyObject] {
