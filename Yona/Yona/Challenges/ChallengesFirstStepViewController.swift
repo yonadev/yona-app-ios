@@ -13,11 +13,11 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
-        case BudgetCategory
-        case TimezoneGoal
-        case TimezoneCategory
-        case NogoGoal
-        case NogoCategory
+        case BudgetActivity
+        case TimeZoneGoal
+        case TimeZoneActivity
+        case NoGoGoal
+        case NoGoActivity
     }
     
     @IBOutlet var gradientView: GradientView!
@@ -35,6 +35,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var addNewGoalButton: UIButton!
     
     var selectedCategoryView: UIView!
     var activityCategoriesArray = [Activities]()
@@ -49,24 +51,102 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         setupUI()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     // MARK: - private functions
     private func setSelectedCategory(categoryView: UIView) {
+        
+        addNewGoalButton.hidden = false
+        backButton.hidden = true
+        
         selectedCategoryView = categoryView
         categoryView.addBottomBorderWithColor(UIColor.yiWhiteColor(), width: 4.0)
         categoryView.alpha = 1.0
         if categoryView == budgetView {
             categoryHeader = .BudgetGoal
+            self.callBudgetGoal()
         } else if categoryView == timezoneView {
-            categoryHeader = .TimezoneGoal
+            categoryHeader = .TimeZoneGoal
+            self.callTimeZoneGoal()
         } else if categoryView == nogoView {
-            categoryHeader = .NogoGoal
+            categoryHeader = .NoGoGoal
+            self.callNoGoGoal()
         }
-        
         self.setHeaderTitleLabel()
+    }
+    
+    private func callBudgetGoal() {
+        APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
+            if let goalsUnwrap = goals {
+                if success {
+                    self.goalsArray  = goalsUnwrap
+                    if self.goalsArray.count > 0 {
+                        self.budgetBadgeLabel.text = String(self.goalsArray.count)
+                    } else {
+                        self.budgetBadgeLabel.hidden = true
+                    }
+                    #if DEBUG
+                        for goal in goalsUnwrap {
+                            print(goal.goalType)
+                        }
+                    #endif
+                    self.tableView .reloadData()
+                } else {
+                    
+                }
+            }
+        })
+    }
+    
+    private func callTimeZoneGoal() {
+        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
+            if let goalsUnwrap = goals {
+                if success {
+                    self.goalsArray  = goalsUnwrap
+                    if self.goalsArray.count > 0 {
+                        self.timezoneBadgeLabel.text = String(self.goalsArray.count)
+                    } else {
+                        self.timezoneBadgeLabel.hidden = true
+                    }
+                    #if DEBUG
+                        for goal in goalsUnwrap {
+                            print(goal.goalType)
+                        }
+                    #endif
+                    self.tableView .reloadData()
+                } else {
+                    
+                }
+            }
+        })
+        
+    }
+    
+    private func callNoGoGoal() {
+        APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, code, goals, err) in
+            if let goalsUnwrap = goals {
+                if success {
+                    self.goalsArray  = goalsUnwrap
+                    if self.goalsArray.count > 0 {
+                        self.nogoBadgeLabel.text = String(self.goalsArray.count)
+                    } else {
+                        self.nogoBadgeLabel.hidden = true
+                    }
+                    #if DEBUG
+                        for goal in goalsUnwrap {
+                            print(goal.goalType)
+                        }
+                    #endif
+                    self.tableView .reloadData()
+                } else {
+                    
+                }
+            }
+        })
+        
     }
     
     private func setDeselectOtherCategory() {
@@ -83,24 +163,24 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         APIServiceManager.sharedInstance.getUserGoals { (success, message, code, goals, error) in
             if(success){
                 if let goals = goals {
-                self.goalsArray  = goals
-                
-                #if DEBUG
-                    for goal in goals {
-                        print(goal.goalType)
-                    }
-                #endif
-                self.tableView.reloadData()
+                    self.goalsArray  = goals
+                    
+                    #if DEBUG
+                        for goal in goals {
+                            print(goal.goalType)
+                        }
+                    #endif
+                    self.tableView.reloadData()
                 }
             } else {
                 print("error in goals")
             }
         }
     }
-
+    
     private func callActivityCategory() {
         
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, message,json, activities,error) in
+        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 self.activityCategoriesArray = activities!
             } else {
@@ -114,6 +194,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        
         //    Looks for single or multiple taps.
         let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.budgetView.addGestureRecognizer(budgetTap)
@@ -124,12 +205,13 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.nogoView.addGestureRecognizer(nogoTap)
         
+        self.callActivityCategory()
+        self.callNoGoGoal()
+        self.callTimeZoneGoal()
+        self.callBudgetGoal()
+        
         setDeselectOtherCategory()
         setSelectedCategory(self.budgetView)
-        
-        
-        self.callActivityCategory()
-        self.callGoals()
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
@@ -139,18 +221,17 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             
         case .BudgetGoal:
             headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
-        case .BudgetCategory:
+        case .BudgetActivity:
             headerLabel.text = NSLocalizedString("challenges.user.budgetCategoryHeader", comment: "")
-        case .TimezoneGoal:
+        case .TimeZoneGoal:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneGoalHeader", comment: "")
-        case .TimezoneCategory:
+        case .TimeZoneActivity:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneCategoryHeader", comment: "")
-        case .NogoGoal:
+        case .NoGoGoal:
             headerLabel.text = NSLocalizedString("challenges.user.nogoGoalHeader", comment: "")
-        case .NogoCategory:
+        case .NoGoActivity:
             headerLabel.text = NSLocalizedString("challenges.user.nogoCategoryHeader", comment: "")
         }
-        
     }
     
     
@@ -162,15 +243,23 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     // MARK: - Actions
+    @IBAction func back(sender: AnyObject) {
+        self.setSelectedCategory(selectedCategoryView)
+    }
+    
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
+        sender.hidden = true
+        backButton.hidden = false
         if selectedCategoryView == budgetView {
-            categoryHeader = .BudgetCategory
+            categoryHeader = .BudgetActivity
+            
         } else if selectedCategoryView == timezoneView {
-            categoryHeader = .TimezoneCategory
+            categoryHeader = .TimeZoneActivity
         } else if selectedCategoryView == nogoView {
-            categoryHeader = .NogoCategory
+            categoryHeader = .NoGoActivity
         }
         self.setHeaderTitleLabel()
+        self.tableView.reloadData()
     }
     
     
@@ -180,18 +269,54 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.goalsArray.count
+        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
+            return self.goalsArray.count
+        } else {
+            return self.activityCategoriesArray.count
+        }
+        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
+        switch categoryHeader {
+        case .BudgetGoal:
+            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].activityCategoryName!
+            let maxDurationMinutesUnwrap = String(self.goalsArray[indexPath.row].maxDurationMinutes)
+            let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
+            let title = NSString(format: localizedString, maxDurationMinutesUnwrap, String(activityCategoryNameUnwrap))
+            cell.textLabel?.text = activityCategoryNameUnwrap
+            cell.detailTextLabel?.text = title as String
+            cell.detailTextLabel?.numberOfLines = 0
+            
+        case .BudgetActivity:
+            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.detailTextLabel?.text = ""
+            
+        case .TimeZoneGoal:
+            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            //TODO: - work in progress
+            cell.detailTextLabel?.text = "TimeZoneGoal"
+            cell.detailTextLabel?.numberOfLines = 0
+            
+        case .TimeZoneActivity:
+            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.detailTextLabel?.text = ""
+            
+        case .NoGoGoal:
+            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            cell.detailTextLabel?.text = "NoGoGoal"
+            
+        case .NoGoActivity:
+            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.detailTextLabel?.text = ""
+        }
         
-        cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
         cell.textLabel?.numberOfLines = 0
+        cell.detailTextLabel?.numberOfLines = 0
         
-        cell.detailTextLabel?.text = self.goalsArray[indexPath.row].goalType!
         return cell
     }
     
@@ -200,12 +325,21 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
+            return 100.0
+        } else {
+            return 60.0
+        }
+    }
+    
 }
 
 private extension Selector {
     
     static let categoryTapEvent = #selector(ChallengesFirstStepViewController.categoryTapEvent(_:))
     
+    static let back = #selector(ChallengesFirstStepViewController.back(_:))
 }
 
 
