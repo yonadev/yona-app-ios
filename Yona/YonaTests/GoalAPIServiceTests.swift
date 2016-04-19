@@ -43,7 +43,6 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             //we need to now get the activity link from our activities
-//            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, server, activities, error) in
             APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                     //set body for goal
                     let bodyBudgetSocialGoal = [
@@ -64,10 +63,10 @@ class GoalAPIServiceTests: XCTestCase {
                         ]
                         
                         //now we can post the goal
-                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (succes, message, code, goal, error) in
+                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (success, message, code, goal, error) in
                             if success {
                                 //now we can post the goal
-                                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (succes, message, code, goal, error) in
+                                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (success, message, code, goal, error) in
                                     if success {
                                         //no
                                         APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
@@ -94,7 +93,7 @@ class GoalAPIServiceTests: XCTestCase {
                 })
             })
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectationsWithTimeout(10.0, handler:nil)
 
     }
     
@@ -102,7 +101,8 @@ class GoalAPIServiceTests: XCTestCase {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        
+        var newsActivityCategoryLink: String?
+        var socialActivityCategoryLink: String?
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
@@ -114,71 +114,63 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             //we need to now get the activity link from our activities
-            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, server, activities, error) in
-                
-                //get the link for the social link
-                var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
-                var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
-                
-                for activity in (activities! as Array) {
-                    if activity.activityCategoryName == YonaConstants.CategoryName.socialString.rawValue{
-                        socialActivityCategoryLink = activity.selfLinks!
+            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
+                    if success {
+                        //set body for budget social goal
+                        let bodyTimeZoneSocialGoal = [
+                            "@type": "TimeZoneGoal",
+                            "_links": [
+                                "yona:activityCategory": ["href": socialActivityCategoryLink]
+                            ],
+                            "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+                        ]
+                    }
+                APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
+                    if success {
+                        //set body for goal
+                        let bodyTimeZoneNewsGoal = [
+                            "@type": "TimeZoneGoal",
+                            "_links": [
+                                "yona:activityCategory": ["href": newsActivityCategoryLink]
+                            ],
+                            "zones": ["8:00-17:00", "20:00-22:00"]
+                        ]
                     }
                     
-                    if activity.activityCategoryName == YonaConstants.CategoryName.newsString.rawValue{
-                        newsActivityCategoryLink = activity.selfLinks!
-                    }
-                }
-                //set body for budget social goal
-                let bodyTimeZoneSocialGoal = [
-                    "@type": "TimeZoneGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": socialActivityCategoryLink]
-                    ],
-                    "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
-                ]
-                
-                //set body for goal
-                let bodyTimeZoneNewsGoal = [
-                    "@type": "TimeZoneGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": newsActivityCategoryLink]
-                    ],
-                    "zones": ["8:00-17:00", "20:00-22:00"]
-                ]
-                
-                //add budget goal
-                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (succes, message, code, goal, error) in
-                    if success {
-
-                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (succes, message, code, goal, error) in
+                        //add budget goal
+                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, error) in
                             if success {
-                                //no
-                                APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
-                                    if let goalsUnwrap = goals {
-                                        if success {
-                                            for goal in goalsUnwrap {
-                                                print(goal.goalType)
-                                                XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.TimeZoneGoalString.rawValue)
+
+                                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, error) in
+                                    if success {
+                                        //no
+                                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
+                                            if let goalsUnwrap = goals {
+                                                if success {
+                                                    for goal in goalsUnwrap {
+                                                        print(goal.goalType)
+                                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.TimeZoneGoalString.rawValue)
+                                                    }
+                                                    expectation.fulfill()
+                                                } else {
+                                                    XCTFail(message!)
+                                                }
                                             }
-                                            expectation.fulfill()
-                                        } else {
-                                            XCTFail(message!)
-                                        }
+                                        })
+                                    } else {
+                                        XCTFail(message!)
                                     }
                                 })
                             } else {
                                 XCTFail(message!)
                             }
                         })
-                    } else {
-                        XCTFail(message!)
-                    }
                 })
+                    
             })
             
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectationsWithTimeout(10.0, handler:nil)
         
     }
     
