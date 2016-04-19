@@ -43,66 +43,54 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             //we need to now get the activity link from our activities
-            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, server, activities, error) in
-                
-                //get the link for the social link
-                var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
-                var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+//            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, server, activities, error) in
+            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
+                    //set body for goal
+                    let bodyBudgetSocialGoal = [
+                        "@type": "BudgetGoal",
+                        "_links": [
+                            "yona:activityCategory": ["href": socialActivityCategoryLink]
+                        ],
+                        "maxDurationMinutes": "10"
+                    ]
+                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
 
-                for activity in (activities! as Array) {
-                    if activity.activityCategoryName == YonaConstants.CategoryName.socialString.rawValue{
-                        socialActivityCategoryLink = activity.selfLinks!
-                    }
-                    
-                    if activity.activityCategoryName == YonaConstants.CategoryName.newsString.rawValue{
-                        newsActivityCategoryLink = activity.selfLinks!
-                    }
-                }
-                
-                //set body for goal
-                let bodyBudgetSocialGoal = [
-                    "@type": "BudgetGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": socialActivityCategoryLink]
-                    ],
-                    "maxDurationMinutes": "10"
-                ]
-                
-                let bodyBudgetNewsGoal = [
-                    "@type": "BudgetGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": newsActivityCategoryLink]
-                    ],
-                    "maxDurationMinutes": "30"
-                ]
-                
-                //now we can post the goal
-                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (succes, message, code, goal, error) in
-                    if success {
+                        let bodyBudgetNewsGoal = [
+                            "@type": "BudgetGoal",
+                            "_links": [
+                                "yona:activityCategory": ["href": newsActivityCategoryLink]
+                            ],
+                            "maxDurationMinutes": "30"
+                        ]
+                        
                         //now we can post the goal
-                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (succes, message, code, goal, error) in
+                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (succes, message, code, goal, error) in
                             if success {
-                                //no
-                                APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
-                                    if let goalsUnwrap = goals {
-                                        if success {
-                                            for goal in goalsUnwrap {
-                                                print(goal.goalType)
-                                                XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.BudgetGoalString.rawValue)
+                                //now we can post the goal
+                                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (succes, message, code, goal, error) in
+                                    if success {
+                                        //no
+                                        APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
+                                            if let goalsUnwrap = goals {
+                                                if success {
+                                                    for goal in goalsUnwrap {
+                                                        print(goal.goalType)
+                                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.BudgetGoalString.rawValue)
+                                                    }
+                                                    expectation.fulfill()
+                                                } else {
+                                                    XCTFail(message!)
+                                                }
                                             }
-                                            expectation.fulfill()
-                                        } else {
-                                            XCTFail(message!)
-                                        }
+                                        })
+                                    } else {
+                                        XCTFail(message!)
                                     }
                                 })
                             } else {
                                 XCTFail(message!)
                             }
                         })
-                    } else {
-                        XCTFail(message!)
-                    }
                 })
             })
         }
