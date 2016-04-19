@@ -93,6 +93,29 @@ class APIServiceManager {
             onCompletion(success, message, code, goals, error)
         }
     }
+    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
+        self.getActivitiesArray{ (success, message, code, activities, error) in
+            if success {
+                var activityCategoryLink:String?
+                
+                for activity in (activities! as Array) {
+                    switch activity.activityCategoryName! {
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    default:
+                        break
+                    }
+                }
+                onCompletion(true, activityCategoryLink, message, code)
+            } else {
+                onCompletion(false, nil, message, code)
+            }
+        }
+    }
     
     private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
         budgetGoals = []
