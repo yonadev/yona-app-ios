@@ -21,7 +21,10 @@ struct Goal {
     init(goalData: BodyDataDictionary) {
             if let activityCategoryName = goalData[YonaConstants.jsonKeys.activityCategoryName] as? String {
                 self.activityCategoryName = activityCategoryName
+            } else {
+                self.activityCategoryName = ""
             }
+        
             if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
                 for zone in zones {
                     zonesStore.append(zone as! String)

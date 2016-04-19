@@ -45,3 +45,8 @@
 "challenges.user.timezoneCategoryHeader" = "Choose a category in which you want to set a time zone";
 "challenges.user.nogoCategoryHeader" = "Choose a category in which you want to set up a no go for";
 
+"challenges.user.budgetGoalDescriptionTextfirst" = "you can spend ";
+"challenges.user.budgetGoalDescriptionTextsecond" = " Minutes per day";
+
+"challenges.user.budgetGoalDescriptionText" = "You can spend %@ minutes per day on %@";
+
