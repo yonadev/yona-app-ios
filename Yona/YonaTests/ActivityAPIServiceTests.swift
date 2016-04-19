@@ -98,9 +98,9 @@ class ActivityAPIServiceTests: XCTestCase {
 
     func testGetActivityLinkForSocialActivityName() {
         let expectation = expectationWithDescription("Waiting to respond")
-        var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+        let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
 
-        APIServiceManager.sharedInstance.testGetActivityLinkForActivityName(YonaConstants.CategoryName.socialString) { (success, activityID, message, code) in
+        APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
             if success{
                 XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
                 expectation.fulfill()

@@ -11,6 +11,7 @@ import Foundation
 
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
+typealias APIGoalSizeResponse = (Int) -> Void
 typealias APIActivityLinkResponse = (Bool, String?, ServerMessage?, ServerCode?) -> Void
 typealias APIUserResponse = (Bool, ServerMessage?, ServerCode?, Users?) -> Void
 typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, NSError?) -> Void
@@ -53,7 +54,8 @@ extension Manager {
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            if let response = response, let httpResponse = response as? NSHTTPURLResponse {
+            if let response = response,
+                let httpResponse = response as? NSHTTPURLResponse {
                 let code = httpResponse.statusCode
                 do {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)

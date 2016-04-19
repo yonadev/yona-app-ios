@@ -117,6 +117,30 @@ class APIServiceManager {
         }
     }
     
+    func getGoalsSizeOfGoalType(goalType: YonaConstants.GoalType, onCompletion: APIGoalSizeResponse) {
+        
+        switch goalType {
+        case YonaConstants.GoalType.BudgetGoalString:
+            guard budgetGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(budgetGoals.count)
+        case YonaConstants.GoalType.TimeZoneGoalString:
+            guard timezoneGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(timezoneGoals.count)
+        case YonaConstants.GoalType.NoGoGoalString:
+            guard noGoGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(noGoGoals.count)
+        }
+    }
+    
     private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
         budgetGoals = []
         timezoneGoals = []
@@ -194,18 +218,12 @@ extension APIServiceManager {
                         "newDeviceRequestPassword": password
                     ]
                     self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.put, onCompletion: { (success, json, error) in
-                        if let json = json {
-//                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
-                            //response from request failed
-//                            self.setServerCodeMessage(json)
+                        guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
+                        
                     })
                 }
             } else {
@@ -388,18 +406,12 @@ extension APIServiceManager {
                 if let userID = KeychainManager.sharedInstance.getUserID() {
                     let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
                     self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
-                        if let json = json {
-//                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
-                            //response from request failed
-//                            self.setServerCodeMessage(json)
+                        guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
+
                     })
                 }
             } else {
@@ -553,16 +565,11 @@ extension APIServiceManager {
                     #endif
                     
                     self.callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
-                        if let json = json {
-//                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
+                        guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
                     }
                 } else {
                     //Failed to retrive details for otp resend request
@@ -586,18 +593,12 @@ extension APIServiceManager {
                     #endif
                     
                     self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
-                        if let json = json {
-//                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                print(err)
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
+                        guard success == true else {
                             print(err)
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
                     }
                 } else {
                     //Failed to retrive details for confirm mobile request
