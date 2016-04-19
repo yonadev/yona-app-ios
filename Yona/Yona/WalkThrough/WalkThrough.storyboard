@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vbt-Nr-l9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NZW-Ub-0dU">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Page Content View Controller-->
@@ -40,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXe-Dt-86d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-241.5" y="279.75"/>
+            <point key="canvasLocation" x="-4498" y="-2345"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="5I8-ZU-YJB">
@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aD-1r-tCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493.5" y="279.75"/>
+            <point key="canvasLocation" x="-3763" y="-2345"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="cbA-K1-vsD">
@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4I-vB-b7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282.5" y="279.75"/>
+            <point key="canvasLocation" x="-2974" y="-2345"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="PHT-rV-oZ8">
@@ -94,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5IG-it-YKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002.5" y="279.75"/>
+            <point key="canvasLocation" x="-2254" y="-2345"/>
         </scene>
         <!--Walk Through View Controller-->
         <scene sceneID="Ukb-s6-5eH">
@@ -116,7 +116,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQ9-fZ-oGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="4WR-lq-MPP" customClass="AVPageViewController" customModule="Yona" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="742.5" y="-453"/>
+            <point key="canvasLocation" x="-3514" y="-3077"/>
+        </scene>
+        <!--Introductory View Controller-->
+        <scene sceneID="wE2-UD-CSe">
+            <objects>
+                <viewController storyboardIdentifier="frontViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RSZ-Em-2V2" customClass="IntroductoryViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oHE-VC-8ga"/>
+                        <viewControllerLayoutGuide type="bottom" id="sWS-Sl-rIb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pOe-Hs-vsX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-vw-uMO">
+                                <rect key="frame" x="550" y="550" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WQS-oR-BYf"/>
+                                    <constraint firstAttribute="width" constant="50" id="t2G-Vf-n21"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="nextAction:" destination="RSZ-Em-2V2" eventType="touchUpInside" id="sSx-po-hpO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sWS-Sl-rIb" firstAttribute="top" secondItem="8cE-vw-uMO" secondAttribute="bottom" id="4NU-QX-RHD"/>
+                            <constraint firstAttribute="trailing" secondItem="8cE-vw-uMO" secondAttribute="trailing" id="Zs1-76-NNP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fK1-JQ-znc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6eD-1P-9YM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3352" y="-4264"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="1iI-PG-J3J">
+            <objects>
+                <pageViewController storyboardIdentifier="IntroPageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ncv-0v-RFo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5qZ-5j-CvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2698" y="-4264"/>
+        </scene>
+        <!--Introductory Content View Controller-->
+        <scene sceneID="yIg-gT-TVI">
+            <objects>
+                <viewController storyboardIdentifier="introductoryContentVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uTP-2z-bQz" customClass="IntroductoryContentViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TjL-za-Pm3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fo5-mt-hN5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Alo-Uz-SNp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pxR-xP-Lwp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="33" y="142" width="334" height="321"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21i-2i-vH5">
+                                <rect key="frame" x="551" y="555" width="24" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="QVe-Ic-3XR"/>
+                                    <constraint firstAttribute="width" constant="24" id="u8M-Ic-R0H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" image="icnNext"/>
+                                <connections>
+                                    <action selector="nextTapped:" destination="uTP-2z-bQz" eventType="touchUpInside" id="l3E-sw-gjC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="21i-2i-vH5" secondAttribute="trailing" constant="25" id="5VY-sX-sjB"/>
+                            <constraint firstItem="Fo5-mt-hN5" firstAttribute="top" secondItem="21i-2i-vH5" secondAttribute="bottom" constant="20" id="Bb4-dR-QfF"/>
+                            <constraint firstAttribute="trailing" secondItem="pxR-xP-Lwp" secondAttribute="trailing" id="CYJ-l9-FKw"/>
+                            <constraint firstItem="Fo5-mt-hN5" firstAttribute="top" secondItem="pxR-xP-Lwp" secondAttribute="bottom" id="LJi-t9-01d"/>
+                            <constraint firstItem="pxR-xP-Lwp" firstAttribute="leading" secondItem="Alo-Uz-SNp" secondAttribute="leading" id="ekd-fI-MEk"/>
+                            <constraint firstItem="pxR-xP-Lwp" firstAttribute="top" secondItem="Alo-Uz-SNp" secondAttribute="top" id="kXO-tu-bfQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="introductoryImageView" destination="pxR-xP-Lwp" id="SoV-VA-e1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3oL-DG-pkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2035" y="-4264"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D0g-uc-n4X">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NZW-Ub-0dU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xZN-Ox-tfT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RSZ-Em-2V2" kind="relationship" relationship="rootViewController" id="jOp-nb-the"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5A-ko-3xV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4164" y="-4264"/>
         </scene>
     </scenes>
     <resources>

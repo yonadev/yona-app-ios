@@ -130,6 +130,8 @@ struct YonaConstants {
     }
 
     struct screenNames{
+        static let walkThrough = "WalkThrough"
+        static let welcome = "Welcome"
         static let smsValidation = "SMSValidation"
         static let passcode = "Passcode"
         static let login = "Login"
