@@ -122,7 +122,6 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 }
             }
         })
-        
     }
     
     private func callNoGoGoal() {
@@ -296,9 +295,15 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
-            //TODO: - work in progress
-            cell.detailTextLabel?.text = "TimeZoneGoal"
+//            challenges.user.budgetTimeZoneDescriptionText
+            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].activityCategoryName!
+            let zonesUnwrap = String(self.goalsArray[indexPath.row].zonesStore)
+            let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "")
+//            let zonesArr1 = zonesUnwrap[0].componentsSeparatedByString("-")
+//            let zonesArr2 = zonesUnwrap[1].componentsSeparatedByString("-")
+//            let title = NSString(format: localizedString, zonesArr1[0], zonesArr1[1],zonesArr2[0],zonesArr2[1])
+            cell.textLabel?.text = activityCategoryNameUnwrap
+//            cell.detailTextLabel?.text = title as String
             cell.detailTextLabel?.numberOfLines = 0
             
         case .TimeZoneActivity:

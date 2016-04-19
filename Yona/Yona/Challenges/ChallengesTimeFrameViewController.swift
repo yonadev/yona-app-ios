@@ -17,12 +17,27 @@ class ChallengesTimeFrameViewController: UIViewController {
         super.viewDidLoad()
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    // MARK: - Actions
+    @IBAction func back(sender: AnyObject) {
+//        self.setSelectedCategory(selectedCategoryView)
     }
     
+    @IBAction func deletebuttonTapped(sender: UIButton) {
+//        sender.hidden = true
+//        backButton.hidden = false
+//        if selectedCategoryView == budgetView {
+//            categoryHeader = .BudgetActivity
+//            
+//        } else if selectedCategoryView == timezoneView {
+//            categoryHeader = .TimeZoneActivity
+//        } else if selectedCategoryView == nogoView {
+//            categoryHeader = .NoGoActivity
+//        }
+//        self.setHeaderTitleLabel()
+//        self.tableView.reloadData()
+    }
 
     /*
     // MARK: - Navigation
