@@ -37,6 +37,26 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
+        
+        var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+        var bodyBudgetSocialGoal = [
+            "@type": "BudgetGoal",
+            "_links": ["yona:activityCategory":
+                ["href": socialActivityCategoryLink]
+            ],
+            "maxDurationMinutes": "10"
+        ]
+        
+        var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+        var bodyBudgetNewsGoal = [
+            "@type": "BudgetGoal",
+            "_links": [
+                "yona:activityCategory": ["href": newsActivityCategoryLink]
+            ],
+            "maxDurationMinutes": "30"
+        ]
+
+        
         //Get user goals
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
@@ -45,22 +65,8 @@ class GoalAPIServiceTests: XCTestCase {
             //we need to now get the activity link from our activities
             APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                     //set body for goal
-                    let bodyBudgetSocialGoal = [
-                        "@type": "BudgetGoal",
-                        "_links": [
-                            "yona:activityCategory": ["href": socialActivityCategoryLink]
-                        ],
-                        "maxDurationMinutes": "10"
-                    ]
+//                    bodyBudgetSocialGoal["_links"]!["yona:activityCategory"]!["href"]! as! String = socialActivityCategoryLink as! String
                     APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
-
-                        let bodyBudgetNewsGoal = [
-                            "@type": "BudgetGoal",
-                            "_links": [
-                                "yona:activityCategory": ["href": newsActivityCategoryLink]
-                            ],
-                            "maxDurationMinutes": "30"
-                        ]
                         
                         //now we can post the goal
                         APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (success, message, code, goal, error) in
@@ -101,13 +107,30 @@ class GoalAPIServiceTests: XCTestCase {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        var newsActivityCategoryLink: String?
-        var socialActivityCategoryLink: String?
+
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
+        
+        var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+        let bodyTimeZoneSocialGoal = [
+            "@type": "TimeZoneGoal",
+            "_links": [
+                "yona:activityCategory": ["href": socialActivityCategoryLink]
+            ],
+            "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+        ]
+        
+        var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+        let bodyTimeZoneNewsGoal = [
+            "@type": "TimeZoneGoal",
+            "_links": [
+                "yona:activityCategory": ["href": newsActivityCategoryLink]
+            ],
+            "zones": ["8:00-17:00", "20:00-22:00"]
+        ]
         //Get user goals
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
@@ -117,24 +140,11 @@ class GoalAPIServiceTests: XCTestCase {
             APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                     if success {
                         //set body for budget social goal
-                        let bodyTimeZoneSocialGoal = [
-                            "@type": "TimeZoneGoal",
-                            "_links": [
-                                "yona:activityCategory": ["href": socialActivityCategoryLink]
-                            ],
-                            "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
-                        ]
+
                     }
                 APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
                     if success {
                         //set body for goal
-                        let bodyTimeZoneNewsGoal = [
-                            "@type": "TimeZoneGoal",
-                            "_links": [
-                                "yona:activityCategory": ["href": newsActivityCategoryLink]
-                            ],
-                            "zones": ["8:00-17:00", "20:00-22:00"]
-                        ]
                     }
                     
                         //add budget goal
