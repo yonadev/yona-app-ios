@@ -15,8 +15,7 @@ class ChallengesTimeFrameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-self.headerView.layer.cornerRadius = 10
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

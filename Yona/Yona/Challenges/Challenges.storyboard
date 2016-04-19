@@ -484,7 +484,7 @@
                                                     <constraint firstAttribute="height" constant="110" id="z4s-oN-01Q"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="55"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
