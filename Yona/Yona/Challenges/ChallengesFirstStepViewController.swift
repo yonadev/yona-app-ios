@@ -281,12 +281,14 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        
         switch categoryHeader {
         case .BudgetGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
-            cell.detailTextLabel?.text = NSLocalizedString("challenges.user.budgetGoalDescriptionTextfirst", comment: "")  +  String(self.goalsArray[indexPath.row].maxDurationMinutes!) + NSLocalizedString("challenges.user.budgetGoalDescriptionTextsecond", comment: "")
-            
+            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].activityCategoryName!
+            let maxDurationMinutesUnwrap = String(self.goalsArray[indexPath.row].maxDurationMinutes)
+            let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
+            let title = NSString(format: localizedString, maxDurationMinutesUnwrap, String(activityCategoryNameUnwrap))
+            cell.textLabel?.text = activityCategoryNameUnwrap
+            cell.detailTextLabel?.text = title as String
             cell.detailTextLabel?.numberOfLines = 0
             
         case .BudgetActivity:

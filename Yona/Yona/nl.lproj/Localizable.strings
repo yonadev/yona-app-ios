@@ -47,3 +47,5 @@
 
 "challenges.user.budgetGoalDescriptionTextfirst" = "je kunt doorbrengen ";
 "challenges.user.budgetGoalDescriptionTextsecond" = " Minuten per dag";
+
+"challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
