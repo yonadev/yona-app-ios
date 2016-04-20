@@ -283,7 +283,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         switch categoryHeader {
         case .BudgetGoal:
-            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].activityCategoryName!
+            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].goalType!
             let maxDurationMinutesUnwrap = String(self.goalsArray[indexPath.row].maxDurationMinutes)
             let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
             let title = NSString(format: localizedString, maxDurationMinutesUnwrap, String(activityCategoryNameUnwrap))
@@ -296,7 +296,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.goalsArray[indexPath.row].goalType!
             //TODO: - work in progress
             cell.detailTextLabel?.text = "TimeZoneGoal"
             cell.detailTextLabel?.numberOfLines = 0
@@ -306,7 +306,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .NoGoGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.goalsArray[indexPath.row].goalType!
             cell.detailTextLabel?.text = "NoGoGoal"
             
         case .NoGoActivity:

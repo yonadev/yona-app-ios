@@ -21,7 +21,7 @@ class APIServiceManager {
     private var timezoneGoals:[Goal] = [] //Array returning timezone goals
     private var noGoGoals:[Goal] = [] //Array returning no go goals
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
-
+    
     private var serverMessage: ServerMessage?
     private var serverCode: ServerCode?
     
@@ -53,7 +53,11 @@ class APIServiceManager {
             if let jsonUnwrapped = json,
                 let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
                     self.serverMessage = message
-                    self.serverCode = String(code)
+                    if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
+                        self.serverCode = serverCode
+                    } else {
+                        self.serverCode = String(code)
+                    }
                 }
         }
 
@@ -70,7 +74,7 @@ class APIServiceManager {
     }
     
     
-    func getGoalsArray(onCompletion: APIGoalArrayResponse) {
+    func getAllTheGoalsArray(onCompletion: APIGoalArrayResponse) {
         guard self.goals.isEmpty == false else { //go get our goals and return array
             self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
                 onCompletion(success, serverMessage, serverCode, goals, error)
@@ -80,7 +84,7 @@ class APIServiceManager {
         onCompletion(true, serverMessage, serverCode, goals, nil)
     }
     
-    func getGoalsOfType(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse) {
+    func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalArrayResponse) {
         guard self.goals.isEmpty == false else { //go get our goals and return array
             self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
                 self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
@@ -93,14 +97,15 @@ class APIServiceManager {
             onCompletion(success, message, code, goals, error)
         }
     }
-    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
+    
+    func getActivityLinkForActivityName(activityName: CategoryName, onCompletion: APIActivityLinkResponse) {
         self.getActivitiesArray{ (success, message, code, activities, error) in
             if success {
                 var activityCategoryLink:String?
                 
                 for activity in (activities! as Array) {
                     switch activity.activityCategoryName! {
-                    case activityName.rawValue:
+                    case activityName.rawValue:  
                         activityCategoryLink = activity.selfLinks!
                     case activityName.rawValue:
                         activityCategoryLink = activity.selfLinks!
@@ -117,22 +122,22 @@ class APIServiceManager {
         }
     }
     
-    func getGoalsSizeOfGoalType(goalType: YonaConstants.GoalType, onCompletion: APIGoalSizeResponse) {
+    func getGoalsSizeOfGoalType(goalType: GoalType, onCompletion: APIGoalSizeResponse) {
         
         switch goalType {
-        case YonaConstants.GoalType.BudgetGoalString:
+        case GoalType.BudgetGoalString:
             guard budgetGoals.isEmpty else {
                 onCompletion(0)
                 return
             }
             onCompletion(budgetGoals.count)
-        case YonaConstants.GoalType.TimeZoneGoalString:
+        case GoalType.TimeZoneGoalString:
             guard timezoneGoals.isEmpty else {
                 onCompletion(0)
                 return
             }
             onCompletion(timezoneGoals.count)
-        case YonaConstants.GoalType.NoGoGoalString:
+        case GoalType.NoGoGoalString:
             guard noGoGoals.isEmpty else {
                 onCompletion(0)
                 return
@@ -141,18 +146,19 @@ class APIServiceManager {
         }
     }
     
-    private func sortGoalsIntoArray(goalType: YonaConstants.GoalType, onCompletion: APIGoalArrayResponse){
+    private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalArrayResponse){
         budgetGoals = []
         timezoneGoals = []
         noGoGoals = []
         //sort out the goals into their arrays
         for goal in goals {
+            
             switch goal.goalType! {
-            case goalType.rawValue:
+            case GoalType.BudgetGoalString.rawValue:
                 budgetGoals.append(goal)
-            case goalType.rawValue:
+            case GoalType.TimeZoneGoalString.rawValue:
                 timezoneGoals.append(goal)
-            case goalType.rawValue:
+            case GoalType.NoGoGoalString.rawValue:
                 noGoGoals.append(goal)
             default:
                 break
@@ -160,11 +166,11 @@ class APIServiceManager {
         }
         //which array shall we send back?
         switch goalType {
-        case YonaConstants.GoalType.BudgetGoalString:
+        case GoalType.BudgetGoalString:
             onCompletion(true, serverMessage, serverCode, budgetGoals, nil)
-        case YonaConstants.GoalType.TimeZoneGoalString:
+        case GoalType.TimeZoneGoalString:
             onCompletion(true, serverMessage, serverCode, timezoneGoals, nil)
-        case YonaConstants.GoalType.NoGoGoalString:
+        case GoalType.NoGoGoalString:
             onCompletion(true, serverMessage, serverCode, noGoGoals, nil)
         }
     }
@@ -231,8 +237,8 @@ extension APIServiceManager {
             }
         }
     }
-    
 }
+
 //MARK: - Activities APIService
 extension APIServiceManager {
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
@@ -241,7 +247,6 @@ extension APIServiceManager {
                 let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
                 self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
-//                        self.setServerCodeMessage(json)
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                             return
@@ -260,7 +265,6 @@ extension APIServiceManager {
                         }
                     } else {
                         //response from request failed
-//                        self.setServerCodeMessage(json)
                         onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                     }
                 })
@@ -278,7 +282,6 @@ extension APIServiceManager {
                 let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
                 self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
-//                        self.setServerCodeMessage(json)
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                             return
@@ -288,7 +291,6 @@ extension APIServiceManager {
                         onCompletion(true, self.serverMessage, self.serverCode, self.newActivity, err)
                     } else {
                         //response from request failed
-//                        self.setServerCodeMessage(json)
                         onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                     }
                 })
@@ -310,7 +312,6 @@ extension APIServiceManager {
                     self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
 
                         if let json = json {
-//                            self.setServerCodeMessage(json)
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                                 return
