@@ -268,13 +268,6 @@ class GoalAPIServiceTests: XCTestCase {
                 print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
                 print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
 
-            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
-                if success {
-                    //set body for budget social goal
-                    let socialActivityCategoryLinkReturned = socialActivityCategoryLink
-                    print("socialActivityCategoryLinkReturned: " + socialActivityCategoryLinkReturned!)
-                }
-            })
                 //body we want to post  Social    http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8
                 let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
                 let bodyTimeZoneSocialGoal = [
