@@ -122,7 +122,6 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 }
             }
         })
-        
     }
     
     private func callNoGoGoal() {
@@ -326,7 +325,14 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        print("index  \(indexPath)")
+        if categoryHeader == .BudgetGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.budgetChallengeSegue, sender: self)
+        } else if categoryHeader == .TimeZoneGoal {
+        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timezoneChallengeSegue, sender: self)
+        } else if categoryHeader == .NoGoGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.noGoChallengeSegue, sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -336,7 +342,12 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             return 60.0
         }
     }
+
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print(categoryHeader)
+        
+    }
 }
 
 private extension Selector {
