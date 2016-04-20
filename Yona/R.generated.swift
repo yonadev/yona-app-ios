@@ -498,28 +498,28 @@ struct R {
     }
     
     struct walkThrough {
-      static var frontViewController: IntroductoryViewController? { return instance.instantiateViewControllerWithIdentifier("frontViewController") as? IntroductoryViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "WalkThrough", bundle: _R.hostingBundle) }
-      static var introPageViewController: UIPageViewController? { return instance.instantiateViewControllerWithIdentifier("IntroPageViewController") as? UIPageViewController }
-      static var introductoryContentVC: IntroductoryContentViewController? { return instance.instantiateViewControllerWithIdentifier("introductoryContentVC") as? IntroductoryContentViewController }
-      static var walkThrough1: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough1") as? AVPageContentViewController }
-      static var walkThrough2: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? AVPageContentViewController }
-      static var walkThrough3: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? AVPageContentViewController }
-      static var walkThrough4: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? AVPageContentViewController }
+      static var walkThrough1: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough1") as? TourScreenViewController }
+      static var walkThrough2: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? TourScreenViewController }
+      static var walkThrough3: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? TourScreenViewController }
+      static var walkThrough4: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? TourScreenViewController }
+      static var walkThroughStoryboard: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughStoryboard") as? WalkThroughViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "sharingSlide") != nil, "[R.swift] Image named 'sharingSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "transparencySlide") != nil, "[R.swift] Image named 'transparencySlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "confinesSlide") != nil, "[R.swift] Image named 'confinesSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "timespentSlide") != nil, "[R.swift] Image named 'timespentSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
         assert(UIImage(named: "icnNext") != nil, "[R.swift] Image named 'icnNext' is used in storyboard 'WalkThrough', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(frontViewController != nil, "[R.swift] ViewController with identifier 'frontViewController' could not be loaded from storyboard 'WalkThrough' as 'IntroductoryViewController'.")
-        assert(introPageViewController != nil, "[R.swift] ViewController with identifier 'introPageViewController' could not be loaded from storyboard 'WalkThrough' as 'UIPageViewController'.")
-        assert(introductoryContentVC != nil, "[R.swift] ViewController with identifier 'introductoryContentVC' could not be loaded from storyboard 'WalkThrough' as 'IntroductoryContentViewController'.")
+        assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThroughStoryboard != nil, "[R.swift] ViewController with identifier 'walkThroughStoryboard' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
+        assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
       }
     }
     

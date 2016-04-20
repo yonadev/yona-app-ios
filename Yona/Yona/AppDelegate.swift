@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
 
             default:
-                rootController = R.storyboard.walkThrough.frontViewController! as IntroductoryViewController
+                rootController = R.storyboard.walkThrough.walkThroughStoryboard! as WalkThroughViewController
             }
             return UINavigationController(rootViewController: rootController)
         }
