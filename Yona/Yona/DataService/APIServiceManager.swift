@@ -64,37 +64,50 @@ class APIServiceManager {
     }
     
     func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
-        guard self.activities.isEmpty == false else { //go get our activities and return the arry
-            self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
-                onCompletion(success, serverMessage, serverCode, activities, error)
+        self.APIServiceCheck { (success, networkMessage, networkCode) in
+            if success {
+                self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
+                    onCompletion(success, serverMessage, serverCode, activities, error)
+                }
+            } else { //if no network
+                //activities not initialised no network fail with no data
+                guard self.activities.isEmpty else {
+                    onCompletion(false, networkMessage, networkCode, nil, nil)
+                    return
+                }
+                //if we already got some activities then just send back the ones we have...
+                onCompletion(false, networkMessage, networkCode, self.activities, nil)
+                
             }
-            return
         }
-        onCompletion(true, serverMessage, serverCode, activities, nil)
     }
     
     
     func getAllTheGoalsArray(onCompletion: APIGoalArrayResponse) {
-        guard self.goals.isEmpty == false else { //go get our goals and return array
-            self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
-                onCompletion(success, serverMessage, serverCode, goals, error)
-            }
-            return
+        self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
+            onCompletion(success, serverMessage, serverCode, goals, error)
         }
-        onCompletion(true, serverMessage, serverCode, goals, nil)
     }
     
     func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalArrayResponse) {
-        guard self.goals.isEmpty == false else { //go get our goals and return array
-            self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
-                self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
-                    onCompletion(success, serverMessage, serverCode, goals, error)
-                })
+        self.APIServiceCheck { (success, networkMessage, networkCode) in
+            if success {
+                self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
+                    self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
+                        onCompletion(success, serverMessage, serverCode, goals, error)
+                    })
+                }
+            } else {
+                //Goals not initialised
+                guard self.goals.isEmpty else {
+                    onCompletion(false, networkMessage, networkCode, nil, nil)
+                    return
+                }
+                //if we already got some goals then just send back the ones we have...
+                self.sortGoalsIntoArray(goalType) { (success, message, code, goals, error) in
+                    onCompletion(false, networkMessage, networkCode, goals, error)
+                }
             }
-            return
-        }
-        sortGoalsIntoArray(goalType) { (success, message, code, goals, error) in
-            onCompletion(success, message, code, goals, error)
         }
     }
     
@@ -434,7 +447,20 @@ extension APIServiceManager {
                             return
                         }
                         self.newUser = Users.init(userData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
+                        //intialise the goals and the activities
+                        self.getActivitiesArray({ (success, message, code, activities, error) in
+                            if success {
+                                self.getAllTheGoalsArray({ (success, message, code, goals, error) in
+                                    if success {
+                                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
+                                    } else {
+                                        onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
+                                    }
+                                })
+                            } else {
+                                onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
+                            }
+                        })
                     } else {
                         //response from request failed
                         onCompletion(false, self.serverMessage, self.serverCode,nil)
