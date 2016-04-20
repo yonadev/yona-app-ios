@@ -19,9 +19,9 @@ struct YonaConstants {
     }
     
     enum CategoryName: String {
-        case newsString = "news"
-        case socialString = "social"
-        case gamblingString = "gambling"
+        case newsString = "News"
+        case socialString = "Social"
+        case gamblingString = "Gambling"
     }
     
     struct environments {

@@ -268,92 +268,42 @@ class GoalAPIServiceTests: XCTestCase {
                 }
                 print(KeychainManager.sharedInstance.getYonaPassword())
 
-                //Get their goals (usere are always created with a gambling goal that cannot be removed
-                APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
+                //body we want to post
+                let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+                let bodyTimeZoneSocialGoal = [
+                    "@type": "TimeZoneGoal",
+                    "_links": [
+                        "yona:activityCategory": ["href": socialActivityCategoryLink]
+                    ],
+                    "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+                ]
+
+                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+                    (success, serverMessage, serverCode, goal, err) in
                     if success {
-                        print(goals)
-                        var currentGoal:Goal?
-                        //we want to remove the news goal so find it
-                        for goal in goals! {
-                            if goal.activityCategoryName == "news" {
-                                currentGoal = goal
+                        //Get the goals again to see if the goals have been updated after our post
+                        APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
+                            print(goals)
+                            var currentGoalAfterPost:Goal?
+                            //we want to remove the news goal so find it
+                            for goal in goals! {
+                                if goal.activityCategoryName == "news" {
+                                    currentGoalAfterPost = goal
+                                }
+                            }
+                            //now we have the goal we posted...returned from current goals, so check it's category is the
+                            if let currentGoalAfterPost = currentGoalAfterPost {
+                                let currentGoalAfterPostID = currentGoalAfterPost.goalID!
+                                print(currentGoalAfterPostID)
+                                XCTAssertTrue(currentGoalAfterPost.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
+                                expectation.fulfill()
                             }
                         }
-                        //body we want to post
-                        let postGoalBody = [
-                            "@type": "BudgetGoal",
-                            "activityCategoryName": "news"
-                        ]
-                        //if we found the goal we want to remove it before we can post it else we get the server message "error.goal.cannot.add.second.on.activity.category"
-                        if let currentGoal = currentGoal {
-                            let currentGoalID = currentGoal.goalID!
-                            print(currentGoalID)
-                            print(currentGoal)
-                            APIServiceManager.sharedInstance.deleteUserGoal(currentGoalID, onCompletion: { (success, serverMessage, serverCode) in
-                                if success {
-                                    APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                        (success, serverMessage, serverCode, goal, err) in
-                                        if success {
-                                            //Get the goals again to see if the goals have been updated after our post
-                                            APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                                                print(goals)
-                                                var currentGoalAfterPost:Goal?
-                                                //we want to remove the news goal so find it
-                                                for goal in goals! {
-                                                    if goal.activityCategoryName == "news" {
-                                                        currentGoalAfterPost = goal
-                                                    }
-                                                }
-                                                //now we have the goal we posted...returned from current goals, so check it's category is the
-                                                if let currentGoalAfterPost = currentGoalAfterPost {
-                                                    let currentGoalAfterPostID = currentGoalAfterPost.goalID!
-                                                    print(currentGoalAfterPostID)
-                                                    XCTAssertTrue(currentGoalAfterPost.activityCategoryName == postGoalBody["activityCategoryName"], "Goal has been posted")
-                                                    expectation.fulfill()
-                                                }
-                                            }
-                                        } else {
-                                            XCTFail()
-                                        }
-                                    })
-                                } else {
-                                    //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
-                                    if let serverCode = serverCode where
-                                        serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
-                                            print(serverMessage)
-                                        
-                                    }
-                                }
-
-
-                            })
-                        } else { //if we cannot find a "news" goal then we need to post it
-                            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                (success, serverMessage, serverCode, goal, err) in
-                                if success {
-                                    APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                                        print(goals)
-                                        var currentGoal:Goal?
-                                        //we want to remove the news goal so find it
-                                        for goal in goals! {
-                                            if goal.activityCategoryName == "news" {
-                                                currentGoal = goal
-                                            }
-                                        }
-                                        if let currentGoal = currentGoal {
-                                            XCTAssertTrue(currentGoal.activityCategoryName == postGoalBody["activityCategoryName"], "Goal has been posted")
-                                            expectation.fulfill()
-                                        }
-                                    }
-                                } else {
-                                    XCTFail()
-                                }
-                            })
-                        }
-
+                    } else {
+                        XCTFail(serverMessage!)
                     }
-                    
-                }
+                })
+            
             }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 

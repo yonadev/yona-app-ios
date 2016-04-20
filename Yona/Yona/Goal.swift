@@ -14,39 +14,47 @@ struct Goal {
     var maxDurationMinutes: Int?
     var selfLinks: String?
     var editLinks: String?
+    var activityCategoryLink: String?
     var goalType: String?
     var zonesStore:[String] = []
     var isMandatory: Bool?
 
     init(goalData: BodyDataDictionary) {
-            if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
-                for zone in zones {
-                    zonesStore.append(zone as! String)
+        if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
+            for zone in zones {
+                zonesStore.append(zone as! String)
+            }
+        }
+        
+        if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
+            self.maxDurationMinutes = maxDurationMinutes
+        }
+        if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
+            self.goalType = goalType
+        }
+        
+        if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+            if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
+                let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.editLinks = editLink
+                self.isMandatory = false
+            } else {
+                self.isMandatory = true
+            }
+            if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? [String:AnyObject],
+                let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.selfLinks = href
+                if let lastPath = NSURL(string: href)?.lastPathComponent {
+                    self.goalID = lastPath
                 }
             }
-            
-            if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
-                self.maxDurationMinutes = maxDurationMinutes
+            if let activityCategoryLink = links[YonaConstants.jsonKeys.yonaActivityCategory] as? [String:AnyObject],
+                let href = activityCategoryLink[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.activityCategoryLink = href
             }
-            if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
-                self.goalType = goalType
-            }
-            
-            if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
-                if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
-                    let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
-                    self.editLinks = editLink
-                    self.isMandatory = false
-                } else {
-                    self.isMandatory = true
-                }
-                if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? [String:AnyObject],
-                    let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
-                    self.selfLinks = href
-                    if let lastPath = NSURL(string: href)?.lastPathComponent {
-                        self.goalID = lastPath
-                    }
-                }
-            }
+        }
+        if let activityCategoryName = goalData[YonaConstants.jsonKeys.goalType] as? String {
+            self.activityCategoryName = activityCategoryName
+        }
     }
 }
