@@ -327,7 +327,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        print("index  \(indexPath)")
+        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timeframeTimezoneSegue, sender: self)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -337,7 +338,12 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             return 60.0
         }
     }
+
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print(categoryHeader)
+        
+    }
 }
 
 private extension Selector {

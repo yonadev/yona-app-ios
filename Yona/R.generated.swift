@@ -368,9 +368,14 @@ struct R {
   
   struct reuseIdentifier {
     static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
+    static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
   struct segue {
+    struct challengesFirstStepViewController {
+      static var timeframeTimezoneSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, ChallengesTimeFrameViewController> { return StoryboardSegueIdentifier(identifier: "TimeframeTimezoneSegue") }
+    }
+    
     struct dashboardTabBarController {
       static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
       static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
@@ -391,12 +396,14 @@ struct R {
     struct challenges {
       static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
+      static var challengesTimeFrameStoryboard1: UIViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard1") }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
@@ -404,6 +411,7 @@ struct R {
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
         assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
+        assert(challengesTimeFrameStoryboard1 != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard1' could not be loaded from storyboard 'Challenges' as 'UIViewController'.")
       }
     }
     
