@@ -19,9 +19,9 @@ struct YonaConstants {
     }
     
     enum CategoryName: String {
-        case newsString = "news"
-        case socialString = "social"
-        case gamblingString = "gambling"
+        case newsString = "News"
+        case socialString = "Social"
+        case gamblingString = "Gambling"
     }
     
     struct environments {
@@ -34,6 +34,7 @@ struct YonaConstants {
         static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
         static let activityCategories = "activityCategories/"
+        static let newDeviceRequests = "newDeviceRequests/"
     }
     
     struct httpMethods{
@@ -68,6 +69,7 @@ struct YonaConstants {
         static let  goalType = "@type"
         static let  maxDuration = "maxDurationMinutes"
         static let  activityCategoryName = "activityCategoryName"
+        static let  yonaActivityCategory = "yona:activityCategory"
         static let  embedded = "_embedded"
         static let  yonaGoals = "yona:goals"
         static let  activityCategories = "yona:activityCategories"

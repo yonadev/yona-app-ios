@@ -54,7 +54,7 @@ class UserAPIServiceTests: XCTestCase {
             
 
         }
-        waitForExpectationsWithTimeout(50.0, handler:nil)
+        waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
     func testConfirmMobileReturnsData(){
