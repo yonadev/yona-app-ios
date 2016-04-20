@@ -25,7 +25,6 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         self.setupViewControllerIndex(contentViews)
         self.view.frame = viewControllerFrameRect
         let viewController = NSArray(object: self.viewController(atIndex: self.presentingIndex))
-//        self.setViewControllers(viewController as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         self.setViewControllers(
             viewController as? [UIViewController],
             direction: UIPageViewControllerNavigationDirection.Forward,
