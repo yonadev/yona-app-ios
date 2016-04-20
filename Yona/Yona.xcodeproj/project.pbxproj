@@ -45,6 +45,21 @@
 		ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */; };
 		ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */; };
 		ADC6C88C1CC5661A00AAF29C /* ChallengesTimeFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC6C88B1CC5661A00AAF29C /* ChallengesTimeFrameViewController.swift */; };
+		ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108101CC78C3B0048852F /* Oswald-Bold.ttf */; };
+		ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108111CC78C3B0048852F /* Oswald-BoldItalic.ttf */; };
+		ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108121CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf */; };
+		ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108131CC78C3B0048852F /* Oswald-DemiBold.ttf */; };
+		ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108141CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf */; };
+		ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108151CC78C3B0048852F /* Oswald-ExtraLight.ttf */; };
+		ADD108251CC78C3B0048852F /* Oswald-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108161CC78C3B0048852F /* Oswald-Heavy.ttf */; };
+		ADD108261CC78C3B0048852F /* Oswald-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108171CC78C3B0048852F /* Oswald-HeavyItalic.ttf */; };
+		ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108181CC78C3B0048852F /* Oswald-Light.ttf */; };
+		ADD108281CC78C3B0048852F /* Oswald-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108191CC78C3B0048852F /* Oswald-LightItalic.ttf */; };
+		ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081A1CC78C3B0048852F /* Oswald-Medium.ttf */; };
+		ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081B1CC78C3B0048852F /* Oswald-MediumItalic.ttf */; };
+		ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081C1CC78C3B0048852F /* Oswald-Regular.ttf */; };
+		ADD1082C1CC78C3B0048852F /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081D1CC78C3B0048852F /* Oswald-RegularItalic.ttf */; };
+		ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081E1CC78C3B0048852F /* Oswald-Stencil.ttf */; };
 		ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */; };
 		ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0321CBE49EB009FEF31 /* GradientView.swift */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
@@ -218,6 +233,21 @@
 		ADAEAFEE1CB650A4005ED7B4 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
 		ADAEAFEF1CB650A4005ED7B4 /* Passcode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		ADC6C88B1CC5661A00AAF29C /* ChallengesTimeFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesTimeFrameViewController.swift; sourceTree = "<group>"; };
+		ADD108101CC78C3B0048852F /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
+		ADD108111CC78C3B0048852F /* Oswald-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-BoldItalic.ttf"; sourceTree = "<group>"; };
+		ADD108121CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Demi-BoldItalic.ttf"; sourceTree = "<group>"; };
+		ADD108131CC78C3B0048852F /* Oswald-DemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-DemiBold.ttf"; sourceTree = "<group>"; };
+		ADD108141CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Extra-LightItalic.ttf"; sourceTree = "<group>"; };
+		ADD108151CC78C3B0048852F /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
+		ADD108161CC78C3B0048852F /* Oswald-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Heavy.ttf"; sourceTree = "<group>"; };
+		ADD108171CC78C3B0048852F /* Oswald-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		ADD108181CC78C3B0048852F /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
+		ADD108191CC78C3B0048852F /* Oswald-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-LightItalic.ttf"; sourceTree = "<group>"; };
+		ADD1081A1CC78C3B0048852F /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Medium.ttf"; sourceTree = "<group>"; };
+		ADD1081B1CC78C3B0048852F /* Oswald-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-MediumItalic.ttf"; sourceTree = "<group>"; };
+		ADD1081C1CC78C3B0048852F /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		ADD1081D1CC78C3B0048852F /* Oswald-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-RegularItalic.ttf"; sourceTree = "<group>"; };
+		ADD1081E1CC78C3B0048852F /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
@@ -569,6 +599,29 @@
 			path = Passcode;
 			sourceTree = "<group>";
 		};
+		ADD1080F1CC78C3B0048852F /* Oswald Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				ADD108101CC78C3B0048852F /* Oswald-Bold.ttf */,
+				ADD108111CC78C3B0048852F /* Oswald-BoldItalic.ttf */,
+				ADD108121CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf */,
+				ADD108131CC78C3B0048852F /* Oswald-DemiBold.ttf */,
+				ADD108141CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf */,
+				ADD108151CC78C3B0048852F /* Oswald-ExtraLight.ttf */,
+				ADD108161CC78C3B0048852F /* Oswald-Heavy.ttf */,
+				ADD108171CC78C3B0048852F /* Oswald-HeavyItalic.ttf */,
+				ADD108181CC78C3B0048852F /* Oswald-Light.ttf */,
+				ADD108191CC78C3B0048852F /* Oswald-LightItalic.ttf */,
+				ADD1081A1CC78C3B0048852F /* Oswald-Medium.ttf */,
+				ADD1081B1CC78C3B0048852F /* Oswald-MediumItalic.ttf */,
+				ADD1081C1CC78C3B0048852F /* Oswald-Regular.ttf */,
+				ADD1081D1CC78C3B0048852F /* Oswald-RegularItalic.ttf */,
+				ADD1081E1CC78C3B0048852F /* Oswald-Stencil.ttf */,
+			);
+			name = "Oswald Fonts";
+			path = "Fonts/Oswald Fonts";
+			sourceTree = "<group>";
+		};
 		ADEF8EEF1CADFD0C001D5EED /* Roboto Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +684,7 @@
 		D98635681CABF44400A8535C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				ADD1080F1CC78C3B0048852F /* Oswald Fonts */,
 				ADEF8EEF1CADFD0C001D5EED /* Roboto Fonts */,
 				D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */,
 				D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */,
@@ -1013,14 +1067,20 @@
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
 				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
+				ADD1082C1CC78C3B0048852F /* Oswald-RegularItalic.ttf in Resources */,
+				ADD108261CC78C3B0048852F /* Oswald-HeavyItalic.ttf in Resources */,
 				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
+				ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */,
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
+				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				ADAEAFD81CB2BCB3005ED7B4 /* SMSValidation.storyboard in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
+				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				ADAEAFE81CB43245005ED7B4 /* Login.storyboard in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,
+				ADD108251CC78C3B0048852F /* Oswald-Heavy.ttf in Resources */,
 				D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
@@ -1029,10 +1089,13 @@
 				9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
 				ADAEAFF31CB650A4005ED7B4 /* Passcode.storyboard in Resources */,
+				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
+				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
 				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
+				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
@@ -1041,8 +1104,11 @@
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
 				AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */,
+				ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */,
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
+				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
+				ADD108281CC78C3B0048852F /* Oswald-LightItalic.ttf in Resources */,
 				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
 				AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */,
 				AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */,
@@ -1053,10 +1119,13 @@
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
 				ADEF8F0A1CADFD0C001D5EED /* Roboto-Medium.ttf in Resources */,
 				ADEF8F031CADFD0C001D5EED /* Roboto-BoldCondensedItalic.ttf in Resources */,
+				ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
+				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
+				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
