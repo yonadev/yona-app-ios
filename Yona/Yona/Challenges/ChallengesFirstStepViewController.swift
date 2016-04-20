@@ -122,7 +122,6 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 }
             }
         })
-        
     }
     
     private func callNoGoGoal() {
@@ -160,20 +159,24 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     private func callGoals() {
-        APIServiceManager.sharedInstance.getUserGoals { (success, message, code, goals, error) in
-            if(success){
-                if let goals = goals {
-                    self.goalsArray  = goals
-                    
-                    #if DEBUG
-                        for goal in goals {
-                            print(goal.goalType)
+        APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+            if success {
+                APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, message, code, goals, error) in
+                    if(success){
+                        if let goals = goals {
+                            self.goalsArray  = goals
+                            
+                            #if DEBUG
+                                for goal in goals {
+                                    print(goal.goalType)
+                                }
+                            #endif
+                            self.tableView.reloadData()
                         }
-                    #endif
-                    self.tableView.reloadData()
+                    } else {
+                        print("error in goals")
+                    }
                 }
-            } else {
-                print("error in goals")
             }
         }
     }
@@ -283,7 +286,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         switch categoryHeader {
         case .BudgetGoal:
-            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].activityCategoryName!
+            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].goalType!
             let maxDurationMinutesUnwrap = String(self.goalsArray[indexPath.row].maxDurationMinutes)
             let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
             let title = NSString(format: localizedString, maxDurationMinutesUnwrap, String(activityCategoryNameUnwrap))
@@ -296,7 +299,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.goalsArray[indexPath.row].goalType!
             //TODO: - work in progress
             cell.detailTextLabel?.text = "TimeZoneGoal"
             cell.detailTextLabel?.numberOfLines = 0
@@ -306,7 +309,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .NoGoGoal:
-            cell.textLabel?.text = self.goalsArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.goalsArray[indexPath.row].goalType!
             cell.detailTextLabel?.text = "NoGoGoal"
             
         case .NoGoActivity:
@@ -322,7 +325,14 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        print("index  \(indexPath)")
+        if categoryHeader == .BudgetGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.budgetChallengeSegue, sender: self)
+        } else if categoryHeader == .TimeZoneGoal {
+        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timezoneChallengeSegue, sender: self)
+        } else if categoryHeader == .NoGoGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.noGoChallengeSegue, sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -332,7 +342,12 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             return 60.0
         }
     }
+
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print(categoryHeader)
+        
+    }
 }
 
 private extension Selector {

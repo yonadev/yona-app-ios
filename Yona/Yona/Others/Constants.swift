@@ -12,17 +12,6 @@ typealias ServerMessage = String
 typealias ServerCode = String
 
 struct YonaConstants {
-    enum GoalType: String {
-        case BudgetGoalString = "BudgetGoal"
-        case TimeZoneGoalString = "TimeZoneGoal"
-        case NoGoGoalString = "NoGo"
-    }
-    
-    enum CategoryName: String {
-        case newsString = "News"
-        case socialString = "Social"
-        case gamblingString = "Gambling"
-    }
     
     struct environments {
         static let test = "http://85.222.227.142/"
@@ -75,7 +64,6 @@ struct YonaConstants {
         static let  activityCategories = "yona:activityCategories"
         static let  name = "name"
         static let  applications = "applications"
-        static let  mandatoryNoGo = "mandatoryNoGo"
         static let  zones = "zones"
     }
 

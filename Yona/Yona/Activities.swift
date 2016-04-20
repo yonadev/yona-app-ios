@@ -11,8 +11,6 @@ struct Activities {
     var activityCategoryName: String?
     var activityID: String?
     var applicationsStore:[String] = []
-    var mandatoryNoGo: Bool?
-    var isMandatory: Bool?
     var editLinks: String?
     var selfLinks: String?
     
@@ -26,17 +24,10 @@ struct Activities {
             }
         }
         
-        if let mandatoryNoGo = activityData[YonaConstants.jsonKeys.mandatoryNoGo] as? Bool {
-            self.mandatoryNoGo = mandatoryNoGo
-        }
-        
         if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
             if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
                 let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
                 self.editLinks = editLink
-                self.isMandatory = false
-            } else {
-                self.isMandatory = true
             }
             if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? [String: AnyObject],
                 let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{

@@ -38,6 +38,21 @@ struct R {
   struct file {
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }
+    static var oswaldBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-BoldItalic", withExtension: "ttf") }
+    static var oswaldBoldTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Bold", withExtension: "ttf") }
+    static var oswaldDemiBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Demi-BoldItalic", withExtension: "ttf") }
+    static var oswaldDemiBoldTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-DemiBold", withExtension: "ttf") }
+    static var oswaldExtraLightItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Extra-LightItalic", withExtension: "ttf") }
+    static var oswaldExtraLightTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-ExtraLight", withExtension: "ttf") }
+    static var oswaldHeavyItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-HeavyItalic", withExtension: "ttf") }
+    static var oswaldHeavyTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Heavy", withExtension: "ttf") }
+    static var oswaldLightItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-LightItalic", withExtension: "ttf") }
+    static var oswaldLightTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Light", withExtension: "ttf") }
+    static var oswaldMediumItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-MediumItalic", withExtension: "ttf") }
+    static var oswaldMediumTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Medium", withExtension: "ttf") }
+    static var oswaldRegularItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-RegularItalic", withExtension: "ttf") }
+    static var oswaldRegularTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Regular", withExtension: "ttf") }
+    static var oswaldStencilTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Stencil", withExtension: "ttf") }
     static var robotoBlackItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-BlackItalic", withExtension: "ttf") }
     static var robotoBlackTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-Black", withExtension: "ttf") }
     static var robotoBoldCondensedItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-BoldCondensedItalic", withExtension: "ttf") }
@@ -78,6 +93,66 @@ struct R {
   }
   
   struct font {
+    static func oswaldBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Bold", size: size)
+    }
+    
+    static func oswaldBoldItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-BoldItalic", size: size)
+    }
+    
+    static func oswaldDemiBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-DemiBold", size: size)
+    }
+    
+    static func oswaldDemiBoldItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Demi-BoldItalic", size: size)
+    }
+    
+    static func oswaldExtraLight(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-ExtraLight", size: size)
+    }
+    
+    static func oswaldExtraLightItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Extra-LightItalic", size: size)
+    }
+    
+    static func oswaldHeavy(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Heavy", size: size)
+    }
+    
+    static func oswaldHeavyItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-HeavyItalic", size: size)
+    }
+    
+    static func oswaldLight(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Light", size: size)
+    }
+    
+    static func oswaldLightItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-LightItalic", size: size)
+    }
+    
+    static func oswaldMedium(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Medium", size: size)
+    }
+    
+    static func oswaldMediumItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-MediumItalic", size: size)
+    }
+    
+    static func oswaldRegular(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Regular", size: size)
+    }
+    
+    static func oswaldRegularItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-RegularItalic", size: size)
+    }
+    
+    static func oswaldStencilBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "OswaldStencil-Bold", size: size)
+    }
+    
     static func robotoBlack(size size: CGFloat) -> UIFont? {
       return UIFont(name: "Roboto-Black", size: size)
     }
@@ -293,9 +368,16 @@ struct R {
   
   struct reuseIdentifier {
     static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
+    static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
   struct segue {
+    struct challengesFirstStepViewController {
+      static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
+      static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
+      static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, ChallengesTimeFrameViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
+    
     struct dashboardTabBarController {
       static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
       static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
@@ -317,11 +399,14 @@ struct R {
       static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
+      static var timeFrameBudgetChallengeStoryboard: TimeFrameBudgetChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameBudgetChallengeStoryboard") as? TimeFrameBudgetChallengeViewController }
+      static var timeFrameNoGoChallengeStoryboard: TimeFrameNoGoChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameNoGoChallengeStoryboard") as? TimeFrameNoGoChallengeViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
@@ -329,6 +414,8 @@ struct R {
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
         assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
+        assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
+        assert(timeFrameNoGoChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameNoGoChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameNoGoChallengeViewController'.")
       }
     }
     
