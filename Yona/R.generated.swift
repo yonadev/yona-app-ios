@@ -396,7 +396,6 @@ struct R {
     struct challenges {
       static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
-      static var challengesTimeFrameStoryboard1: UIViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard1") }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -411,7 +410,6 @@ struct R {
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
         assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
-        assert(challengesTimeFrameStoryboard1 != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard1' could not be loaded from storyboard 'Challenges' as 'UIViewController'.")
       }
     }
     

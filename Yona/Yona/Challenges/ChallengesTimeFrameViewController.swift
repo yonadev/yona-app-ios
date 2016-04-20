@@ -12,7 +12,7 @@ class ChallengesTimeFrameViewController: UIViewController {
 
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
-    @IBOutlet var setGoalButton: UIButton!
+    @IBOutlet var setChallengeButton: UIButton!
     
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
@@ -22,10 +22,10 @@ class ChallengesTimeFrameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setGoalButton.backgroundColor = UIColor.clearColor()
-//        setGoalButton.layer.cornerRadius = 25.0
-//        setGoalButton.layer.borderWidth = 1.5
-//        setGoalButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
+        setChallengeButton.backgroundColor = UIColor.clearColor()
+        setChallengeButton.layer.cornerRadius = 25.0
+        setChallengeButton.layer.borderWidth = 1.5
+        setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         zonesArray = [ "6:00-10:00", "6:00-10:00"]
         
@@ -68,7 +68,7 @@ class ChallengesTimeFrameViewController: UIViewController {
         
         cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
             print("From Button Clicked in cell")
-            cell.
+            
             }) { (cell) in
                 print("to Button Clicked in cell")
         }
