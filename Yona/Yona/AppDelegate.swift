@@ -65,8 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
             case YonaConstants.screenNames.login:
                 rootController = R.storyboard.login.loginStoryboard! as LoginViewController
-            default:
+            case YonaConstants.screenNames.welcome:
                 rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+
+            default:
+                rootController = R.storyboard.walkThrough.walkThroughStoryboard! as WalkThroughViewController
             }
             return UINavigationController(rootViewController: rootController)
         }
