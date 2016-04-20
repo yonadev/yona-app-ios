@@ -65,7 +65,6 @@ class GoalAPIServiceTests: XCTestCase {
             //we need to now get the activity link from our activities
             APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                     //set body for goal
-//                    bodyBudgetSocialGoal["_links"]!["yona:activityCategory"]!["href"]! as! String = socialActivityCategoryLink as! String
                     APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
                         
                         //now we can post the goal
@@ -266,9 +265,17 @@ class GoalAPIServiceTests: XCTestCase {
                 if success == false{
                     XCTFail()
                 }
-                print(KeychainManager.sharedInstance.getYonaPassword())
+                print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+                print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
 
-                //body we want to post
+            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
+                if success {
+                    //set body for budget social goal
+                    let socialActivityCategoryLinkReturned = socialActivityCategoryLink
+                    print("socialActivityCategoryLinkReturned: " + socialActivityCategoryLinkReturned!)
+                }
+            })
+                //body we want to post  Social    http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8
                 let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
                 let bodyTimeZoneSocialGoal = [
                     "@type": "TimeZoneGoal",
@@ -284,19 +291,14 @@ class GoalAPIServiceTests: XCTestCase {
                         //Get the goals again to see if the goals have been updated after our post
                         APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
                             print(goals)
-                            var currentGoalAfterPost:Goal?
                             //we want to remove the news goal so find it
                             for goal in goals! {
-                                if goal.activityCategoryName == "news" {
-                                    currentGoalAfterPost = goal
+                                //Now we Identify the goals by their activity category links
+                                if goal.activityCategoryLink == socialActivityCategoryLink {
+                                    print(goal.activityCategoryLink)
+                                    XCTAssertTrue(goal.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
+                                    expectation.fulfill()
                                 }
-                            }
-                            //now we have the goal we posted...returned from current goals, so check it's category is the
-                            if let currentGoalAfterPost = currentGoalAfterPost {
-                                let currentGoalAfterPostID = currentGoalAfterPost.goalID!
-                                print(currentGoalAfterPostID)
-                                XCTAssertTrue(currentGoalAfterPost.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
-                                expectation.fulfill()
                             }
                         }
                     } else {
