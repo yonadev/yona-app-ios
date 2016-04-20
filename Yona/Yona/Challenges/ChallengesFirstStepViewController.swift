@@ -332,6 +332,8 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             performSegueWithIdentifier(R.segue.challengesFirstStepViewController.budgetChallengeSegue, sender: self)
         } else if categoryHeader == .TimeZoneGoal {
         performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timezoneChallengeSegue, sender: self)
+        } else if categoryHeader == .NoGoGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.noGoChallengeSegue, sender: self)
         }
     }
     

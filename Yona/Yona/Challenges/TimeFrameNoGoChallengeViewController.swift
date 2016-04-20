@@ -1,5 +1,5 @@
 //
-//  TimeFrameBudgetChallengeViewController.swift
+//  TimeFrameNoGoChallengeViewController.swift
 //  Yona
 //
 //  Created by Chandan on 19/04/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeFrameBudgetChallengeViewController: UIViewController {
+class TimeFrameNoGoChallengeViewController: UIViewController {
 
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
@@ -28,6 +28,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         
+        
     }
     
     // MARK: - Actions
@@ -37,13 +38,15 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func addNewChallengeButtonTapped(sender: AnyObject) {
-       print("integrate post budget challenge")
+       
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
 
 
     }
+
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("index  \(indexPath)")
@@ -58,7 +61,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 
 private extension Selector {
    
-    static let back = #selector(TimeFrameBudgetChallengeViewController.back(_:))
+    static let back = #selector(TimeFrameNoGoChallengeViewController.back(_:))
     
 }
 

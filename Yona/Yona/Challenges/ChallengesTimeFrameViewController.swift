@@ -29,7 +29,6 @@ class ChallengesTimeFrameViewController: UIViewController {
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         zonesArray = [ "6:00-10:00", "6:00-10:00"]
         
-        
     }
     
     // MARK: - Actions
