@@ -373,7 +373,8 @@ struct R {
   
   struct segue {
     struct challengesFirstStepViewController {
-      static var timeframeTimezoneSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, ChallengesTimeFrameViewController> { return StoryboardSegueIdentifier(identifier: "TimeframeTimezoneSegue") }
+      static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
+      static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, ChallengesTimeFrameViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
     }
     
     struct dashboardTabBarController {
@@ -397,6 +398,7 @@ struct R {
       static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
       static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
+      static var timeFrameBudgetChallengeStoryboard: TimeFrameBudgetChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameBudgetChallengeStoryboard") as? TimeFrameBudgetChallengeViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
@@ -410,6 +412,7 @@ struct R {
       static func validateViewControllers() {
         assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
         assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
+        assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
       }
     }
     

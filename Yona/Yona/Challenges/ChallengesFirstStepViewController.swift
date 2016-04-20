@@ -328,7 +328,11 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("index  \(indexPath)")
-        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timeframeTimezoneSegue, sender: self)
+        if categoryHeader == .BudgetGoal {
+            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.budgetChallengeSegue, sender: self)
+        } else if categoryHeader == .TimeZoneGoal {
+        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timezoneChallengeSegue, sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

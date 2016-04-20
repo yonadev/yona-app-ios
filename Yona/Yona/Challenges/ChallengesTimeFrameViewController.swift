@@ -82,10 +82,6 @@ class ChallengesTimeFrameViewController: UIViewController {
        
     }
 
-    
-
-    
-
 }
 
 
@@ -97,7 +93,7 @@ extension String {
 
 private extension Selector {
    
-    static let back = #selector(SignUpSecondStepViewController.back(_:))
+    static let back = #selector(ChallengesTimeFrameViewController.back(_:))
     
 }
 

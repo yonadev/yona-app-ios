@@ -61,6 +61,7 @@
 		ADD1082C1CC78C3B0048852F /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081D1CC78C3B0048852F /* Oswald-RegularItalic.ttf */; };
 		ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD1081E1CC78C3B0048852F /* Oswald-Stencil.ttf */; };
 		ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */; };
+		ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */; };
 		ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */; };
 		ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0321CBE49EB009FEF31 /* GradientView.swift */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
@@ -250,6 +251,7 @@
 		ADD1081D1CC78C3B0048852F /* Oswald-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-RegularItalic.ttf"; sourceTree = "<group>"; };
 		ADD1081E1CC78C3B0048852F /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneTableViewCell.swift; sourceTree = "<group>"; };
+		ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameBudgetChallengeViewController.swift; sourceTree = "<group>"; };
 		ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
@@ -486,8 +488,9 @@
 			children = (
 				AD01F7211CBCC560006E6157 /* ChallengesFirstStepViewController.swift */,
 				ADC6C88B1CC5661A00AAF29C /* ChallengesTimeFrameViewController.swift */,
-				ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */,
+				ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */,
 				AD291D661CA94001008CAFB1 /* Challenges.storyboard */,
+				ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */,
 				AD291D681CA9400E008CAFB1 /* ChallengesViewController.swift */,
 			);
 			path = Challenges;
@@ -1237,6 +1240,7 @@
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */,
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
+				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
