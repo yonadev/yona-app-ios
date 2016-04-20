@@ -29,11 +29,10 @@ class APIServiceManager {
     
     private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
         
-        guard let yonaPassword = getYonaPassword() else {
+        guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
             onCompletion(false,nil,nil)
             return
         }
-
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
@@ -44,38 +43,20 @@ class APIServiceManager {
         })   
     }
 
-    
-    private func createYonaPassword() {
-        let password = NSUUID().UUIDString
-        
-        let keychain = KeychainSwift()
-        
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
-    }
-    
-    private func getYonaPassword() -> String? {
-        let keychain = KeychainSwift()
-        
-        guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }
-        
-        return password
-    }
-    
-    private func setServerCodeMessage(json:BodyDataDictionary?) {
+    func setServerCodeMessage(json:BodyDataDictionary?, code: Int) {
         //check if json is empty
-        if let jsonUnwrapped = json {
-            if let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String,
-                let code = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String {
-                self.serverMessage = message
-                self.serverCode = code
-            } else { //if we have json but it is not an error then say everything is oK!
-                self.serverMessage = YonaConstants.serverMessages.OK
-                self.serverCode = YonaConstants.serverCodes.OK
-            }
+        
+        if case YonaConstants.responseCodes.ok200 ... YonaConstants.responseCodes.ok204 = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
+            self.serverMessage = YonaConstants.serverMessages.OK
+            self.serverCode = YonaConstants.serverCodes.OK
         } else {
-            self.serverMessage = YonaConstants.serverMessages.noJsonReturned
-            self.serverCode = YonaConstants.serverCodes.noJsonReturned
+            if let jsonUnwrapped = json,
+                let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
+                    self.serverMessage = message
+                    self.serverCode = String(code)
+                }
         }
+
     }
     
     func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
@@ -110,6 +91,53 @@ class APIServiceManager {
         }
         sortGoalsIntoArray(goalType) { (success, message, code, goals, error) in
             onCompletion(success, message, code, goals, error)
+        }
+    }
+    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
+        self.getActivitiesArray{ (success, message, code, activities, error) in
+            if success {
+                var activityCategoryLink:String?
+                
+                for activity in (activities! as Array) {
+                    switch activity.activityCategoryName! {
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    case activityName.rawValue:
+                        activityCategoryLink = activity.selfLinks!
+                    default:
+                        break
+                    }
+                }
+                onCompletion(true, activityCategoryLink, message, code)
+            } else {
+                onCompletion(false, nil, message, code)
+            }
+        }
+    }
+    
+    func getGoalsSizeOfGoalType(goalType: YonaConstants.GoalType, onCompletion: APIGoalSizeResponse) {
+        
+        switch goalType {
+        case YonaConstants.GoalType.BudgetGoalString:
+            guard budgetGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(budgetGoals.count)
+        case YonaConstants.GoalType.TimeZoneGoalString:
+            guard timezoneGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(timezoneGoals.count)
+        case YonaConstants.GoalType.NoGoGoalString:
+            guard noGoGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(noGoGoals.count)
         }
     }
     
@@ -178,6 +206,33 @@ class APIServiceManager {
     }
 }
 
+
+//MARK: - New Device Requests APIService
+extension APIServiceManager {
+    func putNewDevice(mobileNumber: String, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let path = YonaConstants.environments.test + YonaConstants.commands.newDeviceRequests + mobileNumber
+                if let password = KeychainManager.sharedInstance.getYonaPassword() {
+                    let bodyNewDevice = [
+                        "newDeviceRequestPassword": password
+                    ]
+                    self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.put, onCompletion: { (success, json, error) in
+                        guard success == true else {
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                            return
+                        }
+                        onCompletion(true, self.serverMessage, self.serverCode)
+                        
+                    })
+                }
+            } else {
+                onCompletion(false, message, code)
+            }
+        }
+    }
+    
+}
 //MARK: - Activities APIService
 extension APIServiceManager {
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
@@ -186,7 +241,7 @@ extension APIServiceManager {
                 let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories
                 self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                             return
@@ -205,13 +260,13 @@ extension APIServiceManager {
                         }
                     } else {
                         //response from request failed
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                     }
                 })
             } else {
                 //return response from APIService Check, no network
-                onCompletion(false, message, code, nil, nil)
+                onCompletion(false, message, code, self.activities, nil)
             }
         }
     }
@@ -223,7 +278,7 @@ extension APIServiceManager {
                 let path = YonaConstants.environments.test + YonaConstants.commands.activityCategories + activityID
                 self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                             return
@@ -233,7 +288,7 @@ extension APIServiceManager {
                         onCompletion(true, self.serverMessage, self.serverCode, self.newActivity, err)
                     } else {
                         //response from request failed
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                     }
                 })
@@ -255,7 +310,7 @@ extension APIServiceManager {
                     self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
 
                         if let json = json {
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                                 return
@@ -273,13 +328,13 @@ extension APIServiceManager {
                             }
                         } else {
                             //response from request failed
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                         }
                     })
                 }
             } else {
-                onCompletion(false, message, code, nil, nil)
+                onCompletion(false, message, code, self.goals, nil)
             }
         }
     }
@@ -291,7 +346,7 @@ extension APIServiceManager {
                     let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
                     self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                         if let json = json {
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                                 return
@@ -300,7 +355,7 @@ extension APIServiceManager {
                             onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
                         } else {
                             //response from request failed, json is nil
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                         }
                     })
@@ -308,7 +363,7 @@ extension APIServiceManager {
                 //response from request failed, json is nil
                     //Failed to retrive details for GET user details request
                     self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals])
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode, nil, nil)
                 }
             } else {
@@ -324,7 +379,7 @@ extension APIServiceManager {
                     let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
                     self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
                         if let json = json {
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                                 return
@@ -333,7 +388,7 @@ extension APIServiceManager {
                             onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
                         } else {
                             //response from request failed, json is nil
-                            self.setServerCodeMessage(json)
+//                            self.setServerCodeMessage(json)
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                         }
                     })
@@ -351,18 +406,12 @@ extension APIServiceManager {
                 if let userID = KeychainManager.sharedInstance.getUserID() {
                     let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
                     self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
-                        if let json = json {
-                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
-                            //response from request failed
-                            self.setServerCodeMessage(json)
+                        guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
+
                     })
                 }
             } else {
@@ -384,7 +433,7 @@ extension APIServiceManager {
                 let path = YonaConstants.environments.test + YonaConstants.commands.users
                 self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                     if let json = json {
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode,nil)
                             return
@@ -393,7 +442,7 @@ extension APIServiceManager {
                         onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                     } else {
                         //response from request failed
-                        self.setServerCodeMessage(json)
+//                        self.setServerCodeMessage(json)
                         onCompletion(false, self.serverMessage, self.serverCode,nil)
                     }
                 })
@@ -413,7 +462,7 @@ extension APIServiceManager {
                         ///now post updated user data
                         self.callRequestWithAPIServiceResponse(body, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                             if let json = json {
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode)
                                     return
@@ -422,14 +471,14 @@ extension APIServiceManager {
                                 onCompletion(true, self.serverMessage, self.serverCode)
                             } else {
                                 //response from request failed
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 onCompletion(false, self.serverMessage, self.serverCode)
                             }
                         })
                 } else {
                     //Failed to retrive details for POST user details request
                     self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails])
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode)
                 }
             } else {
@@ -445,7 +494,7 @@ extension APIServiceManager {
                     if let getUserLink = newUser.getSelfLink {
                         self.callRequestWithAPIServiceResponse(nil, path: getUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
                             if let json = json {
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode,nil)
                                     return
@@ -454,7 +503,7 @@ extension APIServiceManager {
                                 onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                             } else {
                                 //response from request failed
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 onCompletion(false, self.serverMessage, self.serverCode,nil)
                             }
                         })
@@ -463,7 +512,7 @@ extension APIServiceManager {
                 } else {
                     //Failed to retrive details for GET user details request
                     self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails])
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode,nil)
                 }
             } else {
@@ -479,7 +528,7 @@ extension APIServiceManager {
                     let path = newUser.editLink {
                         self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, json, err in
                             if let json = json {
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode)
                                     return
@@ -489,14 +538,14 @@ extension APIServiceManager {
                                 onCompletion(true, self.serverMessage, self.serverCode)
                             } else {
                                 //response from request failed
-                                self.setServerCodeMessage(json)
+//                                self.setServerCodeMessage(json)
                                 onCompletion(false, self.serverMessage, self.serverCode)
                             }
                         }
                     } else {
                         //Failed to retrive details for delete user request
                         self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser,
-                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser])
+                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser], code: 1)
                         onCompletion(false, self.serverMessage, self.serverCode)
                     }
                 } else {
@@ -516,21 +565,16 @@ extension APIServiceManager {
                     #endif
                     
                     self.callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
-                        if let json = json {
-                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
+                        guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
                     }
                 } else {
                     //Failed to retrive details for otp resend request
                     self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveOTP,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveOTP])
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveOTP], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode)
                 }
             } else {
@@ -549,21 +593,17 @@ extension APIServiceManager {
                     #endif
                     
                     self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
-                        if let json = json {
-                            self.setServerCodeMessage(json)
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        } else {
+                        guard success == true else {
+                            print(err)
                             onCompletion(false, self.serverMessage, self.serverCode)
+                            return
                         }
+                        onCompletion(true, self.serverMessage, self.serverCode)
                     }
                 } else {
                     //Failed to retrive details for confirm mobile request
                     self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile])
+                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode)
                 }
             } else {

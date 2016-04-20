@@ -37,44 +37,67 @@ class GoalAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
+        
+        var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+        var bodyBudgetSocialGoal = [
+            "@type": "BudgetGoal",
+            "_links": ["yona:activityCategory":
+                ["href": socialActivityCategoryLink]
+            ],
+            "maxDurationMinutes": "10"
+        ]
+        
+        var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+        var bodyBudgetNewsGoal = [
+            "@type": "BudgetGoal",
+            "_links": [
+                "yona:activityCategory": ["href": newsActivityCategoryLink]
+            ],
+            "maxDurationMinutes": "30"
+        ]
+
+        
         //Get user goals
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
-            let bodyGoal = [
-                "@type": "BudgetGoal",
-                    "activityCategoryName": "social"
-            ]
-            //add budget goal
-            APIServiceManager.sharedInstance.postUserGoals(bodyGoal, onCompletion: { (succes, message, code, goal, error) in
-                
-                let bodyGoal2 = [
-                    "@type": "BudgetGoal",
-                    "activityCategoryName": "news"
-                ]
-                APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
-                    if success {
-                        //no
-                        APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
-                            if let goalsUnwrap = goals {
-                                if success {
-                                    for goal in goalsUnwrap {
-                                        print(goal.goalType)
-//                                        XCTAssertFalse(goal.goalType! != .BudgetGoalString.rawValue)
+            //we need to now get the activity link from our activities
+            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
+                    //set body for goal
+//                    bodyBudgetSocialGoal["_links"]!["yona:activityCategory"]!["href"]! as! String = socialActivityCategoryLink as! String
+                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
+                        
+                        //now we can post the goal
+                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (success, message, code, goal, error) in
+                            if success {
+                                //now we can post the goal
+                                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (success, message, code, goal, error) in
+                                    if success {
+                                        //no
+                                        APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
+                                            if let goalsUnwrap = goals {
+                                                if success {
+                                                    for goal in goalsUnwrap {
+                                                        print(goal.goalType)
+                                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.BudgetGoalString.rawValue)
+                                                    }
+                                                    expectation.fulfill()
+                                                } else {
+                                                    XCTFail(message!)
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        XCTFail(message!)
                                     }
-                                    expectation.fulfill()
-                                } else {
-                                    XCTFail(message!)
-                                }
+                                })
+                            } else {
+                                XCTFail(message!)
                             }
                         })
-                    } else {
-                        XCTFail(message!)
-                    }
                 })
             })
-
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
@@ -84,50 +107,76 @@ class GoalAPIServiceTests: XCTestCase {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        
+
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
+        
+        var socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+        let bodyTimeZoneSocialGoal = [
+            "@type": "TimeZoneGoal",
+            "_links": [
+                "yona:activityCategory": ["href": socialActivityCategoryLink]
+            ],
+            "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+        ]
+        
+        var newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+        let bodyTimeZoneNewsGoal = [
+            "@type": "TimeZoneGoal",
+            "_links": [
+                "yona:activityCategory": ["href": newsActivityCategoryLink]
+            ],
+            "zones": ["8:00-17:00", "20:00-22:00"]
+        ]
         //Get user goals
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
-            let bodyGoal = [
-                "@type": "TimeZoneGoal",
-                "activityCategoryName": "social",
-                "zones":[ "6:00-10:00", "6:00-10:00"]
-            ]
-            //add budget goal
-            APIServiceManager.sharedInstance.postUserGoals(bodyGoal, onCompletion: { (succes, message, code, goal, error) in
-                
-                let bodyGoal2 = [
-                    "@type": "TimeZoneGoal",
-                    "activityCategoryName": "news",
-                    "zones":[ "8:00-11:00"]
-                ]
-                APIServiceManager.sharedInstance.postUserGoals(bodyGoal2, onCompletion: { (succes, message, code, goal, error) in
+            //we need to now get the activity link from our activities
+            APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                     if success {
-                        //no
-                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
-                            if let goalsUnwrap = goals {
-                                if success {
-                                    for goal in goalsUnwrap {
-                                        print(goal.goalType)
-//                                        XCTAssertFalse(goal.goalType! != .TimeZoneGoalString.rawValue)
+                        //set body for budget social goal
+
+                    }
+                APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
+                    if success {
+                        //set body for goal
+                    }
+                    
+                        //add budget goal
+                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, error) in
+                            if success {
+
+                                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, error) in
+                                    if success {
+                                        //no
+                                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
+                                            if let goalsUnwrap = goals {
+                                                if success {
+                                                    for goal in goalsUnwrap {
+                                                        print(goal.goalType)
+                                                        XCTAssertFalse(goal.goalType! != YonaConstants.GoalType.TimeZoneGoalString.rawValue)
+                                                    }
+                                                    expectation.fulfill()
+                                                } else {
+                                                    XCTFail(message!)
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        XCTFail(message!)
                                     }
-                                    expectation.fulfill()
-                                } else {
-                                    XCTFail(message!)
-                                }
+                                })
+                            } else {
+                                XCTFail(message!)
                             }
                         })
-                    } else {
-                        XCTFail(message!)
-                    }
                 })
+                    
             })
             
         }
@@ -219,92 +268,42 @@ class GoalAPIServiceTests: XCTestCase {
                 }
                 print(KeychainManager.sharedInstance.getYonaPassword())
 
-                //Get their goals (usere are always created with a gambling goal that cannot be removed
-                APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
+                //body we want to post
+                let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+                let bodyTimeZoneSocialGoal = [
+                    "@type": "TimeZoneGoal",
+                    "_links": [
+                        "yona:activityCategory": ["href": socialActivityCategoryLink]
+                    ],
+                    "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+                ]
+
+                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+                    (success, serverMessage, serverCode, goal, err) in
                     if success {
-                        print(goals)
-                        var currentGoal:Goal?
-                        //we want to remove the news goal so find it
-                        for goal in goals! {
-                            if goal.activityCategoryName == "news" {
-                                currentGoal = goal
+                        //Get the goals again to see if the goals have been updated after our post
+                        APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
+                            print(goals)
+                            var currentGoalAfterPost:Goal?
+                            //we want to remove the news goal so find it
+                            for goal in goals! {
+                                if goal.activityCategoryName == "news" {
+                                    currentGoalAfterPost = goal
+                                }
+                            }
+                            //now we have the goal we posted...returned from current goals, so check it's category is the
+                            if let currentGoalAfterPost = currentGoalAfterPost {
+                                let currentGoalAfterPostID = currentGoalAfterPost.goalID!
+                                print(currentGoalAfterPostID)
+                                XCTAssertTrue(currentGoalAfterPost.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
+                                expectation.fulfill()
                             }
                         }
-                        //body we want to post
-                        let postGoalBody = [
-                            "@type": "BudgetGoal",
-                            "activityCategoryName": "news"
-                        ]
-                        //if we found the goal we want to remove it before we can post it else we get the server message "error.goal.cannot.add.second.on.activity.category"
-                        if let currentGoal = currentGoal {
-                            let currentGoalID = currentGoal.goalID!
-                            print(currentGoalID)
-                            print(currentGoal)
-                            APIServiceManager.sharedInstance.deleteUserGoal(currentGoalID, onCompletion: { (success, serverMessage, serverCode) in
-                                if success {
-                                    APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                        (success, serverMessage, serverCode, goal, err) in
-                                        if success {
-                                            //Get the goals again to see if the goals have been updated after our post
-                                            APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                                                print(goals)
-                                                var currentGoalAfterPost:Goal?
-                                                //we want to remove the news goal so find it
-                                                for goal in goals! {
-                                                    if goal.activityCategoryName == "news" {
-                                                        currentGoalAfterPost = goal
-                                                    }
-                                                }
-                                                //now we have the goal we posted...returned from current goals, so check it's category is the
-                                                if let currentGoalAfterPost = currentGoalAfterPost {
-                                                    let currentGoalAfterPostID = currentGoalAfterPost.goalID!
-                                                    print(currentGoalAfterPostID)
-                                                    XCTAssertTrue(currentGoalAfterPost.activityCategoryName == postGoalBody["activityCategoryName"], "Goal has been posted")
-                                                    expectation.fulfill()
-                                                }
-                                            }
-                                        } else {
-                                            XCTFail()
-                                        }
-                                    })
-                                } else {
-                                    //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
-                                    if let serverCode = serverCode where
-                                        serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
-                                            print(serverMessage)
-                                        
-                                    }
-                                }
-
-
-                            })
-                        } else { //if we cannot find a "news" goal then we need to post it
-                            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                                (success, serverMessage, serverCode, goal, err) in
-                                if success {
-                                    APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                                        print(goals)
-                                        var currentGoal:Goal?
-                                        //we want to remove the news goal so find it
-                                        for goal in goals! {
-                                            if goal.activityCategoryName == "news" {
-                                                currentGoal = goal
-                                            }
-                                        }
-                                        if let currentGoal = currentGoal {
-                                            XCTAssertTrue(currentGoal.activityCategoryName == postGoalBody["activityCategoryName"], "Goal has been posted")
-                                            expectation.fulfill()
-                                        }
-                                    }
-                                } else {
-                                    XCTFail()
-                                }
-                            })
-                        }
-
+                    } else {
+                        XCTFail(serverMessage!)
                     }
-                    
-                }
+                })
+            
             }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
