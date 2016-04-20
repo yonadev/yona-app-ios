@@ -21,32 +21,21 @@ class ChallengesTimeFrameViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
-//        self.setSelectedCategory(selectedCategoryView)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func deletebuttonTapped(sender: UIButton) {
-//        sender.hidden = true
-//        backButton.hidden = false
-//        if selectedCategoryView == budgetView {
-//            categoryHeader = .BudgetActivity
-//            
-//        } else if selectedCategoryView == timezoneView {
-//            categoryHeader = .TimeZoneActivity
-//        } else if selectedCategoryView == nogoView {
-//            categoryHeader = .NoGoActivity
-//        }
-//        self.setHeaderTitleLabel()
-//        self.tableView.reloadData()
-    }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+    
+    
 
 }
+
+private extension Selector {
+   
+    static let back = #selector(SignUpSecondStepViewController.back(_:))
+    
+}
+
