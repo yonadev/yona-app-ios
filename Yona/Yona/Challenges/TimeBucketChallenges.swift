@@ -1,6 +1,6 @@
 
 //
-//  ChallengesFirstStepViewController.swift
+//  TimeBucketChallenges.swift
 //  Yona
 //
 //  Created by Chandan on 11/04/16.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
+class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
@@ -84,6 +84,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 if success {
                     self.goalsArray  = goalsUnwrap
                     if self.goalsArray.count > 0 {
+                        self.budgetBadgeLabel.hidden = false
                         self.budgetBadgeLabel.text = String(self.goalsArray.count)
                     } else {
                         self.budgetBadgeLabel.hidden = true
@@ -107,6 +108,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 if success {
                     self.goalsArray  = goalsUnwrap
                     if self.goalsArray.count > 0 {
+                        self.timezoneBadgeLabel.hidden = false
                         self.timezoneBadgeLabel.text = String(self.goalsArray.count)
                     } else {
                         self.timezoneBadgeLabel.hidden = true
@@ -130,6 +132,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
                 if success {
                     self.goalsArray  = goalsUnwrap
                     if self.goalsArray.count > 0 {
+                        self.nogoBadgeLabel.hidden = false
                         self.nogoBadgeLabel.text = String(self.goalsArray.count)
                     } else {
                         self.nogoBadgeLabel.hidden = true
@@ -280,7 +283,7 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
     }
     
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
@@ -299,10 +302,20 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
+            
+//            let activityCategoryNameUnwrap = self.goalsArray[indexPath.row].goalType!
+//            let zonesUnwrap = String(self.goalsArray[indexPath.row].zonesStore)
+//            let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "")
+//                        let zonesArr1 = zonesUnwrap[0].
+//                        let zonesArr2 = zonesUnwrap[1].componentsSeparatedByString("-")
+//                        let title = NSString(format: localizedString, zonesArr1[0], zonesArr1[1],zonesArr2[0],zonesArr2[1])
+//            cell.textLabel?.text = activityCategoryNameUnwrap
+//            //            cell.detailTextLabel?.text = title as String
+//            cell.detailTextLabel?.numberOfLines = 0
             cell.textLabel?.text = self.goalsArray[indexPath.row].goalType!
-            //TODO: - work in progress
             cell.detailTextLabel?.text = "TimeZoneGoal"
-            cell.detailTextLabel?.numberOfLines = 0
+             cell.detailTextLabel?.numberOfLines = 0
+            
             
         case .TimeZoneActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -325,18 +338,17 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index  \(indexPath)")
-        if categoryHeader == .BudgetGoal {
-            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.budgetChallengeSegue, sender: self)
-        } else if categoryHeader == .TimeZoneGoal {
-        performSegueWithIdentifier(R.segue.challengesFirstStepViewController.timezoneChallengeSegue, sender: self)
-        } else if categoryHeader == .NoGoGoal {
-            performSegueWithIdentifier(R.segue.challengesFirstStepViewController.noGoChallengeSegue, sender: self)
+        if categoryHeader == .BudgetGoal || categoryHeader == .BudgetActivity{
+            performSegueWithIdentifier(R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
+        } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
+            performSegueWithIdentifier(R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)
+        } else if categoryHeader == .NoGoGoal  || categoryHeader == .NoGoActivity {
+            performSegueWithIdentifier(R.segue.timeBucketChallenges.noGoChallengeSegue, sender: self)
         }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
+        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
             return 100.0
         } else {
             return 60.0
@@ -352,9 +364,9 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
 
 private extension Selector {
     
-    static let categoryTapEvent = #selector(ChallengesFirstStepViewController.categoryTapEvent(_:))
+    static let categoryTapEvent = #selector(TimeBucketChallenges.categoryTapEvent(_:))
     
-    static let back = #selector(ChallengesFirstStepViewController.back(_:))
+    static let back = #selector(TimeBucketChallenges.back(_:))
 }
 
 

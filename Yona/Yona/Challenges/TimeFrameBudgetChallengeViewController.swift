@@ -27,7 +27,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        
+        footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
     }
     
     // MARK: - Actions
@@ -36,7 +36,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 
     }
     
-    @IBAction func addNewChallengeButtonTapped(sender: AnyObject) {
+    @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
        print("integrate post budget challenge")
     }
     

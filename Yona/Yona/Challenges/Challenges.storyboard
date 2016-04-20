@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2dW-Eu-67p">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -47,10 +47,10 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Challenges First Step View Controller-->
+        <!--Time Bucket Challenges-->
         <scene sceneID="3sl-LP-dif">
             <objects>
-                <viewController storyboardIdentifier="ChallengesStoryboard" id="QvV-Rl-xbI" customClass="ChallengesFirstStepViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChallengesStoryboard" id="QvV-Rl-xbI" customClass="TimeBucketChallenges" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vb9-KF-M2V"/>
                         <viewControllerLayoutGuide type="bottom" id="5QO-v2-pRk"/>
@@ -84,7 +84,7 @@
                                                                     <constraint firstAttribute="width" constant="46" id="m8N-Fj-vQD"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-k5-hDl">
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-k5-hDl">
                                                                 <rect key="frame" x="37" y="0.0" width="20" height="20"/>
                                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
@@ -149,7 +149,7 @@
                                                                     <constraint firstAttribute="width" constant="46" id="ceX-rx-lWC"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-FY-1gm">
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-FY-1gm">
                                                                 <rect key="frame" x="37" y="0.0" width="20" height="20"/>
                                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
@@ -214,7 +214,7 @@
                                                                     <constraint firstAttribute="width" constant="46" id="Ehx-C7-U5c"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-aV-C4T">
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-aV-C4T">
                                                                 <rect key="frame" x="37" y="0.0" width="20" height="20"/>
                                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
@@ -429,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khv-li-k0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="-547"/>
+            <point key="canvasLocation" x="706" y="-75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o5y-TS-vCK">
@@ -447,12 +447,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bss-JH-KP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="-67"/>
+            <point key="canvasLocation" x="-22" y="-67"/>
         </scene>
-        <!--Challenges Time Frame View Controller-->
+        <!--Time Frame Time Zone Challenge View Controller-->
         <scene sceneID="zPg-pe-rSp">
             <objects>
-                <viewController storyboardIdentifier="ChallengesTimeFrameStoryboard" id="OaK-4S-ODd" customClass="ChallengesTimeFrameViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeFrameTimeZoneChallengeStoryboard" id="OaK-4S-ODd" customClass="TimeFrameTimeZoneChallengeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wRH-yg-dpd"/>
                         <viewControllerLayoutGuide type="bottom" id="S5w-n3-FsC"/>
@@ -467,49 +467,41 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Nb-LNL" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO6-LB-Hnw" userLabel="Delete Button">
+                                                <rect key="frame" x="556" y="24" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="96W-Hw-4Xj"/>
+                                                    <constraint firstAttribute="height" constant="24" id="MWt-8o-7WG"/>
+                                                </constraints>
+                                                <state key="normal" image="icnTrash"/>
+                                                <connections>
+                                                    <action selector="deletebuttonTapped:" destination="OaK-4S-ODd" eventType="touchUpInside" id="BPo-Ec-f8a"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSr-qN-men">
+                                                <rect key="frame" x="222" y="31" width="156" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOp-Yo-h8f" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq3-kt-ckj" userLabel="Back Button">
-                                                        <rect key="frame" x="20" y="28" width="13" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="22" id="abq-vf-jHD"/>
-                                                            <constraint firstAttribute="width" constant="13" id="k41-Hr-Gra"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnBack"/>
-                                                        <connections>
-                                                            <action selector="back:" destination="OaK-4S-ODd" eventType="touchUpInside" id="zer-Up-ZBL"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSr-qN-men">
-                                                        <rect key="frame" x="222" y="31" width="156" height="17"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO6-LB-Hnw" userLabel="Delete Button">
-                                                        <rect key="frame" x="556" y="24" width="24" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="24" id="96W-Hw-4Xj"/>
-                                                            <constraint firstAttribute="height" constant="24" id="MWt-8o-7WG"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnTrash"/>
-                                                        <connections>
-                                                            <action selector="deletebuttonTapped:" destination="OaK-4S-ODd" eventType="touchUpInside" id="BPo-Ec-f8a"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="KrA-jd-Hqy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="tO6-LB-Hnw" secondAttribute="trailing" constant="20" id="NrN-rG-1ga"/>
-                                                    <constraint firstItem="tO6-LB-Hnw" firstAttribute="top" secondItem="xOp-Yo-h8f" secondAttribute="top" constant="24" id="RdR-gv-iTq"/>
-                                                    <constraint firstAttribute="bottom" secondItem="nSr-qN-men" secondAttribute="bottom" constant="2" id="Y5t-TM-avG"/>
-                                                    <constraint firstItem="nSr-qN-men" firstAttribute="centerX" secondItem="xOp-Yo-h8f" secondAttribute="centerX" id="Zlo-rO-sIx"/>
-                                                    <constraint firstItem="eq3-kt-ckj" firstAttribute="leading" secondItem="xOp-Yo-h8f" secondAttribute="leading" constant="20" id="ely-KH-fGa"/>
-                                                    <constraint firstItem="eq3-kt-ckj" firstAttribute="top" secondItem="xOp-Yo-h8f" secondAttribute="top" constant="28" id="yKG-JG-A1I"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq3-kt-ckj" userLabel="Back Button">
+                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="abq-vf-jHD"/>
+                                                    <constraint firstAttribute="width" constant="13" id="k41-Hr-Gra"/>
+                                                </constraints>
+                                                <state key="normal" image="icnBack"/>
+                                                <connections>
+                                                    <action selector="back:" destination="OaK-4S-ODd" eventType="touchUpInside" id="zer-Up-ZBL"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5j-Dx-cxe">
                                                 <rect key="frame" x="245" y="82" width="110" height="110"/>
                                                 <subviews>
@@ -547,16 +539,22 @@
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="a6P-sQ-VHj" secondAttribute="bottom" constant="13" id="8U8-v3-jbB"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="8hK-Lq-UzI"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="9Hg-0q-rJn"/>
+                                            <constraint firstAttribute="trailing" secondItem="tO6-LB-Hnw" secondAttribute="trailing" constant="20" id="BZJ-h9-UPH"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="30" id="Fmc-Fi-vj0"/>
+                                            <constraint firstItem="tO6-LB-Hnw" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="24" id="J02-o0-a0J"/>
+                                            <constraint firstItem="nSr-qN-men" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="31" id="KDq-7t-P5s"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="KRc-KY-4kE"/>
+                                            <constraint firstItem="nSr-qN-men" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="O12-LP-9ux"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" id="VfR-So-Pf0"/>
                                             <constraint firstAttribute="trailing" secondItem="xOp-Yo-h8f" secondAttribute="trailing" id="X1P-97-vb1"/>
+                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="20" id="hfA-Bp-xwD"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" id="kUh-hD-oeo"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="top" secondItem="xOp-Yo-h8f" secondAttribute="bottom" constant="32" id="smu-Ht-K9w"/>
                                             <constraint firstAttribute="trailing" secondItem="a6P-sQ-VHj" secondAttribute="trailing" constant="15" id="uT1-pe-TAY"/>
                                             <constraint firstAttribute="trailing" secondItem="6Em-cj-kPG" secondAttribute="trailing" constant="15" id="usM-ab-V0E"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="vvS-Ys-56K"/>
                                             <constraint firstAttribute="height" constant="300" id="wkY-M5-CPM"/>
+                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="28" id="yJ8-SN-lwl"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="yzq-WP-IqV"/>
                                         </constraints>
                                     </view>
@@ -606,13 +604,16 @@
                                                     <state key="normal" title="CHALLENGE OPSLAAN">
                                                         <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="postNewTimeZoneChallengeButtonTapped:" destination="OaK-4S-ODd" eventType="touchUpInside" id="SAw-DB-EEN"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-fZ-zwR">
                                                     <rect key="frame" x="0.0" y="90" width="600" height="176"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-jn-Qwz" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="G8V-ac-6Mh"/>
                                                                 <constraint firstAttribute="height" constant="50" id="hTr-1s-DCw"/>
@@ -620,7 +621,6 @@
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
                                                             <rect key="frame" x="50" y="69" width="500" height="29"/>
-                                                            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -629,7 +629,6 @@ onderdeel van deze challenge:</string>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
                                                             <rect key="frame" x="50" y="112" width="500" height="33.5"/>
-                                                            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -637,7 +636,7 @@ Pinterest, Instagram, Snapchat</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="yfN-TY-GOx" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" constant="50" id="3wT-Hl-fVB"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="centerX" secondItem="zJ5-fZ-zwR" secondAttribute="centerX" id="E7E-PM-i3V"/>
@@ -817,6 +816,7 @@ Pinterest, Instagram, Snapchat</string>
                     <navigationItem key="navigationItem" id="Hnu-YR-E7s"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="footerGradientView" destination="1nz-jn-Qwz" id="Nzx-Fy-qTN"/>
                         <outlet property="gradientView" destination="xOp-Yo-h8f" id="DkS-3M-Vcr"/>
                         <outlet property="headerView" destination="W5j-Dx-cxe" id="T10-b2-AIx"/>
                         <outlet property="setChallengeButton" destination="Z2j-ti-haz" id="tIH-ck-jc1"/>
@@ -825,7 +825,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9X-P9-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718" y="-591"/>
+            <point key="canvasLocation" x="2090" y="-75"/>
         </scene>
         <!--Time Frame Budget Challenge View Controller-->
         <scene sceneID="AZF-4l-d6e">
@@ -847,47 +847,39 @@ Pinterest, Instagram, Snapchat</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hR-VW-tRE" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-YH-Hjm" userLabel="Back Button">
-                                                        <rect key="frame" x="20" y="28" width="13" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="13" id="A0l-Kn-WuH"/>
-                                                            <constraint firstAttribute="height" constant="22" id="ubE-fn-ZAp"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnBack"/>
-                                                        <connections>
-                                                            <action selector="back:" destination="9hD-qE-oqu" eventType="touchUpInside" id="5tR-J7-vg2"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bf1-OS-Nmq">
-                                                        <rect key="frame" x="222" y="31" width="156" height="17"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJo-hg-2Ti" userLabel="Delete Button">
-                                                        <rect key="frame" x="556" y="24" width="24" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="24" id="EMa-yq-yek"/>
-                                                            <constraint firstAttribute="height" constant="24" id="I5f-Q6-63b"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnTrash"/>
-                                                        <connections>
-                                                            <action selector="deletebuttonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="Tcs-f2-dqn"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2nq-IT-UEu"/>
-                                                    <constraint firstItem="Bf1-OS-Nmq" firstAttribute="centerX" secondItem="0hR-VW-tRE" secondAttribute="centerX" id="EmQ-UM-iza"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Bf1-OS-Nmq" secondAttribute="bottom" constant="2" id="SrO-fy-Omc"/>
-                                                    <constraint firstItem="EJo-hg-2Ti" firstAttribute="top" secondItem="0hR-VW-tRE" secondAttribute="top" constant="24" id="Y1h-GR-6se"/>
-                                                    <constraint firstAttribute="trailing" secondItem="EJo-hg-2Ti" secondAttribute="trailing" constant="20" id="dIF-ul-yz9"/>
-                                                    <constraint firstItem="TWk-YH-Hjm" firstAttribute="leading" secondItem="0hR-VW-tRE" secondAttribute="leading" constant="20" id="hwI-Dn-gIv"/>
-                                                    <constraint firstItem="TWk-YH-Hjm" firstAttribute="top" secondItem="0hR-VW-tRE" secondAttribute="top" constant="28" id="un5-dx-C5b"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bf1-OS-Nmq">
+                                                <rect key="frame" x="222" y="31" width="156" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJo-hg-2Ti" userLabel="Delete Button">
+                                                <rect key="frame" x="556" y="24" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="EMa-yq-yek"/>
+                                                    <constraint firstAttribute="height" constant="24" id="I5f-Q6-63b"/>
+                                                </constraints>
+                                                <state key="normal" image="icnTrash"/>
+                                                <connections>
+                                                    <action selector="deletebuttonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="Tcs-f2-dqn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-YH-Hjm" userLabel="Back Button">
+                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="13" id="A0l-Kn-WuH"/>
+                                                    <constraint firstAttribute="height" constant="22" id="ubE-fn-ZAp"/>
+                                                </constraints>
+                                                <state key="normal" image="icnBack"/>
+                                                <connections>
+                                                    <action selector="back:" destination="9hD-qE-oqu" eventType="touchUpInside" id="5tR-J7-vg2"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
                                                 <rect key="frame" x="245" y="82" width="110" height="110"/>
                                                 <subviews>
@@ -928,12 +920,18 @@ Pinterest, Instagram, Snapchat</string>
                                             <constraint firstItem="kYa-ba-ZYU" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="15" id="P1i-rQ-kzs"/>
                                             <constraint firstItem="XEI-aB-5HT" firstAttribute="top" secondItem="0hR-VW-tRE" secondAttribute="bottom" constant="32" id="PzY-If-9xF"/>
                                             <constraint firstItem="0hR-VW-tRE" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="Qtu-DH-8ZS"/>
+                                            <constraint firstAttribute="trailing" secondItem="EJo-hg-2Ti" secondAttribute="trailing" constant="20" id="Rf6-Tz-ZGr"/>
+                                            <constraint firstItem="EJo-hg-2Ti" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="24" id="TeU-7S-Sii"/>
                                             <constraint firstItem="nZg-5a-C9x" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="15" id="UaZ-eH-lvy"/>
                                             <constraint firstAttribute="trailing" secondItem="kYa-ba-ZYU" secondAttribute="trailing" constant="15" id="Y2V-tQ-Qrq"/>
                                             <constraint firstItem="kYa-ba-ZYU" firstAttribute="top" secondItem="nZg-5a-C9x" secondAttribute="bottom" constant="13" id="ahQ-tG-ZfC"/>
                                             <constraint firstItem="kYa-ba-ZYU" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="e1s-Fe-oBj"/>
+                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="20" id="eG1-Xw-ZOf"/>
                                             <constraint firstItem="nZg-5a-C9x" firstAttribute="top" secondItem="XEI-aB-5HT" secondAttribute="bottom" constant="30" id="eLM-C1-4jR"/>
                                             <constraint firstItem="XEI-aB-5HT" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="gZc-un-oqs"/>
+                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="28" id="keg-Mr-J9l"/>
+                                            <constraint firstItem="Bf1-OS-Nmq" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="lli-lL-Zk3"/>
+                                            <constraint firstItem="Bf1-OS-Nmq" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="31" id="n34-Fz-sdj"/>
                                             <constraint firstItem="nZg-5a-C9x" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="tRo-dd-TaV"/>
                                             <constraint firstAttribute="trailing" secondItem="0hR-VW-tRE" secondAttribute="trailing" id="weK-O2-DRA"/>
                                         </constraints>
@@ -991,7 +989,7 @@ Pinterest, Instagram, Snapchat</string>
                                                     <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="addNewChallengeButtonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="w06-xW-Ahq"/>
+                                                    <action selector="postNewBudgetChallengeButtonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="s6n-wy-8Bh"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
@@ -999,7 +997,7 @@ Pinterest, Instagram, Snapchat</string>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-8k-rUN" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="63f-PM-W9d"/>
                                                             <constraint firstAttribute="height" constant="50" id="bne-J8-rNP"/>
@@ -1007,7 +1005,6 @@ Pinterest, Instagram, Snapchat</string>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNz-P2-HmF">
                                                         <rect key="frame" x="50" y="69" width="500" height="29"/>
-                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -1016,7 +1013,6 @@ onderdeel van deze challenge:</string>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
                                                         <rect key="frame" x="50" y="112" width="500" height="34"/>
-                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -1024,7 +1020,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="PNz-P2-HmF" firstAttribute="centerX" secondItem="yoa-6t-2LM" secondAttribute="centerX" id="8h1-bh-qkO"/>
                                                     <constraint firstItem="Aje-8k-rUN" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" id="DVA-hl-Hjm"/>
@@ -1093,6 +1089,7 @@ Pinterest, Instagram, Snapchat</string>
                     <navigationItem key="navigationItem" id="QVL-RN-ffR"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="footerGradientView" destination="Aje-8k-rUN" id="7Zc-8w-9qf"/>
                         <outlet property="gradientView" destination="0hR-VW-tRE" id="3WC-Oo-sdr"/>
                         <outlet property="headerView" destination="XEI-aB-5HT" id="Von-33-xLy"/>
                         <outlet property="setChallengeButton" destination="CZh-m0-g2j" id="N3e-hq-hIK"/>
@@ -1100,7 +1097,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="90"/>
+            <point key="canvasLocation" x="1404" y="-75"/>
         </scene>
         <!--Time Frame No Go Challenge View Controller-->
         <scene sceneID="dB4-QS-vSu">
@@ -1122,47 +1119,39 @@ Pinterest, Instagram, Snapchat</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-PN-X8W" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-AJ-QGn" userLabel="Back Button">
-                                                        <rect key="frame" x="20" y="28" width="13" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="13" id="Mf3-24-NLC"/>
-                                                            <constraint firstAttribute="height" constant="22" id="lPO-Pe-e8O"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnBack"/>
-                                                        <connections>
-                                                            <action selector="back:" destination="W2a-kb-DsC" eventType="touchUpInside" id="H9l-mE-mAN"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpy-Mn-wdL">
-                                                        <rect key="frame" x="222" y="31" width="156" height="17"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39Z-6A-Wlr" userLabel="Delete Button">
-                                                        <rect key="frame" x="556" y="24" width="24" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="H4v-k5-no8"/>
-                                                            <constraint firstAttribute="width" constant="24" id="Pel-R6-sDD"/>
-                                                        </constraints>
-                                                        <state key="normal" image="icnTrash"/>
-                                                        <connections>
-                                                            <action selector="deletebuttonTapped:" destination="W2a-kb-DsC" eventType="touchUpInside" id="bA7-Mk-koq"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="cpy-Mn-wdL" secondAttribute="bottom" constant="2" id="Ay1-Z2-3vY"/>
-                                                    <constraint firstAttribute="trailing" secondItem="39Z-6A-Wlr" secondAttribute="trailing" constant="20" id="UGa-10-fUo"/>
-                                                    <constraint firstItem="cpy-Mn-wdL" firstAttribute="centerX" secondItem="8Mc-PN-X8W" secondAttribute="centerX" id="XUM-Sa-qlh"/>
-                                                    <constraint firstItem="39Z-6A-Wlr" firstAttribute="top" secondItem="8Mc-PN-X8W" secondAttribute="top" constant="24" id="hCL-H3-nK8"/>
                                                     <constraint firstAttribute="height" constant="50" id="lun-LM-iI7"/>
-                                                    <constraint firstItem="kJN-AJ-QGn" firstAttribute="leading" secondItem="8Mc-PN-X8W" secondAttribute="leading" constant="20" id="wTr-5k-pv4"/>
-                                                    <constraint firstItem="kJN-AJ-QGn" firstAttribute="top" secondItem="8Mc-PN-X8W" secondAttribute="top" constant="28" id="zNA-Df-pmH"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-AJ-QGn" userLabel="Back Button">
+                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="13" id="Mf3-24-NLC"/>
+                                                    <constraint firstAttribute="height" constant="22" id="lPO-Pe-e8O"/>
+                                                </constraints>
+                                                <state key="normal" image="icnBack"/>
+                                                <connections>
+                                                    <action selector="back:" destination="W2a-kb-DsC" eventType="touchUpInside" id="H9l-mE-mAN"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED VASTLEGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpy-Mn-wdL">
+                                                <rect key="frame" x="222" y="31" width="156" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39Z-6A-Wlr" userLabel="Delete Button">
+                                                <rect key="frame" x="556" y="24" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="H4v-k5-no8"/>
+                                                    <constraint firstAttribute="width" constant="24" id="Pel-R6-sDD"/>
+                                                </constraints>
+                                                <state key="normal" image="icnTrash"/>
+                                                <connections>
+                                                    <action selector="deletebuttonTapped:" destination="W2a-kb-DsC" eventType="touchUpInside" id="bA7-Mk-koq"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-dg-Et7">
                                                 <rect key="frame" x="245" y="82" width="110" height="110"/>
                                                 <subviews>
@@ -1198,16 +1187,22 @@ Pinterest, Instagram, Snapchat</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Nkc-fL-yGV" secondAttribute="trailing" constant="15" id="5jW-Sk-erc"/>
                                             <constraint firstItem="Nkc-fL-yGV" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="5rD-zo-W7K"/>
+                                            <constraint firstAttribute="trailing" secondItem="39Z-6A-Wlr" secondAttribute="trailing" constant="20" id="CLE-B6-ut3"/>
                                             <constraint firstItem="8Mc-PN-X8W" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" id="Cbl-V6-jJI"/>
+                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="20" id="Hk1-3X-NFp"/>
                                             <constraint firstItem="vLg-dg-Et7" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="KaQ-kf-Qhr"/>
                                             <constraint firstItem="4ga-Zu-XzU" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="MMO-54-dYP"/>
+                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="28" id="NWO-im-6Xg"/>
                                             <constraint firstItem="Nkc-fL-yGV" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="PvN-w3-KdC"/>
+                                            <constraint firstItem="39Z-6A-Wlr" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="24" id="Pxq-NN-hZf"/>
                                             <constraint firstAttribute="trailing" secondItem="8Mc-PN-X8W" secondAttribute="trailing" id="Y68-EE-17C"/>
                                             <constraint firstItem="4ga-Zu-XzU" firstAttribute="top" secondItem="Nkc-fL-yGV" secondAttribute="bottom" constant="13" id="cJD-wb-RuU"/>
                                             <constraint firstItem="Nkc-fL-yGV" firstAttribute="top" secondItem="vLg-dg-Et7" secondAttribute="bottom" constant="30" id="g0J-Tg-bjo"/>
                                             <constraint firstItem="vLg-dg-Et7" firstAttribute="top" secondItem="8Mc-PN-X8W" secondAttribute="bottom" constant="32" id="hff-0G-kIj"/>
                                             <constraint firstAttribute="trailing" secondItem="4ga-Zu-XzU" secondAttribute="trailing" constant="15" id="it9-27-ger"/>
+                                            <constraint firstItem="cpy-Mn-wdL" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="31" id="kJC-Rh-pbO"/>
                                             <constraint firstItem="4ga-Zu-XzU" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="qxL-BP-SC8"/>
+                                            <constraint firstItem="cpy-Mn-wdL" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="s84-2F-I9I"/>
                                             <constraint firstItem="8Mc-PN-X8W" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" id="xTC-r4-AGc"/>
                                             <constraint firstItem="8Mc-PN-X8W" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="zTn-QJ-m0y"/>
                                             <constraint firstAttribute="height" constant="300" id="zpb-vg-2Tr"/>
@@ -1224,13 +1219,16 @@ Pinterest, Instagram, Snapchat</string>
                                                 <state key="normal" title="CHALLENGE OPSLAAN">
                                                     <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="postNewNoGoChallengeButtonTapped:" destination="W2a-kb-DsC" eventType="touchUpInside" id="9IQ-y9-afP"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-Dh-0Hg">
                                                 <rect key="frame" x="0.0" y="90" width="600" height="176"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-6Q-RTF" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ABS-vm-O7O"/>
                                                             <constraint firstAttribute="height" constant="50" id="zrA-2L-usl"/>
@@ -1238,7 +1236,6 @@ Pinterest, Instagram, Snapchat</string>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-pc-qS6">
                                                         <rect key="frame" x="50" y="69" width="500" height="29"/>
-                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -1247,7 +1244,6 @@ onderdeel van deze challenge:</string>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
                                                         <rect key="frame" x="50" y="112" width="500" height="34"/>
-                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -1255,7 +1251,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="wEg-pc-qS6" firstAttribute="top" secondItem="9T7-6Q-RTF" secondAttribute="bottom" constant="19" id="15N-IB-k7g"/>
                                                     <constraint firstItem="9T7-6Q-RTF" firstAttribute="leading" secondItem="hFu-Dh-0Hg" secondAttribute="leading" id="1dE-SS-rMl"/>
@@ -1316,8 +1312,8 @@ Pinterest, Instagram, Snapchat</string>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hFi-Hd-Bhd"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="footerGradientView" destination="9T7-6Q-RTF" id="5yU-Kb-JEU"/>
                         <outlet property="gradientView" destination="8Mc-PN-X8W" id="OJ2-VW-XNm"/>
                         <outlet property="headerView" destination="vLg-dg-Et7" id="S0N-7Y-eJj"/>
                         <outlet property="setChallengeButton" destination="nNe-wI-qBq" id="LcL-Hk-6Xb"/>
@@ -1325,7 +1321,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyo-fp-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="95"/>
+            <point key="canvasLocation" x="2755" y="-75"/>
         </scene>
     </scenes>
     <resources>

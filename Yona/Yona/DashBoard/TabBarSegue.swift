@@ -29,7 +29,7 @@ class TabBarSegue: UIStoryboardSegue {
             if let vc = tabBarController.currentViewControllers.challengesViewController {
                 destinationViewController = vc
             } else {
-                tabBarController.currentViewControllers.challengesViewController = destinationViewController as? ChallengesFirstStepViewController
+                tabBarController.currentViewControllers.challengesViewController = destinationViewController as? TimeBucketChallenges
             }
         default:()
         }
