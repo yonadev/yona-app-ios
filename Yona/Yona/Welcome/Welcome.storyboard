@@ -23,8 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
-                                <rect key="frame" x="113" y="-34" width="375" height="668"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
+                                <rect key="frame" x="113" y="-33.5" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-cZ-1Wg">
                                 <rect key="frame" x="301" y="540" width="299" height="60"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tuO-p0-ekh" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="9G1-CX-RiA"/>
                             <constraint firstAttribute="trailing" secondItem="j8k-cZ-1Wg" secondAttribute="trailing" id="A4Q-NE-D8e"/>
