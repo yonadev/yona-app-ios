@@ -245,22 +245,26 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             print("PASSWORD:" + KeychainManager.sharedInstance.getYonaPassword()!)
-            //Get all the goals
-            APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                if(success){
-                    for goal in goals! {
-                        print(goal.goalType)
-                        print(goal.activityCategoryLink)
-                        //delete user goals
-                        APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success, serverMessage, serverCode) in
-                            if success == false {
-                                XCTFail(serverMessage! + goal.goalID! ?? "Unknown error")
+            APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                if success {
+                    //Get all the goals
+                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                        if(success){
+                            for goal in goals! {
+                                print(goal.goalType)
+                                print(goal.activityCategoryLink)
+                                //delete user goals
+                                APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success, serverMessage, serverCode) in
+                                    if success == false {
+                                        XCTFail(serverMessage! + goal.goalID! ?? "Unknown error")
+                                    }
+                                })
                             }
-                        })
+                            expectation.fulfill()
+                        } else {
+                            XCTFail(serverMessage ?? "Unknown error")
+                        }
                     }
-                    expectation.fulfill()
-                } else {
-                    XCTFail(serverMessage ?? "Unknown error")
                 }
             }
         }
@@ -304,16 +308,20 @@ class GoalAPIServiceTests: XCTestCase {
                     APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
                         (success, serverMessage, serverCode, goal, err) in
                         if success {
-                            //Get the goals again to see if the goals have been updated after our post
-                            APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                                print(goals)
-                                //we want to remove the news goal so find it
-                                for goal in goals! {
-                                    //Now we Identify the goals by their activity category links
-                                    if goal.activityCategoryLink == socialActivityCategoryLink {
-                                        print(goal.activityCategoryLink)
-                                        XCTAssertTrue(goal.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
-                                        expectation.fulfill()
+                            APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                                if success {
+                                    //Get the goals again to see if the goals have been updated after our post
+                                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                                        print(goals)
+                                        //we want to remove the news goal so find it
+                                        for goal in goals! {
+                                            //Now we Identify the goals by their activity category links
+                                            if goal.activityCategoryLink == socialActivityCategoryLink {
+                                                print(goal.activityCategoryLink)
+                                                XCTAssertTrue(goal.activityCategoryLink == socialActivityCategoryLink, "Goal has been posted")
+                                                expectation.fulfill()
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -326,7 +334,7 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
 
     }
     
@@ -434,27 +442,31 @@ class GoalAPIServiceTests: XCTestCase {
         //Create user
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success {
-                APIServiceManager.sharedInstance.getUserGoals{ (success, serverMessage, serverCode, goals, err) in
-                    if(success){
-                        for goal in goals! {
-                            print("Goal ID Before" + goal.goalID!)
+                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                            if(success){
+                                for goal in goals! {
+                                    print("Goal ID Before" + goal.goalID!)
 
-                            APIServiceManager.sharedInstance.getUsersGoalWithID(goal.goalID!, onCompletion: { (success, serverMessage, serverCode, goalReturned, err) in
-                                print(goalReturned?.activityCategoryLink)
-                                print(goalReturned?.goalType)
-                                print(goalReturned?.goalID)
-                                
-                                if success {
-                                    expectation.fulfill()
-                                    XCTAssert(goal.goalID == goalReturned?.goalID)
+                                    APIServiceManager.sharedInstance.getUsersGoalWithID(goal.goalID!, onCompletion: { (success, serverMessage, serverCode, goalReturned, err) in
+                                        print(goalReturned?.activityCategoryLink)
+                                        print(goalReturned?.goalType)
+                                        print(goalReturned?.goalID)
+                                        
+                                        if success {
+                                            expectation.fulfill()
+                                            XCTAssert(goal.goalID == goalReturned?.goalID)
+                                        }
+
+                                    })
                                 }
 
-                            })
-                        }
-
-                    } else {
-                        if let messageUnwrapped = serverMessage{
-                            XCTFail(messageUnwrapped ?? "Unknown error")
+                            } else {
+                                if let messageUnwrapped = serverMessage{
+                                    XCTFail(messageUnwrapped ?? "Unknown error")
+                                }
+                            }
                         }
                     }
                 }

@@ -84,18 +84,38 @@ class APIServiceManager {
     
     
     func getAllTheGoalsArray(onCompletion: APIGoalArrayResponse) {
-        self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
-            onCompletion(success, serverMessage, serverCode, goals, error)
+        self.APIServiceCheck { (success, networkMessage, networkCode) in
+            if success {
+                self.getActivitiesArray({ (success, message, server, activities, error) in
+                    if success {
+                        self.getUserGoals(activities!) { (success, serverMessage, serverCode, goals, error) in
+                            onCompletion(success, serverMessage, serverCode, goals, error)
+                        }
+                    }
+                })
+            } else {
+                //Goals not initialised
+                guard self.goals.isEmpty else {
+                    onCompletion(false, networkMessage, networkCode, nil, nil)
+                    return
+                }
+                //if we already got some goals then just send back the ones we have...
+                onCompletion(false, networkMessage, networkCode, self.goals, nil)
+            }
         }
     }
     
     func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalArrayResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
             if success {
-                self.getUserGoals{ (success, serverMessage, serverCode, goals, error) in
-                    self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
-                        onCompletion(success, serverMessage, serverCode, goals, error)
-                    })
+                self.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        self.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, error) in
+                            self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, goals, error) in
+                                onCompletion(success, serverMessage, serverCode, goals, error)
+                            })
+                        }
+                    }
                 }
             } else {
                 //Goals not initialised
@@ -317,7 +337,7 @@ extension APIServiceManager {
 
 //MARK: - Goal APIService
 extension APIServiceManager {
-    func getUserGoals(onCompletion: APIGoalArrayResponse) {
+    func getUserGoals(activities: [Activities], onCompletion: APIGoalArrayResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let userID = KeychainManager.sharedInstance.getUserID() {
@@ -334,7 +354,7 @@ extension APIServiceManager {
                                 let embeddedGoals = embedded[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
                                 for goal in embeddedGoals {
                                     if let goal = goal as? BodyDataDictionary {
-                                        self.newGoal = Goal.init(goalData: goal)
+                                        self.newGoal = Goal.init(goalData: goal, activities: activities)
                                         self.goals.append(self.newGoal!)
                                     }
                                 }
@@ -355,27 +375,33 @@ extension APIServiceManager {
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
-                if let userID = KeychainManager.sharedInstance.getUserID() {
-                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
-                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
-                        if let json = json {
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                                return
-                            }
-                            self.newGoal = Goal.init(goalData: json)
-                            onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        if let userID = KeychainManager.sharedInstance.getUserID() {
+                            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals
+                            self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                                if let json = json {
+                                    guard success == true else {
+                                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                        return
+                                    }
+                                    self.newGoal = Goal.init(goalData: json, activities: activities!)
+                                    onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+                                } else {
+                                    //response from request failed, json is nil
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                }
+                            })
                         } else {
-                            //response from request failed, json is nil
-                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                        //response from request failed, json is nil
+                            //Failed to retrive details for GET user details request
+                            self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
+                                YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals], code: 1)
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, nil)
                         }
-                    })
-                } else {
-                //response from request failed, json is nil
-                    //Failed to retrive details for GET user details request
-                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals], code: 1)
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil)
+                    } else {
+                        onCompletion(false, message, code, nil, nil)
+                    }
                 }
             } else {
                 onCompletion(false, message, code, nil, nil)
@@ -386,21 +412,25 @@ extension APIServiceManager {
     func getUsersGoalWithID(goalID: String, onCompletion: APIGoalResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
-                if let userID = KeychainManager.sharedInstance.getUserID() {
-                    let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
-                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
-                        if let json = json {
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                                return
-                            }
-                            self.newGoal = Goal.init(goalData: json)
-                            onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
-                        } else {
-                            //response from request failed, json is nil
-                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        if let userID = KeychainManager.sharedInstance.getUserID() {
+                            let path = YonaConstants.environments.test + YonaConstants.commands.users + userID + "/" + YonaConstants.commands.goals + goalID
+                            self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                                if let json = json {
+                                    guard success == true else {
+                                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                        return
+                                    }
+                                    self.newGoal = Goal.init(goalData: json, activities: activities!)
+                                    onCompletion(true, self.serverMessage, self.serverCode, self.newGoal, err)
+                                } else {
+                                    //response from request failed, json is nil
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                }
+                            })
                         }
-                    })
+                    }
                 }
             } else {
                 //passes back network failed messages

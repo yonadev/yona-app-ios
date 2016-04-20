@@ -160,20 +160,24 @@ class ChallengesFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     private func callGoals() {
-        APIServiceManager.sharedInstance.getUserGoals { (success, message, code, goals, error) in
-            if(success){
-                if let goals = goals {
-                    self.goalsArray  = goals
-                    
-                    #if DEBUG
-                        for goal in goals {
-                            print(goal.goalType)
+        APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+            if success {
+                APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, message, code, goals, error) in
+                    if(success){
+                        if let goals = goals {
+                            self.goalsArray  = goals
+                            
+                            #if DEBUG
+                                for goal in goals {
+                                    print(goal.goalType)
+                                }
+                            #endif
+                            self.tableView.reloadData()
                         }
-                    #endif
-                    self.tableView.reloadData()
+                    } else {
+                        print("error in goals")
+                    }
                 }
-            } else {
-                print("error in goals")
             }
         }
     }

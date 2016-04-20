@@ -19,7 +19,7 @@ struct Goal {
     var zonesStore:[String] = []
     var isMandatory: Bool?
 
-    init(goalData: BodyDataDictionary) {
+    init(goalData: BodyDataDictionary, activities: [Activities]) {
             if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
                 if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
                     let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
@@ -36,16 +36,11 @@ struct Goal {
                     let href = activityCategoryLink[YonaConstants.jsonKeys.hrefKey] as? String{
                     self.activityCategoryLink = href
                     
-                    //depending on what activity link we have in our goal this determines the name!
-                    switch self.activityCategoryLink! {
-                    case YonaConstants.ActivityCategoryLinkID.Gambling:
-                        self.GoalName = CategoryName.gamblingString.rawValue
-                    case YonaConstants.ActivityCategoryLinkID.News:
-                        self.GoalName = CategoryName.newsString.rawValue
-                    case YonaConstants.ActivityCategoryLinkID.Social:
-                        self.GoalName = CategoryName.socialString.rawValue
-                    default:
-                        self.GoalName = "Unknown"
+                    for activity in activities {
+                        if let activityCategoryLink = activity.selfLinks
+                            where self.activityCategoryLink == activityCategoryLink {
+                            self.GoalName = activity.activityCategoryName
+                        }
                     }
                 }
             }

@@ -12,11 +12,6 @@ typealias ServerMessage = String
 typealias ServerCode = String
 
 struct YonaConstants {
-    struct ActivityCategoryLinkID {
-        static var Gambling = "http://85.222.227.142/activityCategories/192d69f4-8d3e-499b-983c-36ca97340ba9"
-        static var News = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
-        static var Social = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
-    }
     
     struct environments {
         static let test = "http://85.222.227.142/"

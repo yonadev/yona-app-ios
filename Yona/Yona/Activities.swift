@@ -37,17 +37,5 @@ struct Activities {
                 }
             }
         }
-        
-        //upon parsing the activities make sure update the static strings
-        switch self.activityCategoryName! {
-        case CategoryName.newsString.rawValue:
-             YonaConstants.ActivityCategoryLinkID.Gambling = self.selfLinks!
-        case CategoryName.newsString.rawValue:
-            YonaConstants.ActivityCategoryLinkID.News = self.selfLinks!
-        case CategoryName.socialString.rawValue:
-            YonaConstants.ActivityCategoryLinkID.Social = self.selfLinks!
-        default:
-            break
-        }
     }
 }
