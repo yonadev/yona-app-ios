@@ -10,6 +10,7 @@ import Foundation
 
 typealias ServerMessage = String
 typealias ServerCode = String
+typealias PinCode = String
 
 struct YonaConstants {
     
@@ -24,6 +25,10 @@ struct YonaConstants {
         static let mobileConfirm = "/confirmMobileNumber"
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
+        static let pinRequest = "/pinResetRequest/request"
+        static let pinVerify = "/pinResetRequest/verify"
+        static let pinClear = "/pinResetRequest/clear"
+
     }
     
     struct httpMethods{
@@ -65,6 +70,7 @@ struct YonaConstants {
         static let  name = "name"
         static let  applications = "applications"
         static let  zones = "zones"
+        static let  pinResetDelay = "delay"
     }
 
     struct serverCodes{
