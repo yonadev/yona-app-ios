@@ -47,27 +47,14 @@ class LoginViewController: UIViewController {
             codeInputView!.becomeFirstResponder()
         }
         
-        if let attempts:Bool = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            if attempts  {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView!.resignFirstResponder()
                 codeInputView!.userInteractionEnabled = false
                 errorLabel.hidden = false
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+
                 return;
-            }
-        } else { //if blocked let them verify
-            let body = ["code": KeychainManager.sharedInstance.getPINCode()!]
-            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
-                //successfuly verify then unblock
-                if success {
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    defaults.synchronize()
-                    self.codeInputView!.userInteractionEnabled = true
-                    self.errorLabel.hidden = true
-                }
-            })
         }
         
         //keyboard functions
@@ -144,12 +131,23 @@ extension LoginViewController: CodeInputViewDelegate {
 
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 if success{
-                    dispatch_async(dispatch_get_main_queue(), {
                         if let pincodeUnwrap = pincode {
-                            self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.newPinCode", comment: ""), alertDescription: pincodeUnwrap)
-                            KeychainManager.sharedInstance.savePINCode(pincode!)
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.newPinCode", comment: ""), alertDescription: pincodeUnwrap)
+                            })
+                            let body = ["code": pincode!]
+                            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
+                                //successfuly verify then unblock
+                                let defaults = NSUserDefaults.standardUserDefaults()
+                                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                                defaults.synchronize()
+                                self.codeInputView!.userInteractionEnabled = true
+                                self.errorLabel.hidden = true
+                                self.loginAttempts = 0
+                                
+                            })
                         }
-                    })
+                    
                 }
             })
             
