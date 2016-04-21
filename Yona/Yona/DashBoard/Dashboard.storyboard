@@ -50,14 +50,14 @@
                         <outlet property="containerView" destination="Fd0-uo-lbg" id="9hH-Pm-uOs"/>
                         <outlet property="tabbar" destination="oRs-QJ-w3g" id="1TK-lt-TtT"/>
                         <segue destination="p5h-JA-Zrj" kind="custom" identifier="Friends" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="hAC-tV-tgw"/>
-                        <segue destination="hyg-kM-0yM" kind="custom" identifier="Profile" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="Muy-Xr-aZE"/>
-                        <segue destination="4uT-GZ-Sgc" kind="custom" identifier="Challenges" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="o42-ai-FOU"/>
+                        <segue destination="hyg-kM-0yM" kind="push" identifier="Profile" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="Muy-Xr-aZE"/>
+                        <segue destination="4uT-GZ-Sgc" kind="push" identifier="Challenges" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="o42-ai-FOU"/>
                         <segue destination="E41-LA-56o" kind="custom" identifier="Settings" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="fLX-2e-ZIB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-885" y="-136.5"/>
+            <point key="canvasLocation" x="-945" y="-333"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ib1-tl-uQD">
@@ -72,10 +72,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="BYC-XS-IX0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fic-pA-d25" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1847" y="791"/>
+            <point key="canvasLocation" x="-2499" y="695"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="SwX-Zp-0QL">
@@ -108,6 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.39607843139999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PNy-PD-7Ac"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqu-BZ-J8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

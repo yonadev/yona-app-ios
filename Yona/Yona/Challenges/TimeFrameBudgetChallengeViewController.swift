@@ -18,7 +18,8 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
-    
+    var goalToPost: Goal?
+    var maxDurationMinutes: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
        print("integrate post budget challenge")
+        
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
@@ -49,11 +51,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         print("index  \(indexPath)")
        
     }
-
-    
-
-    
-
 }
 
 private extension Selector {

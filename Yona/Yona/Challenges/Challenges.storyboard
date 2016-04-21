@@ -50,7 +50,7 @@
         <!--Time Bucket Challenges-->
         <scene sceneID="3sl-LP-dif">
             <objects>
-                <viewController storyboardIdentifier="ChallengesStoryboard" id="QvV-Rl-xbI" customClass="TimeBucketChallenges" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QvV-Rl-xbI" customClass="TimeBucketChallenges" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vb9-KF-M2V"/>
                         <viewControllerLayoutGuide type="bottom" id="5QO-v2-pRk"/>
@@ -126,14 +126,24 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BW9-cX-IBl">
+                                                        <rect key="frame" x="0.0" y="124" width="200" height="4"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="4" id="yOG-te-JCC"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="BW9-cX-IBl" firstAttribute="leading" secondItem="9n2-uU-zvC" secondAttribute="leading" id="Zts-C0-ujG"/>
                                                     <constraint firstItem="Hw3-1a-SmO" firstAttribute="top" secondItem="hqG-Li-jFh" secondAttribute="bottom" constant="-3" id="cbD-kj-yDQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BW9-cX-IBl" secondAttribute="trailing" id="gJy-ha-K9R"/>
                                                     <constraint firstItem="Hw3-1a-SmO" firstAttribute="centerX" secondItem="9n2-uU-zvC" secondAttribute="centerX" id="j4w-CT-7Li"/>
                                                     <constraint firstItem="hqG-Li-jFh" firstAttribute="centerX" secondItem="9n2-uU-zvC" secondAttribute="centerX" id="mmS-r6-rvm"/>
                                                     <constraint firstItem="hqG-Li-jFh" firstAttribute="top" secondItem="9n2-uU-zvC" secondAttribute="top" constant="27" id="s6I-jm-IWM"/>
                                                     <constraint firstAttribute="bottom" secondItem="Hw3-1a-SmO" secondAttribute="bottom" id="tDM-x2-i55"/>
+                                                    <constraint firstAttribute="bottom" secondItem="BW9-cX-IBl" secondAttribute="bottom" id="vRA-Ii-GQd"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6Y-AC-ecS">
@@ -191,11 +201,21 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yt4-Dg-5ye">
+                                                        <rect key="frame" x="0.0" y="124" width="200" height="4"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="4" id="OrV-Ck-CJf"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="dZH-AW-9OW" firstAttribute="centerX" secondItem="L6Y-AC-ecS" secondAttribute="centerX" id="3j9-jT-Atm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yt4-Dg-5ye" secondAttribute="trailing" id="JXO-ym-BZQ"/>
                                                     <constraint firstItem="P4W-2r-SbL" firstAttribute="top" secondItem="L6Y-AC-ecS" secondAttribute="top" constant="27" id="Srf-T5-L3e"/>
+                                                    <constraint firstItem="Yt4-Dg-5ye" firstAttribute="leading" secondItem="L6Y-AC-ecS" secondAttribute="leading" id="ZMi-4P-FI8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Yt4-Dg-5ye" secondAttribute="bottom" id="aGj-Iu-rgy"/>
                                                     <constraint firstAttribute="bottom" secondItem="dZH-AW-9OW" secondAttribute="bottom" id="qyY-Bz-O2r"/>
                                                     <constraint firstItem="dZH-AW-9OW" firstAttribute="top" secondItem="P4W-2r-SbL" secondAttribute="bottom" constant="-3" id="sBv-q5-7RH"/>
                                                     <constraint firstItem="P4W-2r-SbL" firstAttribute="centerX" secondItem="L6Y-AC-ecS" secondAttribute="centerX" id="tKM-ey-DJp"/>
@@ -256,12 +276,22 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7i9-CW-sSM">
+                                                        <rect key="frame" x="0.0" y="124" width="200" height="4"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="4" id="F3e-rm-msO"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="bxp-De-XRH" firstAttribute="top" secondItem="Olf-uP-nTt" secondAttribute="bottom" constant="12" id="2rF-5C-FHa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="7i9-CW-sSM" secondAttribute="trailing" id="9cA-WI-htA"/>
                                                     <constraint firstAttribute="bottom" secondItem="bxp-De-XRH" secondAttribute="bottom" constant="15.5" id="AQV-Oa-pQv"/>
                                                     <constraint firstItem="Olf-uP-nTt" firstAttribute="centerX" secondItem="tDi-d9-n1S" secondAttribute="centerX" id="SWW-MG-PCa"/>
+                                                    <constraint firstItem="7i9-CW-sSM" firstAttribute="leading" secondItem="tDi-d9-n1S" secondAttribute="leading" id="Zwc-dh-xrx"/>
+                                                    <constraint firstAttribute="bottom" secondItem="7i9-CW-sSM" secondAttribute="bottom" id="l7e-Oh-DVG"/>
                                                     <constraint firstItem="Olf-uP-nTt" firstAttribute="top" secondItem="tDi-d9-n1S" secondAttribute="top" constant="27" id="yWl-aa-yQm"/>
                                                     <constraint firstItem="bxp-De-XRH" firstAttribute="centerX" secondItem="tDi-d9-n1S" secondAttribute="centerX" id="zFj-2X-5DB"/>
                                                 </constraints>
@@ -413,15 +443,18 @@
                         <outlet property="backButton" destination="bva-a1-Bzr" id="o0Q-cs-SVB"/>
                         <outlet property="budgetBadgeLabel" destination="mrw-k5-hDl" id="TTH-T7-ZQe"/>
                         <outlet property="budgetView" destination="9n2-uU-zvC" id="L2l-Gg-tcP"/>
+                        <outlet property="budgetViewBottomBorder" destination="BW9-cX-IBl" id="PF3-16-kUh"/>
                         <outlet property="gradientView" destination="fbU-ug-vAj" id="Ctp-Em-KoT"/>
                         <outlet property="headerLabel" destination="sCh-7P-Xxd" id="phm-45-c8j"/>
                         <outlet property="headerView" destination="SQq-2J-rok" id="pcO-PX-19K"/>
                         <outlet property="nogoBadgeLabel" destination="bSt-aV-C4T" id="SJA-8C-tqU"/>
                         <outlet property="nogoView" destination="tDi-d9-n1S" id="pcu-hN-LSw"/>
+                        <outlet property="nogoViewBottomBorder" destination="7i9-CW-sSM" id="rVf-4m-DHG"/>
                         <outlet property="scrollView" destination="3Ir-Xp-QJZ" id="yHB-bH-PW5"/>
                         <outlet property="tableView" destination="438-xm-SYq" id="nKE-Wm-yHO"/>
                         <outlet property="timezoneBadgeLabel" destination="DjB-FY-1gm" id="fLX-0M-3ju"/>
                         <outlet property="timezoneView" destination="L6Y-AC-ecS" id="cV2-kW-sGh"/>
+                        <outlet property="timezoneViewBottomBorder" destination="Yt4-Dg-5ye" id="3EF-11-3B2"/>
                         <segue destination="OaK-4S-ODd" kind="show" identifier="TimezoneChallengeSegue" id="0j3-NC-rm2"/>
                         <segue destination="9hD-qE-oqu" kind="show" identifier="BudgetChallengeSegue" id="BBx-wi-u7S"/>
                         <segue destination="W2a-kb-DsC" kind="show" identifier="NoGoChallengeSegue" id="vcc-Z2-D5C"/>
@@ -429,12 +462,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khv-li-k0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="-75"/>
+            <point key="canvasLocation" x="786" y="-89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o5y-TS-vCK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2dW-Eu-67p" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChallengesStoryboard" automaticallyAdjustsScrollViewInsets="NO" id="2dW-Eu-67p" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fe3-DL-dv3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
