@@ -18,7 +18,8 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
-    
+    var goalToPost: Goal?
+    var maxDurationMinutes: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        
+        footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
     }
     
     // MARK: - Actions
@@ -36,8 +37,9 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 
     }
     
-    @IBAction func addNewChallengeButtonTapped(sender: AnyObject) {
+    @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
        print("integrate post budget challenge")
+        
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
@@ -49,11 +51,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         print("index  \(indexPath)")
        
     }
-
-    
-
-    
-
 }
 
 private extension Selector {

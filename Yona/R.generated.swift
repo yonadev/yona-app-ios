@@ -372,12 +372,6 @@ struct R {
   }
   
   struct segue {
-    struct challengesFirstStepViewController {
-      static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
-      static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
-      static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ChallengesFirstStepViewController, ChallengesTimeFrameViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
-    }
-    
     struct dashboardTabBarController {
       static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
       static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
@@ -392,15 +386,22 @@ struct R {
     struct signUpFirstStepViewController {
       static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
     }
+    
+    struct timeBucketChallenges {
+      static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
+      static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
+      static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
   }
   
   struct storyboard {
     struct challenges {
-      static var challengesStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesFirstStepViewController }
-      static var challengesTimeFrameStoryboard: ChallengesTimeFrameViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesTimeFrameStoryboard") as? ChallengesTimeFrameViewController }
+      static var challengesStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? UINavigationController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       static var timeFrameBudgetChallengeStoryboard: TimeFrameBudgetChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameBudgetChallengeStoryboard") as? TimeFrameBudgetChallengeViewController }
       static var timeFrameNoGoChallengeStoryboard: TimeFrameNoGoChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameNoGoChallengeStoryboard") as? TimeFrameNoGoChallengeViewController }
+      static var timeFrameTimeZoneChallengeStoryboard: TimeFrameTimeZoneChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameTimeZoneChallengeStoryboard") as? TimeFrameTimeZoneChallengeViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
@@ -412,8 +413,8 @@ struct R {
       }
       
       static func validateViewControllers() {
-        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
-        assert(challengesTimeFrameStoryboard != nil, "[R.swift] ViewController with identifier 'challengesTimeFrameStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesTimeFrameViewController'.")
+        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'UINavigationController'.")
+        assert(timeFrameTimeZoneChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameTimeZoneChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameTimeZoneChallengeViewController'.")
         assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
         assert(timeFrameNoGoChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameNoGoChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameNoGoChallengeViewController'.")
       }

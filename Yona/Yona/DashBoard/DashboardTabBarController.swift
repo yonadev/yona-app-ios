@@ -11,7 +11,7 @@ import UIKit
 struct ViewControllerStatus {
     var profileViewController: ProfileViewController?
     var friendsViewController: FriendsViewController?
-    var challengesViewController: ChallengesFirstStepViewController?
+    var challengesViewController: TimeBucketChallenges?
     var settingsViewController: SettingsViewController?
 }
 

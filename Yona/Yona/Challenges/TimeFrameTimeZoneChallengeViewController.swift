@@ -1,5 +1,5 @@
 //
-//  ChallengesTimeFrameViewController.swift
+//  TimeFrameTimeZoneChallengeViewController.swift
 //  Yona
 //
 //  Created by Chandan on 19/04/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChallengesTimeFrameViewController: UIViewController {
+class TimeFrameTimeZoneChallengeViewController: UIViewController {
 
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
@@ -28,7 +28,7 @@ class ChallengesTimeFrameViewController: UIViewController {
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         zonesArray = [ "6:00-10:00", "6:00-10:00"]
-        
+        footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
     }
     
     // MARK: - Actions
@@ -37,8 +37,8 @@ class ChallengesTimeFrameViewController: UIViewController {
 
     }
     
-    @IBAction func addNewTimeZoneButtonTapped(sender: AnyObject) {
-       
+    @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
+        print("integrate post  challenge")
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
@@ -59,11 +59,6 @@ class ChallengesTimeFrameViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArray[indexPath.row] as! String
-        
-//        cell.configure((s.dashRemoval()[0], s.dashRemoval()[1])) { (fromButtonEventCell) in
-//            print("From Button Clicked in cell")
-//        }
-        
         
         cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
             print("From Button Clicked in cell")
@@ -92,7 +87,7 @@ extension String {
 
 private extension Selector {
    
-    static let back = #selector(ChallengesTimeFrameViewController.back(_:))
+    static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
     
 }
 

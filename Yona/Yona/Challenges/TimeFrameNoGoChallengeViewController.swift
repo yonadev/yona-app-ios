@@ -29,34 +29,37 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         
         
+        //Nav bar Back button.
+        self.navigationItem.hidesBackButton = true
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
+    }
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
 
     }
     
-    @IBAction func addNewChallengeButtonTapped(sender: AnyObject) {
-       
+    @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {
+        print("integrate post  challenge")
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
 
 
     }
-
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("index  \(indexPath)")
        
     }
-
-    
-
-    
-
 }
 
 private extension Selector {
