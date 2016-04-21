@@ -52,6 +52,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         if let activityName = activitiyToPost?.activityCategoryName {
             self.budgetChallengeDescription.text = String(format: localizedString, activityName)
         }
+        
     }
     
     // MARK: - Actions
@@ -78,7 +79,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     }
                     dispatch_async(dispatch_get_main_queue(), {
                         self.deleteGoalButton.selected = true
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
                     })
 
                 } else {
@@ -92,6 +93,14 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
 
+        //then once it is posted we can delete it
+        if let goalUnwrap = self.goalCreated {
+            APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                })
+            }
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

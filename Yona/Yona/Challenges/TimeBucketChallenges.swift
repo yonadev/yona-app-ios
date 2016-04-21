@@ -52,8 +52,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     var timeZoneArray = [Goal]()
     var nogoArray = [Goal]()
     
-    var goalSelected: Activities?
-    
+    var activitySelected: Activities?
+    var budgetGoalSelected: Goal?
+
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
     
     // MARK: - View
@@ -64,14 +65,21 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         self.callActivityCategory()
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
+        setDeselectOtherCategory()
+        setSelectedCategory(self.budgetView)
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        
+
     }
     
+    override func viewDidAppear(animated:Bool) {
+        super.viewDidAppear(animated)
+
+    }
     
     // MARK: - private functions
     private func setDeselectOtherCategory() {
@@ -263,10 +271,16 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                 switch segueIdentifierValue {
                 case .BudgetChallengeSegue:
                     let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
-                    detailView.activitiyToPost = goalSelected
+                    if let activitySelectedUnwrap = self.activitySelected {
+                        detailView.activitiyToPost = activitySelectedUnwrap
+                    }
+                    if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
+                        detailView.goalCreated = budgetGoalSelectedUnwrap
+                    }
             }
         }
     }
+
 }
 
 extension TimeBucketChallenges {
@@ -348,7 +362,14 @@ extension TimeBucketChallenges {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if categoryHeader == .BudgetGoal || categoryHeader == .BudgetActivity{
-            self.goalSelected = self.activityCategoriesArray[indexPath.row]
+            switch categoryHeader {
+            case .BudgetActivity:
+                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+            case .BudgetGoal:
+                self.budgetGoalSelected = self.budgetArray[indexPath.row]
+            default:
+                break
+            }
             performSegueWithIdentifier(R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
         } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
             performSegueWithIdentifier(R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)
