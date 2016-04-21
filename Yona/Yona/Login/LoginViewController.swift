@@ -56,6 +56,18 @@ class LoginViewController: UIViewController {
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
                 return;
             }
+        } else { //if blocked let them verify
+            let body = ["code": KeychainManager.sharedInstance.getPINCode()!]
+            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
+                //successfuly verify then unblock
+                if success {
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    defaults.synchronize()
+                    self.codeInputView!.userInteractionEnabled = true
+                    self.errorLabel.hidden = true
+                }
+            })
         }
         
         //keyboard functions
@@ -132,10 +144,6 @@ extension LoginViewController: CodeInputViewDelegate {
 
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 if success{
-                    self.codeInputView!.userInteractionEnabled = true
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    defaults.synchronize()
                     dispatch_async(dispatch_get_main_queue(), {
                         if let pincodeUnwrap = pincode {
                             self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.newPinCode", comment: ""), alertDescription: pincodeUnwrap)
