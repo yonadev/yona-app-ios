@@ -36,3 +36,15 @@
 "adddevice.user.infoText" = "You have not previously logged in on this device. Go to your primary device (probably your mobile) , open the app Yona , then 'Add Device' to settings and click . Then fill in the fields below .";
 
 "login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
+
+"challenges.user.budgetGoalHeader" = "Set yourself a target by setting a daily balance";
+"challenges.user.timezoneGoalHeader" = "Decide if you want to spend time or not.";
+"challenges.user.nogoGoalHeader" = "Here you will capture you do not want to come at all.";
+
+"challenges.user.budgetCategoryHeader" = "Select where you want to capture a budget for";
+"challenges.user.timezoneCategoryHeader" = "Choose a category in which you want to set a time zone";
+"challenges.user.nogoCategoryHeader" = "Choose a category in which you want to set up a no go for";
+
+"challenges.user.budgetGoalDescriptionText" = "You can spend %@ minutes per day on %@";
+"challenges.user.TimeZoneGoalDescriptionText" = "Time slot between %@ and %@ and between %@ and %@";
+

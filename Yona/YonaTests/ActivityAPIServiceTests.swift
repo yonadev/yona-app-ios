@@ -30,6 +30,10 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategories() {
         let expectation = expectationWithDescription("Waiting to respond")
+        let password = NSUUID().UUIDString
+        let keychain = KeychainSwift()
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        
         APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 for activity in activities! {
@@ -43,6 +47,10 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivityCategoryWithID() {
         let expectation = expectationWithDescription("Waiting to respond")
+        let password = NSUUID().UUIDString
+        let keychain = KeychainSwift()
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        
         APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success {
                 let activity = activities![0]
@@ -62,9 +70,6 @@ class ActivityAPIServiceTests: XCTestCase {
     
     func testGetActivitiesArray() {
         //setup
-        let path = "http://85.222.227.142/users/"
-        let keychain = KeychainSwift()
-        guard let yonaPassword = keychain.get(YonaConstants.keychain.yonaPassword) else { return }
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
@@ -73,11 +78,9 @@ class ActivityAPIServiceTests: XCTestCase {
              "lastName": "Quin",
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
-        //    func makeUserRequest(path: String, password: String, userID: String, body: UserData, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
         
         //Get user goals
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod:YonaConstants.httpMethods.post, httpHeader: httpHeader, onCompletion: { success, json, err in
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -87,6 +90,24 @@ class ActivityAPIServiceTests: XCTestCase {
                 XCTAssertTrue(success, "Received Activities")
                 expectation.fulfill()
             })
-        })
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+
+    }
+    //    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
+
+    func testGetActivityLinkForSocialActivityName() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
+
+        APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
+            if success{
+                XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
+                expectation.fulfill()
+            } else {
+                XCTFail(message!)
+            }
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
     }
 }

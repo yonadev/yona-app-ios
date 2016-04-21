@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vbt-Nr-l9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zoA-ns-9zv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Page Content View Controller-->
+        <!--First Tour Screen-->
         <scene sceneID="8TT-DP-02p">
             <objects>
-                <viewController storyboardIdentifier="WalkThrough1" id="owo-71-flO" customClass="AVPageContentViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkThrough1" id="owo-71-flO" userLabel="First Tour Screen" customClass="TourScreenViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eEw-hp-AKO"/>
                         <viewControllerLayoutGuide type="bottom" id="6a2-P2-jOK"/>
@@ -17,89 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7x-c8-SUT">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparencySlide" translatesAutoresizingMaskIntoConstraints="NO" id="7ys-qP-jL2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGp-4Z-Qhc">
+                                <rect key="frame" x="556" y="556" width="24" height="24"/>
                                 <state key="normal" image="icnNext"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="362" y="754" width="24" height="24"/>
-                                </variation>
+                                <connections>
+                                    <action selector="nextAction:" destination="owo-71-flO" eventType="touchUpInside" id="X6B-J7-3Qs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="l7x-c8-SUT"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="l7x-c8-SUT"/>
-                            </mask>
-                        </variation>
+                        <constraints>
+                            <constraint firstItem="6a2-P2-jOK" firstAttribute="top" secondItem="7ys-qP-jL2" secondAttribute="bottom" id="0uI-3h-fo2"/>
+                            <constraint firstAttribute="trailing" secondItem="7ys-qP-jL2" secondAttribute="trailing" id="3Y5-1N-pIq"/>
+                            <constraint firstItem="7ys-qP-jL2" firstAttribute="top" secondItem="EuR-UR-Wbu" secondAttribute="top" id="4Xx-hc-Bdr"/>
+                            <constraint firstAttribute="trailing" secondItem="gGp-4Z-Qhc" secondAttribute="trailing" constant="20" id="MnB-9S-O0y"/>
+                            <constraint firstItem="6a2-P2-jOK" firstAttribute="top" secondItem="gGp-4Z-Qhc" secondAttribute="bottom" constant="20" id="SLG-dH-wpd"/>
+                            <constraint firstItem="7ys-qP-jL2" firstAttribute="leading" secondItem="EuR-UR-Wbu" secondAttribute="leading" id="leN-l4-jZ6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageV" destination="7ys-qP-jL2" id="rqd-Nl-MDg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXe-Dt-86d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-241.5" y="279.75"/>
         </scene>
-        <!--Page Content View Controller-->
-        <scene sceneID="5I8-ZU-YJB">
-            <objects>
-                <viewController storyboardIdentifier="WalkThrough2" id="ZwB-PQ-zyB" customClass="AVPageContentViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xec-je-mqo"/>
-                        <viewControllerLayoutGuide type="bottom" id="bB1-dv-j3Z"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6jf-au-kQV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.50196078430000002" green="0.094117647060000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2aD-1r-tCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="493.5" y="279.75"/>
-        </scene>
-        <!--Page Content View Controller-->
-        <scene sceneID="cbA-K1-vsD">
-            <objects>
-                <viewController storyboardIdentifier="WalkThrough3" id="ejL-6t-K4r" customClass="AVPageContentViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wLb-Bz-Vbb"/>
-                        <viewControllerLayoutGuide type="bottom" id="k99-Be-z5m"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZfZ-4c-jGB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.85683482889999996" green="0.35035696430000002" blue="0.26194449819999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v4I-vB-b7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1282.5" y="279.75"/>
-        </scene>
-        <!--Page Content View Controller-->
-        <scene sceneID="PHT-rV-oZ8">
-            <objects>
-                <viewController storyboardIdentifier="WalkThrough4" id="hNa-D0-8va" customClass="AVPageContentViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="khe-cC-bBf"/>
-                        <viewControllerLayoutGuide type="bottom" id="icT-N2-7Oo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KPU-x8-eKm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.1529411765" green="0.42745098040000001" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5IG-it-YKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2002.5" y="279.75"/>
-        </scene>
         <!--Walk Through View Controller-->
         <scene sceneID="Ukb-s6-5eH">
             <objects>
-                <viewController id="vbt-Nr-l9a" customClass="WalkThroughViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkThroughStoryboard" id="vbt-Nr-l9a" customClass="WalkThroughViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4jy-DM-FW8"/>
                         <viewControllerLayoutGuide type="bottom" id="k69-5m-tGl"/>
@@ -109,6 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="unF-Ig-SCK"/>
                     <connections>
                         <outlet property="pageController" destination="4WR-lq-MPP" id="x78-qw-2rE"/>
                     </connections>
@@ -116,10 +67,156 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQ9-fZ-oGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="4WR-lq-MPP" customClass="AVPageViewController" customModule="Yona" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="742.5" y="-453"/>
+            <point key="canvasLocation" x="1554" y="-453"/>
+        </scene>
+        <!--Second Tour Screen-->
+        <scene sceneID="n3V-Hy-2pt">
+            <objects>
+                <viewController storyboardIdentifier="WalkThrough2" id="tRi-d7-LCh" userLabel="Second Tour Screen" customClass="TourScreenViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pwP-fX-iqx"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Fk-34-FOJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cdt-Qd-75K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sharingSlide" translatesAutoresizingMaskIntoConstraints="NO" id="x6P-dg-y6b">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Z5-Vl-P5l">
+                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <state key="normal" image="icnNext"/>
+                                <connections>
+                                    <action selector="nextAction:" destination="tRi-d7-LCh" eventType="touchUpInside" id="CUB-El-lr5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Fk-34-FOJ" firstAttribute="top" secondItem="x6P-dg-y6b" secondAttribute="bottom" id="3IQ-M2-Xwn"/>
+                            <constraint firstItem="5Fk-34-FOJ" firstAttribute="top" secondItem="5Z5-Vl-P5l" secondAttribute="bottom" constant="20" id="Ns8-cZ-slE"/>
+                            <constraint firstItem="x6P-dg-y6b" firstAttribute="top" secondItem="cdt-Qd-75K" secondAttribute="top" id="VLI-mQ-oNV"/>
+                            <constraint firstItem="x6P-dg-y6b" firstAttribute="leading" secondItem="cdt-Qd-75K" secondAttribute="leading" id="Wx9-Di-HCz"/>
+                            <constraint firstAttribute="trailing" secondItem="x6P-dg-y6b" secondAttribute="trailing" id="YXu-PT-Bef"/>
+                            <constraint firstAttribute="trailing" secondItem="5Z5-Vl-P5l" secondAttribute="trailing" constant="20" id="iKs-qU-R84"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageV" destination="x6P-dg-y6b" id="LkG-EX-moj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUP-iK-AVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="1247"/>
+        </scene>
+        <!--Third Tour Screen-->
+        <scene sceneID="Pzh-Oe-5od">
+            <objects>
+                <viewController storyboardIdentifier="WalkThrough3" id="dXK-V7-QFs" userLabel="Third Tour Screen" customClass="TourScreenViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fkR-dM-NXX"/>
+                        <viewControllerLayoutGuide type="bottom" id="jff-Rd-VQs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C8p-zX-7Jx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confinesSlide" translatesAutoresizingMaskIntoConstraints="NO" id="A8M-Ur-4kG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsG-2Z-nkg">
+                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <state key="normal" image="icnNext"/>
+                                <connections>
+                                    <action selector="nextAction:" destination="dXK-V7-QFs" eventType="touchUpInside" id="QgD-tC-8NW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NsG-2Z-nkg" secondAttribute="trailing" constant="20" id="0Xd-hQ-fhs"/>
+                            <constraint firstItem="jff-Rd-VQs" firstAttribute="top" secondItem="A8M-Ur-4kG" secondAttribute="bottom" id="9E8-Hb-x7Y"/>
+                            <constraint firstItem="A8M-Ur-4kG" firstAttribute="leading" secondItem="C8p-zX-7Jx" secondAttribute="leading" id="IM9-j2-HaB"/>
+                            <constraint firstItem="A8M-Ur-4kG" firstAttribute="top" secondItem="C8p-zX-7Jx" secondAttribute="top" id="gbb-Cm-28h"/>
+                            <constraint firstAttribute="trailing" secondItem="A8M-Ur-4kG" secondAttribute="trailing" id="uxr-Pq-Lya"/>
+                            <constraint firstItem="jff-Rd-VQs" firstAttribute="top" secondItem="NsG-2Z-nkg" secondAttribute="bottom" constant="20" id="y7P-Vb-gHh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageV" destination="A8M-Ur-4kG" id="ISF-8Q-yGl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9io-9z-Y4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="1247"/>
+        </scene>
+        <!--Forth Tour Screen-->
+        <scene sceneID="fFE-kA-Trp">
+            <objects>
+                <viewController storyboardIdentifier="WalkThrough4" id="TvG-XZ-5M6" userLabel="Forth Tour Screen" customClass="TourScreenViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ke7-bT-1Am"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dwf-64-xQp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Xe-GX-Jjj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timespentSlide" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-Gy-kJM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTQ-We-77n">
+                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <state key="normal" image="icnNext"/>
+                                <connections>
+                                    <action selector="nextAction:" destination="TvG-XZ-5M6" eventType="touchUpInside" id="7KQ-md-Tfs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bVV-Gy-kJM" secondAttribute="trailing" id="4mB-xJ-GJ9"/>
+                            <constraint firstItem="bVV-Gy-kJM" firstAttribute="top" secondItem="8Xe-GX-Jjj" secondAttribute="top" id="GJc-2F-TOA"/>
+                            <constraint firstItem="Dwf-64-xQp" firstAttribute="top" secondItem="bVV-Gy-kJM" secondAttribute="bottom" id="K6H-Az-vcX"/>
+                            <constraint firstAttribute="trailing" secondItem="eTQ-We-77n" secondAttribute="trailing" constant="20" id="hv4-GK-XOk"/>
+                            <constraint firstItem="Dwf-64-xQp" firstAttribute="top" secondItem="eTQ-We-77n" secondAttribute="bottom" constant="20" id="k6v-Oz-6NV"/>
+                            <constraint firstItem="bVV-Gy-kJM" firstAttribute="leading" secondItem="8Xe-GX-Jjj" secondAttribute="leading" id="xsu-XP-eLQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageV" destination="bVV-Gy-kJM" id="g6P-Zp-bdc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7cg-vk-RuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-241.5" y="279.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="m3B-rp-Glo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="zoA-ns-9zv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="55M-R4-tqY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vbt-Nr-l9a" kind="relationship" relationship="rootViewController" id="eeh-79-IVx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxW-oE-hTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="-453"/>
         </scene>
     </scenes>
     <resources>
+        <image name="confinesSlide" width="375" height="667"/>
         <image name="icnNext" width="24" height="24"/>
+        <image name="sharingSlide" width="375" height="667"/>
+        <image name="timespentSlide" width="375" height="667"/>
+        <image name="transparencySlide" width="375" height="667"/>
     </resources>
 </document>

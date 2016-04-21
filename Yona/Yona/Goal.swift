@@ -9,31 +9,17 @@
 import Foundation
 
 struct Goal {
-    var activityCategoryName: String?
     var goalID: String?
+    var GoalName: String?
     var maxDurationMinutes: Int?
     var selfLinks: String?
     var editLinks: String?
+    var activityCategoryLink: String?
     var goalType: String?
     var zonesStore:[String] = []
+    var isMandatory: Bool?
 
-    init(goalData: BodyDataDictionary) {
-            if let activityCategoryName = goalData[YonaConstants.jsonKeys.activityCategoryName] as? String {
-                self.activityCategoryName = activityCategoryName
-            }
-            if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
-                for zone in zones {
-                    zonesStore.append(zone as! String)
-                }
-            }
-            
-            if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
-                self.maxDurationMinutes = maxDurationMinutes
-            }
-            if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
-                self.goalType = goalType
-            }
-            
+    init(goalData: BodyDataDictionary, activities: [Activities]) {
             if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
                 if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
                     let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
@@ -46,6 +32,39 @@ struct Goal {
                         self.goalID = lastPath
                     }
                 }
+                if let activityCategoryLink = links[YonaConstants.jsonKeys.yonaActivityCategory] as? [String:AnyObject],
+                    let href = activityCategoryLink[YonaConstants.jsonKeys.hrefKey] as? String{
+                    self.activityCategoryLink = href
+                    
+                    for activity in activities {
+                        if let activityCategoryLink = activity.selfLinks
+                            where self.activityCategoryLink == activityCategoryLink {
+                            self.GoalName = activity.activityCategoryName
+                        }
+                    }
+                }
             }
+            
+            if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
+                for zone in zones {
+                    self.zonesStore.append(zone as! String)
+                }
+            }
+            
+            if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
+                self.maxDurationMinutes = maxDurationMinutes
+            }
+            if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
+                self.goalType = goalType
+            }
+            
+            //if goal is of type no go, it has no max minutes, and is type budgetgoal, then mandatory is true
+            if self.maxDurationMinutes == 0 && self.goalType == GoalType.BudgetGoalString.rawValue {
+                self.isMandatory = true
+                self.goalType = GoalType.NoGoGoalString.rawValue
+            } else { //else it is not nogo so mandatory is false
+                self.isMandatory = false
+            }
+        
     }
 }

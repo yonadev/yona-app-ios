@@ -11,7 +11,6 @@ struct Activities {
     var activityCategoryName: String?
     var activityID: String?
     var applicationsStore:[String] = []
-    var mandatoryNoGo: Bool?
     var editLinks: String?
     var selfLinks: String?
     
@@ -23,9 +22,6 @@ struct Activities {
             for application in applications {
                 applicationsStore.append(application as! String)
             }
-        }
-        if let mandatoryNoGo = activityData[YonaConstants.jsonKeys.mandatoryNoGo] as? Bool {
-            self.mandatoryNoGo = mandatoryNoGo
         }
         
         if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{

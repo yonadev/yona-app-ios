@@ -39,7 +39,6 @@ extension KeychainManager {
     
     func getPINCode() -> String? {
         guard let pin = keychain.get(YonaConstants.keychain.PINCode) else { return nil }
-        
         return pin
     }
 }

@@ -38,6 +38,21 @@ struct R {
   struct file {
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }
+    static var oswaldBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-BoldItalic", withExtension: "ttf") }
+    static var oswaldBoldTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Bold", withExtension: "ttf") }
+    static var oswaldDemiBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Demi-BoldItalic", withExtension: "ttf") }
+    static var oswaldDemiBoldTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-DemiBold", withExtension: "ttf") }
+    static var oswaldExtraLightItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Extra-LightItalic", withExtension: "ttf") }
+    static var oswaldExtraLightTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-ExtraLight", withExtension: "ttf") }
+    static var oswaldHeavyItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-HeavyItalic", withExtension: "ttf") }
+    static var oswaldHeavyTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Heavy", withExtension: "ttf") }
+    static var oswaldLightItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-LightItalic", withExtension: "ttf") }
+    static var oswaldLightTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Light", withExtension: "ttf") }
+    static var oswaldMediumItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-MediumItalic", withExtension: "ttf") }
+    static var oswaldMediumTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Medium", withExtension: "ttf") }
+    static var oswaldRegularItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-RegularItalic", withExtension: "ttf") }
+    static var oswaldRegularTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Regular", withExtension: "ttf") }
+    static var oswaldStencilTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-Stencil", withExtension: "ttf") }
     static var robotoBlackItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-BlackItalic", withExtension: "ttf") }
     static var robotoBlackTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-Black", withExtension: "ttf") }
     static var robotoBoldCondensedItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Roboto-BoldCondensedItalic", withExtension: "ttf") }
@@ -78,6 +93,66 @@ struct R {
   }
   
   struct font {
+    static func oswaldBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Bold", size: size)
+    }
+    
+    static func oswaldBoldItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-BoldItalic", size: size)
+    }
+    
+    static func oswaldDemiBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-DemiBold", size: size)
+    }
+    
+    static func oswaldDemiBoldItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Demi-BoldItalic", size: size)
+    }
+    
+    static func oswaldExtraLight(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-ExtraLight", size: size)
+    }
+    
+    static func oswaldExtraLightItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Extra-LightItalic", size: size)
+    }
+    
+    static func oswaldHeavy(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Heavy", size: size)
+    }
+    
+    static func oswaldHeavyItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-HeavyItalic", size: size)
+    }
+    
+    static func oswaldLight(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Light", size: size)
+    }
+    
+    static func oswaldLightItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-LightItalic", size: size)
+    }
+    
+    static func oswaldMedium(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Medium", size: size)
+    }
+    
+    static func oswaldMediumItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-MediumItalic", size: size)
+    }
+    
+    static func oswaldRegular(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-Regular", size: size)
+    }
+    
+    static func oswaldRegularItalic(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "Oswald-RegularItalic", size: size)
+    }
+    
+    static func oswaldStencilBold(size size: CGFloat) -> UIFont? {
+      return UIFont(name: "OswaldStencil-Bold", size: size)
+    }
+    
     static func robotoBlack(size size: CGFloat) -> UIFont? {
       return UIFont(name: "Roboto-Black", size: size)
     }
@@ -239,6 +314,7 @@ struct R {
     static var bdgEncouragementBestTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgEncouragementBestTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgEncouragementBestTime") } }
     static var bdgTenDay: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgTenDay", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgTenDay") } }
     static var brandAssets: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "Brand Assets") } }
+    static var confinesSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "confinesSlide") } }
     static var first: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "first") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
     static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
@@ -278,6 +354,9 @@ struct R {
     static var imgTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTime") } }
     static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
+    static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
+    static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
+    static var transparencySlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "transparencySlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "transparencySlide") } }
     static var walkthroughPage: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "walkthroughPage") } }
     static var welcomeScreen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "welcomeScreen") } }
     static var yonaLogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "yonaLogo") } }
@@ -288,10 +367,18 @@ struct R {
   }
   
   struct reuseIdentifier {
-    
+    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
+    static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
   struct segue {
+    struct dashboardTabBarController {
+      static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
+      static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
+      static var profile: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Profile") }
+      static var settings: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Settings") }
+    }
+    
     struct setPasscodeViewController {
       static var confirmPasscodeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SetPasscodeViewController, ConfirmPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "ConfirmPasscodeSegue") }
     }
@@ -299,24 +386,37 @@ struct R {
     struct signUpFirstStepViewController {
       static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
     }
+    
+    struct timeBucketChallenges {
+      static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
+      static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
+      static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
   }
   
   struct storyboard {
     struct challenges {
-      static var challengesFirstStepStoryboard: ChallengesFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesFirstStepStoryboard") as? ChallengesFirstStepViewController }
-      static var challengesStoryboard: ChallengesViewController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? ChallengesViewController }
-      static var initialViewController: ChallengesFirstStepViewController? { return instance.instantiateInitialViewController() as? ChallengesFirstStepViewController }
+      static var challengesStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? UINavigationController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
+      static var timeFrameBudgetChallengeStoryboard: TimeFrameBudgetChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameBudgetChallengeStoryboard") as? TimeFrameBudgetChallengeViewController }
+      static var timeFrameNoGoChallengeStoryboard: TimeFrameNoGoChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameNoGoChallengeStoryboard") as? TimeFrameNoGoChallengeViewController }
+      static var timeFrameTimeZoneChallengeStoryboard: TimeFrameTimeZoneChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameTimeZoneChallengeStoryboard") as? TimeFrameTimeZoneChallengeViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesViewController'.")
-        assert(challengesFirstStepStoryboard != nil, "[R.swift] ViewController with identifier 'challengesFirstStepStoryboard' could not be loaded from storyboard 'Challenges' as 'ChallengesFirstStepViewController'.")
+        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'UINavigationController'.")
+        assert(timeFrameTimeZoneChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameTimeZoneChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameTimeZoneChallengeViewController'.")
+        assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
+        assert(timeFrameNoGoChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameNoGoChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameNoGoChallengeViewController'.")
       }
     }
     
@@ -486,22 +586,28 @@ struct R {
     }
     
     struct walkThrough {
-      static var initialViewController: WalkThroughViewController? { return instance.instantiateInitialViewController() as? WalkThroughViewController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "WalkThrough", bundle: _R.hostingBundle) }
-      static var walkThrough1: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough1") as? AVPageContentViewController }
-      static var walkThrough2: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? AVPageContentViewController }
-      static var walkThrough3: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? AVPageContentViewController }
-      static var walkThrough4: AVPageContentViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? AVPageContentViewController }
+      static var walkThrough1: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough1") as? TourScreenViewController }
+      static var walkThrough2: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? TourScreenViewController }
+      static var walkThrough3: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? TourScreenViewController }
+      static var walkThrough4: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? TourScreenViewController }
+      static var walkThroughStoryboard: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughStoryboard") as? WalkThroughViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "sharingSlide") != nil, "[R.swift] Image named 'sharingSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "transparencySlide") != nil, "[R.swift] Image named 'transparencySlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "confinesSlide") != nil, "[R.swift] Image named 'confinesSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
+        assert(UIImage(named: "timespentSlide") != nil, "[R.swift] Image named 'timespentSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
         assert(UIImage(named: "icnNext") != nil, "[R.swift] Image named 'icnNext' is used in storyboard 'WalkThrough', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
-        assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'AVPageContentViewController'.")
+        assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThroughStoryboard != nil, "[R.swift] ViewController with identifier 'walkThroughStoryboard' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
+        assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
+        assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
       }
     }
     

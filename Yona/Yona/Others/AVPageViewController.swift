@@ -25,8 +25,32 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         self.setupViewControllerIndex(contentViews)
         self.view.frame = viewControllerFrameRect
         let viewController = NSArray(object: self.viewController(atIndex: self.presentingIndex))
-        self.setViewControllers(viewController as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        self.setViewControllers(
+            viewController as? [UIViewController],
+            direction: UIPageViewControllerNavigationDirection.Forward,
+            animated: true,
+            completion: { [weak self] (finished: Bool) in
+                if finished {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self!.setViewControllers(
+                            viewController as? [UIViewController],
+                            direction: UIPageViewControllerNavigationDirection.Forward,
+                            animated: false,
+                            completion: nil
+                        )
+                        
+                    })
+                }
+                
+            })
     }
+    
+    
+    
+    
+    
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -45,6 +69,7 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         }
     }
     
+    
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let viewController = viewController as! AVPageContentViewController
         var index = viewController.viewControllerIndex as Int
@@ -52,8 +77,8 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         if(index == 0 || index == NSNotFound) {
             return nil
         }
-        
-        return self.viewController(atIndex: --index)
+        index -= 1
+        return self.viewController(atIndex: index)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -63,16 +88,15 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         if(index == NSNotFound || index == self.contentViews!.count - 1) {
             return nil
         }
-        
-        return self.viewController(atIndex: ++index)
+        index += 1
+        return self.viewController(atIndex: index)
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.contentViews!.count
+    
+    func gotoNextViewController(index: Int) {
+        setupControllers(self.contentViews!, viewControllerFrameRect: self.view.frame, withPresentingViewControllerIndex: index)
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.presentingIndex
-    }
+
     
 }
