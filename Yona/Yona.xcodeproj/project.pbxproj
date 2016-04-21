@@ -10,6 +10,7 @@
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
+		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
@@ -199,6 +200,7 @@
 /* Begin PBXFileReference section */
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 				BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */,
 				907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */,
 				907DA5291CC51C310031850E /* NewDeviceRequests.swift */,
+				9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 			files = (
 				D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
+				9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */,
 				907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,

@@ -1,0 +1,109 @@
+//
+//  PinResetAPIServiceTests.swift
+//  Yona
+//
+//  Created by Ben Smith on 21/04/16.
+//  Copyright © 2016 Yona. All rights reserved.
+//
+
+import XCTest
+@testable import Yona
+
+class PinResetAPIServiceTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measureBlock {
+            // Put the code you want to measure the time of here.
+        }
+    }
+    
+    func testUserRequestPinReset() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+316" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            
+            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                XCTAssert(success, pincode!)
+                expectation.fulfill()
+            }
+            
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
+    func testUserRequestPinVerify() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+316" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            
+            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                let body = ["code": pincode!]
+                APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
+                    XCTAssert(success, message!)
+                    if success {
+                        expectation.fulfill()
+                    }
+                }
+            }
+            
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
+    func testUserRequestPinClear() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+316" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            
+            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                    XCTAssert(success, message!)
+                    if success {
+                        expectation.fulfill()
+                    }
+                })
+            }
+            
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+
+}
