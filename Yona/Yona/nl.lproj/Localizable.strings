@@ -47,3 +47,15 @@
 
 "challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
 "challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@ en tussen %@ en %@";
+
+"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@ en tussen %@ en %@";
+
+"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
+"challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
+"challenges.addBudgetGoal.timeZoneLabel" = "Tijdzone";
+"challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
+"challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
+"challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
+"challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
+"challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw Doel Toegevoegde";
+

@@ -52,28 +52,34 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     var timeZoneArray = [Goal]()
     var nogoArray = [Goal]()
     
+    var activitySelected: Activities?
+    var budgetGoalSelected: Goal?
+
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
     
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        self.callActivityCategory()
-        
-        self.timeBucketData(.BudgetGoalString)
-        self.timeBucketData(.TimeZoneGoalString)
-        self.timeBucketData(.NoGoGoalString)
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        self.callActivityCategory()
+        self.timeBucketData(.BudgetGoalString)
+        self.timeBucketData(.TimeZoneGoalString)
+        self.timeBucketData(.NoGoGoalString)
+        setDeselectOtherCategory()
+        setSelectedCategory(self.budgetView)
         gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        
+
     }
     
+    override func viewDidAppear(animated:Bool) {
+        super.viewDidAppear(animated)
+
+    }
     
     // MARK: - private functions
     private func setDeselectOtherCategory() {
@@ -174,7 +180,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     
     private func callActivityCategory() {
-        
         APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 self.activityCategoriesArray = activities!
@@ -257,17 +262,26 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         self.tableView.reloadData()
     }
     
-    
-    
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(categoryHeader)
-        
+        let destinationViewController = segue.destinationViewController
+
+        if let segueIdentifier = segue.identifier,
+            let segueIdentifierValue = Segues(rawValue: segueIdentifier) {
+                switch segueIdentifierValue {
+                case .BudgetChallengeSegue:
+                    let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
+                    if let activitySelectedUnwrap = self.activitySelected {
+                        detailView.activitiyToPost = activitySelectedUnwrap
+                    }
+                    if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
+                        detailView.goalCreated = budgetGoalSelectedUnwrap
+                    }
+            }
+        }
     }
+
 }
-
-
 
 extension TimeBucketChallenges {
     // MARK: - Table view data source
@@ -306,13 +320,15 @@ extension TimeBucketChallenges {
         
         switch categoryHeader {
         case .BudgetGoal:
-            let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].goalType!
-            let maxDurationMinutesUnwrap = String(self.budgetArray[indexPath.row].maxDurationMinutes)
-            let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
-            let title = NSString(format: localizedString, maxDurationMinutesUnwrap, String(activityCategoryNameUnwrap))
-            cell.textLabel?.text = activityCategoryNameUnwrap
-            cell.detailTextLabel?.text = title as String
-            cell.detailTextLabel?.numberOfLines = 0
+            if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
+            let maxDurationMinutesUnwrap = self.budgetArray[indexPath.row].maxDurationMinutes {
+                let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
+                let title = NSString(format: localizedString, String(maxDurationMinutesUnwrap), String(activityCategoryNameUnwrap))
+                cell.textLabel?.text = activityCategoryNameUnwrap
+                cell.detailTextLabel?.text = title as String
+                cell.detailTextLabel?.numberOfLines = 0
+            }
+
             
         case .BudgetActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -346,6 +362,14 @@ extension TimeBucketChallenges {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if categoryHeader == .BudgetGoal || categoryHeader == .BudgetActivity{
+            switch categoryHeader {
+            case .BudgetActivity:
+                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+            case .BudgetGoal:
+                self.budgetGoalSelected = self.budgetArray[indexPath.row]
+            default:
+                break
+            }
             performSegueWithIdentifier(R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
         } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
             performSegueWithIdentifier(R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)

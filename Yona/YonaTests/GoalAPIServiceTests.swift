@@ -381,6 +381,56 @@ class GoalAPIServiceTests: XCTestCase {
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
+    func testPostNewsGoalAsNoGo() {
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            print(KeychainManager.sharedInstance.getYonaPassword())
+            
+            let newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
+            let postGoalBody = [
+                "@type": "BudgetGoal",
+                "_links": [
+                    "yona:activityCategory": ["href": newsActivityCategoryLink]
+                ],
+                "maxDurationMinutes": "0"
+            ]
+   
+            APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                (success, serverMessage, serverCode, goal, err) in
+                APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, goals, error) in
+                    //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
+                    if success {
+                        for goal in goals! {
+                            print(goal)
+                            //if we find the News Goal we just posted as No Go then test passes
+                            if goal.activityCategoryLink == newsActivityCategoryLink {
+                                expectation.fulfill()
+                            }
+                        }
+                    } else {
+                        XCTFail(message!)
+                    }
+                })
+
+            })
+            
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
     func testDeleteAMandatoryGoal() {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
