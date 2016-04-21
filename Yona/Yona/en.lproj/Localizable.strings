@@ -56,3 +56,4 @@
 "challenges.addBudgetGoal.bottomLabelText" = "The following apps are part of this challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Deleted Goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "New Goal Added";
+"challenges.addBudgetGoal.newPinCode" = "New PIN-code";

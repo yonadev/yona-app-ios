@@ -58,4 +58,4 @@
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw Doel Toegevoegde";
-
+"challenges.addBudgetGoal.newPinCode" = "Nieuwe PIN-code";
