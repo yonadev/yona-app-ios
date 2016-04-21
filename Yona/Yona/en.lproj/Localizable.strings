@@ -48,3 +48,9 @@
 "challenges.user.budgetGoalDescriptionText" = "You can spend %@ minutes per day on %@";
 "challenges.user.TimeZoneGoalDescriptionText" = "Time slot between %@ and %@ and between %@ and %@";
 
+"challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
+"challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
+"challenges.addBudgetGoal.timeZoneLabel" = "Timezone";
+"challenges.addBudgetGoal.minutesPerDayLabel" = "minutes per day";
+"challenges.addBudgetGoal.budgetChallengeDescription" = "Determine how much time you want to spend on %@";
+"challenges.addBudgetGoal.bottomLabelText" = "The following apps are part of this challenge:";
