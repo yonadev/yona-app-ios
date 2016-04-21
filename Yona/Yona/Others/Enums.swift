@@ -19,3 +19,7 @@ enum CategoryName: String {
     case socialString = "Social"
     case gamblingString = "Gambling"
 }
+
+enum Segues: String {
+    case BudgetChallengeSegue = "BudgetChallengeSegue"
+}

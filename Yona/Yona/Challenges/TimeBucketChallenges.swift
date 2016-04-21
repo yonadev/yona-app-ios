@@ -52,6 +52,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     var timeZoneArray = [Goal]()
     var nogoArray = [Goal]()
     
+    var goalSelected: Goal?
+    
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
     
     // MARK: - View
@@ -263,7 +265,18 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(categoryHeader)
+        let destinationViewController = segue.destinationViewController
+
+        if let segueIdentifier = segue.identifier,
+            let segueIdentifierValue = Segues(rawValue: segueIdentifier) {
+                switch segueIdentifierValue {
+                case .BudgetChallengeSegue:
+                    let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
+                    detailView.goalToPost = goalSelected
+            }
+        }
         
+
     }
 }
 

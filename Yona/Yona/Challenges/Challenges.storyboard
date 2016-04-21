@@ -121,7 +121,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEGOED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-1a-SmO">
-                                                        <rect key="frame" x="78" y="84" width="43.5" height="44"/>
+                                                        <rect key="frame" x="78" y="84" width="44" height="44"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -271,7 +271,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO GO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
-                                                        <rect key="frame" x="82" y="99" width="35" height="13.5"/>
+                                                        <rect key="frame" x="82" y="99" width="35" height="14"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -462,7 +462,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khv-li-k0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786" y="-89"/>
+            <point key="canvasLocation" x="710" y="157"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o5y-TS-vCK">
@@ -661,7 +661,7 @@ onderdeel van deze challenge:</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
-                                                            <rect key="frame" x="50" y="112" width="500" height="33.5"/>
+                                                            <rect key="frame" x="50" y="112" width="500" height="34"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -858,7 +858,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9X-P9-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="-75"/>
+            <point key="canvasLocation" x="1412" y="557"/>
         </scene>
         <!--Time Frame Budget Challenge View Controller-->
         <scene sceneID="AZF-4l-d6e">
@@ -1130,7 +1130,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="-75"/>
+            <point key="canvasLocation" x="1422" y="-257"/>
         </scene>
         <!--Time Frame No Go Challenge View Controller-->
         <scene sceneID="dB4-QS-vSu">
@@ -1354,7 +1354,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyo-fp-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2755" y="-75"/>
+            <point key="canvasLocation" x="2199" y="151"/>
         </scene>
     </scenes>
     <resources>
