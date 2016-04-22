@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YonaCustomPickerView" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="509" height="178"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PA-VQ-pEX">
+                    <rect key="frame" x="0.0" y="44" width="509" height="134"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="6Nl-7J-YYC"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="rXY-63-XFz"/>
+                    </connections>
+                </pickerView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-gW-xGC">
+                    <rect key="frame" x="0.0" y="0.0" width="509" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="cb0-HN-2rQ"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Cancel" id="kZn-7H-gqJ">
+                            <connections>
+                                <action selector="cancelAction:" destination="iN0-l3-epB" id="nec-NP-Yvw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="CGZ-q8-eTg"/>
+                        <barButtonItem title="Done" id="dJE-sT-9na">
+                            <connections>
+                                <action selector="doneAction:" destination="iN0-l3-epB" id="dqF-4n-Shz"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7PA-VQ-pEX" firstAttribute="top" secondItem="QeQ-gW-xGC" secondAttribute="bottom" id="8s9-dq-aWB"/>
+                <constraint firstAttribute="bottom" secondItem="7PA-VQ-pEX" secondAttribute="bottom" id="Jbn-fS-QEi"/>
+                <constraint firstItem="QeQ-gW-xGC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cDX-Z4-nYk"/>
+                <constraint firstAttribute="trailing" secondItem="7PA-VQ-pEX" secondAttribute="trailing" id="crq-dA-SsE"/>
+                <constraint firstItem="QeQ-gW-xGC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cwP-Un-kLx"/>
+                <constraint firstItem="7PA-VQ-pEX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j47-5p-eCf"/>
+                <constraint firstAttribute="trailing" secondItem="QeQ-gW-xGC" secondAttribute="trailing" id="obX-GZ-b1o"/>
+                <constraint firstItem="7PA-VQ-pEX" firstAttribute="top" secondItem="QeQ-gW-xGC" secondAttribute="bottom" id="wip-0y-GJK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="picker" destination="7PA-VQ-pEX" id="VH9-OP-ZW3"/>
+            </connections>
+            <point key="canvasLocation" x="51.5" y="80"/>
+        </view>
+    </objects>
+</document>

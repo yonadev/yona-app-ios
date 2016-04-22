@@ -98,7 +98,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendOTPAgain:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="nOp-b1-3Fc"/>
+                                                    <action selector="sendOTPAgain:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="8a4-bV-SYr"/>
                                                 </connections>
                                             </button>
                                         </subviews>

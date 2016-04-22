@@ -29,6 +29,7 @@
 
 
 "confirmpasscode.user.headerTitle" = "Confirm PIN";
+"passcode.user.UnlockPincode" = "Unlocked PIN";
 "confirmpasscode.user.infomessage" = "Enter your PIN again to confirm.";
 
 "adddevice.user.mobileNumber" = "MOBILE NUMBER";
@@ -46,7 +47,10 @@
 "challenges.user.nogoCategoryHeader" = "Choose a category in which you want to set up a no go for";
 
 "challenges.user.budgetGoalDescriptionText" = "You can spend %@ minutes per day on %@";
+"challenges.user.nogoGoalDescriptionText" = "Avoid %@ related content";
+
 "challenges.user.TimeZoneGoalDescriptionText" = "Time slot between %@ and %@ and between %@ and %@";
+"challenges.user.TimeZoneGoalDescriptionAndText" = " and between %@ and %@";
 
 "challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
@@ -57,3 +61,9 @@
 "challenges.addBudgetGoal.deletedGoalMessage" = "Deleted Goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "New Goal Added";
 "challenges.addBudgetGoal.newPinCode" = "New PIN-code";
+
+"challenges.addBudgetGoal.NoGoChallengeMainTitle" = "NOGO ALLOWED";
+"challenges.addBudgetGoal.NoGoChallengeDescription" = "Lets you indicate that you in no way want to %@";
+
+"challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIMEZONE ALLOWED";
+"challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
