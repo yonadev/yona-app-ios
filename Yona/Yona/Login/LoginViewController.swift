@@ -47,8 +47,7 @@ class LoginViewController: UIViewController {
             codeInputView!.becomeFirstResponder()
         }
         
-        if let attempts:Bool = NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            if attempts  {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 codeInputView!.resignFirstResponder()
                 codeInputView!.userInteractionEnabled = false
@@ -56,7 +55,6 @@ class LoginViewController: UIViewController {
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
                 self.pinResetButton.enabled = true
                 return;
-            }
         }
         
         //keyboard functions
@@ -128,17 +126,30 @@ extension LoginViewController: CodeInputViewDelegate {
         }
     }
     
-    @IBAction func pinResetTapped(sender: AnyObject) {
-        let body = ["code": YonaConstants.testKeys.otpTestCode]
-        //reset verify code withotp
-        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
-            if(success){
-                self.codeInputView!.becomeFirstResponder()
-                self.codeInputView!.userInteractionEnabled = true
-                print("success")
-            }else {
-                print("fail")
-            }
+    @IBAction func pinResetTapped(sender: UIButton) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+
+            APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
+                if success{
+                        //get otp sent again
+                        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                            if success {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    //Update flag
+                                    self.errorLabel.hidden = true
+                                    self.loginAttempts = 0
+                                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                                    
+                                    if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                                        self.navigationController?.pushViewController(sMSValidation, animated: false)
+                                    }
+                                })
+
+                            }
+                    }
+                    
+                }
+            })
             
         }
     }

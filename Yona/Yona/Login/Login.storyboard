@@ -91,7 +91,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="oEh-t5-Cuz"/>
+                                                    <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="gpb-gk-t69"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="you are not alone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-u0-8lk">

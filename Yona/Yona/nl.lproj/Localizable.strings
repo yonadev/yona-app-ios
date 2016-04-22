@@ -25,7 +25,7 @@
 "smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
-
+"passcode.user.UnlockPincode" = "Ontgrendeld PIN";
 "passcode.user.infomessage" = "Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. Stel je pincode hieronder in.";
 
 "confirmpasscode.user.headerTitle" = "Bevestig pincode";
@@ -60,14 +60,10 @@
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw Doel Toegevoegde";
+"challenges.addBudgetGoal.newPinCode" = "Nieuwe PIN-code";
 
 "challenges.addBudgetGoal.NoGoChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
 "challenges.addBudgetGoal.NoGoChallengeDescription" = "Hiermee geef je aan dat je op geen enkele manier wilt %@";
 
-
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "NOGO VASTLEGGEN";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
-
-
-
-
