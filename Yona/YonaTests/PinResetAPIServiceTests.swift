@@ -103,12 +103,27 @@ class PinResetAPIServiceTests: XCTestCase {
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
-                APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
-                    XCTAssert(success, message!)
-                    if success {
-                        expectation.fulfill()
+                if success {
+                    //get otp sent again
+                    APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                        #if DEBUG
+                            let body = ["code": YonaConstants.testKeys.otpTestCode]
+                        #endif
+                        //reset verify code withotp
+                        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
+                            XCTAssert(success, message!)
+                            if success {
+                                APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                                    XCTAssert(success, message!)
+                                    if success {
+                                        XCTAssert(success, message!)
+                                        expectation.fulfill()
+                                    }
+                                })
+                            }
+                        }
                     }
-                })
+                }
             }
             
         }
