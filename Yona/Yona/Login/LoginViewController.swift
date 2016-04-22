@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.pinResetButton.enabled = false
         codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
         if codeInputView != nil {
@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
                 codeInputView!.userInteractionEnabled = false
                 errorLabel.hidden = false
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+                self.pinResetButton.enabled = true
                 return;
             }
         }
@@ -119,12 +120,27 @@ extension LoginViewController: CodeInputViewDelegate {
                 codeInputView.resignFirstResponder()
                 errorLabel.hidden = false
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+                self.pinResetButton.enabled = true
             }
             else {
                 loginAttempts += 1
             }
         }
-        
+    }
+    
+    @IBAction func pinResetTapped(sender: AnyObject) {
+        let body = ["code": YonaConstants.testKeys.otpTestCode]
+        //reset verify code withotp
+        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
+            if(success){
+                self.codeInputView!.becomeFirstResponder()
+                self.codeInputView!.userInteractionEnabled = true
+                print("success")
+            }else {
+                print("fail")
+            }
+            
+        }
     }
 }
 
@@ -132,4 +148,5 @@ private extension Selector {
     static let keyboardWasShown = #selector(LoginViewController.keyboardWasShown(_:))
     
     static let keyboardWillBeHidden = #selector(LoginViewController.keyboardWillBeHidden(_:))
+    static let pinResetTapped = #selector(LoginViewController.pinResetTapped(_:))
 }

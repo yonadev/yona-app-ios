@@ -27,7 +27,7 @@ class DashboardTabBarController: UIViewController {
         super.viewWillAppear(animated)
         
         tabbar.selectedItem = tabbar.items![2]
-        
+        tabbar.tintColor = UIColor.yiGrapeColor()
         performSegueWithIdentifier("Challenges", sender: self)
     }
     

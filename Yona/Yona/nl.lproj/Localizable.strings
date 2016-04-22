@@ -46,8 +46,10 @@
 "challenges.user.nogoCategoryHeader" = "Kies een categorie waar je een no go voor wilt instellen";
 
 "challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
-"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@ en tussen %@ en %@";
+"challenges.user.nogoGoalDescriptionText" = "Vermijd %@ gerelateerde content";
 
+"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@";
+"challenges.user.TimeZoneGoalDescriptionAndText" = " en tussen %@ en %@";
 "challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@ en tussen %@ en %@";
 
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
@@ -58,4 +60,14 @@
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw Doel Toegevoegde";
+
+"challenges.addBudgetGoal.NoGoChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
+"challenges.addBudgetGoal.NoGoChallengeDescription" = "Hiermee geef je aan dat je op geen enkele manier wilt %@";
+
+
+"challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "NOGO VASTLEGGEN";
+"challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
+
+
+
 

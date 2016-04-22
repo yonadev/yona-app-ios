@@ -27,9 +27,12 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
+    var datePickerView: UIView?
+    var picker: YonaCustomDatePickerView?
+    var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
-    var maxDurationMinutes: Int = 10
+    var maxDurationMinutes: String = "10"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,24 +40,64 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+        })
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+//        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
+        if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
+            self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
+        }
+        configureDatePickerView()
 
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
-        if let activityName = activitiyToPost?.activityCategoryName {
-            self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+        
+        
+        
+        if isFromActivity == true{
+            self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+            if let activityName = activitiyToPost?.activityCategoryName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
+        } else {
+            self.budgetChallengeTitle.text = goalCreated?.GoalName
+            if let activityName = goalCreated?.GoalName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
         }
+        
         
     }
     
+    // MARK: functions
+    func configureDatePickerView() {
+        datePickerView = YonaCustomDatePickerView().loadDatePickerView()
+        picker = datePickerView as? YonaCustomDatePickerView
+        
+        picker!.configure(onView:self.view, withCancelListener: {
+            self.picker?.hideShowDatePickerView(isToShow: false)
+        }) { (doneValue) in
+            print("value selected \(doneValue)")
+            
+            self.maxDurationMinutes = doneValue
+            
+            
+            self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
+            self.picker?.hideShowDatePickerView(isToShow: false)
+        }
+    }
+
+    func convertToMinutes() {
+//        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -91,6 +134,10 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         }
     }
     
+    @IBAction func maxTimebuttonTapped(sender: AnyObject) {
+        picker!.hideShowDatePickerView(isToShow: true)
+    }
+    
     @IBAction func deletebuttonTapped(sender: AnyObject) {
 
         //then once it is posted we can delete it
@@ -101,11 +148,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 })
             }
         }
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index  \(indexPath)")
-       
     }
 }
 
