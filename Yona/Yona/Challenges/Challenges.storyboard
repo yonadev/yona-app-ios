@@ -608,7 +608,7 @@
                                                     </constraints>
                                                     <state key="normal" image="addCircel"/>
                                                     <connections>
-                                                        <action selector="addNewTimeZoneButtonTapped:" destination="OaK-4S-ODd" eventType="touchUpInside" id="1uq-mc-3FR"/>
+                                                        <action selector="addTimeZoneAction:" destination="OaK-4S-ODd" eventType="touchUpInside" id="5Hz-PO-7tK"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijdzone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-8c-6az">
@@ -733,8 +733,8 @@ Pinterest, Instagram, Snapchat</string>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-vk-T05">
                                                                     <rect key="frame" x="40" y="0.0" width="229" height="59"/>
-                                                                    <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
-                                                                    <state key="normal" title="10:30">
+                                                                    <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="26"/>
+                                                                    <state key="normal" title="00:00">
                                                                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </state>
                                                                     <connections>
@@ -768,8 +768,8 @@ Pinterest, Instagram, Snapchat</string>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6e-C6-aVM">
                                                                     <rect key="frame" x="40" y="0.0" width="229" height="59"/>
-                                                                    <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
-                                                                    <state key="normal" title="10:30">
+                                                                    <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="26"/>
+                                                                    <state key="normal" title="00:00">
                                                                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </state>
                                                                     <connections>
@@ -1385,7 +1385,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyo-fp-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002" y="-348"/>
+            <point key="canvasLocation" x="2131" y="-348"/>
         </scene>
     </scenes>
     <resources>

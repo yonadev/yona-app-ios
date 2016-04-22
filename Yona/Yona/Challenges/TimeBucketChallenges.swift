@@ -268,8 +268,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         var isfromActivity:Bool = true
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
             isfromActivity = false
-        } else {
-            isfromActivity = true
         }
         if let segueIdentifier = segue.identifier,
             let segueIdentifierValue = Segues(rawValue: segueIdentifier) {
