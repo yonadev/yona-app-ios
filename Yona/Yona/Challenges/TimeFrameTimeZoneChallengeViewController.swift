@@ -24,7 +24,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    
+    var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 10
@@ -41,17 +41,30 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         })
+        zonesArray = [ "6:00-10:00"]
+
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
+        
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
-        if let activityName = activitiyToPost?.activityCategoryName {
-            self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
+        
+        
+        
+        if isFromActivity == true{
+            self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
+            if let activityName = activitiyToPost?.activityCategoryName {
+                self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
+            }
+        } else {
+            self.timezoneChallengeTitle.text = goalCreated?.GoalName
+            if let activityName = goalCreated?.GoalName {
+                self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
+            }
         }
-
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
     
     // MARK: - Actions
@@ -62,6 +75,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
         print("integrate post  challenge")
+        if isFromActivity == true {
+           
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             
             let bodyTimeZoneSocialGoal = [
@@ -92,7 +107,9 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
             })
         }
-
+        }else {
+            
+        }
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
@@ -106,8 +123,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             }
         }
     }
-
-
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -115,15 +130,26 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFromActivity == true{
+            return zonesArray.count
+        } else {
         return (goalCreated?.zonesStore.count)!
+        }
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
-        let s: String = (goalCreated?.zonesStore[indexPath.row])!
+        var s: String?
+        if isFromActivity == true {
+            s = (zonesArray[indexPath.row]) as! String
+
+        } else {
+            s = (goalCreated?.zonesStore[indexPath.row])!
+        }
         
-        cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
+        
+        cell.configure((s!.dashRemoval()[0], s!.dashRemoval()[1]), fromButtonListener: { (cell) in
             print("From Button Clicked in cell")
             
             }) { (cell) in

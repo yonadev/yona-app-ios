@@ -27,6 +27,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
+    var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 10
@@ -43,18 +44,31 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+//        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
-        if let maxDurationMinutesUnwrapped = goalCreated!.maxDurationMinutes {
+        if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
 
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
-        if let activityName = activitiyToPost?.activityCategoryName {
-            self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+        
+        
+        
+        if isFromActivity == true{
+            self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+            if let activityName = activitiyToPost?.activityCategoryName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
+        } else {
+            self.budgetChallengeTitle.text = goalCreated?.GoalName
+            if let activityName = goalCreated?.GoalName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
         }
+        
+        
     }
     
     // MARK: - Actions

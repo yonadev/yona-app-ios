@@ -1379,6 +1379,7 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="footerGradientView" destination="9T7-6Q-RTF" id="5yU-Kb-JEU"/>
                         <outlet property="gradientView" destination="8Mc-PN-X8W" id="OJ2-VW-XNm"/>
                         <outlet property="headerView" destination="vLg-dg-Et7" id="S0N-7Y-eJj"/>
+                        <outlet property="scrollView" destination="KhB-rS-Ocr" id="xGI-sp-b1U"/>
                         <outlet property="setChallengeButton" destination="nNe-wI-qBq" id="LcL-Hk-6Xb"/>
                     </connections>
                 </viewController>

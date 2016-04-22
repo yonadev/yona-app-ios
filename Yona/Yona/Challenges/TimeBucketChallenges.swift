@@ -265,11 +265,17 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(categoryHeader)
         let destinationViewController = segue.destinationViewController
-
+        var isfromActivity:Bool = true
+        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
+            isfromActivity = false
+        } else {
+            isfromActivity = true
+        }
         if let segueIdentifier = segue.identifier,
             let segueIdentifierValue = Segues(rawValue: segueIdentifier) {
                 switch segueIdentifierValue {
                 case .BudgetChallengeSegue:
+                    
                     let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
                     if let activitySelectedUnwrap = self.activitySelected {
                         detailView.activitiyToPost = activitySelectedUnwrap
@@ -277,8 +283,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
                         detailView.goalCreated = budgetGoalSelectedUnwrap
                     }
-                    
+                    detailView.isFromActivity = isfromActivity
                 case .TimeZoneChallengeSegue:
+                    
                     let detailView = destinationViewController as! TimeFrameTimeZoneChallengeViewController
                     if let activitySelectedUnwrap = self.activitySelected {
                         detailView.activitiyToPost = activitySelectedUnwrap
@@ -286,6 +293,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     if let timezoneGoalSelectedUnwrap = self.budgetGoalSelected {
                         detailView.goalCreated = timezoneGoalSelectedUnwrap
                     }
+                    detailView.isFromActivity = isfromActivity
                     
                 case .NoGoChallengeSegue:
                     let detailView = destinationViewController as! TimeFrameNoGoChallengeViewController
@@ -295,6 +303,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     if let nogoGoalSelectedUnwrap = self.budgetGoalSelected {
                         detailView.goalCreated = nogoGoalSelectedUnwrap
                     }
+                    detailView.isFromActivity = isfromActivity
             }
         }
     }
@@ -360,11 +369,10 @@ extension TimeBucketChallenges {
 //                let zoneStoreUnwrap = self.nogoArray[indexPath.row].zonesStore[]
 //                let localizedString = NSLocalizedString("challenges.user.timezoneGoalDescriptionText", comment: "")
 //                let title = NSString(format: localizedString, String(activityCategoryNameUnwrap))
-//                cell.textLabel?.text = activityCategoryNameUnwrap
+                cell.textLabel?.text = activityCategoryNameUnwrap
 //                cell.detailTextLabel?.text = title as String
 //                cell.detailTextLabel?.numberOfLines = 0
             }
-            cell.textLabel?.text = ""
             
         case .TimeZoneActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!

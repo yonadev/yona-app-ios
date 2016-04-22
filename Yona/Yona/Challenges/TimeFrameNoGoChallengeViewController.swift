@@ -23,6 +23,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
+    var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 0
@@ -38,22 +39,24 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             })
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
-        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+    self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
+        if isFromActivity == true{
+            self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+            if let activityName = activitiyToPost?.activityCategoryName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
+        } else {
+            self.budgetChallengeTitle.text = goalCreated?.GoalName
+            if let activityName = goalCreated?.GoalName {
+                self.budgetChallengeDescription.text = String(format: localizedString, activityName)
+            }
+        }
+        
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
-        let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
-        if let activityName = activitiyToPost?.activityCategoryName {
-            self.budgetChallengeDescription.text = String(format: localizedString, activityName)
-        }
-
         
-//        //Nav bar Back button.
-//        self.navigationItem.hidesBackButton = true
-//        
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
     }
     
     // MARK: - Actions
