@@ -20,12 +20,15 @@ class TimeZoneTableViewCell: UITableViewCell {
     var gFrombuttonClicked: fromButtonClicked?
     var gTobuttonClicked: toButtonClicked?
     
-    func configure (data:(from: String, to: String), fromButtonListener: fromButtonClicked, toButtonListener: toButtonClicked) {
-        fromButton.titleLabel?.text = data.from
-        toButton.titleLabel?.text = data.to
+    
+    
+    func configureWithFromTime(from: String, toTime to: String, fromButtonListener: fromButtonClicked, toButtonListener: toButtonClicked) {
+        fromButton.setTitle(from, forState: .Normal)
+        toButton.setTitle(to, forState: .Normal)
         gFrombuttonClicked = fromButtonListener
         gTobuttonClicked = toButtonListener
     }
+    
     
     @IBAction func frombuttonTapped(sender: UIButton) {
         gFrombuttonClicked!(self)

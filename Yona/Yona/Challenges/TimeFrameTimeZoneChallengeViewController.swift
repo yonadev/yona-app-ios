@@ -32,7 +32,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     var zonesArray = [String]()
     var datePickerView: UIView?
     var picker: YonaCustomDatePickerView?
-    var presentingCell: TimeZoneTableViewCell?
+    var activeIndexPath: NSIndexPath?
     var isFromButton: Bool = true
     
     
@@ -88,12 +88,12 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 "_links": [
                     "yona:activityCategory": ["href": activityCategoryLink]
                 ],
-                "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
-            ]
+                "zones": zonesArray
+            ];
             
             
             
-            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                 (success, serverMessage, serverCode, goal, err) in
                 if success {
                     if let goalUnwrap = goal {
@@ -117,10 +117,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
-        zonesArray.insert(("10:00-10:00"), atIndex: zonesArray.count)
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        zonesArray.append("10:00-10:00")
+        self.tableView.reloadData()
         
     }
     @IBAction func deletebuttonTapped(sender: AnyObject) {
@@ -144,20 +142,14 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
         }) { (doneValue) in
-            if self.isFromButton {
-                 let tempArr = self.generateTimeZoneArray(isFrom: true, fromToValue: self.zonesArray[(self.tableView.indexPathForCell(self.presentingCell!)?.row)!], withDoneValue: doneValue)
-                self.zonesArray[(self.tableView.indexPathForCell(self.presentingCell!)?.row)!] = tempArr
-            } else {
-                let tempArr = self.generateTimeZoneArray(isFrom: true, fromToValue: self.zonesArray[(self.tableView.indexPathForCell(self.presentingCell!)?.row)!], withDoneValue: doneValue)
-                self.zonesArray[(self.tableView.indexPathForCell(self.presentingCell!)?.row)!] = tempArr
-            }
-            
-            print(self.zonesArray)
+            let tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
+            self.zonesArray[(self.activeIndexPath?.row)!] = tempArr
+            self.picker?.hideShowDatePickerView(isToShow: false)
             self.tableView.reloadData()
             
             print("Value updated \(self.zonesArray)")
             
-            self.picker?.hideShowDatePickerView(isToShow: false)
+            
         }
     }
     
@@ -193,18 +185,18 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArray[indexPath.row]
-        
-        cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
-            print("From Button Clicked in cell")
-            self.picker?.hideShowDatePickerView(isToShow: true)
-            self.presentingCell = cell
-            self.isFromButton = true
-        }) { (cell) in
-            print("to Button Clicked in cell")
-            self.picker?.hideShowDatePickerView(isToShow: true)
-            self.presentingCell = cell
-            self.isFromButton = false
+        cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
+                print("From Button Clicked in cell")
+                self.activeIndexPath = indexPath
+                self.isFromButton = true
+                self.picker?.hideShowDatePickerView(isToShow: true)
+            }) { (cell) in
+                print("to Button Clicked in cell")
+                self.activeIndexPath = indexPath
+                self.isFromButton = false
+                self.picker?.hideShowDatePickerView(isToShow: true)
         }
+       
         
         return cell
     }

@@ -18,7 +18,12 @@ class YonaCustomDatePickerView: UIView {
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-        gDoneListener?(selectedValue!)
+        if selectedValue != nil{
+            gDoneListener?(selectedValue!)
+        }else{
+            gDoneListener?("10:00-10:00")
+        }
+        
     }
     
     @IBAction func datePickerAction(sender: AnyObject) {
