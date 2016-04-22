@@ -150,6 +150,12 @@ extension LoginViewController: CodeInputViewDelegate {
                                         self.errorLabel.hidden = true
                                         self.loginAttempts = 0
                                         
+                                        //Update flag
+                                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                                        
+                                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                            self.navigationController?.pushViewController(passcode, animated: false)
+                                        }
                                     })
 
                                 }
