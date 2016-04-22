@@ -27,10 +27,12 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
+    var datePickerView: UIView?
+    var picker: YonaCustomDatePickerView?
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
-    var maxDurationMinutes: Int = 10
+    var maxDurationMinutes: String = "10"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
+        configureDatePickerView()
 
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
@@ -71,6 +74,28 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         
     }
     
+    // MARK: functions
+    func configureDatePickerView() {
+        datePickerView = YonaCustomDatePickerView().loadDatePickerView()
+        picker = datePickerView as? YonaCustomDatePickerView
+        
+        picker!.configure(onView:self.view, withCancelListener: {
+            self.picker?.hideShowDatePickerView(isToShow: false)
+        }) { (doneValue) in
+            print("value selected \(doneValue)")
+            
+            self.maxDurationMinutes = doneValue
+            
+            
+            self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
+            self.picker?.hideShowDatePickerView(isToShow: false)
+        }
+    }
+
+    func convertToMinutes() {
+//        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -105,6 +130,10 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    @IBAction func maxTimebuttonTapped(sender: AnyObject) {
+        picker!.hideShowDatePickerView(isToShow: true)
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {

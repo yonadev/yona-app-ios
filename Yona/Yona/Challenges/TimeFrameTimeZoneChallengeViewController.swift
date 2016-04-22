@@ -52,8 +52,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
-        let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
+        self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
+        let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
         
         
@@ -62,11 +62,14 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
+           
+            
         } else {
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
+             zonesArray = (goalCreated?.zonesStore)!
         }
         self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
@@ -174,11 +177,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFromActivity == true{
+//        if isFromActivity == true{
             return zonesArray.count
-        } else {
-        return (goalCreated?.zonesStore.count)!
-        }
+//        } else {
+//        return (goalCreated?.zonesStore.count)!
+//        }
     }
     
     
