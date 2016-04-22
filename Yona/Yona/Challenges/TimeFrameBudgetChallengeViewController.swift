@@ -47,12 +47,14 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
+        if let maxDurationMinutesUnwrapped = goalCreated!.maxDurationMinutes {
+            self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
+        }
 
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         if let activityName = activitiyToPost?.activityCategoryName {
             self.budgetChallengeDescription.text = String(format: localizedString, activityName)
         }
-        
     }
     
     // MARK: - Actions
@@ -101,11 +103,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 })
             }
         }
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index  \(indexPath)")
-       
     }
 }
 

@@ -126,10 +126,13 @@ extension LoginViewController: CodeInputViewDelegate {
         }
         
     }
+    
+    
 }
 
 private extension Selector {
     static let keyboardWasShown = #selector(LoginViewController.keyboardWasShown(_:))
     
     static let keyboardWillBeHidden = #selector(LoginViewController.keyboardWillBeHidden(_:))
+    static let pinResetTapped = #selector(LoginViewController.pinResetTapped(_:))
 }

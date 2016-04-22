@@ -277,6 +277,24 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
                         detailView.goalCreated = budgetGoalSelectedUnwrap
                     }
+                    
+                case .TimeZoneChallengeSegue:
+                    let detailView = destinationViewController as! TimeFrameTimeZoneChallengeViewController
+                    if let activitySelectedUnwrap = self.activitySelected {
+                        detailView.activitiyToPost = activitySelectedUnwrap
+                    }
+                    if let timezoneGoalSelectedUnwrap = self.budgetGoalSelected {
+                        detailView.goalCreated = timezoneGoalSelectedUnwrap
+                    }
+                    
+                case .NoGoChallengeSegue:
+                    let detailView = destinationViewController as! TimeFrameNoGoChallengeViewController
+                    if let activitySelectedUnwrap = self.activitySelected {
+                        detailView.activitiyToPost = activitySelectedUnwrap
+                    }
+                    if let nogoGoalSelectedUnwrap = self.budgetGoalSelected {
+                        detailView.goalCreated = nogoGoalSelectedUnwrap
+                    }
             }
         }
     }
@@ -335,18 +353,32 @@ extension TimeBucketChallenges {
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
-            cell.textLabel?.text = self.timeZoneArray[indexPath.row].goalType!
-            cell.detailTextLabel?.text = "TimeZoneGoal"
-            cell.detailTextLabel?.numberOfLines = 0
-            
+            if let activityCategoryNameUnwrap = self.timeZoneArray[indexPath.row].GoalName {
+//                for i in 0 ..< self.nogoArray[indexPath.row].zonesStore.count - 1 {
+//                    print(self.nogoArray[indexPath.row].zonesStore[i])
+//                }
+//                let zoneStoreUnwrap = self.nogoArray[indexPath.row].zonesStore[]
+//                let localizedString = NSLocalizedString("challenges.user.timezoneGoalDescriptionText", comment: "")
+//                let title = NSString(format: localizedString, String(activityCategoryNameUnwrap))
+//                cell.textLabel?.text = activityCategoryNameUnwrap
+//                cell.detailTextLabel?.text = title as String
+//                cell.detailTextLabel?.numberOfLines = 0
+            }
+            cell.textLabel?.text = ""
             
         case .TimeZoneActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
             
         case .NoGoGoal:
-            cell.textLabel?.text = self.nogoArray[indexPath.row].GoalName!
-            cell.detailTextLabel?.text = "NoGoGoal"
+            if let activityCategoryNameUnwrap = self.nogoArray[indexPath.row].GoalName,
+                let _ = self.nogoArray[indexPath.row].maxDurationMinutes {
+                let localizedString = NSLocalizedString("challenges.user.nogoGoalDescriptionText", comment: "")
+                let title = NSString(format: localizedString, String(activityCategoryNameUnwrap))
+                cell.textLabel?.text = activityCategoryNameUnwrap
+                cell.detailTextLabel?.text = title as String
+                cell.detailTextLabel?.numberOfLines = 0
+            }
             
         case .NoGoActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -372,8 +404,24 @@ extension TimeBucketChallenges {
             }
             performSegueWithIdentifier(R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
         } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
+            switch categoryHeader {
+            case .TimeZoneActivity:
+                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+            case .TimeZoneGoal:
+                self.budgetGoalSelected = self.timeZoneArray[indexPath.row]
+            default:
+                break
+            }
             performSegueWithIdentifier(R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)
         } else if categoryHeader == .NoGoGoal  || categoryHeader == .NoGoActivity {
+            switch categoryHeader {
+            case .NoGoActivity:
+                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+            case .NoGoGoal:
+                self.budgetGoalSelected = self.nogoArray[indexPath.row]
+            default:
+                break
+            }
             performSegueWithIdentifier(R.segue.timeBucketChallenges.noGoChallengeSegue, sender: self)
         }
     }
