@@ -10,6 +10,7 @@ import Foundation
 
 typealias ServerMessage = String
 typealias ServerCode = String
+typealias PinCode = String
 
 struct YonaConstants {
     
@@ -24,6 +25,10 @@ struct YonaConstants {
         static let mobileConfirm = "/confirmMobileNumber"
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
+        static let pinRequest = "/pinResetRequest/request"
+        static let pinVerify = "/pinResetRequest/verify"
+        static let pinClear = "/pinResetRequest/clear"
+
     }
     
     struct httpMethods{
@@ -65,10 +70,14 @@ struct YonaConstants {
         static let  name = "name"
         static let  applications = "applications"
         static let  zones = "zones"
+        static let  pinResetDelay = "delay"
+        static let  bodyCode = "code"
     }
 
     struct serverCodes{
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
+        static let tooManyResendOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
+        static let tooManyPinResetAttemps = "error.pin.reset.request.confirmation.code.too.many.failed.attempts"
         static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
         static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
         static let OK = "OK"
