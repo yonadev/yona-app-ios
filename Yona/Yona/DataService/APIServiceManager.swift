@@ -660,7 +660,7 @@ extension APIServiceManager {
         }
     }
     
-    func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIResponse) {
+    func otpResendMobile(onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let userID = KeychainManager.sharedInstance.getUserID(),
@@ -670,7 +670,7 @@ extension APIServiceManager {
                         print(otpResendMobileLink)
                     #endif
                     
-                    self.callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                    self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
                             return

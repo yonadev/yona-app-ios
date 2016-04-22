@@ -135,17 +135,25 @@ extension LoginViewController: CodeInputViewDelegate {
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.newPinCode", comment: ""), alertDescription: pincodeUnwrap)
                             })
-                            let body = ["code": pincode!]
-                            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
-                                //successfuly verify then unblock
-                                let defaults = NSUserDefaults.standardUserDefaults()
-                                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                                defaults.synchronize()
-                                self.codeInputView!.userInteractionEnabled = true
-                                self.errorLabel.hidden = true
-                                self.loginAttempts = 0
-                                
-                            })
+                            //get otp sent again
+                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                                if success {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        #if DEBUG
+                                        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                                        //Now send user back to pinreset screen, let them enter pincode and password again
+                                        #endif
+                                        let defaults = NSUserDefaults.standardUserDefaults()
+                                        defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                                        defaults.synchronize()
+                                        self.codeInputView!.userInteractionEnabled = true
+                                        self.errorLabel.hidden = true
+                                        self.loginAttempts = 0
+                                        
+                                    })
+
+                                }
+                            }
                         }
                     
                 }
