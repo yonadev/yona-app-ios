@@ -131,36 +131,22 @@ extension LoginViewController: CodeInputViewDelegate {
 
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 if success{
-                        if let pincodeUnwrap = pincode {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.newPinCode", comment: ""), alertDescription: pincodeUnwrap)
-                            })
-                            //get otp sent again
-                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                                if success {
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        #if DEBUG
-                                        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
-                                        //Now send user back to pinreset screen, let them enter pincode and password again
-                                        #endif
-                                        let defaults = NSUserDefaults.standardUserDefaults()
-                                        defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                                        defaults.synchronize()
-                                        self.codeInputView!.userInteractionEnabled = true
-                                        self.errorLabel.hidden = true
-                                        self.loginAttempts = 0
-                                        
-                                        //Update flag
-                                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                                        
-                                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                                            self.navigationController?.pushViewController(passcode, animated: false)
-                                        }
-                                    })
+                        //get otp sent again
+                        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                            if success {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    //Update flag
+                                    self.errorLabel.hidden = true
+                                    self.loginAttempts = 0
+                                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                                    
+                                    if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                                        self.navigationController?.pushViewController(sMSValidation, animated: false)
+                                    }
+                                })
 
-                                }
                             }
-                        }
+                    }
                     
                 }
             })
