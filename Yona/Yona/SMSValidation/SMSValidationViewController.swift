@@ -46,11 +46,27 @@ final class SMSValidationViewController:  UIViewController {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
 
+    @IBAction func sendOTPAgain(sender: UIButton) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            //get otp sent again
+            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        #if DEBUG
+                            self.displayAlertMessage("App blocked too many OTP attempts", alertDescription:"")
+                            //Now send user back to pinreset screen, let them enter pincode and password again
+                        #endif
+                    })
+                }
+            }
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        
+    
         if codeInputView != nil {
             codeInputView!.delegate = self
             codeView.addSubview(codeInputView!)
@@ -103,15 +119,59 @@ extension SMSValidationViewController: KeyboardProtocol {
 
 extension SMSValidationViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let body =
-            [
-                "code": code
-            ]
-
-        APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            codeInputView.userInteractionEnabled = true
             dispatch_async(dispatch_get_main_queue()) {
-                if (success) {
+                #if DEBUG
+//                    if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+//                        self.displayAlertMessage("Test Pincode", alertDescription:YonaConstants.testKeys.otpTestCode)
+//                    }
+                    //Now send user back to pinreset screen, let them enter pincode and password again
+                #endif
+            }
+            #if DEBUG
+                let body = ["code": code]
+            #endif
+            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
+                if success {
+                    //pin verify succeeded, unblock app
+                    NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    //clear pincode when reset is verified
+                    APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            #if DEBUG
+                            self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
+                                //Now send user back to pinreset screen, let them enter pincode and password again
+                            #endif
+                            codeInputView.resignFirstResponder()
+                            //Update flag
+                            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            
+                            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                self.navigationController?.pushViewController(passcode, animated: false)
+                            }
+                            codeInputView.clear()
+                        }
+                    })
+                } else {
+                    //keep app blocked until correct OTP entered
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                        codeInputView.clear()
+                    }
+                }
+            })
+        } else {
+            let body =
+                [
+                    YonaConstants.jsonKeys.bodyCode: code
+                ]
 
+            APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if (success) {
                         codeInputView.resignFirstResponder()
                         //Update flag
                         setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
@@ -119,24 +179,34 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
-                    
-                } else {
-                    if let codeMessage = code{
-                        if(codeMessage == YonaConstants.serverCodes.tooManyOTPAttemps){
-                            #if DEBUG
-                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
-                            #endif
-                            //for now just disable the pincode enter screen and not let them interact...
-                            codeInputView.resignFirstResponder()
-                            codeInputView.userInteractionEnabled = false
-                        } else {
-                            #if DEBUG
-                            self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
-                            #endif
-                        }
+//                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        codeInputView.clear()
+
+                    } else {
+                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        codeInputView.clear()
                     }
-                    codeInputView.clear()
                 }
+            }
+        }
+    }
+    
+    func checkCodeMessageShowAlert(code: String?, codeInputView: CodeInputView){
+        if let codeMessage = code {
+            if(codeMessage == YonaConstants.serverCodes.tooManyOTPAttemps ||
+                codeMessage == YonaConstants.serverCodes.tooManyResendOTPAttemps ||
+                codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps){
+                #if DEBUG
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                #endif
+                //for now just disable the pincode enter screen and not let them interact...
+                codeInputView.resignFirstResponder()
+                codeInputView.userInteractionEnabled = false
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+            } else {
+                #if DEBUG
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                #endif
             }
         }
     }

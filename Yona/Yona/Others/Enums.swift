@@ -22,4 +22,6 @@ enum CategoryName: String {
 
 enum Segues: String {
     case BudgetChallengeSegue = "BudgetChallengeSegue"
+    case TimeZoneChallengeSegue = "TimezoneChallengeSegue"
+    case NoGoChallengeSegue = "NoGoChallengeSegue"
 }

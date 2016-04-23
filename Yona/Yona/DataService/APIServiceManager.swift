@@ -245,6 +245,68 @@ class APIServiceManager {
     }
 }
 
+//MARK: - New Device Requests APIService
+extension APIServiceManager {
+    func pinResetRequest(onCompletion: APIPinResetResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let userID = KeychainManager.sharedInstance.getUserID()
+                let path = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.pinRequest
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                    if success {
+                        if let jsonUnwrap = json,
+                            let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
+                            onCompletion(true, pincode , self.serverMessage, self.serverCode)
+                        }
+                    } else {
+                        onCompletion(false, nil , self.serverMessage, self.serverCode)
+                    }
+                }
+
+            } else {
+                onCompletion(false, nil , message, code)
+            }
+        }
+    }
+    
+    func pinResetVerify(body: BodyDataDictionary, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let userID = KeychainManager.sharedInstance.getUserID()
+                let path = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.pinVerify
+                self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                    if success {
+                        onCompletion(true , self.serverMessage, self.serverCode)
+                    } else {
+                        onCompletion(false , self.serverMessage, self.serverCode)
+                    }
+                }
+                
+            } else {
+                onCompletion(false , message, code)
+            }
+        }
+    }
+    
+    func pinResetClear(onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                let userID = KeychainManager.sharedInstance.getUserID()
+                let path = YonaConstants.environments.test + YonaConstants.commands.users + userID! + YonaConstants.commands.pinClear
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                    if success {
+                        onCompletion(true , self.serverMessage, self.serverCode)
+                    } else {
+                        onCompletion(false , self.serverMessage, self.serverCode)
+                    }
+                }
+                
+            } else {
+                onCompletion(false , message, code)
+            }
+        }
+    }
+}
 
 //MARK: - New Device Requests APIService
 extension APIServiceManager {
@@ -598,7 +660,7 @@ extension APIServiceManager {
         }
     }
     
-    func otpResendMobile(body: BodyDataDictionary?, onCompletion: APIResponse) {
+    func otpResendMobile(onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let userID = KeychainManager.sharedInstance.getUserID(),
@@ -608,7 +670,7 @@ extension APIServiceManager {
                         print(otpResendMobileLink)
                     #endif
                     
-                    self.callRequestWithAPIServiceResponse(body, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                    self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
                             return
