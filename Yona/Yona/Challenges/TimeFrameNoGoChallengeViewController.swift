@@ -18,7 +18,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var budgetChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIButton!
-    
+    @IBOutlet var headerImage: UIImageView!
+
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -52,6 +53,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
+
+        self.headerImage = UIImageView(image: UIImage(named:"icnChallengeNogo"))
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
