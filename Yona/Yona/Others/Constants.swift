@@ -12,14 +12,14 @@ typealias ServerMessage = String
 typealias ServerCode = String
 typealias PinCode = String
 
-struct YonaConstants {
+enum YonaConstants {
     
-    struct environments {
+    enum environments {
         static let test = "http://85.222.227.142/"
         static let production = ""
     }
     
-    struct commands {
+    enum commands {
         static let users = "users/"
         static let goals = "goals/"
         static let mobileConfirm = "/confirmMobileNumber"
@@ -31,14 +31,14 @@ struct YonaConstants {
 
     }
     
-    struct httpMethods{
+    enum httpMethods{
         static let post = "POST"
         static let delete = "DELETE"
         static let get = "GET"
         static let put = "PUT"
     }
 
-    struct keychain {
+    enum keychain {
         static let yonaPassword = "kYonaPassword"
         static let PINCode = "kPINCode"
         static let userID = "userID"
@@ -49,7 +49,7 @@ struct YonaConstants {
         #endif
     }
     
-    struct jsonKeys{
+    enum jsonKeys{
         static let  firstNameKey = "firstName"
         static let  lastNameKeys = "lastName"
         static let  mobileNumberKeys = "mobileNumber"
@@ -74,7 +74,7 @@ struct YonaConstants {
         static let  bodyCode = "code"
     }
 
-    struct serverCodes{
+    enum serverCodes{
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
         static let tooManyResendOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
         static let tooManyPinResetAttemps = "error.pin.reset.request.confirmation.code.too.many.failed.attempts"
@@ -92,7 +92,7 @@ struct YonaConstants {
 
     }
     
-    struct serverMessages{
+    enum serverMessages{
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
         static let noConnection = "No network connection"
@@ -105,30 +105,30 @@ struct YonaConstants {
         static let FailedToRetrieveGetUserGoals = "Failed to get the users goals"
     }
     
-    struct serverResponseKeys{
+    enum serverResponseKeys{
         static let message = "message"
         static let code = "code"
     }
     
-    struct mobilePhoneLength{
+    enum mobilePhoneLength{
         static let netherlands = 11
     }
     
-    struct testKeys{
+    enum testKeys{
         static let otpTestCode = "1234"
     }
 
-    struct responseCodes{
+    enum responseCodes{
         static let ok200 = 200
         static let ok204 = 204
     }
 
-    struct nsUserDefaultsKeys{
+    enum nsUserDefaultsKeys{
         static let isBlocked = "isBlocked"
         static let screenToDisplay = "screenToDisplay"
     }
 
-    struct screenNames{
+    enum screenNames{
         static let walkThrough = "WalkThrough"
         static let welcome = "Welcome"
         static let smsValidation = "SMSValidation"
