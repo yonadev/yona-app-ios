@@ -17,6 +17,8 @@ final class ConfirmPasscodeViewController:  UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    @IBOutlet var gradientView: GradientView!
+    
     var passcode: String?
     
     var colorX : UIColor = UIColor.yiWhiteColor()
@@ -32,6 +34,10 @@ final class ConfirmPasscodeViewController:  UIViewController {
         
         self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
@@ -104,6 +110,7 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             }
         } else {
             codeInputView.clear()
+            navigationController?.popViewControllerAnimated(true)
         }
     }
 }

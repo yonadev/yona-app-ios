@@ -65,15 +65,17 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         self.callActivityCategory()
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
         setDeselectOtherCategory()
         setSelectedCategory(self.budgetView)
-        gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+        })
+        
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -361,8 +363,10 @@ extension TimeBucketChallenges {
             
         case .TimeZoneGoal:
             if let activityCategoryNameUnwrap = self.timeZoneArray[indexPath.row].GoalName {
-//                for i in 0 ..< self.nogoArray[indexPath.row].zonesStore.count - 1 {
-//                    print(self.nogoArray[indexPath.row].zonesStore[i])
+//                if let zoneStoreUnwrap = self.timeZoneArray[indexPath.row].zonesStore[] {
+//                for i in 0 ..< zoneStoreUnwrap.count {
+//                    print(self.timeZoneArray[indexPath.row].zonesStore[i])
+//                }
 //                }
 //                let zoneStoreUnwrap = self.nogoArray[indexPath.row].zonesStore[]
 //                let localizedString = NSLocalizedString("challenges.user.timezoneGoalDescriptionText", comment: "")

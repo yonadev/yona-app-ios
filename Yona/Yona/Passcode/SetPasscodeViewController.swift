@@ -18,6 +18,8 @@ class SetPasscodeViewController:  UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    @IBOutlet var gradientView: GradientView!
+    
     var passcodeString: String?
     private var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
@@ -29,6 +31,10 @@ class SetPasscodeViewController:  UIViewController {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
 
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
+        
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
@@ -67,7 +73,7 @@ class SetPasscodeViewController:  UIViewController {
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
+        codeInputView!.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     

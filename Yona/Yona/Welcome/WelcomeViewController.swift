@@ -22,7 +22,6 @@ class WelcomeViewController: UIViewController {
     }
     
     private func setupUI() {
-        
         setViewControllerToDisplay("Welcome", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         
         self.signUpButton.setTitle(NSLocalizedString("welcome.button.signup", comment: "").uppercaseString, forState: UIControlState.Normal)

@@ -86,7 +86,12 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         }) { (doneValue) in
             print("value selected \(doneValue)")
             
-            self.maxDurationMinutes = doneValue
+            
+            let fullNameArr = doneValue.componentsSeparatedByString(":")
+            
+            let minutes = (Int(fullNameArr[0]))! * 60 + (Int(fullNameArr[1]))!
+            
+            self.maxDurationMinutes = String(minutes)
             
             
             self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)

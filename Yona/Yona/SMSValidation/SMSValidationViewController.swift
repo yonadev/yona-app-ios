@@ -19,6 +19,8 @@ final class SMSValidationViewController:  UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var resendCodeButton: UIButton!
     
+    @IBOutlet var gradientView: GradientView!
+    
     private var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
     private var codeInputView: CodeInputView?
@@ -29,6 +31,10 @@ final class SMSValidationViewController:  UIViewController {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
 
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
+        
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
@@ -69,6 +75,7 @@ final class SMSValidationViewController:  UIViewController {
     
         if codeInputView != nil {
             codeInputView!.delegate = self
+            codeInputView?.secure = true
             codeView.addSubview(codeInputView!)
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
