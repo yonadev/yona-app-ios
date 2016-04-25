@@ -33,16 +33,16 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+//        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
         
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -58,6 +58,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
+        lastnameTextField.addKeyboardAvoiding()
         firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
         lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         
