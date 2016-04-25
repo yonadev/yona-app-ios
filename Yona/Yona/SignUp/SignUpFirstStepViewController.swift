@@ -13,7 +13,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
-    
+    @IBOutlet var gradientView: GradientView!
     @IBOutlet var firstnameTextField: UITextField!
     @IBOutlet var lastnameTextField: UITextField!
     @IBOutlet var personalQuoteLabel: UILabel!
@@ -22,7 +22,10 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
+
         setupUI()
     }
     

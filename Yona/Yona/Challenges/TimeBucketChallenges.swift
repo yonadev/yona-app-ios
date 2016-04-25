@@ -54,7 +54,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     var activitySelected: Activities?
     var budgetGoalSelected: Goal?
-
+    
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
     
     // MARK: - View
@@ -65,20 +65,22 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         self.callActivityCategory()
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
         setDeselectOtherCategory()
         setSelectedCategory(self.budgetView)
-        gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+        })
+        
     }
     
     override func viewDidAppear(animated:Bool) {
         super.viewDidAppear(animated)
-
+        
     }
     
     // MARK: - private functions
@@ -188,7 +190,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             }
         }
     }
-
+    
     private func setupUI() {
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -271,41 +273,41 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         }
         if let segueIdentifier = segue.identifier,
             let segueIdentifierValue = Segues(rawValue: segueIdentifier) {
-                switch segueIdentifierValue {
-                case .BudgetChallengeSegue:
-                    
-                    let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
-                    if let activitySelectedUnwrap = self.activitySelected {
-                        detailView.activitiyToPost = activitySelectedUnwrap
-                    }
-                    if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
-                        detailView.goalCreated = budgetGoalSelectedUnwrap
-                    }
-                    detailView.isFromActivity = isfromActivity
-                case .TimeZoneChallengeSegue:
-                    
-                    let detailView = destinationViewController as! TimeFrameTimeZoneChallengeViewController
-                    if let activitySelectedUnwrap = self.activitySelected {
-                        detailView.activitiyToPost = activitySelectedUnwrap
-                    }
-                    if let timezoneGoalSelectedUnwrap = self.budgetGoalSelected {
-                        detailView.goalCreated = timezoneGoalSelectedUnwrap
-                    }
-                    detailView.isFromActivity = isfromActivity
-                    
-                case .NoGoChallengeSegue:
-                    let detailView = destinationViewController as! TimeFrameNoGoChallengeViewController
-                    if let activitySelectedUnwrap = self.activitySelected {
-                        detailView.activitiyToPost = activitySelectedUnwrap
-                    }
-                    if let nogoGoalSelectedUnwrap = self.budgetGoalSelected {
-                        detailView.goalCreated = nogoGoalSelectedUnwrap
-                    }
-                    detailView.isFromActivity = isfromActivity
+            switch segueIdentifierValue {
+            case .BudgetChallengeSegue:
+                
+                let detailView = destinationViewController as! TimeFrameBudgetChallengeViewController
+                if let activitySelectedUnwrap = self.activitySelected {
+                    detailView.activitiyToPost = activitySelectedUnwrap
+                }
+                if let budgetGoalSelectedUnwrap = self.budgetGoalSelected {
+                    detailView.goalCreated = budgetGoalSelectedUnwrap
+                }
+                detailView.isFromActivity = isfromActivity
+            case .TimeZoneChallengeSegue:
+                
+                let detailView = destinationViewController as! TimeFrameTimeZoneChallengeViewController
+                if let activitySelectedUnwrap = self.activitySelected {
+                    detailView.activitiyToPost = activitySelectedUnwrap
+                }
+                if let timezoneGoalSelectedUnwrap = self.budgetGoalSelected {
+                    detailView.goalCreated = timezoneGoalSelectedUnwrap
+                }
+                detailView.isFromActivity = isfromActivity
+                
+            case .NoGoChallengeSegue:
+                let detailView = destinationViewController as! TimeFrameNoGoChallengeViewController
+                if let activitySelectedUnwrap = self.activitySelected {
+                    detailView.activitiyToPost = activitySelectedUnwrap
+                }
+                if let nogoGoalSelectedUnwrap = self.budgetGoalSelected {
+                    detailView.goalCreated = nogoGoalSelectedUnwrap
+                }
+                detailView.isFromActivity = isfromActivity
             }
         }
     }
-
+    
 }
 
 extension TimeBucketChallenges {
@@ -346,14 +348,14 @@ extension TimeBucketChallenges {
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
-            let maxDurationMinutesUnwrap = self.budgetArray[indexPath.row].maxDurationMinutes {
+                let maxDurationMinutesUnwrap = self.budgetArray[indexPath.row].maxDurationMinutes {
                 let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
                 let title = NSString(format: localizedString, String(maxDurationMinutesUnwrap), String(activityCategoryNameUnwrap))
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = title as String
                 cell.detailTextLabel?.numberOfLines = 0
             }
-
+            
             
         case .BudgetActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -361,15 +363,7 @@ extension TimeBucketChallenges {
             
         case .TimeZoneGoal:
             if let activityCategoryNameUnwrap = self.timeZoneArray[indexPath.row].GoalName {
-//                for i in 0 ..< self.nogoArray[indexPath.row].zonesStore.count - 1 {
-//                    print(self.nogoArray[indexPath.row].zonesStore[i])
-//                }
-//                let zoneStoreUnwrap = self.nogoArray[indexPath.row].zonesStore[]
-//                let localizedString = NSLocalizedString("challenges.user.timezoneGoalDescriptionText", comment: "")
-//                let title = NSString(format: localizedString, String(activityCategoryNameUnwrap))
                 cell.textLabel?.text = activityCategoryNameUnwrap
-//                cell.detailTextLabel?.text = title as String
-//                cell.detailTextLabel?.numberOfLines = 0
             }
             
         case .TimeZoneActivity:

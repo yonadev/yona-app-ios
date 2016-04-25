@@ -17,37 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile VC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbE-8w-Qwi">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-aK-BUf" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6Pb-EN-fna"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="B2A-ut-yjN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bbE-8w-Qwi" firstAttribute="centerX" secondItem="Mp3-Rq-TDY" secondAttribute="centerX" id="UuM-n6-eIO"/>
-                            <constraint firstItem="bbE-8w-Qwi" firstAttribute="centerY" secondItem="Mp3-Rq-TDY" secondAttribute="centerY" id="jv4-yT-ZQX"/>
+                            <constraint firstItem="Cf7-aK-BUf" firstAttribute="leading" secondItem="Mp3-Rq-TDY" secondAttribute="leading" id="Buh-Dn-Xct"/>
+                            <constraint firstItem="Cf7-aK-BUf" firstAttribute="top" secondItem="Mp3-Rq-TDY" secondAttribute="top" id="E6V-b6-0Tx"/>
+                            <constraint firstAttribute="trailing" secondItem="Cf7-aK-BUf" secondAttribute="trailing" id="sI3-A3-BeO"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bbE-8w-Qwi"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="UuM-n6-eIO"/>
-                                <exclude reference="jv4-yT-ZQX"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="bbE-8w-Qwi"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="UuM-n6-eIO"/>
-                                <include reference="jv4-yT-ZQX"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="gradientView" destination="Cf7-aK-BUf" id="DRn-c2-J7c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7I-qQ-aah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
