@@ -43,4 +43,18 @@ extension String {
             return true
         }
     }
+    
+//    func dateFromISO8601String(dateString: String) -> NSDate {
+//        guard dateString != "" else {
+//            return
+//        }
+//        
+//        if dateString.hasSuffix("Z") {
+//            dateString = dateString.substringToIndex((dateString.length - 1)).stringByAppendingString("-0000")
+//        }
+//        dateString = dateString.stringByReplacingOccurrencesOfString(":", withString: "")
+//        var dateFormatter: NSDateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HHmmssZ"
+//        return dateFormatter.dateFromString(dateString)
+//    }
 }

@@ -105,7 +105,11 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated {
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString(serverMessage!, comment: ""), alertDescription: "")
+                    if serverCode == YonaConstants.serverCodes.OK {
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    } else {
+                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    }
                 })
             }
         }
