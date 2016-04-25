@@ -134,6 +134,10 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                             self.navigationController?.pushViewController(smsValidation, animated: false)
                         }
                     }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.displayAlertMessage(message!, alertDescription: "")
+                    }
                 }
             })
         }
@@ -207,8 +211,13 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     func nextTextField() {
-        mobileTextField.resignFirstResponder()
-        nicknameTextField.becomeFirstResponder()
+        if nicknameTextField.isFirstResponder() {
+            mobileTextField.resignFirstResponder()
+            nicknameTextField.resignFirstResponder()
+        } else {
+            mobileTextField.resignFirstResponder()
+            nicknameTextField.becomeFirstResponder()
+        }
     }
     
     func previousTextField() {
