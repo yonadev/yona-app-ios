@@ -33,12 +33,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYK-aF-xSH" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afW-tT-vUB">
-                                                <rect key="frame" x="268" y="33" width="65" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnAccountCreated" translatesAutoresizingMaskIntoConstraints="NO" id="E2o-LE-vVd">
                                                 <rect key="frame" x="268" y="112" width="48" height="48"/>
                                                 <constraints>
@@ -59,7 +53,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="Tvt-nC-wj5"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-63-J6j">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-63-J6j">
                                                 <rect key="frame" x="15" y="283" width="570" height="17"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,17 +71,15 @@
                                         <constraints>
                                             <constraint firstItem="bZH-63-J6j" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="3pX-wU-gdJ"/>
                                             <constraint firstItem="bZH-63-J6j" firstAttribute="top" secondItem="F3x-wX-Dki" secondAttribute="bottom" constant="30" id="6Iz-Sb-XOO"/>
-                                            <constraint firstItem="afW-tT-vUB" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="Ba4-es-38E"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="Efa-QZ-TL3"/>
                                             <constraint firstAttribute="trailing" secondItem="F3x-wX-Dki" secondAttribute="trailing" constant="30" id="HOs-ke-zqJ"/>
                                             <constraint firstAttribute="trailing" secondItem="i3D-Co-7A4" secondAttribute="trailing" constant="15" id="TqD-oG-vTf"/>
-                                            <constraint firstItem="afW-tT-vUB" firstAttribute="top" secondItem="IYK-aF-xSH" secondAttribute="top" constant="33" id="V2w-SJ-snv"/>
                                             <constraint firstItem="E2o-LE-vVd" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" constant="-8" id="XTR-pf-9ab"/>
+                                            <constraint firstItem="E2o-LE-vVd" firstAttribute="top" secondItem="IYK-aF-xSH" secondAttribute="top" constant="112" id="YlG-fN-Pda"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="top" secondItem="E2o-LE-vVd" secondAttribute="bottom" constant="41" id="d7u-wN-ENc"/>
                                             <constraint firstItem="F3x-wX-Dki" firstAttribute="top" secondItem="i3D-Co-7A4" secondAttribute="bottom" constant="21" id="egj-So-6yq"/>
                                             <constraint firstItem="bZH-63-J6j" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="15" id="g4G-ad-Vfp"/>
                                             <constraint firstAttribute="trailing" secondItem="bZH-63-J6j" secondAttribute="trailing" constant="15" id="gfe-mM-2ue"/>
-                                            <constraint firstItem="E2o-LE-vVd" firstAttribute="top" secondItem="afW-tT-vUB" secondAttribute="bottom" constant="62" id="hFS-Nj-u5L"/>
                                             <constraint firstItem="F3x-wX-Dki" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="30" id="i8Y-xn-gzO"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="top" secondItem="bZH-63-J6j" secondAttribute="bottom" constant="30" id="jgl-sR-oi5"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="15" id="jh7-zr-8dL"/>
@@ -107,15 +99,35 @@
                                     <outlet property="delegate" destination="Jgq-7q-JPY" id="4wx-m7-Lak"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OiB-kT-qjd" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ZLA-qN-x6S"/>
+                                    <constraint firstAttribute="height" constant="50" id="gK3-pF-8mD"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afW-tT-vUB">
+                                <rect key="frame" x="30" y="30" width="540" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OiB-kT-qjd" secondAttribute="trailing" id="2Hv-Lo-8e2"/>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="47x-7E-3D8"/>
+                            <constraint firstAttribute="trailing" secondItem="afW-tT-vUB" secondAttribute="trailing" constant="30" id="8DY-7b-fwb"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="Aqg-ew-26l"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="NMN-N3-G8k"/>
+                            <constraint firstItem="afW-tT-vUB" firstAttribute="top" secondItem="vNn-kd-ZDq" secondAttribute="bottom" constant="10" id="Nyj-Zf-WX1"/>
+                            <constraint firstItem="afW-tT-vUB" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" constant="30" id="WmQ-CQ-WQe"/>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="eja-Y0-3bt"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="fpn-PA-Ux9"/>
+                            <constraint firstItem="OiB-kT-qjd" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="jqR-aB-SXP"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="nMr-Ui-QCV"/>
+                            <constraint firstItem="OiB-kT-qjd" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="vVG-Pk-QCA"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="y4i-mJ-Ash"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="yhr-yY-eDP"/>
                         </constraints>
@@ -129,6 +141,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="codeView" destination="hq3-T3-bt8" id="3bk-hm-zpo"/>
+                        <outlet property="gradientView" destination="OiB-kT-qjd" id="0eg-H4-vLH"/>
                         <outlet property="headerTitleLabel" destination="i3D-Co-7A4" id="iJ1-gL-eYj"/>
                         <outlet property="infoLabel" destination="bZH-63-J6j" id="HHP-ai-WRI"/>
                         <outlet property="progressView" destination="F3x-wX-Dki" id="cb4-OJ-sO2"/>
@@ -158,12 +171,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlR-cL-Tgv" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-qU-aIj">
-                                                <rect key="frame" x="268" y="33" width="65" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnSecure" translatesAutoresizingMaskIntoConstraints="NO" id="NI5-2Q-e8Q">
                                                 <rect key="frame" x="268" y="112" width="48" height="48"/>
                                                 <constraints>
@@ -171,7 +178,7 @@
                                                     <constraint firstAttribute="height" constant="48" id="qhP-cM-C9i"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account is aangemaakt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-iM-4IC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account is aangemaakt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-iM-4IC">
                                                 <rect key="frame" x="181" y="201" width="238" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,7 +191,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="Azz-mP-9IR"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09h-RE-FIx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="09h-RE-FIx">
                                                 <rect key="frame" x="15" y="283" width="570" height="34"/>
                                                 <string key="text">Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. 
 Stel je pincode hieronder in. </string>
@@ -208,11 +215,9 @@ Stel je pincode hieronder in. </string>
                                             <constraint firstAttribute="trailing" secondItem="09h-RE-FIx" secondAttribute="trailing" constant="15" id="9vO-tp-2I6"/>
                                             <constraint firstItem="09h-RE-FIx" firstAttribute="leading" secondItem="zlR-cL-Tgv" secondAttribute="leading" constant="15" id="FDe-1Q-VkE"/>
                                             <constraint firstItem="Tez-Aa-DYz" firstAttribute="centerX" secondItem="zlR-cL-Tgv" secondAttribute="centerX" id="HCF-g7-Ggg"/>
-                                            <constraint firstItem="NI5-2Q-e8Q" firstAttribute="top" secondItem="wuh-qU-aIj" secondAttribute="bottom" constant="62" id="OXz-PC-m6n"/>
-                                            <constraint firstItem="wuh-qU-aIj" firstAttribute="centerX" secondItem="zlR-cL-Tgv" secondAttribute="centerX" id="Vuj-Ig-iOj"/>
                                             <constraint firstItem="09h-RE-FIx" firstAttribute="centerX" secondItem="zlR-cL-Tgv" secondAttribute="centerX" id="WIa-jL-1kw"/>
+                                            <constraint firstItem="NI5-2Q-e8Q" firstAttribute="top" secondItem="zlR-cL-Tgv" secondAttribute="top" constant="112" id="WSj-c0-qUn"/>
                                             <constraint firstItem="oLb-Tc-U4F" firstAttribute="leading" secondItem="zlR-cL-Tgv" secondAttribute="leading" constant="30" id="XVR-0Z-119"/>
-                                            <constraint firstItem="wuh-qU-aIj" firstAttribute="top" secondItem="zlR-cL-Tgv" secondAttribute="top" constant="33" id="YzC-yB-uow"/>
                                             <constraint firstItem="NI5-2Q-e8Q" firstAttribute="centerX" secondItem="zlR-cL-Tgv" secondAttribute="centerX" constant="-8" id="gK7-6g-vah"/>
                                             <constraint firstAttribute="bottom" secondItem="NI5-2Q-e8Q" secondAttribute="bottom" constant="440" id="hZy-cf-1Ok"/>
                                             <constraint firstItem="OxM-iM-4IC" firstAttribute="top" secondItem="NI5-2Q-e8Q" secondAttribute="bottom" constant="41" id="pP3-Al-si8"/>
@@ -232,11 +237,31 @@ Stel je pincode hieronder in. </string>
                                     <outlet property="delegate" destination="Hlf-mX-yoh" id="hG2-Lj-ZOc"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azs-2J-Vcd" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DNV-WN-w9P"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="siq-gZ-qhA"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-qU-aIj">
+                                <rect key="frame" x="30" y="30" width="540" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="azs-2J-Vcd" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="7Fr-ko-0ba"/>
+                            <constraint firstAttribute="trailing" secondItem="wuh-qU-aIj" secondAttribute="trailing" constant="30" id="OJg-aO-qwu"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" id="Oyf-Wt-4Or"/>
+                            <constraint firstItem="wuh-qU-aIj" firstAttribute="top" secondItem="zxn-E4-PSR" secondAttribute="bottom" constant="10" id="TtB-3X-hVF"/>
+                            <constraint firstItem="azs-2J-Vcd" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" id="VaQ-Af-xtp"/>
+                            <constraint firstItem="wuh-qU-aIj" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" constant="30" id="WIJ-Qg-qbC"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="WLU-c5-NNx"/>
+                            <constraint firstAttribute="trailing" secondItem="azs-2J-Vcd" secondAttribute="trailing" id="XEs-zK-1Lh"/>
                             <constraint firstItem="89i-sh-drl" firstAttribute="top" secondItem="tog-87-Hwp" secondAttribute="bottom" id="h18-Cd-dQX"/>
                             <constraint firstItem="89i-sh-drl" firstAttribute="top" secondItem="tog-87-Hwp" secondAttribute="bottom" id="iMl-JH-Tgt"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="r9B-Q7-fp1"/>
@@ -254,6 +279,7 @@ Stel je pincode hieronder in. </string>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="codeView" destination="Tez-Aa-DYz" id="zNg-18-XKw"/>
+                        <outlet property="gradientView" destination="azs-2J-Vcd" id="Bhd-aH-Js1"/>
                         <outlet property="headerTitleLabel" destination="OxM-iM-4IC" id="DdA-oD-QEu"/>
                         <outlet property="infoLabel" destination="09h-RE-FIx" id="Wf8-Wc-SfJ"/>
                         <outlet property="progressView" destination="oLb-Tc-U4F" id="Llr-0j-14U"/>
