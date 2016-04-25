@@ -186,6 +186,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addAvatar" width="63" height="64"/>
+        <image name="addAvatar" width="62" height="63"/>
     </resources>
 </document>
