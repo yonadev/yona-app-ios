@@ -1383,7 +1383,7 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="deleteGoalButton" destination="39Z-6A-Wlr" id="iWT-Aa-1Ca"/>
                         <outlet property="footerGradientView" destination="9T7-6Q-RTF" id="5yU-Kb-JEU"/>
                         <outlet property="gradientView" destination="8Mc-PN-X8W" id="OJ2-VW-XNm"/>
-                        <outlet property="headerImage" destination="ube-g2-H23" id="r8T-Ym-fQK"/>
+                        <outlet property="headerImage" destination="ube-g2-H23" id="qG4-96-rGY"/>
                         <outlet property="headerView" destination="vLg-dg-Et7" id="S0N-7Y-eJj"/>
                         <outlet property="scrollView" destination="KhB-rS-Ocr" id="xGI-sp-b1U"/>
                         <outlet property="setChallengeButton" destination="nNe-wI-qBq" id="LcL-Hk-6Xb"/>

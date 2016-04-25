@@ -54,7 +54,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             }
         }
 
-        self.headerImage = UIImageView(image: UIImage(named:"icnChallengeNogo"))
+        self.headerImage.image = UIImage(named: "icnChallengeNogo")
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
@@ -105,7 +105,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated {
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    self.displayAlertMessage(NSLocalizedString(serverMessage!, comment: ""), alertDescription: "")
                 })
             }
         }
