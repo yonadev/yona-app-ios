@@ -363,7 +363,18 @@ extension TimeBucketChallenges {
             
         case .TimeZoneGoal:
             if let activityCategoryNameUnwrap = self.timeZoneArray[indexPath.row].GoalName {
+                var andConcate = [String]()
+                for time in self.timeZoneArray[indexPath.row].zonesStore {
+                    let arr = time.dashRemoval()
+                    let a = arr.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionAndText", comment: ""))
+                    andConcate.append(a)
+                }
+                let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "") + andConcate.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionBetweenText", comment: ""))
+                
+                print(localizedString)
                 cell.textLabel?.text = activityCategoryNameUnwrap
+                cell.detailTextLabel?.text = localizedString
+                cell.detailTextLabel?.numberOfLines = 0
             }
             
         case .TimeZoneActivity:
