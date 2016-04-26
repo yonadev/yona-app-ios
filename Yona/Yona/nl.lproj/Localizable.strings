@@ -48,9 +48,10 @@
 "challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
 "challenges.user.nogoGoalDescriptionText" = "Vermijd %@ gerelateerde content";
 
-"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@";
-"challenges.user.TimeZoneGoalDescriptionAndText" = " en tussen %@ en %@";
-"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen %@ en %@ en tussen %@ en %@";
+"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen ";
+"challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
+"challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
+
 
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
