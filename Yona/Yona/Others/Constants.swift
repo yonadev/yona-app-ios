@@ -15,7 +15,7 @@ typealias PinCode = String
 struct YonaConstants {
     
     struct environments {
-        static let testPostUserLink = "http://85.222.227.142/" + commands.users // only link we need to hard code!
+        static let testPostUserLink = "http://85.222.227.142/users/" // only link we need to hard code!
         static let testUrl = "http://85.222.227.142/" //test server
         static let production = ""
     }
