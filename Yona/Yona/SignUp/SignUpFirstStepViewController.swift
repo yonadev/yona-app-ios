@@ -152,7 +152,8 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     
     func nextTextField() {
         firstnameTextField.resignFirstResponder()
-        lastnameTextField.isFirstResponder() ? lastnameTextField.resignFirstResponder() : lastnameTextField.becomeFirstResponder()
+        if lastnameTextField.isFirstResponder() { lastnameTextField.resignFirstResponder() }
+        else                                    { lastnameTextField.becomeFirstResponder() }
     }
     
     func previousTextField() {
