@@ -1,4 +1,4 @@
-
+//
 //
 //  SignUpFirstStepViewController.swift
 //  Yona
@@ -32,7 +32,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //keyboard functions
+//        keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
@@ -58,6 +58,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
+//        lastnameTextField.addKeyboardAvoiding()
         firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
         lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         

@@ -19,6 +19,7 @@
                     <date key="date" timeIntervalSinceReferenceDate="482996556.83831">
                         <!--2016-04-22 05:42:36 +0000-->
                     </date>
+                    <locale key="locale" localeIdentifier="nl_NL"/>
                     <connections>
                         <action selector="datePickerAction:" destination="iN0-l3-epB" eventType="valueChanged" id="7ci-tV-0Lz"/>
                     </connections>
@@ -36,9 +37,13 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ni9-aC-4zF"/>
-                        <barButtonItem title="Done" id="zut-tG-7ur">
+                        <barButtonItem title="From" style="plain" id="zut-tG-7ur">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="a7M-UG-joW"/>
+                        <barButtonItem title="Done" id="VEX-ab-lDl">
                             <connections>
-                                <action selector="doneAction:" destination="iN0-l3-epB" id="pEE-hc-swa"/>
+                                <action selector="doneAction:" destination="iN0-l3-epB" id="5zp-Wq-eqc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="17" style="plain" systemItem="fixedSpace" id="ddV-E6-MFc"/>
@@ -59,6 +64,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="datePicker" destination="GFc-5W-zgM" id="reR-86-ggi"/>
+                <outlet property="pickerTitleLabel" destination="zut-tG-7ur" id="WB9-k8-nka"/>
             </connections>
             <point key="canvasLocation" x="240" y="324"/>
         </view>
