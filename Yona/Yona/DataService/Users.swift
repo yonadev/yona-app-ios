@@ -20,8 +20,18 @@ struct Users{
     var confirmMobileLink: String?
     var otpResendMobileLink: String?
     var getSelfLink: String?
+    var messagesLink: String?
+    var dailyActivityReportsLink: String?
+    var weeklyActivityReportsLink: String?
+    var newDeviceRequestsLink: String?
+    var appActivityLink: String?
+    var requestPinResetLink: String?
+    var buddiesLink: String?
 
-    init(userData: BodyDataDictionary) {
+    var goals:[Goal] = []
+
+
+    init(userData: BodyDataDictionary, activities: [Activities]) {
         if let firstName = userData[YonaConstants.jsonKeys.firstNameKey] as? String {
             self.firstName = firstName
         }
@@ -35,42 +45,87 @@ struct Users{
             self.nickname = nickname
         }
         
+        //get the links
         if let links = userData[YonaConstants.jsonKeys.linksKeys] {
+            
             if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
-                let href = edit?[YonaConstants.jsonKeys.hrefKey]{
-                self.editLink = editLink
-            }
-            if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-                let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey]{
-                self.getSelfLink = hrefSelfLinks as? String
-            }
-            if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
-                let confirmLinks = confirmLinks[YonaConstants.jsonKeys.hrefKey]{
-                self.confirmMobileLink = confirmLinks
-            }
-            if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
-                let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey]{
-                self.otpResendMobileLink - hrefOTPesendMobileLink
-            }
-            let editLink = href as? String {
-                if let lastPath = NSURL(string: editLink)?.lastPathComponent {
+                let hrefEditLink = editLink?[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.editLink = hrefEditLink
+                
+                if let lastPath = NSURL(string: self.editLink!)!.lastPathComponent {
                     self.userID = lastPath
                     KeychainManager.sharedInstance.saveUserID(self.userID!)
                 }
-                if let confirmMobileLink = hrefConfirmLinks as? String{
-                    self.confirmMobileLink = confirmMobileLink
-                    KeychainManager.sharedInstance.saveConfirmMobileLink(confirmMobileLink)
-                    
-                }
-                if let otpResendMobileLink = hrefOTPesendMobileLink as? String {
-                    self.otpResendMobileLink = otpResendMobileLink
-                    KeychainManager.sharedInstance.saveOtpResendMobileLink(otpResendMobileLink)
-                    
+            }
+            
+            if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
+                let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.getSelfLink = hrefSelfLinks
+            }
+            
+            if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
+                let confirmLinksHref = confirmLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.confirmMobileLink = confirmLinksHref
+            }
+            if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
+                let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.otpResendMobileLink = hrefOTPesendMobileLink
+            }
+            
+            if let messageLinks = links[YonaConstants.jsonKeys.yonaMessages],
+                let hrefMessageLinks = messageLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.messagesLink = hrefMessageLinks
+            }
+            
+            if let dailyActivityReportsLinks = links[YonaConstants.jsonKeys.yonaDailyActivityReports],
+                let hrefdailyActivityReportsLinks = dailyActivityReportsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.dailyActivityReportsLink = hrefdailyActivityReportsLinks
+            }
+            
+            if let weeklyActivityReportsLinks = links[YonaConstants.jsonKeys.yonaWeeklyActivityReports],
+                let hrefWeeklyActivityReportsLinks = weeklyActivityReportsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.weeklyActivityReportsLink = hrefWeeklyActivityReportsLinks
+            }
+            
+            if let newDeviceRequestsLinks = links[YonaConstants.jsonKeys.yonaNewDeviceRequest],
+                let hrefnewDeviceRequestsLink = newDeviceRequestsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.newDeviceRequestsLink = hrefnewDeviceRequestsLink
+            }
+            
+            if let appActivityLinks = links[YonaConstants.jsonKeys.yonaNewDeviceRequest],
+                let hrefappActivityLinks = appActivityLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.appActivityLink = hrefappActivityLinks
+            }
+            
+            if let requestPinResetLinks = links[YonaConstants.jsonKeys.yonaPinRequest],
+                let hrefrequestPinResetLinks = requestPinResetLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.requestPinResetLink = hrefrequestPinResetLinks
+            }
+            
+        }
+        
+        if let embedded = userData[YonaConstants.jsonKeys.embedded],
+            let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],
+            let embedded2 = yonaGoals?[YonaConstants.jsonKeys.embedded],
+            let yonaGoals2 = embedded2?[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                for goal in yonaGoals2 {
+                    if let goal = goal as? BodyDataDictionary {
+                        self.goals.append(Goal.init(goalData: goal, activities: activities))
+                    }
                 }
             }
+        
+        if let embedded = userData[YonaConstants.jsonKeys.embedded],
+            let yonaBuddies = embedded[YonaConstants.jsonKeys.yonaBuddies]{
+            //at some point Bert will probably add Buddies so we need to parse them here too!
+            
+            //get buddies links
+            if let buddiesLinks = yonaBuddies?[YonaConstants.jsonKeys.linksKeys],
+                buddiesLinksHref = buddiesLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
+                    self.buddiesLink = buddiesLinksHref
+            }
         }
-
-                
-        }
+        
+        
     }
 }

@@ -42,6 +42,8 @@ class UserAPIServiceTests: XCTestCase {
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
             print("Post response")
             XCTAssert((user) != nil)
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             let mobileNumber = user!.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])

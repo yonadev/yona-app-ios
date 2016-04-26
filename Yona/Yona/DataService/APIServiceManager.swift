@@ -349,7 +349,7 @@ extension APIServiceManager {
                         //reset the array so start with new set of activities
                         self.activities = []
                         if let embedded = json[YonaConstants.jsonKeys.embedded],
-                            let embeddedActivities = embedded[YonaConstants.jsonKeys.activityCategories] as? NSArray{
+                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaActivityCategories] as? NSArray{
                             for activity in embeddedActivities {
                                 if let activity = activity as? BodyDataDictionary {
                                     self.newActivity = Activities.init(activityData: activity)
@@ -538,10 +538,11 @@ extension APIServiceManager {
                             onCompletion(false, self.serverMessage, self.serverCode,nil)
                             return
                         }
-                        self.newUser = Users.init(userData: json)
                         //intialise the goals and the activities
                         self.getActivitiesArray({ (success, message, code, activities, error) in
                             if success {
+                                self.newUser = Users.init(userData: json, activities: activities!)
+
                                 self.getAllTheGoalsArray({ (success, message, code, goals, error) in
                                     if success {
                                         onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
@@ -578,8 +579,13 @@ extension APIServiceManager {
                                     onCompletion(false, self.serverMessage, self.serverCode)
                                     return
                                 }
-                                self.newUser = Users.init(userData: json)
+                                self.getActivitiesArray{ (success, message, code, activities, error) in
+                                    if success {
+                                        self.newUser = Users.init(userData: json, activities: activities!)
+                                    }
+                                }
                                 onCompletion(true, self.serverMessage, self.serverCode)
+
                             } else {
                                 //response from request failed
                                 onCompletion(false, self.serverMessage, self.serverCode)
@@ -608,7 +614,11 @@ extension APIServiceManager {
                                     onCompletion(false, self.serverMessage, self.serverCode,nil)
                                     return
                                 }
-                                self.newUser = Users.init(userData: json)
+                                self.getActivitiesArray{ (success, message, code, activities, error) in
+                                    if success {
+                                        self.newUser = Users.init(userData: json, activities: activities!)
+                                    }
+                                }
                                 onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                             } else {
                                 //response from request failed
@@ -641,7 +651,11 @@ extension APIServiceManager {
                                     return
                                 }
                                 KeychainManager.sharedInstance.clearKeyChain()
-                                self.newUser = Users.init(userData: json)
+                                self.getActivitiesArray{ (success, message, code, activities, error) in
+                                    if success {
+                                        self.newUser = Users.init(userData: json, activities: activities!)
+                                    }
+                                }
                                 onCompletion(true, self.serverMessage, self.serverCode)
                             } else {
                                 //response from request failed
