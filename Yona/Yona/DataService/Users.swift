@@ -14,6 +14,8 @@ struct Users{
     var lastName: String?
     var mobileNumber: String?
     var nickname: String?
+    
+    //links
     var editLink: String?
     var confirmMobileLink: String?
     var otpResendMobileLink: String?
@@ -33,32 +35,41 @@ struct Users{
             self.nickname = nickname
         }
         
-        if let links = userData[YonaConstants.jsonKeys.linksKeys],
-            let edit = links[YonaConstants.jsonKeys.editLinkKeys],
-            let href = edit?[YonaConstants.jsonKeys.hrefKey],
-            let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-            let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey],
-            let confirmLinks = links[YonaConstants.jsonKeys.confirmMobileLinkKeys],
-            let hrefConfirmLinks =  confirmLinks?[YonaConstants.jsonKeys.hrefKey],
-            let otpResendMobileLink = links[YonaConstants.jsonKeys.otpResendMobileLinkKey],
-            let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey],
+        if let links = userData[YonaConstants.jsonKeys.linksKeys] {
+            if let edit = links[YonaConstants.jsonKeys.editLinkKeys],
+                let href = edit?[YonaConstants.jsonKeys.hrefKey]{
+                self.editLink = editLink
+            }
+            if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
+                let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey]{
+                self.getSelfLink = hrefSelfLinks as? String
+            }
+            if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
+                let confirmLinks = confirmLinks[YonaConstants.jsonKeys.hrefKey]{
+                self.confirmMobileLink = confirmLinks
+            }
+            if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
+                let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey]{
+
+            }
             let editLink = href as? String {
-                    self.editLink = editLink
-                    if let lastPath = NSURL(string: editLink)?.lastPathComponent {
-                        self.userID = lastPath
-                        KeychainManager.sharedInstance.saveUserID(self.userID!)
-                    }
+                if let lastPath = NSURL(string: editLink)?.lastPathComponent {
+                    self.userID = lastPath
+                    KeychainManager.sharedInstance.saveUserID(self.userID!)
+                }
                 if let confirmMobileLink = hrefConfirmLinks as? String{
                     self.confirmMobileLink = confirmMobileLink
                     KeychainManager.sharedInstance.saveConfirmMobileLink(confirmMobileLink)
-
+                    
                 }
-            if let otpResendMobileLink = hrefOTPesendMobileLink as? String {
-                self.otpResendMobileLink = otpResendMobileLink
-                KeychainManager.sharedInstance.saveOtpResendMobileLink(otpResendMobileLink)
-
+                if let otpResendMobileLink = hrefOTPesendMobileLink as? String {
+                    self.otpResendMobileLink = otpResendMobileLink
+                    KeychainManager.sharedInstance.saveOtpResendMobileLink(otpResendMobileLink)
+                    
+                }
             }
-            self.getSelfLink = hrefSelfLinks as? String
+        }
+
                 
         }
     }
