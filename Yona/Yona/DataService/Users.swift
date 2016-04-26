@@ -36,7 +36,7 @@ struct Users{
         }
         
         if let links = userData[YonaConstants.jsonKeys.linksKeys] {
-            if let edit = links[YonaConstants.jsonKeys.editLinkKeys],
+            if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
                 let href = edit?[YonaConstants.jsonKeys.hrefKey]{
                 self.editLink = editLink
             }
@@ -50,7 +50,7 @@ struct Users{
             }
             if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
                 let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey]{
-
+                self.otpResendMobileLink - hrefOTPesendMobileLink
             }
             let editLink = href as? String {
                 if let lastPath = NSURL(string: editLink)?.lastPathComponent {
