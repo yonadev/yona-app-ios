@@ -58,10 +58,9 @@ class TourScreenViewController: AVPageContentViewController {
     @IBAction func nextAction(sender: UIButton) {
         print(self.viewControllerIndex)
         delegate?.buttonAction(self.viewControllerIndex)
+        
     }
 }
-
-
 
 
 

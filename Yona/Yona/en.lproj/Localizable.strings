@@ -49,8 +49,9 @@
 "challenges.user.budgetGoalDescriptionText" = "You can spend %@ minutes per day on %@";
 "challenges.user.nogoGoalDescriptionText" = "Avoid %@ related content";
 
-"challenges.user.TimeZoneGoalDescriptionText" = "Time slot between %@ and %@ and between %@ and %@";
-"challenges.user.TimeZoneGoalDescriptionAndText" = " and between %@ and %@";
+"challenges.user.TimeZoneGoalDescriptionText" = "Time slot between ";
+"challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
+"challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
 
 "challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
