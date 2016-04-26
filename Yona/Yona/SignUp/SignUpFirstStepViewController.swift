@@ -1,4 +1,4 @@
-
+//
 //
 //  SignUpFirstStepViewController.swift
 //  Yona
@@ -32,7 +32,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //keyboard functions
+//        keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
@@ -58,6 +58,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
+
         firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
         lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         
@@ -67,8 +68,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)
         
-        //Nav bar Back button.
-        
+        //Nav bar Back button.        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -151,13 +151,9 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     }
     
     func nextTextField() {
-        if lastnameTextField.isFirstResponder() {
-            firstnameTextField.resignFirstResponder()
-            lastnameTextField.resignFirstResponder()
-        } else {
-            firstnameTextField.resignFirstResponder()
-            lastnameTextField.becomeFirstResponder()
-        }
+        firstnameTextField.resignFirstResponder()
+        if lastnameTextField.isFirstResponder() { lastnameTextField.resignFirstResponder() }
+        else                                    { lastnameTextField.becomeFirstResponder() }
     }
     
     func previousTextField() {

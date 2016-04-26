@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeFrameNoGoChallengeViewController: UIViewController {
-
+    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var setChallengeButton: UIButton!
@@ -36,10 +36,10 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-            })
+        })
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
-    self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
         if isFromActivity == true{
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
@@ -47,6 +47,11 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         } else {
+            if ((goalCreated?.editLinks?.isEmpty) != nil) {
+                self.deleteGoalButton.hidden = false
+            } else {
+                self.deleteGoalButton.hidden = true
+            }
             self.budgetChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
@@ -62,7 +67,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
-
+        
     }
     
     @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {
@@ -111,7 +116,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
 }
 
 private extension Selector {
-   
+    
     static let back = #selector(TimeFrameNoGoChallengeViewController.back(_:))
     
 }
