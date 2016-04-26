@@ -95,7 +95,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
                     })
                 }
-            })
+            }) 
         }
     }
     
@@ -107,6 +107,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), {
                     if serverCode == YonaConstants.serverCodes.OK {
                         self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    } else if serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage", comment: ""), alertDescription: "")
                     } else {
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
                     }

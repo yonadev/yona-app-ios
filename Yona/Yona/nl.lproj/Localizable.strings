@@ -59,6 +59,7 @@
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
+"challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw Doel Toegevoegde";
 "challenges.addBudgetGoal.newPinCode" = "Nieuwe PIN-code";
 

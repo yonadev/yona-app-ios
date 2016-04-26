@@ -59,6 +59,7 @@
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Determine how much time you want to spend on %@";
 "challenges.addBudgetGoal.bottomLabelText" = "The following apps are part of this challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Deleted Goal";
+"challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Cannot delete mandatory goal";
 "challenges.addBudgetGoal.goalAddedSuccessfully" = "New Goal Added";
 "challenges.addBudgetGoal.newPinCode" = "New PIN-code";
 
