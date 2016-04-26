@@ -65,6 +65,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             
             
         } else {
+            if ((goalCreated?.editLinks?.isEmpty) != nil) {
+                self.deleteGoalButton.hidden = false
+            } else {
+                self.deleteGoalButton.hidden = true
+            }
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
@@ -208,11 +213,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        if isFromActivity == true{
+        
         return zonesArray.count
-        //        } else {
-        //        return (goalCreated?.zonesStore.count)!
-        //        }
     }
     
     

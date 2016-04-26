@@ -61,12 +61,18 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         
         
         
-        if isFromActivity == true{
+        if isFromActivity == true {
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         } else {
+            if ((goalCreated?.editLinks?.isEmpty) != nil) {
+                self.deleteGoalButton.hidden = false
+            } else {
+                self.deleteGoalButton.hidden = true
+            }
+            
             self.budgetChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
