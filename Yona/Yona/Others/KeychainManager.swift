@@ -56,29 +56,16 @@ extension KeychainManager {
     }
 }
 
-//MARK: - confirmMobileKeyURL
+//MARK: - UserSelfLink, so that we can always get the user from the server
 extension KeychainManager {
-    func saveConfirmMobileLink(confirmMobileLink: String) {
-        keychain.set(confirmMobileLink, forKey: YonaConstants.keychain.confirmMobileKeyURL)
+    func saveUserSelfLink(userSelfLink: String) {
+        keychain.set(userSelfLink, forKey: YonaConstants.keychain.userSelfLink)
     }
     
-    func getConfirmMobileLink() -> String? {
-        guard let confirmMobileLink = keychain.get(YonaConstants.keychain.confirmMobileKeyURL) else { return nil }
+    func getUserSelfLink() -> String? {
+        guard let userSelfLink = keychain.get(YonaConstants.keychain.userSelfLink) else { return nil }
         
-        return confirmMobileLink
-    }
-}
-
-//MARK: - otpResendMobileLink
-extension KeychainManager {
-    func saveOtpResendMobileLink(otpResendMobileLink: String) {
-        keychain.set(otpResendMobileLink, forKey: YonaConstants.keychain.otpResendMobileKeyURL)
-    }
-    
-    func getOtpResendMobileLink() -> String? {
-        guard let otpResendMobileLink = keychain.get(YonaConstants.keychain.otpResendMobileKeyURL) else { return nil }
-        
-        return otpResendMobileLink
+        return userSelfLink
     }
 }
 

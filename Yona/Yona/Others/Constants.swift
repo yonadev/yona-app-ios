@@ -15,7 +15,8 @@ typealias PinCode = String
 struct YonaConstants {
     
     struct environments {
-        static let test = "http://85.222.227.142/"
+        static let testPostUserLink = "http://85.222.227.142/" + commands.users // only link we need to hard code!
+        static let testUrl = "http://85.222.227.142/" //test server
         static let production = ""
     }
     
@@ -42,8 +43,7 @@ struct YonaConstants {
         static let yonaPassword = "kYonaPassword"
         static let PINCode = "kPINCode"
         static let userID = "userID"
-        static let confirmMobileKeyURL = "confirmMobileLink"
-        static let otpResendMobileKeyURL = "otpResendMobileLink"
+        static let userSelfLink = "userSelfLink"
         #if DEBUG
         static let oneTimePassword = "mobileNumberConfirmationCode"
         #endif
@@ -79,6 +79,8 @@ struct YonaConstants {
         static let  yonaNewDeviceRequest = "yona:newDeviceRequest"
         static let  yonaAppActivity = "yona:appActivity"
         static let  yonaPinRequest = "yona:requestPinReset"
+        static let  yonaPinVerify = "yona:verifyPinReset"
+        static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
     }
 

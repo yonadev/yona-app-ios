@@ -26,7 +26,10 @@ struct Users{
     var newDeviceRequestsLink: String?
     var appActivityLink: String?
     var requestPinResetLink: String?
+    var requestPinVerifyLink: String?
+    var requestPinClearLink: String?
     var buddiesLink: String?
+    var getAllGoalsLink: String?
 
     var goals:[Goal] = []
 
@@ -61,6 +64,7 @@ struct Users{
             if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefSelfLinks
+                KeychainManager.sharedInstance.saveUserSelfLink(self.getSelfLink!) //save this so we can always get the user
             }
             
             if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
@@ -102,6 +106,15 @@ struct Users{
                 self.requestPinResetLink = hrefrequestPinResetLinks
             }
             
+            if let requestPinVerifyLinks = links[YonaConstants.jsonKeys.yonaPinVerify],
+                let hrefrequestPinVerifyLinks = requestPinVerifyLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.requestPinVerifyLink = hrefrequestPinVerifyLinks
+            }
+            
+            if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaPinClear],
+                let hrefrequestPinClearLinks = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.requestPinClearLink = hrefrequestPinClearLinks
+            }
         }
         
         if let embedded = userData[YonaConstants.jsonKeys.embedded],
@@ -115,6 +128,13 @@ struct Users{
                 }
             }
         
+        if let embedded = userData[YonaConstants.jsonKeys.embedded],
+            let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],
+            let goalsLink = yonaGoals?[YonaConstants.jsonKeys.linksKeys],
+            let selfGoalsLink = goalsLink?[YonaConstants.jsonKeys.selfLinkKeys],
+            let hrefSelfGoalsLink = selfGoalsLink?[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.getAllGoalsLink = hrefSelfGoalsLink
+        }
         if let embedded = userData[YonaConstants.jsonKeys.embedded],
             let yonaBuddies = embedded[YonaConstants.jsonKeys.yonaBuddies]{
             //at some point Bert will probably add Buddies so we need to parse them here too!
