@@ -61,7 +61,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
             
-            
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.deleteGoalButton.hidden = false
@@ -96,8 +95,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     ],
                     "zones": zonesArray
                 ];
-                
-                
                 
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, err) in
@@ -181,12 +178,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             }
-            
-            //            self.tableView.reloadData()
-            
             print("Value updated \(self.zonesArray)")
-            
-            
         }
     }
     
@@ -231,9 +223,25 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.isFromButton = false
             self.picker?.hideShowDatePickerView(isToShow: true)
         }
-        
+        cell.rowNumber.text = String(indexPath.row + 1)
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            self.zonesArray.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            print(self.zonesArray)
+            if self.zonesArray.count == 0 {
+                self.setChallengeButton.enabled = false
+                self.setChallengeButton.alpha = 0.5
+            }
+        }
     }
 }
 

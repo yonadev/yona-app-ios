@@ -539,20 +539,21 @@ extension APIServiceManager {
                             return
                         }
                         self.newUser = Users.init(userData: json)
+                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                         //intialise the goals and the activities
-                        self.getActivitiesArray({ (success, message, code, activities, error) in
-                            if success {
-                                self.getAllTheGoalsArray({ (success, message, code, goals, error) in
-                                    if success {
-                                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
-                                    } else {
-                                        onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
-                                    }
-                                })
-                            } else {
-                                onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
-                            }
-                        })
+//                        self.getActivitiesArray({ (success, message, code, activities, error) in
+//                            if success {
+//                                self.getAllTheGoalsArray({ (success, message, code, goals, error) in
+//                                    if success {
+//                                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
+//                                    } else {
+//                                        onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
+//                                    }
+//                                })
+//                            } else {
+//                                onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
+//                            }
+//                        })
                     } else {
                         //response from request failed
                         onCompletion(false, self.serverMessage, self.serverCode,nil)
