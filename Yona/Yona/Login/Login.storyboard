@@ -372,6 +372,6 @@
     <resources>
         <image name="icnAvatar" width="44" height="45"/>
         <image name="icnBack" width="13" height="21"/>
-        <image name="icnY" width="44" height="44"/>
+        <image name="icnY" width="48" height="48"/>
     </resources>
 </document>
