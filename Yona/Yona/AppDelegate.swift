@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = self.window {
             window.rootViewController = rootController
         }
-        
+
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
         return true
@@ -63,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BITHockeyManager.sharedHockeyManager().configureWithIdentifier(secretKey)
             // Do some additional configuration if needed here
             BITHockeyManager.sharedHockeyManager().testIdentifier()
-            BITHockeyManager.sharedHockeyManager().startManager()
             BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+            BITHockeyManager.sharedHockeyManager().startManager()
         }
     }
     

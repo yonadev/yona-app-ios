@@ -17,6 +17,8 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     var userFirstName: String?
     var userLastName: String?
     
+    @IBOutlet var gradientView: GradientView!
+    
     private let nederlandPhonePrefix = "+31 (0) "
     
     @IBOutlet var mobileTextField: UITextField!
@@ -29,6 +31,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
         setupUI()
     }
     
@@ -129,6 +134,10 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                             self.navigationController?.pushViewController(smsValidation, animated: false)
                         }
                     }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.displayAlertMessage(message!, alertDescription: "")
+                    }
                 }
             })
         }
@@ -202,8 +211,13 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     func nextTextField() {
-        mobileTextField.resignFirstResponder()
-        nicknameTextField.becomeFirstResponder()
+        if nicknameTextField.isFirstResponder() {
+            mobileTextField.resignFirstResponder()
+            nicknameTextField.resignFirstResponder()
+        } else {
+            mobileTextField.resignFirstResponder()
+            nicknameTextField.becomeFirstResponder()
+        }
     }
     
     func previousTextField() {

@@ -13,6 +13,7 @@ class YonaCustomDatePickerView: UIView {
     var selectedValue: String?
     var parentView: UIView?
     
+    @IBOutlet weak var pickerTitleLabel: UIBarButtonItem!
     @IBAction func cancelAction(sender: AnyObject) {
         gCancelListener?()
     }
@@ -21,7 +22,7 @@ class YonaCustomDatePickerView: UIView {
         if selectedValue != nil{
             gDoneListener?(selectedValue!)
         }else{
-            gDoneListener?("10:00-10:00")
+            gDoneListener?("")
         }
         
     }
@@ -31,7 +32,7 @@ class YonaCustomDatePickerView: UIView {
         dateFormatter.dateFormat = "HH:mm"
         selectedValue = String(dateFormatter.stringFromDate(datePicker.date))
     }
-
+    
     func loadDatePickerView() -> UIView {
         var views = NSBundle.mainBundle().loadNibNamed("YonaCustomDatePickerView", owner: self, options: nil)
         let view = views[0] as! UIView
@@ -46,6 +47,10 @@ class YonaCustomDatePickerView: UIView {
         gDoneListener = done
         parentView = v
         UIApplication.sharedApplication().keyWindow?.addSubview(self)
+    }
+    
+    func pickerTitleLabel(title: String) {
+        self.pickerTitleLabel.title = title
     }
     
     func hideShowDatePickerView(isToShow show: Bool) {

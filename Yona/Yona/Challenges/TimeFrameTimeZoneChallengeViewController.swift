@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeFrameTimeZoneChallengeViewController: UIViewController {
-
+    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
@@ -28,7 +28,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 10
-
+    
     var zonesArray = [String]()
     var datePickerView: UIView?
     var picker: YonaCustomDatePickerView?
@@ -46,7 +46,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         })
         configureDatePickerView()
-
+        
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -62,14 +62,19 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
-           
+            
             
         } else {
+            if ((goalCreated?.editLinks?.isEmpty) != nil) {
+                self.deleteGoalButton.hidden = false
+            } else {
+                self.deleteGoalButton.hidden = true
+            }
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
-             zonesArray = (goalCreated?.zonesStore)!
+            zonesArray = (goalCreated?.zonesStore)!
         }
         self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
@@ -77,43 +82,43 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
-
+        
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
         print("integrate post  challenge")
         if isFromActivity == true {
-           
-        if let activityCategoryLink = activitiyToPost?.selfLinks! {
             
-            let bodyTimeZoneSocialGoal = [
-                "@type": "TimeZoneGoal",
-                "_links": [
-                    "yona:activityCategory": ["href": activityCategoryLink]
-                ],
-                "zones": zonesArray
-            ];
-            
-            
-            
-            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
-                if success {
-                    if let goalUnwrap = goal {
-                        self.goalCreated = goalUnwrap
+            if let activityCategoryLink = activitiyToPost?.selfLinks! {
+                
+                let bodyTimeZoneSocialGoal = [
+                    "@type": "TimeZoneGoal",
+                    "_links": [
+                        "yona:activityCategory": ["href": activityCategoryLink]
+                    ],
+                    "zones": zonesArray
+                ];
+                
+                
+                
+                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
+                    (success, serverMessage, serverCode, goal, err) in
+                    if success {
+                        if let goalUnwrap = goal {
+                            self.goalCreated = goalUnwrap
+                        }
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.deleteGoalButton.selected = true
+                            self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
+                        })
+                        
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.displayAlertMessage(serverMessage!, alertDescription: "")
+                        })
                     }
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.deleteGoalButton.selected = true
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
-                    })
-                    
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
-                    })
-                }
-            })
-        }
+                })
+            }
         }else {
             
         }
@@ -121,11 +126,14 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         zonesArray.append("10:00-10:00")
-        self.tableView.reloadData()
-        
+        self.isFromButton = true
+        self.picker?.pickerTitleLabel("From")
+        self.picker?.hideShowDatePickerView(isToShow: true)
     }
+    
+    
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-
+        
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated {
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
@@ -145,10 +153,38 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
         }) { (doneValue) in
-            let tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
-            self.zonesArray[(self.activeIndexPath?.row)!] = tempArr
+            let tempArr: String?
+            if (self.activeIndexPath != nil) {
+                if doneValue != "" {
+                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
+                    self.zonesArray[(self.activeIndexPath?.row)!] = tempArr!
+                    print("************** TempArr \(tempArr)")
+                }
+            } else {
+                if doneValue != "" {
+                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
+                    self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
+                    print("************** TempArr \(tempArr)")
+                }
+            }
+            
+            
+            
             self.picker?.hideShowDatePickerView(isToShow: false)
-            self.tableView.reloadData()
+            
+            
+            if self.isFromButton {
+                self.picker?.hideShowDatePickerView(isToShow: true)
+                self.picker?.pickerTitleLabel("To")
+                self.isFromButton = false
+            } else {
+                self.activeIndexPath = nil
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+            }
+            
+            //            self.tableView.reloadData()
             
             print("Value updated \(self.zonesArray)")
             
@@ -177,11 +213,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if isFromActivity == true{
-            return zonesArray.count
-//        } else {
-//        return (goalCreated?.zonesStore.count)!
-//        }
+        
+        return zonesArray.count
     }
     
     
@@ -189,17 +222,18 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArray[indexPath.row]
         cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
-                print("From Button Clicked in cell")
-                self.activeIndexPath = indexPath
-                self.isFromButton = true
-                self.picker?.hideShowDatePickerView(isToShow: true)
-            }) { (cell) in
-                print("to Button Clicked in cell")
-                self.activeIndexPath = indexPath
-                self.isFromButton = false
-                self.picker?.hideShowDatePickerView(isToShow: true)
+            print("From Button Clicked in cell")
+            self.activeIndexPath = indexPath
+            self.isFromButton = true
+            self.picker?.pickerTitleLabel("From")
+            self.picker?.hideShowDatePickerView(isToShow: true)
+        }) { (cell) in
+            print("to Button Clicked in cell")
+            self.activeIndexPath = indexPath
+            self.isFromButton = false
+            self.picker?.hideShowDatePickerView(isToShow: true)
         }
-       
+        
         
         return cell
     }
@@ -213,7 +247,7 @@ extension String {
 }
 
 private extension Selector {
-   
+    
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
     
 }

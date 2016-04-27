@@ -21,16 +21,20 @@ class LoginViewController: UIViewController {
     var loginAttempts:Int = 1
     private var codeInputView: CodeInputView?
     private var totalAttempts : Int = 5
+    @IBOutlet var gradientView: GradientView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
         
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
     }
     

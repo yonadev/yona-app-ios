@@ -1,4 +1,4 @@
-
+//
 //
 //  SignUpFirstStepViewController.swift
 //  Yona
@@ -13,7 +13,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
-    
+    @IBOutlet var gradientView: GradientView!
     @IBOutlet var firstnameTextField: UITextField!
     @IBOutlet var lastnameTextField: UITextField!
     @IBOutlet var personalQuoteLabel: UILabel!
@@ -22,14 +22,17 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        })
+
         setupUI()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //keyboard functions
+//        keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
@@ -55,6 +58,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
+
         firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
         lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         
@@ -64,8 +68,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)
         
-        //Nav bar Back button.
-        
+        //Nav bar Back button.        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -148,8 +151,13 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     }
     
     func nextTextField() {
-        firstnameTextField.resignFirstResponder()
-        lastnameTextField.becomeFirstResponder()
+        if lastnameTextField.isFirstResponder() {
+            firstnameTextField.resignFirstResponder()
+            lastnameTextField.resignFirstResponder()
+        } else {
+            firstnameTextField.resignFirstResponder()
+            lastnameTextField.becomeFirstResponder()
+        }
     }
     
     func previousTextField() {

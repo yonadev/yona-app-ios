@@ -22,7 +22,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var loginButton: UIButton!
     
-    
+    @IBOutlet var gradientView: GradientView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         //keyboard functions
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)

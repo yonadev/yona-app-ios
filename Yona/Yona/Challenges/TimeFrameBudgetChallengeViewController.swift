@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeFrameBudgetChallengeViewController: UIViewController {
-
+    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
@@ -48,7 +48,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-//        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
+        //        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
@@ -56,24 +56,28 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
         configureDatePickerView()
-
+        
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
         
         
-        if isFromActivity == true{
+        if isFromActivity == true {
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         } else {
+            if ((goalCreated?.editLinks?.isEmpty) != nil) {
+                self.deleteGoalButton.hidden = false
+            } else {
+                self.deleteGoalButton.hidden = true
+            }
+            
             self.budgetChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
-        
-        
     }
     
     // MARK: functions
@@ -86,18 +90,20 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         }) { (doneValue) in
             print("value selected \(doneValue)")
             
-            self.maxDurationMinutes = doneValue
-            
-            
-            self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
-            self.picker?.hideShowDatePickerView(isToShow: false)
+            if doneValue != "" {
+                let fullNameArr = doneValue.componentsSeparatedByString(":")
+                
+                let minutes = (Int(fullNameArr[0]))! * 60 + (Int(fullNameArr[1]))!
+                
+                self.maxDurationMinutes = String(minutes)
+                
+                
+                self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
+                self.picker?.hideShowDatePickerView(isToShow: false)
+            }
         }
     }
-
-    func convertToMinutes() {
-//        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-
+    
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -124,7 +130,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                         self.deleteGoalButton.selected = true
                         self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
                     })
-
+                    
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
@@ -139,7 +145,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-
+        
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated {
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
@@ -152,7 +158,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 }
 
 private extension Selector {
-   
+    
     static let back = #selector(TimeFrameBudgetChallengeViewController.back(_:))
     
 }

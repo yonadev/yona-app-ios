@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet var gradientView: GradientView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
