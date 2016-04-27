@@ -100,7 +100,7 @@ class UserAPIServiceTests: XCTestCase {
         //Post user data
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.otpResendMobile(nil, onCompletion: { success, message, code in
+                APIServiceManager.sharedInstance.otpResendMobile { success, message, code in
                     if(success){
                         expectation.fulfill()
                     } else {
@@ -115,7 +115,7 @@ class UserAPIServiceTests: XCTestCase {
                             XCTFail(message!)
                         }
                     })
-                })
+                }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }

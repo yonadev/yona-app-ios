@@ -55,8 +55,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
-        
-        
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
