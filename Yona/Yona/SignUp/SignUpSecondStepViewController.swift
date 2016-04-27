@@ -211,13 +211,9 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     func nextTextField() {
-        if nicknameTextField.isFirstResponder() {
-            mobileTextField.resignFirstResponder()
-            nicknameTextField.resignFirstResponder()
-        } else {
-            mobileTextField.resignFirstResponder()
-            nicknameTextField.becomeFirstResponder()
-        }
+        mobileTextField.resignFirstResponder()
+        if nicknameTextField.isFirstResponder() { nicknameTextField.resignFirstResponder() }
+        else                                    { nicknameTextField.becomeFirstResponder() }
     }
     
     func previousTextField() {
