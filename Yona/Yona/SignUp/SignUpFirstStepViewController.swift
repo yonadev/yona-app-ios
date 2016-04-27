@@ -19,6 +19,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
+    let extraSpaceForView = 20.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +30,14 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         setupUI()
     }
     
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
 //        keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -86,7 +87,8 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         lastname.contentMode = UIViewContentMode.Center
         self.lastnameTextField.rightView = lastname;
         self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
-    }
+        
+        }
     
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
@@ -117,78 +119,27 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         return true
     }
     
-    
-    
-    //MARK: Add TextFieldInput Navigation Arrows above Keyboard
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
-        let keyboardBarButtonItems = [
-            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.previousTextField),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.nextTextField)
-        ]
-        
-        keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
-        keyboardToolBar.tintColor = colorX
-        keyboardToolBar.barStyle = UIBarStyle.Black
-        keyboardToolBar.sizeToFit()
-        textField.inputAccessoryView = keyboardToolBar
-        return true
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        activeField = textField
-        
-        self.firstnameTextField.delegate = self
-        self.lastnameTextField.delegate = self
-        
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        activeField = nil
-        
-    }
-    
-    func nextTextField() {
-        firstnameTextField.resignFirstResponder()
-        if lastnameTextField.isFirstResponder() { lastnameTextField.resignFirstResponder() }
-        else                                    { lastnameTextField.becomeFirstResponder() }
-    }
-    
-    func previousTextField() {
-        lastnameTextField.resignFirstResponder()
-        firstnameTextField.becomeFirstResponder()
-    }
-    
-    
     //MARK: Keyboard Functions
-    func keyboardWasShown (notification: NSNotification) {
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
+    
+    func keyboardWillShow(notification:NSNotification){
         
-        //TODO: 260 is top view's height, need to improve this :(
-        let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
-        
-        
-        if (txtpos > (viewHeight-keyboardSize.height)) {
-            scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-        }
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        self.scrollView.contentInset.top = self.scrollView.contentInset.top + 20.0
+
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
     }
     
-    
-    func keyboardWillBeHidden(notification: NSNotification) {
-        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    func keyboardWillHide(notification:NSNotification){
         
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
 }
@@ -196,11 +147,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
 private extension Selector {
     static let dismissKeyboard = #selector(SignUpFirstStepViewController.dismissKeyboard)
     
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    static let keyboardWasShown = #selector(SignUpFirstStepViewController.keyboardWillShow(_:))
     
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
-    
-    static let previousTextField = #selector(SignUpSecondStepViewController.previousTextField)
-    
-    static let nextTextField = #selector(SignUpSecondStepViewController.nextTextField)
+    static let keyboardWillBeHidden = #selector(SignUpFirstStepViewController.keyboardWillHide(_:))
 }
