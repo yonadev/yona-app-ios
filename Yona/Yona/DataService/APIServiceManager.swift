@@ -20,7 +20,8 @@ class APIServiceManager {
     private init() {}
     
     /**
-     Calls the manager to make a standard http request
+     Calls the manager to make a standard http request using the httpHeader json type, this requires the users password that is stored in the keychain:
+        ["Content-Type": "application/json", "Yona-Password": yonaPassword]
      
      - parameters: body: BodyDataDictionary?, the body of the req uest required by some calls, can be nil
      - parameters: path: String, the path to the API service call
@@ -53,7 +54,7 @@ class APIServiceManager {
     func setServerCodeMessage(json:BodyDataDictionary?, code: Int) {
         //check if json is empty
         
-        if case YonaConstants.responseCodes.ok200 ... YonaConstants.responseCodes.ok204 = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
+        if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
             self.serverMessage = YonaConstants.serverMessages.OK
             self.serverCode = YonaConstants.serverCodes.OK
         } else {

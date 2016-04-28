@@ -14,6 +14,11 @@ typealias PinCode = String
 
 struct YonaConstants {
     
+    struct YonaErrorTypes {
+        static let SerialiseRequestBodyFail = NSError(domain: "Serializing the body for a request failed", code: 1, userInfo: nil)
+        static let NSURLRequestSetupFail = NSError(domain: "NSURL Request failed to setup", code: 1, userInfo: nil)
+    }
+    
     struct environments {
         static let testPostUserLink = "http://85.222.227.142/users/" // only link we need to hard code!
         static let testUrl = "http://85.222.227.142/" //test server
@@ -119,11 +124,6 @@ struct YonaConstants {
     
     struct testKeys{
         static let otpTestCode = "1234"
-    }
-
-    struct responseCodes{
-        static let ok200 = 200
-        static let ok204 = 204
     }
 
     struct nsUserDefaultsKeys{

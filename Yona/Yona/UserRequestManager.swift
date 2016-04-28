@@ -20,7 +20,7 @@ extension APIServiceManager {
     /**
      Posts a new user to the server, part of the create new user flow, give a body with all the details such as mobile number (that must be unique) and then respond with new user object
      
-     - parameter: body: BodyDataDictionary, pass in a user body like this:
+     - parameter: body: BodyDataDictionary, pass in a user body like this, mobile must be unique:
                          {
                          "firstName": "Ben",
                          "lastName": "Quin",
@@ -111,7 +111,7 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
-                    self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
+                    self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
                         if let json = json {
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode,nil)
@@ -148,18 +148,12 @@ extension APIServiceManager {
                     //get the get user link...
                     if let editLink = user?.editLink {
                         self.callRequestWithAPIServiceResponse(nil, path: editLink, httpMethod: httpMethods.delete) { success, json, err in
-                            if let json = json {
-                                guard success == true else {
-                                    onCompletion(false, self.serverMessage, self.serverCode)
-                                    return
-                                }
-                                KeychainManager.sharedInstance.clearKeyChain()
-                                newUser = Users.init(userData: json)
-                                onCompletion(true, self.serverMessage, self.serverCode)
-                            } else {
-                                //response from request failed
+                            guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode)
+                                return
                             }
+                            KeychainManager.sharedInstance.clearKeyChain()
+                            onCompletion(true, self.serverMessage, self.serverCode)
                         }
                     } else {
                         //Failed to retrive details for delete user request

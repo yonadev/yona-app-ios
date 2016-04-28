@@ -46,5 +46,9 @@ enum userRequestTypes{
     case putUser
     case confirmMobile
     case resendMobileConfirmCode
+}
 
+enum responseCodes: Int{
+    case ok200 = 200
+    case ok204 = 204
 }
