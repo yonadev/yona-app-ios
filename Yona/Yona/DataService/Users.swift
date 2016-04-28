@@ -31,10 +31,7 @@ struct Users{
     var buddiesLink: String?
     var getAllGoalsLink: String?
 
-    var goals:[Goal] = []
-
-
-    init(userData: BodyDataDictionary, activities: [Activities]) {
+    init(userData: BodyDataDictionary) {
         if let firstName = userData[YonaConstants.jsonKeys.firstNameKey] as? String {
             self.firstName = firstName
         }
@@ -116,17 +113,6 @@ struct Users{
                 self.requestPinClearLink = hrefrequestPinClearLinks
             }
         }
-        
-        if let embedded = userData[YonaConstants.jsonKeys.embedded],
-            let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],
-            let embedded2 = yonaGoals?[YonaConstants.jsonKeys.embedded],
-            let yonaGoals2 = embedded2?[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
-                for goal in yonaGoals2 {
-                    if let goal = goal as? BodyDataDictionary {
-                        self.goals.append(Goal.init(goalData: goal, activities: activities))
-                    }
-                }
-            }
         
         if let embedded = userData[YonaConstants.jsonKeys.embedded],
             let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],

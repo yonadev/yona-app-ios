@@ -528,21 +528,8 @@ extension APIServiceManager {
                             onCompletion(false, self.serverMessage, self.serverCode,nil)
                             return
                         }
-                        //intialise the goals and the activities
-                        self.getActivitiesArray({ (success, message, code, activities, error) in
-                            if success {
-                                self.newUser = Users.init(userData: json, activities: activities!)
-                                self.getAllTheGoalsArray({ (success, message, code, goals, error) in
-                                    if success {
-                                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
-                                    } else {
-                                        onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
-                                    }
-                                })
-                            } else {
-                                onCompletion(false, self.serverMessage, self.serverCode, self.newUser)
-                            }
-                        })
+                        self.newUser = Users.init(userData: json)
+                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                     } else {
                         //response from request failed
                         onCompletion(false, self.serverMessage, self.serverCode,nil)
@@ -567,11 +554,7 @@ extension APIServiceManager {
                                     onCompletion(false, self.serverMessage, self.serverCode)
                                     return
                                 }
-                                self.getActivitiesArray{ (success, message, code, activities, error) in
-                                    if success {
-                                        self.newUser = Users.init(userData: json, activities: activities!)
-                                    }
-                                }
+                                self.newUser = Users.init(userData: json)
                                 onCompletion(true, self.serverMessage, self.serverCode)
 
                             } else {
@@ -601,11 +584,7 @@ extension APIServiceManager {
                                     onCompletion(false, self.serverMessage, self.serverCode,nil)
                                     return
                                 }
-                                self.getActivitiesArray{ (success, message, code, activities, error) in
-                                    if success {
-                                        self.newUser = Users.init(userData: json, activities: activities!)
-                                    }
-                                }
+                                self.newUser = Users.init(userData: json)
                                 onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                             } else {
                                 //response from request failed
@@ -636,11 +615,7 @@ extension APIServiceManager {
                                     return
                                 }
                                 KeychainManager.sharedInstance.clearKeyChain()
-                                self.getActivitiesArray{ (success, message, code, activities, error) in
-                                    if success {
-                                        self.newUser = Users.init(userData: json, activities: activities!)
-                                    }
-                                }
+                                self.newUser = Users.init(userData: json)
                                 onCompletion(true, self.serverMessage, self.serverCode)
                             } else {
                                 //response from request failed
