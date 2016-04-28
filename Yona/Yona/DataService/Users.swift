@@ -123,20 +123,8 @@ struct Users{
                 self.getAllGoalsLink = hrefSelfGoalsLink
         }
         
+        //for now this is the only way to get the activity category link
         self.activityCategoryLink = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories
-        //horrible parsing that we have to do just to get the damn ActivityCategoryLinks
-//        if let embedded = userData[YonaConstants.jsonKeys.embedded],
-//            let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],
-//            let goalsLink = yonaGoals?[YonaConstants.jsonKeys.embedded],
-//            let goalsArray = goalsLink?[YonaConstants.jsonKeys.yonaGoals] as? NSArray {
-//            for goal in goalsArray {
-//                if let links = goal[YonaConstants.jsonKeys.linksKeys],
-//                 let yonaActivityCategoryLinks = links?[YonaConstants.jsonKeys.yonaActivityCategory],
-//                 let hrefyonaActivityCategoryLinks = yonaActivityCategoryLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
-//                    self.activityCategoryLink = hrefyonaActivityCategoryLinks
-//                }
-//            }
-//        }
         
         if let embedded = userData[YonaConstants.jsonKeys.embedded],
             let yonaBuddies = embedded[YonaConstants.jsonKeys.yonaBuddies]{
