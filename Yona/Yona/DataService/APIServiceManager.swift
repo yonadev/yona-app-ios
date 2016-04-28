@@ -539,6 +539,7 @@ extension APIServiceManager {
                             return
                         }
                         self.newUser = Users.init(userData: json)
+                        onCompletion(true, self.serverMessage, self.serverCode,self.newUser)
                     } else {
                         //response from request failed
                         onCompletion(false, self.serverMessage, self.serverCode,nil)
