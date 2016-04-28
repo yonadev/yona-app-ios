@@ -28,7 +28,7 @@ class Manager: NSObject {
         print("Only initialised once only")
     }
     
-    func setupRequest(path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: String) -> NSURLRequest {
+    func setupRequest(path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: httpMethods) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         do {
@@ -39,7 +39,7 @@ class Manager: NSObject {
             print("Error")
         }
         
-        request.HTTPMethod = httpMethod
+        request.HTTPMethod = httpMethod.rawValue
         
         return request
     }
@@ -49,7 +49,7 @@ class Manager: NSObject {
 //MARK: - User Manager methods
 extension Manager {
     
-    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse){
+    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse){
         let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
         let session = NSURLSession.sharedSession()
         

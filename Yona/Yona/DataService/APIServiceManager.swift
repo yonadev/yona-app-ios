@@ -27,14 +27,14 @@ class APIServiceManager {
     
     private init() {}
     
-    private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
+    private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
         
         guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
             onCompletion(false,nil,nil)
             return
         }
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: String, httpHeader: httpHeader, onCompletion: { success, dict, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
                 onCompletion(true, dict , err)
             } else {
@@ -245,14 +245,19 @@ class APIServiceManager {
     }
     
     private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, onCompletion: APIGoalResponse) {
+        //check network
         APIServiceCheck { (success, message, code) in
             if success {
+                //success get our activities
                 APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                     if success {
+                        //success so get the user
                         self.getUser{ (success, message, code, user) in
                             if success {
+                                //get the path to get all the goals from user object
                                 if let path = user?.getAllGoalsLink {
-                                    self.callRequestWithAPIServiceResponse(body, path: path, httpmethodParam.rawValue: String, onCompletion: { success, json, err in
+                                    //do request with specific httpmethod
+                                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, err in
                                         if let json = json {
                                             guard success == true else {
                                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
@@ -294,7 +299,7 @@ extension APIServiceManager {
             if success {
                 self.getUser{ (success, message, code, user) in
                     if let path = user?.requestPinResetLink {
-                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
                             if success {
                                 if let jsonUnwrap = json,
                                     let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
@@ -317,7 +322,7 @@ extension APIServiceManager {
             if success {
                 self.getUser{ (success, message, code, user) in
                     if let path = user?.requestPinVerifyLink{
-                        self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                        self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethods.post) { (success, json, error) in
                             if success {
                                 onCompletion(true , self.serverMessage, self.serverCode)
                             } else {
@@ -338,7 +343,7 @@ extension APIServiceManager {
             if success {
                 self.getUser{ (success, message, code, user) in
                     if let path = user?.requestPinClearLink{
-                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.post) { (success, json, error) in
+                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
                             if success {
                                 onCompletion(true , self.serverMessage, self.serverCode)
                             } else {
@@ -365,7 +370,7 @@ extension APIServiceManager {
                             let bodyNewDevice = [
                                 "newDeviceRequestPassword": password
                             ]
-                            self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: YonaConstants.httpMethods.put, onCompletion: { (success, json, error) in
+                            self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode)
                                     return
@@ -388,7 +393,7 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 let path = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories
-                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
@@ -423,7 +428,7 @@ extension APIServiceManager {
             if success {
                 //if the newActivites object has been filled then we can get the link to display activity
                 let path = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories + activityID
-                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, err in
                     if let json = json {
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode, nil, err)
@@ -467,7 +472,13 @@ extension APIServiceManager {
     }
     
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
-
+        self.goalsHelper(httpMethods.post, body: body) { (success, message, server, goal, error) in
+            if success {
+                onCompletion(true, message, server, goal, error)
+            } else {
+                (false, message, server, goal, error)
+            }
+        }
     }
     
     func getUsersGoalWithID(goalSelfLink: String, onCompletion: APIGoalResponse) {
@@ -475,7 +486,7 @@ extension APIServiceManager {
             if success {
                 APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                     if success {
-                        self.callRequestWithAPIServiceResponse(nil, path: goalSelfLink, httpMethod: YonaConstants.httpMethods.get, onCompletion: { success, json, err in
+                        self.callRequestWithAPIServiceResponse(nil, path: goalSelfLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
                             if let json = json {
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode, nil, err)
@@ -501,7 +512,7 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let goalEditLinkUnwrap = goalEditLink {
-                    self.callRequestWithAPIServiceResponse(nil, path: goalEditLinkUnwrap, httpMethod: YonaConstants.httpMethods.delete, onCompletion: { success, json, err in
+                    self.callRequestWithAPIServiceResponse(nil, path: goalEditLinkUnwrap, httpMethod: httpMethods.delete, onCompletion: { success, json, err in
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode)
                             return
@@ -526,7 +537,7 @@ extension APIServiceManager {
                 //create a password for the user
                 KeychainManager.sharedInstance.createYonaPassword()
                 //set the path to post
-                self.callRequestWithAPIServiceResponse(body, path: YonaConstants.environments.testPostUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                self.callRequestWithAPIServiceResponse(body, path: YonaConstants.environments.testPostUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
                     if let json = json {
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode,nil)
@@ -552,7 +563,7 @@ extension APIServiceManager {
                 //get the get user link...
                 if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
                         ///now post updated user data
-                        self.callRequestWithAPIServiceResponse(body, path: selfUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                        self.callRequestWithAPIServiceResponse(body, path: selfUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
                             if let json = json {
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode)
@@ -582,7 +593,7 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
-                        self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: YonaConstants.httpMethods.post, onCompletion: { success, json, err in
+                        self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
                             if let json = json {
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode,nil)
@@ -612,7 +623,7 @@ extension APIServiceManager {
             if success{
                 if let newUser = self.newUser,
                     let path = newUser.editLink {
-                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: YonaConstants.httpMethods.delete) { success, json, err in
+                        self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.delete) { success, json, err in
                             if let json = json {
                                 guard success == true else {
                                     onCompletion(false, self.serverMessage, self.serverCode)
@@ -649,7 +660,7 @@ extension APIServiceManager {
                             print(otpResendMobileLink)
                         #endif
                         
-                        self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                        self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: httpMethods.post) { success, json, err in
                             guard success == true else {
                                 onCompletion(false, self.serverMessage, self.serverCode)
                                 return
@@ -680,7 +691,7 @@ extension APIServiceManager {
                             print(confirmMobileLink)
                         #endif
                         
-                        self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: YonaConstants.httpMethods.post) { success, json, err in
+                        self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: httpMethods.post) { success, json, err in
                             guard success == true else {
                                 print(err)
                                 onCompletion(false, self.serverMessage, self.serverCode)
