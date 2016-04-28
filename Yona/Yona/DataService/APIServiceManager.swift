@@ -31,7 +31,7 @@ class APIServiceManager {
     func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
         
         guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
-            onCompletion(false,nil,nil)
+            onCompletion(false,nil, YonaConstants.YonaErrorTypes.UserPasswordRequestFail)
             return
         }
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]

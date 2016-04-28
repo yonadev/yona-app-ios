@@ -16,7 +16,12 @@ struct YonaConstants {
     
     struct YonaErrorTypes {
         static let SerialiseRequestBodyFail = NSError(domain: "Serializing the body for a request failed", code: 1, userInfo: nil)
-        static let NSURLRequestSetupFail = NSError(domain: "NSURL Request failed to setup", code: 1, userInfo: nil)
+        static let NSURLRequestSetupFail = NSError(domain: "NSURL Request failed to setup", code: 2, userInfo: nil)
+        static let NetworkFail = NSError.init(domain: "Network Fail", code: 3, userInfo: nil)
+        static let UserRequestFailed = NSError.init(domain: "Failed to get user", code: 4, userInfo: nil)
+        static let UserPasswordRequestFail = NSError.init(domain: "Failed to get user password", code: 5, userInfo: nil)
+        static let JsonObjectSerialisationFail = NSError.init(domain: "JSON Object serialisation failed", code: 6, userInfo: nil)
+        static let APILinkRetrievalFail = NSError.init(domain: "Getting link for API failed", code: 7, userInfo: nil)
     }
     
     struct environments {

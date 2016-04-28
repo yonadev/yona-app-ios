@@ -237,7 +237,7 @@ extension APIServiceManager {
          "@type": "BudgetGoal",
             "_links": {
                 "yona:activityCategory": {
-                    "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
+                    "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
                 }
             },
         "maxDurationMinutes":"0"
@@ -248,7 +248,7 @@ extension APIServiceManager {
                 "@type": "BudgetGoal",
                 "_links": {
                     "yona:activityCategory": {
-                        "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
+                        "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
                         }
                     },
                 "maxDurationMinutes":"10"
@@ -259,7 +259,7 @@ extension APIServiceManager {
                  "@type": "TimeZoneGoal",
                  "_links": {
                  "yona:activityCategory": {
-                    "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”    ///could be social or whatever
+                    "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”    ///could be social or whatever
                     }
                  },
                  "zones": ["8:00-17:00", "8:00-17:00"]

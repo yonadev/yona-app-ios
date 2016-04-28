@@ -90,12 +90,11 @@ extension Manager {
                             }
                         }
                     } catch { //if serialisation fails send back messages saying so
-                        print("error serializing JSON: \(error)")
                         if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
-                            onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded", code: code, userInfo: nil))
+                            onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
                         } else {
                             print("error Code: \(code)")
-                            onCompletion(false, nil, NSError.init(domain: "JSON Object serialisation failed", code: code, userInfo: nil))
+                            onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
                             
                         }
 

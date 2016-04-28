@@ -78,33 +78,44 @@ extension APIServiceManager {
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
         APIServiceCheck { (success, message, code) in
             if success {
-                let path = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories
-                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, err in
-                    if let json = json {
-                        guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                            return
-                        }
-                        //reset the array so start with new set of activities
-                        activities = []
-                        if let embedded = json[YonaConstants.jsonKeys.embedded],
-                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaActivityCategories] as? NSArray{
-                            for activity in embeddedActivities {
-                                if let activity = activity as? BodyDataDictionary {
-                                    newActivity = Activities.init(activityData: activity)
-                                    activities.append(newActivity!)
+                self.getUser{ (success, message, code, user) in
+                    if success {
+                        if let path = user?.activityCategoryLink {
+                            self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, err in
+                                if let json = json {
+                                    guard success == true else {
+                                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                        return
+                                    }
+                                    //reset the array so start with new set of activities
+                                    activities = []
+                                    if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                        let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaActivityCategories] as? NSArray{
+                                        for activity in embeddedActivities {
+                                            if let activity = activity as? BodyDataDictionary {
+                                                newActivity = Activities.init(activityData: activity)
+                                                activities.append(newActivity!)
+                                            }
+                                        }
+                                        onCompletion(true, self.serverMessage, self.serverCode, activities, err)
+                                    }
+                                } else {
+                                    //response from request failed
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
                                 }
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode, activities, err)
+                            })
+                        } else {
+                            //response from request failed
+                            onCompletion(false, self.serverMessage, self.serverCode, nil, YonaConstants.YonaErrorTypes.APILinkRetrievalFail)
                         }
                     } else {
                         //response from request failed
-                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                        onCompletion(false, self.serverMessage, self.serverCode, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
                     }
-                })
+                }
             } else {
                 //return response from APIService Check, no network
-                onCompletion(false, message, code, activities, nil)
+                onCompletion(false, message, code, activities, YonaConstants.YonaErrorTypes.NetworkFail)
             }
         }
     }
@@ -118,25 +129,33 @@ extension APIServiceManager {
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
         APIServiceCheck { (success, message, code) in
             if success {
-                //if the newActivites object has been filled then we can get the link to display activity
-                let path = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories + activityID
-                self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, err in
-                    if let json = json {
-                        guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode, nil, err)
-                            return
+                self.getUser{ (success, message, code, user) in
+                    if success {
+                        if let path = user?.activityCategoryLink {
+                            //if the newActivites object has been filled then we can get the link to display activity
+                            self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get) { success, json, err in
+                                if let json = json {
+                                    guard success == true else {
+                                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                        return
+                                    }
+                                    print(json)
+                                    newActivity = Activities.init(activityData: json)
+                                    onCompletion(true, self.serverMessage, self.serverCode, newActivity, err)
+                                } else {
+                                    //response from request failed
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                                }
+                            }
                         }
-                        print(json)
-                        newActivity = Activities.init(activityData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode, newActivity, err)
                     } else {
-                        //response from request failed
-                        onCompletion(false, self.serverMessage, self.serverCode, nil, err)
+                        //network fail
+                        onCompletion(false, message, code, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
                     }
-                })
+                }
             } else {
                 //network fail
-                onCompletion(false, message, code, nil, nil)
+                onCompletion(false, message, code, nil, YonaConstants.YonaErrorTypes.NetworkFail)
             }
         }
     }
