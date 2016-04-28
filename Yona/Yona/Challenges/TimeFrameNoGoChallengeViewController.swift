@@ -19,7 +19,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBOutlet weak var budgetChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIButton!
     @IBOutlet var headerImage: UIImageView!
-
+    
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -59,7 +59,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
-
+        
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
@@ -74,9 +74,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         
     }
     
-    @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {
-        print("integrate post budget challenge")
-        
+    @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {        
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
                 "@type": "BudgetGoal",
@@ -85,6 +83,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 ],
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, err) in
                 if success {
@@ -93,15 +92,17 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                     }
                     dispatch_async(dispatch_get_main_queue(), {
                         self.deleteGoalButton.selected = true
+                        Loader.Hide(self)
                         self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
                     })
                     
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
                     })
                 }
-            }) 
+            })
         }
     }
     
@@ -109,14 +110,22 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated {
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if serverCode == YonaConstants.serverCodes.OK {
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                        Loader.Hide(self)
+                        
                     } else if serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage", comment: ""), alertDescription: "")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            Loader.Hide(self)
+                            self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage", comment: ""), alertDescription: "")
+                        })
                     } else {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.displayAlertMessage(serverMessage!, alertDescription: "")
+                            Loader.Hide(self)
+                        })
                     }
                 })
             }

@@ -126,6 +126,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                     "Please input Nickname.")
                 
             } else {
+                Loader.Show(delegate: self)
                 let body =
                     ["firstName": userFirstName!,
                      "lastName": userLastName!,
@@ -138,12 +139,14 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                         setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         dispatch_async(dispatch_get_main_queue()) {
                             // update some UI
+                            Loader.Hide(self)
                             if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
                                 self.navigationController?.pushViewController(smsValidation, animated: false)
                             }
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
+                            Loader.Hide(self)
                             self.displayAlertMessage(message!, alertDescription: "")
                         }
                     }
