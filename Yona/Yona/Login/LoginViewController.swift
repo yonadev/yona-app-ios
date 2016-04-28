@@ -52,13 +52,13 @@ class LoginViewController: UIViewController {
         }
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
-                codeInputView!.resignFirstResponder()
-                codeInputView!.userInteractionEnabled = false
-                errorLabel.hidden = false
-                errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
-                self.pinResetButton.enabled = true
-                return;
+            self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
+            codeInputView!.resignFirstResponder()
+            codeInputView!.userInteractionEnabled = false
+            errorLabel.hidden = false
+            errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+            self.pinResetButton.enabled = true
+            return;
         }
         
         //keyboard functions
@@ -72,7 +72,9 @@ class LoginViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-}
+    
+    }
+
 
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
@@ -130,28 +132,44 @@ extension LoginViewController: CodeInputViewDelegate {
         }
     }
     
+    
     @IBAction func pinResetTapped(sender: UIButton) {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-
+            
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 if success{
-                        //get otp sent again
-                        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                            if success {
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    //Update flag
-                                    self.errorLabel.hidden = true
-                                    self.loginAttempts = 0
-                                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    print(pincode!)
+                    if pincode != nil {
+                        
+                        let timeToDisplay = self.convertFromISO8601Duration(pincode)
+                        if Int(timeToDisplay!)! > 0 {
+                            let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
+                            let alert = NSString(format: localizedString, timeToDisplay!)
+                            
+                            self.displayAlertMessage("", alertDescription: String(alert))
+                            
+                        } else {
+                            //get otp sent again
+                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                                if success {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        //Update flag
+                                        self.errorLabel.hidden = true
+                                        self.loginAttempts = 0
+                                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                                        
+                                        if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                                            self.navigationController?.pushViewController(sMSValidation, animated: false)
+                                        }
+                                    })
                                     
-                                    if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                        self.navigationController?.pushViewController(sMSValidation, animated: false)
-                                    }
-                                })
-
+                                }
                             }
+                        }
                     }
-                    
+                } else {
+                    //TODO: Will change this after this build
+                    self.displayAlertMessage("Error", alertDescription: "User not found")
                 }
             })
             
@@ -164,4 +182,153 @@ private extension Selector {
     
     static let keyboardWillBeHidden = #selector(LoginViewController.keyboardWillBeHidden(_:))
     static let pinResetTapped = #selector(LoginViewController.pinResetTapped(_:))
+}
+
+extension LoginViewController {
+    func convertFromISO8601Duration(isoValue: String?) -> String? {
+        
+        var displayedString: String?
+        var hasHitTimeSection = false
+        var isSingular = false
+        
+        var hours = 0
+        var days = 0
+        
+        if let isoString = isoValue {
+            
+            displayedString = String()
+            
+            for val in isoString.characters {
+                
+                if val == "P" {
+                    // Do nothing when parsing the 'P'
+                    continue
+                    
+                }else if val == "T" {
+                    // Indicate that we are now dealing with the 'time section' of the ISO8601 duration, then carry on.
+                    hasHitTimeSection = true
+                    continue
+                }
+                
+                var tempString = String()
+                
+                if val >= "0" && val <= "9" {
+                    
+                    // We need to know whether or not the value is singular ('1') or not ('11', '23').
+                    if let safeDisplayedString = displayedString as String!
+                        where displayedString!.characters.count > 0 && val == "1" {
+                        
+                        let lastIndex = safeDisplayedString.characters.count - 1
+                        
+                        let lastChar = safeDisplayedString[safeDisplayedString.startIndex.advancedBy(lastIndex)]
+                        
+                        //test if the current last char in the displayed string is a space (" "). If it is then we will say it's singular until proven otherwise.
+                        if lastChar == " " {
+                            isSingular = true
+                        } else {
+                            isSingular = false
+                        }
+                    }
+                    else if val == "1" {
+                        // if we are just dealing with a '1' then we will say it's singular until proven otherwise.
+                        isSingular = true
+                    }
+                    else {
+                        // ...otherwise it's a plural duration.
+                        isSingular = false
+                    }
+                    
+                    tempString += "\(val)"
+                    
+                    displayedString! += tempString
+                    
+                } else {
+                    
+                    // handle the duration type text. Make sure to use Months & Minutes correctly.
+                    switch val {
+                        
+                    case "Y", "y":
+                        
+                        if isSingular {
+                            tempString += " Year "
+                        } else {
+                            tempString += " Years "
+                        }
+                        
+                        break
+                        
+                    case "M", "m":
+                        
+                        if hasHitTimeSection {
+                            
+                            if isSingular {
+                                tempString += " Minute "
+                            } else {
+                                tempString += " Minutes "
+                            }
+                        }
+                        else {
+                            
+                            if isSingular {
+                                tempString += " Month "
+                            } else {
+                                tempString += " Months "
+                            }
+                        }
+                        
+                        break
+                        
+                    case "W", "w":
+                        
+                        if isSingular {
+                            tempString += " Week "
+                        } else {
+                            tempString += " Weeks "
+                        }
+                        
+                        break
+                        
+                    case "D", "d":
+                        
+                        if isSingular {
+                            tempString += " Day "
+                        } else {
+                            tempString += " Days "
+                        }
+                        days = Int(displayedString!)!
+                        break
+                        
+                    case "H", "h":
+                        
+                        if isSingular {
+                            tempString += " Hour "
+                        } else {
+                            tempString += " Hours "
+                        }
+                        hours = Int(displayedString!)!
+                        break
+                        
+                    case "S", "s":
+                        
+                        if isSingular {
+                            tempString += " Second "
+                        } else {
+                            tempString += " Seconds "
+                        }
+                        
+                        break
+                        
+                    default:
+                        break
+                        
+                    }
+                    // reset our singular flag, since we're starting a new duration.
+                    isSingular = false
+                }
+            }
+        }
+        let timeToDisplay = String(hours + (days * 24))
+        return timeToDisplay
+    }
+
 }
