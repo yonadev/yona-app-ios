@@ -31,13 +31,6 @@ struct YonaConstants {
         static let pinClear = "/pinResetRequest/clear"
 
     }
-    
-    struct httpMethods{
-        static let post = "POST"
-        static let delete = "DELETE"
-        static let get = "GET"
-        static let put = "PUT"
-    }
 
     struct keychain {
         static let yonaPassword = "kYonaPassword"

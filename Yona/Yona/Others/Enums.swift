@@ -25,3 +25,10 @@ enum Segues: String {
     case TimeZoneChallengeSegue = "TimezoneChallengeSegue"
     case NoGoChallengeSegue = "NoGoChallengeSegue"
 }
+
+enum httpMethods: String{
+    case post = "POST"
+    case delete = "DELETE"
+    case get = "GET"
+    case put = "PUT"
+}
