@@ -48,7 +48,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Up6-uG-sTF" firstAttribute="top" secondItem="E0r-69-en5" secondAttribute="top" constant="98" id="laQ-8l-dFJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="Up6-uG-sTF" secondAttribute="bottom" constant="98" id="gIP-8s-Iid"/>
                                             <constraint firstItem="Up6-uG-sTF" firstAttribute="centerX" secondItem="E0r-69-en5" secondAttribute="centerX" id="nRg-Qc-YgM"/>
                                             <constraint firstItem="Up6-uG-sTF" firstAttribute="centerY" secondItem="E0r-69-en5" secondAttribute="centerY" id="oEd-uD-9GZ"/>
                                         </constraints>
@@ -208,6 +208,7 @@
                         <outlet property="nextButton" destination="0mw-gF-MJc" id="ZfS-Kx-CIc"/>
                         <outlet property="personalQuoteLabel" destination="4jc-12-cE5" id="UIf-zt-crb"/>
                         <outlet property="scrollView" destination="NXN-bW-CZp" id="YQK-Ls-HJQ"/>
+                        <outlet property="topView" destination="E0r-69-en5" id="0nK-rR-JJt"/>
                         <segue destination="PZ3-9z-fek" kind="show" identifier="SignUpSeconStepSegue" id="ylb-5I-9Gp"/>
                     </connections>
                 </viewController>

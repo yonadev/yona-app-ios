@@ -27,7 +27,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
-    var maxDurationMinutes: Int = 10
+    var timeInterval: Int = 15
     
     var zonesArray = [String]()
     var datePickerView: UIView?
@@ -103,7 +103,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     ],
                     "zones": zonesArray
                 ];
-                
+                Loader.Show(delegate: self)
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, err) in
                     if success {
@@ -112,11 +112,13 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                         }
                         dispatch_async(dispatch_get_main_queue(), {
                             self.deleteGoalButton.selected = true
-                            self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
+                            Loader.Hide(self)
+                            self.navigationController?.popViewControllerAnimated(true)
                         })
                         
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
+                            Loader.Hide(self)
                             self.displayAlertMessage(serverMessage!, alertDescription: "")
                         })
                     }
@@ -133,6 +135,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         self.picker?.pickerTitleLabel("From")
         self.picker?.okButtonTitle.title = "Next"
         self.picker?.hideShowDatePickerView(isToShow: true)
+        self.picker?.datePicker.minuteInterval = timeInterval
     }
     
     
@@ -140,10 +143,19 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated {
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                })
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    })
+                }
             }
         }
     }
@@ -174,7 +186,33 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             } else {
                 if doneValue != "" {
                     tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
-                    self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
+                    
+                    if !self.isFromButton {
+                        let arr = tempArr!.dashRemoval()
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "HH:mm"
+                        
+                        let startTime = dateFormatter.dateFromString(arr[0])!
+                        let endTime = dateFormatter.dateFromString(arr[1])!
+                        
+                        
+                        let userCalendar = NSCalendar.currentCalendar()
+                        let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
+                        let timeDifference = userCalendar.components(
+                            hourMinuteComponents,
+                            fromDate: startTime,
+                            toDate: endTime,
+                            options: [])
+                        
+                        if timeDifference.hour <= 0 || timeDifference.minute <= 0 {
+                            self.displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
+                        } else {
+                            self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
+                        }
+                        
+                    } else {
+                        self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
+                    }
                 }
             }
             

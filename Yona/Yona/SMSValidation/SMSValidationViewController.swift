@@ -27,10 +27,10 @@ final class SMSValidationViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
@@ -39,7 +39,7 @@ final class SMSValidationViewController:  UIViewController {
         let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
-
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
@@ -47,22 +47,29 @@ final class SMSValidationViewController:  UIViewController {
         self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         #if DEBUG
-        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+            self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
-
+    
     @IBAction func sendOTPAgain(sender: UIButton) {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             //get otp sent again
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
                         #if DEBUG
                             self.displayAlertMessage("App blocked too many OTP attempts", alertDescription:"")
                             //Now send user back to pinreset screen, let them enter pincode and password again
                         #endif
                     })
+                }else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        Loader.Hide(self)
+                        self.displayAlertMessage(message!, alertDescription: "")
+                    }
                 }
             }
         }
@@ -70,9 +77,9 @@ final class SMSValidationViewController:  UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
         codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-    
+        
         if codeInputView != nil {
             codeInputView!.delegate = self
             codeInputView?.secure = true
@@ -129,26 +136,24 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             codeInputView.userInteractionEnabled = true
-            dispatch_async(dispatch_get_main_queue()) {
-                #if DEBUG
-//                    if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-//                        self.displayAlertMessage("Test Pincode", alertDescription:YonaConstants.testKeys.otpTestCode)
-//                    }
-                    //Now send user back to pinreset screen, let them enter pincode and password again
-                #endif
-            }
             #if DEBUG
                 let body = ["code": code]
             #endif
+            
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
                 if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        })
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
                     APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
                         dispatch_async(dispatch_get_main_queue()) {
+                            
                             #if DEBUG
-                            self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
+                                self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
                                 //Now send user back to pinreset screen, let them enter pincode and password again
                             #endif
                             codeInputView.resignFirstResponder()
@@ -164,6 +169,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 } else {
                     //keep app blocked until correct OTP entered
                     dispatch_async(dispatch_get_main_queue()) {
+                        Loader.Hide(self)
                         self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                         codeInputView.clear()
@@ -174,8 +180,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             let body =
                 [
                     YonaConstants.jsonKeys.bodyCode: code
-                ]
-
+            ]
+            
             APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
                 dispatch_async(dispatch_get_main_queue()) {
                     if (success) {
@@ -186,9 +192,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
-//                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        
                         codeInputView.clear()
-
+                        
                     } else {
                         self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
                         codeInputView.clear()

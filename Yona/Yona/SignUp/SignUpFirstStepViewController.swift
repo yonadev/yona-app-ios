@@ -19,6 +19,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,19 +31,18 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     }
     
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
 //        keyboard functions
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-//        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -69,9 +69,9 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         view.addGestureRecognizer(tap)
         
         //Nav bar Back button.        
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.makeBlackNavigationbar()
-        self.navigationController?.navigationBar.makeBlackNavigationBar()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.makeBlackNavigationbar()
+//        self.navigationController?.navigationBar.makeBlackNavigationBar()
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
@@ -122,22 +122,26 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     
     //MARK: Keyboard Functions
     
-//    func keyboardWillShow(notification:NSNotification){
-//        
-//        var userInfo = notification.userInfo!
-//        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-//        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-//        self.scrollView.contentInset.top = self.scrollView.contentInset.top + 20.0
-//
-//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height
-//        self.scrollView.contentInset = contentInset
-//    }
-//    
-//    func keyboardWillHide(notification:NSNotification){
-//        
-//        self.scrollView.setContentOffset(CGPointZero, animated: true)
-//    }
+    func keyboardWillShow(notification:NSNotification){
+      
+      
+        
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        self.scrollView.contentInset.top = self.scrollView.contentInset.top
+
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+       
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
+    }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
@@ -148,7 +152,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
 private extension Selector {
     static let dismissKeyboard = #selector(SignUpFirstStepViewController.dismissKeyboard)
     
-//    static let keyboardWasShown = #selector(SignUpFirstStepViewController.keyboardWillShow(_:))
-//    
-//    static let keyboardWillBeHidden = #selector(SignUpFirstStepViewController.keyboardWillHide(_:))
+    static let keyboardWasShown = #selector(SignUpFirstStepViewController.keyboardWillShow(_:))
+    
+    static let keyboardWillBeHidden = #selector(SignUpFirstStepViewController.keyboardWillHide(_:))
 }

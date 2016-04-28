@@ -88,8 +88,9 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
         }) { (doneValue) in
-            print("value selected \(doneValue)")
-            
+            #if DEBUG
+                print("value selected \(doneValue)")
+            #endif
             if doneValue != "" {
                 let fullNameArr = doneValue.componentsSeparatedByString(":")
                 
@@ -110,8 +111,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
-        print("integrate post budget challenge")
-        
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
                 "@type": "BudgetGoal",
@@ -120,37 +119,47 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 ],
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
+            Loader.Show(delegate:self)
             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, err) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                })
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
                     self.deleteGoalButton.selected = true
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                } else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    self.navigationController?.popToRootViewControllerAnimated(true)
                     })
+                } else {
+                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    
                 }
             })
         }
     }
     
     @IBAction func maxTimebuttonTapped(sender: AnyObject) {
+        self.picker?.datePicker.minuteInterval = 1
         picker!.hideShowDatePickerView(isToShow: true)
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         
         if let goalUnwrap = self.goalCreated {
+            Loader.Show(delegate:self)
             APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
-                if success {
-                self.navigationController?.popToRootViewControllerAnimated(true)
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                })
+                if success { dispatch_async(dispatch_get_main_queue(), {
+                    self.navigationController?.popToRootViewControllerAnimated(true)
                     })
+                } else {
+                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    
                 }
             }
         }
