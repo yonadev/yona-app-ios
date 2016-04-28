@@ -40,11 +40,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-        
+        //        keyboard functions
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -63,9 +61,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         nicknameTextField.delegate = self
         mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
         nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
-
-        mobileTextField.text = nederlandPhonePrefix
-        
         infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "")
         
         self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -97,6 +92,15 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         mobileImage.contentMode = UIViewContentMode.Center
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
+        
+        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
+        label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        label.textColor = UIColor.yiBlackColor()
+        label.contentMode = UIViewContentMode.Center
+        label.textAlignment = NSTextAlignment.Center
+        label.text = nederlandPhonePrefix
+        self.mobileTextField.leftView = label
+        self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
     
     // Go Back To Previous VC
@@ -107,39 +111,44 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
-        guard let trimmedWhiteSpaceString = mobileTextField.text?.removeWhitespace() else { return }
-        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-        
-        if trimmedString.validateMobileNumber() == false {
-            self.displayAlertMessage("", alertDescription:
-                "Please input valid Phone number.")
-        } else if self.nicknameTextField.text!.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                "Please input Nickname.")
+        var number = ""
+        if let mobilenum = mobileTextField.text {
+            number = (nederlandPhonePrefix) + mobilenum
             
-        } else {
-            let body =
-                ["firstName": userFirstName!,
-                 "lastName": userLastName!,
-                 "mobileNumber": trimmedString,
-                 "nickname": nicknameTextField.text ?? ""]
+            let trimmedWhiteSpaceString = number.removeWhitespace()
+            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
             
-            APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
-                if success {
-                    //Update flag
-                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // update some UI
-                        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                            self.navigationController?.pushViewController(smsValidation, animated: false)
+            if trimmedString.validateMobileNumber() == false {
+                self.displayAlertMessage("", alertDescription:
+                    "Please input valid Phone number.")
+            } else if self.nicknameTextField.text!.characters.count == 0 {
+                self.displayAlertMessage("", alertDescription:
+                    "Please input Nickname.")
+                
+            } else {
+                let body =
+                    ["firstName": userFirstName!,
+                     "lastName": userLastName!,
+                     "mobileNumber": trimmedString,
+                     "nickname": nicknameTextField.text ?? ""]
+                
+                APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
+                    if success {
+                        //Update flag
+                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // update some UI
+                            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                                self.navigationController?.pushViewController(smsValidation, animated: false)
+                            }
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.displayAlertMessage(message!, alertDescription: "")
                         }
                     }
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.displayAlertMessage(message!, alertDescription: "")
-                    }
-                }
-            })
+                })
+            }
         }
     }
 }
@@ -150,118 +159,60 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
         } else {
-          textField.resignFirstResponder()
+            textField.resignFirstResponder()
         }
         return true
     }
     
-    
-   
-    //MARK: - Add TextFieldInput Navigation Arrows above Keyboard
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        let keyboardToolBar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 10))
-        let keyboardBarButtonItems = [
-            UIBarButtonItem(title: "previous", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.previousTextField),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: Selector.nextTextField)
-        ]
-        
-        keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
-        keyboardToolBar.tintColor = colorX
-        keyboardToolBar.barStyle = UIBarStyle.Black
-        keyboardToolBar.sizeToFit()
-        textField.inputAccessoryView = keyboardToolBar
-        return true
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        activeField = textField
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        activeField = nil
-        
-    }
-    
     //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 12 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 17 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
                     textField.text = String(textField.text!.characters.dropLast())
                     textField.text = String(textField.text!.characters.dropLast())
                 }
             } else  {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 12 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 17 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
                     let space = " "
                     
                     textField.text = "\(textField.text!) \(space)"
                 }            }
             previousRange = range
             
-            if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 8 {
-                textField.text = nederlandPhonePrefix
-            }
-            
-            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 21
+            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
         }
         return true
     }
     
-    func nextTextField() {
-        mobileTextField.resignFirstResponder()
-        if nicknameTextField.isFirstResponder() { nicknameTextField.resignFirstResponder() }
-        else                                    { nicknameTextField.becomeFirstResponder() }
+    func keyboardWillShow(notification:NSNotification){
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        self.scrollView.contentInset.top = self.scrollView.contentInset.top 
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
     }
     
-    func previousTextField() {
-        nicknameTextField.resignFirstResponder()
-        mobileTextField.becomeFirstResponder()
-    }
-    
-    
-    //MARK: - Keyboard Functions
-    func keyboardWasShown (notification: NSNotification) {
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
+    func keyboardWillHide(notification:NSNotification){
         
-        let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
-        
-        
-        if (txtpos > (viewHeight-keyboardSize.height)) {
-            scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-        }
-    }
-    
-    
-    func keyboardWillBeHidden(notification: NSNotification) {
-        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWillShow(_:))
     
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
+    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillHide(_:))
     
     static let dismissKeyboard = #selector(SignUpSecondStepViewController.dismissKeyboard)
     
     static let back = #selector(SignUpSecondStepViewController.back(_:))
     
-    static let previousTextField = #selector(SignUpSecondStepViewController.previousTextField)
-    
-    static let nextTextField = #selector(SignUpSecondStepViewController.nextTextField)
 }

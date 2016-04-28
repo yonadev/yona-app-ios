@@ -121,7 +121,7 @@ extension SetPasscodeViewController: CodeInputViewDelegate {
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
+    static let keyboardWasShown = #selector(SetPasscodeViewController.keyboardWasShown(_:))
     
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
+    static let keyboardWillBeHidden = #selector(SetPasscodeViewController.keyboardWillBeHidden(_:))
 }
