@@ -220,6 +220,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWasShown(_:))
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillBeHidden(_:))
+    static let keyboardWasShown = #selector(SMSValidationViewController.keyboardWasShown(_:))
+    static let keyboardWillBeHidden = #selector(SMSValidationViewController.keyboardWillBeHidden(_:))
 }

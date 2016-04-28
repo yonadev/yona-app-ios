@@ -48,10 +48,9 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="250" constant="260" id="18d-YU-eFQ"/>
-                                            <constraint firstItem="Up6-uG-sTF" firstAttribute="top" secondItem="E0r-69-en5" secondAttribute="top" constant="98" id="SMe-rZ-coH"/>
+                                            <constraint firstItem="Up6-uG-sTF" firstAttribute="top" secondItem="E0r-69-en5" secondAttribute="top" constant="98" id="laQ-8l-dFJ"/>
                                             <constraint firstItem="Up6-uG-sTF" firstAttribute="centerX" secondItem="E0r-69-en5" secondAttribute="centerX" id="nRg-Qc-YgM"/>
-                                            <constraint firstAttribute="bottom" secondItem="Up6-uG-sTF" secondAttribute="bottom" constant="98" id="qoJ-Y2-ajb"/>
+                                            <constraint firstItem="Up6-uG-sTF" firstAttribute="centerY" secondItem="E0r-69-en5" secondAttribute="centerY" id="oEd-uD-9GZ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hn-at-ExF" userLabel="BottomView">
@@ -151,12 +150,25 @@
                                     <constraint firstItem="7hn-at-ExF" firstAttribute="centerX" secondItem="NXN-bW-CZp" secondAttribute="centerX" id="b43-vI-6AB"/>
                                     <constraint firstAttribute="trailing" secondItem="0mw-gF-MJc" secondAttribute="trailing" id="qaV-Yq-Ip2"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="dEx-Je-Enr" id="AvT-dx-6WL"/>
+                                </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qm-2d-fDT" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qm-2d-fDT" userLabel="Gradient ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PE-Nv-TP8" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8SO-e2-lXS"/>
+                                    <constraint firstItem="6PE-Nv-TP8" firstAttribute="top" secondItem="2Qm-2d-fDT" secondAttribute="top" id="GDD-wM-Rfr"/>
+                                    <constraint firstAttribute="bottom" secondItem="6PE-Nv-TP8" secondAttribute="bottom" id="LIW-uu-PHr"/>
+                                    <constraint firstAttribute="trailing" secondItem="6PE-Nv-TP8" secondAttribute="trailing" id="MGe-Vx-THj"/>
+                                    <constraint firstItem="6PE-Nv-TP8" firstAttribute="leading" secondItem="2Qm-2d-fDT" secondAttribute="leading" id="N5H-FP-FOO"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="V4k-Ht-tsG"/>
                                 </constraints>
                             </view>
@@ -191,7 +203,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="firstnameTextField" destination="HXY-ri-N1O" id="JMm-s7-2x9"/>
-                        <outlet property="gradientView" destination="2Qm-2d-fDT" id="Rlr-k0-hmg"/>
+                        <outlet property="gradientView" destination="6PE-Nv-TP8" id="EMu-dA-g2w"/>
                         <outlet property="lastnameTextField" destination="CZa-GD-4Y6" id="TMT-3D-rMU"/>
                         <outlet property="nextButton" destination="0mw-gF-MJc" id="ZfS-Kx-CIc"/>
                         <outlet property="personalQuoteLabel" destination="4jc-12-cE5" id="UIf-zt-crb"/>
@@ -206,7 +218,7 @@
         <!--Sign Up Second Step View Controller-->
         <scene sceneID="GZA-Bv-fIR">
             <objects>
-                <viewController storyboardIdentifier="SignUpSecondStepViewController" automaticallyAdjustsScrollViewInsets="NO" id="PZ3-9z-fek" customClass="SignUpSecondStepViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpSecondStepViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="PZ3-9z-fek" customClass="SignUpSecondStepViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AXF-Hy-eY2"/>
                         <viewControllerLayoutGuide type="bottom" id="czj-i4-1if"/>
@@ -352,13 +364,25 @@
                                     <constraint firstItem="dfI-id-NdA" firstAttribute="top" secondItem="qM4-N3-Z5j" secondAttribute="bottom" id="nF1-W9-7aZ"/>
                                     <constraint firstItem="SBt-yA-Ijj" firstAttribute="leading" secondItem="cAG-c9-QV9" secondAttribute="leading" id="ydc-yk-fX1"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="PZ3-9z-fek" id="1ft-bC-GTF"/>
+                                </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-vu-Ofw" customClass="GradientView" customModule="Yona" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRU-WT-JcB" userLabel="Gradient">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcZ-DB-CKf" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Ffa-6k-KLm"/>
-                                    <constraint firstAttribute="height" constant="50" id="c1m-xy-wKy"/>
+                                    <constraint firstAttribute="bottom" secondItem="DcZ-DB-CKf" secondAttribute="bottom" id="CkM-ip-gSq"/>
+                                    <constraint firstItem="DcZ-DB-CKf" firstAttribute="leading" secondItem="pRU-WT-JcB" secondAttribute="leading" id="M3z-8V-Qkf"/>
+                                    <constraint firstAttribute="height" constant="50" id="S89-XT-x3o"/>
+                                    <constraint firstItem="DcZ-DB-CKf" firstAttribute="top" secondItem="pRU-WT-JcB" secondAttribute="top" id="dB7-bC-KKJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DcZ-DB-CKf" secondAttribute="trailing" id="dbm-eE-vdM"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DOE MEE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02G-ac-nyn">
@@ -380,14 +404,17 @@
                             <constraint firstItem="czj-i4-1if" firstAttribute="top" secondItem="cAG-c9-QV9" secondAttribute="bottom" id="9EP-3l-B2b"/>
                             <constraint firstItem="02G-ac-nyn" firstAttribute="top" secondItem="AXF-Hy-eY2" secondAttribute="bottom" constant="10" id="BvD-8j-P55"/>
                             <constraint firstItem="cAG-c9-QV9" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" id="CSe-oM-AVU"/>
-                            <constraint firstItem="fp1-vu-Ofw" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" id="J4w-aq-vMq"/>
+                            <constraint firstItem="pRU-WT-JcB" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" id="CZ9-IY-7VO"/>
+                            <constraint firstAttribute="trailing" secondItem="pRU-WT-JcB" secondAttribute="trailing" id="D9q-o7-NTi"/>
+                            <constraint firstAttribute="trailing" secondItem="pRU-WT-JcB" secondAttribute="trailing" id="DZ2-HU-Nlk"/>
+                            <constraint firstItem="pRU-WT-JcB" firstAttribute="top" secondItem="M0k-rY-eAk" secondAttribute="top" id="M6r-wd-5h6"/>
                             <constraint firstItem="02G-ac-nyn" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" constant="30" id="XZx-PF-jgH"/>
                             <constraint firstItem="PUE-Cb-AbF" firstAttribute="top" secondItem="AXF-Hy-eY2" secondAttribute="bottom" constant="10" id="ahC-AZ-gfN"/>
                             <constraint firstItem="PUE-Cb-AbF" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" constant="20" id="avD-8J-ejA"/>
                             <constraint firstAttribute="trailing" secondItem="02G-ac-nyn" secondAttribute="trailing" constant="30" id="dEL-cf-8LI"/>
-                            <constraint firstAttribute="trailing" secondItem="fp1-vu-Ofw" secondAttribute="trailing" id="fXe-ja-nnm"/>
+                            <constraint firstItem="pRU-WT-JcB" firstAttribute="top" secondItem="M0k-rY-eAk" secondAttribute="top" id="h1l-yy-eca"/>
                             <constraint firstAttribute="trailing" secondItem="cAG-c9-QV9" secondAttribute="trailing" id="ife-01-aya"/>
-                            <constraint firstItem="fp1-vu-Ofw" firstAttribute="top" secondItem="AXF-Hy-eY2" secondAttribute="bottom" id="lHC-QC-7ey"/>
+                            <constraint firstItem="pRU-WT-JcB" firstAttribute="leading" secondItem="M0k-rY-eAk" secondAttribute="leading" id="j8K-nR-PfQ"/>
                             <constraint firstItem="czj-i4-1if" firstAttribute="top" secondItem="j4A-RI-vSj" secondAttribute="bottom" id="lVD-Fu-Sh1"/>
                             <constraint firstItem="cAG-c9-QV9" firstAttribute="top" secondItem="M0k-rY-eAk" secondAttribute="top" id="shP-Lm-cMb"/>
                         </constraints>
@@ -400,7 +427,7 @@
                     <navigationItem key="navigationItem" id="hVl-2L-XZu"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="gradientView" destination="fp1-vu-Ofw" id="3PT-Ab-2aX"/>
+                        <outlet property="gradientView" destination="DcZ-DB-CKf" id="rpn-hg-kRA"/>
                         <outlet property="infoLabel" destination="FA1-7Y-njc" id="GSD-02-qnH"/>
                         <outlet property="mobileTextField" destination="wi9-Fi-SLW" id="O2m-wL-dez"/>
                         <outlet property="nextButton" destination="j4A-RI-vSj" id="dS9-aP-o1N"/>
