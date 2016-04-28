@@ -49,8 +49,8 @@ class Manager: NSObject {
 //MARK: - User Manager methods
 extension Manager {
     
-    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse){
-        let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod.rawValue)
+    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: String, httpHeader:[String:String], onCompletion: APIServiceResponse){
+        let request = setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in

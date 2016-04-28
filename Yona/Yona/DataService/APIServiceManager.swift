@@ -27,14 +27,14 @@ class APIServiceManager {
     
     private init() {}
     
-    private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
+    private func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: String, onCompletion:APIServiceResponse){
         
         guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
             onCompletion(false,nil,nil)
             return
         }
         let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethods, httpHeader: httpHeader, onCompletion: { success, dict, err in
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: String, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
                 onCompletion(true, dict , err)
             } else {
@@ -244,7 +244,7 @@ class APIServiceManager {
         onCompletion(true, self.serverMessage, self.serverCode)
     }
     
-    private func goalsHelper(httpmethod: httpMethods, body: BodyDataDictionary?, onCompletion: APIGoalResponse) {
+    private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, onCompletion: APIGoalResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
@@ -252,7 +252,7 @@ class APIServiceManager {
                         self.getUser{ (success, message, code, user) in
                             if success {
                                 if let path = user?.getAllGoalsLink {
-                                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethod, onCompletion: { success, json, err in
+                                    self.callRequestWithAPIServiceResponse(body, path: path, httpmethodParam.rawValue: String, onCompletion: { success, json, err in
                                         if let json = json {
                                             guard success == true else {
                                                 onCompletion(false, self.serverMessage, self.serverCode, nil, err)
