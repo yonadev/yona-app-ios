@@ -19,7 +19,6 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
-    let extraSpaceForView = 20.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +125,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
         keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-        self.scrollView.contentInset.top = self.scrollView.contentInset.top + 20.0
+        self.scrollView.contentInset.top = self.scrollView.contentInset.top
 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height

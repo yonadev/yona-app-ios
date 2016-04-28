@@ -83,7 +83,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
-        print("integrate post  challenge")
         if isFromActivity == true {
             
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
@@ -153,13 +152,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 if doneValue != "" {
                     tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
                     self.zonesArray[(self.activeIndexPath?.row)!] = tempArr!
-                    print("************** TempArr \(tempArr)")
                 }
             } else {
                 if doneValue != "" {
                     tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
                     self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
-                    print("************** TempArr \(tempArr)")
                 }
             }
             
@@ -178,7 +175,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             }
-            print("Value updated \(self.zonesArray)")
         }
     }
     
@@ -212,13 +208,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArray[indexPath.row]
         cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
-            print("From Button Clicked in cell")
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.hideShowDatePickerView(isToShow: true)
         }) { (cell) in
-            print("to Button Clicked in cell")
             self.activeIndexPath = indexPath
             self.isFromButton = false
             self.picker?.hideShowDatePickerView(isToShow: true)
@@ -236,7 +230,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             self.zonesArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            print(self.zonesArray)
             if self.zonesArray.count == 0 {
                 self.setChallengeButton.enabled = false
                 self.setChallengeButton.alpha = 0.5

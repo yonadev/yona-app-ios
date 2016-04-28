@@ -61,9 +61,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         nicknameTextField.delegate = self
         mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
         nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
-
-//        mobileTextField.text = nederlandPhonePrefix
-        
         infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "")
         
         self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -96,9 +93,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
         
-        
         let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
-        //        label.center = CGPointMake(160, 284)
         label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         label.textColor = UIColor.yiBlackColor()
         label.contentMode = UIViewContentMode.Center
@@ -106,9 +101,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         label.text = nederlandPhonePrefix
         self.mobileTextField.leftView = label
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
-
-        
-        
     }
     
     // Go Back To Previous VC
@@ -122,42 +114,42 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         var number = ""
         if let mobilenum = mobileTextField.text {
             number = (nederlandPhonePrefix) + mobilenum
-        
-         let trimmedWhiteSpaceString = number.removeWhitespace()
-        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-        
-        if trimmedString.validateMobileNumber() == false {
-            self.displayAlertMessage("", alertDescription:
-                "Please input valid Phone number.")
-        } else if self.nicknameTextField.text!.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                "Please input Nickname.")
             
-        } else {
-            let body =
-                ["firstName": userFirstName!,
-                 "lastName": userLastName!,
-                 "mobileNumber": trimmedString,
-                 "nickname": nicknameTextField.text ?? ""]
+            let trimmedWhiteSpaceString = number.removeWhitespace()
+            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
             
-            APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
-                if success {
-                    //Update flag
-                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // update some UI
-                        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                            self.navigationController?.pushViewController(smsValidation, animated: false)
+            if trimmedString.validateMobileNumber() == false {
+                self.displayAlertMessage("", alertDescription:
+                    "Please input valid Phone number.")
+            } else if self.nicknameTextField.text!.characters.count == 0 {
+                self.displayAlertMessage("", alertDescription:
+                    "Please input Nickname.")
+                
+            } else {
+                let body =
+                    ["firstName": userFirstName!,
+                     "lastName": userLastName!,
+                     "mobileNumber": trimmedString,
+                     "nickname": nicknameTextField.text ?? ""]
+                
+                APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
+                    if success {
+                        //Update flag
+                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // update some UI
+                            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                                self.navigationController?.pushViewController(smsValidation, animated: false)
+                            }
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.displayAlertMessage(message!, alertDescription: "")
                         }
                     }
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.displayAlertMessage(message!, alertDescription: "")
-                    }
-                }
-            })
+                })
+            }
         }
-    }
     }
 }
 
@@ -167,39 +159,37 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
         } else {
-          textField.resignFirstResponder()
+            textField.resignFirstResponder()
         }
         return true
     }
     
     //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print(range)
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 4 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
                     textField.text = String(textField.text!.characters.dropLast())
                     textField.text = String(textField.text!.characters.dropLast())
                 }
             } else  {
-                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 4 || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == 9 {
+                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
                     let space = " "
                     
                     textField.text = "\(textField.text!) \(space)"
                 }            }
             previousRange = range
             
-            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= 13
+            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
         }
         return true
     }
     
     func keyboardWillShow(notification:NSNotification){
-        
-        var userInfo = notification.userInfo!
+        guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
         keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-        self.scrollView.contentInset.top = self.scrollView.contentInset.top + 20.0
+        self.scrollView.contentInset.top = self.scrollView.contentInset.top 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height
         self.scrollView.contentInset = contentInset
@@ -209,7 +199,7 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         
         self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
-
+    
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
         view.endEditing(true)
