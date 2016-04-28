@@ -13,7 +13,10 @@ class YonaCustomDatePickerView: UIView {
     var selectedValue: String?
     var parentView: UIView?
     
+    @IBOutlet weak var cancelButtonTitle: UIBarButtonItem!
+    @IBOutlet weak var okButtonTitle: UIBarButtonItem!
     @IBOutlet weak var pickerTitleLabel: UIBarButtonItem!
+    
     @IBAction func cancelAction(sender: AnyObject) {
         gCancelListener?()
     }

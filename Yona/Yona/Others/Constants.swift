@@ -132,8 +132,15 @@ struct YonaConstants {
     struct nsUserDefaultsKeys{
         static let isBlocked = "isBlocked"
         static let screenToDisplay = "screenToDisplay"
+        static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
     }
 
+    struct timeBucketTabNames{
+        static let budget = "Budget"
+        static let timeZone = "TimeZone"
+        static let noGo = "NoGo"
+    }
+    
     struct screenNames{
         static let walkThrough = "WalkThrough"
         static let welcome = "Welcome"

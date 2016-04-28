@@ -41,8 +41,8 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         //        keyboard functions
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {

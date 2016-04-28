@@ -38,6 +38,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -72,10 +73,18 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
             zonesArray = (goalCreated?.zonesStore)!
+            
+        }
+        if self.zonesArray.count == 0 {
+            self.setChallengeButton.enabled = false
+            self.setChallengeButton.alpha = 0.5
         }
         self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.picker?.hideShowDatePickerView(isToShow: false)
+    }
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -113,7 +122,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     }
                 })
             }
-        }else {
+        } else {
             
         }
     }
@@ -122,6 +131,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         zonesArray.append("10:00-10:00")
         self.isFromButton = true
         self.picker?.pickerTitleLabel("From")
+        self.picker?.okButtonTitle.title = "Next"
         self.picker?.hideShowDatePickerView(isToShow: true)
     }
     
@@ -146,7 +156,15 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
+            if self.picker?.cancelButtonTitle.title == "Prev" {
+                self.isFromButton = true
+                self.picker?.pickerTitleLabel.title = "From"
+                self.picker?.hideShowDatePickerView(isToShow: true)
+                self.picker?.cancelButtonTitle.title = "Cancel"
+                self.picker?.okButtonTitle.title = "Next"
+            }
         }) { (doneValue) in
+            
             let tempArr: String?
             if (self.activeIndexPath != nil) {
                 if doneValue != "" {
@@ -160,18 +178,19 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
             }
             
-            
-            
             self.picker?.hideShowDatePickerView(isToShow: false)
-            
             
             if self.isFromButton {
                 self.picker?.hideShowDatePickerView(isToShow: true)
                 self.picker?.pickerTitleLabel("To")
+                self.picker?.okButtonTitle.title = "Done"
+                self.picker?.cancelButtonTitle.title = "Prev"
                 self.isFromButton = false
             } else {
                 self.activeIndexPath = nil
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.setChallengeButton.enabled = true
+                    self.setChallengeButton.alpha = 1.0
                     self.tableView.reloadData()
                 })
             }
@@ -211,6 +230,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
+            self.picker?.okButtonTitle.title = "Next"
             self.picker?.hideShowDatePickerView(isToShow: true)
         }) { (cell) in
             self.activeIndexPath = indexPath

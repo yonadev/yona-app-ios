@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGp-4Z-Qhc">
-                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <state key="normal" image="icnNext"/>
                                 <connections>
                                     <action selector="nextAction:" destination="owo-71-flO" eventType="touchUpInside" id="X6B-J7-3Qs"/>
@@ -85,7 +85,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Z5-Vl-P5l">
-                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <state key="normal" image="icnNext"/>
                                 <connections>
                                     <action selector="nextAction:" destination="tRi-d7-LCh" eventType="touchUpInside" id="CUB-El-lr5"/>
@@ -126,7 +126,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsG-2Z-nkg">
-                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <state key="normal" image="icnNext"/>
                                 <connections>
                                     <action selector="nextAction:" destination="dXK-V7-QFs" eventType="touchUpInside" id="QgD-tC-8NW"/>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTQ-We-77n">
-                                <rect key="frame" x="556" y="556" width="24" height="24"/>
+                                <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <state key="normal" image="icnNext"/>
                                 <connections>
                                     <action selector="nextAction:" destination="TvG-XZ-5M6" eventType="touchUpInside" id="7KQ-md-Tfs"/>
@@ -214,7 +214,7 @@
     </scenes>
     <resources>
         <image name="confinesSlide" width="375" height="667"/>
-        <image name="icnNext" width="24" height="24"/>
+        <image name="icnNext" width="22" height="21"/>
         <image name="sharingSlide" width="375" height="667"/>
         <image name="timespentSlide" width="375" height="667"/>
         <image name="transparencySlide" width="375" height="667"/>
