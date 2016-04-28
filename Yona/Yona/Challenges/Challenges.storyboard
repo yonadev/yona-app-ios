@@ -265,7 +265,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NO GO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
-                                                        <rect key="frame" x="81.5" y="99" width="36.5" height="13"/>
+                                                        <rect key="frame" x="82" y="99" width="36" height="13"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -356,7 +356,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
-                                                    <rect key="frame" x="514" y="15.5" width="56" height="49"/>
+                                                    <rect key="frame" x="514" y="16" width="56" height="49"/>
                                                     <state key="normal" image="addCircel"/>
                                                     <connections>
                                                         <action selector="addNewGoalbuttonTapped:" destination="QvV-Rl-xbI" eventType="touchUpInside" id="LS0-Dg-9NM"/>
@@ -1157,7 +1157,7 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1422" y="-257"/>
+            <point key="canvasLocation" x="1436" y="-394"/>
         </scene>
         <!--Time Frame No Go Challenge View Controller-->
         <scene sceneID="dB4-QS-vSu">
@@ -1382,6 +1382,7 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="deleteGoalButton" destination="39Z-6A-Wlr" id="iWT-Aa-1Ca"/>
                         <outlet property="footerGradientView" destination="9T7-6Q-RTF" id="5yU-Kb-JEU"/>
                         <outlet property="gradientView" destination="8Mc-PN-X8W" id="OJ2-VW-XNm"/>
+                        <outlet property="headerImage" destination="ube-g2-H23" id="qG4-96-rGY"/>
                         <outlet property="headerView" destination="vLg-dg-Et7" id="S0N-7Y-eJj"/>
                         <outlet property="scrollView" destination="KhB-rS-Ocr" id="xGI-sp-b1U"/>
                         <outlet property="setChallengeButton" destination="nNe-wI-qBq" id="LcL-Hk-6Xb"/>

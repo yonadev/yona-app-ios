@@ -55,14 +55,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
-        
-        
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
-            
             
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
@@ -86,7 +83,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
-        print("integrate post  challenge")
         if isFromActivity == true {
             
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
@@ -98,8 +94,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     ],
                     "zones": zonesArray
                 ];
-                
-                
                 
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
@@ -159,13 +153,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 if doneValue != "" {
                     tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
                     self.zonesArray[(self.activeIndexPath?.row)!] = tempArr!
-                    print("************** TempArr \(tempArr)")
                 }
             } else {
                 if doneValue != "" {
                     tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
                     self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
-                    print("************** TempArr \(tempArr)")
                 }
             }
             
@@ -184,12 +176,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             }
-            
-            //            self.tableView.reloadData()
-            
-            print("Value updated \(self.zonesArray)")
-            
-            
         }
     }
     
@@ -223,20 +209,33 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArray[indexPath.row]
         cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
-            print("From Button Clicked in cell")
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.hideShowDatePickerView(isToShow: true)
         }) { (cell) in
-            print("to Button Clicked in cell")
             self.activeIndexPath = indexPath
             self.isFromButton = false
             self.picker?.hideShowDatePickerView(isToShow: true)
         }
-        
+        cell.rowNumber.text = String(indexPath.row + 1)
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            self.zonesArray.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if self.zonesArray.count == 0 {
+                self.setChallengeButton.enabled = false
+                self.setChallengeButton.alpha = 0.5
+            }
+        }
     }
 }
 

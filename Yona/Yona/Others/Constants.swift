@@ -130,6 +130,12 @@ struct YonaConstants {
         static let netherlands = 11
     }
     
+    struct mobilePhoneSpace{
+        static let mobileFirstSpace = 4
+        static let mobileMiddleSpace = 9
+        static let mobileLastSpace = 13
+    }
+    
     struct testKeys{
         static let otpTestCode = "1234"
     }

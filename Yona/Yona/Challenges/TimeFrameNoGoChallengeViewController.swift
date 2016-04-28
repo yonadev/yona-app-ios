@@ -18,7 +18,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var budgetChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIButton!
-    
+    @IBOutlet var headerImage: UIImageView!
+
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -57,6 +58,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
+
+        self.headerImage.image = UIImage(named: "icnChallengeNogo")
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
@@ -97,7 +100,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
                     })
                 }
-            })
+            }) 
         }
     }
     
@@ -108,7 +111,13 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             let goalEditLink = goalUnwrap.editLinks {
             APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    if serverCode == YonaConstants.serverCodes.OK {
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    } else if serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage", comment: ""), alertDescription: "")
+                    } else {
+                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    }
                 })
             }
         }
