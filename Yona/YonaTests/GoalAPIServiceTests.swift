@@ -213,7 +213,7 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
         
     }
     
@@ -232,11 +232,15 @@ class GoalAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
-            
-            APIServiceManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
-                print(goals)
-                XCTAssertTrue(success, "Received Goals")
-                expectation.fulfill()
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
+                        print(goals)
+                        XCTAssertTrue(success, "Received Goals")
+                        expectation.fulfill()
+                    }
+                }
             }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
@@ -486,19 +490,16 @@ class GoalAPIServiceTests: XCTestCase {
                     
                     APIServiceManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
                         if success {
-                            //the no go goal types are already there (I.e. gambling)
+                            //As the user has just been created there is one mandatory goal, Gambling, this has no editlink so cannot be removed
                             APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in
                                 for goal in goals! {
                                     //so get this goal
                                     if goal.goalType == GoalType.NoGoGoalString.rawValue {
                                         //Now try to delete the Gambling goal, which we cannot error = "error.goal.cannot.add.second.on.activity.category"
-                                        APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!) { (success, serverMessage, serverCode) in
-                                            if let serverCode = serverCode,
-                                                let serverMessage = serverMessage{
-                                                //we expect the server to say you cannot delete a mandatory goal like gambling
-                                                XCTAssertTrue(serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal, serverMessage)
-                                                expectation.fulfill()
-                                            }
+                                        if let goalEditLink = goal.editLinks {
+                                            XCTFail("Gambling should not have an editlink, therefore this test has failed and Bert needs to fix it, probably")
+                                        } else {
+                                            expectation.fulfill()
                                         }
                                     }
                                 }
@@ -512,7 +513,7 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
         
     }
     
@@ -539,7 +540,7 @@ class GoalAPIServiceTests: XCTestCase {
                                         for goal in goals! {
                                             print("Goal ID Before" + goal.goalID!)
 
-                                            APIServiceManager.sharedInstance.getUsersGoalWithID(goal.goalID!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
+                                            APIServiceManager.sharedInstance.getUsersGoalWithID(goal.selfLinks!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
                                                 print(goalReturned?.activityCategoryLink)
                                                 print(goalReturned?.goalType)
                                                 print(goalReturned?.goalID)
@@ -603,7 +604,7 @@ class GoalAPIServiceTests: XCTestCase {
                         (success, serverMessage, serverCode, goal, nil, err) in
                         if success {
                             //then once it is posted we can delete it
-                            APIServiceManager.sharedInstance.deleteUserGoal(goal!.goalID!) { (success, serverMessage, serverCode) in
+                            APIServiceManager.sharedInstance.deleteUserGoal(goal!.editLinks!) { (success, serverMessage, serverCode) in
                                 if success {
                                     expectation.fulfill()
                                 } else {

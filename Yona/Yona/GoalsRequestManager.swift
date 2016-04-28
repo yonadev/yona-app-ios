@@ -327,6 +327,8 @@ extension APIServiceManager {
                         onCompletion(true, self.serverMessage, self.serverCode)
                         
                     })
+                } else {
+                    onCompletion(false, YonaConstants.serverMessages.NoEditLinkCannotRemoveMandatoryGoal, YonaConstants.serverCodes.cannotRemoveMandatoryGoal)
                 }
             } else {
                 onCompletion(false, message, code)

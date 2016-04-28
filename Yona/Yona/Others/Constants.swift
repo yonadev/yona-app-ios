@@ -116,6 +116,9 @@ struct YonaConstants {
         static let FailedToRetrieveUserDetailsForDeleteUser = "Failed to retrieve the details to delete the user"
         static let FailedToRetrieveConfirmMobile = "Failed to retrieve details for confirm mobile"
         static let FailedToRetrieveGetUserGoals = "Failed to get the users goals"
+        static let CannotRemoveMandatoryGoal = "Cannot remove a mandatory goal"
+        static let NoEditLinkCannotRemoveMandatoryGoal = "No Edit Link, because this is a mandatory goal and you cannot remove it!"
+
     }
     
     struct serverResponseKeys{

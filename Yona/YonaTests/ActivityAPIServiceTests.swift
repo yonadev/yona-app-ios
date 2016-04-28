@@ -29,39 +29,70 @@ class ActivityAPIServiceTests: XCTestCase {
     }
     
     func testGetActivityCategories() {
+        //setup
         let expectation = expectationWithDescription("Waiting to respond")
-        let password = NSUUID().UUIDString
-        let keychain = KeychainSwift()
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
-            if success{
-                for activity in activities! {
-                    print(activity.activityCategoryName)
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                        if success{
+                            for activity in activities! {
+                                print(activity.activityCategoryName)
+                            }
+                            expectation.fulfill()
+                        }
+                    }
                 }
-                expectation.fulfill()
             }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
     func testGetActivityCategoryWithID() {
-        let expectation = expectationWithDescription("Waiting to respond")
-        let password = NSUUID().UUIDString
-        let keychain = KeychainSwift()
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
         
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
-            if success {
-                let activity = activities![0]
-                print(activity)
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                        if success {
+                            let activity = activities![0]
+                            print(activity)
 
-                APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
-                    if success{
-                        print(activity)
-                        expectation.fulfill()
+                            APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                                if success{
+                                    print(activity)
+                                    expectation.fulfill()
+                                }
+                            })
+                        }
                     }
-                })
+                }
             }
         }
 
