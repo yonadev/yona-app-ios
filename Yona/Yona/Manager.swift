@@ -14,8 +14,7 @@ typealias APIPinResetResponse = (Bool, PinCode?, ServerMessage?, ServerCode?) ->
 typealias APIGoalSizeResponse = (Int) -> Void
 typealias APIActivityLinkResponse = (Bool, String?, ServerMessage?, ServerCode?) -> Void
 typealias APIUserResponse = (Bool, ServerMessage?, ServerCode?, Users?) -> Void
-typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, NSError?) -> Void
-typealias APIGoalArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Goal>?, NSError?) -> Void
+typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, Array<Goal>?, NSError?) -> Void
 typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 

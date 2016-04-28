@@ -32,3 +32,19 @@ enum httpMethods: String{
     case get = "GET"
     case put = "PUT"
 }
+
+enum pinRequestTypes{
+    case resetRequest
+    case verifyRequest
+    case clearRequest
+}
+
+enum userRequestTypes{
+    case postUser
+    case deleteUser
+    case getUser
+    case putUser
+    case confirmMobile
+    case resendMobileConfirmCode
+
+}

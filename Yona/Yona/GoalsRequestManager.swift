@@ -1,0 +1,336 @@
+//
+//  GoalsRequestManager.swift
+//  Yona
+//
+//  Created by Ben Smith on 28/04/16.
+//  Copyright © 2016 Yona. All rights reserved.
+//
+
+import Foundation
+
+private var budgetGoals:[Goal] = [] //Array returning budget goals
+private var timezoneGoals:[Goal] = [] //Array returning timezone goals
+private var noGoGoals:[Goal] = [] //Array returning no go goals
+private var newGoal: Goal?
+private var goals:[Goal] = [] //Array returning all the goals returned by getGoals
+
+//MARK: - Goal APIService
+extension APIServiceManager {
+    
+    /**
+     Helper method for UI to returns the size of the goals arrays, so challenges know how many goals there
+     
+     - parameter: goalType: GoalType, goal type that we want array size for
+     - return:  onCompletion: APIGoalSizeResponse, returns server response messages, and goal array size
+     */
+    func getGoalsSizeOfGoalType(goalType: GoalType, onCompletion: APIGoalSizeResponse) {
+        
+        switch goalType {
+        case GoalType.BudgetGoalString:
+            guard budgetGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(budgetGoals.count)
+        case GoalType.TimeZoneGoalString:
+            guard timezoneGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(timezoneGoals.count)
+        case GoalType.NoGoGoalString:
+            guard noGoGoals.isEmpty else {
+                onCompletion(0)
+                return
+            }
+            onCompletion(noGoGoals.count)
+        }
+    }
+    
+    /**
+     Private func used by API service method getGoalsOfType to sort the goals into their appropriate array types and return the array request of that type of goals
+     
+     - parameter: goalType: GoalType, The goaltype that we require the array for
+     - return: onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
+     */
+    private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalResponse){
+        budgetGoals = []
+        timezoneGoals = []
+        noGoGoals = []
+        //sort out the goals into their arrays
+        for goal in goals {
+            
+            switch goal.goalType! {
+            case GoalType.BudgetGoalString.rawValue:
+                budgetGoals.append(goal)
+            case GoalType.TimeZoneGoalString.rawValue:
+                timezoneGoals.append(goal)
+            case GoalType.NoGoGoalString.rawValue:
+                noGoGoals.append(goal)
+            default:
+                break
+            }
+        }
+        //which array shall we send back?
+        switch goalType {
+        case GoalType.BudgetGoalString:
+            onCompletion(true, serverMessage, serverCode, nil, budgetGoals, nil)
+        case GoalType.TimeZoneGoalString:
+            onCompletion(true, serverMessage, serverCode, nil, timezoneGoals, nil)
+        case GoalType.NoGoGoalString:
+            onCompletion(true, serverMessage, serverCode, nil, noGoGoals, nil)
+        }
+    }
+    
+    /**
+     Returns to the UI goals of a certain type that the user has set as a challenge
+     
+     - parameter: goalType: GoalType, the GoalType (budget, timezone nogo)
+     - return: onCompletion: APIGoalResponse, returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
+     */
+    func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalResponse) {
+        self.APIServiceCheck { (success, networkMessage, networkCode) in
+            if success {
+                self.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
+                            self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, nil, goals, error) in
+                                onCompletion(success, serverMessage, serverCode, nil, goals, error)
+                            })
+                        }
+                    }
+                }
+            } else {
+                //Goals not initialised
+                guard goals.isEmpty else {
+                    onCompletion(false, networkMessage, networkCode, nil, nil, nil)
+                    return
+                }
+                //if we already got some goals then just send back the ones we have...
+                self.sortGoalsIntoArray(goalType) { (success, message, code, nil, goals, error) in
+                    onCompletion(false, networkMessage, networkCode, nil, goals, error)
+                }
+            }
+        }
+    }
+    
+    /**
+     Helper method to get all the goals associated to the user logged in
+     
+     - parameter: none
+     - return: onCompletion: APIGoalResponse,returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
+     */
+    func getAllTheGoalsArray(onCompletion: APIGoalResponse) {
+        self.APIServiceCheck { (success, networkMessage, networkCode) in
+            if success {
+                self.getActivitiesArray({ (success, message, server, activities, error) in
+                    if success {
+                        self.getUserGoals(activities!) { (success, serverMessage, serverCode, nil, goals, error) in
+                            onCompletion(success, serverMessage, serverCode, nil, goals, error)
+                        }
+                    }
+                })
+            } else {
+                //Goals not initialised
+                guard goals.isEmpty else {
+                    onCompletion(false, networkMessage, networkCode, nil, nil, nil)
+                    return
+                }
+                //if we already got some goals then just send back the ones we have...
+                onCompletion(false, networkMessage, networkCode, nil, goals, nil)
+            }
+        }
+    }
+    
+    /**
+     Generic method to get the goals or post a goal, as they require the same actions but just a different httpmethod
+     
+     - parameter: httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
+     - parameter: body: BodyDataDictionary?, body that is needed in a POST call, can be nil
+     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     */
+    private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, onCompletion: APIGoalResponse) {
+        //check network
+        APIServiceCheck { (success, message, code) in
+            if success {
+                //success get our activities
+                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        //success so get the user
+                        self.getUser{ (success, message, code, user) in
+                            if success {
+                                //get the path to get all the goals from user object
+                                if let path = user?.getAllGoalsLink {
+                                    //do request with specific httpmethod
+                                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, err in
+                                        if let json = json {
+                                            guard success == true else {
+                                                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
+                                                return
+                                            }
+                                            
+                                            //if we get a goals array response, send back the array of goals
+                                            goals = []
+                                            if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                                let embeddedGoals = embedded[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                                                //iterate embedded goals response
+                                                for goal in embeddedGoals {
+                                                    if let goal = goal as? BodyDataDictionary {
+                                                        newGoal = Goal.init(goalData: goal, activities: activities!)
+                                                        goals.append(newGoal!)
+                                                    }
+                                                }
+                                                onCompletion(true, self.serverMessage, self.serverCode, nil, goals, err)
+                                            } else { //if we just get one goal, for post goal, just that goals is returned so send that back
+                                                newGoal = Goal.init(goalData: json, activities: activities!)
+                                                onCompletion(true, self.serverMessage, self.serverCode, newGoal, nil, err)
+                                            }
+                                            
+                                        } else {
+                                            //response from request failed, json is nil
+                                            onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
+                                        }
+                                    })
+                                } else {
+                                    //response from request failed, json is nil
+                                    //Failed to retrive details for GET user details request
+                                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
+                                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals], code: 1)
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil, nil)
+                                }
+                            } else {
+                                onCompletion(false, message, code, nil, nil, nil)
+                            }
+                        }
+                    } else {
+                        onCompletion(false, message, code, nil, nil, nil)
+                    }
+                }
+            } else {
+                onCompletion(false, message, code, nil, nil, nil)
+            }
+        }
+    }
+    
+    /**
+     Called to get all the users goals
+     
+     - parameter: activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
+     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     */
+    func getUserGoals(activities: [Activities], onCompletion: APIGoalResponse) {
+        self.goalsHelper(httpMethods.get, body: nil) { (success, message, server, goal, goals, error) in
+            if success {
+                onCompletion(true, message, server, nil, goals, error)
+            } else {
+                onCompletion(false, message, server, nil, nil, error)
+            }
+        }
+    }
+    
+    /**
+     Posts a new goal of a certain type defined in the body, sends the goal back to the UI
+     
+     - parameter: body: BodyDataDictionary, the body of the goal that needs to be posted, example below:
+     NOGO GOAL: (budget type and 0 maxduration)
+     {
+         "@type": "BudgetGoal",
+            "_links": {
+                "yona:activityCategory": {
+                    "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
+                }
+            },
+        "maxDurationMinutes":"0"
+     }
+     
+     BUDGET GOAL:
+             {
+                "@type": "BudgetGoal",
+                "_links": {
+                    "yona:activityCategory": {
+                        "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
+                        }
+                    },
+                "maxDurationMinutes":"10"
+             }
+     
+     TIMEZONE GOAL:
+             {
+                 "@type": "TimeZoneGoal",
+                 "_links": {
+                 "yona:activityCategory": {
+                    "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”    ///could be social or whatever
+                    }
+                 },
+                 "zones": ["8:00-17:00", "8:00-17:00"]
+             }
+     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     */
+    func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
+        self.goalsHelper(httpMethods.post, body: body) { (success, message, server, goal, goals, error) in
+            if success {
+                onCompletion(true, message, server, goal, nil, error)
+            } else {
+                onCompletion(false, message, server, goal, nil, error)
+            }
+        }
+    }
+    
+    /**
+     Implements API call get goal with ID, given the self link for a goal it returns the goal requested
+     
+     - parameter: goalSelfLink: String, the self link for the goal that we require
+     - return: onCompletion: APIGoalResponse, gives response messages and the goal requested
+     */
+    func getUsersGoalWithID(goalSelfLink: String, onCompletion: APIGoalResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    if success {
+                        self.callRequestWithAPIServiceResponse(nil, path: goalSelfLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
+                            if let json = json {
+                                guard success == true else {
+                                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
+                                    return
+                                }
+                                newGoal = Goal.init(goalData: json, activities: activities!)
+                                onCompletion(true, self.serverMessage, self.serverCode, newGoal, nil, err)
+                            } else {
+                                //response from request failed, json is nil
+                                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
+                            }
+                        })
+                    }
+                }
+            } else {
+                //passes back network failed messages
+                onCompletion(false, message, code, nil, nil, nil)
+            }
+        }
+    }
+    
+    /**
+     Implements API delete goal, given the edit link for the goal (if it exists, as it will not on Mandatory goals)
+     
+     - parameter: goalEditLink: String?, If a goal is not mandatory then it will have and edit link and we will beable to delete it
+     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     */
+    func deleteUserGoal(goalEditLink: String?, onCompletion: APIResponse) {
+        APIServiceCheck { (success, message, code) in
+            if success {
+                if let goalEditLinkUnwrap = goalEditLink {
+                    self.callRequestWithAPIServiceResponse(nil, path: goalEditLinkUnwrap, httpMethod: httpMethods.delete, onCompletion: { success, json, err in
+                        guard success == true else {
+                            onCompletion(false, self.serverMessage, self.serverCode)
+                            return
+                        }
+                        onCompletion(true, self.serverMessage, self.serverCode)
+                        
+                    })
+                }
+            } else {
+                onCompletion(false, message, code)
+            }
+        }
+    }
+}

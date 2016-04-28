@@ -140,12 +140,12 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             #if DEBUG
                 let body = ["code": code]
             #endif
-            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
+            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
                 if success {
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
-                    APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                    APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
                         dispatch_async(dispatch_get_main_queue()) {
                             #if DEBUG
                             self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")

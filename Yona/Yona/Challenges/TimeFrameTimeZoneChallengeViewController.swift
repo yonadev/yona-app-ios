@@ -102,7 +102,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 
                 
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
-                    (success, serverMessage, serverCode, goal, err) in
+                    (success, serverMessage, serverCode, goal, goals, err) in
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap

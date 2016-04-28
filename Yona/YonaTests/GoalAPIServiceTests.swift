@@ -43,7 +43,7 @@ class GoalAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
-            APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goals, err) in
+            APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goal, goals, err) in
                 if let goalsUnwrap = goals {
                     if success {
                         for goal in goalsUnwrap {
@@ -97,13 +97,13 @@ class GoalAPIServiceTests: XCTestCase {
                         "maxDurationMinutes": "30"
                     ]
                     //now we can post the goal
-                    APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (success, message, code, goal, error) in
+                    APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal, onCompletion: { (success, message, code, goal, goals, error) in
                         if success {
                             //now we can post the goal
-                            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (success, message, code, goal, error) in
+                            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal, onCompletion: { (success, message, code, goal, nil, error) in
                                 if success {
                                     //no
-                                    APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, goals, err) in
+                                    APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
                                         if let goalsUnwrap = goals {
                                             if success {
                                                     for goal in goalsUnwrap {
@@ -167,13 +167,13 @@ class GoalAPIServiceTests: XCTestCase {
                         ]
                     
                         //add budget goal
-                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, error) in
+                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, nil, error) in
                             if success {
 
-                                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, error) in
+                                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, nil, error) in
                                     if success {
                                         //no
-                                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, goals, err) in
+                                        APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, nil, goals, err) in
                                             if let goalsUnwrap = goals {
                                                 if success {
                                                     for goal in goalsUnwrap {
@@ -219,7 +219,7 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             
-            APIServiceManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, goals, error) in
+            APIServiceManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
                 print(goals)
                 XCTAssertTrue(success, "Received Goals")
                 expectation.fulfill()
@@ -248,7 +248,7 @@ class GoalAPIServiceTests: XCTestCase {
             APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                 if success {
                     //Get all the goals
-                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                         if(success){
                             for goal in goals! {
                                 print(goal.goalType)
@@ -306,12 +306,12 @@ class GoalAPIServiceTests: XCTestCase {
                         "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
                     ]
                     APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
-                        (success, serverMessage, serverCode, goal, err) in
+                        (success, serverMessage, serverCode, goal, nil, err) in
                         if success {
                             APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                                 if success {
                                     //Get the goals again to see if the goals have been updated after our post
-                                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                                    APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                         print(goals)
                                         //we want to remove the news goal so find it
                                         for goal in goals! {
@@ -366,9 +366,9 @@ class GoalAPIServiceTests: XCTestCase {
             ]
 
             APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+                (success, serverMessage, serverCode, goal, nil, err) in
                 APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                    (success, serverMessage, serverCode, goal, err) in
+                    (success, serverMessage, serverCode, goal, nil, err) in
                     //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                     if let serverMessage = serverMessage {
                         XCTAssertTrue(serverMessage == "Cannot add second goal on activity category 'News'", serverMessage ?? "Unknown error")
@@ -409,8 +409,8 @@ class GoalAPIServiceTests: XCTestCase {
             ]
    
             APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
-                APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, goals, error) in
+                (success, serverMessage, serverCode, goal, goals, err) in
+                APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, nil, goals, error) in
                     //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                     if success {
                         for goal in goals! {
@@ -452,7 +452,7 @@ class GoalAPIServiceTests: XCTestCase {
             APIServiceManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
                 if success {
                     //the no go goal types are already there (I.e. gambling)
-                    APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goals, error) in
+                    APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in
                         for goal in goals! {
                             //so get this goal
                             if goal.goalType == GoalType.NoGoGoalString.rawValue {
@@ -494,12 +494,12 @@ class GoalAPIServiceTests: XCTestCase {
             if success {
                 APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                     if success {
-                        APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, goals, err) in
+                        APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                             if(success){
                                 for goal in goals! {
                                     print("Goal ID Before" + goal.goalID!)
 
-                                    APIServiceManager.sharedInstance.getUsersGoalWithID(goal.goalID!, onCompletion: { (success, serverMessage, serverCode, goalReturned, err) in
+                                    APIServiceManager.sharedInstance.getUsersGoalWithID(goal.goalID!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
                                         print(goalReturned?.activityCategoryLink)
                                         print(goalReturned?.goalType)
                                         print(goalReturned?.goalID)
@@ -556,7 +556,7 @@ class GoalAPIServiceTests: XCTestCase {
                     ]
                     
                     APIServiceManager.sharedInstance.postUserGoals(postGoalBody) {
-                        (success, serverMessage, serverCode, goal, err) in
+                        (success, serverMessage, serverCode, goal, nil, err) in
                         if success {
                             //then once it is posted we can delete it
                             APIServiceManager.sharedInstance.deleteUserGoal(goal!.goalID!) { (success, serverMessage, serverCode) in

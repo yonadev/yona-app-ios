@@ -73,7 +73,7 @@ class PinResetAPIServiceTests: XCTestCase {
                         let body = ["code": YonaConstants.testKeys.otpTestCode]
                     #endif
                     //reset verify code withotp
-                    APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
+                    APIServiceManager.sharedInstance.pinResetVerify(body) { (success, pincode, message, code) in
                         XCTAssert(success, message!)
                         if success {
                             XCTAssert(success, message!)
@@ -110,10 +110,10 @@ class PinResetAPIServiceTests: XCTestCase {
                             let body = ["code": YonaConstants.testKeys.otpTestCode]
                         #endif
                         //reset verify code withotp
-                        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
+                        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, nil, message, code) in
                             XCTAssert(success, message!)
                             if success {
-                                APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                                APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
                                     XCTAssert(success, message!)
                                     if success {
                                         XCTAssert(success, message!)

@@ -82,7 +82,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+                (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
