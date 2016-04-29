@@ -19,6 +19,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,6 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
 
         setupUI()
     }
-    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -70,6 +70,8 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         //Nav bar Back button.        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.makeBlackNavigationbar()
+//        self.navigationController?.navigationBar.makeBlackNavigationBar()
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
@@ -121,6 +123,9 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
     //MARK: Keyboard Functions
     
     func keyboardWillShow(notification:NSNotification){
+      
+      
+        
         
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
@@ -130,10 +135,11 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height
         self.scrollView.contentInset = contentInset
+       
     }
     
     func keyboardWillHide(notification:NSNotification){
-        
+
         self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
     

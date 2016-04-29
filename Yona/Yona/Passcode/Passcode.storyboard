@@ -310,7 +310,7 @@ Stel je pincode hieronder in. </string>
         </scene>
     </scenes>
     <resources>
-        <image name="icnAccountCreated" width="44" height="44"/>
-        <image name="icnSecure" width="44" height="44"/>
+        <image name="icnAccountCreated" width="48" height="48"/>
+        <image name="icnSecure" width="48" height="48"/>
     </resources>
 </document>
