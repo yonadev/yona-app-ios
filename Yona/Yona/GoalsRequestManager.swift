@@ -318,30 +318,6 @@ extension APIServiceManager {
                 onCompletion(false, message, server, goal, nil, error)
             }
         }
-//        APIServiceCheck { (success, message, code) in
-//            if success {
-//                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
-//                    if success {
-//                        self.callRequestWithAPIServiceResponse(nil, path: goalSelfLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
-//                            if let json = json {
-//                                guard success == true else {
-//                                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
-//                                    return
-//                                }
-//                                newGoal = Goal.init(goalData: json, activities: activities!)
-//                                onCompletion(true, self.serverMessage, self.serverCode, newGoal, nil, err)
-//                            } else {
-//                                //response from request failed, json is nil
-//                                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
-//                            }
-//                        })
-//                    }
-//                }
-//            } else {
-//                //passes back network failed messages
-//                onCompletion(false, message, code, nil, nil, nil)
-//            }
-//        }
     }
     
     /**
@@ -360,23 +336,4 @@ extension APIServiceManager {
             }
         }
     }
-//        APIServiceCheck { (success, message, code) in
-//            if success {
-//                if let goalEditLinkUnwrap = goalEditLink {
-//                    self.callRequestWithAPIServiceResponse(nil, path: goalEditLinkUnwrap, httpMethod: httpMethods.delete, onCompletion: { success, json, err in
-//                        guard success == true else {
-//                            onCompletion(false, self.serverMessage, self.serverCode)
-//                            return
-//                        }
-//                        onCompletion(true, self.serverMessage, self.serverCode)
-//                        
-//                    })
-//                } else {
-//                    onCompletion(false, YonaConstants.serverMessages.NoEditLinkCannotRemoveMandatoryGoal, YonaConstants.serverCodes.cannotRemoveMandatoryGoal)
-//                }
-//            } else {
-//                onCompletion(false, message, code)
-//            }
-//        }
-//    }
 }
