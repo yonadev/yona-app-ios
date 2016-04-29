@@ -49,28 +49,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func hockeyAppSetup() {
-        var keys: NSDictionary?
+        let secretKey = kHockeyAppKey
         
-        if let path = NSBundle.mainBundle().pathForResource("SecretKeys", ofType: "plist") {
-            keys = NSDictionary(contentsOfFile: path)
-        } else {
-            assertionFailure("You need the SecretKeys.plist file")
-        }
-        
-        if let dict = keys {
-            let secretKey = dict["hockeyapp"] as! String
-            
-            BITHockeyManager.sharedHockeyManager().configureWithIdentifier(secretKey)
-            // Do some additional configuration if needed here
-            BITHockeyManager.sharedHockeyManager().testIdentifier()
-            BITHockeyManager.sharedHockeyManager().startManager()
-            BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
-            #if DEBUG
-                BITHockeyManager.sharedHockeyManager().updateManager.checkForUpdateOnLaunch = false
-            #else
-                BITHockeyManager.sharedHockeyManager().updateManager.checkForUpdateOnLaunch = true
-            #endif
-        }
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier(secretKey)
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().testIdentifier()
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        #if DEBUG
+            BITHockeyManager.sharedHockeyManager().updateManager.checkForUpdateOnLaunch = false
+        #else
+            BITHockeyManager.sharedHockeyManager().updateManager.checkForUpdateOnLaunch = true
+        #endif
     }
     
     func applicationWillTerminate(application: UIApplication) {

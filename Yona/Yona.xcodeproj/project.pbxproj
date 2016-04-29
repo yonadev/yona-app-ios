@@ -98,6 +98,7 @@
 		D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
+		D984921B1CD3B48600291B56 /* MacroAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D984921A1CD3B48600291B56 /* MacroAccessor.m */; };
 		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
 		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
 		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
@@ -294,6 +295,9 @@
 		D94A93C41CB291FC00ABE0F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		D98492171CD3B45300291B56 /* Yona-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yona-Bridging-Header.h"; sourceTree = "<group>"; };
+		D98492191CD3B48600291B56 /* MacroAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroAccessor.h; sourceTree = "<group>"; };
+		D984921A1CD3B48600291B56 /* MacroAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroAccessor.m; sourceTree = "<group>"; };
 		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -570,6 +574,9 @@
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
 				D9C744EC1CB3DFCA008E463A /* Protocols */,
+				D98492171CD3B45300291B56 /* Yona-Bridging-Header.h */,
+				D98492191CD3B48600291B56 /* MacroAccessor.h */,
+				D984921A1CD3B48600291B56 /* MacroAccessor.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1289,6 +1296,8 @@
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
+				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
+				D984921B1CD3B48600291B56 /* MacroAccessor.m in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				ADD5019B1CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift in Sources */,
@@ -1467,6 +1476,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"HOCKEYAPP_KEY=@\\\"$(HOCKEYAPP_KEY)\\\"",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1527,6 +1537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yona/Info.plist;
@@ -1535,7 +1546,9 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1545,15 +1558,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xaton B.V. (Ent)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;
 		};
