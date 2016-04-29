@@ -49,8 +49,8 @@
                     <connections>
                         <outlet property="containerView" destination="Fd0-uo-lbg" id="9hH-Pm-uOs"/>
                         <outlet property="tabbar" destination="oRs-QJ-w3g" id="1TK-lt-TtT"/>
-                        <segue destination="p5h-JA-Zrj" kind="show" identifier="Friends" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="hAC-tV-tgw"/>
-                        <segue destination="hyg-kM-0yM" kind="show" identifier="Profile" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="Muy-Xr-aZE"/>
+                        <segue destination="p5h-JA-Zrj" kind="custom" identifier="Friends" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="hAC-tV-tgw"/>
+                        <segue destination="hyg-kM-0yM" kind="custom" identifier="Profile" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="Muy-Xr-aZE"/>
                         <segue destination="4uT-GZ-Sgc" kind="custom" identifier="Challenges" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="o42-ai-FOU"/>
                         <segue destination="E41-LA-56o" kind="custom" identifier="Settings" customClass="TabBarSegue" customModule="Yona" customModuleProvider="target" id="fLX-2e-ZIB"/>
                     </connections>
