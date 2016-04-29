@@ -18,8 +18,8 @@ extension APIServiceManager {
     /**
      Helper method to return the activities in and array
      
-     - parameter: none
-     - return: onCompletion: APIActivitiesArrayResponse, the completion body returning array of activites, success or fail and server messages
+     - parameter none
+     - parameter onCompletion: APIActivitiesArrayResponse, the completion body returning array of activites, success or fail and server messages
      */
     func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
@@ -43,8 +43,8 @@ extension APIServiceManager {
     /**
      Returns a self link (used to get an activity not edit) for an activity of a specific type from the get all activities API,
      
-     - parameter: activityName: CategoryName, Category name such as Social, News or Gambling
-     - return: onCompletion: APIActivityLinkResponse, returns the link for an activity and success or fail and server messages and codes
+     - parameter activityName: CategoryName, Category name such as Social, News or Gambling
+     - parameter onCompletion: APIActivityLinkResponse, returns the link for an activity and success or fail and server messages and codes
      */
     func getActivityLinkForActivityName(activityName: CategoryName, onCompletion: APIActivityLinkResponse) {
         self.getActivitiesArray{ (success, message, code, activities, error) in
@@ -73,7 +73,7 @@ extension APIServiceManager {
     /**
      Get all the activities and return them in an array, non user specific set by the admin (YONA)
      
-     - return: onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
+     - parameter onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
      */
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
         APIServiceCheck { (success, message, code) in
@@ -123,8 +123,8 @@ extension APIServiceManager {
     /**
      IMplements the Activtiy with ID API call, and returns a specific activity identified by its ID
      
-     - parameter: activityID: String, activity ID
-     - return:onCompletion: APIActivityResponse, returns the activity requested as an Activities object
+     - parameter activityID: String, activity ID
+     - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
      */
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
         APIServiceCheck { (success, message, code) in

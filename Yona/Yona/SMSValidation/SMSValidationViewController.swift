@@ -129,14 +129,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             codeInputView.userInteractionEnabled = true
-            dispatch_async(dispatch_get_main_queue()) {
-                #if DEBUG
-//                    if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-//                        self.displayAlertMessage("Test Pincode", alertDescription:YonaConstants.testKeys.otpTestCode)
-//                    }
-                    //Now send user back to pinreset screen, let them enter pincode and password again
-                #endif
-            }
             #if DEBUG
                 let body = ["code": code]
             #endif
@@ -186,7 +178,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
-//                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
                         codeInputView.clear()
 
                     } else {
