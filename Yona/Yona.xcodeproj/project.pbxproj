@@ -15,6 +15,11 @@
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
 		907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5291CC51C310031850E /* NewDeviceRequests.swift */; };
+		90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */; };
+		90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */; };
+		90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */; };
+		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
+		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
@@ -210,6 +215,11 @@
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		907DA5291CC51C310031850E /* NewDeviceRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequests.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetRequestManager.swift; sourceTree = "<group>"; };
+		90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequestManager.swift; sourceTree = "<group>"; };
+		90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsRequestManager.swift; sourceTree = "<group>"; };
+		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
+		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBucketChallenges.swift; sourceTree = "<group>"; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -487,6 +497,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		90DE87991CD2374400C1E706 /* DAOObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
+				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
+				907DA5271CBE5C5D0031850E /* Activities.swift */,
+			);
+			name = DAOObjects;
+			sourceTree = "<group>";
+		};
+		90DE879A1CD2375500C1E706 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
+				907DA5231CBBD0400031850E /* Manager.swift */,
+				90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */,
+				90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */,
+				90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */,
+				90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */,
+				90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		AD291CE01CA90202008CAFB1 /* DashBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,11 +716,8 @@
 		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
-				907DA5231CBBD0400031850E /* Manager.swift */,
-				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
-				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
-				907DA5271CBE5C5D0031850E /* Activities.swift */,
+				90DE879A1CD2375500C1E706 /* Managers */,
+				90DE87991CD2374400C1E706 /* DAOObjects */,
 			);
 			name = DataService;
 			path = ..;
@@ -1266,6 +1297,7 @@
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				ADAEAFEB1CB44E80005ED7B4 /* AddDeviceViewController.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
+				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				ADAEAFE91CB43245005ED7B4 /* LoginViewController.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
@@ -1273,8 +1305,11 @@
 				AD291D691CA9400E008CAFB1 /* ChallengesViewController.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
+				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
+				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
+				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				ADD5019B1CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift in Sources */,
 				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
@@ -1293,6 +1328,7 @@
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
+				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,

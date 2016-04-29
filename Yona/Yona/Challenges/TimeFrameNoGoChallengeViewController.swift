@@ -85,7 +85,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+                (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
@@ -107,8 +107,9 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         
         //then once it is posted we can delete it
-        if let goalUnwrap = self.goalCreated {
-            APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
+        if let goalUnwrap = self.goalCreated,
+            let goalEditLink = goalUnwrap.editLinks {
+            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if serverCode == YonaConstants.serverCodes.OK {
                         self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")

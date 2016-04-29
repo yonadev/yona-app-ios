@@ -42,13 +42,19 @@ class PinResetAPIServiceTests: XCTestCase {
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
-            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
-                XCTAssert(success, pincode!)
-                expectation.fulfill()
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                        XCTAssert(success, pincode!)
+                        expectation.fulfill()
+                    }
+                }
             }
+
             
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
     
     func testUserRequestPinVerify() {
@@ -65,27 +71,30 @@ class PinResetAPIServiceTests: XCTestCase {
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
-            //reset pincode
-            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
-                //get otp sent again
-                APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                    #if DEBUG
-                        let body = ["code": YonaConstants.testKeys.otpTestCode]
-                    #endif
-                    //reset verify code withotp
-                    APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
-                        XCTAssert(success, message!)
-                        if success {
-                            XCTAssert(success, message!)
-                            expectation.fulfill()
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    //reset pincode
+                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                        //get otp sent again
+                        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                            let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
+                            //reset verify code withotp
+                            APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, pincode, message, code) in
+                                XCTAssert(success, message!)
+                                if success {
+                                    XCTAssert(success, message!)
+                                    expectation.fulfill()
+                                }
+                            }
                         }
+
                     }
                 }
-
             }
             
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
     
     func testUserRequestPinClear() {
@@ -102,24 +111,27 @@ class PinResetAPIServiceTests: XCTestCase {
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
-            APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
-                if success {
-                    //get otp sent again
-                    APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                        #if DEBUG
-                            let body = ["code": YonaConstants.testKeys.otpTestCode]
-                        #endif
-                        //reset verify code withotp
-                        APIServiceManager.sharedInstance.pinResetVerify(body) { (success, message, code) in
-                            XCTAssert(success, message!)
-                            if success {
-                                APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                        if success {
+                            //get otp sent again
+                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+                                let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
+                                //reset verify code withotp
+                                APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, nil, message, code) in
                                     XCTAssert(success, message!)
                                     if success {
-                                        XCTAssert(success, message!)
-                                        expectation.fulfill()
+                                        APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
+                                            XCTAssert(success, message!)
+                                            if success {
+                                                XCTAssert(success, message!)
+                                                expectation.fulfill()
+                                            }
+                                        })
                                     }
-                                })
+                                }
                             }
                         }
                     }
