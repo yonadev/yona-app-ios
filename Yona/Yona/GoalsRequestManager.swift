@@ -183,10 +183,13 @@ extension APIServiceManager {
                                         onCompletion(true, self.serverMessage, self.serverCode, newGoal, nil, err)
                                     }
                                     
+                                } else if httpmethodParam == httpMethods.delete {
+                                    onCompletion(true, self.serverMessage, self.serverCode, nil, nil, err)
                                 } else {
                                     //response from request failed, json is nil
                                     onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
                                 }
+
                             })
                         } else {
                             //response from request failed, json is nil
