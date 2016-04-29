@@ -38,6 +38,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
@@ -50,10 +51,10 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
-        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         
-        self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
+        bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+        timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
         if isFromActivity == true{
@@ -75,33 +76,32 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             zonesArray = (goalCreated?.zonesStore)!
             
         }
-        if self.zonesArray.count == 0 {
-            self.setChallengeButton.enabled = false
-            self.setChallengeButton.alpha = 0.5
+        if zonesArray.count == 0 {
+            setChallengeButton.enabled = false
+            setChallengeButton.alpha = 0.5
         }
-        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.picker?.hideShowDatePickerView(isToShow: false)
+        picker?.hideShowDatePickerView(isToShow: false)
     }
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-        
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
         if isFromActivity == true {
             
-            if let activityCategoryLink = activitiyToPost?.selfLinks! {
+            if let activityCategoryLink = activitiyToPost?.selfLinks {
                 
                 let bodyTimeZoneSocialGoal = [
                     "@type": "TimeZoneGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": activityCategoryLink]
+                    YonaConstants.jsonKeys.linksKeys: [
+                        YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
                     ],
-                    "zones": zonesArray
+                    YonaConstants.jsonKeys.zones: zonesArray
                 ];
                 Loader.Show(delegate: self)
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
@@ -124,18 +124,16 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     }
                 })
             }
-        } else {
-            
         }
     }
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         zonesArray.append("10:00-10:00")
-        self.isFromButton = true
-        self.picker?.pickerTitleLabel("From")
-        self.picker?.okButtonTitle.title = "Next"
-        self.picker?.hideShowDatePickerView(isToShow: true)
-        self.picker?.datePicker.minuteInterval = timeInterval
+        isFromButton = true
+        picker?.pickerTitleLabel("From")
+        picker?.okButtonTitle.title = "Next"
+        picker?.hideShowDatePickerView(isToShow: true)
+        picker?.datePicker.minuteInterval = timeInterval
     }
     
     
@@ -161,7 +159,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     // MARK: functions
-    func configureDatePickerView() {
+    private func configureDatePickerView() {
         
         datePickerView = YonaCustomDatePickerView().loadDatePickerView()
         picker = datePickerView as? YonaCustomDatePickerView
@@ -175,63 +173,66 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
             }
-        }) { (doneValue) in
-            
-            let tempArr: String?
-            if (self.activeIndexPath != nil) {
-                if doneValue != "" {
-                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
-                    self.zonesArray[(self.activeIndexPath?.row)!] = tempArr!
-                }
-            } else {
-                if doneValue != "" {
-                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
+        }) { doneValue in
+            self.configureTimeZone(doneValue)
+        }
+    }
+    
+    private func configureTimeZone(doneValue: String) {
+        if (activeIndexPath != nil) {
+            if doneValue.isEmpty == false {
+                let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
+                zonesArray[(self.activeIndexPath?.row)!] = tempArr
+            }
+        } else {
+            if doneValue.isEmpty == false {
+                if self.isFromButton {
+                    let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[zonesArray.endIndex - 1], withDoneValue: doneValue)
                     
-                    if !self.isFromButton {
-                        let arr = tempArr!.dashRemoval()
+                    if self.isFromButton {
+                        self.zonesArray[zonesArray.endIndex - 1] = tempArr
+                    } else {
+                        let arr = tempArr.dashRemoval()
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "HH:mm"
                         
-                        let startTime = dateFormatter.dateFromString(arr[0])!
-                        let endTime = dateFormatter.dateFromString(arr[1])!
-                        
-                        
-                        let userCalendar = NSCalendar.currentCalendar()
-                        let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
-                        let timeDifference = userCalendar.components(
-                            hourMinuteComponents,
-                            fromDate: startTime,
-                            toDate: endTime,
-                            options: [])
-                        
-                        if timeDifference.hour <= 0 || timeDifference.minute <= 0 {
-                            self.displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
-                        } else {
-                            self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
+                        if let startTime = dateFormatter.dateFromString(arr[0]),
+                            let endTime = dateFormatter.dateFromString(arr[1]) {
+                            
+                            let userCalendar = NSCalendar.currentCalendar()
+                            let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
+                            let timeDifference = userCalendar.components(
+                                hourMinuteComponents,
+                                fromDate: startTime,
+                                toDate: endTime,
+                                options: [])
+                            
+                            if timeDifference.hour > 0 || timeDifference.minute > 0 {
+                                zonesArray[self.zonesArray.endIndex - 1] = tempArr
+                            } else {
+                                displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
+                            }
                         }
-                        
-                    } else {
-                        self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
                     }
                 }
             }
-            
-            self.picker?.hideShowDatePickerView(isToShow: false)
-            
-            if self.isFromButton {
-                self.picker?.hideShowDatePickerView(isToShow: true)
-                self.picker?.pickerTitleLabel("To")
-                self.picker?.okButtonTitle.title = "Done"
-                self.picker?.cancelButtonTitle.title = "Prev"
-                self.isFromButton = false
-            } else {
-                self.activeIndexPath = nil
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.setChallengeButton.enabled = true
-                    self.setChallengeButton.alpha = 1.0
-                    self.tableView.reloadData()
-                })
-            }
+        }
+        
+        picker?.hideShowDatePickerView(isToShow: false)
+        
+        if isFromButton {
+            picker?.hideShowDatePickerView(isToShow: true)
+            picker?.pickerTitleLabel("To")
+            picker?.okButtonTitle.title = "Done"
+            picker?.cancelButtonTitle.title = "Prev"
+            isFromButton = false
+        } else {
+            activeIndexPath = nil
+            dispatch_async(dispatch_get_main_queue(), {
+                self.setChallengeButton.enabled = true
+                self.setChallengeButton.alpha = 1.0
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -256,7 +257,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return zonesArray.count
     }
     
@@ -304,8 +304,6 @@ extension String {
 }
 
 private extension Selector {
-    
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
-    
 }
 
