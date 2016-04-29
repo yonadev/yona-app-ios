@@ -18,25 +18,46 @@ class TabBarSegue: UIStoryboardSegue {
     }
     
     override func perform() {
-        let tabBarController = self.sourceViewController as! DashboardTabBarController
+        guard let identifier = self.identifier else {
+            return
+        }
         
+        guard let tabBarController = self.sourceViewController as? DashboardTabBarController else {
+            return
+        }
         
-        let storyboard = UIStoryboard(name: self.identifier!, bundle: nil)
+        let storyboard = UIStoryboard(name: identifier, bundle: nil)
         var destinationViewController = storyboard.instantiateViewControllerWithIdentifier(self.identifier! + "Storyboard")
         
-        switch self.identifier! {
+        switch identifier {
         case SegueId.Challenges.rawValue:
             if let vc = tabBarController.currentViewControllers.challengesViewController {
                 destinationViewController = vc
             } else {
                 tabBarController.currentViewControllers.challengesViewController = destinationViewController as? TimeBucketChallenges
             }
+        case SegueId.Settings.rawValue:
+            if let vc = tabBarController.currentViewControllers.settingsViewController {
+                destinationViewController = vc
+            } else {
+                tabBarController.currentViewControllers.settingsViewController = destinationViewController as? SettingsViewController
+            }
+        case SegueId.Friends.rawValue:
+            if let vc = tabBarController.currentViewControllers.friendsViewController {
+                destinationViewController = vc
+            } else {
+                tabBarController.currentViewControllers.friendsViewController = destinationViewController as? FriendsViewController
+            }
+        case SegueId.Profile.rawValue:
+            if let vc = tabBarController.currentViewControllers.profileViewController {
+                destinationViewController = vc
+            } else {
+                tabBarController.currentViewControllers.profileViewController = destinationViewController as? ProfileViewController
+            }
         default:()
         }
         
-        for view in tabBarController.containerView.subviews as [UIView] {
-            view.removeFromSuperview();
-        }
+        tabBarController.containerView.subviews.forEach{ $0.removeFromSuperview() }
         
         tabBarController.currentViewController = destinationViewController
         tabBarController.containerView.addSubview(destinationViewController.view)
