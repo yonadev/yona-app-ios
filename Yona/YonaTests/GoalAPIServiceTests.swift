@@ -295,6 +295,71 @@ class GoalAPIServiceTests: XCTestCase {
         
     }
     
+    func testUpdateUserGoal(){
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Create user
+        //Create user
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+                        if success {
+                            //set body for budget social goal
+                            let socialActivityCategoryLinkReturned = socialActivityCategoryLink
+                            print("socialActivityCategoryLinkReturned: " + socialActivityCategoryLinkReturned!)
+                            
+                            let bodyTimeZoneSocialGoal: [String:AnyObject] = [
+                                "@type": "TimeZoneGoal",
+                                "_links": [
+                                    "yona:activityCategory": ["href": socialActivityCategoryLinkReturned!]
+                                ] ,
+                                "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+                            ]
+                            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+                                (success, serverMessage, serverCode, goal, nil, err) in
+                                if success {
+                                    let newBodyTimeZoneSocialGoal: [String:AnyObject] = [
+                                        "@type": "TimeZoneGoal",
+                                        "_links": [
+                                            "yona:activityCategory": ["href": socialActivityCategoryLinkReturned!]
+                                        ] ,
+                                        "zones": ["8:00-17:00"]
+                                    ]
+                                    APIServiceManager.sharedInstance.updateUserGoal(goal?.editLinks, body: newBodyTimeZoneSocialGoal) { (success, message, server, goal, goals, error) in
+                                        if success {
+                                            expectation.fulfill()
+                                        }
+                                    }
+                                } else {
+                                    XCTFail(serverMessage!)
+                                }
+                            })
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+        waitForExpectationsWithTimeout(100.0, handler:nil)
+        
+    }
+    
     func testPostUserGoal(){
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
@@ -540,7 +605,7 @@ class GoalAPIServiceTests: XCTestCase {
                                         for goal in goals! {
                                             print("Goal ID Before" + goal.goalID!)
 
-                                            APIServiceManager.sharedInstance.getUsersGoalWithID(goal.selfLinks!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
+                                            APIServiceManager.sharedInstance.getUsersGoalWithSelfLinkID(goal.selfLinks!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
                                                 print(goalReturned?.activityCategoryLink)
                                                 print(goalReturned?.goalType)
                                                 print(goalReturned?.goalID)
