@@ -29,8 +29,12 @@ class LoginViewController: UIViewController {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
         dispatch_async(dispatch_get_main_queue(), {
+            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                self.pinResetButton.hidden = false
+            } else {
+                self.pinResetButton.hidden = true
+            }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
         
@@ -40,7 +44,6 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.pinResetButton.enabled = false
         codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
         if codeInputView != nil {
@@ -52,12 +55,10 @@ class LoginViewController: UIViewController {
         }
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.pinResetButton.hidden = false
             self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
-            codeInputView!.resignFirstResponder()
-            codeInputView!.userInteractionEnabled = false
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
-            self.pinResetButton.enabled = true
             return;
         }
         
@@ -116,15 +117,13 @@ extension LoginViewController: CodeInputViewDelegate {
             errorLabel.hidden = false
             codeInputView.clear()
             if loginAttempts == totalAttempts {
+                self.pinResetButton.hidden = false
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
                 self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
-                codeInputView.userInteractionEnabled = false
-                codeInputView.resignFirstResponder()
                 errorLabel.hidden = false
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
-                self.pinResetButton.enabled = true
             }
             else {
                 loginAttempts += 1
@@ -142,9 +141,9 @@ extension LoginViewController: CodeInputViewDelegate {
                         if pincode != nil {
                             
                             let timeToDisplay = pincode!.convertFromISO8601Duration()
+                            setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                             let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
                             let alert = NSString(format: localizedString, timeToDisplay!)
-                            
                             self.displayAlertMessage("", alertDescription: String(alert))
                             
                             if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
