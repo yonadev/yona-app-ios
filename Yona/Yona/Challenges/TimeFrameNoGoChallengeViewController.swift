@@ -31,7 +31,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
@@ -68,8 +68,6 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
-        
-//        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
     }
     
     // MARK: - Actions
@@ -104,7 +102,9 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                        if let message = serverMessage {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
                     })
                 }
             })
@@ -129,7 +129,9 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                         
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
-                            self.displayAlertMessage(serverMessage!, alertDescription: "")
+                            if let message = serverMessage {
+                                self.displayAlertMessage(message, alertDescription: "")
+                            }
                         })
                     }
                 })

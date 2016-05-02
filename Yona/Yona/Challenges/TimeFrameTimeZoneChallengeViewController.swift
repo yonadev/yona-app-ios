@@ -39,7 +39,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(timeBucketTabNames.timeZone.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -118,7 +118,9 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
                             Loader.Hide(self)
-                            self.displayAlertMessage(serverMessage!, alertDescription: "")
+                            if let message = serverMessage {
+                                self.displayAlertMessage(message, alertDescription: "")
+                            }
                         })
                     }
                 })

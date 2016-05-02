@@ -145,12 +145,6 @@ struct YonaConstants {
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
     }
-    
-    struct timeBucketTabNames{
-        static let budget = "Budget"
-        static let timeZone = "TimeZone"
-        static let noGo = "NoGo"
-    }
 
     struct screenNames{
         static let walkThrough = "WalkThrough"
@@ -158,5 +152,5 @@ struct YonaConstants {
         static let smsValidation = "SMSValidation"
         static let passcode = "Passcode"
         static let login = "Login"
-    }
+    }    
 }

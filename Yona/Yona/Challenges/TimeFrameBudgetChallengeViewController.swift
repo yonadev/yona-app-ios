@@ -36,7 +36,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -132,10 +132,11 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.popToRootViewControllerAnimated(true)
                     })
-
-                } else {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
                     
+                } else {
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
                 }
             }
         }
@@ -160,8 +161,9 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                         self.navigationController?.popToRootViewControllerAnimated(true)
                     })
                 } else {
-                    self.displayAlertMessage(serverMessage!, alertDescription: "")
-                    
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
                 }
             }
         }

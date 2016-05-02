@@ -60,7 +60,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         
         self.setupUI()
     }
@@ -75,15 +75,15 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         self.timeBucketData(.NoGoGoalString)
         if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
             switch tabName {
-            case YonaConstants.timeBucketTabNames.budget:
+            case timeBucketTabNames.budget.rawValue:
                 
                 setSelectedCategory(self.budgetView)
                 
-            case YonaConstants.timeBucketTabNames.timeZone:
+            case timeBucketTabNames.timeZone.rawValue:
                 
                 setSelectedCategory(self.timezoneView)
                 
-            case YonaConstants.timeBucketTabNames.noGo:
+            case timeBucketTabNames.noGo.rawValue:
                 
                 setSelectedCategory(self.nogoView)
                 
@@ -213,7 +213,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)
-                    self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
                 }
                 
                 
