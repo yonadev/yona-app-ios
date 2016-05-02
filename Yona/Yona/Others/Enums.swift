@@ -52,3 +52,10 @@ enum responseCodes: Int{
     case ok200 = 200
     case ok204 = 204
 }
+
+enum timeBucketTabNames: String{
+    case budget = "Budget"
+    case timeZone = "TimeZone"
+    case noGo = "NoGo"
+}
+

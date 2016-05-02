@@ -27,7 +27,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
-    var maxDurationMinutes: Int = 10
+    var timeInterval: Int = 15
     
     var zonesArray = [String]()
     var datePickerView: UIView?
@@ -38,6 +38,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setTimeBucketTabToDisplay(timeBucketTabNames.timeZone.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -49,10 +51,10 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
-        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         
-        self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        self.timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
+        bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+        timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
         if isFromActivity == true{
@@ -72,29 +74,35 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
             zonesArray = (goalCreated?.zonesStore)!
+            
         }
-        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+        if zonesArray.count == 0 {
+            setChallengeButton.enabled = false
+            setChallengeButton.alpha = 0.5
+        }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        picker?.hideShowDatePickerView(isToShow: false)
+    }
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-        
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
         if isFromActivity == true {
             
-            if let activityCategoryLink = activitiyToPost?.selfLinks! {
+            if let activityCategoryLink = activitiyToPost?.selfLinks {
                 
                 let bodyTimeZoneSocialGoal = [
                     "@type": "TimeZoneGoal",
-                    "_links": [
-                        "yona:activityCategory": ["href": activityCategoryLink]
+                    YonaConstants.jsonKeys.linksKeys: [
+                        YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
                     ],
-                    "zones": zonesArray
+                    YonaConstants.jsonKeys.zones: zonesArray
                 ];
-                
+                Loader.Show(delegate: self)
                 APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
                     if success {
@@ -103,26 +111,30 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                         }
                         dispatch_async(dispatch_get_main_queue(), {
                             self.deleteGoalButton.selected = true
-                            self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
+                            Loader.Hide(self)
+                            self.navigationController?.popViewControllerAnimated(true)
                         })
                         
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
-                            self.displayAlertMessage(serverMessage!, alertDescription: "")
+                            Loader.Hide(self)
+                            if let message = serverMessage {
+                                self.displayAlertMessage(message, alertDescription: "")
+                            }
                         })
                     }
                 })
             }
-        }else {
-            
         }
     }
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         zonesArray.append("10:00-10:00")
-        self.isFromButton = true
-        self.picker?.pickerTitleLabel("From")
-        self.picker?.hideShowDatePickerView(isToShow: true)
+        isFromButton = true
+        picker?.pickerTitleLabel("From")
+        picker?.okButtonTitle.title = "Next"
+        picker?.hideShowDatePickerView(isToShow: true)
+        picker?.datePicker.minuteInterval = timeInterval
     }
     
     
@@ -131,51 +143,101 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                })
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    })
+                }
             }
         }
     }
     
     // MARK: functions
-    func configureDatePickerView() {
+    private func configureDatePickerView() {
         
         datePickerView = YonaCustomDatePickerView().loadDatePickerView()
         picker = datePickerView as? YonaCustomDatePickerView
         
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
-        }) { (doneValue) in
-            let tempArr: String?
-            if (self.activeIndexPath != nil) {
-                if doneValue != "" {
-                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
-                    self.zonesArray[(self.activeIndexPath?.row)!] = tempArr!
-                }
-            } else {
-                if doneValue != "" {
-                    tempArr = self.generateTimeZoneArray(isFrom: self.isFromButton, fromToValue: self.zonesArray[self.zonesArray.endIndex - 1], withDoneValue: doneValue)
-                    self.zonesArray[self.zonesArray.endIndex - 1] = tempArr!
-                }
-            }
-            
-            
-            
-            self.picker?.hideShowDatePickerView(isToShow: false)
-            
-            
-            if self.isFromButton {
+            if self.picker?.cancelButtonTitle.title == "Prev" {
+                self.isFromButton = true
+                self.picker?.pickerTitleLabel.title = "From"
                 self.picker?.hideShowDatePickerView(isToShow: true)
-                self.picker?.pickerTitleLabel("To")
-                self.isFromButton = false
-            } else {
-                self.activeIndexPath = nil
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.reloadData()
-                })
+                self.picker?.cancelButtonTitle.title = "Cancel"
+                self.picker?.okButtonTitle.title = "Next"
             }
+        }) { doneValue in
+            self.configureTimeZone(doneValue)
+        }
+    }
+    
+    /**
+     Show and hide the picker select values, and validate from and to picker times by looking at if start time is less than end time, if it isn't it gives an error message. If the timezone values are correct the table is updated with the timezones
+     
+     - parameter doneValue: String The number selected by the user in the picker
+     - return none
+     */
+    private func configureTimeZone(doneValue: String) {
+        if (activeIndexPath != nil) {
+            if doneValue.isEmpty == false {
+                let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[(self.activeIndexPath?.row)!], withDoneValue: doneValue)
+                zonesArray[(self.activeIndexPath?.row)!] = tempArr
+            }
+        } else {
+            if doneValue.isEmpty == false {
+                let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[zonesArray.endIndex - 1], withDoneValue: doneValue)
+                if self.isFromButton {
+                    self.zonesArray[zonesArray.endIndex - 1] = tempArr
+                } else {
+                    let arr = tempArr.dashRemoval()
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "HH:mm"
+                    
+                    if let startTime = dateFormatter.dateFromString(arr[0]),
+                        let endTime = dateFormatter.dateFromString(arr[1]) {
+                        
+                        let userCalendar = NSCalendar.currentCalendar()
+                        let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
+                        let timeDifference = userCalendar.components(
+                            hourMinuteComponents,
+                            fromDate: startTime,
+                            toDate: endTime,
+                            options: [])
+                        
+                        if timeDifference.hour > 0 || timeDifference.minute > 0 {
+                            zonesArray[self.zonesArray.endIndex - 1] = tempArr
+                        } else {
+                            displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
+                        }
+                    }
+                }
+            }
+        }
+        
+        picker?.hideShowDatePickerView(isToShow: false)
+        
+        if isFromButton {
+            picker?.hideShowDatePickerView(isToShow: true)
+            picker?.pickerTitleLabel("To")
+            picker?.okButtonTitle.title = "Done"
+            picker?.cancelButtonTitle.title = "Prev"
+            isFromButton = false
+        } else {
+            activeIndexPath = nil
+            dispatch_async(dispatch_get_main_queue(), {
+                self.setChallengeButton.enabled = true
+                self.setChallengeButton.alpha = 1.0
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -200,7 +262,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return zonesArray.count
     }
     
@@ -212,6 +273,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
+            self.picker?.okButtonTitle.title = "Next"
             self.picker?.hideShowDatePickerView(isToShow: true)
         }) { (cell) in
             self.activeIndexPath = indexPath
@@ -247,8 +309,5 @@ extension String {
 }
 
 private extension Selector {
-    
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
-    
 }
-

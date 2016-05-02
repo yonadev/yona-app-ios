@@ -42,3 +42,15 @@ func getViewControllerToDisplay(key: String)-> AnyObject? {
     }
     return defaults.objectForKey(key)
 }
+
+func setTimeBucketTabToDisplay(value: String, key: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(value, forKey: key)
+    defaults.synchronize()
+}
+
+func getTimeBucketToDisplay(key: String)-> AnyObject? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
+    return defaults.objectForKey(key)
+}

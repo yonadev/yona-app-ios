@@ -76,7 +76,6 @@ class LoginViewController: UIViewController {
     
     }
 
-
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -156,7 +155,6 @@ extension LoginViewController: CodeInputViewDelegate {
                     }
                 })
             })
-            
         }
     }
 }

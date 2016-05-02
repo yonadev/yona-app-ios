@@ -29,10 +29,10 @@ final class SMSValidationViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-
+        
         dispatch_async(dispatch_get_main_queue(), {
             if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.resendCodeButton.hidden = true
@@ -48,7 +48,7 @@ final class SMSValidationViewController:  UIViewController {
         let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
-
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
@@ -56,7 +56,7 @@ final class SMSValidationViewController:  UIViewController {
         self.resendCodeButton.setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         #if DEBUG
-        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+            self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
@@ -93,20 +93,26 @@ final class SMSValidationViewController:  UIViewController {
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
-
+    
     @IBAction func sendOTPAgain(sender: UIButton) {
-        //get otp sent again
+        Loader.Show(delegate: self)
         APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.codeInputView?.userInteractionEnabled = true
+                    Loader.Hide(self)
                     #if DEBUG
                         self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
                     #endif
                 })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                    self.displayAlertMessage(message!, alertDescription: "")
+                })
             }
         }
     }
+    
     
     @IBAction func pinResetTapped(sender: UIButton) {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
@@ -175,19 +181,25 @@ extension SMSValidationViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            codeInputView.userInteractionEnabled = true
             #if DEBUG
                 let body = ["code": code]
             #endif
+            Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
                 if success {
                     self.pinResetCodeButton.hidden = false
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                    })
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
                     APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
                         dispatch_async(dispatch_get_main_queue()) {
+                            
                             #if DEBUG
-                            self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
+                                self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
                                 //Now send user back to pinreset screen, let them enter pincode and password again
                             #endif
                             codeInputView.resignFirstResponder()
@@ -204,6 +216,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     //pin reset verify code is wrong
                     dispatch_async(dispatch_get_main_queue()) {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
+                        Loader.Hide(self)
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                         codeInputView.clear()
 
                     }
@@ -214,7 +228,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 [
                     YonaConstants.jsonKeys.bodyCode: code
                 ]
-
+            
             APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, serverCode in
                 dispatch_async(dispatch_get_main_queue()) {
                     if (success) {
@@ -225,8 +239,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
+                        
                         codeInputView.clear()
-
+                        
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
                         codeInputView.clear()
