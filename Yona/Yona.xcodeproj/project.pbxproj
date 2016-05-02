@@ -10,11 +10,20 @@
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
+		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
+		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
+		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
+		9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
 		907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5291CC51C310031850E /* NewDeviceRequests.swift */; };
+		90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */; };
+		90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */; };
+		90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */; };
+		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
+		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */; };
 		AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */; };
 		AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBD1CD3648F006BBA7E /* IQUITextFieldView+Additions.swift */; };
@@ -83,10 +92,6 @@
 		ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */; };
 		ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */; };
 		ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD108321CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift */; };
-		ADD5019B1CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD501971CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift */; };
-		ADD5019C1CC9FC0400BD3D05 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD501981CC9FC0400BD3D05 /* YonaCustomDatePickerView.xib */; };
-		ADD5019D1CC9FC0400BD3D05 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD501991CC9FC0400BD3D05 /* YonaCustomPickerView.swift */; };
-		ADD5019E1CC9FC0400BD3D05 /* YonaCustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD5019A1CC9FC0400BD3D05 /* YonaCustomPickerView.xib */; };
 		ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */; };
 		ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0E0321CBE49EB009FEF31 /* GradientView.swift */; };
 		ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */; };
@@ -221,12 +226,21 @@
 /* Begin PBXFileReference section */
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
+		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
+		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
+		9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		907DA5291CC51C310031850E /* NewDeviceRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequests.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetRequestManager.swift; sourceTree = "<group>"; };
+		90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequestManager.swift; sourceTree = "<group>"; };
+		90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsRequestManager.swift; sourceTree = "<group>"; };
+		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
+		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
@@ -300,10 +314,6 @@
 		ADD1082E1CC7B1B10048852F /* TimeZoneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneTableViewCell.swift; sourceTree = "<group>"; };
 		ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameBudgetChallengeViewController.swift; sourceTree = "<group>"; };
 		ADD108321CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameNoGoChallengeViewController.swift; sourceTree = "<group>"; };
-		ADD501971CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
-		ADD501981CC9FC0400BD3D05 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
-		ADD501991CC9FC0400BD3D05 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
-		ADD5019A1CC9FC0400BD3D05 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
 		ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +532,41 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9042C7091CD7581E00100306 /* CustomPicker */ = {
+			isa = PBXGroup;
+			children = (
+				9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */,
+				9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */,
+				9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */,
+				9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */,
+			);
+			path = CustomPicker;
+			sourceTree = "<group>";
+		};
+		90DE87991CD2374400C1E706 /* DAOObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
+				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
+				907DA5271CBE5C5D0031850E /* Activities.swift */,
+			);
+			name = DAOObjects;
+			sourceTree = "<group>";
+		};
+		90DE879A1CD2375500C1E706 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
+				907DA5231CBBD0400031850E /* Manager.swift */,
+				90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */,
+				90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */,
+				90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */,
+				90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */,
+				90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,11 +702,11 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9042C7091CD7581E00100306 /* CustomPicker */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
 				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
 				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
 				AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */,
-				ADD501961CC9FC0400BD3D05 /* CustomPicker */,
 				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */,
 				AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */,
@@ -748,17 +793,6 @@
 			path = "Fonts/Oswald Fonts";
 			sourceTree = "<group>";
 		};
-		ADD501961CC9FC0400BD3D05 /* CustomPicker */ = {
-			isa = PBXGroup;
-			children = (
-				ADD501971CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift */,
-				ADD501981CC9FC0400BD3D05 /* YonaCustomDatePickerView.xib */,
-				ADD501991CC9FC0400BD3D05 /* YonaCustomPickerView.swift */,
-				ADD5019A1CC9FC0400BD3D05 /* YonaCustomPickerView.xib */,
-			);
-			path = CustomPicker;
-			sourceTree = "<group>";
-		};
 		ADEF8EEF1CADFD0C001D5EED /* Roboto Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,11 +819,8 @@
 		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
-				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
-				907DA5231CBBD0400031850E /* Manager.swift */,
-				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
-				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
-				907DA5271CBE5C5D0031850E /* Activities.swift */,
+				90DE879A1CD2375500C1E706 /* Managers */,
+				90DE87991CD2374400C1E706 /* DAOObjects */,
 			);
 			name = DataService;
 			path = ..;
@@ -1244,14 +1275,14 @@
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
 				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
-				ADD5019E1CC9FC0400BD3D05 /* YonaCustomPickerView.xib in Resources */,
+				9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */,
 				ADD108281CC78C3B0048852F /* Oswald-LightItalic.ttf in Resources */,
 				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
+				9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */,
 				AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */,
 				AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */,
 				ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */,
 				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
-				ADD5019C1CC9FC0400BD3D05 /* YonaCustomDatePickerView.xib in Resources */,
 				AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */,
 				ADEF8F091CADFD0C001D5EED /* Roboto-LightItalic.ttf in Resources */,
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
@@ -1373,6 +1404,7 @@
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				ADAEAFEB1CB44E80005ED7B4 /* AddDeviceViewController.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
+				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				ADAEAFE91CB43245005ED7B4 /* LoginViewController.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
@@ -1380,9 +1412,11 @@
 				ADAEAFD91CB2BCB3005ED7B4 /* SMSValidationViewController.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
+				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
+				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
-				ADD5019B1CC9FC0400BD3D05 /* YonaCustomDatePickerView.swift in Sources */,
+				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
@@ -1402,12 +1436,14 @@
 				AD00DEDF1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				ADAEAFF21CB650A4005ED7B4 /* SetPasscodeViewController.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
-				ADD5019D1CC9FC0400BD3D05 /* YonaCustomPickerView.swift in Sources */,
 				ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */,
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
+				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
+				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
+				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,

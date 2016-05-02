@@ -101,7 +101,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         }
         return true
     }
-    
+
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
         view.endEditing(true)

@@ -31,7 +31,6 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
@@ -89,7 +88,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             ]
             Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+                (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
@@ -114,9 +113,10 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         
         //then once it is posted we can delete it
-        if let goalUnwrap = self.goalCreated {
+        if let goalUnwrap = self.goalCreated,
+            let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
+            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
                     if serverCode == YonaConstants.serverCodes.OK {

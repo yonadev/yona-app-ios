@@ -43,7 +43,7 @@ final class SMSValidationViewController:  UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
-        self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "")
+        self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
         self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         #if DEBUG
@@ -139,9 +139,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             #if DEBUG
                 let body = ["code": code]
             #endif
-            
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, message, code) in
+            APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
@@ -149,7 +148,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
-                    APIServiceManager.sharedInstance.pinResetClear({ (success, message, code) in
+                    APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
                         dispatch_async(dispatch_get_main_queue()) {
                             
                             #if DEBUG

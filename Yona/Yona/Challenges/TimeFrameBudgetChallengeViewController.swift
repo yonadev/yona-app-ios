@@ -36,7 +36,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -49,6 +48,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
+        //        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
@@ -120,8 +120,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
             Loader.Show(delegate:self)
-            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
                 })
@@ -131,13 +130,14 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     }
                     self.deleteGoalButton.selected = true
                     dispatch_async(dispatch_get_main_queue(), {
-                    self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.navigationController?.popToRootViewControllerAnimated(true)
                     })
+
                 } else {
                         self.displayAlertMessage(serverMessage!, alertDescription: "")
                     
                 }
-            })
+            }
         }
     }
     
@@ -147,18 +147,20 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-        
-        if let goalUnwrap = self.goalCreated {
+        //then once it is posted we can delete it
+        if let goalUnwrap = self.goalCreated,
+            let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate:self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
+            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
                 })
-                if success { dispatch_async(dispatch_get_main_queue(), {
-                    self.navigationController?.popToRootViewControllerAnimated(true)
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.popToRootViewControllerAnimated(true)
                     })
                 } else {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
+                    self.displayAlertMessage(serverMessage!, alertDescription: "")
                     
                 }
             }

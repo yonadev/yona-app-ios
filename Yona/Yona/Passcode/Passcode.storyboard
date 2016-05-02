@@ -324,7 +324,6 @@ Stel je pincode hieronder in. </string>
     </scenes>
     <resources>
         <image name="icnAccountCreated" width="48" height="48"/>
-        <image name="icnBack" width="13" height="21"/>
         <image name="icnSecure" width="48" height="48"/>
     </resources>
 </document>
