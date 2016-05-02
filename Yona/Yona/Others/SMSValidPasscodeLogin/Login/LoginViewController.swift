@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var errorLabel: UILabel!
-
+    
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
@@ -35,15 +35,12 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
-        if codeInputView != nil {
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-            
-            codeInputView!.becomeFirstResponder()
-        }
+        codeInputView.delegate = self
+        codeInputView.secure = true
+        codeView.addSubview(codeInputView)
+        
+        codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.pinResetButton.hidden = false

@@ -12,7 +12,10 @@ import UIKit
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     var passcodeString: String?
-    
+    @IBOutlet var progressView: UIView!
+    @IBOutlet var headerTitleLabel: UILabel!
+    @IBOutlet var infoLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +29,7 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
-        self.progressView.addSubview(customView)
+        progressView.addSubview(customView)
         
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -41,13 +44,9 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        
-        if codeInputView != nil {
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-        }
+        codeInputView.delegate = self
+        codeInputView.secure = true
+        codeView.addSubview(codeInputView)
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -57,11 +56,11 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        codeInputView!.becomeFirstResponder()
+        codeInputView.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        codeInputView!.resignFirstResponder()
+        codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     

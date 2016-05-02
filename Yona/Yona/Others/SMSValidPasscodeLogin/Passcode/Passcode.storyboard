@@ -295,7 +295,6 @@ Stel je pincode hieronder in. </string>
                         <outlet property="gradientView" destination="azs-2J-Vcd" id="Bhd-aH-Js1"/>
                         <outlet property="headerTitleLabel" destination="OxM-iM-4IC" id="DdA-oD-QEu"/>
                         <outlet property="infoLabel" destination="09h-RE-FIx" id="Wf8-Wc-SfJ"/>
-                        <outlet property="progressView" destination="oLb-Tc-U4F" id="Llr-0j-14U"/>
                         <outlet property="scrollView" destination="tog-87-Hwp" id="Jtf-oE-1qM"/>
                     </connections>
                 </viewController>
