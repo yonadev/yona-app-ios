@@ -99,6 +99,7 @@ final class SMSValidationViewController:  UIViewController {
         APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.codeInputView?.userInteractionEnabled = true
                     #if DEBUG
                         self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
                     #endif
@@ -113,6 +114,10 @@ final class SMSValidationViewController:  UIViewController {
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
+                        self.codeInputView?.userInteractionEnabled = true
+                        #if DEBUG
+                            self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                        #endif
                         print(pincode!)
                         if pincode != nil {
                             
@@ -237,6 +242,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 //make sure they are never on screen at same time
                 self.resendCodeButton.hidden = false
                 self.pinResetCodeButton.hidden = true
+                self.codeInputView?.userInteractionEnabled = false
                 #if DEBUG
                     self.displayAlertMessage("App blocked too many OTP attempts, press resend", alertDescription:"")
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
@@ -246,6 +252,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 //make sure they are never on screen at same time
                 self.resendCodeButton.hidden = true
                 self.pinResetCodeButton.hidden = false
+                self.codeInputView?.userInteractionEnabled = false
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
                 #endif
