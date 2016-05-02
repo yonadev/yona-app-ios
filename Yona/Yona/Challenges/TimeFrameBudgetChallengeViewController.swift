@@ -36,6 +36,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -48,7 +49,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-        //        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)

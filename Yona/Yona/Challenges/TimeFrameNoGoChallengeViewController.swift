@@ -31,6 +31,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
@@ -142,4 +143,3 @@ private extension Selector {
     static let back = #selector(TimeFrameNoGoChallengeViewController.back(_:))
     
 }
-

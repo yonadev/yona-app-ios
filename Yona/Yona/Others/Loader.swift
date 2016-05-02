@@ -24,4 +24,21 @@ class Loader:  NSObject {
         MBProgressHUD.hideHUDForView(delegate.view, animated: true)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
+    
+    
+    
+    class func Show(message:String = "loading..."){
+        var load : MBProgressHUD = MBProgressHUD()
+        load = MBProgressHUD.showHUDAddedTo(UIApplication.sharedApplication().keyWindow!, animated: true)
+        load.mode = MBProgressHUDMode.Indeterminate
+        load.label.text = message;
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+    }
+    
+    class func Hide(){
+        MBProgressHUD.hideHUDForView(UIApplication.sharedApplication().keyWindow!, animated: true)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
 }

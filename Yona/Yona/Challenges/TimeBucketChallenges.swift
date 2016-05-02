@@ -60,22 +60,41 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        
+        self.setupUI()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.callActivityCategory()
+        setDeselectOtherCategory()
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
-        setDeselectOtherCategory()
-        setSelectedCategory(self.budgetView)
+        if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
+            switch tabName {
+            case YonaConstants.timeBucketTabNames.budget:
+                
+                setSelectedCategory(self.budgetView)
+                
+            case YonaConstants.timeBucketTabNames.timeZone:
+                
+                setSelectedCategory(self.timezoneView)
+                
+            case YonaConstants.timeBucketTabNames.noGo:
+                
+                setSelectedCategory(self.nogoView)
+                
+            default:
+                self.timeBucketData(.BudgetGoalString)
+                setSelectedCategory(self.budgetView)
+            }
+        }
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         })
-        
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -178,10 +197,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     }
                     
                 }
-                
-                
             }
-            
         })
     }
     
@@ -210,7 +226,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
-        
         //    Looks for single or multiple taps.
         let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.budgetView.addGestureRecognizer(budgetTap)
@@ -234,7 +249,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     func setHeaderTitleLabel() {
         switch categoryHeader {
-            
         case .BudgetGoal:
             headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
         case .BudgetActivity:
@@ -256,7 +270,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
     }
-    
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
@@ -352,13 +365,11 @@ extension TimeBucketChallenges {
         case .NoGoActivity:
             return self.activityCategoriesArray.count
         }
-        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
@@ -369,7 +380,6 @@ extension TimeBucketChallenges {
                 cell.detailTextLabel?.text = title as String
                 cell.detailTextLabel?.numberOfLines = 0
             }
-            
             
         case .BudgetActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -461,15 +471,11 @@ extension TimeBucketChallenges {
 }
 
 
-
-
-
 private extension Selector {
     
     static let categoryTapEvent = #selector(TimeBucketChallenges.categoryTapEvent(_:))
     
     static let back = #selector(TimeBucketChallenges.back(_:))
 }
-
 
 

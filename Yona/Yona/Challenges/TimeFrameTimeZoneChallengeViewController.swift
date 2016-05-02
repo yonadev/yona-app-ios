@@ -38,9 +38,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -86,7 +85,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         picker?.hideShowDatePickerView(isToShow: false)
     }
-    
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
@@ -222,6 +220,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
             }
         }
+        
         picker?.hideShowDatePickerView(isToShow: false)
         
         if isFromButton {
@@ -272,6 +271,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
+            self.picker?.okButtonTitle.title = "Next"
             self.picker?.hideShowDatePickerView(isToShow: true)
         }) { (cell) in
             self.activeIndexPath = indexPath
@@ -309,4 +309,3 @@ extension String {
 private extension Selector {
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
 }
-
