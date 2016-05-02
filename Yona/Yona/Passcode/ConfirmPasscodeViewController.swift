@@ -69,6 +69,11 @@ final class ConfirmPasscodeViewController:  UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }
 
 extension ConfirmPasscodeViewController: KeyboardProtocol {
@@ -119,4 +124,6 @@ private extension Selector {
     static let keyboardWasShown = #selector(ConfirmPasscodeViewController.keyboardWasShown(_:))
     
     static let keyboardWillBeHidden = #selector(ConfirmPasscodeViewController.keyboardWillBeHidden(_:))
+    
+    static let back = #selector(ConfirmPasscodeViewController.back(_:))
 }

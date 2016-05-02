@@ -86,7 +86,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
-                                                <rect key="frame" x="242" y="404" width="116" height="28"/>
+                                                <rect key="frame" x="242" y="395" width="116" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="Stuur code opnieuw">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,7 +109,7 @@
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="asB-nr-lQx"/>
                                             <constraint firstAttribute="trailing" secondItem="yRE-mi-1C2" secondAttribute="trailing" constant="15" id="fFG-vu-rrV"/>
                                             <constraint firstAttribute="bottom" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="424" id="iOO-ed-NH8"/>
-                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="kKA-ut-b0b"/>
+                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="10" id="kKA-ut-b0b"/>
                                             <constraint firstAttribute="trailing" secondItem="xR5-0o-qG4" secondAttribute="trailing" constant="30" id="kpL-xc-2gP"/>
                                             <constraint firstItem="yRE-mi-1C2" firstAttribute="top" secondItem="xR5-0o-qG4" secondAttribute="bottom" constant="30" id="o5N-3B-abc"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="top" secondItem="U44-VS-5Hu" secondAttribute="top" constant="112" id="sVm-u2-OEf"/>
