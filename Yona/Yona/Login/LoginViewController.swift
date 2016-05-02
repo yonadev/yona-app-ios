@@ -75,7 +75,6 @@ class LoginViewController: UIViewController {
     
     }
 
-
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -137,34 +136,18 @@ extension LoginViewController: CodeInputViewDelegate {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
             APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
-                if success{
+                if success {
                     print(pincode!)
                     if pincode != nil {
                         
                         let timeToDisplay = self.convertFromISO8601Duration(pincode)
-                        if Int(timeToDisplay!)! > 0 {
                             let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
                             let alert = NSString(format: localizedString, timeToDisplay!)
                             
                             self.displayAlertMessage("", alertDescription: String(alert))
-                            
-                        } else {
-                            //get otp sent again
-                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                                if success {
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        //Update flag
-                                        self.errorLabel.hidden = true
-                                        self.loginAttempts = 0
-                                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                                        
-                                        if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                            self.navigationController?.pushViewController(sMSValidation, animated: false)
-                                        }
-                                    })
-                                    
-                                }
-                            }
+                        
+                        if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                            self.navigationController?.pushViewController(sMSValidation, animated: false)
                         }
                     }
                 } else {
@@ -172,7 +155,6 @@ extension LoginViewController: CodeInputViewDelegate {
                     self.displayAlertMessage("Error", alertDescription: "User not found")
                 }
             })
-            
         }
     }
 }

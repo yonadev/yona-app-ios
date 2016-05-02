@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = self.window {
             window.rootViewController = rootController
         }
-
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
         return true
@@ -67,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootController = R.storyboard.login.loginStoryboard! as LoginViewController
             case YonaConstants.screenNames.welcome:
                 rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
-
+                
             default:
                 rootController = R.storyboard.walkThrough.walkThroughStoryboard! as WalkThroughViewController
             }

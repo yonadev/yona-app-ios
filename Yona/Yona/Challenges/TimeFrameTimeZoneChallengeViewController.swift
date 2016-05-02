@@ -80,7 +80,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             setChallengeButton.enabled = false
             setChallengeButton.alpha = 0.5
         }
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+//        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -186,38 +186,34 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             }
         } else {
             if doneValue.isEmpty == false {
+                let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[zonesArray.endIndex - 1], withDoneValue: doneValue)
                 if self.isFromButton {
-                    let tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArray[zonesArray.endIndex - 1], withDoneValue: doneValue)
+                    self.zonesArray[zonesArray.endIndex - 1] = tempArr
+                } else {
+                    let arr = tempArr.dashRemoval()
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "HH:mm"
                     
-                    if self.isFromButton {
-                        self.zonesArray[zonesArray.endIndex - 1] = tempArr
-                    } else {
-                        let arr = tempArr.dashRemoval()
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "HH:mm"
+                    if let startTime = dateFormatter.dateFromString(arr[0]),
+                        let endTime = dateFormatter.dateFromString(arr[1]) {
                         
-                        if let startTime = dateFormatter.dateFromString(arr[0]),
-                            let endTime = dateFormatter.dateFromString(arr[1]) {
-                            
-                            let userCalendar = NSCalendar.currentCalendar()
-                            let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
-                            let timeDifference = userCalendar.components(
-                                hourMinuteComponents,
-                                fromDate: startTime,
-                                toDate: endTime,
-                                options: [])
-                            
-                            if timeDifference.hour > 0 || timeDifference.minute > 0 {
-                                zonesArray[self.zonesArray.endIndex - 1] = tempArr
-                            } else {
-                                displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
-                            }
+                        let userCalendar = NSCalendar.currentCalendar()
+                        let hourMinuteComponents: NSCalendarUnit = [.Hour, .Minute]
+                        let timeDifference = userCalendar.components(
+                            hourMinuteComponents,
+                            fromDate: startTime,
+                            toDate: endTime,
+                            options: [])
+                        
+                        if timeDifference.hour > 0 || timeDifference.minute > 0 {
+                            zonesArray[self.zonesArray.endIndex - 1] = tempArr
+                        } else {
+                            displayAlertMessage("To time must be greater than \(arr[0])", alertDescription: "")
                         }
                     }
                 }
             }
         }
-        
         picker?.hideShowDatePickerView(isToShow: false)
         
         if isFromButton {

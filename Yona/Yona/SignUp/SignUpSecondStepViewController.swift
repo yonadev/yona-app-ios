@@ -37,20 +37,6 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //        keyboard functions
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpSecondStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     private func setupUI() {
         // Text Delegates
         if var label = previousRange {
@@ -59,12 +45,12 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         nicknameTextField.delegate = self
-        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
-        nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
-        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "")
+        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
+        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
         
-        self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         
         //Looks for single or multiple taps.
@@ -157,7 +143,15 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
 }
 
 extension SignUpSecondStepViewController: UITextFieldDelegate {
-    // Text Field Return Resign First Responder
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == mobileTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
@@ -167,7 +161,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         return true
     }
     
-    //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
@@ -188,21 +181,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         return true
     }
     
-    func keyboardWillShow(notification:NSNotification){
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-        self.scrollView.contentInset.top = self.scrollView.contentInset.top 
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        self.scrollView.contentInset = contentInset
-    }
-    
-    func keyboardWillHide(notification:NSNotification){
-        
-        self.scrollView.setContentOffset(CGPointZero, animated: true)
-    }
-    
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
         view.endEditing(true)
@@ -210,10 +188,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWillShow(_:))
-    
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillHide(_:))
-    
     static let dismissKeyboard = #selector(SignUpSecondStepViewController.dismissKeyboard)
     
     static let back = #selector(SignUpSecondStepViewController.back(_:))

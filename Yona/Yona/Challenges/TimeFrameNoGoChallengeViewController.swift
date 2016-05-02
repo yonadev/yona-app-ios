@@ -33,7 +33,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         super.viewDidLoad()
         setTimeBucketTabToDisplay(YonaConstants.timeBucketTabNames.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
-        setChallengeButton.layer.cornerRadius = 25.0
+        setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         dispatch_async(dispatch_get_main_queue(), {
@@ -44,13 +44,15 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
         if isFromActivity == true {
-            setChallengeButton.hidden = false
+            setChallengeButton.enabled = true
+            setChallengeButton.alpha = 1.0
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         } else {
-            setChallengeButton.hidden = true
+            setChallengeButton.enabled = false
+            setChallengeButton.alpha = 0.5
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.deleteGoalButton.hidden = false
             } else {
@@ -67,7 +69,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
         
-        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+//        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
     }
     
     // MARK: - Actions

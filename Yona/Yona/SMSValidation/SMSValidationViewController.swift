@@ -145,7 +145,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
-                        })
+                    })
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
@@ -218,7 +218,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
             } else {
                 #if DEBUG
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("invalid-otp", comment: ""))
                 #endif
             }
         }
