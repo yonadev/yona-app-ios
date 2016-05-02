@@ -199,9 +199,6 @@ extension AddDeviceViewController: UITextFieldDelegate {
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(AddDeviceViewController.keyboardWasShown(_:))
-    
-    static let keyboardWillBeHidden = #selector(AddDeviceViewController.keyboardWillBeHidden(_:))
     
     static let back = #selector(AddDeviceViewController.back(_:))
     
