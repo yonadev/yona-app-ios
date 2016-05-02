@@ -9,21 +9,9 @@
 import UIKit
 
 
-class SetPasscodeViewController:  UIViewController {
-    @IBOutlet var progressView:UIView!
-    @IBOutlet var codeView:UIView!
-    
-    @IBOutlet var headerTitleLabel: UILabel!
-    @IBOutlet var infoLabel: UILabel!
-    
-    @IBOutlet var scrollView: UIScrollView!
-    
-    @IBOutlet var gradientView: GradientView!
+class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     var passcodeString: String?
-    private var colorX : UIColor = UIColor.yiWhiteColor()
-    var posi:CGFloat = 0.0
-    private var codeInputView: CodeInputView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,43 +73,9 @@ class SetPasscodeViewController:  UIViewController {
     }
 }
 
-extension SetPasscodeViewController: KeyboardProtocol {
-    func keyboardWasShown (notification: NSNotification) {
-        
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
-        
-        
-        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
-        
-        
-        if (pos > (viewHeight-keyboardSize.height)) {
-            posi = pos-(viewHeight-keyboardSize.height)
-            self.view.frame.origin.y -= posi
-            
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-        }
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification) {
-        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
-            posi = position
-        }
-    }
-}
-
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
         performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
-}
-
-private extension Selector {
-    static let keyboardWasShown = #selector(SetPasscodeViewController.keyboardWasShown(_:))
-    
-    static let keyboardWillBeHidden = #selector(SetPasscodeViewController.keyboardWillBeHidden(_:))
 }

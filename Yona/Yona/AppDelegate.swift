@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
             switch viewName {
             case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.sMSValidationViewController! as SMSValidationViewController
+                rootController = R.storyboard.sMSValidation.sMSValidationViewController! as LoginSignupValidationMasterView
             case YonaConstants.screenNames.passcode:
                 rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
             case YonaConstants.screenNames.login:

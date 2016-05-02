@@ -11,10 +11,10 @@ struct R {
     storyboard.friends.validateViewControllers()
     storyboard.profile.validateImages()
     storyboard.profile.validateViewControllers()
-    storyboard.login.validateImages()
-    storyboard.login.validateViewControllers()
     storyboard.signUp.validateImages()
     storyboard.signUp.validateViewControllers()
+    storyboard.login.validateImages()
+    storyboard.login.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
     storyboard.launchScreen.validateImages()
@@ -23,10 +23,10 @@ struct R {
     storyboard.challenges.validateViewControllers()
     storyboard.settings.validateImages()
     storyboard.settings.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
     storyboard.passcode.validateImages()
     storyboard.passcode.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
     storyboard.welcome.validateImages()
@@ -522,6 +522,7 @@ struct R {
       static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Passcode', but couldn't be loaded.")
         assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Passcode', but couldn't be loaded.")
         assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Passcode', but couldn't be loaded.")
       }
