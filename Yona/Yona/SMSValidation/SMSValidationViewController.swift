@@ -203,7 +203,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 } else {
                     //pin reset verify code is wrong
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
                         codeInputView.clear()
 
                     }
@@ -215,7 +215,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     YonaConstants.jsonKeys.bodyCode: code
                 ]
 
-            APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
+            APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, serverCode in
                 dispatch_async(dispatch_get_main_queue()) {
                     if (success) {
                         codeInputView.resignFirstResponder()
@@ -228,7 +228,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         codeInputView.clear()
 
                     } else {
-                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
                         codeInputView.clear()
                     }
                 }
@@ -236,16 +236,16 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         }
     }
     
-    func checkCodeMessageShowAlert(code: String?, codeInputView: CodeInputView){
-        if let codeMessage = code {
+    func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
+        if let codeMessage = serverMessageCode,
+            let serverMessage = message {
             if codeMessage == YonaConstants.serverCodes.tooManyResendOTPAttemps {
                 //make sure they are never on screen at same time
                 self.resendCodeButton.hidden = false
                 self.pinResetCodeButton.hidden = true
                 self.codeInputView?.userInteractionEnabled = false
                 #if DEBUG
-                    self.displayAlertMessage("App blocked too many OTP attempts, press resend", alertDescription:"")
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                    self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
             }//too many pin verify attempts so we need to clear and the user needs to request another one
             else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
@@ -254,7 +254,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 self.pinResetCodeButton.hidden = false
                 self.codeInputView?.userInteractionEnabled = false
                 #if DEBUG
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
+                    self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
                 APIServiceManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
                     if success {
@@ -262,9 +262,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     }
                 })
             } else {
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.errormessage", comment: ""))
-                #endif
+                self.displayAlertMessage("", alertDescription: serverMessage)
             }
         }
     }
