@@ -188,7 +188,7 @@
                         <outlet property="gradientView" destination="13N-bo-l8i" id="Fm1-LY-p2b"/>
                         <outlet property="headerTitleLabel" destination="Kk8-eD-rcW" id="nQ0-C0-rjn"/>
                         <outlet property="infoLabel" destination="yRE-mi-1C2" id="rqi-kH-bqE"/>
-                        <outlet property="pinResetCodeButton" destination="isE-Sz-djb" id="yVa-L3-YEj"/>
+                        <outlet property="pinResetButton" destination="isE-Sz-djb" id="F7B-dD-Dcl"/>
                         <outlet property="progressView" destination="xR5-0o-qG4" id="Lws-2u-38F"/>
                         <outlet property="resendCodeButton" destination="3r8-GS-xeb" id="tv4-8A-Oww"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="h6V-rS-CP5"/>
