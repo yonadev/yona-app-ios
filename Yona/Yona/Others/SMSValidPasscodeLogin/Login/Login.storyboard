@@ -169,7 +169,7 @@
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
                         <outlet property="gradientView" destination="edi-Cd-nIQ" id="W9J-Sc-qoX"/>
                         <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
-                        <outlet property="pinResetButton" destination="3r8-GS-xeb" id="uul-gT-Dd0"/>
+                        <outlet property="pinResetButton" destination="3r8-GS-xeb" id="JnM-6O-UWH"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>
                     </connections>
                 </viewController>

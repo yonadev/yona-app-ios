@@ -38,7 +38,7 @@ class LoginSignupValidationMasterView: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
-//MARK: - Messaging for views
+//MARK: - Messaging for views from server
 extension LoginSignupValidationMasterView {
     func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
         if let codeMessage = serverMessageCode,
@@ -72,7 +72,7 @@ extension LoginSignupValidationMasterView {
     }
 }
 
-//MARK: - Button logic code
+//MARK: - Button logic code used on 2 screens
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
@@ -83,7 +83,7 @@ extension LoginSignupValidationMasterView {
                         print(pincode!)
                         if pincode != nil {
                             
-                            let timeToDisplay = pincode!.
+                            let timeToDisplay = pincode!.convertFromISO8601Duration()
                             setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                             let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
                             let alert = NSString(format: localizedString, timeToDisplay!)
@@ -103,6 +103,7 @@ extension LoginSignupValidationMasterView {
     }
 }
 
+//MARK: - Keyboard Protocols used in all views
 extension LoginSignupValidationMasterView: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -112,7 +113,7 @@ extension LoginSignupValidationMasterView: KeyboardProtocol {
         let keyboardInset = keyboardSize.height - viewHeight/3
         
         
-        let  pos = (pinResetButton?.frame.origin.y)! + (pinResetCodeButton?.frame.size.height)!
+        let  pos = (pinResetButton?.frame.origin.y)! + (pinResetButton?.frame.size.height)!
         
         
         if (pos > (viewHeight-keyboardSize.height)) {

@@ -89,6 +89,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
+                    self.codeInputView?.userInteractionEnabled = true
                     #if DEBUG
                         self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
                     #endif
@@ -101,7 +102,6 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             }
         }
     }
-    
     
     @IBAction func pinResetTapped(sender: UIButton) {
         self.pinResetTapped()
