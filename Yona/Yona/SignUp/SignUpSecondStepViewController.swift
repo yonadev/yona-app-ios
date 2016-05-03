@@ -121,30 +121,26 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                 
                 APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
-                        //Update flag
-                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            // update some UI
-                            Loader.Hide()
-                            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                self.navigationController?.pushViewController(smsValidation, animated: false)
-                            }
-                        }
+                        self.sendToSMSValidation(body)
                     } else if code == YonaConstants.serverCodes.errorUserExists {
                         dispatch_async(dispatch_get_main_queue()) {
                             Loader.Hide()
                             if let alertMessage = message {
+                                //alert the user ask if they want to override their account, if ok send back to SMS screen
                                 self.displayAlertOption(alertMessage, alertDescription: "", onCompletion: { (buttonPressed) in
                                     switch buttonPressed{
                                     case alertButtonType.OK:
-                                        AdminRequestManager.sharedInstance.adminRequestOverride(body, onCompletion: { (success, message, code) in
+                                        AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
                                             //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
                                             if success {
                                                 #if DEBUG
                                                     self.displayAlertMessage("Enter OTP CODE 1234", alertDescription: "")
                                                 #endif
+                                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+
+                                                self.sendToSMSValidation(body)
                                             }
-                                        })
+                                        }
                                         
                                     case alertButtonType.cancel:
                                         break
@@ -155,6 +151,19 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                         }
                     }
                 })
+            }
+        }
+    }
+    
+    func sendToSMSValidation(body: BodyDataDictionary){
+        //Update flag
+        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        dispatch_async(dispatch_get_main_queue()) {
+            // update some UI
+            Loader.Hide()
+            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                smsValidation.userBody = body
+                self.navigationController?.pushViewController(smsValidation, animated: false)
             }
         }
     }

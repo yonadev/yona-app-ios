@@ -9,6 +9,7 @@
 import UIKit
 
 final class SMSValidationViewController: LoginSignupValidationMasterView {
+    var userBody: BodyDataDictionary?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +145,12 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     }
                 }
             })
+        } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
+            if let userBody = self.userBody {
+                APIServiceManager.sharedInstance.postUser(userBody, confirmCode: code){ (success, message, serverCode, user) in
+                    
+                }
+            }
         } else {
             let body =
                 [
