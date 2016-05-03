@@ -27,21 +27,15 @@ extension APIServiceManager {
                          "mobileNumber": "+3161333999999",
                          "nickname": "RQ"
                          }
-     - parameter confirmCode: String? Confirm code required to post a new body if the user has lost the phone and is sent a confirm code to update their account
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
-    func postUser(body: BodyDataDictionary, confirmCode: String?, onCompletion: APIUserResponse) {
+    func postUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 //create a password for the user
                 KeychainManager.sharedInstance.createYonaPassword()
-                var path = YonaConstants.environments.testUrl + YonaConstants.commands.users //not in user body need to hardcode
-                //if user lost phone then we need to set a confirm code
-                if let confirmCodeUnwrap = confirmCode {
-                    path = YonaConstants.environments.testUrl + YonaConstants.commands.users + YonaConstants.commands.userRequestOverrideCode + confirmCodeUnwrap
-                }
                 //set the path to post
-                self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethods.post, onCompletion: { success, json, err in
+                self.callRequestWithAPIServiceResponse(body, path: YonaConstants.environments.testPostUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
                     if let json = json {
                         guard success == true else {
                             onCompletion(false, self.serverMessage, self.serverCode,nil)

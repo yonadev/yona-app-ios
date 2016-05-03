@@ -33,8 +33,6 @@
 		9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */; };
 		9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7491CD898E300100306 /* UITextField+AGi18n.m */; };
 		9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C74B1CD898E300100306 /* UITextView+AGi18n.m */; };
-		9042C7571CD8C8C200100306 /* AdminRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7561CD8C8C200100306 /* AdminRequestManager.swift */; };
-		9042C7591CD8EB5600100306 /* AdminOverrideRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7581CD8EB5600100306 /* AdminOverrideRequestTests.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
@@ -272,8 +270,6 @@
 		9042C7491CD898E300100306 /* UITextField+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AGi18n.m"; sourceTree = "<group>"; };
 		9042C74A1CD898E300100306 /* UITextView+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AGi18n.h"; sourceTree = "<group>"; };
 		9042C74B1CD898E300100306 /* UITextView+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AGi18n.m"; sourceTree = "<group>"; };
-		9042C7561CD8C8C200100306 /* AdminRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminRequestManager.swift; sourceTree = "<group>"; };
-		9042C7581CD8EB5600100306 /* AdminOverrideRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideRequestTests.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
@@ -667,7 +663,6 @@
 				90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */,
 				90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */,
 				90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */,
-				9042C7561CD8C8C200100306 /* AdminRequestManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1182,7 +1177,6 @@
 				907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */,
 				907DA5291CC51C310031850E /* NewDeviceRequests.swift */,
 				9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */,
-				9042C7581CD8EB5600100306 /* AdminOverrideRequestTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1500,7 +1494,6 @@
 				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
-				9042C7571CD8C8C200100306 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
@@ -1555,7 +1548,6 @@
 				9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */,
 				907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
-				9042C7591CD8EB5600100306 /* AdminOverrideRequestTests.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,

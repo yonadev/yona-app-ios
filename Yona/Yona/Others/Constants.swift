@@ -25,16 +25,21 @@ struct YonaConstants {
     }
     
     struct environments {
+        static let testPostUserLink = "http://85.222.227.142/users/" // only link we need to hard code!
         static let testUrl = "http://85.222.227.142/" //test server
         static let production = ""
     }
     
     struct commands {
         static let users = "users/"
+        static let goals = "goals/"
+        static let mobileConfirm = "/confirmMobileNumber"
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
-        static let adminRequestOverride = "/admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
-        static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
+        static let pinRequest = "/pinResetRequest/request"
+        static let pinVerify = "/pinResetRequest/verify"
+        static let pinClear = "/pinResetRequest/clear"
+
     }
 
     struct keychain {
@@ -83,7 +88,6 @@ struct YonaConstants {
     }
 
     struct serverCodes{
-        static let errorUserExists = "error.user.exists"
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
         static let tooManyResendOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
         static let tooManyPinResetAttemps = "error.pin.reset.request.confirmation.code.too.many.failed.attempts"

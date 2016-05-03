@@ -14,6 +14,7 @@ class LoginSignupValidationMasterView: UIViewController {
     var posi:CGFloat = 0.0
 
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+
     
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
