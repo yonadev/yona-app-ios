@@ -14,7 +14,6 @@ class AddDeviceViewController: LoginSignupValidationMasterView, UIScrollViewDele
     var previousRange: NSRange!
     
     private let nederlandPhonePrefix = "+316 "
-    var colorX : UIColor = UIColor.yiWhiteColor()
 
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var passcodeTextField: UITextField!
@@ -118,7 +117,7 @@ extension AddDeviceViewController: UITextFieldDelegate {
         ]
         
         keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
-        keyboardToolBar.tintColor = colorx
+        keyboardToolBar.tintColor = self.colorX
         keyboardToolBar.barStyle = UIBarStyle.Black
         keyboardToolBar.sizeToFit()
         textField.inputAccessoryView = keyboardToolBar
