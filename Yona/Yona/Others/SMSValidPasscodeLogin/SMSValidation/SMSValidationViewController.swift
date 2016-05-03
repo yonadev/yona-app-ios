@@ -15,16 +15,8 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-        
+        self.hideShowButtons()
         dispatch_async(dispatch_get_main_queue(), {
-            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.resendCodeButton.hidden = true
-            } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
-                self.pinResetButton.hidden = false
-                self.resendCodeButton.hidden = false
-            } else {
-                self.pinResetButton.hidden = true
-            }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
         
@@ -46,23 +38,10 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         
         self.codeInputView.becomeFirstResponder()
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.resendCodeButton.hidden = true
-        } else {
-            self.pinResetButton.hidden = true
-        }
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
-        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
-        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.resendCodeButton.hidden = true
-            } else {
-                self.resendCodeButton.hidden = false
-            }
-        })
-        
+        hideShowButtons()
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -74,6 +53,22 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         super.viewDidDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func hideShowButtons() {
+        dispatch_async(dispatch_get_main_queue(), {
+            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                self.resendCodeButton.hidden = true
+                self.resendOverrideCode.hidden = true
+            } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
+                self.pinResetButton.hidden = true
+                self.resendCodeButton.hidden = true
+                self.resendOverrideCode.hidden = false
+            } else {
+                self.pinResetButton.hidden = true
+                self.resendOverrideCode.hidden = true
+            }
+        })
     }
     
     @IBAction func sendOTPAgain(sender: UIButton) {
@@ -98,6 +93,21 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
 
     @IBAction func pinResetTapped(sender: UIButton) {
         self.pinResetTapped()
+    }
+    
+    @IBAction func overrideRequestTapped(sender: UIButton) {
+        if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
+            AdminRequestManager.sharedInstance.adminRequestOverride(userBody) { (success, message, code) in
+                //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                if success {
+                    #if DEBUG
+                        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                    #endif
+                    NSUserDefaults.standardUserDefaults().setObject(userBody, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                }
+            }
+        }
     }
 }
 
@@ -151,7 +161,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     if success {
                         dispatch_async(dispatch_get_main_queue()) {
                             //reset our userdefaults to store the new user body
-                            NSUserDefaults.standardUserDefaults().setNilValueForKey(YonaConstants.nsUserDefaultsKeys.userToOverride)
                             NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                             self.codeInputView.resignFirstResponder()
                             //Update flag

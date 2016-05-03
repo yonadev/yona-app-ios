@@ -99,10 +99,13 @@
                                                     <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="sMg-Pc-ipw"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="079-6Q-Vvd">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="079-6Q-Vvd">
                                                 <rect key="frame" x="205.5" y="404" width="189" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendCode"/>
+                                                <connections>
+                                                    <action selector="overrideRequestTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="Ura-Np-5Ed"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
                                                 <rect key="frame" x="203" y="404" width="195" height="28"/>
