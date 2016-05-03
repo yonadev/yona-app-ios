@@ -20,8 +20,9 @@ class AdminRequestManager {
     private init() {}
     
     /**
-     Resends the One Time Password (OTP) code that is sent to the user when they are required to confirm their account
+     Creates an admin request, if the user tries to create an account with same mobile number because they have lost their phone but what to retrieve the account
      
+     - parameter userBody: BodyDataDictionary Dictionary of user details for the admin request, we need the mobile from here
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func adminRequestOverride(userBody: BodyDataDictionary, onCompletion: APIResponse) {
