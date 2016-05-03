@@ -1150,11 +1150,17 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="headerView" destination="XEI-aB-5HT" id="Von-33-xLy"/>
                         <outlet property="maxTimeButton" destination="DX4-6X-brS" id="Wj9-Vq-ffO"/>
                         <outlet property="minutesPerDayLabel" destination="mpN-kc-503" id="bCc-xj-m2u"/>
+                        <outlet property="pickerBackgroundView" destination="6ji-LY-TbC" id="hdg-Rv-icM"/>
                         <outlet property="setChallengeButton" destination="CZh-m0-g2j" id="LV0-yj-lgv"/>
                         <outlet property="timeZoneLabel" destination="APG-DO-NcS" id="wjI-gV-RlK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6ji-LY-TbC">
+                    <rect key="frame" x="0.0" y="0.0" width="598" height="180"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1436" y="-394"/>
         </scene>
