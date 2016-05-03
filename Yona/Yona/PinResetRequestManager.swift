@@ -13,10 +13,10 @@ extension APIServiceManager {
     /**
      Generic method to request, verify or clear pin requests
      
-     - parameter: httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
-     - parameter: pinRequestType: pinRequestTypes, enum of different pin requests depending on if we verify, reset or clear a pin
-     - parameter: body: BodyDataDictionary?, body that is needed in a POST call, can be nil
-     - return: onCompletion: APIPinResetResponse, Sends back the pin ISO code (optional) and also the server messages and success or fail of the request
+     - parameter httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
+     - parameter pinRequestType: pinRequestTypes, enum of different pin requests depending on if we verify, reset or clear a pin
+     - parameter body: BodyDataDictionary?, body that is needed in a POST call, can be nil
+     - parameter onCompletion: APIPinResetResponse, Sends back the pin ISO code (optional) and also the server messages and success or fail of the request
      */
     private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
         APIServiceCheck { (success, message, code) in
@@ -37,6 +37,8 @@ extension APIServiceManager {
                                     onCompletion(false, nil , self.serverMessage, self.serverCode)
                                 }
                             }
+                        } else {
+                            onCompletion(false, nil , self.serverMessage, self.serverCode)
                         }
                     case .verifyRequest:
                         if let path = user?.requestPinVerifyLink{
@@ -47,6 +49,8 @@ extension APIServiceManager {
                                     onCompletion(false , nil, self.serverMessage, self.serverCode)
                                 }
                             }
+                        } else {
+                            onCompletion(false, nil , self.serverMessage, self.serverCode)
                         }
                         
                     case .clearRequest:
@@ -58,6 +62,8 @@ extension APIServiceManager {
                                     onCompletion(false , nil, self.serverMessage, self.serverCode)
                                 }
                             }
+                        } else {
+                            onCompletion(false, nil , self.serverMessage, self.serverCode)
                         }
                     }
                     
@@ -71,7 +77,7 @@ extension APIServiceManager {
     /**
      Resets the pin when the user enters their pin (password) wrong 5 times
      
-     - return: onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
+     - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
     func pinResetRequest(onCompletion: APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.resetRequest, body: nil) { (success, ISOCode, serverMessage, serverCode) in
@@ -86,8 +92,8 @@ extension APIServiceManager {
     /**
      Called when the user enters the OTP sent to them after 24 hours so that the reset password can be verified
      
-     - parameter: body: BodyDataDictionary, Body containing the OTP sent by text to user
-     - return: onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
+     - parameter body: BodyDataDictionary, Body containing the OTP sent by text to user
+     - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
     func pinResetVerify(body: BodyDataDictionary, onCompletion: APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.verifyRequest, body: body) { (success, nil, serverMessage, serverCode) in
@@ -102,7 +108,7 @@ extension APIServiceManager {
     /**
      Called after a successful verify message so that the pin reset is cleared
      
-     - return: onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
+     - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
     func pinResetClear(onCompletion: APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.clearRequest, body: nil) { (success, nil, serverMessage, serverCode) in

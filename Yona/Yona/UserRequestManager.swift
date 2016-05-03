@@ -20,14 +20,14 @@ extension APIServiceManager {
     /**
      Posts a new user to the server, part of the create new user flow, give a body with all the details such as mobile number (that must be unique) and then respond with new user object
      
-     - parameter: body: BodyDataDictionary, pass in a user body like this, mobile must be unique:
+     - parameter body: BodyDataDictionary, pass in a user body like this, mobile must be unique:
                          {
                          "firstName": "Ben",
                          "lastName": "Quin",
                          "mobileNumber": "+3161333999999",
                          "nickname": "RQ"
                          }
-     - return: onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
+     - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func postUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
         APIServiceCheck { (success, message, code) in
@@ -58,14 +58,14 @@ extension APIServiceManager {
     /**
      Updates the user by getting the current user, then passing in the edit link for that user with the new body of details to update
      
-     - parameter: body: BodyDataDictionary, pass in the body as below on how you want to update the user
+     - parameter body: BodyDataDictionary, pass in the body as below on how you want to update the user
              {
              "firstName": "Richard",
              "lastName": "Quin",
              "mobileNumber": "+31612345678",
              "nickname": "RQ"
              }
-     - return: onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
+     - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func updateUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
         APIServiceCheck { (success, message, code) in
@@ -105,7 +105,7 @@ extension APIServiceManager {
     /**
      V.important method called every time we need to access the user specific API, using the selfLink stored in the Keychain we can access the users details and returne this in a DAO user object in the response.
      
-     - return: onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
+     - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func getUser(onCompletion: APIUserResponse) {
         APIServiceCheck { (success, message, code) in
@@ -139,7 +139,7 @@ extension APIServiceManager {
     /**
      Deletes the user, first get the user then use the edit link to delete the user
      
-     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func deleteUser(onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in
@@ -171,16 +171,14 @@ extension APIServiceManager {
     /**
      Resends the One Time Password (OTP) code that is sent to the user when they are required to confirm their account
 
-     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func otpResendMobile(onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in
             if success {
                 self.getUser({ (success, message, code, user) in
-                    if let userID = KeychainManager.sharedInstance.getUserID(),
-                        let otpResendMobileLink = user?.otpResendMobileLink{
+                    if let otpResendMobileLink = user?.otpResendMobileLink{
                         #if DEBUG
-                            print(userID)
                             print(otpResendMobileLink)
                         #endif
                         
@@ -209,11 +207,11 @@ extension APIServiceManager {
     /**
      Called when the user is required to confirm their mobile number after signup, they are sent a text with the One Time Password (OTP) code in which they have to enter, this code is then sent through in the body and then the request can be made to confirm this mobile, if the code is wrong the server sends back messages saying as much...they have 5 attempts, after which the app is locked
      
-     - parameter: body: BodyDataDictionary?, The body must take the form of this, the code is the OTP sent by text
+     - parameter body: BodyDataDictionary?, The body must take the form of this, the code is the OTP sent by text
                      {
                      "code": "1234"
                      }
-     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in

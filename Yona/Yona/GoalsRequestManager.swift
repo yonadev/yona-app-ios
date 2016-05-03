@@ -20,8 +20,8 @@ extension APIServiceManager {
     /**
      Helper method for UI to returns the size of the goals arrays, so challenges know how many goals there
      
-     - parameter: goalType: GoalType, goal type that we want array size for
-     - return:  onCompletion: APIGoalSizeResponse, returns server response messages, and goal array size
+     - parameter goalType: GoalType, goal type that we want array size for
+     - parameter  onCompletion: APIGoalSizeResponse, returns server response messages, and goal array size
      */
     func getGoalsSizeOfGoalType(goalType: GoalType, onCompletion: APIGoalSizeResponse) {
         
@@ -50,8 +50,8 @@ extension APIServiceManager {
     /**
      Private func used by API service method getGoalsOfType to sort the goals into their appropriate array types and return the array request of that type of goals
      
-     - parameter: goalType: GoalType, The goaltype that we require the array for
-     - return: onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
+     - parameter goalType: GoalType, The goaltype that we require the array for
+     - parameter onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
      */
     private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalResponse){
         budgetGoals = []
@@ -85,8 +85,8 @@ extension APIServiceManager {
     /**
      Returns to the UI goals of a certain type that the user has set as a challenge
      
-     - parameter: goalType: GoalType, the GoalType (budget, timezone nogo)
-     - return: onCompletion: APIGoalResponse, returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
+     - parameter goalType: GoalType, the GoalType (budget, timezone nogo)
+     - parameter onCompletion: APIGoalResponse, returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
      */
     func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
@@ -117,8 +117,8 @@ extension APIServiceManager {
     /**
      Helper method to get all the goals associated to the user logged in
      
-     - parameter: none
-     - return: onCompletion: APIGoalResponse,returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
+     - parameter none
+     - parameter onCompletion: APIGoalResponse,returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
      */
     func getAllTheGoalsArray(onCompletion: APIGoalResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
@@ -145,9 +145,9 @@ extension APIServiceManager {
     /**
      Generic method to get the goals or post a goal, as they require the same actions but just a different httpmethod
      
-     - parameter: httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
-     - parameter: body: BodyDataDictionary?, body that is needed in a POST call, can be nil
-     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     - parameter httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
+     - parameter body: BodyDataDictionary?, body that is needed in a POST call, can be nil
+     - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, goalLinkAction: String?, onCompletion: APIGoalResponse) {
         //check network
@@ -212,8 +212,8 @@ extension APIServiceManager {
     /**
      Called to get all the users goals
      
-     - parameter: activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
-     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     - parameter activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
+     - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func getUserGoals(activities: [Activities], onCompletion: APIGoalResponse) {
         //success so get the user
@@ -235,7 +235,7 @@ extension APIServiceManager {
     /**
      Posts a new goal of a certain type defined in the body, sends the goal back to the UI
      
-     - parameter: body: BodyDataDictionary, the body of the goal that needs to be posted, example below:
+     - parameter body: BodyDataDictionary, the body of the goal that needs to be posted, example below:
      NOGO GOAL: (budget type and 0 maxduration)
      {
          "@type": "BudgetGoal",
@@ -268,7 +268,7 @@ extension APIServiceManager {
                  },
                  "zones": ["8:00-17:00", "8:00-17:00"]
              }
-     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
         //success so get the user
@@ -290,9 +290,9 @@ extension APIServiceManager {
     /**
      Updates a goal. UI must send us the editlink of that goal and new body of the goal to update. Sends the updated goal back in a response
      
-     - parameter: goalEditLink: String? The edit link of the specific goal you want to update
-     - parameter: body: BodyDataDictionary, the body of the goal that needs to be updated, example above in post user goal
-     - return: onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
+     - parameter goalEditLink: String? The edit link of the specific goal you want to update
+     - parameter body: BodyDataDictionary, the body of the goal that needs to be updated, example above in post user goal
+     - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func updateUserGoal(goalEditLink: String?, body: BodyDataDictionary, onCompletion: APIGoalResponse) {
         self.goalsHelper(httpMethods.put, body: body, goalLinkAction: goalEditLink) { (success, message, server, goal, goals, error) in
@@ -307,8 +307,8 @@ extension APIServiceManager {
     /**
      Implements API call get goal with ID, given the self link for a goal it returns the goal requested
      
-     - parameter: goalSelfLink: String, the self link for the goal that we require
-     - return: onCompletion: APIGoalResponse, gives response messages and the goal requested
+     - parameter goalSelfLink: String, the self link for the goal that we require
+     - parameter onCompletion: APIGoalResponse, gives response messages and the goal requested
      */
     func getUsersGoalWithSelfLinkID(goalSelfLink: String, onCompletion: APIGoalResponse) {
         self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: goalSelfLink) { (success, message, server, goal, goals, error) in
@@ -323,8 +323,8 @@ extension APIServiceManager {
     /**
      Implements API delete goal, given the edit link for the goal (if it exists, as it will not on Mandatory goals)
      
-     - parameter: goalEditLink: String?, If a goal is not mandatory then it will have and edit link and we will beable to delete it
-     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     - parameter goalEditLink: String?, If a goal is not mandatory then it will have and edit link and we will beable to delete it
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func deleteUserGoal(goalEditLink: String?, onCompletion: APIResponse) {
         

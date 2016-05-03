@@ -8,22 +8,7 @@
 
 import UIKit
 
-
-final class SMSValidationViewController:  UIViewController {
-    @IBOutlet var progressView:UIView!
-    @IBOutlet var codeView:UIView!
-    
-    @IBOutlet var headerTitleLabel: UILabel!
-    @IBOutlet var infoLabel: UILabel!
-    
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var resendCodeButton: UIButton!
-    
-    @IBOutlet var gradientView: GradientView!
-    
-    private var colorX : UIColor = UIColor.yiWhiteColor()
-    var posi:CGFloat = 0.0
-    private var codeInputView: CodeInputView?
+final class SMSValidationViewController: LoginSignupValidationMasterView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +17,13 @@ final class SMSValidationViewController:  UIViewController {
         self.navigationItem.hidesBackButton = true
         
         dispatch_async(dispatch_get_main_queue(), {
+            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                self.resendCodeButton.hidden = true
+                self.pinResetButton.hidden = false
+            } else {
+                self.resendCodeButton.hidden = false
+                self.pinResetButton.hidden = true
+            }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
         
@@ -44,7 +36,7 @@ final class SMSValidationViewController:  UIViewController {
         
         self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
         self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
-        self.resendCodeButton .setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
+        self.resendCodeButton.setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
         
         #if DEBUG
             self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
@@ -52,41 +44,30 @@ final class SMSValidationViewController:  UIViewController {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
     
-    @IBAction func sendOTPAgain(sender: UIButton) {
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            //get otp sent again
-            Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        #if DEBUG
-                            self.displayAlertMessage("App blocked too many OTP attempts", alertDescription:"")
-                            //Now send user back to pinreset screen, let them enter pincode and password again
-                        #endif
-                    })
-                }else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        Loader.Hide(self)
-                        self.displayAlertMessage(message!, alertDescription: "")
-                    }
-                }
-            }
-        }
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+        self.codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+        self.codeInputView?.becomeFirstResponder()
         
         if codeInputView != nil {
+            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                self.resendCodeButton.hidden = true
+                self.pinResetButton.hidden = false
+            } else {
+                self.resendCodeButton.hidden = false
+                self.pinResetButton.hidden = true
+            }
             codeInputView!.delegate = self
             codeInputView?.secure = true
             codeView.addSubview(codeInputView!)
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.codeInputView!.becomeFirstResponder()
+                if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                    self.resendCodeButton.hidden = true
+                } else {
+                    self.resendCodeButton.hidden = false
+                }
             })
         }
         
@@ -101,33 +82,29 @@ final class SMSValidationViewController:  UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-}
-
-extension SMSValidationViewController: KeyboardProtocol {
-    func keyboardWasShown (notification: NSNotification) {
-        
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
-        
-        
-        let  pos = (resendCodeButton?.frame.origin.y)! + (resendCodeButton?.frame.size.height)!
-        
-        
-        if (pos > (viewHeight-keyboardSize.height)) {
-            posi = pos-(viewHeight-keyboardSize.height)
-            self.view.frame.origin.y -= posi
-            
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+    
+    @IBAction func sendOTPAgain(sender: UIButton) {
+        Loader.Show(delegate: self)
+        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
+            if success {
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                    self.codeInputView?.userInteractionEnabled = true
+                    #if DEBUG
+                        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                    #endif
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                    self.displayAlertMessage(message!, alertDescription: "")
+                })
+            }
         }
     }
-    
-    func keyboardWillBeHidden(notification: NSNotification) {
-        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
-            posi = position
-        }
+
+    @IBAction func pinResetTapped(sender: UIButton) {
+        self.pinResetTapped()
     }
 }
 
@@ -142,6 +119,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
                 if success {
+                    self.pinResetButton.hidden = false
+                    self.pinResetButton.hidden = false
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
                     })
@@ -166,12 +145,13 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                     })
                 } else {
-                    //keep app blocked until correct OTP entered
+                    //pin reset verify code is wrong
                     dispatch_async(dispatch_get_main_queue()) {
+                        self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
                         Loader.Hide(self)
-                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                         codeInputView.clear()
+
                     }
                 }
             })
@@ -179,9 +159,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             let body =
                 [
                     YonaConstants.jsonKeys.bodyCode: code
-            ]
+                ]
             
-            APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, code in
+            APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, serverCode in
                 dispatch_async(dispatch_get_main_queue()) {
                     if (success) {
                         codeInputView.resignFirstResponder()
@@ -195,36 +175,11 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         codeInputView.clear()
                         
                     } else {
-                        self.checkCodeMessageShowAlert(code, codeInputView: codeInputView)
+                        self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
                         codeInputView.clear()
                     }
                 }
             }
         }
     }
-    
-    func checkCodeMessageShowAlert(code: String?, codeInputView: CodeInputView){
-        if let codeMessage = code {
-            if(codeMessage == YonaConstants.serverCodes.tooManyOTPAttemps ||
-                codeMessage == YonaConstants.serverCodes.tooManyResendOTPAttemps ||
-                codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps){
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("smsvalidation.user.pincodeattempted5times", comment: ""))
-                #endif
-                //for now just disable the pincode enter screen and not let them interact...
-                codeInputView.resignFirstResponder()
-                codeInputView.userInteractionEnabled = false
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-            } else {
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: NSLocalizedString("invalid-otp", comment: ""))
-                #endif
-            }
-        }
-    }
-}
-
-private extension Selector {
-    static let keyboardWasShown = #selector(SMSValidationViewController.keyboardWasShown(_:))
-    static let keyboardWillBeHidden = #selector(SMSValidationViewController.keyboardWillBeHidden(_:))
 }

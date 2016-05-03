@@ -14,8 +14,8 @@ extension APIServiceManager {
     /**
      Add a new device to the users account
      
-     - parameter: mobileNumber: String, mobile number required to identify the account that the user wants to add a device to
-     - return: onCompletion: APIResponse, returns success or fail of the method and server messages
+     - parameter mobileNumber: String, mobile number required to identify the account that the user wants to add a device to
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func putNewDevice(mobileNumber: String, onCompletion: APIResponse) {
         APIServiceCheck { (success, message, code) in
