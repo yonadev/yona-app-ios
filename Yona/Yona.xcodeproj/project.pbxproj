@@ -615,7 +615,7 @@
 			path = SMSValidation;
 			sourceTree = "<group>";
 		};
-		9042C7371CD898E300100306 /* lib */ = {
+		9042C7371CD898E300100306 /* AGi18nLocalizableStrings */ = {
 			isa = PBXGroup;
 			children = (
 				9042C7381CD898E300100306 /* NSObject+AGi18n.h */,
@@ -639,6 +639,7 @@
 				9042C74A1CD898E300100306 /* UITextView+AGi18n.h */,
 				9042C74B1CD898E300100306 /* UITextView+AGi18n.m */,
 			);
+			name = AGi18nLocalizableStrings;
 			path = lib;
 			sourceTree = "<group>";
 		};
@@ -801,7 +802,7 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7371CD898E300100306 /* lib */,
+				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
 				9042C7091CD7581E00100306 /* CustomPicker */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
