@@ -13,7 +13,8 @@ class LoginSignupValidationMasterView: UIViewController {
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
 
-    var codeInputView: CodeInputView?
+    var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+
     
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
@@ -47,7 +48,7 @@ extension LoginSignupValidationMasterView {
                 //make sure they are never on screen at same time
                 self.resendCodeButton.hidden = false
                 self.pinResetButton.hidden = true
-                self.codeInputView?.userInteractionEnabled = false
+                self.codeInputView.userInteractionEnabled = false
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
@@ -56,7 +57,7 @@ extension LoginSignupValidationMasterView {
                 //make sure they are never on screen at same time
                 self.resendCodeButton.hidden = true
                 self.pinResetButton.hidden = false
-                self.codeInputView?.userInteractionEnabled = false
+                self.codeInputView.userInteractionEnabled = false
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif

@@ -41,13 +41,9 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        
-        if codeInputView != nil {
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-        }
+        self.codeInputView.delegate = self
+        self.codeInputView.secure = true
+        codeView.addSubview(self.codeInputView)
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -57,11 +53,11 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        codeInputView!.becomeFirstResponder()
+        self.codeInputView.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        codeInputView!.resignFirstResponder()
+        self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     

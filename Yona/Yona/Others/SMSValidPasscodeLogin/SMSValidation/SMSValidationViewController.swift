@@ -33,11 +33,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         self.progressView.addSubview(customView)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        self.infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment: "")
-        self.headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment: "").uppercaseString
-        self.resendCodeButton.setTitle(NSLocalizedString("smsvalidation.button.resendCode", comment: ""), forState: UIControlState.Normal)
-        
+                
         #if DEBUG
             self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
@@ -47,29 +43,27 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        self.codeInputView?.becomeFirstResponder()
+        self.codeInputView.becomeFirstResponder()
         
-        if codeInputView != nil {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.resendCodeButton.hidden = true
+            self.pinResetButton.hidden = false
+        } else {
+            self.resendCodeButton.hidden = false
+            self.pinResetButton.hidden = true
+        }
+        self.codeInputView.delegate = self
+        self.codeInputView.secure = true
+        codeView.addSubview(self.codeInputView)
+        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
             if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.resendCodeButton.hidden = true
-                self.pinResetButton.hidden = false
             } else {
                 self.resendCodeButton.hidden = false
-                self.pinResetButton.hidden = true
             }
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                    self.resendCodeButton.hidden = true
-                } else {
-                    self.resendCodeButton.hidden = false
-                }
-            })
-        }
+        })
+        
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -89,7 +83,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
-                    self.codeInputView?.userInteractionEnabled = true
+                    self.codeInputView.userInteractionEnabled = true
                     #if DEBUG
                         self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
                     #endif
@@ -112,7 +106,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            codeInputView.userInteractionEnabled = true
+            self.codeInputView.userInteractionEnabled = true
             #if DEBUG
                 let body = ["code": code]
             #endif
@@ -134,14 +128,14 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                                 self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
                                 //Now send user back to pinreset screen, let them enter pincode and password again
                             #endif
-                            codeInputView.resignFirstResponder()
+                            self.codeInputView.resignFirstResponder()
                             //Update flag
                             setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                             
                             if let passcode = R.storyboard.passcode.passcodeStoryboard {
                                 self.navigationController?.pushViewController(passcode, animated: false)
                             }
-                            codeInputView.clear()
+                            self.codeInputView.clear()
                         }
                     })
                 } else {
@@ -150,7 +144,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
                         Loader.Hide(self)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                        codeInputView.clear()
+                        self.codeInputView.clear()
 
                     }
                 }
@@ -164,7 +158,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             APIServiceManager.sharedInstance.confirmMobileNumber(body) { success, message, serverCode in
                 dispatch_async(dispatch_get_main_queue()) {
                     if (success) {
-                        codeInputView.resignFirstResponder()
+                        self.codeInputView.resignFirstResponder()
                         //Update flag
                         setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
@@ -172,11 +166,11 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
                         
-                        codeInputView.clear()
+                        self.codeInputView.clear()
                         
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
-                        codeInputView.clear()
+                        self.codeInputView.clear()
                     }
                 }
             }

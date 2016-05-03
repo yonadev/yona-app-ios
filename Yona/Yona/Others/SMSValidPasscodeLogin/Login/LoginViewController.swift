@@ -35,16 +35,13 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
-        if codeInputView != nil {
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-            
-            codeInputView!.becomeFirstResponder()
-        }
+        self.codeInputView.delegate = self
+        self.codeInputView.secure = true
+        codeView.addSubview(self.codeInputView)
         
+        self.codeInputView.becomeFirstResponder()
+
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.pinResetButton.hidden = false
             self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
@@ -71,7 +68,7 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            codeInputView.resignFirstResponder()
+            self.codeInputView.resignFirstResponder()
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
             if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
@@ -79,7 +76,7 @@ extension LoginViewController: CodeInputViewDelegate {
             }
         } else {
             errorLabel.hidden = false
-            codeInputView.clear()
+            self.codeInputView.clear()
             if loginAttempts == totalAttempts {
                 self.pinResetButton.hidden = false
                 let defaults = NSUserDefaults.standardUserDefaults()

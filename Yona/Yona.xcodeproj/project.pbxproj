@@ -23,6 +23,16 @@
 		9042C7311CD78F7200100306 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7291CD78F7200100306 /* SMSValidation.storyboard */; };
 		9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */; };
 		9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */; };
+		9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7391CD898E300100306 /* NSObject+AGi18n.m */; };
+		9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C73B1CD898E300100306 /* UIBarButtonItem+AGi18n.m */; };
+		9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C73D1CD898E300100306 /* UIButton+AGi18n.m */; };
+		9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C73F1CD898E300100306 /* UILabel+AGi18n.m */; };
+		9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7411CD898E300100306 /* UINavigationItem+AGi18n.m */; };
+		9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7431CD898E300100306 /* UISearchBar+AGi18n.m */; };
+		9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7451CD898E300100306 /* UISegmentedControl+AGi18n.m */; };
+		9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */; };
+		9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7491CD898E300100306 /* UITextField+AGi18n.m */; };
+		9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C74B1CD898E300100306 /* UITextView+AGi18n.m */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
@@ -240,6 +250,26 @@
 		9042C7291CD78F7200100306 /* SMSValidation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SMSValidation.storyboard; sourceTree = "<group>"; };
 		9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
 		9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupValidationMasterView.swift; sourceTree = "<group>"; };
+		9042C7381CD898E300100306 /* NSObject+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7391CD898E300100306 /* NSObject+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AGi18n.m"; sourceTree = "<group>"; };
+		9042C73A1CD898E300100306 /* UIBarButtonItem+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+AGi18n.h"; sourceTree = "<group>"; };
+		9042C73B1CD898E300100306 /* UIBarButtonItem+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+AGi18n.m"; sourceTree = "<group>"; };
+		9042C73C1CD898E300100306 /* UIButton+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGi18n.h"; sourceTree = "<group>"; };
+		9042C73D1CD898E300100306 /* UIButton+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGi18n.m"; sourceTree = "<group>"; };
+		9042C73E1CD898E300100306 /* UILabel+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AGi18n.h"; sourceTree = "<group>"; };
+		9042C73F1CD898E300100306 /* UILabel+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AGi18n.m"; sourceTree = "<group>"; };
+		9042C7401CD898E300100306 /* UINavigationItem+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7411CD898E300100306 /* UINavigationItem+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+AGi18n.m"; sourceTree = "<group>"; };
+		9042C7421CD898E300100306 /* UISearchBar+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7431CD898E300100306 /* UISearchBar+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+AGi18n.m"; sourceTree = "<group>"; };
+		9042C7441CD898E300100306 /* UISegmentedControl+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7451CD898E300100306 /* UISegmentedControl+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+AGi18n.m"; sourceTree = "<group>"; };
+		9042C7461CD898E300100306 /* UITabBarItem+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+AGi18n.m"; sourceTree = "<group>"; };
+		9042C7481CD898E300100306 /* UITextField+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+AGi18n.h"; sourceTree = "<group>"; };
+		9042C7491CD898E300100306 /* UITextField+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AGi18n.m"; sourceTree = "<group>"; };
+		9042C74A1CD898E300100306 /* UITextView+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AGi18n.h"; sourceTree = "<group>"; };
+		9042C74B1CD898E300100306 /* UITextView+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AGi18n.m"; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
@@ -585,6 +615,33 @@
 			path = SMSValidation;
 			sourceTree = "<group>";
 		};
+		9042C7371CD898E300100306 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9042C7381CD898E300100306 /* NSObject+AGi18n.h */,
+				9042C7391CD898E300100306 /* NSObject+AGi18n.m */,
+				9042C73A1CD898E300100306 /* UIBarButtonItem+AGi18n.h */,
+				9042C73B1CD898E300100306 /* UIBarButtonItem+AGi18n.m */,
+				9042C73C1CD898E300100306 /* UIButton+AGi18n.h */,
+				9042C73D1CD898E300100306 /* UIButton+AGi18n.m */,
+				9042C73E1CD898E300100306 /* UILabel+AGi18n.h */,
+				9042C73F1CD898E300100306 /* UILabel+AGi18n.m */,
+				9042C7401CD898E300100306 /* UINavigationItem+AGi18n.h */,
+				9042C7411CD898E300100306 /* UINavigationItem+AGi18n.m */,
+				9042C7421CD898E300100306 /* UISearchBar+AGi18n.h */,
+				9042C7431CD898E300100306 /* UISearchBar+AGi18n.m */,
+				9042C7441CD898E300100306 /* UISegmentedControl+AGi18n.h */,
+				9042C7451CD898E300100306 /* UISegmentedControl+AGi18n.m */,
+				9042C7461CD898E300100306 /* UITabBarItem+AGi18n.h */,
+				9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */,
+				9042C7481CD898E300100306 /* UITextField+AGi18n.h */,
+				9042C7491CD898E300100306 /* UITextField+AGi18n.m */,
+				9042C74A1CD898E300100306 /* UITextView+AGi18n.h */,
+				9042C74B1CD898E300100306 /* UITextView+AGi18n.m */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		90DE87991CD2374400C1E706 /* DAOObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +801,7 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9042C7371CD898E300100306 /* lib */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
 				9042C7091CD7581E00100306 /* CustomPicker */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
@@ -1403,7 +1461,9 @@
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
+				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */,
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
@@ -1411,16 +1471,19 @@
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
+				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
+				9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
+				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
@@ -1435,6 +1498,7 @@
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
+				9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */,
 				AD00DED31CD3648F006BBA7E /* IQUIView+Hierarchy.swift in Sources */,
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
@@ -1447,7 +1511,9 @@
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */,
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
+				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
 				9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */,
+				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
@@ -1457,6 +1523,7 @@
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
+				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */,
@@ -1467,6 +1534,7 @@
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
+				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,13 +31,10 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
+        self.codeInputView.delegate = self
+        self.codeInputView.secure = true
+        codeView.addSubview(self.codeInputView)
         
-        if codeInputView != nil {
-            codeInputView!.delegate = self
-            codeInputView?.secure = true
-            codeView.addSubview(codeInputView!)
-        }
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
@@ -46,7 +43,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        codeInputView!.becomeFirstResponder()
+        self.codeInputView.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
