@@ -62,7 +62,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    }
+}
 
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
@@ -96,3 +96,29 @@ extension LoginViewController: CodeInputViewDelegate {
         self.pinResetTapped()
     }
 }
+
+extension LoginViewController: KeyboardProtocol {
+    func keyboardWasShown (notification: NSNotification) {
+        
+        let viewHeight = self.view.frame.size.height
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
+        let keyboardInset = keyboardSize.height - viewHeight/3
+        
+        
+        let  pos = (pinResetButton?.frame.origin.y)! + (pinResetButton?.frame.size.height)!
+        
+        if (pos > (viewHeight-keyboardSize.height)) {
+            scrollView.setContentOffset(CGPointMake(0, pos-(viewHeight-keyboardSize.height)), animated: true)
+        } else {
+            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
+            posi = position
+        }
+    }
+}
+

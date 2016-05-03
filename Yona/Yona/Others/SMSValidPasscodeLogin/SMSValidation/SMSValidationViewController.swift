@@ -177,3 +177,32 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         }
     }
 }
+
+extension SMSValidationViewController: KeyboardProtocol {
+    
+    func keyboardWasShown (notification: NSNotification) {
+        
+        let viewHeight = self.view.frame.size.height
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
+        let keyboardInset = keyboardSize.height - viewHeight/3
+        
+        
+        let  pos = (resendCodeButton?.frame.origin.y)! + (resendCodeButton?.frame.size.height)!
+        
+        
+        if (pos > (viewHeight-keyboardSize.height)) {
+            posi = pos-(viewHeight-keyboardSize.height)
+            self.view.frame.origin.y -= posi
+            
+        } else {
+            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
+            posi = position
+        }
+    }
+}
