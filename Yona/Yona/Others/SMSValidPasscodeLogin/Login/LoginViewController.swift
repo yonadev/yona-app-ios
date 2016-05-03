@@ -22,13 +22,10 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         dispatch_async(dispatch_get_main_queue(), {
             if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                if let pinResetButton = self.pinResetButton{
-                    pinResetButton.hidden = false
-                }
+                self.pinResetButton.hidden = false
             } else {
-                if let pinResetButton = self.pinResetButton{
-                    pinResetButton.hidden = true
-                }            }
+                self.pinResetButton.hidden = true
+            }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
         
@@ -46,9 +43,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            if let pinResetButton = self.pinResetButton{
-                pinResetButton.hidden = false
-            }
+            self.pinResetButton.hidden = false
             self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
@@ -83,9 +78,7 @@ extension LoginViewController: CodeInputViewDelegate {
             errorLabel.hidden = false
             codeInputView.clear()
             if loginAttempts == totalAttempts {
-                if let pinResetButton = self.pinResetButton{
-                    pinResetButton.hidden = false
-                }
+                self.pinResetButton.hidden = false
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
