@@ -14,7 +14,6 @@
 		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
 		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
 		9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */; };
-		9042C72B1CD78F7200100306 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7211CD78F7200100306 /* AddDeviceViewController.swift */; };
 		9042C72C1CD78F7200100306 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
 		9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7231CD78F7200100306 /* LoginViewController.swift */; };
 		9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */; };
@@ -81,6 +80,8 @@
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
+		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
+		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
 		ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
@@ -241,7 +242,6 @@
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
 		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
 		9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
-		9042C7211CD78F7200100306 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +324,8 @@
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
+		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -589,7 +591,6 @@
 		9042C7201CD78F7200100306 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7211CD78F7200100306 /* AddDeviceViewController.swift */,
 				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7231CD78F7200100306 /* LoginViewController.swift */,
 			);
@@ -832,6 +833,16 @@
 				ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */ = {
+			isa = PBXGroup;
+			children = (
+				AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */,
+				AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */,
+			);
+			name = AddNewDevice;
+			path = Others/AddNewDevice;
 			sourceTree = "<group>";
 		};
 		ADAEAFE01CB40FA4005ED7B4 /* Welcome */ = {
@@ -1160,6 +1171,7 @@
 				AD291DA21CAAA7AB008CAFB1 /* Others */,
 				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
+				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
@@ -1354,6 +1366,7 @@
 				ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */,
 				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
 				AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */,
+				AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */,
 				ADEF8F091CADFD0C001D5EED /* Roboto-LightItalic.ttf in Resources */,
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
 				ADEF8F0A1CADFD0C001D5EED /* Roboto-Medium.ttf in Resources */,
@@ -1489,7 +1502,6 @@
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
-				9042C72B1CD78F7200100306 /* AddDeviceViewController.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
@@ -1529,6 +1541,7 @@
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
+				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */,
 				9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */,

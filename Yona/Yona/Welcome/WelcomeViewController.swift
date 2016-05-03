@@ -23,10 +23,6 @@ class WelcomeViewController: UIViewController {
     
     private func setupUI() {
         setViewControllerToDisplay("Welcome", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-        
-        self.signUpButton.setTitle(NSLocalizedString("join", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.loginButton.setTitle(NSLocalizedString("login", comment: "").uppercaseString, forState: UIControlState.Normal)
-        
     }
     
     @IBAction func signUp(sender: AnyObject) {
@@ -36,8 +32,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func login(sender: AnyObject) {
-        if let loginStoryboard = R.storyboard.login.loginStoryboard {
-            navigationController?.pushViewController(loginStoryboard, animated: true)
+        if let addDeviceStoryboard = R.storyboard.addDeviceViewController.addDeviceStoryboard {
+            navigationController?.pushViewController(addDeviceStoryboard, animated: true)
         }
     }
 }
