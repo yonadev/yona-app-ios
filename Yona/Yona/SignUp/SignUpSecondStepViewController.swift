@@ -121,7 +121,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                 
                 APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
-                        self.sendToSMSValidation(body)
+                        self.sendToSMSValidation()
                     } else if code == YonaConstants.serverCodes.errorUserExists {
                         dispatch_async(dispatch_get_main_queue()) {
                             Loader.Hide()
@@ -133,12 +133,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                                         AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
                                             //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
                                             if success {
-                                                #if DEBUG
-                                                    self.displayAlertMessage("Enter OTP CODE 1234", alertDescription: "")
-                                                #endif
+                                                NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
                                                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-
-                                                self.sendToSMSValidation(body)
+                                                self.sendToSMSValidation()
                                             }
                                         }
                                         
@@ -155,14 +152,13 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         }
     }
     
-    func sendToSMSValidation(body: BodyDataDictionary){
+    func sendToSMSValidation(){
         //Update flag
         setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         dispatch_async(dispatch_get_main_queue()) {
             // update some UI
             Loader.Hide()
             if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                smsValidation.userBody = body
                 self.navigationController?.pushViewController(smsValidation, animated: false)
             }
         }

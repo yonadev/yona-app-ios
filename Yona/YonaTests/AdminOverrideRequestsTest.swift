@@ -39,7 +39,6 @@ class AdminOverrideRequestTests: XCTestCase {
              "mobileNumber": "+31625222867",
              "nickname": "BTS"]
         APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
-            XCTAssert((user) != nil)
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
@@ -59,7 +58,7 @@ class AdminOverrideRequestTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectationsWithTimeout(10.0, handler:nil)
         
     }
 }

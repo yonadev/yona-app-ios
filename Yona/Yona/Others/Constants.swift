@@ -142,6 +142,7 @@ struct YonaConstants {
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
         static let adminOverride = "adminOverride"
+        static let userToOverride = "userToOverride"
     }
 
     struct screenNames{

@@ -143,7 +143,7 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
