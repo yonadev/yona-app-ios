@@ -9,6 +9,8 @@ struct R {
     storyboard.createAccount.validateViewControllers()
     storyboard.friends.validateImages()
     storyboard.friends.validateViewControllers()
+    storyboard.addDeviceViewController.validateImages()
+    storyboard.addDeviceViewController.validateViewControllers()
     storyboard.profile.validateImages()
     storyboard.profile.validateViewControllers()
     storyboard.signUp.validateImages()
@@ -399,6 +401,20 @@ struct R {
   }
   
   struct storyboard {
+    struct addDeviceViewController {
+      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
+      static var instance: UIStoryboard { return UIStoryboard(name: "AddDeviceViewController", bundle: _R.hostingBundle) }
+      
+      static func validateImages() {
+        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
+      }
+      
+      static func validateViewControllers() {
+        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'AddDeviceViewController' as 'AddDeviceViewController'.")
+      }
+    }
+    
     struct challenges {
       static var challengesStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? UINavigationController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
@@ -485,20 +501,16 @@ struct R {
     }
     
     struct login {
-      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginStoryboard: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginStoryboard") as? LoginViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
-        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Login', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(loginStoryboard != nil, "[R.swift] ViewController with identifier 'loginStoryboard' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
-        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'Login' as 'AddDeviceViewController'.")
       }
     }
     

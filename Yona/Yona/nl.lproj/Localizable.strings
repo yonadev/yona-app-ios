@@ -6,9 +6,8 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
-"welcome.button.signup" = "DOE MEE";
-"welcome.button.login" = "INLOGGEN";
 
+"join" = "DOE MEE";
 "signup.user.firstname" = "Voornaam";
 "signup.user.lastname" = "Achtenaam";
 "signup.button.next" = "Volgende";
@@ -24,6 +23,7 @@
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
 "smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
+"add-device" = "DEVICE TOEVOEGEN";
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
 "passcode.user.UnlockPincode" = "Ontgrendeld PIN";
