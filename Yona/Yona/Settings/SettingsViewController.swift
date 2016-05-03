@@ -9,13 +9,20 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    var settingsArray:NSArray!
+    @IBOutlet var tableView:UITableView!
     @IBOutlet var gradientView: GradientView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        UIApplication.sharedApplication().statusBarHidden = true
+        settingsArray = [ "Wijzig pincode", "Privacy", "Device toevoegen"]
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiMangoColor(), UIColor.yiMangoColor()]
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,5 +40,50 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+
+// MARK: - Table view data source
+func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+}
+
+func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return self.settingsArray.count
+}
+
+
+func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    cell.textLabel?.text = settingsArray[indexPath.row] as! String;
+//    let s: String = zonesArray[indexPath.row] as! String
+//    
+//    cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
+//        print("From Button Clicked in cell")
+//        
+//    }) { (cell) in
+//        print("to Button Clicked in cell")
+//    }
+    
+    return cell
+}
+
+
+func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    print("index  \(indexPath)")
+    print("index  \(self.navigationController)")
+    if indexPath.row == 2 {
+        if let addDevice = R.storyboard.addDeviceViewController.addDeviceStoryboard {
+            self.presentViewController(addDevice, animated: true, completion: nil)
+        }
+    
+    
+    
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("myVCId") as! MyVCName
+//        self.presentViewController(vc, animated: true, completion: nil)
+//
+    
+    }
+
+}
 
 }
