@@ -9,8 +9,9 @@
 
 import UIKit
 
-class AddDeviceViewController: LoginSignupValidationMasterView, UIScrollViewDelegate {
+class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
     var activeField : UITextField?
+    var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
     private let nederlandPhonePrefix = "+316 "
@@ -18,9 +19,12 @@ class AddDeviceViewController: LoginSignupValidationMasterView, UIScrollViewDele
 
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var passcodeTextField: UITextField!
-    @IBOutlet var loginButton: UIButton!
     @IBOutlet var infoLabel: UILabel!
-
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var loginButton: UIButton!
+    
+    @IBOutlet var gradientView: GradientView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -30,6 +34,7 @@ class AddDeviceViewController: LoginSignupValidationMasterView, UIScrollViewDele
         super.viewWillAppear(animated)
         
         //keyboard functions
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
@@ -56,7 +61,7 @@ class AddDeviceViewController: LoginSignupValidationMasterView, UIScrollViewDele
 
         mobileTextField.text = nederlandPhonePrefix
         
-        self.infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "")
+        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "")
         
         
         //Nav bar Back button.
@@ -118,7 +123,7 @@ extension AddDeviceViewController: UITextFieldDelegate {
         ]
         
         keyboardToolBar.setItems(keyboardBarButtonItems, animated: false)
-        keyboardToolBar.tintColor = colorx
+        keyboardToolBar.tintColor = colorX
         keyboardToolBar.barStyle = UIBarStyle.Black
         keyboardToolBar.sizeToFit()
         textField.inputAccessoryView = keyboardToolBar
@@ -168,6 +173,28 @@ extension AddDeviceViewController: UITextFieldDelegate {
     func previousTextField() {
         passcodeTextField.resignFirstResponder()
         mobileTextField.becomeFirstResponder()
+    }
+    
+    
+    //MARK: - Keyboard Functions
+    func keyboardWasShown (notification: NSNotification) {
+        let viewHeight = self.view.frame.size.height
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
+        let keyboardInset = keyboardSize.height - viewHeight/3
+        let  txtpos = (activeField?.frame.origin.y)! + (activeField?.frame.size.height)! + 260
+        if (txtpos > (viewHeight-keyboardSize.height)) {
+            scrollView.setContentOffset(CGPointMake(0, txtpos-(viewHeight-keyboardSize.height)), animated: true)
+        } else {
+            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        }
+
+    }
+    
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        self.scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
     }
     
 }

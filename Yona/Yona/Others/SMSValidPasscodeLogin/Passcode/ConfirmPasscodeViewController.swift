@@ -11,8 +11,6 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
-    @IBOutlet var headerTitleLabel: UILabel?
-    @IBOutlet var infoLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +19,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "")
-        self.headerTitleLabel!.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
+        self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
         
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
@@ -33,10 +31,13 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        codeInputView.delegate = self
-        codeInputView.secure = true
-        codeView.addSubview(codeInputView)
+        codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
         
+        if codeInputView != nil {
+            codeInputView!.delegate = self
+            codeInputView?.secure = true
+            codeView.addSubview(codeInputView!)
+        }
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
@@ -45,7 +46,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        codeInputView.becomeFirstResponder()
+        codeInputView!.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)

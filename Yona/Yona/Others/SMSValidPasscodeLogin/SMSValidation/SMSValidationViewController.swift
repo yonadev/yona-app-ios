@@ -10,10 +10,6 @@ import UIKit
 
 final class SMSValidationViewController: LoginSignupValidationMasterView {
     
-    @IBOutlet var headerTitleLabel: UILabel!
-    @IBOutlet var progressView: UIView!
-    @IBOutlet var infoLabel: UILabel!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +30,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
-        progressView.addSubview(customView)
+        self.progressView.addSubview(customView)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -52,27 +48,28 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         super.viewWillAppear(animated)
         
         self.codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        self.codeInputView.becomeFirstResponder()
+        self.codeInputView?.becomeFirstResponder()
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.resendCodeButton.hidden = true
-            self.pinResetButton.hidden = false
-        } else {
-            self.resendCodeButton.hidden = false
-            self.pinResetButton.hidden = true
-        }
-        codeInputView.delegate = self
-        codeInputView.secure = true
-        codeView.addSubview(codeInputView)
-        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
-        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+        if codeInputView != nil {
             if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.resendCodeButton.hidden = true
+                self.pinResetButton.hidden = false
             } else {
                 self.resendCodeButton.hidden = false
+                self.pinResetButton.hidden = true
             }
-        })
-        
+            codeInputView!.delegate = self
+            codeInputView?.secure = true
+            codeView.addSubview(codeInputView!)
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(50)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+                    self.resendCodeButton.hidden = true
+                } else {
+                    self.resendCodeButton.hidden = false
+                }
+            })
+        }
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -92,7 +89,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
-                    self.codeInputView.userInteractionEnabled = true
+                    self.codeInputView?.userInteractionEnabled = true
                     #if DEBUG
                         self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
                     #endif
