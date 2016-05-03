@@ -19,9 +19,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         dispatch_async(dispatch_get_main_queue(), {
             if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
                 self.resendCodeButton.hidden = true
-                self.pinResetButton.hidden = false
             } else {
-                self.resendCodeButton.hidden = false
                 self.pinResetButton.hidden = true
             }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
@@ -47,9 +45,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.resendCodeButton.hidden = true
-            self.pinResetButton.hidden = false
         } else {
-            self.resendCodeButton.hidden = false
             self.pinResetButton.hidden = true
         }
         self.codeInputView.delegate = self
