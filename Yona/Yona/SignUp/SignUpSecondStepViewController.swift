@@ -88,7 +88,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.mobileTextField.leftView = label
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
-    
+        
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -119,7 +119,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 
-                APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
+                APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         //Update flag
                         setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
@@ -130,11 +130,27 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                                 self.navigationController?.pushViewController(smsValidation, animated: false)
                             }
                         }
-                    } else {
+                    } else if code == YonaConstants.serverCodes.errorUserExists {
                         dispatch_async(dispatch_get_main_queue()) {
                             Loader.Hide()
                             if let alertMessage = message {
-                            self.displayAlertMessage(alertMessage, alertDescription: "")
+                                self.displayAlertOption(alertMessage, alertDescription: "", onCompletion: { (buttonPressed) in
+                                    switch buttonPressed{
+                                    case alertButtonType.OK:
+                                        AdminRequestManager.sharedInstance.adminRequestOverride(body, onCompletion: { (success, message, code) in
+                                            //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                                            if success {
+                                                #if DEBUG
+                                                    self.displayAlertMessage("Enter OTP CODE 1234", alertDescription: "")
+                                                #endif
+                                            }
+                                        })
+                                        
+                                    case alertButtonType.cancel:
+                                        break
+                                        //do nothing or send back to start of signup?
+                                    }
+                                })
                             }
                         }
                     }

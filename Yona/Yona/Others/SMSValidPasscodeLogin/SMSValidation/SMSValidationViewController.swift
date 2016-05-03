@@ -114,7 +114,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             APIServiceManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
                 if success {
                     self.pinResetButton.hidden = false
-                    self.pinResetButton.hidden = false
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
                     })
