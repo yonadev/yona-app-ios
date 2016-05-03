@@ -373,7 +373,6 @@ struct R {
   }
   
   struct reuseIdentifier {
-    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
@@ -574,14 +573,14 @@ struct R {
     
     struct settings {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
-      static var settingsStoryboard: SettingsViewController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? SettingsViewController }
+      static var settingsStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? UINavigationController }
       
       static func validateImages() {
         
       }
       
       static func validateViewControllers() {
-        assert(settingsStoryboard != nil, "[R.swift] ViewController with identifier 'settingsStoryboard' could not be loaded from storyboard 'Settings' as 'SettingsViewController'.")
+        assert(settingsStoryboard != nil, "[R.swift] ViewController with identifier 'settingsStoryboard' could not be loaded from storyboard 'Settings' as 'UINavigationController'.")
       }
     }
     

@@ -63,4 +63,16 @@ extension UIColor {
     class func yiBgGradientTwoColor() -> UIColor {
         return UIColor(white: 247.0 / 255.0, alpha: 1.0)
     }
+    
+    class func yiGraphBarOneColor() -> UIColor {
+        return UIColor(white: 243.0 / 255.0, alpha: 1.0)
+    }
+    
+    class func yiGraphBarTwoColor() -> UIColor {
+        return UIColor(white: 213.0 / 255.0, alpha: 1.0)
+    }
+    
+    class func yiMango95Color() -> UIColor {
+        return UIColor(red: 249.0 / 255.0, green: 179.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.95)
+    }
 }
