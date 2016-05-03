@@ -29,39 +29,70 @@ class ActivityAPIServiceTests: XCTestCase {
     }
     
     func testGetActivityCategories() {
+        //setup
         let expectation = expectationWithDescription("Waiting to respond")
-        let password = NSUUID().UUIDString
-        let keychain = KeychainSwift()
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
-            if success{
-                for activity in activities! {
-                    print(activity.activityCategoryName)
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                        if success{
+                            for activity in activities! {
+                                print(activity.activityCategoryName)
+                            }
+                            expectation.fulfill()
+                        }
+                    }
                 }
-                expectation.fulfill()
             }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
     func testGetActivityCategoryWithID() {
-        let expectation = expectationWithDescription("Waiting to respond")
-        let password = NSUUID().UUIDString
-        let keychain = KeychainSwift()
-        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
         
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
-            if success {
-                let activity = activities![0]
-                print(activity)
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                        if success {
+                            let activity = activities![0]
+                            print(activity)
 
-                APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
-                    if success{
-                        print(activity)
-                        expectation.fulfill()
+                            APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                                if success{
+                                    print(activity)
+                                    expectation.fulfill()
+                                }
+                            })
+                        }
                     }
-                })
+                }
             }
         }
 
@@ -84,12 +115,16 @@ class ActivityAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
-            
-            APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
-                print(activities)
-                XCTAssertTrue(success, "Received Activities")
-                expectation.fulfill()
-            })
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
+                        print(activities)
+                        XCTAssertTrue(success, "Received Activities")
+                        expectation.fulfill()
+                    })
+                }
+            }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
@@ -97,17 +132,37 @@ class ActivityAPIServiceTests: XCTestCase {
     //    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
 
     func testGetActivityLinkForSocialActivityName() {
+        let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8" // hard code this for now for test
         let expectation = expectationWithDescription("Waiting to respond")
-        let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8"
-
-        APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
-            if success{
-                XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
-                expectation.fulfill()
-            } else {
-                XCTFail(message!)
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
+                        if success{
+                            XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
+                            expectation.fulfill()
+                        } else {
+                            XCTFail(message!)
+                        }
+                    }
+                }
             }
         }
+        
+
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
 }

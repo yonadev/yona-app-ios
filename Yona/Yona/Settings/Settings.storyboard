@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yL-WB-lhv" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.39607843139999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="gTe-s0-bma"/>
                                     <constraint firstAttribute="height" constant="50" id="uZw-NO-b3B"/>
@@ -33,13 +33,32 @@
                             <constraint firstAttribute="trailing" secondItem="0yL-WB-lhv" secondAttribute="trailing" id="raq-16-aiN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="evV-92-QTX"/>
                     <connections>
                         <outlet property="gradientView" destination="0yL-WB-lhv" id="Kgp-Xi-fOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MTL-ir-QnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="211.5" y="423"/>
+            <point key="canvasLocation" x="1023" y="423"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xcg-ZP-jyj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zeN-KO-tni" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3fa-iL-kaG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Xo0-ls-zNR" kind="relationship" relationship="rootViewController" id="ext-YO-6Nv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3nY-53-vtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="211" y="423"/>
         </scene>
     </scenes>
 </document>

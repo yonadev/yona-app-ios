@@ -6,19 +6,113 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
-"welcome.button.signup" = "JOIN";
-"welcome.button.login" = "LOGIN";
 
-"signup.user.firstname" = "Firstname";
-"signup.user.lastname" = "Lastname";
-"signup.button.next" = "Next";
-"signup.button.previous" = "Previous";
+"app-name" = "yona";
+"dashboard" = "DASHBOARD";
+"friends" = "FRIENDS";
+"challenges" = "CHALLENGES";
+"settings" = "SETTINGS";
+"per-day" = "Per Day";
+"per-week" = "Per Week";
+"timeline" = "Timeline";
+"overiview" = "Overview";
+"profile" = "Profile";
+"message" = "NOTIFICATIONS";
+"profile-details" = "Profile";
+"badges" = "Badges";
+"challenges-credit" = "CREDIT";
+"challenges-zone" = "TIMEZONE";
+"challenges-no-go" = "NO GO";
+"change-pin" = "Change PIN";
+"privacy" = "Privacy";
+"join" = "JOIN";
+"login" = "LOGIN";
+"previous" = "PREVIOUS";
+"next" = "NEXT";
+"connection-not-available" = "OOPS! No Internet Connection Available";
+"first-name" = "FIRST NAME";
+"last-name" = "LAST NAME";
+"nick-name" = "NICKNAME";
+"privacy-policy" = "Yona is committed to respecting and protecting your privacy. All sensitive data is secured with encryption.";
+"mobile-number" = "MOBILE PHONE NUMBER";
+"user-signup-message" = "We use your mobile phone for a secure registration. Your nickname is mandatory and ensures better privacy.";
+"enter-first-name-validation" = "You need to enter a name";
+"enter-last-name-validation" = "You need to enter a name";
+"enter-number-validation" = "Number should be 9 digits";
+"loading" = "Loading";
+"ok" = "Ok";
+"passcode-title" = "You are not alone";
+"passcode-tryagain" = "Try again";
+"pincode" = "PINCODE";
+"passcode-step1-title" = "Account created";
+"passcode-step1-desc" = "For security";
+"passcode-step2-title" = "Confirm pincode";
+"passcode-step2-desc" = "Enter your PIN again to confirm.";
+"msg-block-user" = "Your account has been locked for security reasons";
+"passcode-reset" = "PIN reset";
+"invalid-otp" = "Invalid accesscode";
+"account-login" = "Account be created";
+"account-login-security-message" = "For security";
+"send-otp-again" = "Send code again";
+"add-device" = "Add device";
+"yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
+"loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
+"passcode" = "CODE";
+"in-loggin" = "LOGIN";
+"enter-passcode" = "Je moet een 6 cijferig alfanumeriek code invoeren.";
+"reset-pin-request" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %1$s hours.";
+"user-override" = "Mobile Number %@ already register with Yona";
+"yes" = "Yes";
+"no" = "No";
+"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
+"challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
+"challenges.addBudgetGoal.timeZoneLabel" = "Tijdzone";
+"challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
+"challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
+"challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
+"challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
+"delete-user" = "Unsubscribe";
+"challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
+"delete-user-message" = "This is your latest device with private key and your profile and data will be remove from the yona server";
+"cancel" = "Cancel";
+"challenges-nogo-header" = "Hier leg je vast waar je helemaal niet wilt komen.";
+"challenges-tijdzone-header" = "Kies een categorie waar je een tijdzone voor wilt instellen";
+"challenges-tegoed-header" = "Kies een categorie waar je een tegoed voor wilt vastleggen";
+"challenges-footer" = "De volgende apps zijn \nonderdeel van deze challenge:";
+"challenges-goal-create-button" = "CHALLENGE OPSLAAN";
+"budget-goal-desc" = "minuten per dag";
+"budget-goal-title" = "Tegoed";
+"timezone-goal-header-subtext" = "Bepaal hier wanneer je wel of geen tijd aan %1$s wilt besteden";
+"budget-goal-header-subtext" = "Bepaal hier hoeveel tijd je aan %1$s wilt besteden";
+"timezone" = "Tijdzone";
+"screentitle1" = "Transparantie";
+"screentitle2" = "Delen";
+"screentitle3" = "Grenzen";
+"screentitle4" = "Tijdsbesteding";
+"screendesc1" = "Persoonlijke keuze om transparant te zijn...";
+"screendesc2" = "Je doelen delen met de persoon die je vertrouwt";
+"screendesc3" = "Grenzen afspreken en daar anderen in betrekken";
+"screendesc4" = "Controle houden over de tijd die je online bent";
+"url-not-found" = "Url Not found.";
+"challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
+"challenges-timzoe-subtext" = "Timeslot tussen %1$sen tussen %2$s";
+"challenges-budget-subtext" = "Je kunt per dag %1$s minuten %2$s";
 
-"signup.user.mobileNumber" = "Mobile Number";
-"signup.user.nickname" = "Nick Name";
-"signup.user.infoText" = "We use your mobile number for secure registration. Your nickname is mandatory and allows for better privacy.";
 
-"smsvalidation.user.errormessage" = "The code is not correct. Try again";
+//================
+//"welcome.button.signup" = "JOIN";
+//"welcome.button.login" = "LOGIN";
+//
+//"signup.user.firstname" = "Firstname";
+//"signup.user.lastname" = "Lastname";
+//"signup.button.next" = "Next";
+//"signup.button.previous" = "Previous";
+//
+//"signup.user.mobileNumber" = "Mobile Number";
+//"signup.user.nickname" = "Nick Name";
+//"signup.user.infoText" = "We use your mobile number for secure registration. Your nickname is mandatory and allows for better privacy.";
+//
+//"smsvalidation.user.errormessage" = "The code is not correct. Try again";
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
@@ -52,6 +146,10 @@
 "challenges.user.TimeZoneGoalDescriptionText" = "Time slot between ";
 "challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
+
+"challenges.budgetGoal.Title" = "BUDGET";
+"challenges.timezoneGoal.Title" = "TIMEZONE";
+"challenges.nogoGoal.Title" = "NO GO";
 
 "challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";

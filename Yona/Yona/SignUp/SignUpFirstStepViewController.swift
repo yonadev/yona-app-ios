@@ -19,30 +19,14 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var personalQuoteLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
-
         setupUI()
-    }
-    
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        keyboard functions
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -58,17 +42,17 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
-
-        firstnameTextField.placeholder = NSLocalizedString("signup.user.firstname", comment: "").uppercaseString
-        lastnameTextField.placeholder = NSLocalizedString("signup.user.lastname", comment: "").uppercaseString
         
-        nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
+        firstnameTextField.placeholder = NSLocalizedString("first-name", comment: "").uppercaseString
+        lastnameTextField.placeholder = NSLocalizedString("last-name", comment: "").uppercaseString
+        
+        nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)
         
-        //Nav bar Back button.        
+        //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -87,7 +71,7 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
         self.lastnameTextField.rightView = lastname;
         self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
         
-        }
+    }
     
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
@@ -117,26 +101,7 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         }
         return true
     }
-    
-    //MARK: Keyboard Functions
-    
-    func keyboardWillShow(notification:NSNotification){
-        
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-        self.scrollView.contentInset.top = self.scrollView.contentInset.top
 
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        self.scrollView.contentInset = contentInset
-    }
-    
-    func keyboardWillHide(notification:NSNotification){
-        
-        self.scrollView.setContentOffset(CGPointZero, animated: true)
-    }
-    
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
         view.endEditing(true)
@@ -145,8 +110,4 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
 
 private extension Selector {
     static let dismissKeyboard = #selector(SignUpFirstStepViewController.dismissKeyboard)
-    
-    static let keyboardWasShown = #selector(SignUpFirstStepViewController.keyboardWillShow(_:))
-    
-    static let keyboardWillBeHidden = #selector(SignUpFirstStepViewController.keyboardWillHide(_:))
 }

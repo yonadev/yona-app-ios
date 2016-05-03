@@ -29,6 +29,32 @@ class UserAPIServiceTests: XCTestCase {
         }
     }
     
+    func testDeleteUser() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+316" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+            XCTAssert((user) != nil)
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+
+            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+                print("Delete response")
+                XCTAssertTrue(success)
+                expectation.fulfill()
+            })
+            
+            
+        }
+        waitForExpectationsWithTimeout(100.0, handler:nil)
+    }
+    
     func testUserRequestReturnsData() {
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
@@ -42,6 +68,8 @@ class UserAPIServiceTests: XCTestCase {
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
             print("Post response")
             XCTAssert((user) != nil)
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             let mobileNumber = user!.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
@@ -54,7 +82,7 @@ class UserAPIServiceTests: XCTestCase {
             
 
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
     
     func testConfirmMobileReturnsData(){
@@ -100,7 +128,7 @@ class UserAPIServiceTests: XCTestCase {
         //Post user data
         APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.otpResendMobile { success, message, code in
+                APIServiceManager.sharedInstance.otpResendMobile{ success, message, code in
                     if(success){
                         expectation.fulfill()
                     } else {
@@ -120,7 +148,7 @@ class UserAPIServiceTests: XCTestCase {
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
-    func testUserReturned() {
+    func testGetUserActuallyReturnsTheUserWeJustPosted() {
         //setup new user
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
@@ -178,7 +206,7 @@ class UserAPIServiceTests: XCTestCase {
                         "nickname": "BTS"]
                 
                 //get request to get user we just created!
-                APIServiceManager.sharedInstance.getUser({ (success, message, code, user) in
+                APIServiceManager.sharedInstance.updateUser(bodyUpdate, onCompletion: { (success, message, code, user) in
                     if let userReturned = user{
                         //test if name returned is updated
                         XCTAssertTrue(bodyUpdate["firstName"] == userReturned.firstName)
@@ -195,7 +223,6 @@ class UserAPIServiceTests: XCTestCase {
                         }
                     })
                 })
-                
             }
         }
         waitForExpectationsWithTimeout(15.0, handler:nil)

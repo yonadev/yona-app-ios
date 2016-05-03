@@ -25,3 +25,37 @@ enum Segues: String {
     case TimeZoneChallengeSegue = "TimezoneChallengeSegue"
     case NoGoChallengeSegue = "NoGoChallengeSegue"
 }
+
+enum httpMethods: String{
+    case post = "POST"
+    case delete = "DELETE"
+    case get = "GET"
+    case put = "PUT"
+}
+
+enum pinRequestTypes{
+    case resetRequest
+    case verifyRequest
+    case clearRequest
+}
+
+enum userRequestTypes{
+    case postUser
+    case deleteUser
+    case getUser
+    case putUser
+    case confirmMobile
+    case resendMobileConfirmCode
+}
+
+enum responseCodes: Int{
+    case ok200 = 200
+    case ok204 = 204
+}
+
+enum timeBucketTabNames: String{
+    case budget = "Budget"
+    case timeZone = "TimeZone"
+    case noGo = "NoGo"
+}
+

@@ -22,8 +22,10 @@ extension UIViewController {
     }
     
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
+        dispatch_async(dispatch_get_main_queue(), {
+            let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
+            errorAlert.show()
+        })
     }
 }
 
@@ -40,5 +42,17 @@ func getViewControllerToDisplay(key: String)-> AnyObject? {
     if (defaults.objectForKey(key) == nil) && (key == YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
         setViewControllerToDisplay("WalkThrough",key: key)
     }
+    return defaults.objectForKey(key)
+}
+
+func setTimeBucketTabToDisplay(value: String, key: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(value, forKey: key)
+    defaults.synchronize()
+}
+
+func getTimeBucketToDisplay(key: String)-> AnyObject? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
     return defaults.objectForKey(key)
 }
