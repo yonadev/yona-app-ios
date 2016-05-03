@@ -22,8 +22,10 @@ extension UIViewController {
     }
     
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
-        errorAlert.show()
+        dispatch_async(dispatch_get_main_queue(), {
+            let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
+            errorAlert.show()
+        })
     }
 }
 

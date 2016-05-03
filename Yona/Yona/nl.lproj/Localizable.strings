@@ -52,6 +52,9 @@
 "challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
 
+"challenges.budgetGoal.Title" = "TEGOED";
+"challenges.timezoneGoal.Title" = "TIJDZONE";
+"challenges.nogoGoal.Title" = "NO GO";
 
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";

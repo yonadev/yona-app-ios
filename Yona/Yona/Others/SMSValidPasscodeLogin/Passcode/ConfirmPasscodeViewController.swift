@@ -18,9 +18,6 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.infoLabel.text = NSLocalizedString("confirmpasscode.user.infomessage", comment: "")
-        self.headerTitleLabel.text = NSLocalizedString("confirmpasscode.user.headerTitle", comment: "").uppercaseString
-        
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })

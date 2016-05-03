@@ -147,6 +147,10 @@
 "challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
 
+"challenges.budgetGoal.Title" = "BUDGET";
+"challenges.timezoneGoal.Title" = "TIMEZONE";
+"challenges.nogoGoal.Title" = "NO GO";
+
 "challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
 "challenges.addBudgetGoal.timeZoneLabel" = "Timezone";

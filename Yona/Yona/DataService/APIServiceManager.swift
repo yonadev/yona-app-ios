@@ -105,11 +105,15 @@ class APIServiceManager {
         //check for network connection
         guard isConnectedToNetwork() else {
             //if it fails then send messages back saying no connection
-            onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+            dispatch_async(dispatch_get_main_queue(), {
+                onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+            })
             return
         }
         //if not then return success
-        onCompletion(true, self.serverMessage, self.serverCode)
+        dispatch_async(dispatch_get_main_queue(), {
+            onCompletion(true, self.serverMessage, self.serverCode)
+        })
     }
 
 }
