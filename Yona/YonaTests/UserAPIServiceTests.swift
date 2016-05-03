@@ -29,6 +29,27 @@ class UserAPIServiceTests: XCTestCase {
         }
     }
     
+    func testUserExistsErrorIfTryToAddSameMobileNumber() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        
+        let body =
+            ["firstName": "Ben",
+             "lastName": "Smith",
+             "mobileNumber": "+31625222867",
+             "nickname": "BTS"]
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+            XCTAssert((user) != nil)
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+                XCTAssert(code == YonaConstants.serverCodes.errorUserExists)
+                expectation.fulfill()
+            }
+        }
+        waitForExpectationsWithTimeout(100.0, handler:nil)
+
+    }
+    
     func testDeleteUser() {
         let expectation = expectationWithDescription("Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
