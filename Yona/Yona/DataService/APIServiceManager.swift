@@ -23,10 +23,10 @@ class APIServiceManager {
      Calls the manager to make a standard http request using the httpHeader json type, this requires the users password that is stored in the keychain:
         ["Content-Type": "application/json", "Yona-Password": yonaPassword]
      
-     - parameters: body: BodyDataDictionary?, the body of the req uest required by some calls, can be nil
-     - parameters: path: String, the path to the API service call
-     - parameters: httpMethod: httpMethods, the httpmethod enum (post, get , put, delete)
-     - return: onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
+     - parameter body: BodyDataDictionary?, the body of the req uest required by some calls, can be nil
+     - parameter path: String, the path to the API service call
+     - parameter httpMethod: httpMethods, the httpmethod enum (post, get , put, delete)
+     - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
     func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
         
@@ -47,9 +47,9 @@ class APIServiceManager {
     /**
      Setups up the messages from the server so the UI knows what is going wrong or right
      
-     - parameter: json:BodyDataDictionary?, the body of the messages from server, if there is an error then there is a message or code key in response
-     - parameter: code: Int, the http response code we need to check (200-204 success, other is fail
-     - return: none
+     - parameter json:BodyDataDictionary?, the body of the messages from server, if there is an error then there is a message or code key in response
+     - parameter code: Int, the http response code we need to check (200-204 success, other is fail
+     - parameter none
      */
     func setServerCodeMessage(json:BodyDataDictionary?, code: Int) {
         //check if json is empty
@@ -74,7 +74,7 @@ class APIServiceManager {
     /**
      Check if there is an active network connection for the device
      
-     - returns: Network connetion status (Bool)
+     - parameter Network connetion status (Bool)
      */
     func isConnectedToNetwork() -> Bool {
         
@@ -96,7 +96,7 @@ class APIServiceManager {
     /**
      Checks the network connection and sets the server messages and codes
      
-     - return: onCompletion: APIResponse, returns success connected to network or fail and server messages
+     - parameter onCompletion: APIResponse, returns success connected to network or fail and server messages
      */
     func APIServiceCheck(onCompletion: APIResponse) {
         //initialise server code and messages to OK
@@ -105,11 +105,15 @@ class APIServiceManager {
         //check for network connection
         guard isConnectedToNetwork() else {
             //if it fails then send messages back saying no connection
-            onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+            dispatch_async(dispatch_get_main_queue(), {
+                onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+            })
             return
         }
         //if not then return success
-        onCompletion(true, self.serverMessage, self.serverCode)
+        dispatch_async(dispatch_get_main_queue(), {
+            onCompletion(true, self.serverMessage, self.serverCode)
+        })
     }
 
 }

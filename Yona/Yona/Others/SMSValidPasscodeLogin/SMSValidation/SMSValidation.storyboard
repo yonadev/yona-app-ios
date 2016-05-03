@@ -13,6 +13,7 @@
         </mutableArray>
         <mutableArray key="SF-UI-Display-Medium.otf">
             <string>SFUIDisplay-Medium</string>
+            <string>SFUIDisplay-Medium</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -59,7 +60,7 @@
                                                     <constraint firstAttribute="width" constant="64" id="tjt-D2-w0R"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Account wordt aangemaakt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kk8-eD-rcW">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="smsvalidation.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kk8-eD-rcW">
                                                 <rect key="frame" x="15" y="201" width="570" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +73,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="jms-4B-HqN"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-mi-1C2">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-mi-1C2">
                                                 <rect key="frame" x="15" y="283" width="570" height="17"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,19 +86,30 @@
                                                     <constraint firstAttribute="height" constant="55" id="sC0-Tx-WSj"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
                                                 <rect key="frame" x="242" y="395" width="116" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="Stuur code opnieuw">
+                                                <state key="normal" title="smsvalidation.button.resendCode">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="sendOTPAgain:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="8a4-bV-SYr"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isE-Sz-djb">
+                                                <rect key="frame" x="274" y="404" width="53" height="28"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
+                                                <state key="normal" title="PIN reset">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="sMg-Pc-ipw"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="isE-Sz-djb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="2lC-Cx-nDu"/>
                                             <constraint firstItem="yRE-mi-1C2" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="15" id="3wK-Me-xLY"/>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="5dw-qe-qyA"/>
                                             <constraint firstItem="yRE-mi-1C2" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="6P3-xD-Nj3"/>
@@ -108,6 +120,7 @@
                                             <constraint firstItem="Kk8-eD-rcW" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="abm-78-Key"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="asB-nr-lQx"/>
                                             <constraint firstAttribute="trailing" secondItem="yRE-mi-1C2" secondAttribute="trailing" constant="15" id="fFG-vu-rrV"/>
+                                            <constraint firstItem="isE-Sz-djb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="g0q-o0-27m"/>
                                             <constraint firstAttribute="bottom" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="424" id="iOO-ed-NH8"/>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="10" id="kKA-ut-b0b"/>
                                             <constraint firstAttribute="trailing" secondItem="xR5-0o-qG4" secondAttribute="trailing" constant="30" id="kpL-xc-2gP"/>
@@ -175,6 +188,7 @@
                         <outlet property="gradientView" destination="13N-bo-l8i" id="Fm1-LY-p2b"/>
                         <outlet property="headerTitleLabel" destination="Kk8-eD-rcW" id="nQ0-C0-rjn"/>
                         <outlet property="infoLabel" destination="yRE-mi-1C2" id="rqi-kH-bqE"/>
+                        <outlet property="pinResetButton" destination="isE-Sz-djb" id="F7B-dD-Dcl"/>
                         <outlet property="progressView" destination="xR5-0o-qG4" id="Lws-2u-38F"/>
                         <outlet property="resendCodeButton" destination="3r8-GS-xeb" id="tv4-8A-Oww"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="h6V-rS-CP5"/>

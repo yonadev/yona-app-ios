@@ -76,19 +76,16 @@ class PinResetAPIServiceTests: XCTestCase {
                 if(success){
                     //reset pincode
                     APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
-                        //get otp sent again
-                        APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                            let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
-                            //reset verify code withotp
-                            APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, pincode, message, code) in
+                        //the user waits 24 hours and then 
+                        let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
+                        //reset verify code withotp
+                        APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, pincode, message, code) in
+                            XCTAssert(success, message!)
+                            if success {
                                 XCTAssert(success, message!)
-                                if success {
-                                    XCTAssert(success, message!)
-                                    expectation.fulfill()
-                                }
+                                expectation.fulfill()
                             }
                         }
-
                     }
                 }
             }
@@ -116,23 +113,21 @@ class PinResetAPIServiceTests: XCTestCase {
                 if(success){
                     APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
                         if success {
-                            //get otp sent again
-                            APIServiceManager.sharedInstance.otpResendMobile{ (success, message, code) in
-                                let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
-                                //reset verify code withotp
-                                APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, nil, message, code) in
-                                    XCTAssert(success, message!)
-                                    if success {
-                                        APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
+                            let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
+                            //reset verify code withotp
+                            APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, nil, message, code) in
+                                XCTAssert(success, message!)
+                                if success {
+                                    APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
+                                        XCTAssert(success, message!)
+                                        if success {
                                             XCTAssert(success, message!)
-                                            if success {
-                                                XCTAssert(success, message!)
-                                                expectation.fulfill()
-                                            }
-                                        })
-                                    }
+                                            expectation.fulfill()
+                                        }
+                                    })
                                 }
                             }
+                            
                         }
                     }
                 }

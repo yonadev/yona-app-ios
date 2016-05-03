@@ -59,10 +59,6 @@ class CodeInputView: UIView, UIKeyInput {
             nextTag += 1
             
             if nextTag == 5 {
-//                var code = (self.viewWithTag(1) as! UILabel).text!
-//                for index in 2..<nextTag {
-//                    code += (self.viewWithTag(index) as! UILabel).text!
-//                }
                 delegate?.codeInputView(self, didFinishWithCode: secureCode)
                 
             }
@@ -91,5 +87,5 @@ class CodeInputView: UIView, UIKeyInput {
 
 protocol CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String)
-//    func codeInputView1(codeInputView: CodeInputView, didFinishWithCode code1: String)
+
 }

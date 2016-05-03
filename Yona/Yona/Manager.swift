@@ -30,11 +30,11 @@ class Manager: NSObject {
     /**
      Helper method to create an NSURLRequest with it's required httpHeader, httpBody and the httpMethod request and return it to be executed
      
-     - parameter: path: String, 
-     - parameter: body: BodyDataDictionary?, 
-     - parameter: httpHeader: [String:String], 
-     - parameter: httpMethod: httpMethods
-     - return: NSURLRequest, the request created to be executed by makeRequest
+     - parameter path: String,
+     - parameter body: BodyDataDictionary?,
+     - parameter httpHeader: [String:String],
+     - parameter httpMethod: httpMethods
+     - parameter NSURLRequest, the request created to be executed by makeRequest
      */
     func setupRequest(path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: httpMethods) throws -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
@@ -57,11 +57,11 @@ extension Manager {
     /**
      This is a generic method that can make any request to YONA's API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
      
-     - parameter: path: String, The required path to the API service that the user wants to access
-     - parameter: body: BodyDataDictionary?, The data dictionary of [String: AnyObject] type
-     - parameter: httpMethod: httpMethods, the http methods that you can do on the API stored in the enum
-     - parameter: httpHeader:[String:String], the header set to a JSON type
-     - return: onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
+     - parameter path: String, The required path to the API service that the user wants to access
+     - parameter body: BodyDataDictionary?, The data dictionary of [String: AnyObject] type
+     - parameter httpMethod: httpMethods, the http methods that you can do on the API stored in the enum
+     - parameter httpHeader:[String:String], the header set to a JSON type
+     - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
     func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse) {
         do {
