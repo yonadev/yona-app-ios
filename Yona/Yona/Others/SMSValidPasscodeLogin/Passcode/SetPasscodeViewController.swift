@@ -53,6 +53,7 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.codeInputView.clear()
         self.codeInputView.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
