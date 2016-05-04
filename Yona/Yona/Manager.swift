@@ -44,6 +44,7 @@ class Manager: NSObject {
         if let body = body {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
+        request.timeoutInterval = 2
         
         request.HTTPMethod = httpMethod.rawValue
         
@@ -96,9 +97,7 @@ extension Manager {
                         } else {
                             print("error Code: \(code)")
                             onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                            
                         }
-
                     }
                 }
             })
