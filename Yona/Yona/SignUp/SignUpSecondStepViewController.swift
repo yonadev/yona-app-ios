@@ -29,12 +29,54 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var previousButton: UIButton!
     
     
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        
         setupUI()
+    }
+    
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        IQKeyboardManager.sharedManager().enable = false
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 96;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+    }
+    func keyboardWillHiden(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 210;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func setupUI() {
