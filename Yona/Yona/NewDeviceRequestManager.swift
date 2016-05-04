@@ -18,67 +18,61 @@ class NewDeviceRequestManager {
     private init() {}
 
     func genericHelper(httpMethod: httpMethods, password: String?, mobileNumber: String?, onCompletion: APIUserResponse) {
-        APIService.APIServiceCheck { (success, message, code) in
-            if success {
-                self.APIService.getUser{ (success, message, code, user) in
-                            switch httpMethod {
-                            case httpMethods.put:
-                                if let path = user?.newDeviceRequestsLink {
-                                    var bodyNewDevice: BodyDataDictionary?
-                                    if let password = password {
-                                        bodyNewDevice = ["newDeviceRequestPassword": password]
-                                    }
-                                    self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                                        if success {
-                                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                                        } else {
-                                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                                        }
-                                    })
-                                }
-                            case httpMethods.get:
-                                if let password = password{
-                                    
-                                    let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-                                    let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
-                                    let language = "\(langId)-\(countryId)"
-                                    //need to call manager directly because of different response header
-                                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": password]
-                                    //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
-                                    if let mobileNumber = mobileNumber,
-                                        let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() as? String{
-                                            Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
-                                                    guard success == true else {
-                                                        onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                                                        return
-                                                    }
-                                                    //Update user details locally
-                                                    if let json = dict {
-                                                        self.newUser = Users.init(userData: json)
-                                                    }
-                                                    //send back user object
-                                                    onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, user)
-                                            })
-                                    }
-                                }
-                            case httpMethods.delete:
-                                if let path = user?.newDeviceRequestsLink {
-                                    self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
-                                        if success {
-                                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                                        } else {
-                                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                                        }
-                                    })
-                                }
-                            default:
-                                break
-                            }
-                    
+        self.APIService.getUser{ (success, message, code, user) in
+            switch httpMethod {
+            case httpMethods.put:
+                if let path = user?.newDeviceRequestsLink {
+                    var bodyNewDevice: BodyDataDictionary?
+                    if let password = password {
+                        bodyNewDevice = ["newDeviceRequestPassword": password]
+                    }
+                    self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
+                        if success {
+                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        } else {
+                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        }
+                    })
                 }
-            } else {
-                onCompletion(false, message, code, nil)
+            case httpMethods.get:
+                if let password = password{
+                    
+                    let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+                    let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+                    let language = "\(langId)-\(countryId)"
+                    //need to call manager directly because of different response header
+                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": password]
+                    //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
+                    if let mobileNumber = mobileNumber {
+                        let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
+                        Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
+                                guard success == true else {
+                                    onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    return
+                                }
+                                //Update user details locally
+                                if let json = dict {
+                                    self.newUser = Users.init(userData: json)
+                                }
+                                //send back user object
+                                onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, user)
+                        })
+                    }
+                }
+            case httpMethods.delete:
+                if let path = user?.newDeviceRequestsLink {
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
+                        if success {
+                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        } else {
+                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        }
+                    })
+                }
+            default:
+                break
             }
+            
         }
     }
     
@@ -109,7 +103,9 @@ class NewDeviceRequestManager {
     func getNewDevice(password: String, mobileNumber: String, onCompletion: APIUserResponse) {
         self.genericHelper(httpMethods.get, password: password, mobileNumber: mobileNumber) { (success, message, code, user) in
             if success {
-                onCompletion(true, message, code, user)
+                self.APIService.getUser({ (succcess, message, code, user) in
+                    onCompletion(true, message, code, user)
+                })
             } else {
                 onCompletion(false, message, code, nil)
             }

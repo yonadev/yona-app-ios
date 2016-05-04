@@ -26,18 +26,13 @@ class AdminRequestManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func adminRequestOverride(userBody: BodyDataDictionary, onCompletion: APIResponse) {
-         APIService.APIServiceCheck { (success, message, code) in
-            if success {
-                
-                if let mobileNumber = userBody["mobileNumber"] as? String {
-                        let path = YonaConstants.environments.testUrl + YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
-                        //not in user body need to hardcode
-                        self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
-                            onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode)
-                        }
-                        
-                    }
+        if let mobileNumber = userBody["mobileNumber"] as? String {
+                let path = YonaConstants.environments.testUrl + YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
+                //not in user body need to hardcode
+                self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
+                    onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode)
                 }
+                
         }
     }
 }

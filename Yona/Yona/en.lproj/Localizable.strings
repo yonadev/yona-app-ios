@@ -54,8 +54,8 @@
 "account-login" = "Account be created";
 "account-login-security-message" = "For security";
 "send-otp-again" = "Send code again";
+"add-device" = "ADD DEVICE";
 "smsvalidation.button.resendCode" = "Send code again";
-"add-device" = "Add device";
 "yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
 "loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
 "passcode" = "CODE";
@@ -130,6 +130,9 @@
 "adddevice.user.mobileNumber" = "MOBILE NUMBER";
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "You have not previously logged in on this device. Go to your primary device (probably your mobile) , open the app Yona , then 'Add Device' to settings and click . Then fill in the fields below .";
+"adddevice.user.InputPassCode" = "Please input passcode.";
+"adddevice.user.InputValidCode" = "Please input valid Phone number.";
+"adddevice.user.AddDevicePasscodeMessage" = "Please enter the passcode %@ into your other device";
 
 "login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
 
@@ -170,4 +173,6 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
+
+
 
