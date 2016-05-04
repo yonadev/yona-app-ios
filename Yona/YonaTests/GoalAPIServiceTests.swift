@@ -83,7 +83,7 @@ class GoalAPIServiceTests: XCTestCase {
                 if(success){
                     APIServiceManager.sharedInstance.getUser{ (success, message, code, user) in
                         //we need to now get the activity link from our activities
-                        APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+                        ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         //set body for goal
                         let bodyBudgetSocialGoal: [String: AnyObject] = [
                             "@type": "BudgetGoal",
@@ -95,7 +95,7 @@ class GoalAPIServiceTests: XCTestCase {
                             //now we can post the goal
                             APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal) { (success, message, code, goal, goals, error) in
                                 if success {
-                                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString) { (success, newsActivityCategoryLink, message, code) in
+                                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.newsString) { (success, newsActivityCategoryLink, message, code) in
                                         let bodyBudgetNewsGoal: [String: AnyObject] = [
                                             "@type": "BudgetGoal",
                                             "_links": [
@@ -160,7 +160,7 @@ class GoalAPIServiceTests: XCTestCase {
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     //we need to now get the activity link from our activities
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
                             //set body for budget social goal
                             let bodyTimeZoneSocialGoal: [String: AnyObject] = [
                                 "@type": "TimeZoneGoal",
@@ -169,7 +169,7 @@ class GoalAPIServiceTests: XCTestCase {
                                 ],
                                 "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
                             ]
-                        APIServiceManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
+                        ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.newsString, onCompletion: { (success, newsActivityCategoryLink, message, code) in
                                 //set body for goal
                                 let bodyTimeZoneNewsGoal: [String: AnyObject] = [
                                     "@type": "TimeZoneGoal",
@@ -317,7 +317,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         if success {
                             //set body for budget social goal
                             let socialActivityCategoryLinkReturned = socialActivityCategoryLink
@@ -382,7 +382,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         if success {
                             //set body for budget social goal
                             let socialActivityCategoryLinkReturned = socialActivityCategoryLink
@@ -553,7 +553,7 @@ class GoalAPIServiceTests: XCTestCase {
                     print(KeychainManager.sharedInstance.getYonaPassword())
                     print(KeychainManager.sharedInstance.getUserID())
                     
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
                         if success {
                             //As the user has just been created there is one mandatory goal, Gambling, this has no editlink so cannot be removed
                             APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in

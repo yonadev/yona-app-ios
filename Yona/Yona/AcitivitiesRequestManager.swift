@@ -17,7 +17,7 @@ class ActivitiesRequestManager {
     static let sharedInstance = ActivitiesRequestManager()
     
     private var newActivity: Activities?
-    private var activitiesNotGoals: Activities?
+    private var activitiesNotGoals: [Activities] = []
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
     
     private init() {}
@@ -28,17 +28,17 @@ class ActivitiesRequestManager {
                 self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
                     if success{
                         self.APIService.getUserGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
-                            if let goalsUnwrap = goals,
-                                let activitiesUnwrap = activities{
-                                for goal in goalsUnwrap {
-                                    for activity in activitiesUnwrap {
-                                        if activity.selfLinks == goal.activityCategoryLink {
-                                            print(activity.activityCategoryName)
+                            if success {
+                                if let goalsUnwrap = goals{
+                                    let goalsActivityLinks : [String] = goalsUnwrap.map({$0.activityCategoryLink!})
+                                    for activity in activities!{
+                                        if !goalsActivityLinks.contains(activity.selfLinks!){
+                                            //You don't have it
+                                            self.activitiesNotGoals.append(activity)
                                         }
                                     }
                                 }
-                                onCompletion(success, serverMessage, serverCode, nil, error)
-
+                                onCompletion(true, networkMessage, networkCode, self.activitiesNotGoals, nil)
                             }
                         })
                     }

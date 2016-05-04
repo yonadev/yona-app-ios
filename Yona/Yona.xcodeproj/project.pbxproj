@@ -660,9 +660,9 @@
 		90DE879A1CD2375500C1E706 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */,
 				D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */,
 				907DA5231CBBD0400031850E /* Manager.swift */,
+				9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */,
 				90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */,
 				90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */,
 				90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */,
