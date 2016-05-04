@@ -84,6 +84,8 @@
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
 		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
+		AD84B7321CDA27820085D5B7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7301CDA27820085D5B7 /* Array.swift */; };
+		AD84B7331CDA27820085D5B7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7311CDA27820085D5B7 /* Date.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
 		ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
@@ -330,6 +332,8 @@
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
+		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		AD84B7311CDA27820085D5B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -918,6 +922,8 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AD84B7301CDA27820085D5B7 /* Array.swift */,
+				AD84B7311CDA27820085D5B7 /* Date.swift */,
 				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
 				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
@@ -1511,6 +1517,7 @@
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
+				AD84B7321CDA27820085D5B7 /* Array.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
 				908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
@@ -1527,6 +1534,7 @@
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
+				AD84B7331CDA27820085D5B7 /* Date.swift in Sources */,
 				AD00DEDF1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */,

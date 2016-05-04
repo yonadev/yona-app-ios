@@ -192,4 +192,8 @@ extension String {
         let timeToDisplay = String(hours + (days * 24))
         return timeToDisplay
     }
+    
+    func dashRemoval() -> Array<String> {
+        return self.characters.split{$0 == "-"}.map(String.init)
+    }
 }
