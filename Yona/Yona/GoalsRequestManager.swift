@@ -176,7 +176,7 @@ extension APIServiceManager {
                 }
                 
             } else {
-                onCompletion(false, message, serverCode, nil, nil, error)
+                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, error)
             }
         }
     }
