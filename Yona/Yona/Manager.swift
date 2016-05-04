@@ -11,6 +11,7 @@ import Foundation
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
 typealias APIPinResetResponse = (Bool, PinCode?, ServerMessage?, ServerCode?) -> Void
+typealias APIGetDeviceResponse = (Bool, ServerMessage?, ServerCode?, AddDeviceCode?) -> Void
 typealias APIGoalSizeResponse = (Int) -> Void
 typealias APIActivityLinkResponse = (Bool, String?, ServerMessage?, ServerCode?) -> Void
 typealias APIUserResponse = (Bool, ServerMessage?, ServerCode?, Users?) -> Void

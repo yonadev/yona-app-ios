@@ -11,6 +11,7 @@ import Foundation
 typealias ServerMessage = String
 typealias ServerCode = String
 typealias PinCode = String
+typealias AddDeviceCode = String
 
 struct YonaConstants {
     
@@ -49,6 +50,7 @@ struct YonaConstants {
     }
     
     struct jsonKeys{
+        static let  yonaPassword = "yonaPassword"
         static let  firstNameKey = "firstName"
         static let  lastNameKeys = "lastName"
         static let  mobileNumberKeys = "mobileNumber"
@@ -66,6 +68,7 @@ struct YonaConstants {
         static let  bodyCode = "code"
         static let  yonaActivityCategories = "yona:activityCategories"
         //links
+        static let  yonaUserSelfLink = "yona:user"
         static let  linksKeys = "_links"
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"

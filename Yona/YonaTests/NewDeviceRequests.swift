@@ -52,25 +52,113 @@ class NewDeviceAPIServiceTests: XCTestCase {
             ]
             print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
             print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
-            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm, onCompletion: { (success, message, server) in
+            //confirm mobile
+            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
                 if success {
-                    APIServiceManager.sharedInstance.putNewDevice("+31343" + String(randomPhoneNumber), onCompletion: { (success, message, code) in
-                        if success{
-                            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
-                                if success {
-                                    expectation.fulfill()
-                                } else {
-                                    print("Delete response" + serverMessage!)
-                                }
-                            })
+                    //create a new device request
+                    NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, code, deviceCode) in
+                        XCTAssert(success, message!)
+                        if success {
+                            expectation.fulfill()
                         }
-                    })
+                    }
                 }
 
-            })
+            }
             
 
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
+    func testGetNewDevice() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let password = NSUUID().UUIDString
+        let keychain = KeychainSwift()
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            
+            let bodyConfirm =
+                [
+                    "code": "1234"
+            ]
+            print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
+            //confirm mobile
+            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
+                if success {
+                    //create a new device request, get the messages back and device passcode created by server
+                    NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, serverCode, addDevicePassCode) in
+                            NewDeviceRequestManager.sharedInstance.getNewDevice(addDevicePassCode!, mobileNumber: body[YonaConstants.jsonKeys.mobileNumberKeys]!) { (success, message, server, user) in
+                                XCTAssert(success, message!)
+                                print(addDevicePassCode!)
+                                print(user)
+
+                                if success {
+                                    expectation.fulfill()
+                                }
+                            }
+                    }
+                }
+                
+            }
+            
+            
+        }
+        waitForExpectationsWithTimeout(100.0, handler:nil)
+    }
+    
+    func testDeleteNewDeviceRequest() {
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let password = NSUUID().UUIDString
+        let keychain = KeychainSwift()
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+        
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            
+            let bodyConfirm =
+                [
+                    "code": "1234"
+            ]
+            print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
+            //confirm mobile
+            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
+                if success {
+                    //create a new device request, get the messages back and device passcode created by server
+                    NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, serverCode, addDevicePassCode) in
+                            NewDeviceRequestManager.sharedInstance.deleteNewDevice({ (success, message, code) in
+                                XCTAssert(success, message!)
+                                if success {
+                                    expectation.fulfill()
+                                }
+                            })
+                        }
+                    }
+                }
+                
+            }
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
 }
