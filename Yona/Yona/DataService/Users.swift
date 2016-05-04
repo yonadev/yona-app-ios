@@ -46,6 +46,7 @@ struct Users{
             self.nickname = nickname
         }
         
+
         //get the links
         if let links = userData[YonaConstants.jsonKeys.linksKeys] {
             
@@ -62,6 +63,11 @@ struct Users{
             if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefSelfLinks
+                KeychainManager.sharedInstance.saveUserSelfLink(self.getSelfLink!) //save this so we can always get the user
+            }// this is for when parsing user body returned from add device, to get the self link to the user
+            else if let yonaUserSelfLink = userData[YonaConstants.jsonKeys.yonaUserSelfLink],
+                let hrefyonaUserSelfLink = yonaUserSelfLink[YonaConstants.jsonKeys.hrefKey] as? String {
+                self.getSelfLink = hrefyonaUserSelfLink
                 KeychainManager.sharedInstance.saveUserSelfLink(self.getSelfLink!) //save this so we can always get the user
             }
             
@@ -92,6 +98,11 @@ struct Users{
             if let newDeviceRequestsLinks = links[YonaConstants.jsonKeys.yonaNewDeviceRequest],
                 let hrefnewDeviceRequestsLink = newDeviceRequestsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.newDeviceRequestsLink = hrefnewDeviceRequestsLink
+            }// this is for when parsing user body returned from add device
+            else if let newDeviceRequestsLinks = userData[YonaConstants.jsonKeys.linksKeys],
+                let newDeviceRequestsLinksSelf = newDeviceRequestsLinks[YonaConstants.jsonKeys.selfLinkKeys],
+                let newDeviceRequestsLinksSelfHref = newDeviceRequestsLinksSelf?[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.newDeviceRequestsLink = newDeviceRequestsLinksSelfHref
             }
             
             if let appActivityLinks = links[YonaConstants.jsonKeys.yonaAppActivity],

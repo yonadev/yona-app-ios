@@ -9,33 +9,119 @@
 import Foundation
 
 //MARK: - New Device Requests APIService
-extension APIServiceManager {
+class NewDeviceRequestManager {
     
-    /**
-     Add a new device to the users account
-     
-     - parameter mobileNumber: String, mobile number required to identify the account that the user wants to add a device to
-     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
-     */
-    func putNewDevice(mobileNumber: String, onCompletion: APIResponse) {
-        APIServiceCheck { (success, message, code) in
+    let APIService = APIServiceManager.sharedInstance
+    static let sharedInstance = NewDeviceRequestManager()
+    private var newUser: Users?
+
+    private init() {}
+
+    func genericHelper(httpMethod: httpMethods, password: String?, onCompletion: APIUserResponse) {
+        APIService.APIServiceCheck { (success, message, code) in
             if success {
-                self.getUser{ (success, message, code, user) in
-                    if let path = user?.newDeviceRequestsLink,
-                        let password = KeychainManager.sharedInstance.getYonaPassword() {
-                        let bodyNewDevice = [
-                            "newDeviceRequestPassword": password
-                        ]
-                        self.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
+                self.APIService.getUser{ (success, message, code, user) in
+                    if let path = user?.newDeviceRequestsLink {
+                            var bodyNewDevice: BodyDataDictionary?
                             
-                        })
+                            switch httpMethod {
+                            case httpMethods.put:
+                                if let password = password {
+                                    bodyNewDevice = ["newDeviceRequestPassword": password]
+                                }
+                                self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
+                                    if success {
+                                        onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    } else {
+                                        onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    }
+                                })
+                            case httpMethods.get:
+                                if let password = password{
+                                    
+                                    //need to call manager directly because of different response header
+                                    let httpHeader = ["Content-Type": "application/json", "Yona-NewDeviceRequestPassword": password]
+                                    Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
+                                            guard success == true else {
+                                                onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                                return
+                                            }
+                                            //Update user details locally
+                                            if let json = dict {
+                                                self.newUser = Users.init(userData: json)
+                                            }
+                                            //send back user object
+                                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, user)
+                                    })
+                                }
+                            case httpMethods.delete:
+                                self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
+                                    if success {
+                                        onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    } else {
+                                        onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    }
+                                })
+                            default:
+                                break
+                            }
                     }
                 }
+            } else {
+                onCompletion(false, message, code, nil)
+            }
+        }
+    }
+    
+    /**
+     Add a new device from device A by calling this, password generated randomly, will be sent to device B
+     
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
+     - return none
+     */
+    func putNewDevice(onCompletion: APIGetDeviceResponse) {
+        let addDevicePassCode = String(10000 + arc4random_uniform(10000)) //generate random number password between of 5 random digits
+        self.genericHelper(httpMethods.put, password: addDevicePassCode) { (success, message, code, nil) in
+            if success {
+                onCompletion(true, message, code, addDevicePassCode)
+            } else {
+                onCompletion(false, message, code, addDevicePassCode)
+            }
+        }
+    }
+    
+    /**
+     Device B gets the password, user enters password, UI calls this method passing in password, response is the user info generated from the already created account...used to get more user info when requested as the SELF link is tored
+     
+     - parameter password: String Password sent from device A to this device B
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
+     - return none
+     */
+    func getNewDevice(password: String, onCompletion: APIUserResponse) {
+        self.genericHelper(httpMethods.get, password: password) { (success, message, code, user) in
+            if success {
+                //we delete request after getting a new device, to clean up??
+                self.deleteNewDevice({ (success, message, code) in
+                    if success {
+                        onCompletion(true, message, code, user)
+                    } else {
+                        onCompletion(false, message, code, nil)
+                    }
+                })
+            }
+        }
+    }
+    
+    /**
+     Used to delete new device request after it has been verified, passes back success or fail
+     
+     - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
+     - return none
+     */
+    func deleteNewDevice(onCompletion: APIResponse) {
+        self.genericHelper(httpMethods.delete, password: nil) { (success, message, code, nil) in
+            if success {
+                onCompletion(true, message, code)
             } else {
                 onCompletion(false, message, code)
             }
