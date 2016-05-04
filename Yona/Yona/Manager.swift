@@ -91,7 +91,7 @@ extension Manager {
                                     }
                                 } else {
                                     if let dict = jsonObject as? [String: AnyObject] {
-                                        onCompletion(false, dict, NSError.init(domain: "Request error", code: code, userInfo: dict))
+                                        onCompletion(false, dict, error)
                                     }
                                 }
                             } catch { //if serialisation fails send back messages saying so
@@ -102,6 +102,8 @@ extension Manager {
                                     onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
                                 }
                             }
+                        } else {
+                            onCompletion(false, nil, error)
                         }
                     })
                     task.resume()

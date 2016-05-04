@@ -63,12 +63,14 @@ struct Users{
             if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefSelfLinks
-                KeychainManager.sharedInstance.saveUserSelfLink(self.getSelfLink!) //save this so we can always get the user
-            }// this is for when parsing user body returned from add device, to get the self link to the user
-            else if let yonaUserSelfLink = userData[YonaConstants.jsonKeys.yonaUserSelfLink],
-                let hrefyonaUserSelfLink = yonaUserSelfLink[YonaConstants.jsonKeys.hrefKey] as? String {
+                KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks) //save this so we can always get the user
+            }
+            
+            // this is for when parsing user body returned from add device, to get the self link to the user
+            if let yonaUserSelfLink = links[YonaConstants.jsonKeys.yonaUserSelfLink],
+                let hrefyonaUserSelfLink = yonaUserSelfLink?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefyonaUserSelfLink
-                KeychainManager.sharedInstance.saveUserSelfLink(self.getSelfLink!) //save this so we can always get the user
+                KeychainManager.sharedInstance.saveUserSelfLink(hrefyonaUserSelfLink) //save this so we can always get the user
             }
             
             if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],

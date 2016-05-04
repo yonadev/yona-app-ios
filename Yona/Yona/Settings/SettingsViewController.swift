@@ -48,42 +48,23 @@ class SettingsViewController: UIViewController {
         return cell
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("index  \(indexPath)")
         print("index  \(self.navigationController)")
         if indexPath.row == 2 {
-            //Display Alert here
-        }
-    }
-}
-
-func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.settingsArray.count
-}
-
-
-func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    cell.textLabel?.text = settingsArray[indexPath.row] as? String;
-    return cell
-}
-
-
-func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    print("index  \(indexPath)")
-    print("index  \(self.navigationController)")
-    if indexPath.row == 2 {
-        NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
-            NewDeviceRequestManager.sharedInstance.deleteNewDevice({ (success, message, code) in
-                let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
-                if let addDeviceCode = addDeviceCode {
-                    self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
+            NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
+                if success {
+                    let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
+                    if let addDeviceCode = addDeviceCode {
+                        self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
+                    }
+                } else {
+                    if let message = message {
+                        self.displayAlertMessage("", alertDescription: message)
+                    }
                 }
             })
-        })
+        }
+        
     }
-
-}
-
 }

@@ -92,20 +92,10 @@ extension APIServiceManager {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
                 self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
-                    self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, nil, goals, error) in
-                        onCompletion(success, serverMessage, serverCode, nil, goals, error)
-                    })
+                    self.sortGoalsIntoArray(goalType, onCompletion: onCompletion)
                 }
             } else {
-                //Goals not initialised
-                guard goals.isEmpty else {
-                    onCompletion(false, message, serverCode, nil, nil, nil)
-                    return
-                }
-                //if we already got some goals then just send back the ones we have...
-                self.sortGoalsIntoArray(goalType) { (success, message, code, nil, goals, error) in
-                    onCompletion(false, message, serverCode, nil, goals, error)
-                }
+                onCompletion(false, message, serverCode, nil, nil, error)
             }
         }
     }
@@ -189,7 +179,7 @@ extension APIServiceManager {
                 }
                 
             } else {
-                onCompletion(false, message, serverCode, nil, nil, nil)
+                onCompletion(false, message, serverCode, nil, nil, error)
             }
         }
     }
