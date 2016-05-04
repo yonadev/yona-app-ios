@@ -9,12 +9,14 @@ struct R {
     storyboard.createAccount.validateViewControllers()
     storyboard.friends.validateImages()
     storyboard.friends.validateViewControllers()
+    storyboard.addDeviceViewController.validateImages()
+    storyboard.addDeviceViewController.validateViewControllers()
     storyboard.profile.validateImages()
     storyboard.profile.validateViewControllers()
-    storyboard.login.validateImages()
-    storyboard.login.validateViewControllers()
     storyboard.signUp.validateImages()
     storyboard.signUp.validateViewControllers()
+    storyboard.login.validateImages()
+    storyboard.login.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
     storyboard.launchScreen.validateImages()
@@ -23,10 +25,10 @@ struct R {
     storyboard.challenges.validateViewControllers()
     storyboard.settings.validateImages()
     storyboard.settings.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
     storyboard.passcode.validateImages()
     storyboard.passcode.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
     storyboard.welcome.validateImages()
@@ -36,6 +38,7 @@ struct R {
   }
   
   struct file {
+    static var iQKeyboardManagerBundle: NSURL? { return _R.hostingBundle?.URLForResource("IQKeyboardManager", withExtension: "bundle") }
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }
     static var oswaldBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-BoldItalic", withExtension: "ttf") }
@@ -315,6 +318,8 @@ struct R {
     static var brandAssets: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "Brand Assets") } }
     static var confinesSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "confinesSlide") } }
     static var first: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "first") } }
+    static var iQButtonBarArrowLeft: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowLeft", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowLeft") } }
+    static var iQButtonBarArrowRight: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowRight") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
     static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
     static var icnAvatar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAvatar") } }
@@ -367,7 +372,6 @@ struct R {
   }
   
   struct reuseIdentifier {
-    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
@@ -395,6 +399,20 @@ struct R {
   }
   
   struct storyboard {
+    struct addDeviceViewController {
+      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
+      static var instance: UIStoryboard { return UIStoryboard(name: "AddDeviceViewController", bundle: _R.hostingBundle) }
+      
+      static func validateImages() {
+        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
+      }
+      
+      static func validateViewControllers() {
+        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'AddDeviceViewController' as 'AddDeviceViewController'.")
+      }
+    }
+    
     struct challenges {
       static var challengesStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? UINavigationController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
@@ -481,20 +499,16 @@ struct R {
     }
     
     struct login {
-      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginStoryboard: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginStoryboard") as? LoginViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
-        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Login', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(loginStoryboard != nil, "[R.swift] ViewController with identifier 'loginStoryboard' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
-        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'Login' as 'AddDeviceViewController'.")
       }
     }
     
@@ -518,6 +532,7 @@ struct R {
       static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Passcode', but couldn't be loaded.")
         assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Passcode', but couldn't be loaded.")
         assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Passcode', but couldn't be loaded.")
       }
@@ -557,14 +572,14 @@ struct R {
     
     struct settings {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
-      static var settingsStoryboard: SettingsViewController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? SettingsViewController }
+      static var settingsStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? UINavigationController }
       
       static func validateImages() {
         
       }
       
       static func validateViewControllers() {
-        assert(settingsStoryboard != nil, "[R.swift] ViewController with identifier 'settingsStoryboard' could not be loaded from storyboard 'Settings' as 'SettingsViewController'.")
+        assert(settingsStoryboard != nil, "[R.swift] ViewController with identifier 'settingsStoryboard' could not be loaded from storyboard 'Settings' as 'UINavigationController'.")
       }
     }
     

@@ -60,22 +60,41 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        
+        self.setupUI()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.callActivityCategory()
+        setDeselectOtherCategory()
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
-        setDeselectOtherCategory()
-        setSelectedCategory(self.budgetView)
+        if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
+            switch tabName {
+            case timeBucketTabNames.budget.rawValue:
+                
+                setSelectedCategory(self.budgetView)
+                
+            case timeBucketTabNames.timeZone.rawValue:
+                
+                setSelectedCategory(self.timezoneView)
+                
+            case timeBucketTabNames.noGo.rawValue:
+                
+                setSelectedCategory(self.nogoView)
+                
+            default:
+                self.timeBucketData(.BudgetGoalString)
+                setSelectedCategory(self.budgetView)
+            }
+        }
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         })
-        
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -151,42 +170,46 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     private func timeBucketData(goal: GoalType) {
         
-        APIServiceManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, goals, err) in
-            if let goalsUnwrap = goals {
-                if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        print(goals)
-                        self.updateUI(goal, timeBucketData: goalsUnwrap)
-                    })
-                    
-                    for goal in goals! {
-                        print(goal.goalType)
-                    }
-                    
-                    #if DEBUG
-                        for goal in goalsUnwrap {
+        APIServiceManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
+            if success {
+                if let goalsUnwrap = goals {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            
+                            print(goals)
+                            self.updateUI(goal, timeBucketData: goalsUnwrap)
+                        })
+                        
+                        for goal in goals! {
                             print(goal.goalType)
                         }
-                    #endif
-                    
-                    
-                } else {
-                    
+                        
+                        #if DEBUG
+                            for goal in goalsUnwrap {
+                                print(goal.goalType)
+                            }
+                        #endif
                 }
-                
-                
             }
-            
         })
     }
     
     
     private func callActivityCategory() {
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+        Loader.Show(delegate: self)
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
+                dispatch_async(dispatch_get_main_queue()) {
+                    Loader.Hide(self)
+                }
                 self.activityCategoriesArray = activities!
             } else {
-                print("error in callActivityCategory")
+                dispatch_async(dispatch_get_main_queue()) {
+                    Loader.Hide(self)
+                    if let message = message {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                }
             }
         }
     }
@@ -195,7 +218,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
         
         //    Looks for single or multiple taps.
         let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
@@ -220,7 +242,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     func setHeaderTitleLabel() {
         switch categoryHeader {
-            
         case .BudgetGoal:
             headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
         case .BudgetActivity:
@@ -242,7 +263,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
     }
-    
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
@@ -338,13 +358,11 @@ extension TimeBucketChallenges {
         case .NoGoActivity:
             return self.activityCategoriesArray.count
         }
-        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
@@ -355,7 +373,6 @@ extension TimeBucketChallenges {
                 cell.detailTextLabel?.text = title as String
                 cell.detailTextLabel?.numberOfLines = 0
             }
-            
             
         case .BudgetActivity:
             cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
@@ -447,15 +464,11 @@ extension TimeBucketChallenges {
 }
 
 
-
-
-
 private extension Selector {
     
     static let categoryTapEvent = #selector(TimeBucketChallenges.categoryTapEvent(_:))
     
     static let back = #selector(TimeBucketChallenges.back(_:))
 }
-
 
 

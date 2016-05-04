@@ -29,26 +29,54 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var previousButton: UIButton!
     
     
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        
         setupUI()
     }
     
+    
+    
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //        keyboard functions
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpFirstStepViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        super.viewWillAppear(animated);
+        IQKeyboardManager.sharedManager().enable = false
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = true
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 96;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+    }
+    func keyboardWillHiden(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 210;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func setupUI() {
@@ -59,12 +87,12 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         nicknameTextField.delegate = self
-        mobileTextField.placeholder = NSLocalizedString("signup.user.mobileNumber", comment: "").uppercaseString
-        nicknameTextField.placeholder = NSLocalizedString("signup.user.nickname", comment: "").uppercaseString
-        infoLabel.text = NSLocalizedString("signup.user.infoText", comment: "")
+        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
+        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
+        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
         
-        self.nextButton.setTitle(NSLocalizedString("signup.button.next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.previousButton.setTitle(NSLocalizedString("signup.button.previous", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         
         //Looks for single or multiple taps.
@@ -102,7 +130,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.mobileTextField.leftView = label
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
-    
+        
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -126,35 +154,69 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                     "Please input Nickname.")
                 
             } else {
+                Loader.Show()
                 let body =
                     ["firstName": userFirstName!,
                      "lastName": userLastName!,
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 
-                APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
+                APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
-                        //Update flag
-                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.sendToSMSValidation()
+                    } else if code == YonaConstants.serverCodes.errorUserExists {
                         dispatch_async(dispatch_get_main_queue()) {
-                            // update some UI
-                            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                self.navigationController?.pushViewController(smsValidation, animated: false)
+                            Loader.Hide()
+                            if let alertMessage = message {
+                                //alert the user ask if they want to override their account, if ok send back to SMS screen
+                                self.displayAlertOption(alertMessage, alertDescription: "", onCompletion: { (buttonPressed) in
+                                    switch buttonPressed{
+                                    case alertButtonType.OK:
+                                        AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
+                                            //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                                            if success {
+                                                NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                                                self.sendToSMSValidation()
+                                            }
+                                        }
+                                        
+                                    case alertButtonType.cancel:
+                                        break
+                                        //do nothing or send back to start of signup?
+                                    }
+                                })
                             }
-                        }
-                    } else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.displayAlertMessage(message!, alertDescription: "")
                         }
                     }
                 })
             }
         }
     }
+    
+    func sendToSMSValidation(){
+        //Update flag
+        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        dispatch_async(dispatch_get_main_queue()) {
+            // update some UI
+            Loader.Hide()
+            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                self.navigationController?.pushViewController(smsValidation, animated: false)
+            }
+        }
+    }
 }
 
 extension SignUpSecondStepViewController: UITextFieldDelegate {
-    // Text Field Return Resign First Responder
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == mobileTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
@@ -164,7 +226,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         return true
     }
     
-    //MARK: -  copied from Apple developer forums - need to understand, bounced :(
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
@@ -185,21 +246,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         return true
     }
     
-    func keyboardWillShow(notification:NSNotification){
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
-        self.scrollView.contentInset.top = self.scrollView.contentInset.top 
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        self.scrollView.contentInset = contentInset
-    }
-    
-    func keyboardWillHide(notification:NSNotification){
-        
-        self.scrollView.setContentOffset(CGPointZero, animated: true)
-    }
-    
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
         view.endEditing(true)
@@ -207,10 +253,6 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
 }
 
 private extension Selector {
-    static let keyboardWasShown = #selector(SignUpSecondStepViewController.keyboardWillShow(_:))
-    
-    static let keyboardWillBeHidden = #selector(SignUpSecondStepViewController.keyboardWillHide(_:))
-    
     static let dismissKeyboard = #selector(SignUpSecondStepViewController.dismissKeyboard)
     
     static let back = #selector(SignUpSecondStepViewController.back(_:))

@@ -114,7 +114,7 @@
                                                             <constraint firstAttribute="height" constant="60" id="p5s-t9-C6o"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TEGOED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-1a-SmO">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="challenges.budgetGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-1a-SmO">
                                                         <rect key="frame" x="78" y="84" width="44" height="43"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -189,7 +189,7 @@
                                                             <constraint firstAttribute="width" constant="60" id="y1r-BN-PGt"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TIJDZONE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZH-AW-9OW">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="challenges.timezoneGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZH-AW-9OW">
                                                         <rect key="frame" x="73" y="84" width="53" height="43"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -264,8 +264,8 @@
                                                             <constraint firstAttribute="bottom" secondItem="bSt-aV-C4T" secondAttribute="bottom" constant="40" id="yOO-fC-duz"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NO GO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
-                                                        <rect key="frame" x="82" y="99" width="36" height="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="challenges.nogoGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
+                                                        <rect key="frame" x="82" y="98" width="36" height="13"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -304,10 +304,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bva-a1-Bzr">
-                                                <rect key="frame" x="30" y="30" width="13" height="22"/>
+                                                <rect key="frame" x="10" y="14" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="13" id="S2R-8H-UwD"/>
-                                                    <constraint firstAttribute="height" constant="22" id="x5p-vu-qbd"/>
+                                                    <constraint firstAttribute="width" constant="50" id="S2R-8H-UwD"/>
+                                                    <constraint firstAttribute="height" constant="50" id="x5p-vu-qbd"/>
                                                 </constraints>
                                                 <state key="normal" image="icnBack"/>
                                                 <connections>
@@ -325,11 +325,11 @@
                                             <constraint firstAttribute="trailing" secondItem="fbU-ug-vAj" secondAttribute="trailing" id="ML3-Xu-xxu"/>
                                             <constraint firstItem="tDi-d9-n1S" firstAttribute="width" secondItem="9n2-uU-zvC" secondAttribute="width" id="MoU-1Z-tkq"/>
                                             <constraint firstItem="tDi-d9-n1S" firstAttribute="leading" secondItem="L6Y-AC-ecS" secondAttribute="trailing" id="R0q-xd-sg1"/>
-                                            <constraint firstItem="bva-a1-Bzr" firstAttribute="leading" secondItem="V23-83-bue" secondAttribute="leading" constant="30" id="ULh-yi-SCT"/>
+                                            <constraint firstItem="bva-a1-Bzr" firstAttribute="leading" secondItem="V23-83-bue" secondAttribute="leading" constant="10" id="ULh-yi-SCT"/>
                                             <constraint firstItem="fbU-ug-vAj" firstAttribute="leading" secondItem="V23-83-bue" secondAttribute="leading" id="UuR-GL-SbT"/>
                                             <constraint firstAttribute="trailing" secondItem="nic-V2-T89" secondAttribute="trailing" constant="30" id="V5f-k6-urt"/>
                                             <constraint firstItem="L6Y-AC-ecS" firstAttribute="height" secondItem="9n2-uU-zvC" secondAttribute="height" id="WIF-3s-kdr"/>
-                                            <constraint firstItem="bva-a1-Bzr" firstAttribute="top" secondItem="V23-83-bue" secondAttribute="top" constant="30" id="XtE-0A-f4i"/>
+                                            <constraint firstItem="bva-a1-Bzr" firstAttribute="top" secondItem="V23-83-bue" secondAttribute="top" constant="14" id="XtE-0A-f4i"/>
                                             <constraint firstItem="L6Y-AC-ecS" firstAttribute="width" secondItem="9n2-uU-zvC" secondAttribute="width" id="aDp-3O-xVb"/>
                                             <constraint firstAttribute="height" constant="200" id="b9N-Pj-R5q"/>
                                             <constraint firstItem="tDi-d9-n1S" firstAttribute="top" secondItem="9n2-uU-zvC" secondAttribute="top" id="dZw-at-CqP"/>
@@ -495,11 +495,11 @@
                         <viewControllerLayoutGuide type="bottom" id="S5w-n3-FsC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="haG-ns-RC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-Hr-9Ds">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Nb-LNL" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
@@ -529,10 +529,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq3-kt-ckj" userLabel="Back Button">
-                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <rect key="frame" x="10" y="14" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="abq-vf-jHD"/>
-                                                    <constraint firstAttribute="width" constant="13" id="k41-Hr-Gra"/>
+                                                    <constraint firstAttribute="height" constant="50" id="abq-vf-jHD"/>
+                                                    <constraint firstAttribute="width" constant="50" id="k41-Hr-Gra"/>
                                                 </constraints>
                                                 <state key="normal" image="icnBack"/>
                                                 <connections>
@@ -584,20 +584,20 @@
                                             <constraint firstItem="nSr-qN-men" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="O12-LP-9ux"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" id="VfR-So-Pf0"/>
                                             <constraint firstAttribute="trailing" secondItem="xOp-Yo-h8f" secondAttribute="trailing" id="X1P-97-vb1"/>
-                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="20" id="hfA-Bp-xwD"/>
+                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="10" id="hfA-Bp-xwD"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" id="kUh-hD-oeo"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="top" secondItem="xOp-Yo-h8f" secondAttribute="bottom" constant="32" id="smu-Ht-K9w"/>
                                             <constraint firstAttribute="trailing" secondItem="a6P-sQ-VHj" secondAttribute="trailing" constant="15" id="uT1-pe-TAY"/>
                                             <constraint firstAttribute="trailing" secondItem="6Em-cj-kPG" secondAttribute="trailing" constant="15" id="usM-ab-V0E"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="vvS-Ys-56K"/>
                                             <constraint firstAttribute="height" constant="300" id="wkY-M5-CPM"/>
-                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="28" id="yJ8-SN-lwl"/>
+                                            <constraint firstItem="eq3-kt-ckj" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="14" id="yJ8-SN-lwl"/>
                                             <constraint firstItem="xOp-Yo-h8f" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="yzq-WP-IqV"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jH-BO-Lpn">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="471"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="0.0" y="300" width="600" height="429"/>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="36q-b6-Ss1" userLabel="HeaderView">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -656,8 +656,8 @@
                                                                 <constraint firstAttribute="height" constant="50" id="hTr-1s-DCw"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
-                                                            <rect key="frame" x="50" y="69" width="500" height="28"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
+                                                            <rect key="frame" x="50" y="69" width="500" height="29"/>
                                                             <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -665,7 +665,7 @@ onderdeel van deze challenge:</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
-                                                            <rect key="frame" x="50" y="112" width="500" height="33.5"/>
+                                                            <rect key="frame" x="50" y="112" width="500" height="34"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -680,7 +680,6 @@ Pinterest, Instagram, Snapchat</string>
                                                         <constraint firstItem="1nz-jn-Qwz" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" id="K2L-OA-r6M"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="top" secondItem="1nz-jn-Qwz" secondAttribute="bottom" constant="19" id="Pg6-TL-nWe"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" constant="50" id="QHN-fL-Mej"/>
-                                                        <constraint firstAttribute="height" constant="176" id="RIb-VQ-GlO"/>
                                                         <constraint firstAttribute="trailing" secondItem="yfN-TY-GOx" secondAttribute="trailing" constant="50" id="bIo-0I-UvQ"/>
                                                         <constraint firstItem="yfN-TY-GOx" firstAttribute="top" secondItem="tUC-r3-f9U" secondAttribute="bottom" constant="14" id="haU-K3-ElD"/>
                                                         <constraint firstItem="1nz-jn-Qwz" firstAttribute="top" secondItem="zJ5-fZ-zwR" secondAttribute="top" id="hlF-Hl-UwY"/>
@@ -690,8 +689,9 @@ Pinterest, Instagram, Snapchat</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="zJ5-fZ-zwR" secondAttribute="bottom" id="6yO-me-sQ4"/>
                                                 <constraint firstItem="Z2j-ti-haz" firstAttribute="centerX" secondItem="qwx-DA-pmH" secondAttribute="centerX" id="B42-Nw-FK0"/>
                                                 <constraint firstItem="Z2j-ti-haz" firstAttribute="leading" secondItem="qwx-DA-pmH" secondAttribute="leading" constant="30" id="EpB-zP-hy7"/>
                                                 <constraint firstItem="zJ5-fZ-zwR" firstAttribute="leading" secondItem="qwx-DA-pmH" secondAttribute="leading" id="IzH-Zz-2bs"/>
@@ -758,7 +758,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKd-p1-n60">
                                                             <rect key="frame" x="330" y="0.0" width="269" height="59"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="van" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-3g-JBu">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="tot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-3g-JBu">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="59"/>
                                                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
@@ -828,11 +828,11 @@ Pinterest, Instagram, Snapchat</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9jH-BO-Lpn" secondAttribute="trailing" id="36R-Df-NKC"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="top" id="65h-ud-DgV"/>
-                                    <constraint firstAttribute="bottom" secondItem="9jH-BO-Lpn" secondAttribute="bottom" constant="-171" id="IJi-gg-hq2"/>
+                                    <constraint firstAttribute="bottom" secondItem="9jH-BO-Lpn" secondAttribute="bottom" constant="71" id="IJi-gg-hq2"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="centerX" secondItem="wSu-Hr-9Ds" secondAttribute="centerX" id="PEm-cp-Cot"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="T9o-l9-kwZ"/>
                                     <constraint firstAttribute="trailing" secondItem="73d-Nb-LNL" secondAttribute="trailing" id="VVW-GU-oXn"/>
-                                    <constraint firstAttribute="bottom" secondItem="73d-Nb-LNL" secondAttribute="bottom" constant="300" id="Wye-wv-pDO"/>
+                                    <constraint firstAttribute="bottom" secondItem="73d-Nb-LNL" secondAttribute="bottom" constant="500" id="Wye-wv-pDO"/>
                                     <constraint firstItem="9jH-BO-Lpn" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="bottom" id="iGp-7p-xzM"/>
                                     <constraint firstItem="9jH-BO-Lpn" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="jwV-5X-CL0"/>
                                 </constraints>
@@ -854,14 +854,13 @@ Pinterest, Instagram, Snapchat</string>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1000"/>
+                    <size key="freeformSize" width="600" height="800"/>
                     <connections>
                         <outlet property="bottomLabelText" destination="tUC-r3-f9U" id="xA1-FG-HQQ"/>
                         <outlet property="deleteGoalButton" destination="tO6-LB-Hnw" id="039-GD-SLH"/>
                         <outlet property="footerGradientView" destination="1nz-jn-Qwz" id="Nzx-Fy-qTN"/>
                         <outlet property="gradientView" destination="xOp-Yo-h8f" id="DkS-3M-Vcr"/>
                         <outlet property="headerView" destination="W5j-Dx-cxe" id="T10-b2-AIx"/>
-                        <outlet property="scrollView" destination="wSu-Hr-9Ds" id="8f1-cI-xzs"/>
                         <outlet property="setChallengeButton" destination="Z2j-ti-haz" id="tIH-ck-jc1"/>
                         <outlet property="tableView" destination="9jH-BO-Lpn" id="i9f-48-9AO"/>
                         <outlet property="timeZoneLabel" destination="mKk-8c-6az" id="RGK-hh-bKn"/>
@@ -917,10 +916,10 @@ Pinterest, Instagram, Snapchat</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-YH-Hjm" userLabel="Back Button">
-                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <rect key="frame" x="10" y="14" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="13" id="A0l-Kn-WuH"/>
-                                                    <constraint firstAttribute="height" constant="22" id="ubE-fn-ZAp"/>
+                                                    <constraint firstAttribute="width" constant="50" id="A0l-Kn-WuH"/>
+                                                    <constraint firstAttribute="height" constant="50" id="ubE-fn-ZAp"/>
                                                 </constraints>
                                                 <state key="normal" image="icnBack"/>
                                                 <connections>
@@ -973,10 +972,10 @@ Pinterest, Instagram, Snapchat</string>
                                             <constraint firstAttribute="trailing" secondItem="kYa-ba-ZYU" secondAttribute="trailing" constant="15" id="Y2V-tQ-Qrq"/>
                                             <constraint firstItem="kYa-ba-ZYU" firstAttribute="top" secondItem="nZg-5a-C9x" secondAttribute="bottom" constant="13" id="ahQ-tG-ZfC"/>
                                             <constraint firstItem="kYa-ba-ZYU" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="e1s-Fe-oBj"/>
-                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="20" id="eG1-Xw-ZOf"/>
+                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="10" id="eG1-Xw-ZOf"/>
                                             <constraint firstItem="nZg-5a-C9x" firstAttribute="top" secondItem="XEI-aB-5HT" secondAttribute="bottom" constant="30" id="eLM-C1-4jR"/>
                                             <constraint firstItem="XEI-aB-5HT" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="gZc-un-oqs"/>
-                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="28" id="keg-Mr-J9l"/>
+                                            <constraint firstItem="TWk-YH-Hjm" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="14" id="keg-Mr-J9l"/>
                                             <constraint firstItem="Bf1-OS-Nmq" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="lli-lL-Zk3"/>
                                             <constraint firstItem="Bf1-OS-Nmq" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="31" id="n34-Fz-sdj"/>
                                             <constraint firstItem="nZg-5a-C9x" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" id="tRo-dd-TaV"/>
@@ -1185,10 +1184,10 @@ Pinterest, Instagram, Snapchat</string>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-AJ-QGn" userLabel="Back Button">
-                                                <rect key="frame" x="20" y="28" width="13" height="22"/>
+                                                <rect key="frame" x="10" y="14" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="13" id="Mf3-24-NLC"/>
-                                                    <constraint firstAttribute="height" constant="22" id="lPO-Pe-e8O"/>
+                                                    <constraint firstAttribute="width" constant="50" id="Mf3-24-NLC"/>
+                                                    <constraint firstAttribute="height" constant="50" id="lPO-Pe-e8O"/>
                                                 </constraints>
                                                 <state key="normal" image="icnBack"/>
                                                 <connections>
@@ -1249,10 +1248,10 @@ Pinterest, Instagram, Snapchat</string>
                                             <constraint firstItem="Nkc-fL-yGV" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="5rD-zo-W7K"/>
                                             <constraint firstAttribute="trailing" secondItem="39Z-6A-Wlr" secondAttribute="trailing" constant="20" id="CLE-B6-ut3"/>
                                             <constraint firstItem="8Mc-PN-X8W" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" id="Cbl-V6-jJI"/>
-                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="20" id="Hk1-3X-NFp"/>
+                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="10" id="Hk1-3X-NFp"/>
                                             <constraint firstItem="vLg-dg-Et7" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="KaQ-kf-Qhr"/>
                                             <constraint firstItem="4ga-Zu-XzU" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="MMO-54-dYP"/>
-                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="28" id="NWO-im-6Xg"/>
+                                            <constraint firstItem="kJN-AJ-QGn" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="14" id="NWO-im-6Xg"/>
                                             <constraint firstItem="Nkc-fL-yGV" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="PvN-w3-KdC"/>
                                             <constraint firstItem="39Z-6A-Wlr" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="24" id="Pxq-NN-hZf"/>
                                             <constraint firstAttribute="trailing" secondItem="8Mc-PN-X8W" secondAttribute="trailing" id="Y68-EE-17C"/>
@@ -1352,7 +1351,7 @@ Pinterest, Instagram, Snapchat</string>
                                     <constraint firstItem="olM-AX-pnp" firstAttribute="centerX" secondItem="KhB-rS-Ocr" secondAttribute="centerX" id="8id-jz-02F"/>
                                     <constraint firstItem="olM-AX-pnp" firstAttribute="top" secondItem="KhB-rS-Ocr" secondAttribute="top" id="BPG-lf-bUc"/>
                                     <constraint firstItem="e9H-xl-pNz" firstAttribute="leading" secondItem="KhB-rS-Ocr" secondAttribute="leading" id="UEI-dy-q64"/>
-                                    <constraint firstAttribute="bottom" secondItem="e9H-xl-pNz" secondAttribute="bottom" constant="-41" id="cw1-n2-0Yi"/>
+                                    <constraint firstAttribute="bottom" secondItem="e9H-xl-pNz" secondAttribute="bottom" id="cw1-n2-0Yi"/>
                                     <constraint firstItem="e9H-xl-pNz" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="bottom" id="dhc-gh-t1C"/>
                                     <constraint firstItem="olM-AX-pnp" firstAttribute="leading" secondItem="KhB-rS-Ocr" secondAttribute="leading" id="icJ-V1-SjD"/>
                                     <constraint firstAttribute="trailing" secondItem="olM-AX-pnp" secondAttribute="trailing" id="qXd-1h-ekU"/>

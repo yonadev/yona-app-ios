@@ -36,6 +36,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -48,7 +49,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-        //        self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
         self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
@@ -58,8 +58,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         configureDatePickerView()
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
-        
-        
         
         if isFromActivity == true {
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
@@ -88,8 +86,9 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
         }) { (doneValue) in
-            print("value selected \(doneValue)")
-            
+            #if DEBUG
+                print("value selected \(doneValue)")
+            #endif
             if doneValue != "" {
                 let fullNameArr = doneValue.componentsSeparatedByString(":")
                 
@@ -110,8 +109,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
-        print("integrate post budget challenge")
-        
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
                 "@type": "BudgetGoal",
@@ -120,38 +117,52 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                 ],
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
-            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
-                (success, serverMessage, serverCode, goal, err) in
+            Loader.Show(delegate:self)
+            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    Loader.Hide(self)
+                })
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
+                    self.deleteGoalButton.selected = true
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.deleteGoalButton.selected = true
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
+                        self.navigationController?.popToRootViewControllerAnimated(true)
                     })
                     
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.displayAlertMessage(serverMessage!, alertDescription: "")
-                    })
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
                 }
-            })
+            }
         }
     }
     
     @IBAction func maxTimebuttonTapped(sender: AnyObject) {
+        self.picker?.datePicker.minuteInterval = 1
         picker!.hideShowDatePickerView(isToShow: true)
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-        
         //then once it is posted we can delete it
-        if let goalUnwrap = self.goalCreated {
-            APIServiceManager.sharedInstance.deleteUserGoal(goalUnwrap.goalID!) { (success, serverMessage, serverCode) in
+        if let goalUnwrap = self.goalCreated,
+            let goalEditLink = goalUnwrap.editLinks {
+            Loader.Show(delegate:self)
+            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    Loader.Hide(self)
                 })
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                    })
+                } else {
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                }
             }
         }
     }
