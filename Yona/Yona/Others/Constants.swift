@@ -32,7 +32,7 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
-        static let adminRequestOverride = "/admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
+        static let adminRequestOverride = "admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
         static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
