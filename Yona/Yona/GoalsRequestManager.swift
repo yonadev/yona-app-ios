@@ -91,7 +91,7 @@ extension APIServiceManager {
     func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
             if success {
-                self.getActivitiesArray{ (success, message, server, activities, error) in
+                ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                     if success {
                         self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
                             self.sortGoalsIntoArray(goalType, onCompletion: { (success, serverMessage, serverCode, nil, goals, error) in
@@ -123,7 +123,7 @@ extension APIServiceManager {
     func getAllTheGoalsArray(onCompletion: APIGoalResponse) {
         self.APIServiceCheck { (success, networkMessage, networkCode) in
             if success {
-                self.getActivitiesArray({ (success, message, server, activities, error) in
+                ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, server, activities, error) in
                     if success {
                         self.getUserGoals(activities!) { (success, serverMessage, serverCode, nil, goals, error) in
                             onCompletion(success, serverMessage, serverCode, nil, goals, error)
@@ -154,7 +154,7 @@ extension APIServiceManager {
         APIServiceCheck { (success, message, code) in
             if success {
                 //success get our activities
-                APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                     if success {
                         //get the path to get all the goals from user object
                         if let path = goalLinkAction {

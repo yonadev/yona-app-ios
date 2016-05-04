@@ -204,7 +204,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     private func callActivityCategory() {
         Loader.Show(delegate: self)
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)
@@ -213,12 +213,10 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)
-                    if let message = serverMessage {
+                    if let message = message {
                         self.displayAlertMessage(message, alertDescription: "")
                     }
                 }
-                
-                
             }
         }
     }
