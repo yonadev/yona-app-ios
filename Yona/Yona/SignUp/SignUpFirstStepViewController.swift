@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
+class SignUpFirstStepViewController: UIViewController, UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
@@ -21,19 +21,57 @@ class SignUpFirstStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var topView: UIView!
     
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         setupUI()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        IQKeyboardManager.sharedManager().enable = false
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == R.segue.signUpFirstStepViewController.signUpSeconStepSegue.identifier,
             let vc = segue.destinationViewController as? SignUpSecondStepViewController {
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text
+        }
+    }
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 96;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+    }
+    func keyboardWillHiden(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 210;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
         }
     }
     
