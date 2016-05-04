@@ -60,7 +60,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        //It will select NoGo tab by default
+        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         
         self.setupUI()
     }

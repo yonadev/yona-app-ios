@@ -114,6 +114,38 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                             Loader.Hide(self)
                             self.navigationController?.popViewControllerAnimated(true)
                         })
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            Loader.Hide(self)
+                            if let message = serverMessage {
+                                self.displayAlertMessage(message, alertDescription: "")
+                            }
+                        })
+                    }
+                })
+            }
+        } else {
+            //Integrate Edit
+            if let activityCategoryLink = goalCreated?.activityCategoryLink {
+                let updatedBodyTimeZoneSocialGoal = [
+                    "@type": "TimeZoneGoal",
+                    YonaConstants.jsonKeys.linksKeys: [
+                        YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
+                    ],
+                    YonaConstants.jsonKeys.zones: zonesArray
+                ];
+                Loader.Show(delegate: self)
+                
+                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                    if success {
+                        if let goalUnwrap = goal {
+                            self.goalCreated = goalUnwrap
+                        }
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.deleteGoalButton.selected = true
+                            Loader.Hide(self)
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
                         
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {

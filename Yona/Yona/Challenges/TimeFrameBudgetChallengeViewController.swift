@@ -90,8 +90,8 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                         self.showHidePicker(false)
         }) { (doneValue) in
             self.showHidePicker(false)
-             #if DEBUG
-            print("Done \(doneValue)")
+            #if DEBUG
+                print("Done \(doneValue)")
             #endif
             
             if doneValue != "" {
@@ -107,7 +107,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         picker.frame.size.width = UIScreen.mainScreen().bounds.width
         self.view.addSubview(pickerBackgroundView)
     }
-
+    
     func showHidePicker(isToShow: Bool) {
         UIView.animateWithDuration(0.6,
                                    animations: {
@@ -126,33 +126,71 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
-        if let activityCategoryLink = activitiyToPost?.selfLinks! {
-            let bodyBudgetGoal: [String: AnyObject] = [
-                "@type": "BudgetGoal",
-                "_links": ["yona:activityCategory":
-                    ["href": activityCategoryLink]
-                ],
-                "maxDurationMinutes": String(maxDurationMinutes)
-            ]
-            Loader.Show(delegate:self)
-            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    Loader.Hide(self)
-                })
-                if success {
-                    if let goalUnwrap = goal {
-                        self.goalCreated = goalUnwrap
-                    }
-                    self.deleteGoalButton.selected = true
+        if isFromActivity == true {
+            if let activityCategoryLink = activitiyToPost?.selfLinks! {
+                let bodyBudgetGoal: [String: AnyObject] = [
+                    "@type": "BudgetGoal",
+                    "_links": ["yona:activityCategory":
+                        ["href": activityCategoryLink]
+                    ],
+                    "maxDurationMinutes": String(maxDurationMinutes)
+                ]
+                Loader.Show(delegate:self)
+                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        Loader.Hide(self)
                     })
-                    
-                } else {
-                    if let message = serverMessage {
-                        self.displayAlertMessage(message, alertDescription: "")
+                    if success {
+                        if let goalUnwrap = goal {
+                            self.goalCreated = goalUnwrap
+                        }
+                        self.deleteGoalButton.selected = true
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                        })
+                        
+                    } else {
+                        if let message = serverMessage {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
                     }
                 }
+            }
+        } else {
+            //EDIT Implementation
+            if let activityCategoryLink = goalCreated?.activityCategoryLink! {
+                let bodyBudgetGoal: [String: AnyObject] = [
+                    "@type": "BudgetGoal",
+                    "_links": ["yona:activityCategory":
+                        ["href": activityCategoryLink]
+                    ],
+                    "maxDurationMinutes": String(maxDurationMinutes)
+                ]
+                Loader.Show(delegate:self)
+                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                    })
+                    
+                    
+                    if success {
+                        if let goalUnwrap = goal {
+                            self.goalCreated = goalUnwrap
+                        }
+                        self.deleteGoalButton.selected = true
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                        })
+                        
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            Loader.Hide(self)
+                            if let message = serverMessage {
+                                self.displayAlertMessage(message, alertDescription: "")
+                            }
+                        })
+                    }
+                })
             }
         }
     }
