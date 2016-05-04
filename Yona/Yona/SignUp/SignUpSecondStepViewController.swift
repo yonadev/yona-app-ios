@@ -188,6 +188,13 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                                 })
                             }
                         }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            Loader.Hide()
+                            if let alertMessage = message {
+                                self.displayAlertMessage(alertMessage, alertDescription: "")
+                            }
+                        }
                     }
                 })
             }

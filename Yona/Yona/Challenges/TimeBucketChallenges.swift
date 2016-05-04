@@ -174,21 +174,20 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             if success {
                 if let goalsUnwrap = goals {
                         dispatch_async(dispatch_get_main_queue(), {
-                            
-                            
-                            print(goals)
                             self.updateUI(goal, timeBucketData: goalsUnwrap)
                         })
-                        
+                    #if DEBUG
                         for goal in goals! {
                             print(goal.goalType)
                         }
-                        
-                        #if DEBUG
-                            for goal in goalsUnwrap {
-                                print(goal.goalType)
-                            }
-                        #endif
+                    #endif
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    Loader.Hide(self)
+                    if let message = message {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
                 }
             }
         })

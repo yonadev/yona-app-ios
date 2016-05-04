@@ -66,6 +66,8 @@ enum userRequestTypes{
 enum responseCodes: Int{
     case ok200 = 200
     case ok204 = 204
+    case timeoutRequest = 408
+    case timeoutRequest2 = -1001
 }
 
 enum timeBucketTabNames: String{

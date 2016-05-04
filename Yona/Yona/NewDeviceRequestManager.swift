@@ -27,10 +27,10 @@ class NewDeviceRequestManager {
                         bodyNewDevice = ["newDeviceRequestPassword": password]
                     }
                     self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                        if success {
-                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        if let error = error {
+                            onCompletion(success, error.description, String(error.code), nil)
                         } else {
-                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                            onCompletion(success, "Unknown", "Unknown", nil)
                         }
                     })
                 }
@@ -45,9 +45,13 @@ class NewDeviceRequestManager {
                     //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
                     if let mobileNumber = mobileNumber {
                         let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
-                        Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
+                        Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { tr, dict, error in
                                 guard success == true else {
-                                    onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                                    if let error = error {
+                                        onCompletion(success, error.description, String(error.code), nil)
+                                    } else {
+                                        onCompletion(success, "Unknown", "Unknown", nil)
+                                    }
                                     return
                                 }
                                 //Update user details locally
@@ -55,17 +59,21 @@ class NewDeviceRequestManager {
                                     self.newUser = Users.init(userData: json)
                                 }
                                 //send back user object
-                                onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, user)
+                                if let error = error {
+                                    onCompletion(success, error.description, String(error.code), self.newUser)
+                                } else {
+                                    onCompletion(success, "Unknown", "Unknown", nil)
+                                }
                         })
                     }
                 }
             case httpMethods.delete:
                 if let path = user?.newDeviceRequestsLink {
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
-                        if success {
-                            onCompletion(true, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        if let error = error {
+                            onCompletion(success, error.description, String(error.code), nil)
                         } else {
-                            onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                            onCompletion(success, "Unknown", "Unknown", nil)
                         }
                     })
                 }

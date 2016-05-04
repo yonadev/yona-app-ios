@@ -50,21 +50,26 @@ class APIServiceManager {
      - parameter code: Int, the http response code we need to check (200-204 success, other is fail
      - parameter none
      */
-    func setServerCodeMessage(json:BodyDataDictionary?, code: Int) {
+    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) {
         //check if json is empty
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
                 self.serverMessage = message
                 if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
                     self.serverCode = serverCode
-                } else {
-                    self.serverCode = String(code)
                 }
-        } else if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
-            // successful you get 200 to 204 back, anything else...Houston we gotta a problem
-            self.serverMessage = YonaConstants.serverMessages.OK
-            self.serverCode = YonaConstants.serverCodes.OK
+        } else if let error = error {
+            switch error.code {
+            case responseCodes.timeoutRequest.rawValue:
+                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
+            case responseCodes.timeoutRequest2.rawValue:
+                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
+            default:
+                self.serverMessage = error.description
+                break
+            }
         }
+
     }
 
     /**
@@ -105,8 +110,6 @@ class APIServiceManager {
         }
         //if not then return success
         dispatch_async(dispatch_get_main_queue(), {
-            self.setServerCodeMessage([YonaConstants.jsonKeys.yonaMessages: "Connected",
-                                        YonaConstants.jsonKeys.bodyCode: "Connected"], code: 200)
             onCompletion(true, self.serverMessage, self.serverCode)
         })
     }
