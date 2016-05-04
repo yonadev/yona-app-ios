@@ -80,18 +80,20 @@ extension Manager {
                             let code = httpResponse.statusCode
                             do {
                                 //try to create json object from the data returned
-                                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                                if let data = data {
+                                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
 
-                                if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
-                                    if let dict = jsonObject as? [String: AnyObject] {
-                                        APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
-                                        self.userInfo = dict
-                                        onCompletion(true, dict , error)
-                                    }
-                                } else {
-                                    if let dict = jsonObject as? [String: AnyObject] {
-                                        APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
-                                        onCompletion(false, dict, error)
+                                    if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
+                                        if let dict = jsonObject as? [String: AnyObject] {
+                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
+                                            self.userInfo = dict
+                                            onCompletion(true, dict , error)
+                                        }
+                                    } else {
+                                        if let dict = jsonObject as? [String: AnyObject] {
+                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
+                                            onCompletion(false, dict, error)
+                                        }
                                     }
                                 }
                             } catch { //if serialisation fails send back messages saying so
