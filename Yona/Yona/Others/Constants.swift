@@ -102,10 +102,10 @@ struct YonaConstants {
         static let FailedToRetrieveUpdateUserDetails = "updateUserFail"
         static let FailedToRetrieveUserDetailsForDeleteUser = "deleteUserFail"
         static let FailedToRetrieveGetUserGoals = "getUserGoalsFail"
-
     }
     
     struct serverMessages{
+        static let timeoutRequest = "The request timed out, server problem"
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
         static let noConnection = "No network connection"
