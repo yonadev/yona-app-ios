@@ -55,6 +55,7 @@
 "account-login-security-message" = "For security";
 "send-otp-again" = "Send code again";
 "add-device" = "ADD DEVICE";
+"smsvalidation.button.resendCode" = "Send code again";
 "yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
 "loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
 "passcode" = "CODE";
@@ -121,7 +122,7 @@
 "passcode.user.headerTitle" = "Account has been created";
 "passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";
 
-
+"smsvalidation.user.resendAdminCodeButtonTitle" = "Resend Lost Device Code";
 "confirmpasscode.user.headerTitle" = "Confirm PIN";
 "passcode.user.UnlockPincode" = "Unlocked PIN";
 "confirmpasscode.user.infomessage" = "Enter your PIN again to confirm.";

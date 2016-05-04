@@ -38,7 +38,7 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
@@ -67,7 +67,7 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
@@ -104,7 +104,7 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             

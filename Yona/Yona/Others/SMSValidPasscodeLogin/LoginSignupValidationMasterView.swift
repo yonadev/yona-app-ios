@@ -18,6 +18,7 @@ class LoginSignupValidationMasterView: UIViewController {
     
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
+    @IBOutlet var resendOverrideCode: UIButton!
 
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var progressView:UIView!
