@@ -30,6 +30,7 @@ class ActivitiesRequestManager {
                         self.APIService.getUserGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
                             if success {
                                 if let goalsUnwrap = goals{
+                                    self.activitiesNotGoals = []
                                     let goalsActivityLinks : [String] = goalsUnwrap.map({$0.activityCategoryLink!})
                                     for activity in activities!{
                                         if !goalsActivityLinks.contains(activity.selfLinks!){

@@ -561,7 +561,7 @@ class GoalAPIServiceTests: XCTestCase {
                                     //so get this goal
                                     if goal.goalType == GoalType.NoGoGoalString.rawValue {
                                         //Now try to delete the Gambling goal, which we cannot error = "error.goal.cannot.add.second.on.activity.category"
-                                        if let goalEditLink = goal.editLinks {
+                                        if let _ = goal.editLinks {
                                             XCTFail("Gambling should not have an editlink, therefore this test has failed and Bert needs to fix it, probably")
                                         } else {
                                             expectation.fulfill()
