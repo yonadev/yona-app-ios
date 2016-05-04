@@ -34,7 +34,12 @@ class APIServiceManager {
             onCompletion(false,nil, YonaConstants.YonaErrorTypes.UserPasswordRequestFail)
             return
         }
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+        
+        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let language = "\(langId)-\(countryId)"
+        
+        let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
             if (success){
                 onCompletion(true, dict , err)
