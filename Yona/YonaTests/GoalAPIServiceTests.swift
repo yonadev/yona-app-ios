@@ -39,7 +39,7 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -74,7 +74,7 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -152,7 +152,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -228,7 +228,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -258,7 +258,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -308,7 +308,7 @@ class GoalAPIServiceTests: XCTestCase {
         
         //Create user
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -373,7 +373,7 @@ class GoalAPIServiceTests: XCTestCase {
         
         //Create user
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -442,7 +442,7 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -490,7 +490,7 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -543,7 +543,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -593,7 +593,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success {
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
@@ -649,7 +649,7 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }

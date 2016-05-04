@@ -24,7 +24,7 @@ extension String {
     func replacePlusSign() -> String {
         return self.replace("+", replacement: "%2B")
     }
-    
+
     //validate PhoneNumber
     var isPhoneNumber: Bool {
         

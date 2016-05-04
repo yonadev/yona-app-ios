@@ -15,6 +15,9 @@
             <string>SFUIDisplay-Medium</string>
             <string>SFUIDisplay-Medium</string>
         </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -86,16 +89,6 @@
                                                     <constraint firstAttribute="height" constant="55" id="sC0-Tx-WSj"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
-                                                <rect key="frame" x="242" y="395" width="116" height="28"/>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendCode">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sendOTPAgain:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="8a4-bV-SYr"/>
-                                                </connections>
-                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isE-Sz-djb">
                                                 <rect key="frame" x="274" y="404" width="53" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
@@ -104,6 +97,24 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="sMg-Pc-ipw"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="079-6Q-Vvd">
+                                                <rect key="frame" x="205.5" y="404" width="189" height="28"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <state key="normal" title="smsvalidation.button.resendCode"/>
+                                                <connections>
+                                                    <action selector="overrideRequestTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="Ura-Np-5Ed"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
+                                                <rect key="frame" x="203" y="404" width="195" height="28"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
+                                                <state key="normal" title="smsvalidation.button.resendCode">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendOTPAgain:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="8a4-bV-SYr"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -122,13 +133,15 @@
                                             <constraint firstAttribute="trailing" secondItem="yRE-mi-1C2" secondAttribute="trailing" constant="15" id="fFG-vu-rrV"/>
                                             <constraint firstItem="isE-Sz-djb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="g0q-o0-27m"/>
                                             <constraint firstAttribute="bottom" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="424" id="iOO-ed-NH8"/>
-                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="10" id="kKA-ut-b0b"/>
+                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="kKA-ut-b0b"/>
                                             <constraint firstAttribute="trailing" secondItem="xR5-0o-qG4" secondAttribute="trailing" constant="30" id="kpL-xc-2gP"/>
+                                            <constraint firstItem="079-6Q-Vvd" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="kqx-Z9-WKs"/>
                                             <constraint firstItem="yRE-mi-1C2" firstAttribute="top" secondItem="xR5-0o-qG4" secondAttribute="bottom" constant="30" id="o5N-3B-abc"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="top" secondItem="U44-VS-5Hu" secondAttribute="top" constant="112" id="sVm-u2-OEf"/>
                                             <constraint firstAttribute="trailing" secondItem="Kk8-eD-rcW" secondAttribute="trailing" constant="15" id="tcl-2A-gsM"/>
                                             <constraint firstItem="xR5-0o-qG4" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="30" id="wVF-eR-nrw"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="wg7-NH-SqD"/>
+                                            <constraint firstItem="079-6Q-Vvd" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="19" id="zoE-Ea-4s3"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -191,6 +204,7 @@
                         <outlet property="pinResetButton" destination="isE-Sz-djb" id="F7B-dD-Dcl"/>
                         <outlet property="progressView" destination="xR5-0o-qG4" id="Lws-2u-38F"/>
                         <outlet property="resendCodeButton" destination="3r8-GS-xeb" id="tv4-8A-Oww"/>
+                        <outlet property="resendOverrideCode" destination="079-6Q-Vvd" id="X1v-Vi-Q4j"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="h6V-rS-CP5"/>
                     </connections>
                 </viewController>

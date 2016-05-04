@@ -43,6 +43,11 @@ enum httpMethods: String{
     case put = "PUT"
 }
 
+enum alertButtonType{
+    case OK
+    case cancel
+}
+
 enum pinRequestTypes{
     case resetRequest
     case verifyRequest
