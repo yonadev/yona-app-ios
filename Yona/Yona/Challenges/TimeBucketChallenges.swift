@@ -204,7 +204,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     private func callActivityCategory() {
         Loader.Show(delegate: self)
-        APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+        ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
             if success{
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)

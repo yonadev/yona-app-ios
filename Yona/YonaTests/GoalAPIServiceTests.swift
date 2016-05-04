@@ -266,7 +266,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                         if success {
                             //Get all the goals
                             APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
@@ -398,7 +398,7 @@ class GoalAPIServiceTests: XCTestCase {
                             APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
-                                    APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                                    ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                                         if success {
                                             //Get the goals again to see if the goals have been updated after our post
                                             APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
@@ -598,7 +598,7 @@ class GoalAPIServiceTests: XCTestCase {
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                     if(success){
-                        APIServiceManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                        ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                             if success {
                                 APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                     if(success){

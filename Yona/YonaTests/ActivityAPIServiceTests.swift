@@ -46,7 +46,7 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success{
                             for activity in activities! {
                                 print(activity.activityCategoryName)
@@ -79,12 +79,12 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success {
                             let activity = activities![0]
                             print(activity)
 
-                            APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                            ActivitiesRequestManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
                                 if success{
                                     print(activity)
                                     expectation.fulfill()
@@ -118,7 +118,7 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
                         print(activities)
                         XCTAssertTrue(success, "Received Activities")
                         expectation.fulfill()
@@ -150,7 +150,7 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
                         if success{
                             XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
                             expectation.fulfill()
