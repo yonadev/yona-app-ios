@@ -100,7 +100,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
                 if success {
                     //create a new device request, get the messages back and device passcode created by server
                     NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, serverCode, addDevicePassCode) in
-                            NewDeviceRequestManager.sharedInstance.getNewDevice(addDevicePassCode!) { (success, message, server, user) in
+                            NewDeviceRequestManager.sharedInstance.getNewDevice(addDevicePassCode!, mobileNumber: body[YonaConstants.jsonKeys.mobileNumberKeys]!) { (success, message, server, user) in
                                 XCTAssert(success, message!)
                                 print(addDevicePassCode!)
                                 print(user)
