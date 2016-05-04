@@ -60,9 +60,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Nv-qa-z4z" userLabel="BottomView">
                                         <rect key="frame" x="0.0" y="260" width="600" height="346"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oga-H9-J7a">
-                                                <rect key="frame" x="29" y="35" width="542" height="43"/>
-                                                <string key="text">Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adddevice.user.infoText" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oga-H9-J7a">
+                                                <rect key="frame" x="29" y="35" width="542" height="15"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -70,8 +69,8 @@
                                                     <rect key="frame" x="29" y="158" width="342" height="28"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9Y-FP-sil">
-                                                <rect key="frame" x="29" y="119" width="536" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.mobileNumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9Y-FP-sil">
+                                                <rect key="frame" x="29" y="91" width="536" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="uVb-0f-M67"/>
                                                 </constraints>
@@ -80,7 +79,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oM-ef-nAw" userLabel="Line1">
-                                                <rect key="frame" x="29" y="166" width="536" height="2"/>
+                                                <rect key="frame" x="29" y="138" width="536" height="2"/>
                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="NCR-wy-3cU"/>
@@ -89,8 +88,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niq-jr-3f1">
-                                                <rect key="frame" x="29" y="180" width="536" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.passcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niq-jr-3f1">
+                                                <rect key="frame" x="29" y="152" width="536" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="yas-JN-QDO"/>
                                                 </constraints>
@@ -99,7 +98,7 @@
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHQ-xW-gH6" userLabel="Line2">
-                                                <rect key="frame" x="29" y="226" width="536" height="2"/>
+                                                <rect key="frame" x="29" y="198" width="536" height="2"/>
                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="W3t-NE-Cc5"/>
@@ -148,7 +147,7 @@
                                     <constraint firstItem="95Y-Zr-rAV" firstAttribute="leading" secondItem="u6I-uZ-wzD" secondAttribute="leading" id="7WR-ca-sdp"/>
                                     <constraint firstItem="0Nv-qa-z4z" firstAttribute="centerX" secondItem="u6I-uZ-wzD" secondAttribute="centerX" id="H35-5r-ucb"/>
                                     <constraint firstAttribute="trailing" secondItem="0Nv-qa-z4z" secondAttribute="trailing" id="K3v-mF-I1B"/>
-                                    <constraint firstAttribute="bottom" secondItem="95Y-Zr-rAV" secondAttribute="bottom" id="UYw-D9-iza"/>
+                                    <constraint firstAttribute="bottom" secondItem="95Y-Zr-rAV" secondAttribute="bottom" constant="-67" id="UYw-D9-iza"/>
                                     <constraint firstAttribute="trailing" secondItem="aZS-2q-vSV" secondAttribute="trailing" id="X0Z-SL-ETe"/>
                                     <constraint firstItem="aZS-2q-vSV" firstAttribute="leading" secondItem="u6I-uZ-wzD" secondAttribute="leading" id="YBO-wT-Kr7"/>
                                     <constraint firstItem="aZS-2q-vSV" firstAttribute="top" secondItem="u6I-uZ-wzD" secondAttribute="top" id="ZJY-3Z-LAe"/>

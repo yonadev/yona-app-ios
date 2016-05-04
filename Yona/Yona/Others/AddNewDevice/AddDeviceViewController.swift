@@ -41,13 +41,6 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
         mobileTextField.delegate = self
         passcodeTextField.delegate = self
         
-        mobileTextField.placeholder = NSLocalizedString("adddevice.user.mobileNumber", comment: "").uppercaseString
-        passcodeTextField.placeholder = NSLocalizedString("adddevice.user.passcode", comment: "").uppercaseString
-
-        
-        infoLabel.text = NSLocalizedString("adddevice.user.infoText", comment: "")
-        
-        
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: Selector.back)
@@ -96,14 +89,28 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
             let trimmedString = trimmedWhiteSpaceString.removeBrackets()
             
             if trimmedString.validateMobileNumber() == false {
+                let localizedString = NSLocalizedString("adddevice.user.InputValidCode", comment: "")
                 self.displayAlertMessage("", alertDescription:
-                    "Please input valid Phone number.")
+                    localizedString)
             } else if self.passcodeTextField.text!.characters.count == 0 {
+                let localizedString = NSLocalizedString("adddevice.user.InputPassCode", comment: "")
                 self.displayAlertMessage("", alertDescription:
-                    "Please input passcode.")
+                    localizedString)
                 
             } else {
-                //CALL API
+                NewDeviceRequestManager.sharedInstance.getNewDevice(self.passcodeTextField.text!, mobileNumber: trimmedString) { (success, message, server, user) in
+                    if success {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            //Update flag
+                            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                self.navigationController?.pushViewController(passcode, animated: false)
+                            }
+                        }
+                    } else {
+                        self.displayAlertMessage("", alertDescription: message!)
+                    }
+                }
             }
         }
     }

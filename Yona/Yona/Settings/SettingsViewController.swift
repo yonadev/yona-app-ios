@@ -54,16 +54,7 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    cell.textLabel?.text = settingsArray[indexPath.row] as! String;
-//    let s: String = zonesArray[indexPath.row] as! String
-//    
-//    cell.configure((s.dashRemoval()[0], s.dashRemoval()[1]), fromButtonListener: { (cell) in
-//        print("From Button Clicked in cell")
-//        
-//    }) { (cell) in
-//        print("to Button Clicked in cell")
-//    }
-    
+    cell.textLabel?.text = settingsArray[indexPath.row] as? String;
     return cell
 }
 
@@ -72,16 +63,14 @@ func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSInde
     print("index  \(indexPath)")
     print("index  \(self.navigationController)")
     if indexPath.row == 2 {
-        if let addDevice = R.storyboard.addDeviceViewController.addDeviceStoryboard {
-            self.presentViewController(addDevice, animated: true, completion: nil)
-        }
-    
-    
-    
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("myVCId") as! MyVCName
-//        self.presentViewController(vc, animated: true, completion: nil)
-//
-    
+        NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
+            NewDeviceRequestManager.sharedInstance.deleteNewDevice({ (success, message, code) in
+                let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
+                if let addDeviceCode = addDeviceCode {
+                    self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
+                }
+            })
+        })
     }
 
 }

@@ -19,57 +19,50 @@ extension APIServiceManager {
      - parameter onCompletion: APIPinResetResponse, Sends back the pin ISO code (optional) and also the server messages and success or fail of the request
      */
     private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
-        APIServiceCheck { (success, message, code) in
-            if success {
-                self.getUser{ (success, message, code, user) in
-                    
-                    switch pinRequestType
-                    {
-                    case .resetRequest:
-                        if let path = user?.requestPinResetLink {
-                            self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                                if success {
-                                    if let jsonUnwrap = json,
-                                        let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
-                                        onCompletion(true, pincode , self.serverMessage, self.serverCode)
-                                    }
-                                } else {
-                                    onCompletion(false, nil , self.serverMessage, self.serverCode)
-                                }
-                            }
-                        } else {
-                            onCompletion(false, nil , self.serverMessage, self.serverCode)
-                        }
-                    case .verifyRequest:
-                        if let path = user?.requestPinVerifyLink{
-                            self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                                if success {
-                                    onCompletion(true , nil, self.serverMessage, self.serverCode)
-                                } else {
-                                    onCompletion(false , nil, self.serverMessage, self.serverCode)
-                                }
-                            }
-                        } else {
-                            onCompletion(false, nil , self.serverMessage, self.serverCode)
-                        }
-                        
-                    case .clearRequest:
-                        if let path = user?.requestPinClearLink{
-                            self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                                if success {
-                                    onCompletion(true , nil, self.serverMessage, self.serverCode)
-                                } else {
-                                    onCompletion(false , nil, self.serverMessage, self.serverCode)
-                                }
+        self.getUser{ (success, message, code, user) in
+            
+            switch pinRequestType
+            {
+            case .resetRequest:
+                if let path = user?.requestPinResetLink {
+                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                        if success {
+                            if let jsonUnwrap = json,
+                                let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
+                                onCompletion(true, pincode , self.serverMessage, self.serverCode)
                             }
                         } else {
                             onCompletion(false, nil , self.serverMessage, self.serverCode)
                         }
                     }
-                    
+                } else {
+                    onCompletion(false, nil , self.serverMessage, self.serverCode)
                 }
-            } else {
-                onCompletion(false, nil , message, code)
+            case .verifyRequest:
+                if let path = user?.requestPinVerifyLink{
+                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                        if success {
+                            onCompletion(true , nil, self.serverMessage, self.serverCode)
+                        } else {
+                            onCompletion(false , nil, self.serverMessage, self.serverCode)
+                        }
+                    }
+                } else {
+                    onCompletion(false, nil , self.serverMessage, self.serverCode)
+                }
+                
+            case .clearRequest:
+                if let path = user?.requestPinClearLink{
+                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                        if success {
+                            onCompletion(true , nil, self.serverMessage, self.serverCode)
+                        } else {
+                            onCompletion(false , nil, self.serverMessage, self.serverCode)
+                        }
+                    }
+                } else {
+                    onCompletion(false, nil , self.serverMessage, self.serverCode)
+                }
             }
         }
     }

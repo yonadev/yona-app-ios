@@ -59,8 +59,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
-        
-        
         if isFromActivity == true {
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
