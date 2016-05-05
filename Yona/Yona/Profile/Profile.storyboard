@@ -17,24 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-aK-BUf" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZT0-24-LY9" userLabel="Gradient ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6M-mu-T1H" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6Pb-EN-fna"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="B2A-ut-yjN"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Q4u-WK-Eab"/>
+                                    <constraint firstAttribute="trailing" secondItem="e6M-mu-T1H" secondAttribute="trailing" id="eF1-8Z-aBQ"/>
+                                    <constraint firstItem="e6M-mu-T1H" firstAttribute="leading" secondItem="ZT0-24-LY9" secondAttribute="leading" id="kBp-YJ-a8d"/>
+                                    <constraint firstAttribute="height" constant="50" id="rDL-K7-8wZ"/>
+                                    <constraint firstItem="e6M-mu-T1H" firstAttribute="top" secondItem="ZT0-24-LY9" secondAttribute="top" id="tFJ-7l-0gr"/>
+                                    <constraint firstAttribute="bottom" secondItem="e6M-mu-T1H" secondAttribute="bottom" id="xKM-Js-voH"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Cf7-aK-BUf" firstAttribute="leading" secondItem="Mp3-Rq-TDY" secondAttribute="leading" id="Buh-Dn-Xct"/>
-                            <constraint firstItem="Cf7-aK-BUf" firstAttribute="top" secondItem="Mp3-Rq-TDY" secondAttribute="top" id="E6V-b6-0Tx"/>
-                            <constraint firstAttribute="trailing" secondItem="Cf7-aK-BUf" secondAttribute="trailing" id="sI3-A3-BeO"/>
+                            <constraint firstItem="ZT0-24-LY9" firstAttribute="top" secondItem="Mp3-Rq-TDY" secondAttribute="top" id="EOc-zT-c8K"/>
+                            <constraint firstItem="ZT0-24-LY9" firstAttribute="leading" secondItem="Mp3-Rq-TDY" secondAttribute="leading" id="NeK-V9-d88"/>
+                            <constraint firstAttribute="trailing" secondItem="ZT0-24-LY9" secondAttribute="trailing" id="ntx-lH-tfP"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="gradientView" destination="Cf7-aK-BUf" id="DRn-c2-J7c"/>
+                        <outlet property="gradientView" destination="e6M-mu-T1H" id="cPU-hc-vKG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7I-qQ-aah" userLabel="First Responder" sceneMemberID="firstResponder"/>
