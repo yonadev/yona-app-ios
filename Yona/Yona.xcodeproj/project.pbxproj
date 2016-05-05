@@ -10,6 +10,7 @@
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		9039292D1CB69ED600521F5D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9039292C1CB69ED600521F5D /* SecretKeys.plist */; };
+		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
 		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
 		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
@@ -240,6 +241,7 @@
 /* Begin PBXFileReference section */
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9039292C1CB69ED600521F5D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
 		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
 				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
 				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
@@ -1495,6 +1498,7 @@
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
+				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,

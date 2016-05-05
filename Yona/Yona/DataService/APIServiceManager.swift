@@ -59,6 +59,8 @@ class APIServiceManager {
                     self.serverCode = serverCode
                 }
         } else if let error = error {
+            self.serverMessage = HTTPStatusCode.AuthenticationTimeout.localizedReasonPhrase
+            
             switch error.code {
             case responseCodes.timeoutRequest.rawValue:
                 self.serverMessage = YonaConstants.serverMessages.timeoutRequest
