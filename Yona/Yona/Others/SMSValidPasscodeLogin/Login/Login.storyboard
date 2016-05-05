@@ -116,12 +116,22 @@
                                     <outlet property="delegate" destination="Mnl-Nx-TV9" id="Bit-Ex-97j"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edi-Cd-nIQ" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLw-2G-xsI" userLabel="Gradient ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McJ-F1-DO6" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="D9Z-tF-AZh"/>
-                                    <constraint firstAttribute="height" constant="50" id="S2S-cS-GEf"/>
+                                    <constraint firstItem="McJ-F1-DO6" firstAttribute="leading" secondItem="BLw-2G-xsI" secondAttribute="leading" id="1ey-f2-vBX"/>
+                                    <constraint firstAttribute="bottom" secondItem="McJ-F1-DO6" secondAttribute="bottom" id="KdA-80-KzP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Kxa-Qm-szc"/>
+                                    <constraint firstItem="McJ-F1-DO6" firstAttribute="top" secondItem="BLw-2G-xsI" secondAttribute="top" id="a2f-tf-6vz"/>
+                                    <constraint firstAttribute="trailing" secondItem="McJ-F1-DO6" secondAttribute="trailing" id="fag-HN-at1"/>
+                                    <constraint firstAttribute="height" constant="50" id="phb-cl-vNd"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INLOGGEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yf9-fJ-1ck">
@@ -133,20 +143,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="edi-Cd-nIQ" secondAttribute="trailing" id="28h-mG-Hy8"/>
                             <constraint firstItem="cuS-pj-Nh4" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" id="7dr-em-lgM"/>
                             <constraint firstItem="cuS-pj-Nh4" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" id="94v-Tj-1fe"/>
                             <constraint firstAttribute="trailing" secondItem="cuS-pj-Nh4" secondAttribute="trailing" id="FRY-Xe-rAc"/>
                             <constraint firstItem="It4-At-g8z" firstAttribute="top" secondItem="cuS-pj-Nh4" secondAttribute="bottom" id="JjW-71-pQC"/>
                             <constraint firstItem="cuS-pj-Nh4" firstAttribute="top" secondItem="TBR-kW-Tkf" secondAttribute="top" id="QeO-TN-do8"/>
-                            <constraint firstItem="edi-Cd-nIQ" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" id="Wdw-sd-MwD"/>
+                            <constraint firstAttribute="trailing" secondItem="BLw-2G-xsI" secondAttribute="trailing" id="R1R-Iu-zjy"/>
                             <constraint firstItem="Yf9-fJ-1ck" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" constant="30" id="Zeh-8q-6OC"/>
                             <constraint firstItem="cuS-pj-Nh4" firstAttribute="top" secondItem="TBR-kW-Tkf" secondAttribute="top" id="aL0-xx-l21"/>
                             <constraint firstItem="It4-At-g8z" firstAttribute="top" secondItem="cuS-pj-Nh4" secondAttribute="bottom" id="b2F-F1-Tyi"/>
                             <constraint firstItem="Yf9-fJ-1ck" firstAttribute="top" secondItem="Dbk-MT-JXe" secondAttribute="bottom" constant="10" id="eVx-VX-cEy"/>
                             <constraint firstAttribute="trailing" secondItem="cuS-pj-Nh4" secondAttribute="trailing" id="fSe-hf-7ti"/>
+                            <constraint firstItem="BLw-2G-xsI" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" id="lXL-lZ-icV"/>
                             <constraint firstAttribute="trailing" secondItem="Yf9-fJ-1ck" secondAttribute="trailing" constant="30" id="pvv-Fi-nV6"/>
-                            <constraint firstItem="edi-Cd-nIQ" firstAttribute="top" secondItem="TBR-kW-Tkf" secondAttribute="top" id="zDG-pg-D37"/>
+                            <constraint firstItem="BLw-2G-xsI" firstAttribute="top" secondItem="TBR-kW-Tkf" secondAttribute="top" id="qwA-Rw-VUB"/>
                         </constraints>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
@@ -159,7 +169,7 @@
                     <connections>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
-                        <outlet property="gradientView" destination="edi-Cd-nIQ" id="W9J-Sc-qoX"/>
+                        <outlet property="gradientView" destination="McJ-F1-DO6" id="ZCB-q8-UbC"/>
                         <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
                         <outlet property="pinResetButton" destination="3r8-GS-xeb" id="3jo-M6-qVr"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>

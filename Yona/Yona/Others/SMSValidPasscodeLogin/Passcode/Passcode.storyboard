@@ -97,12 +97,22 @@
                                     <outlet property="delegate" destination="Jgq-7q-JPY" id="4wx-m7-Lak"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OiB-kT-qjd" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZY-eu-h3d" userLabel="Gradient ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMb-lK-9HK" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ZLA-qN-x6S"/>
-                                    <constraint firstAttribute="height" constant="50" id="gK3-pF-8mD"/>
+                                    <constraint firstAttribute="height" constant="50" id="Jhj-TM-lll"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cev-av-PQ8"/>
+                                    <constraint firstItem="GMb-lK-9HK" firstAttribute="leading" secondItem="XZY-eu-h3d" secondAttribute="leading" id="jHt-v9-dXr"/>
+                                    <constraint firstAttribute="bottom" secondItem="GMb-lK-9HK" secondAttribute="bottom" id="ppa-MF-r7p"/>
+                                    <constraint firstAttribute="trailing" secondItem="GMb-lK-9HK" secondAttribute="trailing" id="shN-1N-qf8"/>
+                                    <constraint firstItem="GMb-lK-9HK" firstAttribute="top" secondItem="XZY-eu-h3d" secondAttribute="top" id="wNQ-1l-wka"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afW-tT-vUB">
@@ -114,18 +124,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OiB-kT-qjd" secondAttribute="trailing" id="2Hv-Lo-8e2"/>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="47x-7E-3D8"/>
                             <constraint firstAttribute="trailing" secondItem="afW-tT-vUB" secondAttribute="trailing" constant="30" id="8DY-7b-fwb"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="Aqg-ew-26l"/>
+                            <constraint firstItem="XZY-eu-h3d" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="Kmk-i7-0d5"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="NMN-N3-G8k"/>
                             <constraint firstItem="afW-tT-vUB" firstAttribute="top" secondItem="vNn-kd-ZDq" secondAttribute="bottom" constant="10" id="Nyj-Zf-WX1"/>
                             <constraint firstItem="afW-tT-vUB" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" constant="30" id="WmQ-CQ-WQe"/>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="eja-Y0-3bt"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="fpn-PA-Ux9"/>
-                            <constraint firstItem="OiB-kT-qjd" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="jqR-aB-SXP"/>
+                            <constraint firstItem="XZY-eu-h3d" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="hox-DY-zlW"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="nMr-Ui-QCV"/>
-                            <constraint firstItem="OiB-kT-qjd" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="vVG-Pk-QCA"/>
+                            <constraint firstAttribute="trailing" secondItem="XZY-eu-h3d" secondAttribute="trailing" id="tnB-dj-rE3"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="y4i-mJ-Ash"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="yhr-yY-eDP"/>
                         </constraints>
@@ -139,7 +149,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="codeView" destination="hq3-T3-bt8" id="3bk-hm-zpo"/>
-                        <outlet property="gradientView" destination="OiB-kT-qjd" id="0eg-H4-vLH"/>
+                        <outlet property="gradientView" destination="GMb-lK-9HK" id="52G-dH-hvB"/>
                         <outlet property="headerTitleLabel" destination="i3D-Co-7A4" id="iJ1-gL-eYj"/>
                         <outlet property="infoLabel" destination="bZH-63-J6j" id="HHP-ai-WRI"/>
                         <outlet property="progressView" destination="F3x-wX-Dki" id="cb4-OJ-sO2"/>
