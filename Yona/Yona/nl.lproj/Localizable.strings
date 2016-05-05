@@ -8,6 +8,7 @@
 
 
 "join" = "DOE MEE";
+"login" = "INLOGGEN";
 "signup.user.firstname" = "Voornaam";
 "signup.user.lastname" = "Achtenaam";
 "signup.button.next" = "Volgende";
@@ -78,3 +79,12 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
 
 "login.user.pinResetReuestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen % @ uur.";
+
+"screentitle1" = "Transparantie";
+"screentitle2" = "Delen";
+"screentitle3" = "Grenzen";
+"screentitle4" = "Tijdsbesteding";
+"screendesc1" = "Persoonlijke keuze om transparant te zijn...";
+"screendesc2" = "Je doelen delen met de persoon die je vertrouwt";
+"screendesc3" = "Grenzen afspreken en daar anderen in betrekken";
+"screendesc4" = "Controle houden over de tijd die je online bent";
