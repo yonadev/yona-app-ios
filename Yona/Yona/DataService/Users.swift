@@ -68,6 +68,7 @@ struct Users{
             if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefSelfLinks
+                KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
             }
             
             // this is for when parsing user body returned from add device, to get the self link to the user

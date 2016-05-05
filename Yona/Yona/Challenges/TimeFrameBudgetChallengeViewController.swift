@@ -163,7 +163,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
                 Loader.Show(delegate:self)
-                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
                     })

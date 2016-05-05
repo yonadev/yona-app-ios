@@ -99,10 +99,6 @@ extension APIServiceManager {
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func getUser(onCompletion: APIUserResponse) {
-        #if DEBUG
-        print(KeychainManager.sharedInstance.getYonaPassword())
-        #endif
-
         if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
             self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
                 if let json = json {
