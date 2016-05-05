@@ -111,6 +111,11 @@ class SignUpFirstStepViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:
@@ -148,4 +153,6 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
 
 private extension Selector {
     static let dismissKeyboard = #selector(SignUpFirstStepViewController.dismissKeyboard)
+    
+    static let back = #selector(SignUpFirstStepViewController.back(_:))
 }
