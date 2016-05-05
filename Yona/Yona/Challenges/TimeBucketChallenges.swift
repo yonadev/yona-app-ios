@@ -115,6 +115,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+        }
         backButton.hidden = true
         
         selectedCategoryView = categoryView
