@@ -64,6 +64,7 @@
 		AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */; };
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
 		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
+		AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
 		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
@@ -312,6 +313,7 @@
 		AD2263291CD2668000AD4AB1 /* YonaUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YonaUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD22632A1CD2672F00AD4AB1 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		AD27E61C1CDB4069001C801D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmPasscode.storyboard; sourceTree = "<group>"; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */,
+				AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */,
 				9042C7261CD78F7200100306 /* Passcode.storyboard */,
 				9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */,
 			);
@@ -1342,6 +1345,7 @@
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
+				AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */,
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,

@@ -71,7 +71,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Privacy quote&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jc-12-cE5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user-signup-message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jc-12-cE5">
                                         <rect key="frame" x="32" y="124" width="311" height="14"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
@@ -158,10 +158,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZG3-nL-xX2">
+                                <rect key="frame" x="10" y="14" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Ri6-Tg-sT7"/>
+                                    <constraint firstAttribute="height" constant="50" id="pSH-iC-ncR"/>
+                                </constraints>
+                                <state key="normal" image="icnBack"/>
+                                <connections>
+                                    <action selector="back:" destination="dEx-Je-Enr" eventType="touchUpInside" id="f0c-be-vKu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NXN-bW-CZp" secondAttribute="trailing" id="2N4-Qk-bEH"/>
+                            <constraint firstItem="ZG3-nL-xX2" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" constant="10" id="3eG-Ry-xHD"/>
                             <constraint firstItem="HXY-ri-N1O" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leadingMargin" constant="16" id="3fd-NG-VGY"/>
                             <constraint firstAttribute="trailing" secondItem="E0r-69-en5" secondAttribute="trailing" id="68A-qf-Yx8"/>
                             <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="NXN-bW-CZp" secondAttribute="bottom" constant="60" id="A3x-sn-9Ah"/>
@@ -176,6 +188,7 @@
                             <constraint firstItem="jOZ-O5-gG5" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" constant="30" id="cmN-Kb-QOS"/>
                             <constraint firstAttribute="trailing" secondItem="0mw-gF-MJc" secondAttribute="trailing" id="g8G-7I-o56"/>
                             <constraint firstItem="NXN-bW-CZp" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="j9U-zN-2g0"/>
+                            <constraint firstItem="ZG3-nL-xX2" firstAttribute="top" secondItem="S7o-bB-jMm" secondAttribute="top" constant="14" id="qIK-Zu-QI0"/>
                             <constraint firstItem="E0r-69-en5" firstAttribute="top" secondItem="2Qm-2d-fDT" secondAttribute="bottom" id="sDk-MP-x77"/>
                             <constraint firstItem="2Qm-2d-fDT" firstAttribute="top" secondItem="S7o-bB-jMm" secondAttribute="top" id="xch-Dj-G9T"/>
                             <constraint firstItem="E0r-69-en5" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="yRz-Ye-ElS"/>
