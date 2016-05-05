@@ -88,8 +88,6 @@ extension APIServiceManager {
                 })
             } else {
                 //Failed to retrive details for POST user details request
-                self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails,
-                    YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails], code: 1)
                 onCompletion(false, self.serverMessage, self.serverCode, nil)
             }
         })
@@ -117,8 +115,6 @@ extension APIServiceManager {
             })
         } else {
             //Failed to retrive details for GET user details request
-            self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails,
-                YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails], code: 1)
             onCompletion(false, self.serverMessage, self.serverCode,nil)
         }
     }
@@ -142,8 +138,6 @@ extension APIServiceManager {
                 }
             } else {
                 //Failed to retrive details for delete user request
-                self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser,
-                    YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser], code: 1)
                 onCompletion(false, self.serverMessage, self.serverCode)
             }
         }
@@ -170,8 +164,6 @@ extension APIServiceManager {
                 }
             } else {
                 //Failed to retrive details for otp resend request
-                self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveOTP,
-                    YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveOTP], code: 1)
                 onCompletion(false, self.serverMessage, self.serverCode)
             }
         })
@@ -203,8 +195,6 @@ extension APIServiceManager {
                 }
             } else {
                 //Failed to retrive details for confirm mobile request
-                self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile,
-                    YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile], code: 1)
                 onCompletion(false, self.serverMessage, self.serverCode)
             }
         }

@@ -172,14 +172,11 @@ extension APIServiceManager {
                     })
                 } else {
                     //response from request failed, json is nil
-                    //Failed to retrive details for GET user details request
-                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserGoals], code: 1)
                     onCompletion(false, self.serverMessage, self.serverCode, nil, nil, nil)
                 }
                 
             } else {
-                onCompletion(false, message, serverCode, nil, nil, error)
+                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, error)
             }
         }
     }

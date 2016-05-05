@@ -18,14 +18,21 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-        gDoneListener?(selectedValue!)
+        
+        if selectedValue != nil{
+            gDoneListener?(selectedValue!)
+        }else{
+            gDoneListener?("")
+        }
+
+//        gDoneListener?(selectedValue!)
     }
     
     
     
     
     func loadPickerView() -> UIView {
-        var views = NSBundle.mainBundle().loadNibNamed("AVCustomPickerView", owner: self, options: nil)
+        var views = NSBundle.mainBundle().loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
         return views[0] as! UIView
     }
     

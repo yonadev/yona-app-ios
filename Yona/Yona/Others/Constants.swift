@@ -27,12 +27,12 @@ struct YonaConstants {
     
     struct environments {
         static let testUrl = "http://85.222.227.142/" //test server
-        static let production = ""
+        static let production = "http://85.222.227.84/"
     }
     
     struct commands {
         static let users = "users/"
-        static let adminRequestOverride = "/admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
+        static let adminRequestOverride = "admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
         static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
@@ -102,10 +102,10 @@ struct YonaConstants {
         static let FailedToRetrieveUpdateUserDetails = "updateUserFail"
         static let FailedToRetrieveUserDetailsForDeleteUser = "deleteUserFail"
         static let FailedToRetrieveGetUserGoals = "getUserGoalsFail"
-
     }
     
     struct serverMessages{
+        static let timeoutRequest = "The request timed out, server problem"
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
         static let noConnection = "No network connection"

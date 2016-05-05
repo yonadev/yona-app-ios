@@ -63,7 +63,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="OkButtonTitle" destination="y7w-V0-JjK" id="u8F-Zo-fH9"/>
                 <outlet property="cancelButtonTitle" destination="mgi-Qi-w1q" id="TJ5-e7-TXU"/>
                 <outlet property="datePicker" destination="GFc-5W-zgM" id="reR-86-ggi"/>
                 <outlet property="okButtonTitle" destination="VEX-ab-lDl" id="bDX-6i-KUB"/>
