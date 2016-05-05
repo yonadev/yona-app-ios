@@ -75,4 +75,9 @@ extension UIColor {
     class func yiMango95Color() -> UIColor {
         return UIColor(red: 249.0 / 255.0, green: 179.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.95)
     }
+    
+    class func yiMangoTriangleColor() -> UIColor {
+        return UIColor(red: 234.0 / 255.0, green: 162.0 / 255.0, blue: 33.0 / 255.0, alpha: 0.40)
+    }
+    
 }
