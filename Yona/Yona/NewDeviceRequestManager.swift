@@ -17,27 +17,27 @@ class NewDeviceRequestManager {
 
     private init() {}
 
-    func genericHelper(httpMethod: httpMethods, password: String?, mobileNumber: String?, onCompletion: APIUserResponse) {
+    func genericHelper(httpMethod: httpMethods, addDeviceCode: String?, mobileNumber: String?, onCompletion: APIUserResponse) {
         self.APIService.getUser{ (success, message, code, user) in
             switch httpMethod {
             case httpMethods.put:
-                if let path = user?.newDeviceRequestsLink {
-                    var bodyNewDevice: BodyDataDictionary?
-                    if let password = password {
-                        bodyNewDevice = ["newDeviceRequestPassword": password]
+                    if let path = user?.newDeviceRequestsLink {
+                        var bodyNewDevice: BodyDataDictionary?
+                        if let password = addDeviceCode {
+                            bodyNewDevice = ["newDeviceRequestPassword": password]
+                        }
+                        self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
+                            onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode, nil)
+                        })
                     }
-                    self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                        onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode, nil)
-                    })
-                }
+                
             case httpMethods.get:
-                if let password = password{
-                    
-                    let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-                    let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
-                    let language = "\(langId)-\(countryId)"
-                    //need to call manager directly because of different response header
-                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": password]
+                let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+                let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+                let language = "\(langId)-\(countryId)"
+                //need to call manager directly because of different response header
+                if let password = addDeviceCode {
+                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-NewDeviceRequestPassword":password]
                     //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
                     if let mobileNumber = mobileNumber {
                         let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
@@ -55,6 +55,7 @@ class NewDeviceRequestManager {
                         })
                     }
                 }
+                
             case httpMethods.delete:
                 if let path = user?.newDeviceRequestsLink {
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
@@ -65,7 +66,6 @@ class NewDeviceRequestManager {
             default:
                 break
             }
-            
         }
     }
     
@@ -77,7 +77,7 @@ class NewDeviceRequestManager {
      */
     func putNewDevice(onCompletion: APIGetDeviceResponse) {
         let addDevicePassCode = String(100000 + arc4random_uniform(100000)) //generate random number password between of 5 random digits
-        self.genericHelper(httpMethods.put, password: addDevicePassCode, mobileNumber: nil) { (success, message, code, nil) in
+        self.genericHelper(httpMethods.put, addDeviceCode: addDevicePassCode, mobileNumber: nil) { (success, message, code, nil) in
             if success {
                 onCompletion(true, message, code, addDevicePassCode)
             } else {
@@ -94,11 +94,10 @@ class NewDeviceRequestManager {
      - return none
      */
     func getNewDevice(password: String, mobileNumber: String, onCompletion: APIUserResponse) {
-        self.genericHelper(httpMethods.get, password: password, mobileNumber: mobileNumber) { (success, message, code, user) in
+        //create a password for the user
+        self.genericHelper(httpMethods.get, addDeviceCode: password, mobileNumber: mobileNumber) { (success, message, code, user) in
             if success {
-                self.APIService.getUser({ (succcess, message, code, user) in
-                    onCompletion(true, message, code, user)
-                })
+                onCompletion(true, message, code, user)
             } else {
                 onCompletion(false, message, code, nil)
             }
@@ -112,7 +111,7 @@ class NewDeviceRequestManager {
      - return none
      */
     func deleteNewDevice(onCompletion: APIResponse) {
-        self.genericHelper(httpMethods.delete, password: nil, mobileNumber: nil) { (success, message, code, nil) in
+        self.genericHelper(httpMethods.delete, addDeviceCode: nil, mobileNumber: nil) { (success, message, code, nil) in
             if success {
                 onCompletion(true, message, code)
             } else {

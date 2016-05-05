@@ -44,6 +44,7 @@ struct YonaConstants {
         static let PINCode = "kPINCode"
         static let userID = "userID"
         static let userSelfLink = "userSelfLink"
+        static let deviceRequestLink = "deviceRequestLink"
         #if DEBUG
         static let oneTimePassword = "mobileNumberConfirmationCode"
         #endif

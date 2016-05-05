@@ -72,6 +72,7 @@ extension KeychainManager {
     }
 }
 
+//MARK: - clear keychain
 extension KeychainManager {
     func clearKeyChain() {
         keychain.clear()

@@ -33,6 +33,11 @@ struct Users{
     var getAllGoalsLink: String?
 
     init(userData: BodyDataDictionary) {
+        //used to set password on add new device
+        if let yonapassword = userData["yonaPassword"] as? String {
+            KeychainManager.sharedInstance.setPassword(yonapassword)
+        }
+        
         if let firstName = userData[YonaConstants.jsonKeys.firstNameKey] as? String {
             self.firstName = firstName
         }
@@ -63,14 +68,12 @@ struct Users{
             if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefSelfLinks
-                KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks) //save this so we can always get the user
             }
             
             // this is for when parsing user body returned from add device, to get the self link to the user
             if let yonaUserSelfLink = links[YonaConstants.jsonKeys.yonaUserSelfLink],
                 let hrefyonaUserSelfLink = yonaUserSelfLink?[YonaConstants.jsonKeys.hrefKey] as? String {
                 self.getSelfLink = hrefyonaUserSelfLink
-                KeychainManager.sharedInstance.saveUserSelfLink(hrefyonaUserSelfLink) //save this so we can always get the user
             }
             
             if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
