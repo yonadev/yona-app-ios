@@ -27,7 +27,7 @@ struct YonaConstants {
     
     struct environments {
         static let testUrl = "http://85.222.227.142/" //test server
-        static let production = ""
+        static let production = "http://85.222.227.84/"
     }
     
     struct commands {

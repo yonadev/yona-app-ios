@@ -140,7 +140,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
      - return none
      */
     private func configureTimeZone(doneValue: NSDate?) {
-        
+        print(doneValue)
         if doneValue != nil {
             
             var tempArr: ToFromDate!
@@ -149,6 +149,8 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             } else {
                 tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArrayDate[zonesArrayDate.endIndex - 1], withDoneValue: doneValue!)
             }
+            
+            print(tempArr)
             
             if self.isFromButton {
                 
@@ -161,20 +163,23 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
             } else {
                 if tempArr.toDate!.isGreaterThanDate(tempArr.fromDate!) {
-                    zonesArrayDate[zonesArrayDate.endIndex - 1] = tempArr
-                    zonesArrayString = self.zonesArrayDate.convertToString()
+                    if activeIndexPath != nil {
+                        zonesArrayDate[(self.activeIndexPath?.row)!] = tempArr
+                        zonesArrayString = self.zonesArrayDate.convertToString()
+                    } else {
+                        zonesArrayDate[zonesArrayDate.endIndex - 1] = tempArr
+                        zonesArrayString = self.zonesArrayDate.convertToString()
+                    }
                 } else {
-                    //TODO: InProcess
-//                    if activeIndexPath != nil { }
-//                    else {
-//                        zonesArrayDate.removeLast()
-//                        zonesArrayString.removeLast()
-//                    }
-                    
-//                    displayAlertMessage("To time must be greater than \(tempArr.fromDate!)", alertDescription: "")
+                    zonesArrayString.removeLast()
+                    zonesArrayDate.removeLast()
+                    displayAlertMessage("To time must be greater than \(tempArr.fromDate!)", alertDescription: "")
                 }
             }
         }
+        
+        
+        
         
         picker?.hideShowDatePickerView(isToShow: false)
         
@@ -182,7 +187,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             if (activeIndexPath != nil) {
                 picker?.hideShowDatePickerView(isToShow: true).configureWithTime(zonesArrayDate[(self.activeIndexPath?.row)!].toDate!)
             } else {
-                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(zonesArrayDate[zonesArrayDate.endIndex - 1].toDate!)
+                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate())
             }
             
             picker?.pickerTitleLabel("To")
@@ -210,7 +215,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             toValue = withDoneValue
         }
         
-        print("\(withDoneValue)******************")
         
         return ToFromDate(fromDate: fromValue, toDate: toValue)
     }
@@ -258,7 +262,6 @@ extension TimeFrameTimeZoneChallengeViewController {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             self.zonesArrayString.removeAtIndex(indexPath.row)
-            self.zonesArrayDate.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             if self.zonesArrayDate.count == 0 {
                 self.setChallengeButton.enabled = false
@@ -298,6 +301,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                             Loader.Hide(self)
                             self.navigationController?.popViewControllerAnimated(true)
                         })
+                        
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
                             Loader.Hide(self)
@@ -320,6 +324,9 @@ extension TimeFrameTimeZoneChallengeViewController {
                 ];
                 Loader.Show(delegate: self)
                 
+                
+                
+                
                 APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     if success {
                         if let goalUnwrap = goal {
@@ -330,31 +337,25 @@ extension TimeFrameTimeZoneChallengeViewController {
                             Loader.Hide(self)
                             self.navigationController?.popViewControllerAnimated(true)
                         })
-                    } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            Loader.Hide(self)
-                            if let message = serverMessage {
-                                self.displayAlertMessage(message, alertDescription: "")
-                            }
-                        })
                     }
                 })
             }
         }
     }
-    
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         let df = NSDateFormatter()
         df.dateFormat = "HH:mm"
-        zonesArrayString.append("10:00-10:00")
+        
+        zonesArrayString.append("\(df.stringFromDate(NSDate()))-\(df.stringFromDate(NSDate()))")
         zonesArrayDate = zonesArrayString.converToDate()
+        print(zonesArrayDate)
         isFromButton = true
+        
         picker?.pickerTitleLabel("From")
         picker?.okButtonTitle.title = "Next"
         picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate())
         picker?.datePicker.minuteInterval = timeInterval
     }
-    
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         
@@ -384,5 +385,3 @@ extension TimeFrameTimeZoneChallengeViewController {
 private extension Selector {
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
 }
-
-

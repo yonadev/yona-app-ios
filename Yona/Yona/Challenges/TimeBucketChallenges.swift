@@ -204,6 +204,13 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     Loader.Hide(self)
                 }
                 self.activityCategoriesArray = activities!
+                if self.activityCategoriesArray.count > 0 {
+                    self.addNewGoalButton.hidden = false
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                    self.addNewGoalButton.hidden = true
+                    }
+                }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)
@@ -261,6 +268,13 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     // MARK: - Tapgesture category view tap events
     func categoryTapEvent(sender: UITapGestureRecognizer? = nil) {
+        if self.activityCategoriesArray.count > 0 {
+            self.addNewGoalButton.hidden = false
+        } else {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.addNewGoalButton.hidden = true
+            }
+        }
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
     }
