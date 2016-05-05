@@ -115,7 +115,9 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
                         })
 
                     } else {
-                        self.displayAlertMessage("", alertDescription: message!)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.displayAlertMessage("", alertDescription: message!)
+                        }
                     }
                 }
             }
