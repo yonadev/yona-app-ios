@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
         settingsArray = [ "Wijzig pincode", "Privacy", "Device toevoegen"]
         tableView.tableFooterView = UIView(frame: CGRectZero)
         dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMangoColor(), UIColor.yiMangoColor()]
+            self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMango95Color()]
         })
         
     }

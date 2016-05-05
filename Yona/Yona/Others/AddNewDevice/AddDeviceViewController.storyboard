@@ -40,19 +40,10 @@
                                                     <constraint firstAttribute="width" constant="48" id="RdW-dj-Y7P"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNh-MF-TxQ">
-                                                <rect key="frame" x="30" y="30" width="13" height="22"/>
-                                                <state key="normal" image="icnBack"/>
-                                                <connections>
-                                                    <action selector="back:" destination="jVf-nn-VP2" eventType="touchUpInside" id="68E-hK-XFc"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="GNh-MF-TxQ" firstAttribute="top" secondItem="aZS-2q-vSV" secondAttribute="top" constant="30" id="Nom-EX-Mwt"/>
                                             <constraint firstAttribute="bottom" secondItem="M0w-SA-blh" secondAttribute="bottom" constant="100" id="bOK-nK-kAq"/>
-                                            <constraint firstItem="GNh-MF-TxQ" firstAttribute="leading" secondItem="aZS-2q-vSV" secondAttribute="leading" constant="30" id="dT8-zi-4jG"/>
                                             <constraint firstItem="M0w-SA-blh" firstAttribute="centerX" secondItem="aZS-2q-vSV" secondAttribute="centerX" constant="-8" id="eYT-d2-CHQ"/>
                                             <constraint firstAttribute="height" constant="260" id="geH-3a-Yt4"/>
                                         </constraints>
@@ -153,12 +144,21 @@
                                     <action selector="loginPressed:" destination="jVf-nn-VP2" eventType="touchUpInside" id="x58-2l-6AR"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKl-Hk-tge" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDA-Tm-mlG" userLabel="Gradient ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12Q-dO-5D0" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ILX-iW-Z1P"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="hId-wZ-ZRt"/>
+                                    <constraint firstAttribute="height" constant="50" id="3DL-pq-TDG"/>
+                                    <constraint firstAttribute="bottom" secondItem="12Q-dO-5D0" secondAttribute="bottom" id="6Q6-jA-dKX"/>
+                                    <constraint firstAttribute="trailing" secondItem="12Q-dO-5D0" secondAttribute="trailing" id="Dcw-IV-nwe"/>
+                                    <constraint firstItem="12Q-dO-5D0" firstAttribute="leading" secondItem="kDA-Tm-mlG" secondAttribute="leading" id="iz1-mQ-Qeo"/>
+                                    <constraint firstItem="12Q-dO-5D0" firstAttribute="top" secondItem="kDA-Tm-mlG" secondAttribute="top" id="jqf-dS-ISs"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INLOGGEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QL-c3-vEo">
@@ -181,17 +181,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="eKl-Hk-tge" secondAttribute="trailing" id="Dak-l3-MBj"/>
+                            <constraint firstItem="kDA-Tm-mlG" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" id="34a-Kh-cta"/>
+                            <constraint firstAttribute="trailing" secondItem="kDA-Tm-mlG" secondAttribute="trailing" id="CMy-SZ-Ql0"/>
                             <constraint firstItem="95Y-Zr-rAV" firstAttribute="top" secondItem="u6I-uZ-wzD" secondAttribute="bottom" id="Dhl-uc-wRt"/>
                             <constraint firstItem="meU-Cc-sLe" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" constant="10" id="Hei-JB-CI6"/>
                             <constraint firstItem="u6I-uZ-wzD" firstAttribute="top" secondItem="sT8-aF-HZq" secondAttribute="top" id="RGL-cJ-J95"/>
                             <constraint firstItem="LPP-8I-vo1" firstAttribute="top" secondItem="95Y-Zr-rAV" secondAttribute="bottom" id="X1D-3I-A9A"/>
-                            <constraint firstItem="eKl-Hk-tge" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" id="YPm-il-789"/>
                             <constraint firstItem="u6I-uZ-wzD" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" id="e8t-HH-XGE"/>
                             <constraint firstItem="95Y-Zr-rAV" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" id="fQ0-e5-Qot"/>
                             <constraint firstAttribute="trailing" secondItem="u6I-uZ-wzD" secondAttribute="trailing" id="hhx-JZ-aus"/>
-                            <constraint firstItem="eKl-Hk-tge" firstAttribute="top" secondItem="sT8-aF-HZq" secondAttribute="top" id="j4N-As-Jph"/>
                             <constraint firstItem="3QL-c3-vEo" firstAttribute="leading" secondItem="sT8-aF-HZq" secondAttribute="leading" constant="30" id="mMK-Z0-zeb"/>
+                            <constraint firstItem="kDA-Tm-mlG" firstAttribute="top" secondItem="sT8-aF-HZq" secondAttribute="top" id="tWU-We-HZA"/>
                             <constraint firstAttribute="trailing" secondItem="3QL-c3-vEo" secondAttribute="trailing" constant="30" id="uEc-OP-wYT"/>
                             <constraint firstAttribute="trailing" secondItem="95Y-Zr-rAV" secondAttribute="trailing" id="vNk-cj-VHF"/>
                             <constraint firstItem="3QL-c3-vEo" firstAttribute="top" secondItem="Js8-vu-6o6" secondAttribute="bottom" constant="10" id="vdn-Cw-Uox"/>
@@ -206,7 +206,7 @@
                     <navigationItem key="navigationItem" id="f7S-3g-gBl"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="gradientView" destination="eKl-Hk-tge" id="1nx-ck-v0E"/>
+                        <outlet property="gradientView" destination="12Q-dO-5D0" id="YL2-vM-sdP"/>
                         <outlet property="infoLabel" destination="oga-H9-J7a" id="Qac-0J-2gz"/>
                         <outlet property="loginButton" destination="95Y-Zr-rAV" id="P0V-sC-HZo"/>
                         <outlet property="mobileTextField" destination="J9Y-FP-sil" id="6Rs-k0-81G"/>

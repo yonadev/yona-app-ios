@@ -32,8 +32,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dispatch_async(dispatch_get_main_queue()) {
         self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        }
         
         setupUI()
     }
