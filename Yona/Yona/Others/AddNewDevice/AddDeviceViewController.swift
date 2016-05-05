@@ -14,7 +14,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
-    private let nederlandPhonePrefix = "+316 "
+    private let nederlandPhonePrefix = "+31 (0) "
     
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var passcodeTextField: UITextField!

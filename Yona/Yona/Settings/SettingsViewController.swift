@@ -49,8 +49,6 @@ class SettingsViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index  \(indexPath)")
-        print("index  \(self.navigationController)")
         if indexPath.row == 2 {
             NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
                 if success {
@@ -65,6 +63,10 @@ class SettingsViewController: UIViewController {
                 }
             })
         }
-        
+    }
+    
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 70.0
     }
 }
