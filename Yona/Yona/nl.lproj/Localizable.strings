@@ -25,6 +25,9 @@
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
 "smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
 "add-device" = "DEVICE TOEVOEGEN";
+"user-signup-message" = "We gebruiken je mobiele telefoonnummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een betere privacy.";
+
+"privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
 "passcode.user.UnlockPincode" = "Ontgrendeld PIN";

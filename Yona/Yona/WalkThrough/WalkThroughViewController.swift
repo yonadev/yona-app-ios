@@ -64,34 +64,6 @@ class TourScreenViewController: AVPageContentViewController {
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var descLabel: UILabel?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        switch self.viewControllerIndex {
-//            
-//        case TourScreen.FirstScreen.rawValue:
-//            self.titleLabel?.text = "a"
-//            self.descLabel?.text = "a"
-//            
-//        case TourScreen.SecondScreen.rawValue:
-//            self.titleLabel?.text = "b"
-//            self.descLabel?.text = "b"
-//            
-//        case TourScreen.ThirdScreen.rawValue:
-//            self.titleLabel?.text = "c"
-//            self.descLabel?.text = "c"
-//            
-//        case TourScreen.FourthScreen.rawValue:
-//            self.titleLabel?.text = "d"
-//            self.descLabel?.text = "d"
-//            
-//        default:
-//            self.titleLabel?.text = ""
-//            self.descLabel?.text = ""
-//        }
-    }
-    
-    
-    
     @IBAction func nextAction(sender: UIButton) {
         delegate?.buttonAction(self.viewControllerIndex)
         if let welcome = R.storyboard.welcome.welcomeStoryboard {
