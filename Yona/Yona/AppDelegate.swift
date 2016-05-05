@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        var rootController : UINavigationController
-//        rootController = getScreenNameToDisplay()
-//        if let window = self.window {
-//            window.rootViewController = rootController
-//        }
+        var rootController : UINavigationController
+        rootController = getScreenNameToDisplay()
+        if let window = self.window {
+            window.rootViewController = rootController
+        }
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)

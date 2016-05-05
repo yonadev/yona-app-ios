@@ -60,14 +60,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == R.segue.setPasscodeViewController.confirmPasscodeSegue.identifier,
-            let vc = segue.destinationViewController as? ConfirmPasscodeViewController {
-            vc.passcode = passcodeString
-        }
-    }
-
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
@@ -103,6 +95,11 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
+        if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
+            passcode.passcode = code
+            self.navigationController?.pushViewController(passcode, animated: false)
+        }
+        self.codeInputView.clear()
+//        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
 }
