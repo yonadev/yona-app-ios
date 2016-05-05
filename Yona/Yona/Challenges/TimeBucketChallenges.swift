@@ -115,8 +115,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        
-        addNewGoalButton.hidden = false
         backButton.hidden = true
         
         selectedCategoryView = categoryView
@@ -138,7 +136,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             self.nogoViewBottomBorder.hidden = false
             
         default:
-            print("Nothing")
+            print("")
         }
         
         self.setHeaderTitleLabel()
@@ -174,22 +172,18 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         APIServiceManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
             if success {
                 if let goalsUnwrap = goals {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            
-                            
-                            print(goals)
-                            self.updateUI(goal, timeBucketData: goalsUnwrap)
-                        })
-                        
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.updateUI(goal, timeBucketData: goalsUnwrap)
+                    })
+                    #if DEBUG
                         for goal in goals! {
                             print(goal.goalType)
                         }
                         
-                        #if DEBUG
-                            for goal in goalsUnwrap {
-                                print(goal.goalType)
-                            }
-                        #endif
+                        for goal in goalsUnwrap {
+                            print(goal.goalType)
+                        }
+                    #endif
                 }
             }
         })
@@ -204,12 +198,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     Loader.Hide(self)
                 }
                 self.activityCategoriesArray = activities!
-                if self.activityCategoriesArray.count > 0 {
-                    self.addNewGoalButton.hidden = false
-                } else {
                     dispatch_async(dispatch_get_main_queue()) {
-                    self.addNewGoalButton.hidden = true
-                    }
+                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -268,13 +258,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     // MARK: - Tapgesture category view tap events
     func categoryTapEvent(sender: UITapGestureRecognizer? = nil) {
-        if self.activityCategoriesArray.count > 0 {
-            self.addNewGoalButton.hidden = false
-        } else {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.addNewGoalButton.hidden = true
-            }
-        }
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
     }
@@ -300,7 +283,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(categoryHeader)
+        
         let destinationViewController = segue.destinationViewController
         var isfromActivity:Bool = true
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
@@ -403,7 +386,6 @@ extension TimeBucketChallenges {
                 }
                 let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "") + andConcate.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionBetweenText", comment: ""))
                 
-                print(localizedString)
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = localizedString
                 cell.detailTextLabel?.numberOfLines = 0

@@ -41,15 +41,10 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     var activeIndexPath: NSIndexPath?
     var isFromButton: Bool = true
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureDatePickerView()
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -59,7 +54,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     // MARK: functions
     private func configureDatePickerView() {
-        
         datePickerView = YonaCustomDatePickerView().loadDatePickerView()
         picker = datePickerView as? YonaCustomDatePickerView
         
@@ -75,8 +69,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 } else {
                     self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[self.zonesArrayDate.endIndex - 1].fromDate!)
                 }
-                
-                
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
             }
@@ -96,9 +88,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         })
         
-        
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
-        
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
@@ -132,7 +122,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         }
     }
     
-    
     /**
      Show and hide the picker select values, and validate from and to picker times by looking at if start time is less than end time, if it isn't it gives an error message. If the timezone values are correct the table is updated with the timezones
      
@@ -140,7 +129,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
      - return none
      */
     private func configureTimeZone(doneValue: NSDate?) {
-        print(doneValue)
         if doneValue != nil {
             
             var tempArr: ToFromDate!
@@ -149,11 +137,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             } else {
                 tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArrayDate[zonesArrayDate.endIndex - 1], withDoneValue: doneValue!)
             }
-            
-            print(tempArr)
-            
             if self.isFromButton {
-                
                 if activeIndexPath != nil {
                     zonesArrayDate[(self.activeIndexPath?.row)!] = tempArr
                     zonesArrayString = self.zonesArrayDate.convertToString()
@@ -177,9 +161,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
             }
         }
-        
-        
-        
         
         picker?.hideShowDatePickerView(isToShow: false)
         
@@ -214,13 +195,9 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         } else {
             toValue = withDoneValue
         }
-        
-        
         return ToFromDate(fromDate: fromValue, toDate: toValue)
     }
 }
-
-
 
 // MARK: - Table view data source
 extension TimeFrameTimeZoneChallengeViewController {
@@ -324,9 +301,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                 ];
                 Loader.Show(delegate: self)
                 
-                
-                
-                
                 APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     if success {
                         if let goalUnwrap = goal {
@@ -342,15 +316,14 @@ extension TimeFrameTimeZoneChallengeViewController {
             }
         }
     }
+    
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         let df = NSDateFormatter()
         df.dateFormat = "HH:mm"
         
         zonesArrayString.append("\(df.stringFromDate(NSDate()))-\(df.stringFromDate(NSDate()))")
         zonesArrayDate = zonesArrayString.converToDate()
-        print(zonesArrayDate)
         isFromButton = true
-        
         picker?.pickerTitleLabel("From")
         picker?.okButtonTitle.title = "Next"
         picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate())
@@ -379,7 +352,6 @@ extension TimeFrameTimeZoneChallengeViewController {
         }
     }
 }
-
 
 
 private extension Selector {

@@ -90,10 +90,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                         self.showHidePicker(false)
         }) { (doneValue) in
             self.showHidePicker(false)
-            #if DEBUG
-                print("Done \(doneValue)")
-            #endif
-            
             if doneValue != "" {
                 self.maxDurationMinutes = doneValue
                 
