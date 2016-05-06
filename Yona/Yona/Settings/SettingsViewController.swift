@@ -19,10 +19,10 @@ class SettingsViewController: UIViewController {
         UIApplication.sharedApplication().statusBarHidden = true
         settingsArray = [ "Wijzig pincode", "Privacy", "Device toevoegen"]
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMangoColor(), UIColor.yiMangoColor()]
-        })
         
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,8 +49,6 @@ class SettingsViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index  \(indexPath)")
-        print("index  \(self.navigationController)")
         if indexPath.row == 2 {
             NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
                 if success {
@@ -65,6 +63,10 @@ class SettingsViewController: UIViewController {
                 }
             })
         }
-        
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70.0
     }
 }

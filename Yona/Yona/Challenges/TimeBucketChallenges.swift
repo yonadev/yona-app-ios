@@ -60,7 +60,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        //It will select NoGo tab by default
+        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         
         self.setupUI()
     }
@@ -114,8 +115,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        
-        addNewGoalButton.hidden = false
+        dispatch_async(dispatch_get_main_queue()) {
+            self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+        }
         backButton.hidden = true
         
         selectedCategoryView = categoryView
@@ -137,7 +139,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             self.nogoViewBottomBorder.hidden = false
             
         default:
-            print("Nothing")
+            print("")
         }
         
         self.setHeaderTitleLabel()
@@ -202,6 +204,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     Loader.Hide(self)
                 }
                 self.activityCategoriesArray = activities!
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     Loader.Hide(self)
@@ -284,7 +289,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(categoryHeader)
+        
         let destinationViewController = segue.destinationViewController
         var isfromActivity:Bool = true
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
@@ -387,7 +392,6 @@ extension TimeBucketChallenges {
                 }
                 let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "") + andConcate.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionBetweenText", comment: ""))
                 
-                print(localizedString)
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = localizedString
                 cell.detailTextLabel?.numberOfLines = 0

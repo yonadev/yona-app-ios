@@ -65,7 +65,7 @@
 "user-override" = "Mobile Number %@ already register with Yona";
 "yes" = "Yes";
 "no" = "No";
-"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
+"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE SAVE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
 "challenges.addBudgetGoal.timeZoneLabel" = "Tijdzone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
@@ -155,7 +155,6 @@
 "challenges.timezoneGoal.Title" = "TIMEZONE";
 "challenges.nogoGoal.Title" = "NO GO";
 
-"challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
 "challenges.addBudgetGoal.timeZoneLabel" = "Timezone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minutes per day";

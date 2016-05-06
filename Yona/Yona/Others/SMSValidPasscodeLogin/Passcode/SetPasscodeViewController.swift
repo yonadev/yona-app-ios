@@ -51,21 +51,15 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.clear()
-        self.codeInputView.becomeFirstResponder()
+        UIView.animateWithDuration(0.1) {
+            self.codeInputView.becomeFirstResponder()
+        }
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == R.segue.setPasscodeViewController.confirmPasscodeSegue.identifier,
-            let vc = segue.destinationViewController as? ConfirmPasscodeViewController {
-            vc.passcode = passcodeString
-        }
-    }
-
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
@@ -82,7 +76,9 @@ extension SetPasscodeViewController: KeyboardProtocol {
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
-            self.view.frame.origin.y -= posi
+            UIView.animateWithDuration(0.2, animations: {
+                self.view.frame.origin.y -= self.posi
+            })
             
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
@@ -99,6 +95,11 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
+        if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
+            passcode.passcode = code
+            self.navigationController?.pushViewController(passcode, animated: false)
+        }
+        self.codeInputView.clear()
+//        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
 }

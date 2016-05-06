@@ -17,7 +17,7 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         for i in 1..<5 {
             let ide = "WalkThrough" + "\(i)"
             let vc: TourScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(ide) as! TourScreenViewController
@@ -35,11 +35,11 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
         if presentViewControllerIndex < self.allControllers.count - 1 {
             self.pageController!.gotoNextViewController(presentViewControllerIndex + 1)
         } else {
+            // last index
             print("welcome")
             if let welcome = R.storyboard.welcome.welcomeStoryboard {
                 self.navigationController?.pushViewController(welcome, animated: false)
             }
-            // last index
         }
     }
     
@@ -51,19 +51,26 @@ protocol ButtonEvents {
 }
 
 
+enum TourScreen: Int {
+    case FirstScreen = 0
+    case SecondScreen
+    case ThirdScreen
+    case FourthScreen
+}
+
 class TourScreenViewController: AVPageContentViewController {
     var delegate: ButtonEvents? = nil
     @IBOutlet var imageV: UIImageView?
+    @IBOutlet var titleLabel: UILabel?
+    @IBOutlet var descLabel: UILabel?
     
     @IBAction func nextAction(sender: UIButton) {
-        print(self.viewControllerIndex)
         delegate?.buttonAction(self.viewControllerIndex)
-        
+        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            self.navigationController?.pushViewController(welcome, animated: false)
+        }
     }
 }
-
-
-
 
 
 
