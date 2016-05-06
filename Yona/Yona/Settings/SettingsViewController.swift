@@ -24,8 +24,6 @@ class SettingsViewController: UIViewController {
             self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
                 self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         })
-        let randomString = String().randomAlphaNumericString()
-            print(randomString)
 
     }
     
