@@ -14,9 +14,9 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    var serverMessage: ServerMessage?
-    var serverCode: ServerCode?
-    
+//    var serverMessage: ServerMessage?
+//    var serverCode: ServerCode?
+//    
     private init() {}
     
     /**
@@ -50,26 +50,26 @@ class APIServiceManager {
      - parameter code: Int, the http response code we need to check (200-204 success, other is fail
      - parameter none
      */
-    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) {
+    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) -> requestResult{
         //check if json is empty
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
-                self.serverMessage = message
                 if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                    self.serverCode = serverCode
+                    return requestResult.init(success: false, errorMessage: nil, errorCode: nil, serverMessage: message, serverCode: serverCode)
                 }
         } else if let error = error {
-            if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = error.code {
-                self.serverMessage = YonaConstants.serverMessages.OK
-            }
             if case responseCodes.connectionFail400.rawValue ... responseCodes.connectionFail499.rawValue = error.code {
-                self.serverMessage = YonaConstants.serverMessages.networkConnectionProblem
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: String(error.code), serverMessage: nil, serverCode: nil)
+            } else if case -1103 ... -998 = error.code {
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: String(error.code), serverMessage: nil, serverCode: nil)
             }
-            if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
-                self.serverMessage = YonaConstants.serverMessages.serverProblem
+            else if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.serverProblem, errorCode: String(error.code), serverMessage: nil, serverCode: nil)
+            } else {
+                return requestResult.init(success: false, errorMessage: error.description, errorCode: String(error.code), serverMessage: nil, serverCode: nil)
+
             }
         }
-
     }
 
     /**

@@ -29,6 +29,8 @@ class NewDeviceRequestManager {
                         self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
                             onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode, nil)
                         })
+                    } else {
+                        onCompletion(false, self.APIService.serverMessage, self.APIService.serverCode, nil)
                     }
             case httpMethods.get:
                 let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
@@ -59,8 +61,9 @@ class NewDeviceRequestManager {
                 if let path = user?.newDeviceRequestsLink {
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
                         onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode, self.newUser)
-
                     })
+                } else {
+                    onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode, nil)
                 }
             default:
                 break

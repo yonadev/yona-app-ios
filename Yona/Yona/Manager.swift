@@ -20,6 +20,23 @@ typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
 
+struct requestResult {
+    var success: Bool
+    var errorMessage: String?
+    var errorCode: String?
+    var serverMessage: String?
+    var serverCode: String?
+    
+    init(success: Bool, errorMessage: String, errorCode: String?, serverMessage: String?, serverCode: String?)
+    {
+        self.success = success
+        self.errorMessage = errorMessage
+        self.errorCode = errorCode
+        self.serverMessage = serverMessage
+        self.serverCode = serverCode
+    }
+}
+
 class Manager: NSObject {
 
     static let sharedInstance = Manager()
@@ -41,10 +58,12 @@ class Manager: NSObject {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         
+
         if let body = body {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
-        request.timeoutInterval = 30
+    
+        request.timeoutInterval = 2
         
         request.HTTPMethod = httpMethod.rawValue
         
@@ -56,6 +75,41 @@ class Manager: NSObject {
 //MARK: - User Manager methods
 extension Manager {
     
+    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse)
+    {
+        do{
+            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                if error != nil{
+                    onCompletion(false, nil, error)
+                    return
+                }
+                if response != nil{
+                    if data != nil{
+                        do{
+                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData as? BodyDataDictionary, error: error)
+                            if requestResult.success == false{
+                                //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
+                                let yonaError = NSError(domain: "APIManager", code: 600, userInfo: [NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.serverCode ?? requestResult.errorMessage ?? requestResult.errorCode ?? "Unknown Error"])
+                                onCompletion(requestResult.success, jsonData as? BodyDataDictionary, yonaError)
+                            }
+                        } catch let error as NSError{
+                            onCompletion(false, nil, error)
+                            return
+                        }
+                        
+                    }
+                }
+            })
+            task.resume()
+        } catch let error as NSError{
+            onCompletion(false, nil, error)
+            
+        }
+    }
+    
     /**
      This is a generic method that can make any request to YONA's API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
      
@@ -65,7 +119,7 @@ extension Manager {
      - parameter httpHeader:[String:String], the header set to a JSON type
      - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
-    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse) {
+    func makeRequestOLD(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse) {
         
         APIServiceManager.sharedInstance.APIServiceCheck { (success, message, code) in
             if success {
@@ -80,14 +134,13 @@ extension Manager {
                             let code = httpResponse.statusCode
                             do {
                                 //try to create json object from the data returned
-                                if let data = data {
+                                if let data = data where data.length != 0 {
                                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
 
                                     if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
                                         if let dict = jsonObject as? [String: AnyObject] {
                                             APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
-                                            self.userInfo = dict
-                                            onCompletion(true, dict , error)
+                                            onCompletion(true, dict , nil)
                                         }
                                     } else {
                                         if let dict = jsonObject as? [String: AnyObject] {
@@ -95,14 +148,13 @@ extension Manager {
                                             onCompletion(false, dict, error)
                                         }
                                     }
-                                } else if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = code {
-                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
+                                } else {
+                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
                                     onCompletion(true, nil, error)
                                 }
-                            } catch { //if serialisation fails send back messages saying so
-                                print("error Code: \(code)")
-                                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                                onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
+                            } catch let error as NSError { //if serialisation fails send back messages saying so
+                                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                                onCompletion(false, nil, error)
                             }
                         } else {
                             APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
@@ -110,13 +162,13 @@ extension Manager {
                         }
                     })
                     task.resume()
-                } catch {
-                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
-                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
+                } catch let error as NSError {
+                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                    onCompletion(false, nil, error)
                 }
             } else {
-                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NetworkFail)
-                onCompletion(false, nil, YonaConstants.YonaErrorTypes.NetworkFail)
+                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: message!, code: 400, userInfo: nil))
+                onCompletion(false, nil, NSError.init(domain: message!, code: 400, userInfo: nil))
             }
         }
     }

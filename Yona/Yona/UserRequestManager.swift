@@ -42,7 +42,7 @@ extension APIServiceManager {
         self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethods.post, onCompletion: { success, json, err in
             if let json = json {
                 guard success == true else {
-                    onCompletion(false, self.serverMessage, self.serverCode,nil)
+                    onCompletion(false, err?.userInfo[], self.serverCode,nil)
                     return
                 }
                 newUser = Users.init(userData: json)
