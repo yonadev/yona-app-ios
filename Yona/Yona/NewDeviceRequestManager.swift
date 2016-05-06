@@ -1,4 +1,4 @@
-//
+ //
 //  NewDeviceRequestManager.swift
 //  Yona
 //
@@ -37,7 +37,7 @@ class NewDeviceRequestManager {
                 let language = "\(langId)-\(countryId)"
                 //need to call manager directly because of different response header
                 if let password = addDeviceCode {
-                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-NewDeviceRequestPassword":password]
+                    let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-NewDeviceRequestPassword": password]
                     //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
                     if let mobileNumber = mobileNumber {
                         let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
