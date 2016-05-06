@@ -63,7 +63,6 @@
 		AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */; };
 		AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */; };
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
-		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
 		AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
@@ -312,7 +311,6 @@
 		AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		AD2263291CD2668000AD4AB1 /* YonaUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YonaUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD22632A1CD2672F00AD4AB1 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
-		AD27E61C1CDB4069001C801D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmPasscode.storyboard; sourceTree = "<group>"; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
@@ -1180,7 +1178,6 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				AD27E61C1CDB4069001C801D /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
@@ -1396,7 +1393,6 @@
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
-				AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
