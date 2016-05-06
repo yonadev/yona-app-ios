@@ -92,7 +92,11 @@ extension Manager {
                             let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData as? BodyDataDictionary, error: error)
                             if requestResult.success == false{
                                 //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
-                                let yonaError = NSError(domain: "APIManager", code: 600, userInfo: [NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.serverCode ?? requestResult.errorMessage ?? requestResult.errorCode ?? "Unknown Error"])
+                                let userInfo = [
+                                    NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.errorMessage ??  "Unknown Error"
+                                ]
+                      //          [NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.serverCode ?? requestResult.errorMessage ?? requestResult.errorCode ?? "Unknown Error"]
+                                let yonaError = NSError(domain: requestResult.serverCode ?? requestResult.errorCode ?? "None", code: 600, userInfo: userInfo)
                                 onCompletion(requestResult.success, jsonData as? BodyDataDictionary, yonaError)
                             }
                         } catch let error as NSError{

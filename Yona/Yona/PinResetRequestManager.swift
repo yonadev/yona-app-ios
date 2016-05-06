@@ -29,7 +29,7 @@ extension APIServiceManager {
                         if success {
                             if let jsonUnwrap = json,
                                 let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
-                                onCompletion(true, pincode , self.serverMessage, self.serverCode)
+                                onCompletion(true, pincode , error?.userInfo[NSLocalizedDescriptionKey], self.serverCode)
                             }
                         } else {
                             onCompletion(false, nil , self.serverMessage, self.serverCode)
