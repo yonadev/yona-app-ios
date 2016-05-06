@@ -22,7 +22,9 @@ class SettingsViewController: UIViewController {
         
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
+                self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         })
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,6 +49,7 @@ class SettingsViewController: UIViewController {
         
         return cell
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 2 {

@@ -105,6 +105,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
                     #endif
                     NSUserDefaults.standardUserDefaults().setObject(userBody, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                    self.codeInputView.clear()
                 }
             }
         }
@@ -170,10 +171,14 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                                 if let passcode = R.storyboard.passcode.passcodeStoryboard {
                                     self.navigationController?.pushViewController(passcode, animated: false)
                                 }
-                                
                                 self.codeInputView.clear()
                             }
                         })
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
+                            self.codeInputView.clear()
+                        }
                     }
                 }
             }
