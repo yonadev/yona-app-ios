@@ -95,7 +95,7 @@ struct YonaConstants {
         static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
         static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
         static let OK = "OK"
-        static let noConnection = "NoConnection"
+        static let networkConnectionProblem = "NetworkConnectionProblem"
         static let noJsonReturned = "JsonNil"
         static let FailedToRetrieveOTP = "RetrievingOTPFail"
         static let FailedToRetrieveConfirmMobile = "RetrievingConfirmMobileFail"
@@ -107,9 +107,11 @@ struct YonaConstants {
     
     struct serverMessages{
         static let timeoutRequest = "The request timed out, server problem"
-        static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
-        static let noConnection = "No network connection"
+        static let networkConnectionProblem = "Network connection problem"
+        static let serverProblem = "Server problem"
+
+        static let needToGetSomeActivities = "Call get activities to populate array"
         static let noJsonReturned = "No JSON returned from request"
         static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
         static let FailedToRetrieveGetUserDetails = "Failed to retrieve details for user"

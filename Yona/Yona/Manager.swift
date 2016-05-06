@@ -83,7 +83,7 @@ extension Manager {
                                 if let data = data {
                                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
 
-                                    if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
+                                    if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
                                         if let dict = jsonObject as? [String: AnyObject] {
                                             APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
                                             self.userInfo = dict
@@ -95,16 +95,14 @@ extension Manager {
                                             onCompletion(false, dict, error)
                                         }
                                     }
+                                } else if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = code {
+                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
+                                    onCompletion(true, nil, error)
                                 }
                             } catch { //if serialisation fails send back messages saying so
-                                if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
-                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
-                                    onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
-                                } else {
-                                    print("error Code: \(code)")
-                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                                }
+                                print("error Code: \(code)")
+                                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
+                                onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
                             }
                         } else {
                             APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)

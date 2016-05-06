@@ -59,14 +59,14 @@ class APIServiceManager {
                     self.serverCode = serverCode
                 }
         } else if let error = error {
-            switch error.code {
-            case responseCodes.timeoutRequest.rawValue:
-                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
-            case responseCodes.timeoutRequest2.rawValue:
-                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
-            default:
-                self.serverMessage = error.description
-                break
+            if case responseCodes.ok200.rawValue ... responseCodes.ok399.rawValue = error.code {
+                self.serverMessage = YonaConstants.serverMessages.OK
+            }
+            if case responseCodes.connectionFail400.rawValue ... responseCodes.connectionFail499.rawValue = error.code {
+                self.serverMessage = YonaConstants.serverMessages.networkConnectionProblem
+            }
+            if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
+                self.serverMessage = YonaConstants.serverMessages.serverProblem
             }
         }
 
@@ -104,7 +104,7 @@ class APIServiceManager {
         guard isConnectedToNetwork() else {
             //if it fails then send messages back saying no connection
             dispatch_async(dispatch_get_main_queue(), {
-                onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
+                onCompletion(false, YonaConstants.serverMessages.networkConnectionProblem, YonaConstants.serverCodes.networkConnectionProblem)
             })
             return
         }
