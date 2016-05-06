@@ -62,7 +62,17 @@ extension KeychainManager {
 //MARK: - UserSelfLink, so that we can always get the user from the server
 extension KeychainManager {
     func saveUserSelfLink(userSelfLink: String) {
-        keychain.set(userSelfLink, forKey: YonaConstants.keychain.userSelfLink)
+        // WARNING this should be removed!
+        var link = userSelfLink
+        if link.hasPrefix(EnvironmentManager.baseUrlString()){
+            let length = EnvironmentManager.baseUrlString().characters.count
+            let range = link.startIndex ..< link.startIndex.advancedBy(length)
+            
+            link.removeRange(range)
+        }
+        
+        
+        keychain.set(link, forKey: YonaConstants.keychain.userSelfLink)
     }
     
     func getUserSelfLink() -> String? {

@@ -25,10 +25,10 @@ struct YonaConstants {
         static let APILinkRetrievalFail = NSError.init(domain: "Getting link for API failed", code: 7, userInfo: nil)
     }
     
-    struct environments {
-        static let testUrl = "http://85.222.227.142/" //test server
-        static let production = "http://85.222.227.84/"
-    }
+//    struct environments {
+//        static let testUrl = "http://85.222.227.142/" //test server
+//        static let production = "http://85.222.227.84/"
+//    }
     
     struct commands {
         static let users = "users/"
