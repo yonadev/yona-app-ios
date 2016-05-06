@@ -170,7 +170,16 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                             Loader.Hide()
                             if let alertMessage = message {
                                 //alert the user ask if they want to override their account, if ok send back to SMS screen
-                                self.displayAlertOption(alertMessage, alertDescription: "", onCompletion: { (buttonPressed) in
+                                number = (self.nederlandPhonePrefix) + mobilenum
+                                
+                                let trimmedWhiteSpaceString = number.removeWhitespace()
+                                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+                                
+                                let localizedString = NSLocalizedString("user-override", comment: "")
+                                let title = NSString(format: localizedString, String(trimmedString))
+                                
+                                
+                                self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
                                     switch buttonPressed{
                                     case alertButtonType.OK:
                                         AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
