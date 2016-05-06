@@ -28,6 +28,99 @@ class ActivityAPIServiceTests: XCTestCase {
         }
     }
     
+    func testGetActivitiesNotAddedAfterAddingNoGoalsOtherThanMandatoryOne() {
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if success {
+                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
+                        if success{
+                            //we added a social and there is always a gambling goal so only one goal should be passed back
+                            for activity in activities! {
+                                print(activity.activityCategoryName)
+                            }
+                            expectation.fulfill()
+                        }
+                    })
+                } else {
+                    XCTFail(message!)
+                }
+            }
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+    
+    func testGetActivitiesNotAddedArrayMethodAfterAddingSocial() {
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(9999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Get user goals
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+            if success == false{
+                XCTFail()
+            }
+            //confirm mobile number check, static code
+            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+                        if success {
+                            //set body for budget social goal
+                            let socialActivityCategoryLinkReturned = socialActivityCategoryLink
+                            print("socialActivityCategoryLinkReturned: " + socialActivityCategoryLinkReturned!)
+                            
+                            let bodyTimeZoneSocialGoal: [String:AnyObject] = [
+                                "@type": "TimeZoneGoal",
+                                "_links": [
+                                    "yona:activityCategory": ["href": socialActivityCategoryLinkReturned!]
+                                ] ,
+                                "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
+                            ]
+                            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal) {
+                                (success, serverMessage, serverCode, goal, nil, err) in
+                                if success {
+                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
+                                        if success{
+                                            //we added a social and there is always a gambling goal so only one goal should be passed back
+                                            for activity in activities! {
+                                                print(activity.activityCategoryName)
+                                            }
+                                            expectation.fulfill()
+                                        }
+                                    })
+                                } else {
+                                    XCTFail(serverMessage!)
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+
+    
     func testGetActivityCategories() {
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
@@ -39,14 +132,14 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success{
                             for activity in activities! {
                                 print(activity.activityCategoryName)
@@ -72,19 +165,19 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success {
                             let activity = activities![0]
                             print(activity)
 
-                            APIServiceManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+                            ActivitiesRequestManager.sharedInstance.getActivityCategoryWithID(activity.activityID!, onCompletion: { (success, serverMessage, serverCode, activity, err) in
                                 if success{
                                     print(activity)
                                     expectation.fulfill()
@@ -111,14 +204,14 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
                         print(activities)
                         XCTAssertTrue(success, "Received Activities")
                         expectation.fulfill()
@@ -143,14 +236,14 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, users) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
             APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
+                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
                         if success{
                             XCTAssertTrue(socialActivityCategoryLink == activityID, "Correct Activity ID for Social received")
                             expectation.fulfill()

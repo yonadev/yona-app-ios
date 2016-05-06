@@ -18,9 +18,12 @@ final class KeychainManager {
 
 //MARK: - getYonaPassword
 extension KeychainManager {
+    func setPassword(password: String) {
+        keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
+    }
+    
     func createYonaPassword() {
         let password = NSUUID().UUIDString
-        
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
     }
     
@@ -69,6 +72,7 @@ extension KeychainManager {
     }
 }
 
+//MARK: - clear keychain
 extension KeychainManager {
     func clearKeyChain() {
         keychain.clear()

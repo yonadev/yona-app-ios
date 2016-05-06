@@ -54,7 +54,8 @@
 "account-login" = "Account be created";
 "account-login-security-message" = "For security";
 "send-otp-again" = "Send code again";
-"add-device" = "Add device";
+"add-device" = "ADD DEVICE";
+"smsvalidation.button.resendCode" = "Send code again";
 "yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
 "loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
 "passcode" = "CODE";
@@ -64,7 +65,7 @@
 "user-override" = "Mobile Number %@ already register with Yona";
 "yes" = "Yes";
 "no" = "No";
-"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE OPSLAAN";
+"challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE SAVE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
 "challenges.addBudgetGoal.timeZoneLabel" = "Tijdzone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
@@ -121,7 +122,7 @@
 "passcode.user.headerTitle" = "Account has been created";
 "passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";
 
-
+"smsvalidation.user.resendAdminCodeButtonTitle" = "Resend Lost Device Code";
 "confirmpasscode.user.headerTitle" = "Confirm PIN";
 "passcode.user.UnlockPincode" = "Unlocked PIN";
 "confirmpasscode.user.infomessage" = "Enter your PIN again to confirm.";
@@ -129,6 +130,9 @@
 "adddevice.user.mobileNumber" = "MOBILE NUMBER";
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "You have not previously logged in on this device. Go to your primary device (probably your mobile) , open the app Yona , then 'Add Device' to settings and click . Then fill in the fields below .";
+"adddevice.user.InputPassCode" = "Please input passcode.";
+"adddevice.user.InputValidCode" = "Please input valid Phone number.";
+"adddevice.user.AddDevicePasscodeMessage" = "Please enter the passcode %@ into your other device";
 
 "login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
 
@@ -151,7 +155,6 @@
 "challenges.timezoneGoal.Title" = "TIMEZONE";
 "challenges.nogoGoal.Title" = "NO GO";
 
-"challenges.addBudgetGoal.setChallengeButton" = "ADD CHALLENGE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
 "challenges.addBudgetGoal.timeZoneLabel" = "Timezone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minutes per day";
@@ -169,4 +172,6 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
+
+
 

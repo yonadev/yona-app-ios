@@ -11,6 +11,7 @@ import Foundation
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
 typealias APIPinResetResponse = (Bool, PinCode?, ServerMessage?, ServerCode?) -> Void
+typealias APIGetDeviceResponse = (Bool, ServerMessage?, ServerCode?, AddDeviceCode?) -> Void
 typealias APIGoalSizeResponse = (Int) -> Void
 typealias APIActivityLinkResponse = (Bool, String?, ServerMessage?, ServerCode?) -> Void
 typealias APIUserResponse = (Bool, ServerMessage?, ServerCode?, Users?) -> Void
@@ -43,6 +44,7 @@ class Manager: NSObject {
         if let body = body {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
+        request.timeoutInterval = 30
         
         request.HTTPMethod = httpMethod.rawValue
         
@@ -64,48 +66,60 @@ extension Manager {
      - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
     func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        do {
-            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
-            //execute our session
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                if let response = response,
-                    let httpResponse = response as? NSHTTPURLResponse {
-                    //get the code of the response so we can notify the APIServices
-                    let code = httpResponse.statusCode
-                    do {
-                        //try to create json object from the data returned
-                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                        print(jsonObject)
-                        APIServiceManager.sharedInstance.setServerCodeMessage(jsonObject as? [String: AnyObject], code: httpResponse.statusCode)
-                        
-                        if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
-                            if let dict = jsonObject as? [String: AnyObject] {
-                                self.userInfo = dict
-                                onCompletion(true, dict , error)
-                            }
-                        } else {
-                            if let dict = jsonObject as? [String: AnyObject] {
-                                onCompletion(false, dict, NSError.init(domain: "Request error", code: code, userInfo: dict))
-                            }
-                        }
-                    } catch { //if serialisation fails send back messages saying so
-                        if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
-                            onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
-                        } else {
-                            print("error Code: \(code)")
-                            onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                            
-                        }
+        
+        APIServiceManager.sharedInstance.APIServiceCheck { (success, message, code) in
+            if success {
+                do {
+                    let request = try self.setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+                    //execute our session
+                    let session = NSURLSession.sharedSession()
+                    let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                        if let response = response,
+                            let httpResponse = response as? NSHTTPURLResponse {
+                            //get the code of the response so we can notify the APIServices
+                            let code = httpResponse.statusCode
+                            do {
+                                //try to create json object from the data returned
+                                if let data = data {
+                                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
 
-                    }
+                                    if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
+                                        if let dict = jsonObject as? [String: AnyObject] {
+                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
+                                            self.userInfo = dict
+                                            onCompletion(true, dict , error)
+                                        }
+                                    } else {
+                                        if let dict = jsonObject as? [String: AnyObject] {
+                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
+                                            onCompletion(false, dict, error)
+                                        }
+                                    }
+                                }
+                            } catch { //if serialisation fails send back messages saying so
+                                if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
+                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
+                                    onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
+                                } else {
+                                    print("error Code: \(code)")
+                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
+                                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
+                                }
+                            }
+                        } else {
+                            APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                            onCompletion(false, nil, error)
+                        }
+                    })
+                    task.resume()
+                } catch {
+                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
+                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
                 }
-            })
-            task.resume()
-        } catch {
-            onCompletion(false, nil, YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
+            } else {
+                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NetworkFail)
+                onCompletion(false, nil, YonaConstants.YonaErrorTypes.NetworkFail)
+            }
         }
-
     }
-    
 }

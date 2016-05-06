@@ -112,29 +112,25 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-        
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
             APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    Loader.Hide(self)
-                    if serverCode == YonaConstants.serverCodes.OK {
-                        
+                
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
                         self.navigationController?.popViewControllerAnimated(true)
-                        
-                    } else if serverCode == YonaConstants.serverCodes.cannotRemoveMandatoryGoal {
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage", comment: ""), alertDescription: "")
-                        
-                    } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let message = serverMessage {
-                                self.displayAlertMessage(message, alertDescription: "")
-                            }
-                        })
-                    }
-                })
+                    })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide(self)
+                        if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                        }
+                    })
+                }
             }
         }
     }

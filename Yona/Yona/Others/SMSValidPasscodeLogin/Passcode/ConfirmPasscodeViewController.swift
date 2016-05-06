@@ -40,7 +40,9 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.codeInputView.becomeFirstResponder()
+        UIView.animateWithDuration(0.1) {
+            self.codeInputView.becomeFirstResponder()
+        }
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
@@ -64,7 +66,9 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
-            self.view.frame.origin.y -= posi
+            UIView.animateWithDuration(0.2, animations: {
+                self.view.frame.origin.y -= self.posi
+            })
             
         } else {
             scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)

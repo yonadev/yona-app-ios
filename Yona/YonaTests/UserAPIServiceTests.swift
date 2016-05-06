@@ -39,7 +39,7 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             XCTAssert((user) != nil)
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
@@ -65,7 +65,7 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("Post response")
             XCTAssert((user) != nil)
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
@@ -97,7 +97,7 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
                 let code = YonaConstants.testKeys.otpTestCode
                 APIServiceManager.sharedInstance.confirmMobileNumber(["code": code], onCompletion: { (succes, message, code) in
                     //if mobile confirm success
@@ -126,7 +126,7 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.otpResendMobile{ success, message, code in
                     if(success){
@@ -159,7 +159,7 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //post new user data
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if let userUnwrapped = user {
                 //if the response is not nil
                 let mobileNumber = userUnwrapped.mobileNumber
@@ -196,7 +196,7 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //post new user data
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if let originalUser = user {
                 //if the user is not nil
                 let bodyUpdate =
@@ -239,7 +239,7 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body) { (success, message, code, user) in
+        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if success {
                 //confirm mobile number check, static code
                 APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in

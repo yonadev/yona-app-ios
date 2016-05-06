@@ -1,4 +1,4 @@
-//
+ //
 //  APIServiceManager.swift
 //  Yona
 //
@@ -34,14 +34,13 @@ class APIServiceManager {
             onCompletion(false,nil, YonaConstants.YonaErrorTypes.UserPasswordRequestFail)
             return
         }
-        let httpHeader = ["Content-Type": "application/json", "Yona-Password": yonaPassword]
-        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, err in
-            if (success){
-                onCompletion(true, dict , err)
-            } else {
-                onCompletion(false, dict , err)
-            }
-        })   
+        
+        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let language = "\(langId)-\(countryId)"
+        
+        let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
+        Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
     }
 
     /**
@@ -51,22 +50,24 @@ class APIServiceManager {
      - parameter code: Int, the http response code we need to check (200-204 success, other is fail
      - parameter none
      */
-    func setServerCodeMessage(json:BodyDataDictionary?, code: Int) {
+    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) {
         //check if json is empty
-        
-        if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
-            self.serverMessage = YonaConstants.serverMessages.OK
-            self.serverCode = YonaConstants.serverCodes.OK
-        } else {
-            if let jsonUnwrapped = json,
-                let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
-                    self.serverMessage = message
-                    if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                        self.serverCode = serverCode
-                    } else {
-                        self.serverCode = String(code)
-                    }
+        if let jsonUnwrapped = json,
+            let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
+                self.serverMessage = message
+                if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
+                    self.serverCode = serverCode
                 }
+        } else if let error = error {
+            switch error.code {
+            case responseCodes.timeoutRequest.rawValue:
+                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
+            case responseCodes.timeoutRequest2.rawValue:
+                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
+            default:
+                self.serverMessage = error.description
+                break
+            }
         }
 
     }
@@ -99,9 +100,6 @@ class APIServiceManager {
      - parameter onCompletion: APIResponse, returns success connected to network or fail and server messages
      */
     func APIServiceCheck(onCompletion: APIResponse) {
-        //initialise server code and messages to OK
-        self.serverMessage = YonaConstants.serverMessages.OK
-        self.serverCode = YonaConstants.serverCodes.OK
         //check for network connection
         guard isConnectedToNetwork() else {
             //if it fails then send messages back saying no connection

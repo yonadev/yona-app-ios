@@ -21,38 +21,37 @@ extension APIServiceManager {
      Posts a new user to the server, part of the create new user flow, give a body with all the details such as mobile number (that must be unique) and then respond with new user object
      
      - parameter body: BodyDataDictionary, pass in a user body like this, mobile must be unique:
-                         {
-                         "firstName": "Ben",
-                         "lastName": "Quin",
-                         "mobileNumber": "+3161333999999",
-                         "nickname": "RQ"
-                         }
+     {
+     "firstName": "Ben",
+     "lastName": "Quin",
+     "mobileNumber": "+3161333999999",
+     "nickname": "RQ"
+     }
+     - parameter confirmCode: String? Confirm code required to post a new body if the user has lost the phone and is sent a confirm code to update their account
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
-    func postUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success {
-                //create a password for the user
-                KeychainManager.sharedInstance.createYonaPassword()
-                //set the path to post
-                self.callRequestWithAPIServiceResponse(body, path: YonaConstants.environments.testPostUserLink, httpMethod: httpMethods.post, onCompletion: { success, json, err in
-                    if let json = json {
-                        guard success == true else {
-                            onCompletion(false, self.serverMessage, self.serverCode,nil)
-                            return
-                        }
-                        newUser = Users.init(userData: json)
-                        onCompletion(true, self.serverMessage, self.serverCode, newUser)
-                    } else {
-                        //response from request failed
-                        onCompletion(false, self.serverMessage, self.serverCode,nil)
-                    }
-                })
-            } else {
-                //network fail
-                onCompletion(false, message, code, nil)
-            }
+    func postUser(body: BodyDataDictionary, confirmCode: String?, onCompletion: APIUserResponse) {
+        //create a password for the user
+        KeychainManager.sharedInstance.createYonaPassword()
+        var path = YonaConstants.environments.testUrl + YonaConstants.commands.users //not in user body need to hardcode
+        //if user lost phone then we need to set a confirm code
+        if let confirmCodeUnwrap = confirmCode {
+            path = YonaConstants.environments.testUrl + YonaConstants.commands.users + YonaConstants.commands.userRequestOverrideCode + confirmCodeUnwrap
         }
+        //set the path to post
+        self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethods.post, onCompletion: { success, json, err in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(false, self.serverMessage, self.serverCode,nil)
+                    return
+                }
+                newUser = Users.init(userData: json)
+                onCompletion(true, self.serverMessage, self.serverCode, newUser)
+            } else {
+                //response from request failed
+                onCompletion(false, self.serverMessage, self.serverCode,nil)
+            }
+        })
     }
     
     /**
@@ -68,38 +67,30 @@ extension APIServiceManager {
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func updateUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success {
-                self.getUser({ (success, message, code, user) in
-                    //get the get user link...
-                    if let editLink = user?.editLink {
-                        ///now post updated user data
-                        self.callRequestWithAPIServiceResponse(body, path: editLink, httpMethod: httpMethods.put, onCompletion: { success, json, err in
-                            if let json = json {
-                                guard success == true else {
-                                    onCompletion(false, self.serverMessage, self.serverCode, nil)
-                                    return
-                                }
-                                //parses new user into object to pass back
-                                newUser = Users.init(userData: json)
-                                onCompletion(true, self.serverMessage, self.serverCode, newUser)
-                                
-                            } else {
-                                //response from request failed
-                                onCompletion(false, self.serverMessage, self.serverCode, nil)
-                            }
-                        })
+        self.getUser({ (success, message, code, user) in
+            //get the get user link...
+            if let editLink = user?.editLink {
+                ///now post updated user data
+                self.callRequestWithAPIServiceResponse(body, path: editLink, httpMethod: httpMethods.put, onCompletion: { success, json, err in
+                    if let json = json {
+                        guard success == true else {
+                            onCompletion(false, self.serverMessage, self.serverCode, nil)
+                            return
+                        }
+                        //parses new user into object to pass back
+                        newUser = Users.init(userData: json)
+                        onCompletion(true, self.serverMessage, self.serverCode, newUser)
+                        
                     } else {
-                        //Failed to retrive details for POST user details request
-                        self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails,
-                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUpdateUserDetails], code: 1)
+                        //response from request failed
                         onCompletion(false, self.serverMessage, self.serverCode, nil)
                     }
                 })
             } else {
-                onCompletion(false, message, code, nil)
+                //Failed to retrive details for POST user details request
+                onCompletion(false, self.serverMessage, self.serverCode, nil)
             }
-        }
+        })
     }
     
     /**
@@ -108,31 +99,23 @@ extension APIServiceManager {
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func getUser(onCompletion: APIUserResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success {
-                if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
-                    self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
-                        if let json = json {
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode,nil)
-                                return
-                            }
-                            newUser = Users.init(userData: json)
-                            onCompletion(true, self.serverMessage, self.serverCode, newUser)
-                        } else {
-                            //response from request failed
-                            onCompletion(false, self.serverMessage, self.serverCode,nil)
-                        }
-                    })
+        if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
+            self.callRequestWithAPIServiceResponse(nil, path: selfUserLink, httpMethod: httpMethods.get, onCompletion: { success, json, err in
+                if let json = json {
+                    guard success == true else {
+                        onCompletion(false, self.serverMessage, self.serverCode,nil)
+                        return
+                    }
+                    newUser = Users.init(userData: json)
+                    onCompletion(true, self.serverMessage, self.serverCode, newUser)
                 } else {
-                    //Failed to retrive details for GET user details request
-                    self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails,
-                        YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveGetUserDetails], code: 1)
+                    //response from request failed
                     onCompletion(false, self.serverMessage, self.serverCode,nil)
                 }
-            } else {
-                onCompletion(false, message, code,nil)
-            }
+            })
+        } else {
+            //Failed to retrive details for GET user details request
+            onCompletion(false, self.serverMessage, self.serverCode,nil)
         }
     }
     
@@ -142,28 +125,20 @@ extension APIServiceManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func deleteUser(onCompletion: APIResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success{
-                self.getUser{ (success, message, code, user) in
-                    //get the get user link...
-                    if let editLink = user?.editLink {
-                        self.callRequestWithAPIServiceResponse(nil, path: editLink, httpMethod: httpMethods.delete) { success, json, err in
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            KeychainManager.sharedInstance.clearKeyChain()
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        }
-                    } else {
-                        //Failed to retrive details for delete user request
-                        self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser,
-                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveUserDetailsForDeleteUser], code: 1)
+        self.getUser{ (success, message, code, user) in
+            //get the get user link...
+            if let editLink = user?.editLink {
+                self.callRequestWithAPIServiceResponse(nil, path: editLink, httpMethod: httpMethods.delete) { success, json, err in
+                    guard success == true else {
                         onCompletion(false, self.serverMessage, self.serverCode)
+                        return
                     }
+                    KeychainManager.sharedInstance.clearKeyChain()
+                    onCompletion(true, self.serverMessage, self.serverCode)
                 }
             } else {
-                onCompletion(false, message, code)
+                //Failed to retrive details for delete user request
+                onCompletion(false, self.serverMessage, self.serverCode)
             }
         }
     }
@@ -174,34 +149,24 @@ extension APIServiceManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func otpResendMobile(onCompletion: APIResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success {
-                self.getUser({ (success, message, code, user) in
-                    if let otpResendMobileLink = user?.otpResendMobileLink{
-                        #if DEBUG
-                            print(otpResendMobileLink)
-                        #endif
-                        
-                        self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: httpMethods.post) { success, json, err in
-                            guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        }
-                    } else {
-                        //Failed to retrive details for otp resend request
-                        self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveOTP,
-                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveOTP], code: 1)
-                        onCompletion(false, self.serverMessage, self.serverCode)
-                    }
-                })
+        self.getUser({ (success, message, code, user) in
+            if let otpResendMobileLink = user?.otpResendMobileLink{
+                #if DEBUG
+                    print(otpResendMobileLink)
+                #endif
                 
+                self.callRequestWithAPIServiceResponse(nil, path: otpResendMobileLink, httpMethod: httpMethods.post) { success, json, err in
+                    guard success == true else {
+                        onCompletion(false, self.serverMessage, self.serverCode)
+                        return
+                    }
+                    onCompletion(true, self.serverMessage, self.serverCode)
+                }
             } else {
-                //no network connection
+                //Failed to retrive details for otp resend request
                 onCompletion(false, self.serverMessage, self.serverCode)
             }
-        }
+        })
     }
     
     /**
@@ -214,32 +179,22 @@ extension APIServiceManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIResponse) {
-        APIServiceCheck { (success, message, code) in
-            if success {
-                self.getUser{ (success, message, code, user) in
-                    if let confirmMobileLink = user?.confirmMobileLink{
-                        #if DEBUG
-                            print(confirmMobileLink)
-                        #endif
-                        
-                        self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: httpMethods.post) { success, json, err in
-                            guard success == true else {
-                                print(err)
-                                onCompletion(false, self.serverMessage, self.serverCode)
-                                return
-                            }
-                            onCompletion(true, self.serverMessage, self.serverCode)
-                        }
-                    } else {
-                        //Failed to retrive details for confirm mobile request
-                        self.setServerCodeMessage([YonaConstants.serverResponseKeys.message: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile,
-                            YonaConstants.serverResponseKeys.code: YonaConstants.serverCodes.FailedToRetrieveConfirmMobile], code: 1)
-                        onCompletion(false, self.serverMessage, self.serverCode)
-                    }
-                }
+        self.getUser{ (success, message, code, user) in
+            if let confirmMobileLink = user?.confirmMobileLink{
+                #if DEBUG
+                    print(confirmMobileLink)
+                #endif
                 
+                self.callRequestWithAPIServiceResponse(body, path: confirmMobileLink, httpMethod: httpMethods.post) { success, json, err in
+                    guard success == true else {
+                        print(err)
+                        onCompletion(false, self.serverMessage, self.serverCode)
+                        return
+                    }
+                    onCompletion(true, self.serverMessage, self.serverCode)
+                }
             } else {
-                //network fail
+                //Failed to retrive details for confirm mobile request
                 onCompletion(false, self.serverMessage, self.serverCode)
             }
         }

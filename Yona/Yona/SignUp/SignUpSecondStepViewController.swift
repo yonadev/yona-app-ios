@@ -29,12 +29,55 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var previousButton: UIButton!
     
     
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        dispatch_async(dispatch_get_main_queue()) {
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        }
+        
         setupUI()
+    }
+    
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        IQKeyboardManager.sharedManager().enable = false
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 96;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+    }
+    func keyboardWillHiden(notification: NSNotification)
+    {
+        self.topViewHeightConstraint.constant = 210;
+        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
+        UIView.animateWithDuration(animationDiration) {
+            UIView.setAnimationCurve(animationCurve)
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func setupUI() {
@@ -88,7 +131,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         self.mobileTextField.leftView = label
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
-    
+        
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -119,26 +162,54 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 
-                APIServiceManager.sharedInstance.postUser(body, onCompletion: { (success, message, code, user) in
+                APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
-                        //Update flag
-                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.sendToSMSValidation()
+                    } else if code == YonaConstants.serverCodes.errorUserExists {
                         dispatch_async(dispatch_get_main_queue()) {
-                            // update some UI
                             Loader.Hide()
-                            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                self.navigationController?.pushViewController(smsValidation, animated: false)
+                            if let alertMessage = message {
+                                //alert the user ask if they want to override their account, if ok send back to SMS screen
+                                self.displayAlertOption(alertMessage, alertDescription: "", onCompletion: { (buttonPressed) in
+                                    switch buttonPressed{
+                                    case alertButtonType.OK:
+                                        AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
+                                            //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                                            if success {
+                                                NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                                                self.sendToSMSValidation()
+                                            }
+                                        }
+                                        
+                                    case alertButtonType.cancel:
+                                        break
+                                        //do nothing or send back to start of signup?
+                                    }
+                                })
                             }
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
                             Loader.Hide()
                             if let alertMessage = message {
-                            self.displayAlertMessage(alertMessage, alertDescription: "")
+                                self.displayAlertMessage(alertMessage, alertDescription: "")
                             }
                         }
                     }
                 })
+            }
+        }
+    }
+    
+    func sendToSMSValidation(){
+        //Update flag
+        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        dispatch_async(dispatch_get_main_queue()) {
+            // update some UI
+            Loader.Hide()
+            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                self.navigationController?.pushViewController(smsValidation, animated: false)
             }
         }
     }

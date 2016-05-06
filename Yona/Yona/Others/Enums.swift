@@ -14,6 +14,16 @@ enum GoalType: String {
     case NoGoGoalString = "NoGoGoal"
 }
 
+enum serverLanguages: String {
+    case dutch = "nl-NL"
+    case english = "en-EN"
+}
+
+enum iosLanguages: String {
+    case dutch = "nl"
+    case english = "en"
+}
+
 enum CategoryName: String {
     case newsString = "News"
     case socialString = "Social"
@@ -31,6 +41,11 @@ enum httpMethods: String{
     case delete = "DELETE"
     case get = "GET"
     case put = "PUT"
+}
+
+enum alertButtonType{
+    case OK
+    case cancel
 }
 
 enum pinRequestTypes{
@@ -51,6 +66,8 @@ enum userRequestTypes{
 enum responseCodes: Int{
     case ok200 = 200
     case ok204 = 204
+    case timeoutRequest = 408
+    case timeoutRequest2 = -1001
 }
 
 enum timeBucketTabNames: String{

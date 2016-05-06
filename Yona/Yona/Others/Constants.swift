@@ -11,6 +11,7 @@ import Foundation
 typealias ServerMessage = String
 typealias ServerCode = String
 typealias PinCode = String
+typealias AddDeviceCode = String
 
 struct YonaConstants {
     
@@ -25,20 +26,16 @@ struct YonaConstants {
     }
     
     struct environments {
-        static let testPostUserLink = "http://85.222.227.142/users/" // only link we need to hard code!
         static let testUrl = "http://85.222.227.142/" //test server
-        static let production = ""
+        static let production = "http://85.222.227.84/"
     }
     
     struct commands {
         static let users = "users/"
-        static let goals = "goals/"
-        static let mobileConfirm = "/confirmMobileNumber"
+        static let adminRequestOverride = "admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
+        static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
-        static let pinRequest = "/pinResetRequest/request"
-        static let pinVerify = "/pinResetRequest/verify"
-        static let pinClear = "/pinResetRequest/clear"
 
     }
 
@@ -47,12 +44,14 @@ struct YonaConstants {
         static let PINCode = "kPINCode"
         static let userID = "userID"
         static let userSelfLink = "userSelfLink"
+        static let deviceRequestLink = "deviceRequestLink"
         #if DEBUG
         static let oneTimePassword = "mobileNumberConfirmationCode"
         #endif
     }
     
     struct jsonKeys{
+        static let  yonaPassword = "yonaPassword"
         static let  firstNameKey = "firstName"
         static let  lastNameKeys = "lastName"
         static let  mobileNumberKeys = "mobileNumber"
@@ -70,6 +69,7 @@ struct YonaConstants {
         static let  bodyCode = "code"
         static let  yonaActivityCategories = "yona:activityCategories"
         //links
+        static let  yonaUserSelfLink = "yona:user"
         static let  linksKeys = "_links"
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"
@@ -88,6 +88,7 @@ struct YonaConstants {
     }
 
     struct serverCodes{
+        static let errorUserExists = "error.user.exists"
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
         static let tooManyResendOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
         static let tooManyPinResetAttemps = "error.pin.reset.request.confirmation.code.too.many.failed.attempts"
@@ -102,10 +103,10 @@ struct YonaConstants {
         static let FailedToRetrieveUpdateUserDetails = "updateUserFail"
         static let FailedToRetrieveUserDetailsForDeleteUser = "deleteUserFail"
         static let FailedToRetrieveGetUserGoals = "getUserGoalsFail"
-
     }
     
     struct serverMessages{
+        static let timeoutRequest = "The request timed out, server problem"
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
         static let noConnection = "No network connection"
@@ -144,6 +145,8 @@ struct YonaConstants {
         static let isBlocked = "isBlocked"
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
+        static let adminOverride = "adminOverride"
+        static let userToOverride = "userToOverride"
     }
 
     struct screenNames{

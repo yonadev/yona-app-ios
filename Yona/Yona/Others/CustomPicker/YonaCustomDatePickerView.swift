@@ -7,10 +7,10 @@ class YonaCustomDatePickerView: UIView {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     typealias CancelListener = () -> ()
-    typealias DoneListener = (String) -> ()
+    typealias DoneListener = (NSDate) -> ()
     var gCancelListener: CancelListener?
     var gDoneListener: DoneListener?
-    var selectedValue: String?
+    var selectedValue: NSDate?
     var parentView: UIView?
     
     @IBOutlet weak var cancelButtonTitle: UIBarButtonItem!
@@ -25,15 +25,13 @@ class YonaCustomDatePickerView: UIView {
         if selectedValue != nil{
             gDoneListener?(selectedValue!)
         }else{
-            gDoneListener?("")
+            gDoneListener?(NSDate())
         }
         
     }
     
     @IBAction func datePickerAction(sender: AnyObject) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        selectedValue = String(dateFormatter.stringFromDate(datePicker.date))
+        selectedValue = datePicker.date
     }
     
     func loadDatePickerView() -> UIView {
@@ -56,7 +54,7 @@ class YonaCustomDatePickerView: UIView {
         self.pickerTitleLabel.title = title
     }
     
-    func hideShowDatePickerView(isToShow show: Bool) {
+    func hideShowDatePickerView(isToShow show: Bool) -> YonaCustomDatePickerView {
         UIView.animateWithDuration(0.3,
                                    animations: {
                                     if show {
@@ -65,6 +63,15 @@ class YonaCustomDatePickerView: UIView {
                                         self.frame.origin.y = self.parentView!.frame.size.height + 200
                                     }
             },completion: nil)
+        
+        return self
     }
+    
+    
+    func configureWithTime(date: NSDate) {
+        selectedValue = date
+        self.datePicker.setDate(date, animated: true)
+    }
+    
     
 }

@@ -355,7 +355,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
                                                     <rect key="frame" x="514" y="16" width="56" height="49"/>
                                                     <state key="normal" image="addCircel"/>
                                                     <connections>
@@ -495,11 +495,11 @@
                         <viewControllerLayoutGuide type="bottom" id="S5w-n3-FsC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="haG-ns-RC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-Hr-9Ds">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="730"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Nb-LNL" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
@@ -596,7 +596,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jH-BO-Lpn">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="429"/>
+                                        <rect key="frame" x="0.0" y="300" width="600" height="430"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="36q-b6-Ss1" userLabel="HeaderView">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -828,11 +828,11 @@ Pinterest, Instagram, Snapchat</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9jH-BO-Lpn" secondAttribute="trailing" id="36R-Df-NKC"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="top" id="65h-ud-DgV"/>
-                                    <constraint firstAttribute="bottom" secondItem="9jH-BO-Lpn" secondAttribute="bottom" constant="71" id="IJi-gg-hq2"/>
+                                    <constraint firstAttribute="bottom" secondItem="9jH-BO-Lpn" secondAttribute="bottom" id="IJi-gg-hq2"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="centerX" secondItem="wSu-Hr-9Ds" secondAttribute="centerX" id="PEm-cp-Cot"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="T9o-l9-kwZ"/>
                                     <constraint firstAttribute="trailing" secondItem="73d-Nb-LNL" secondAttribute="trailing" id="VVW-GU-oXn"/>
-                                    <constraint firstAttribute="bottom" secondItem="73d-Nb-LNL" secondAttribute="bottom" constant="500" id="Wye-wv-pDO"/>
+                                    <constraint firstAttribute="bottom" secondItem="73d-Nb-LNL" secondAttribute="bottom" constant="430" id="Wye-wv-pDO"/>
                                     <constraint firstItem="9jH-BO-Lpn" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="bottom" id="iGp-7p-xzM"/>
                                     <constraint firstItem="9jH-BO-Lpn" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="jwV-5X-CL0"/>
                                 </constraints>
@@ -854,7 +854,7 @@ Pinterest, Instagram, Snapchat</string>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="800"/>
+                    <size key="freeformSize" width="600" height="730"/>
                     <connections>
                         <outlet property="bottomLabelText" destination="tUC-r3-f9U" id="xA1-FG-HQQ"/>
                         <outlet property="deleteGoalButton" destination="tO6-LB-Hnw" id="039-GD-SLH"/>
@@ -1150,11 +1150,17 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="headerView" destination="XEI-aB-5HT" id="Von-33-xLy"/>
                         <outlet property="maxTimeButton" destination="DX4-6X-brS" id="Wj9-Vq-ffO"/>
                         <outlet property="minutesPerDayLabel" destination="mpN-kc-503" id="bCc-xj-m2u"/>
+                        <outlet property="pickerBackgroundView" destination="6ji-LY-TbC" id="hdg-Rv-icM"/>
                         <outlet property="setChallengeButton" destination="CZh-m0-g2j" id="LV0-yj-lgv"/>
                         <outlet property="timeZoneLabel" destination="APG-DO-NcS" id="wjI-gV-RlK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6ji-LY-TbC">
+                    <rect key="frame" x="0.0" y="0.0" width="598" height="180"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1436" y="-394"/>
         </scene>

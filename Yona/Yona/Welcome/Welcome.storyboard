@@ -33,7 +33,7 @@
                                     <constraint firstAttribute="height" constant="60" id="Mfw-BH-maZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                <state key="normal" title="INLOGGEN">
+                                <state key="normal" title="login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="540" width="299" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                <state key="normal" title="DOE MEE">
+                                <state key="normal" title="join">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
