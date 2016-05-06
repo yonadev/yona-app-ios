@@ -41,6 +41,10 @@
 "enter-number-validation" = "Number should be 9 digits";
 "loading" = "Loading";
 "ok" = "Ok";
+
+"user-override" = "Mobile Number %@ already register with Yona, do you want to re-register same number? (Note:All data associated with this number will be removed, if you want to add another device, you can go back and click on InLoggin.)";
+
+
 "passcode-title" = "You are not alone";
 "passcode-tryagain" = "Try again";
 "pincode" = "PINCODE";
@@ -62,7 +66,6 @@
 "in-loggin" = "LOGIN";
 "enter-passcode" = "Je moet een 6 cijferig alfanumeriek code invoeren.";
 "reset-pin-request" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %1$s hours.";
-"user-override" = "Mobile Number %@ already register with Yona";
 "yes" = "Yes";
 "no" = "No";
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE SAVE";

@@ -76,7 +76,7 @@ class NewDeviceRequestManager {
      - return none
      */
     func putNewDevice(onCompletion: APIGetDeviceResponse) {
-        let addDevicePassCode = String(100000 + arc4random_uniform(100000)) //generate random number password between of 5 random digits
+        let addDevicePassCode = String().randomAlphaNumericString() //generate random alphanumeric code
         self.genericHelper(httpMethods.put, addDeviceCode: addDevicePassCode, mobileNumber: nil) { (success, message, code, nil) in
             if success {
                 onCompletion(true, message, code, addDevicePassCode)
