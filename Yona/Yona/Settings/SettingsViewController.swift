@@ -20,14 +20,14 @@ class SettingsViewController: UIViewController {
         UIApplication.sharedApplication().statusBarHidden = true
         settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
         
-  
+        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
-                self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
+            self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         })
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,6 +35,12 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     Will call logout/unsubscribe/ API and removes all the user's data.
+     
+     - parameter none
+     - return none
+     */
     private func callAddDeviceMethod() {
         NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
             if success {
@@ -49,9 +55,29 @@ class SettingsViewController: UIViewController {
             }
         })
     }
- 
+    
+    /**
+     Will call logout/unsubscribe API and wipes out all the user's data.
+     
+     - parameter none
+     - return none, redirects user to Welcome screen
+     */
     private func callUnSubscribeMethod() {
         //TODO: UnSubscribe API InProgress
+        APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+            if success {
+                dispatch_async(dispatch_get_main_queue(), {
+                    if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                        UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                    }
+                })
+            }
+            else {
+                if let message = serverMessage {
+                    self.displayAlertMessage("", alertDescription: message)
+                }
+            }
+        })
     }
 }
 
@@ -65,7 +91,6 @@ extension SettingsViewController:UITableViewDelegate {
         return self.settingsArray.count
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         cell.textLabel?.text = settingsArray[indexPath.row] as? String;
@@ -73,18 +98,15 @@ extension SettingsViewController:UITableViewDelegate {
         return cell
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 2 {
             callAddDeviceMethod()
         }
         else if indexPath.row == 3 {
-            
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""), alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
-                switch buttonPressed{
+                switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()
-
                     
                 case alertButtonType.cancel:
                     break
