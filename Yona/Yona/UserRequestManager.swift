@@ -26,18 +26,18 @@ class UserRequestManager{
         APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
             if let json = json {
                 guard success == true else {
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil)
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
                     return
                 }
                 //only update our user body on get, post or update
                 if userRequestType == userRequestTypes.getUser || userRequestType == userRequestTypes.postUser || userRequestType == userRequestTypes.updateUser {
                     self.newUser = Users.init(userData: json)
                 }
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, self.newUser)
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newUser)
                 
             } else {
                 //response from request failed
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil)
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
             }
         })
     }

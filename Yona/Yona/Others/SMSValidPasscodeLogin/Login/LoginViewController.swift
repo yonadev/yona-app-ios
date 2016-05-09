@@ -70,10 +70,13 @@ extension LoginViewController: CodeInputViewDelegate {
         if code ==  passcode {
             self.codeInputView.resignFirstResponder()
             let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                navigationController?.pushViewController(dashboardStoryboard, animated: true)
-            }
+            UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                    self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                }
+            })
+
         } else {
             errorLabel.hidden = false
             self.codeInputView.clear()

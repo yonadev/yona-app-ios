@@ -35,10 +35,10 @@ class PinResetRequestManager {
                     if success {
                         if let jsonUnwrap = json,
                             let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
-                            onCompletion(true, pincode, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain)
+                            onCompletion(true, pincode, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
-                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain)
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     }
                 }
             } else {
@@ -48,9 +48,9 @@ class PinResetRequestManager {
             if let path = APIUserRequestManager.newUser?.requestPinVerifyLink{
                 APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
                     if success {
-                        onCompletion(true, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error?.domain)
+                        onCompletion(true, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     } else {
-                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error?.domain)
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     }
                 }
             } else {
@@ -61,9 +61,9 @@ class PinResetRequestManager {
             if let path = APIUserRequestManager.newUser?.requestPinClearLink{
                 APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
                     if success {
-                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain)
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     } else {
-                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain)
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     }
                 }
             } else {

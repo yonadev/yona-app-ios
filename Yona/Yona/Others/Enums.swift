@@ -71,6 +71,7 @@ enum responseCodes: Int{
     case serverProblem500 = 500
     case serverProblem599 = 599
     case internalErrorCode = 600
+    case yonaErrorCode = 700
 }
 
 enum responseMessages: String{

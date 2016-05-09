@@ -59,6 +59,7 @@ class GoalsRequestManager {
      
      - parameter goalType: GoalType, The goaltype that we require the array for
      - parameter onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
+     - return [Goal] and array of goals
      */
     private func sortGoalsIntoArray(goalType: GoalType) -> [Goal]{
         budgetGoals = []
@@ -99,10 +100,10 @@ class GoalsRequestManager {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
                 self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil, self.sortGoalsIntoArray(goalType), error)
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.sortGoalsIntoArray(goalType), error)
                 }
             } else {
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil, nil, error)
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
             }
         }
     }
@@ -148,7 +149,7 @@ class GoalsRequestManager {
                     self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
                         if let json = json {
                             guard success == true else {
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil, nil, error)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                                 return
                             }
                             
@@ -163,16 +164,16 @@ class GoalsRequestManager {
                                         goals.append(newGoal!)
                                     }
                                 }
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil, goals, error)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, goals, error)
                             } else { //if we just get one goal, for post goal, just that goals is returned so send that back
                                 newGoal = Goal.init(goalData: json, activities: activities!)
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, newGoal, nil, error)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newGoal, nil, error)
                             }
                         }
                     })
                 }
             }
-            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil, nil, error)
+            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
         }
     }
     

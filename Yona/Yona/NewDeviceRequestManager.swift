@@ -26,7 +26,8 @@ class NewDeviceRequestManager {
                             bodyNewDevice = ["newDeviceRequestPassword": password]
                         }
                         self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil)
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
+
                         })
                     } else {
                         onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
@@ -43,7 +44,7 @@ class NewDeviceRequestManager {
                         let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
                         Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, error in
                             guard success == true else {
-                                onCompletion(false, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error),nil)
                                 return
                             }
                             //Update user details locally
@@ -51,7 +52,7 @@ class NewDeviceRequestManager {
                                 self.APIUserRequestManager.newUser = Users.init(userData: json)
                             }
                             //send back user object
-                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, self.APIUserRequestManager.newUser)
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.APIUserRequestManager.newUser)
                         })
                     }
                 }
@@ -59,7 +60,7 @@ class NewDeviceRequestManager {
             case httpMethods.delete:
                 if let path = APIUserRequestManager.newUser?.newDeviceRequestsLink {
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain, nil)
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
                     })
                 } else {
                     onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)

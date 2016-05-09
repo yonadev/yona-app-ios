@@ -14,9 +14,14 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-//    var serverMessage: ServerMessage?
-//    var serverCode: ServerCode?
-//    
+    func determineErrorCode(error: NSError?) -> String {
+        if let error = error {
+            return error.code == responseCodes.yonaErrorCode.rawValue ? error.domain: String(error.code)
+        } else {
+            return "No Error"
+        }
+    }
+    
     private init() {}
     
     /**
@@ -55,7 +60,7 @@ class APIServiceManager {
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
                 if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                    return requestResult.init(success: false, errorMessage: nil, errorCode: nil, serverMessage: message, serverCode: serverCode)
+                    return requestResult.init(success: false, errorMessage: nil, errorCode: responseCodes.yonaErrorCode.rawValue, serverMessage: message, serverCode: serverCode)
                 }
         } else if let error = error {
             if case responseCodes.connectionFail400.rawValue ... responseCodes.connectionFail499.rawValue = error.code {

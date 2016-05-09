@@ -97,7 +97,7 @@ extension Manager {
                     }
                 }
                 if response != nil{
-                    if data != nil{
+                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
                         do{
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                             let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error)
@@ -107,7 +107,7 @@ extension Manager {
                                     NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.errorMessage ??  "Unknown Error"
                                 ]
                                 
-                                let omdbError = NSError(domain: requestResult.serverCode ?? "None", code: requestResult.errorCode ?? 600, userInfo: userInfo)
+                                let omdbError = NSError(domain: requestResult.serverCode ?? "None", code: requestResult.errorCode ?? responseCodes.yonaErrorCode.rawValue, userInfo: userInfo)
                                 dispatch_async(dispatch_get_main_queue()) {
                                     onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                                 }
@@ -122,7 +122,19 @@ extension Manager {
                                 return
                             }
                         }
+                    } else {
+                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                        let userInfo = [
+                            NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.errorMessage ??  "Unknown Error"
+                        ]
+                        let omdbError = NSError(domain: requestResult.serverCode ?? "None", code: requestResult.errorCode ?? responseCodes.yonaErrorCode.rawValue, userInfo: userInfo)
                         
+                        //if there is no data but successful request
+                        if requestResult.success {
+                            onCompletion(requestResult.success, nil, omdbError)
+                        } else {//no data because request failed pass back error
+                            onCompletion(requestResult.success, nil, omdbError)
+                        }
                     }
                 }
             })

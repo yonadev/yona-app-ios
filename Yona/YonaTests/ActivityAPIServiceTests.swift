@@ -39,12 +39,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if success {
                     ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
                         if success{
@@ -74,12 +74,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
@@ -95,7 +95,7 @@ class ActivityAPIServiceTests: XCTestCase {
                                 ] ,
                                 "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
                             ]
-                            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal) {
+                            GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal) {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
                                     ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
@@ -132,12 +132,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success{
@@ -165,12 +165,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, serverMessage, serverCode, activities, err) in
                         if success {
@@ -204,12 +204,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
                         print(activities)
@@ -236,12 +236,12 @@ class ActivityAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, activityID, message, code) in
                         if success{

@@ -30,9 +30,8 @@ class AdminRequestManager {
                 let path = YonaConstants.environments.testUrl + YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
                 //not in user body need to hardcode
                 self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, String(error!.code) ?? error!.domain)
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                 }
-                
         }
     }
 }

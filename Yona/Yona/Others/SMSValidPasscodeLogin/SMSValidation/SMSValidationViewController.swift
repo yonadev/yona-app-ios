@@ -164,21 +164,24 @@ extension SMSValidationViewController: CodeInputViewDelegate {
             if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
                 UserRequestManager.sharedInstance.postUser(userBody, confirmCode: code){ (success, message, serverCode, user) in
                     if success {
-                        UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
-                            dispatch_async(dispatch_get_main_queue()) {
-                                //reset our userdefaults to store the new user body
-                                NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                                self.codeInputView.resignFirstResponder()
-                                //Update flag
-                                setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                                
-                                if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                                    self.navigationController?.pushViewController(passcode, animated: false)
-                                }
-                                
-                                self.codeInputView.clear()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            //reset our userdefaults to store the new user body
+                            NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                            self.codeInputView.resignFirstResponder()
+                            //Update flag
+                            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            
+                            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                self.navigationController?.pushViewController(passcode, animated: false)
                             }
-                        })
+                            
+                            self.codeInputView.clear()
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
+                            self.codeInputView.clear()
+                        }
                     }
                 }
             }
