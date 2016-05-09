@@ -41,7 +41,7 @@ class NewDeviceRequestManager {
                     let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-NewDeviceRequestPassword": password]
                     //need to create the new device request URL on the other device as we only have the mobile number to get the device request, also user needs to enter password that appears on their other device
                     if let mobileNumber = mobileNumber {
-                        let path = YonaConstants.environments.testUrl + YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
+                        let path = YonaConstants.commands.newDeviceRequests + mobileNumber.replacePlusSign() //non are optional here so you cannot put in check (the if let bit)
                         Manager.sharedInstance.makeRequest(path, body: nil, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: { success, dict, error in
                             guard success == true else {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error),nil)
@@ -77,7 +77,7 @@ class NewDeviceRequestManager {
      - return none
      */
     func putNewDevice(onCompletion: APIGetDeviceResponse) {
-        let addDevicePassCode = String(100000 + arc4random_uniform(100000)) //generate random number password between of 5 random digits
+        let addDevicePassCode = String().randomAlphaNumericString() //generate random alphanumeric code
         self.genericHelper(httpMethods.put, addDeviceCode: addDevicePassCode, mobileNumber: nil) { (success, message, code, nil) in
             if success {
                 onCompletion(true, message, code, addDevicePassCode)

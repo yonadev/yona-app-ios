@@ -199,38 +199,6 @@ class GoalsRequestManager {
      Posts a new goal of a certain type defined in the body, sends the goal back to the UI
      
      - parameter body: BodyDataDictionary, the body of the goal that needs to be posted, example below:
-     NOGO GOAL: (budget type and 0 maxduration)
-     {
-         "@type": "BudgetGoal",
-            "_links": {
-                "yona:activityCategory": {
-                    "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
-                }
-            },
-        "maxDurationMinutes":"0"
-     }
-     
-     BUDGET GOAL:
-             {
-                "@type": "BudgetGoal",
-                "_links": {
-                    "yona:activityCategory": {
-                        "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”   ///could be social or whatever
-                        }
-                    },
-                "maxDurationMinutes":"10"
-             }
-     
-     TIMEZONE GOAL:
-             {
-                 "@type": "TimeZoneGoal",
-                 "_links": {
-                 "yona:activityCategory": {
-                    "href": "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8”    ///could be social or whatever
-                    }
-                 },
-                 "zones": ["8:00-17:00", "8:00-17:00"]
-             }
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {

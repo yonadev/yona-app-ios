@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var errorLabel: UILabel!
-
+    
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
@@ -28,9 +28,9 @@ class LoginViewController: LoginSignupValidationMasterView {
             }
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         })
-        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+        //Get user call
+        checkUserExists()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,7 +41,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         codeView.addSubview(self.codeInputView)
         
         self.codeInputView.becomeFirstResponder()
-
+        
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.pinResetButton.hidden = false
             self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
@@ -61,7 +61,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
 }
 
 extension LoginViewController: CodeInputViewDelegate {
@@ -97,6 +96,28 @@ extension LoginViewController: CodeInputViewDelegate {
     
     @IBAction func pinResetTapped(sender: UIButton) {
         self.pinResetTapped()
+    }
+    
+    func checkUserExists() {
+        UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+            dispatch_async(dispatch_get_main_queue()) {
+                if code == YonaConstants.serverCodes.errorUserNotFound {
+                    if let serverMessage = message {
+                        self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
+                            switch buttonPressed{
+                            case alertButtonType.OK:
+                                if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                                }
+                            case alertButtonType.cancel:
+                                break
+                                //do nothing or send back to start of signup?
+                            }
+                        })
+                    }
+                }
+            }
+        })
     }
 }
 

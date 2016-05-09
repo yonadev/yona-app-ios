@@ -49,6 +49,21 @@ extension String {
         }
     }
     
+    func randomAlphaNumericString() -> String {
+        let length = 6
+        let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        var randomString = ""
+        
+        for _ in (0..<length) {
+            let randomNum = Int(arc4random_uniform(allowedCharsCount))
+            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            randomString += String(newCharacter)
+        }
+        print(randomString)
+        return randomString
+    }
+    
     func convertFromISO8601Duration() -> String? {
         
         var displayedString: String?

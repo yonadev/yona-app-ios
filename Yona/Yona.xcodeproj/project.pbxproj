@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
+		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
+		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
+		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
@@ -242,6 +245,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
+		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
+		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
+		603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentManager.m; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
@@ -569,6 +577,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		603CDA9F1CDC9115002A5C46 /* XTSettings */ = {
+			isa = PBXGroup;
+			children = (
+				603CDAA01CDC9129002A5C46 /* XTSettings.h */,
+				603CDAA11CDC9129002A5C46 /* XTSettings.m */,
+			);
+			name = XTSettings;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		603CDAA31CDC918C002A5C46 /* Environment Switching */ = {
+			isa = PBXGroup;
+			children = (
+				603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */,
+				603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */,
+			);
+			name = "Environment Switching";
+			sourceTree = "<group>";
+		};
 		803143D5A6C19514CFFD49E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +844,8 @@
 		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				603CDAA31CDC918C002A5C46 /* Environment Switching */,
+				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
 				9042C7091CD7581E00100306 /* CustomPicker */,
@@ -1181,6 +1210,7 @@
 				AD27E61C1CDB4069001C801D /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
+				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
 				AD291D281CA9286C008CAFB1 /* CreateAccount */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
@@ -1331,6 +1361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */,
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
 				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
@@ -1500,6 +1531,7 @@
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
+				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */,
@@ -1539,6 +1571,7 @@
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
+				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,

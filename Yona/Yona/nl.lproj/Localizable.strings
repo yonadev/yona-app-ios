@@ -32,6 +32,9 @@
 
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
 
+"user-override" = "Dit mobiele nummer %@ is al geregistreerd bij Yona. Wilt u hetzelfde nummer opnieuw registreren? (Let op: Alle gegevens geassocieerd met dit nummer zal worden verwijderd. Als je een ander apparaat wilt toevoegen kunt u teruggaan en klik op ‘ Inloggen’";
+
+
 "passcode.user.headerTitle" = "Account is aangemaakt";
 "passcode.user.UnlockPincode" = "Ontgrendeld PIN";
 "passcode.user.infomessage" = "Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. Stel je pincode hieronder in.";
@@ -94,3 +97,10 @@
 "screendesc2" = "Je doelen delen met de persoon die je vertrouwt";
 "screendesc3" = "Grenzen afspreken en daar anderen in betrekken";
 "screendesc4" = "Controle houden over de tijd die je online bent";
+
+"change-pin" = "Wijzig pincode";
+"privacy" = "Privacy";
+"add-device" = "Device toevoegen";
+"delete-user" = "Unsubscribe";
+"deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
+

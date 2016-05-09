@@ -55,7 +55,8 @@ class Manager: NSObject {
      - parameter NSURLRequest, the request created to be executed by makeRequest
      */
     func setupRequest(path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: httpMethods) throws -> NSURLRequest {
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
+        let urlString = path.hasPrefix(EnvironmentManager.baseUrlString()) ? path : EnvironmentManager.baseUrlString() + path
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         
 

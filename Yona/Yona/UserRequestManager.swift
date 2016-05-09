@@ -58,10 +58,10 @@ class UserRequestManager{
     func postUser(body: BodyDataDictionary, confirmCode: String?, onCompletion: APIUserResponse) {
         //create a password for the user
         KeychainManager.sharedInstance.createYonaPassword()
-        var path = YonaConstants.environments.testUrl + YonaConstants.commands.users //not in user body need to hardcode
+        var path = YonaConstants.commands.users //not in user body need to hardcode
         //if user lost phone then we need to set a confirm code
         if let confirmCodeUnwrap = confirmCode {
-            path = YonaConstants.environments.testUrl + YonaConstants.commands.users + YonaConstants.commands.userRequestOverrideCode + confirmCodeUnwrap
+            path = YonaConstants.commands.users + YonaConstants.commands.userRequestOverrideCode + confirmCodeUnwrap
         }
         genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: body, onCompletion: onCompletion)
     }
