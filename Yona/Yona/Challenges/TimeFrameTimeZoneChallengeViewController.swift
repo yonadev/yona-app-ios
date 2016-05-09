@@ -56,7 +56,6 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     private func configureDatePickerView() {
         datePickerView = YonaCustomDatePickerView().loadDatePickerView()
         picker = datePickerView as? YonaCustomDatePickerView
-        
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
             
@@ -71,6 +70,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
                 }
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
+            } else if self.picker?.cancelButtonTitle.title == "Cancel" {
+                if self.activeIndexPath != nil { } else {
+                    self.zonesArrayString.removeLast()
+                    self.zonesArrayDate.removeLast()
+                }
             }
         }) { doneValue in
             self.configureTimeZone(doneValue)
@@ -168,7 +172,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             if (activeIndexPath != nil) {
                 picker?.hideShowDatePickerView(isToShow: true).configureWithTime(zonesArrayDate[(self.activeIndexPath?.row)!].toDate!)
             } else {
-                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate())
+                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
             }
             
             picker?.pickerTitleLabel("To")
@@ -320,13 +324,14 @@ extension TimeFrameTimeZoneChallengeViewController {
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         let df = NSDateFormatter()
         df.dateFormat = "HH:mm"
+        let formattedTime = df.stringFromDate(NSDate().dateRoundedDownTo15Minute())
         
-        zonesArrayString.append("\(df.stringFromDate(NSDate()))-\(df.stringFromDate(NSDate()))")
+        zonesArrayString.append("\(formattedTime)-\(formattedTime)")
         zonesArrayDate = zonesArrayString.converToDate()
         isFromButton = true
         picker?.pickerTitleLabel("From")
         picker?.okButtonTitle.title = "Next"
-        picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate())
+        picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
         picker?.datePicker.minuteInterval = timeInterval
     }
     
