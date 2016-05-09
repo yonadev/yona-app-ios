@@ -175,6 +175,10 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
-
+"change-pin" = "Change PIN";
+"privacy" = "Privacy";
+"add-device" = "Add device";
+"delete-user" = "Unsubscribe";
+"deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
 
 
