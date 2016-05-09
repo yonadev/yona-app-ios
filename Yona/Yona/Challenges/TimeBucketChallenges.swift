@@ -172,7 +172,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     
     private func timeBucketData(goal: GoalType) {
         
-        APIServiceManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
+        GoalsRequestManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
             if success {
                 if let goalsUnwrap = goals {
                         dispatch_async(dispatch_get_main_queue(), {

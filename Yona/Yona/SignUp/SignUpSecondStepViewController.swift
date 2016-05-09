@@ -162,7 +162,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 
-                APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
+                UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
                     } else if code == YonaConstants.serverCodes.errorUserExists {

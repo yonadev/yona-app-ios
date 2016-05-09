@@ -58,7 +58,7 @@ enum userRequestTypes{
     case postUser
     case deleteUser
     case getUser
-    case putUser
+    case updateUser
     case confirmMobile
     case resendMobileConfirmCode
 }
@@ -70,6 +70,7 @@ enum responseCodes: Int{
     case connectionFail499 = 499
     case serverProblem500 = 500
     case serverProblem599 = 599
+    case internalErrorCode = 600
 }
 
 enum responseMessages: String{

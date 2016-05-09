@@ -267,7 +267,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                                                YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
                 Loader.Show(delegate: self)
-                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
+                GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
                     if success {
                         if let goalUnwrap = goal {
@@ -301,7 +301,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 ];
                 Loader.Show(delegate: self)
                 
-                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
@@ -336,7 +336,7 @@ extension TimeFrameTimeZoneChallengeViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
