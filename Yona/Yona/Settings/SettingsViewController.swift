@@ -12,12 +12,15 @@ class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     @IBOutlet var gradientView: GradientView!
+    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().statusBarHidden = true
-        settingsArray = [ "Wijzig pincode", "Privacy", "Device toevoegen"]
+        settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
+        
+  
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         dispatch_async(dispatch_get_main_queue(), {
@@ -32,7 +35,27 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    private func callAddDeviceMethod() {
+        NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
+            if success {
+                let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
+                if let addDeviceCode = addDeviceCode {
+                    self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
+                }
+            } else {
+                if let message = message {
+                    self.displayAlertMessage("", alertDescription: message)
+                }
+            }
+        })
+    }
+ 
+    private func callUnSubscribeMethod() {
+        //TODO: UnSubscribe API InProgress
+    }
+}
+
+extension SettingsViewController:UITableViewDelegate {
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -53,16 +76,19 @@ class SettingsViewController: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 2 {
-            NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
-                if success {
-                    let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
-                    if let addDeviceCode = addDeviceCode {
-                        self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
-                    }
-                } else {
-                    if let message = message {
-                        self.displayAlertMessage("", alertDescription: message)
-                    }
+            callAddDeviceMethod()
+        }
+        else if indexPath.row == 3 {
+            
+            self.displayAlertOption(NSLocalizedString("delete-user", comment: ""), alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
+                switch buttonPressed{
+                case alertButtonType.OK:
+                    self.callUnSubscribeMethod()
+
+                    
+                case alertButtonType.cancel:
+                    break
+                    //do nothing or send back to start of signup?
                 }
             })
         }
