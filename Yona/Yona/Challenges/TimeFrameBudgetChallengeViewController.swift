@@ -132,7 +132,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
                 Loader.Show(delegate:self)
-                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
+                GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
                     })
@@ -163,7 +163,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
                 Loader.Show(delegate:self)
-                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     dispatch_async(dispatch_get_main_queue(), {
                         Loader.Hide(self)
                     })
@@ -200,7 +200,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate:self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 dispatch_async(dispatch_get_main_queue(), {
                     Loader.Hide(self)
                 })

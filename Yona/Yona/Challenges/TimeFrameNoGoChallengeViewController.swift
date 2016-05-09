@@ -86,7 +86,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
+            GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
                     if let goalUnwrap = goal {
@@ -116,7 +116,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {

@@ -41,7 +41,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -53,7 +53,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
             print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
             print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
             //confirm mobile
-            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
+            UserRequestManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
                 if success {
                     //create a new device request
                     NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, code, deviceCode) in
@@ -84,7 +84,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -96,7 +96,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
             print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
             print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
             //confirm mobile
-            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
+            UserRequestManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
                 if success {
                     //create a new device request, get the messages back and device passcode created by server
                     NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, serverCode, addDevicePassCode) in
@@ -132,7 +132,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
@@ -144,7 +144,7 @@ class NewDeviceAPIServiceTests: XCTestCase {
             print("PASSWORD" + KeychainManager.sharedInstance.getYonaPassword()!)
             print("MOBILE NUMBER: +31343" + String(randomPhoneNumber))
             //confirm mobile
-            APIServiceManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
+            UserRequestManager.sharedInstance.confirmMobileNumber(bodyConfirm){ (success, message, server) in
                 if success {
                     //create a new device request, get the messages back and device passcode created by server
                     NewDeviceRequestManager.sharedInstance.putNewDevice { (success, message, serverCode, addDevicePassCode) in

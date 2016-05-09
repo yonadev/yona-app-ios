@@ -96,7 +96,7 @@ struct YonaConstants {
         static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
         static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
         static let OK = "OK"
-        static let noConnection = "NoConnection"
+        static let networkConnectionProblem = "NetworkConnectionProblem"
         static let noJsonReturned = "JsonNil"
         static let FailedToRetrieveOTP = "RetrievingOTPFail"
         static let FailedToRetrieveConfirmMobile = "RetrievingConfirmMobileFail"
@@ -108,9 +108,11 @@ struct YonaConstants {
     
     struct serverMessages{
         static let timeoutRequest = "The request timed out, server problem"
-        static let needToGetSomeActivities = "Call get activities to populate array"
         static let OK = "Everything is OK"
-        static let noConnection = "No network connection"
+        static let networkConnectionProblem = "Network connection problem"
+        static let serverProblem = "Server problem"
+
+        static let needToGetSomeActivities = "Call get activities to populate array"
         static let noJsonReturned = "No JSON returned from request"
         static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
         static let FailedToRetrieveGetUserDetails = "Failed to retrieve details for user"
@@ -118,6 +120,11 @@ struct YonaConstants {
         static let FailedToRetrieveUserDetailsForDeleteUser = "Failed to retrieve the details to delete the user"
         static let FailedToRetrieveConfirmMobile = "Failed to retrieve details for confirm mobile"
         static let FailedToRetrieveGetUserGoals = "Failed to get the users goals"
+        static let FailedToGetActivityLink = "Failed to get activity Link"
+        static let FailedToGetResetPinLink = "Failed to get reset pin link"
+        static let FailedToGetResetPinVerifyLink = "Failed to get pin verify link"
+        static let FailedToGetResetPinClearLink = "Failed to get pin clear link"
+        static let FailedToGetDeviceRequestLink = "Failed to get device request  link"
         static let CannotRemoveMandatoryGoal = "Cannot remove a mandatory goal"
         static let NoEditLinkCannotRemoveMandatoryGoal = "No Edit Link, because this is a mandatory goal and you cannot remove it!"
 

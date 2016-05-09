@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
      */
     private func callUnSubscribeMethod() {
         //TODO: UnSubscribe API InProgress
-        APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+        UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
                     if let welcome = R.storyboard.welcome.welcomeStoryboard {

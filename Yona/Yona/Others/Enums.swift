@@ -58,16 +58,26 @@ enum userRequestTypes{
     case postUser
     case deleteUser
     case getUser
-    case putUser
+    case updateUser
     case confirmMobile
     case resendMobileConfirmCode
 }
 
 enum responseCodes: Int{
     case ok200 = 200
-    case ok204 = 204
-    case timeoutRequest = 408
-    case timeoutRequest2 = -1001
+    case ok399 = 399
+    case connectionFail400 = 400
+    case connectionFail499 = 499
+    case serverProblem500 = 500
+    case serverProblem599 = 599
+    case internalErrorCode = 600
+    case yonaErrorCode = 700
+}
+
+enum responseMessages: String{
+    case ok = "OK"
+    case connectionFail = "Connection Problem"
+    case serverProblem = "Server issue"
 }
 
 enum timeBucketTabNames: String{

@@ -62,7 +62,7 @@ extension LoginSignupValidationMasterView {
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
-                APIServiceManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
+                PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
                     if success {
                         self.pinResetButton.hidden = false
                     }
@@ -79,7 +79,7 @@ extension LoginSignupValidationMasterView {
     func pinResetTapped() {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
-            APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
+            PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
                         print(pincode!)

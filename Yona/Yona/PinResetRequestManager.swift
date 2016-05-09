@@ -8,7 +8,14 @@
 
 import Foundation
 //MARK: - New Device Requests APIService
-extension APIServiceManager {
+class PinResetRequestManager {
+    
+    let APIService = APIServiceManager.sharedInstance
+    let APIUserRequestManager = UserRequestManager.sharedInstance
+
+    static let sharedInstance = PinResetRequestManager()
+    
+    private init() {}
     
     /**
      Generic method to request, verify or clear pin requests
@@ -19,50 +26,48 @@ extension APIServiceManager {
      - parameter onCompletion: APIPinResetResponse, Sends back the pin ISO code (optional) and also the server messages and success or fail of the request
      */
     private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
-        self.getUser{ (success, message, code, user) in
+
+        switch pinRequestType
+        {
+        case .resetRequest:
+            if let path = APIUserRequestManager.newUser?.requestPinResetLink {
+                APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                    if success {
+                        if let jsonUnwrap = json,
+                            let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
+                            onCompletion(true, pincode, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                        }
+                    } else {
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                    }
+                }
+            } else {
+                onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode))
+            }
+        case .verifyRequest:
+            if let path = APIUserRequestManager.newUser?.requestPinVerifyLink{
+                APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                    if success {
+                        onCompletion(true, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                    } else {
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                    }
+                }
+            } else {
+                onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
+            }
             
-            switch pinRequestType
-            {
-            case .resetRequest:
-                if let path = user?.requestPinResetLink {
-                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                        if success {
-                            if let jsonUnwrap = json,
-                                let pincode = jsonUnwrap[YonaConstants.jsonKeys.pinResetDelay] as? PinCode {
-                                onCompletion(true, pincode , self.serverMessage, self.serverCode)
-                            }
-                        } else {
-                            onCompletion(false, nil , self.serverMessage, self.serverCode)
-                        }
+        case .clearRequest:
+            if let path = APIUserRequestManager.newUser?.requestPinClearLink{
+                APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                    if success {
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                    } else {
+                        onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                     }
-                } else {
-                    onCompletion(false, nil , self.serverMessage, self.serverCode)
                 }
-            case .verifyRequest:
-                if let path = user?.requestPinVerifyLink{
-                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                        if success {
-                            onCompletion(true , nil, self.serverMessage, self.serverCode)
-                        } else {
-                            onCompletion(false , nil, self.serverMessage, self.serverCode)
-                        }
-                    }
-                } else {
-                    onCompletion(false, nil , self.serverMessage, self.serverCode)
-                }
-                
-            case .clearRequest:
-                if let path = user?.requestPinClearLink{
-                    self.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                        if success {
-                            onCompletion(true , nil, self.serverMessage, self.serverCode)
-                        } else {
-                            onCompletion(false , nil, self.serverMessage, self.serverCode)
-                        }
-                    }
-                } else {
-                    onCompletion(false, nil , self.serverMessage, self.serverCode)
-                }
+            } else {
+                onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
             }
         }
     }

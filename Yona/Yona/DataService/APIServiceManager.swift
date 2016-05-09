@@ -14,8 +14,13 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    var serverMessage: ServerMessage?
-    var serverCode: ServerCode?
+    func determineErrorCode(error: NSError?) -> String {
+        if let error = error {
+            return error.code == responseCodes.yonaErrorCode.rawValue ? error.domain: String(error.code)
+        } else {
+            return "No Error"
+        }
+    }
     
     private init() {}
     
@@ -50,68 +55,26 @@ class APIServiceManager {
      - parameter code: Int, the http response code we need to check (200-204 success, other is fail
      - parameter none
      */
-    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) {
+    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) -> requestResult{
         //check if json is empty
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
-                self.serverMessage = message
                 if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                    self.serverCode = serverCode
+                    return requestResult.init(success: false, errorMessage: nil, errorCode: responseCodes.yonaErrorCode.rawValue, serverMessage: message, serverCode: serverCode)
                 }
         } else if let error = error {
-            switch error.code {
-            case responseCodes.timeoutRequest.rawValue:
-                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
-            case responseCodes.timeoutRequest2.rawValue:
-                self.serverMessage = YonaConstants.serverMessages.timeoutRequest
-            default:
-                self.serverMessage = error.description
-                break
+            if case responseCodes.connectionFail400.rawValue ... responseCodes.connectionFail499.rawValue = error.code {
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
+            } else if case -1103 ... -998 = error.code {
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
+            }
+            else if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
+                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.serverProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
+            } else {
+                return requestResult.init(success: false, errorMessage: error.description, errorCode: error.code, serverMessage: nil, serverCode: nil)
+
             }
         }
-
+        return requestResult.init(success: true, errorMessage:nil, errorCode: nil, serverMessage: nil, serverCode: nil)
     }
-
-    /**
-     Check if there is an active network connection for the device
-     
-     - parameter Network connetion status (Bool)
-     */
-    func isConnectedToNetwork() -> Bool {
-        
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }
-        var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
-            return false
-        }
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        return (isReachable && !needsConnection)
-    }
-    
-    /**
-     Checks the network connection and sets the server messages and codes
-     
-     - parameter onCompletion: APIResponse, returns success connected to network or fail and server messages
-     */
-    func APIServiceCheck(onCompletion: APIResponse) {
-        //check for network connection
-        guard isConnectedToNetwork() else {
-            //if it fails then send messages back saying no connection
-            dispatch_async(dispatch_get_main_queue(), {
-                onCompletion(false, YonaConstants.serverMessages.noConnection, YonaConstants.serverCodes.noConnection)
-            })
-            return
-        }
-        //if not then return success
-        dispatch_async(dispatch_get_main_queue(), {
-            onCompletion(true, self.serverMessage, self.serverCode)
-        })
-    }
-
 }

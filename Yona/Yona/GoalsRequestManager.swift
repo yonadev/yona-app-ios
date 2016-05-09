@@ -15,7 +15,14 @@ private var newGoal: Goal?
 private var goals:[Goal] = [] //Array returning all the goals returned by getGoals
 
 //MARK: - Goal APIService
-extension APIServiceManager {
+class GoalsRequestManager {
+    
+    let APIService = APIServiceManager.sharedInstance
+    let APIUserRequestManager = UserRequestManager.sharedInstance
+    
+    static let sharedInstance = GoalsRequestManager()
+    
+    private init() {}
     
     /**
      Helper method for UI to returns the size of the goals arrays, so challenges know how many goals there
@@ -52,8 +59,9 @@ extension APIServiceManager {
      
      - parameter goalType: GoalType, The goaltype that we require the array for
      - parameter onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
+     - return [Goal] and array of goals
      */
-    private func sortGoalsIntoArray(goalType: GoalType, onCompletion: APIGoalResponse){
+    private func sortGoalsIntoArray(goalType: GoalType) -> [Goal]{
         budgetGoals = []
         timezoneGoals = []
         noGoGoals = []
@@ -74,11 +82,11 @@ extension APIServiceManager {
         //which array shall we send back?
         switch goalType {
         case GoalType.BudgetGoalString:
-            onCompletion(true, serverMessage, serverCode, nil, budgetGoals, nil)
+            return budgetGoals
         case GoalType.TimeZoneGoalString:
-            onCompletion(true, serverMessage, serverCode, nil, timezoneGoals, nil)
+            return timezoneGoals
         case GoalType.NoGoGoalString:
-            onCompletion(true, serverMessage, serverCode, nil, noGoGoals, nil)
+            return noGoGoals
         }
     }
     
@@ -92,10 +100,10 @@ extension APIServiceManager {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
                 self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
-                    self.sortGoalsIntoArray(goalType, onCompletion: onCompletion)
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.sortGoalsIntoArray(goalType), error)
                 }
             } else {
-                onCompletion(false, message, serverCode, nil, nil, error)
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
             }
         }
     }
@@ -138,10 +146,10 @@ extension APIServiceManager {
                 //get the path to get all the goals from user object
                 if let path = goalLinkAction {
                     //do request with specific httpmethod
-                    self.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, err in
+                    self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
                         if let json = json {
                             guard success == true else {
-                                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                                 return
                             }
                             
@@ -156,28 +164,16 @@ extension APIServiceManager {
                                         goals.append(newGoal!)
                                     }
                                 }
-                                onCompletion(true, self.serverMessage, self.serverCode, nil, goals, err)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, goals, error)
                             } else { //if we just get one goal, for post goal, just that goals is returned so send that back
                                 newGoal = Goal.init(goalData: json, activities: activities!)
-                                onCompletion(true, self.serverMessage, self.serverCode, newGoal, nil, err)
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newGoal, nil, error)
                             }
-                            
-                        } else if httpmethodParam == httpMethods.delete {
-                            onCompletion(true, self.serverMessage, self.serverCode, nil, nil, err)
-                        } else {
-                            //response from request failed, json is nil
-                            onCompletion(false, self.serverMessage, self.serverCode, nil, nil, err)
                         }
-
                     })
-                } else {
-                    //response from request failed, json is nil
-                    onCompletion(false, self.serverMessage, self.serverCode, nil, nil, nil)
                 }
-                
-            } else {
-                onCompletion(false, self.serverMessage, self.serverCode, nil, nil, error)
             }
+            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
         }
     }
     
@@ -188,20 +184,15 @@ extension APIServiceManager {
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func getUserGoals(activities: [Activities], onCompletion: APIGoalResponse) {
-        //success so get the user
-        self.getUser{ (success, message, code, user) in
-            if success {
-                self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
-                    if success {
-                        onCompletion(true, message, server, nil, goals, error)
-                    } else {
-                        onCompletion(false, message, server, nil, nil, error)
-                    }
+        //success so get the user?
+            self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: APIUserRequestManager.newUser?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
+                if success {
+                    onCompletion(true, message, server, nil, goals, error)
+                } else {
+                    onCompletion(false, message, server, nil, nil, error)
                 }
-            } else {
-                onCompletion(false, message, code, nil, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
-        }
+        
     }
     
     /**
@@ -212,17 +203,11 @@ extension APIServiceManager {
      */
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
         //success so get the user
-        self.getUser{ (success, message, code, user) in
+        self.goalsHelper(httpMethods.post, body: body, goalLinkAction: APIUserRequestManager.newUser?.getAllGoalsLink) { (success, message, server, goal, goals, error) in
             if success {
-                self.goalsHelper(httpMethods.post, body: body, goalLinkAction: user?.getAllGoalsLink) { (success, message, server, goal, goals, error) in
-                    if success {
-                        onCompletion(true, message, server, goal, nil, error)
-                    } else {
-                        onCompletion(false, message, server, goal, nil, error)
-                    }
-                }
+                onCompletion(true, message, server, goal, nil, error)
             } else {
-                onCompletion(false, message, code, nil, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+                onCompletion(false, message, server, nil, nil, error)
             }
         }
     }
@@ -239,7 +224,7 @@ extension APIServiceManager {
             if success {
                 onCompletion(true, message, server, goal, nil, error)
             } else {
-                onCompletion(false, message, server, goal, nil, error)
+                onCompletion(false, message, server, nil, nil, error)
             }
         }
     }
@@ -255,7 +240,7 @@ extension APIServiceManager {
             if success {
                 onCompletion(true, message, server, goal, nil, error)
             } else {
-                onCompletion(false, message, server, goal, nil, error)
+                onCompletion(false, message, server, nil, nil, error)
             }
         }
     }
