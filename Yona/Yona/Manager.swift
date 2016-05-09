@@ -64,7 +64,7 @@ class Manager: NSObject {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
     
-        request.timeoutInterval = 2
+        request.timeoutInterval = 30
         
         request.HTTPMethod = httpMethod.rawValue
         
@@ -77,7 +77,7 @@ class Manager: NSObject {
 extension Manager {
     
     /**
-     This is a generic method that can make any request to OMBD API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
+     This is a generic method that can make any request to YONA API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
      
      - parameter path: String, The required path to the API service that the user wants to access
      - parameter body: BodyDataDictionary?, The data dictionary of [String: AnyObject] type

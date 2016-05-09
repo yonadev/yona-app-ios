@@ -91,33 +91,44 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
      */
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
-        if let path = APIUserRequestManager.newUser?.activityCategoryLink {
-            self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, error in
-                if let json = json {
-                    guard success == true else {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                        return
-                    }
-                    //reset the array so start with new set of activities
-                    self.activities = []
-                    if let embedded = json[YonaConstants.jsonKeys.embedded],
-                        let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaActivityCategories] as? NSArray{
-                        for activity in embeddedActivities {
-                            if let activity = activity as? BodyDataDictionary {
-                                self.newActivity = Activities.init(activityData: activity)
-                                self.activities.append(self.newActivity!)
+        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
+            if success {
+                if let path = user?.activityCategoryLink {
+                    if self.activities.count == 0 {
+                        self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, error in
+                            if let json = json {
+                                guard success == true else {
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                    return
+                                }
+                                //reset the array so start with new set of activities
+                                self.activities = []
+                                if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                    let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaActivityCategories] as? NSArray{
+                                    for activity in embeddedActivities {
+                                        if let activity = activity as? BodyDataDictionary {
+                                            self.newActivity = Activities.init(activityData: activity)
+                                            self.activities.append(self.newActivity!)
+                                        }
+                                    }
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.activities, error)
+                                }
+                            } else {
+                                //response from request failed
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.activities, error)
                             }
-                        }
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.activities, error)
+                        })
+                    } else {
+                        onCompletion(true, nil, nil, self.activities, nil) //we already have gotten the activities
                     }
                 } else {
                     //response from request failed
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.activities, error)
+                    onCompletion(false, YonaConstants.serverMessages.FailedToGetActivityLink, String(responseCodes.internalErrorCode), nil, nil)
                 }
-            })
-        } else {
-            //response from request failed
-            onCompletion(false, YonaConstants.serverMessages.FailedToGetActivityLink, String(responseCodes.internalErrorCode), nil, nil)
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, nil)
+            }
         }
     }
     
@@ -128,21 +139,28 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
      */
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
-        if let path = APIUserRequestManager.newUser?.activityCategoryLink {
-            //if the newActivites object has been filled then we can get the link to display activity
-            self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get) { success, json, error in
-                if let json = json {
-                    guard success == true else {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                        return
+        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
+            if success {
+                if let path = user?.activityCategoryLink {
+                    //if the newActivites object has been filled then we can get the link to display activity
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            print(json)
+                            self.newActivity = Activities.init(activityData: json)
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newActivity, error)
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
                     }
-                    print(json)
-                    self.newActivity = Activities.init(activityData: json)
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newActivity, error)
-                } else {
-                    //response from request failed
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                 }
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, nil)
             }
         }
     }

@@ -96,7 +96,6 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                         self.deleteGoalButton.selected = true
                         Loader.Hide(self)
                         self.navigationController?.popViewControllerAnimated(true)
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
                     })
                     
                 } else {
