@@ -70,14 +70,23 @@ enum responseCodes: Int{
     case connectionFail499 = 499
     case serverProblem500 = 500
     case serverProblem599 = 599
-    case internalErrorCode = 600
-    case yonaErrorCode = 700
+    case yonaErrorCode = 600
+    case internalErrorCode = 700
+}
+
+enum errorDomains: String {
+    case yonaErrorDomain = "YONA.Domain"
+    case networkErrorDomain = "Network.Domain"
+    case successDomain = "Success"
+    case internalErrorDomain = "App error"
 }
 
 enum responseMessages: String{
-    case ok = "OK"
-    case connectionFail = "Connection Problem"
-    case serverProblem = "Server issue"
+    case networkConnectionProblem = "Network connection problem"
+    case serverProblem = "Server problem"
+    case YonaError = "You are not Alone! Something went wrong!"
+    case internalErrorMessage = "App error"
+    case success = "Success"
 }
 
 enum timeBucketTabNames: String{
@@ -85,4 +94,3 @@ enum timeBucketTabNames: String{
     case timeZone = "TimeZone"
     case noGo = "NoGo"
 }
-

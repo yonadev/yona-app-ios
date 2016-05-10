@@ -188,8 +188,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                                             NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                                             self.sendToSMSValidation()
                                         } else {
-                                            if let message = message {
-                                                self.displayAlertMessage(message, alertDescription: "")
+                                            if let message = message,
+                                                let code = code {
+                                                self.displayAlertMessage(code, alertDescription: message)
                                             }
                                         }
                                     }
@@ -204,8 +205,9 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
                             Loader.Hide()
-                            if let alertMessage = message {
-                                self.displayAlertMessage(alertMessage, alertDescription: "")
+                            if let alertMessage = message,
+                                let code = code {
+                                self.displayAlertMessage(code, alertDescription: alertMessage)
                             }
                         }
                     }

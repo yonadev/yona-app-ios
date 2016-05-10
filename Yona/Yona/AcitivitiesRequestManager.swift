@@ -119,15 +119,15 @@ class ActivitiesRequestManager {
                             }
                         })
                     } else {
-                        onCompletion(true, nil, nil, self.activities, nil) //we already have gotten the activities
+                        onCompletion(true, nil, nil, self.activities, YonaConstants.YonaErrorTypes.Success) //we already have gotten the activities
                     }
                 } else {
                     //response from request failed
-                    onCompletion(false, YonaConstants.serverMessages.FailedToGetActivityLink, String(responseCodes.internalErrorCode), nil, nil)
+                    onCompletion(false, YonaConstants.serverMessages.FailedToGetActivityLink, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.FailedToGetActivityLink)
                 }
             } else {
                 //response from request failed
-                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, nil)
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
         }
     }
@@ -160,7 +160,7 @@ class ActivitiesRequestManager {
                 }
             } else {
                 //response from request failed
-                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, nil)
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
         }
     }

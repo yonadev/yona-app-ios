@@ -16,19 +16,11 @@ typealias AddDeviceCode = String
 struct YonaConstants {
     
     struct YonaErrorTypes {
-        static let SerialiseRequestBodyFail = NSError(domain: "Serializing the body for a request failed", code: 1, userInfo: nil)
-        static let NSURLRequestSetupFail = NSError(domain: "NSURL Request failed to setup", code: 2, userInfo: nil)
-        static let NetworkFail = NSError.init(domain: "Network Fail", code: 3, userInfo: nil)
-        static let UserRequestFailed = NSError.init(domain: "Failed to get user", code: 4, userInfo: nil)
-        static let UserPasswordRequestFail = NSError.init(domain: "Failed to get user password", code: 5, userInfo: nil)
-        static let JsonObjectSerialisationFail = NSError.init(domain: "JSON Object serialisation failed", code: 6, userInfo: nil)
-        static let APILinkRetrievalFail = NSError.init(domain: "Getting link for API failed", code: 7, userInfo: nil)
+        static let FailedToGetActivityLink = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToGetActivityLink ?? "Unknown Error"])
+        static let UserRequestFailed = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveGetUserDetails ?? "Unknown Error"])
+        static let UserPasswordRequestFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrievePassword ?? "Unknown Error"])
+        static let Success = NSError.init(domain: errorDomains.successDomain.rawValue, code: responseCodes.ok200.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.OK ?? "Unknown Error"])
     }
-    
-//    struct environments {
-//        static let testUrl = "http://85.222.227.142/" //test server
-//        static let production = "http://85.222.227.84/"
-//    }
     
     struct commands {
         static let users = "users/"
@@ -114,6 +106,7 @@ struct YonaConstants {
 
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let noJsonReturned = "No JSON returned from request"
+        static let FailedToRetrievePassword = "Failed to get user password"
         static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
         static let FailedToRetrieveGetUserDetails = "Failed to retrieve details for user"
         static let FailedToRetrieveUpdateUserDetails = "Failed to get the details to update the user"

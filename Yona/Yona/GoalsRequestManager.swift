@@ -16,6 +16,7 @@ class GoalsRequestManager {
     private var noGoGoals:[Goal] = [] //Array returning no go goals
     
     private var newGoal: Goal?
+    private var allTheGoals:[Goal] = [] //Array returning all the goals returned by getGoals
     private var goalsReturned:[Goal] = [] //Array returning all the goals returned by getGoals
 
     let APIService = APIServiceManager.sharedInstance
@@ -102,6 +103,7 @@ class GoalsRequestManager {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
                 switch goalType {
+                    //if the goals arrays have been initialised
                 case .BudgetGoalString:
                     if self.budgetGoals.count > 0{
                         onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.budgetGoals, error)
@@ -179,15 +181,15 @@ class GoalsRequestManager {
                                         if let goal = self.newGoal {
                                             self.goalsReturned.append(goal)
                                         }
-                                        
                                     }
                                 }
+                                self.allTheGoals = self.goalsReturned
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.goalsReturned, error)
                             } else { //if we just get one goal, for post goal, just that goals is returned so send that back
                                 self.newGoal = Goal.init(goalData: json, activities: activities!)
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newGoal, nil, error)
                             }
-                        } else {
+                        } else if httpmethodParam == .delete{
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                         }
                     })
@@ -217,7 +219,7 @@ class GoalsRequestManager {
                 }
             } else {
                 //response from request failed
-                onCompletion(false, message, code, nil, nil, nil)
+                onCompletion(false, YonaConstants.YonaErrorTypes.UserRequestFailed.localizedDescription, self.APIService.determineErrorCode(YonaConstants.YonaErrorTypes.UserRequestFailed), nil, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
         }
     }

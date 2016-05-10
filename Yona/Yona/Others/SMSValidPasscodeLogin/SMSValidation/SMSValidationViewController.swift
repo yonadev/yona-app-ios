@@ -107,8 +107,9 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                     self.codeInputView.clear()
                 }  else {
-                    if let message = message {
-                        self.displayAlertMessage(message, alertDescription: "")
+                    if let message = message,
+                        let code = code {
+                        self.displayAlertMessage(code, alertDescription: message)
                     }
                 }
             }

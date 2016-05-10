@@ -14,14 +14,6 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    func determineErrorCode(error: NSError?) -> String {
-        if let error = error {
-            return error.code == responseCodes.yonaErrorCode.rawValue ? error.domain: String(error.code)
-        } else {
-            return "No Error"
-        }
-    }
-    
     private init() {}
     
     /**
@@ -52,29 +44,52 @@ class APIServiceManager {
      Setups up the messages from the server so the UI knows what is going wrong or right
      
      - parameter json:BodyDataDictionary?, the body of the messages from server, if there is an error then there is a message or code key in response
-     - parameter code: Int, the http response code we need to check (200-204 success, other is fail
-     - parameter none
+     - parameter error: NSError?, the http response code we need to check (200-204 success, other is fail
+     - return requestResult A struct used for error requests containing our codes and messages of the error
      */
     func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) -> requestResult{
-        //check if json is empty
+        //If there is a json response and we have the key Error then we know there is and
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
-                if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                    return requestResult.init(success: false, errorMessage: nil, errorCode: responseCodes.yonaErrorCode.rawValue, serverMessage: message, serverCode: serverCode)
-                }
-        } else if let error = error {
-            if case responseCodes.connectionFail400.rawValue ... responseCodes.connectionFail499.rawValue = error.code {
-                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
-            } else if case -1103 ... -998 = error.code {
-                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.networkConnectionProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
+            if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
+                return requestResult.init(success: false, errorMessage: message, errorCode: responseCodes.yonaErrorCode.rawValue, domain: serverCode)
             }
-            else if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
-                return requestResult.init(success: false, errorMessage: YonaConstants.serverMessages.serverProblem, errorCode: error.code, serverMessage: nil, serverCode: nil)
+        } else if let error = error {
+            //for any error between 500 to 599 return server problem, else return network error
+            if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
+                return requestResult.init(success: false, errorMessage: responseMessages.serverProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
             } else {
-                return requestResult.init(success: false, errorMessage: error.description, errorCode: error.code, serverMessage: nil, serverCode: nil)
-
+                //if there is possibly any other just return the systems error
+                return requestResult.init(success: false, errorMessage: responseMessages.networkConnectionProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
             }
         }
-        return requestResult.init(success: true, errorMessage:nil, errorCode: nil, serverMessage: nil, serverCode: nil)
+        //success so return that with a success domain
+        return requestResult.init(success: true, errorMessage: responseMessages.success.rawValue, errorCode: responseCodes.ok200.rawValue, domain: errorDomains.successDomain.rawValue)
     }
+    
+    
+
+    /**
+     This determines the title of the error from the error code so the user is presented this in a friendly way
+     
+     - parameter error: NSError? the error object
+     - return The error string from the error code, this will either be a Yona error, so something failed on their side to do with the requets or a network problem
+     */
+    func determineErrorCode(error: NSError?) -> String {
+        var errorString = ""
+        if case responseCodes.yonaErrorCode.rawValue = error!.code {
+            //if we have a yona error then it's error code string will be it's domain which is passed back from YONA and is used to determine how UI works
+            errorString = (error?.domain)!
+        } else if case responseCodes.internalErrorCode.rawValue = error!.code {
+            errorString = responseMessages.internalErrorMessage.rawValue
+        } else if case responseCodes.connectionFail400.rawValue ... responseCodes.serverProblem599.rawValue = error!.code {
+            errorString = responseMessages.networkConnectionProblem.rawValue
+        } else if case -1103 ... -998 = error!.code {
+            errorString = responseMessages.networkConnectionProblem.rawValue
+        }else {
+            errorString = responseMessages.success.rawValue
+        }
+        return errorString
+    }
+    
 }

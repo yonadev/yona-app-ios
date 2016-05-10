@@ -20,23 +20,6 @@ typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
 
-struct requestResult {
-    var success: Bool
-    var errorMessage: String?
-    var errorCode: Int?
-    var serverMessage: String?
-    var serverCode: String?
-    
-    init(success: Bool, errorMessage: String?, errorCode: Int?, serverMessage: String?, serverCode: String?)
-    {
-        self.success = success
-        self.errorMessage = errorMessage
-        self.errorCode = errorCode
-        self.serverMessage = serverMessage
-        self.serverCode = serverCode
-    }
-}
-
 class Manager: NSObject {
 
     static let sharedInstance = Manager()
@@ -102,19 +85,20 @@ extension Manager {
                         do{
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                             let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error)
+                            let userInfo = [
+                                NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
+                            ]
+                            let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+                            
                             if requestResult.success == false{
                                 //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
-                                let userInfo = [
-                                    NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.errorMessage ??  "Unknown Error"
-                                ]
-                                
-                                let omdbError = NSError(domain: requestResult.serverCode ?? "None", code: requestResult.errorCode ?? responseCodes.yonaErrorCode.rawValue, userInfo: userInfo)
+
                                 dispatch_async(dispatch_get_main_queue()) {
                                     onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                                 }
                             } else {
                                 dispatch_async(dispatch_get_main_queue()) {
-                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, nil)
+                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                                 }
                             }
                         } catch let error as NSError{
@@ -125,15 +109,12 @@ extension Manager {
                         }
                     } else {
                         let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                        //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
                         let userInfo = [
-                            NSLocalizedDescriptionKey: requestResult.serverMessage ?? requestResult.errorMessage ??  "Unknown Error"
+                            NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
                         ]
-                        let omdbError = NSError(domain: requestResult.serverCode ?? "None", code: requestResult.errorCode ?? responseCodes.yonaErrorCode.rawValue, userInfo: userInfo)
-                        
-                        //if there is no data but successful request
-                        if requestResult.success {
-                            onCompletion(requestResult.success, nil, omdbError)
-                        } else {//no data because request failed pass back error
+                        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+                        dispatch_async(dispatch_get_main_queue()) {
                             onCompletion(requestResult.success, nil, omdbError)
                         }
                     }
