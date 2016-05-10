@@ -27,7 +27,7 @@ class AdminRequestManager {
      */
     func adminRequestOverride(userBody: BodyDataDictionary, onCompletion: APIResponse) {
         if let mobileNumber = userBody["mobileNumber"] as? String {
-                let path = YonaConstants.environments.testUrl + YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
+                let path = YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
                 //not in user body need to hardcode
                 self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
                     onCompletion(success, self.APIService.serverMessage, self.APIService.serverCode)

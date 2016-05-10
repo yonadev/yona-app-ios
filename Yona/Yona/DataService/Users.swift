@@ -150,7 +150,7 @@ struct Users{
             }
             
             //for now this is the only way to get the activity category link
-            self.activityCategoryLink = YonaConstants.environments.testUrl + YonaConstants.commands.activityCategories
+            self.activityCategoryLink = YonaConstants.commands.activityCategories
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
                 let yonaBuddies = embedded[YonaConstants.jsonKeys.yonaBuddies]{
