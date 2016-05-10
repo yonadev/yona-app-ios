@@ -54,6 +54,13 @@ enum pinRequestTypes{
     case clearRequest
 }
 
+enum goalRequestTypes{
+    case updateGoal
+    case deleteGoal
+    case getAllGoals
+    case postGoal
+}
+
 enum userRequestTypes{
     case postUser
     case deleteUser

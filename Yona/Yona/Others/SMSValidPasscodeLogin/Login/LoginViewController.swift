@@ -100,21 +100,19 @@ extension LoginViewController: CodeInputViewDelegate {
     
     func checkUserExists() {
         UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
-            dispatch_async(dispatch_get_main_queue()) {
-                if code == YonaConstants.serverCodes.errorUserNotFound {
-                    if let serverMessage = message {
-                        self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
-                            switch buttonPressed{
-                            case alertButtonType.OK:
-                                if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
-                                }
-                            case alertButtonType.cancel:
-                                break
-                                //do nothing or send back to start of signup?
+            if code == YonaConstants.serverCodes.errorUserNotFound {
+                if let serverMessage = message {
+                    self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
+                        switch buttonPressed{
+                        case alertButtonType.OK:
+                            if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                                UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
                             }
-                        })
-                    }
+                        case alertButtonType.cancel:
+                            break
+                            //do nothing or send back to start of signup?
+                        }
+                    })
                 }
             }
         })

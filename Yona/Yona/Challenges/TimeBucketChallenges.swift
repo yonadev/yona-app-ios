@@ -175,9 +175,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         GoalsRequestManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
             if success {
                 if let goalsUnwrap = goals {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.updateUI(goal, timeBucketData: goalsUnwrap)
-                        })
+                        self.updateUI(goal, timeBucketData: goalsUnwrap)
+                    
                     #if DEBUG
                         for goal in goals! {
                             print(goal.goalType)
@@ -185,12 +184,11 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     #endif
                 }
             } else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                    if let message = message {
-                        self.displayAlertMessage(message, alertDescription: "")
-                    }
+                Loader.Hide(self)
+                if let message = message {
+                    self.displayAlertMessage(message, alertDescription: "")
                 }
+                
             }
         })
     }
@@ -200,20 +198,17 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         Loader.Show(delegate: self)
         ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                }
+                Loader.Hide(self)
+                
                 self.activityCategoriesArray = activities!
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                }
+                self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                
             } else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                    if let message = message {
-                        self.displayAlertMessage(message, alertDescription: "")
-                    }
+                Loader.Hide(self)
+                if let message = message {
+                    self.displayAlertMessage(message, alertDescription: "")
                 }
+                
             }
         }
     }

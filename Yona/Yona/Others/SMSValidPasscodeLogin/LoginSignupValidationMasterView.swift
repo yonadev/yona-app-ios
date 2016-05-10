@@ -80,26 +80,24 @@ extension LoginSignupValidationMasterView {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
             PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if success {
-                        print(pincode!)
-                        if pincode != nil {
-                            
-                            let timeToDisplay = pincode!.convertFromISO8601Duration()
-                            setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                            let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
-                            let alert = NSString(format: localizedString, timeToDisplay!)
-                            self.displayAlertMessage("", alertDescription: String(alert))
-                            
-                            if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                self.navigationController?.pushViewController(sMSValidation, animated: false)
-                            }
+                if success {
+                    print(pincode!)
+                    if pincode != nil {
+                        
+                        let timeToDisplay = pincode!.convertFromISO8601Duration()
+                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
+                        let alert = NSString(format: localizedString, timeToDisplay!)
+                        self.displayAlertMessage("", alertDescription: String(alert))
+                        
+                        if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                            self.navigationController?.pushViewController(sMSValidation, animated: false)
                         }
-                    } else {
-                        //TODO: Will change this after this build
-                        self.displayAlertMessage("Error", alertDescription: "User not found")
                     }
-                })
+                } else {
+                    //TODO: Will change this after this build
+                    self.displayAlertMessage("Error", alertDescription: "User not found")
+                }
             })
         }
     }

@@ -66,11 +66,9 @@ class SettingsViewController: UIViewController {
         //TODO: UnSubscribe API InProgress
         UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
-                dispatch_async(dispatch_get_main_queue(), {
-                    if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                        UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
-                    }
-                })
+                if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                }
             }
             else {
                 if let message = serverMessage {

@@ -166,49 +166,45 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                     if success {
                         self.sendToSMSValidation()
                     } else if code == YonaConstants.serverCodes.errorUserExists {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            Loader.Hide()
-                            //alert the user ask if they want to override their account, if ok send back to SMS screen
-                            number = (self.nederlandPhonePrefix) + mobilenum
-                            
-                            let trimmedWhiteSpaceString = number.removeWhitespace()
-                            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                            
-                            let localizedString = NSLocalizedString("user-override", comment: "")
-                            let title = NSString(format: localizedString, String(trimmedString))
-                            
-                            
-                            self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
-                                switch buttonPressed{
-                                case alertButtonType.OK:
-                                    AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
-                                        //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
-                                        if success {
-                                            NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
-                                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                                            self.sendToSMSValidation()
-                                        } else {
-                                            if let message = message,
-                                                let code = code {
-                                                self.displayAlertMessage(code, alertDescription: message)
-                                            }
+                        Loader.Hide()
+                        //alert the user ask if they want to override their account, if ok send back to SMS screen
+                        number = (self.nederlandPhonePrefix) + mobilenum
+                        
+                        let trimmedWhiteSpaceString = number.removeWhitespace()
+                        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+                        
+                        let localizedString = NSLocalizedString("user-override", comment: "")
+                        let title = NSString(format: localizedString, String(trimmedString))
+                        
+                        
+                        self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
+                            switch buttonPressed{
+                            case alertButtonType.OK:
+                                AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
+                                    //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                                    if success {
+                                        NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                                        self.sendToSMSValidation()
+                                    } else {
+                                        if let message = message,
+                                            let code = code {
+                                            self.displayAlertMessage(code, alertDescription: message)
                                         }
                                     }
-                                    
-                                case alertButtonType.cancel:
-                                    break
-                                    //do nothing or send back to start of signup?
                                 }
-                            })
-                            
-                        }
-                    } else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            Loader.Hide()
-                            if let alertMessage = message,
-                                let code = code {
-                                self.displayAlertMessage(code, alertDescription: alertMessage)
+                                
+                            case alertButtonType.cancel:
+                                break
+                                //do nothing or send back to start of signup?
                             }
+                        })
+                        
+                    } else {
+                        Loader.Hide()
+                        if let alertMessage = message,
+                            let code = code {
+                            self.displayAlertMessage(code, alertDescription: alertMessage)
                         }
                     }
                 })

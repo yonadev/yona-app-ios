@@ -277,19 +277,16 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.deleteGoalButton.selected = true
-                            Loader.Hide(self)
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
+                        self.deleteGoalButton.selected = true
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
                         
                     } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            Loader.Hide(self)
-                            if let message = serverMessage {
-                                self.displayAlertMessage(message, alertDescription: "")
-                            }
-                        })
+                        Loader.Hide(self)
+                        if let message = serverMessage {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
+                        
                     }
                 })
             }
@@ -310,11 +307,10 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.deleteGoalButton.selected = true
-                            Loader.Hide(self)
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
+                        self.deleteGoalButton.selected = true
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
                     }
                 })
             }
@@ -343,15 +339,12 @@ extension TimeFrameTimeZoneChallengeViewController {
             Loader.Show(delegate: self)
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        self.navigationController?.popViewControllerAnimated(true)
-                    })
+                    Loader.Hide(self)
+                    self.navigationController?.popViewControllerAnimated(true)
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                    })
+                    Loader.Hide(self)
+                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    
                 }
             }
         }
