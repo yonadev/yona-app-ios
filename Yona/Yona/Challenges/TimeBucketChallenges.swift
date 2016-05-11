@@ -146,20 +146,20 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
+       let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
-            self.budgetArray = timeBucketData
+            self.budgetArray = arrayData
             self.budgetBadgeLabel.hidden = self.budgetArray.count > 0 ? false : true
             self.budgetBadgeLabel.text = String(self.budgetArray.count)
             
         case .TimeZoneGoalString:
-            self.timeZoneArray = timeBucketData
+            self.timeZoneArray = arrayData
             self.timezoneBadgeLabel.hidden = self.timeZoneArray.count > 0 ? false : true
             self.timezoneBadgeLabel.text = String(self.timeZoneArray.count)
             
-            
         case .NoGoGoalString:
-            self.nogoArray = timeBucketData
+            self.nogoArray = arrayData
             self.nogoBadgeLabel.hidden = self.nogoArray.count > 0 ? false : true
             self.nogoBadgeLabel.text = String(self.nogoArray.count)
         }
@@ -198,11 +198,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         Loader.Show(delegate: self)
         ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
-                Loader.Hide(self)
-                
+                Loader.Hide(self)                
                 self.activityCategoriesArray = activities!
                 self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                
             } else {
                 Loader.Hide(self)
                 if let message = message {
