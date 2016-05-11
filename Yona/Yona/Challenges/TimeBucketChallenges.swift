@@ -62,7 +62,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        
+
         self.setupUI()
     }
     
@@ -71,9 +71,11 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         
         self.callActivityCategory()
         setDeselectOtherCategory()
+
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
+
         if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
@@ -93,9 +95,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                 setSelectedCategory(self.budgetView)
             }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -115,9 +115,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        }
+        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+        
         backButton.hidden = true
         
         selectedCategoryView = categoryView
@@ -147,50 +146,49 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
+       let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
-            self.budgetArray = timeBucketData
+            self.budgetArray = arrayData
             self.budgetBadgeLabel.hidden = self.budgetArray.count > 0 ? false : true
             self.budgetBadgeLabel.text = String(self.budgetArray.count)
             
         case .TimeZoneGoalString:
-            self.timeZoneArray = timeBucketData
+            self.timeZoneArray = arrayData
             self.timezoneBadgeLabel.hidden = self.timeZoneArray.count > 0 ? false : true
             self.timezoneBadgeLabel.text = String(self.timeZoneArray.count)
             
-            
         case .NoGoGoalString:
-            self.nogoArray = timeBucketData
+            self.nogoArray = arrayData
             self.nogoBadgeLabel.hidden = self.nogoArray.count > 0 ? false : true
             self.nogoBadgeLabel.text = String(self.nogoArray.count)
         }
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        self.tableView.reloadData()
     }
     
-    private func timeBucketData(goal: GoalType) {
+    private func timeBucketData(goaltype: GoalType) {
+        //switch statemetn for goaltype here, update UI with teh array of goal type
+        switch goaltype {
+        case .BudgetGoalString:
+            self.updateUI(goaltype, timeBucketData: self.budgetArray)
+        case .TimeZoneGoalString:
+            self.updateUI(goaltype, timeBucketData: self.timeZoneArray)
+        case .NoGoGoalString:
+            self.updateUI(goaltype, timeBucketData: self.nogoArray)
+
+        }
         
-        APIServiceManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
+        GoalsRequestManager.sharedInstance.getGoalsOfType(goaltype , onCompletion: { (success, message, code, nil, goals, err) in
             if success {
                 if let goalsUnwrap = goals {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.updateUI(goal, timeBucketData: goalsUnwrap)
-                        })
-                    #if DEBUG
-                        for goal in goals! {
-                            print(goal.goalType)
-                        }
-                    #endif
+                        self.updateUI(goaltype, timeBucketData: goalsUnwrap)
                 }
             } else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                    if let message = message {
-                        self.displayAlertMessage(message, alertDescription: "")
-                    }
+                Loader.Hide(self)
+                if let message = message {
+                    self.displayAlertMessage(message, alertDescription: "")
                 }
+                
             }
         })
     }
@@ -200,20 +198,15 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         Loader.Show(delegate: self)
         ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                }
+                Loader.Hide(self)                
                 self.activityCategoriesArray = activities!
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                }
+                self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
             } else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    Loader.Hide(self)
-                    if let message = message {
-                        self.displayAlertMessage(message, alertDescription: "")
-                    }
+                Loader.Hide(self)
+                if let message = message {
+                    self.displayAlertMessage(message, alertDescription: "")
                 }
+                
             }
         }
     }

@@ -32,10 +32,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue()) {
         self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        }
-        
         setupUI()
     }
     
@@ -162,48 +159,49 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 
-                APIServiceManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
+                UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
                     } else if code == YonaConstants.serverCodes.errorUserExists {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            Loader.Hide()
-                            if let alertMessage = message {
-                                //alert the user ask if they want to override their account, if ok send back to SMS screen
-                                number = (self.nederlandPhonePrefix) + mobilenum
-                                
-                                let trimmedWhiteSpaceString = number.removeWhitespace()
-                                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                                
-                                let localizedString = NSLocalizedString("user-override", comment: "")
-                                let title = NSString(format: localizedString, String(trimmedString))
-                                
-                                
-                                self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
-                                    switch buttonPressed{
-                                    case alertButtonType.OK:
-                                        AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
-                                            //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
-                                            if success {
-                                                NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
-                                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                                                self.sendToSMSValidation()
-                                            }
+                        Loader.Hide()
+                        //alert the user ask if they want to override their account, if ok send back to SMS screen
+                        number = (self.nederlandPhonePrefix) + mobilenum
+                        
+                        let trimmedWhiteSpaceString = number.removeWhitespace()
+                        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+                        
+                        let localizedString = NSLocalizedString("user-override", comment: "")
+                        let title = NSString(format: localizedString, String(trimmedString))
+                        
+                        
+                        self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
+                            switch buttonPressed{
+                            case alertButtonType.OK:
+                                AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
+                                    //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                                    if success {
+                                        NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                                        self.sendToSMSValidation()
+                                    } else {
+                                        if let message = message,
+                                            let code = code {
+                                            self.displayAlertMessage(code, alertDescription: message)
                                         }
-                                        
-                                    case alertButtonType.cancel:
-                                        break
-                                        //do nothing or send back to start of signup?
                                     }
-                                })
+                                }
+                                
+                            case alertButtonType.cancel:
+                                break
+                                //do nothing or send back to start of signup?
                             }
-                        }
+                        })
+                        
                     } else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            Loader.Hide()
-                            if let alertMessage = message {
-                                self.displayAlertMessage(alertMessage, alertDescription: "")
-                            }
+                        Loader.Hide()
+                        if let alertMessage = message,
+                            let code = code {
+                            self.displayAlertMessage(code, alertDescription: alertMessage)
                         }
                     }
                 })
@@ -214,13 +212,12 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     func sendToSMSValidation(){
         //Update flag
         setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-        dispatch_async(dispatch_get_main_queue()) {
-            // update some UI
-            Loader.Hide()
-            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                self.navigationController?.pushViewController(smsValidation, animated: false)
-            }
+        // update some UI
+        Loader.Hide()
+        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+            self.navigationController?.pushViewController(smsValidation, animated: false)
         }
+        
     }
 }
 

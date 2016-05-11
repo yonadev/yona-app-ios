@@ -41,9 +41,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         configurePickerView()
@@ -132,18 +130,16 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
                 Loader.Show(delegate:self)
-                APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                    })
+                GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
+                    Loader.Hide(self)
+                    
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.navigationController?.popToRootViewControllerAnimated(true)
-                        })
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        
                         
                     } else {
                         if let message = serverMessage {
@@ -162,29 +158,22 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     ],
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
-                Loader.Show(delegate:self)
-                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                    })
-                    
+                Loader.Show()
+                GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                    Loader.Hide()
                     
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.navigationController?.popToRootViewControllerAnimated(true)
-                        })
+                        self.navigationController?.popToRootViewControllerAnimated(true)
                         
                     } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            Loader.Hide(self)
-                            if let message = serverMessage {
-                                self.displayAlertMessage(message, alertDescription: "")
-                            }
-                        })
+                        Loader.Hide()
+                        if let message = serverMessage {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
                     }
                 })
             }
@@ -200,14 +189,12 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate:self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    Loader.Hide(self)
-                })
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+                Loader.Hide(self)
+                
                 if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.navigationController?.popToRootViewControllerAnimated(true)
-                    })
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    
                 } else {
                     if let message = serverMessage {
                         self.displayAlertMessage(message, alertDescription: "")

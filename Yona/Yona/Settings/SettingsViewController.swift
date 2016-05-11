@@ -23,10 +23,8 @@ class SettingsViewController: UIViewController {
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
-            self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
-        })
+        self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
+        self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         
     }
     
@@ -64,13 +62,11 @@ class SettingsViewController: UIViewController {
      */
     private func callUnSubscribeMethod() {
         //TODO: UnSubscribe API InProgress
-        APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+        UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
-                dispatch_async(dispatch_get_main_queue(), {
-                    if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                        UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
-                    }
-                })
+                if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                }
             }
             else {
                 if let message = serverMessage {

@@ -88,9 +88,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -181,11 +179,9 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             isFromButton = false
         } else {
             activeIndexPath = nil
-            dispatch_async(dispatch_get_main_queue(), {
-                self.setChallengeButton.enabled = true
-                self.setChallengeButton.alpha = 1.0
-                self.tableView.reloadData()
-            })
+            self.setChallengeButton.enabled = true
+            self.setChallengeButton.alpha = 1.0
+            self.tableView.reloadData()
         }
     }
     
@@ -271,25 +267,22 @@ extension TimeFrameTimeZoneChallengeViewController {
                                                YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
                 Loader.Show(delegate: self)
-                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
+                GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.deleteGoalButton.selected = true
-                            Loader.Hide(self)
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
+                        self.deleteGoalButton.selected = true
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
                         
                     } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            Loader.Hide(self)
-                            if let message = serverMessage {
-                                self.displayAlertMessage(message, alertDescription: "")
-                            }
-                        })
+                        Loader.Hide(self)
+                        if let message = serverMessage {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
+                        
                     }
                 })
             }
@@ -305,16 +298,15 @@ extension TimeFrameTimeZoneChallengeViewController {
                 ];
                 Loader.Show(delegate: self)
                 
-                APIServiceManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     if success {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.deleteGoalButton.selected = true
-                            Loader.Hide(self)
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
+                        self.deleteGoalButton.selected = true
+                        Loader.Hide(self)
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
                     }
                 })
             }
@@ -341,17 +333,14 @@ extension TimeFrameTimeZoneChallengeViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        self.navigationController?.popViewControllerAnimated(true)
-                    })
+                    Loader.Hide(self)
+                    self.navigationController?.popViewControllerAnimated(true)
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                    })
+                    Loader.Hide(self)
+                    self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
+                    
                 }
             }
         }

@@ -39,12 +39,12 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             XCTAssert((user) != nil)
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
 
-            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+            UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
                 print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()
@@ -65,7 +65,7 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("Post response")
             XCTAssert((user) != nil)
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
@@ -74,7 +74,7 @@ class UserAPIServiceTests: XCTestCase {
             let mobileNumber = user!.mobileNumber
             XCTAssertTrue(mobileNumber == body["mobileNumber"])
             
-            APIServiceManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
+            UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
                 print("Delete response")
                 XCTAssertTrue(success)
                 expectation.fulfill()
@@ -97,13 +97,13 @@ class UserAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
                 let code = YonaConstants.testKeys.otpTestCode
-                APIServiceManager.sharedInstance.confirmMobileNumber(["code": code], onCompletion: { (succes, message, code) in
+                UserRequestManager.sharedInstance.confirmMobileNumber(["code": code], onCompletion: { (succes, message, code) in
                     //if mobile confirm success
                     XCTAssertTrue(success)
                         //delete user so works on next test
-                        APIServiceManager.sharedInstance.deleteUser{ (succes, message, code) in
+                        UserRequestManager.sharedInstance.deleteUser{ (succes, message, code) in
                             if(success){
                                 expectation.fulfill()
                             } else {
@@ -126,9 +126,9 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.otpResendMobile{ success, message, code in
+                UserRequestManager.sharedInstance.otpResendMobile{ success, message, code in
                     if(success){
                         expectation.fulfill()
                     } else {
@@ -136,7 +136,7 @@ class UserAPIServiceTests: XCTestCase {
                     }
                     
                     //now tidy up and delete the user
-                    APIServiceManager.sharedInstance.deleteUser({ (success, message, code) in
+                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
                         if(success){
                             expectation.fulfill()
                         } else {
@@ -159,18 +159,18 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //post new user data
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if let userUnwrapped = user {
                 //if the response is not nil
                 let mobileNumber = userUnwrapped.mobileNumber
 
                 //get request to get user we just created!
-                APIServiceManager.sharedInstance.getUser{ (success, message, code, user) in
+                UserRequestManager.sharedInstance.getUser{ (success, message, code, user) in
                     if let userUnwrapped = user{
                         //test if the posted mobile number is the one returned by our get request
                         XCTAssertTrue(mobileNumber == userUnwrapped.mobileNumber)
                     }
-                    APIServiceManager.sharedInstance.deleteUser({ (success, message, code) in
+                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
                         if(success){
                             expectation.fulfill()
                         } else {
@@ -196,7 +196,7 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //post new user data
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if let originalUser = user {
                 //if the user is not nil
                 let bodyUpdate =
@@ -206,7 +206,7 @@ class UserAPIServiceTests: XCTestCase {
                         "nickname": "BTS"]
                 
                 //get request to get user we just created!
-                APIServiceManager.sharedInstance.updateUser(bodyUpdate, onCompletion: { (success, message, code, user) in
+                UserRequestManager.sharedInstance.updateUser(bodyUpdate, onCompletion: { (success, message, code, user) in
                     if let userReturned = user{
                         //test if name returned is updated
                         XCTAssertTrue(bodyUpdate["firstName"] == userReturned.firstName)
@@ -215,7 +215,7 @@ class UserAPIServiceTests: XCTestCase {
                         
                     }
                     //now tidy up and delete the user
-                    APIServiceManager.sharedInstance.deleteUser({ (success, message, code) in
+                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
                         if(success){
                             expectation.fulfill()
                         } else {
@@ -239,15 +239,15 @@ class UserAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Post user data
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             if success {
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in
+                UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in
                     if(success){
                         expectation.fulfill()
                     }
                     //now tidy up and delete the user
-                    APIServiceManager.sharedInstance.deleteUser({ (success, message, code) in
+                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
                         if(success){
                             expectation.fulfill()
                         }

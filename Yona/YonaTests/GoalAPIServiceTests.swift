@@ -39,11 +39,11 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
-            APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goal, goals, err) in
+            GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goal, goals, err) in
                 if let goalsUnwrap = goals {
                     if success {
                         for goal in goalsUnwrap {
@@ -74,14 +74,14 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getUser{ (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser{ (success, message, code, user) in
                         //we need to now get the activity link from our activities
                         ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         //set body for goal
@@ -93,7 +93,7 @@ class GoalAPIServiceTests: XCTestCase {
                             "maxDurationMinutes": "10"
                         ]
                             //now we can post the goal
-                            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal) { (success, message, code, goal, goals, error) in
+                            GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal) { (success, message, code, goal, goals, error) in
                                 if success {
                                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.newsString) { (success, newsActivityCategoryLink, message, code) in
                                         let bodyBudgetNewsGoal: [String: AnyObject] = [
@@ -105,10 +105,10 @@ class GoalAPIServiceTests: XCTestCase {
                                         ]
                                         
                                         //now we can post the goal
-                                        APIServiceManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal) { (success, message, code, goal, nil, error) in
+                                        GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal) { (success, message, code, goal, nil, error) in
                                                 if success {
                                                     //no
-                                                    APIServiceManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
+                                                    GoalsRequestManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
                                                         if let goalsUnwrap = goals {
                                                             if success {
                                                                 for goal in goalsUnwrap {
@@ -152,12 +152,12 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     //we need to now get the activity link from our activities
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString, onCompletion: { (success, socialActivityCategoryLink, message, code) in
@@ -180,13 +180,13 @@ class GoalAPIServiceTests: XCTestCase {
                                 ]
                             
                                 //add budget goal
-                                APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, nil, error) in
+                                GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: { (success, message, code, goal, nil, error) in
                                     if success {
 
-                                        APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, nil, error) in
+                                        GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, nil, error) in
                                             if success {
                                                 //no
-                                                APIServiceManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, nil, goals, err) in
+                                                GoalsRequestManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, nil, goals, err) in
                                                     if let goalsUnwrap = goals {
                                                         if success {
                                                             for goal in goalsUnwrap {
@@ -228,14 +228,14 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Get user goals
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
+                    GoalsRequestManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
                         print(goals)
                         XCTAssertTrue(success, "Received Goals")
                         expectation.fulfill()
@@ -258,24 +258,24 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             print("PASSWORD:" + KeychainManager.sharedInstance.getYonaPassword()!)
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                         if success {
                             //Get all the goals
-                            APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                            GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                 if(success){
                                     for goal in goals! {
                                         print(goal.goalType)
                                         print(goal.activityCategoryLink)
                                         //delete user goals
-                                        APIServiceManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success, serverMessage, serverCode) in
+                                        GoalsRequestManager.sharedInstance.deleteUserGoal(goal.goalID!, onCompletion: { (success, serverMessage, serverCode) in
                                             if success == false {
                                                 XCTFail(serverMessage! + goal.goalID! ?? "Unknown error")
                                             }
@@ -308,14 +308,14 @@ class GoalAPIServiceTests: XCTestCase {
         
         //Create user
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         if success {
@@ -330,7 +330,7 @@ class GoalAPIServiceTests: XCTestCase {
                                 ] ,
                                 "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
                             ]
-                            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+                            GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
                                     let newBodyTimeZoneSocialGoal: [String:AnyObject] = [
@@ -340,7 +340,7 @@ class GoalAPIServiceTests: XCTestCase {
                                         ] ,
                                         "zones": ["8:00-17:00"]
                                     ]
-                                    APIServiceManager.sharedInstance.updateUserGoal(goal?.editLinks, body: newBodyTimeZoneSocialGoal) { (success, message, server, goal, goals, error) in
+                                    GoalsRequestManager.sharedInstance.updateUserGoal(goal?.editLinks, body: newBodyTimeZoneSocialGoal) { (success, message, server, goal, goals, error) in
                                         if success {
                                             expectation.fulfill()
                                         }
@@ -373,14 +373,14 @@ class GoalAPIServiceTests: XCTestCase {
         
         //Create user
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         if success {
@@ -395,13 +395,13 @@ class GoalAPIServiceTests: XCTestCase {
                                 ] ,
                                 "zones": ["8:00-17:00", "20:00-22:00", "22:00-20:00"]
                             ]
-                            APIServiceManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
+                            GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
                                     ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                                         if success {
                                             //Get the goals again to see if the goals have been updated after our post
-                                            APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                                            GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                                 print(goals)
                                                 //we want to remove the news goal so find it
                                                 for goal in goals! {
@@ -442,12 +442,12 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
 
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     print(KeychainManager.sharedInstance.getYonaPassword())
                     
@@ -460,9 +460,9 @@ class GoalAPIServiceTests: XCTestCase {
                         "maxDurationMinutes": "30"
                     ]
 
-                    APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                    GoalsRequestManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
                         (success, serverMessage, serverCode, goal, nil, err) in
-                        APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                        GoalsRequestManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
                             (success, serverMessage, serverCode, goal, nil, err) in
                             //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                             if let serverMessage = serverMessage {
@@ -490,12 +490,12 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     print(KeychainManager.sharedInstance.getYonaPassword())
                     
@@ -508,9 +508,9 @@ class GoalAPIServiceTests: XCTestCase {
                         "maxDurationMinutes": "0"
                     ]
            
-                    APIServiceManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
+                    GoalsRequestManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
                         (success, serverMessage, serverCode, goal, goals, err) in
-                        APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, nil, goals, error) in
+                        GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, nil, goals, error) in
                             //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                             if success {
                                 for goal in goals! {
@@ -543,12 +543,12 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     print(KeychainManager.sharedInstance.getYonaPassword())
                     print(KeychainManager.sharedInstance.getUserID())
@@ -556,7 +556,7 @@ class GoalAPIServiceTests: XCTestCase {
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
                         if success {
                             //As the user has just been created there is one mandatory goal, Gambling, this has no editlink so cannot be removed
-                            APIServiceManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in
+                            GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in
                                 for goal in goals! {
                                     //so get this goal
                                     if goal.goalType == GoalType.NoGoGoalString.rawValue {
@@ -593,19 +593,19 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success {
                 //confirm mobile number check, static code
-                APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                     if(success){
                         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                             if success {
-                                APIServiceManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                                GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                     if(success){
                                         for goal in goals! {
                                             print("Goal ID Before" + goal.goalID!)
 
-                                            APIServiceManager.sharedInstance.getUsersGoalWithSelfLinkID(goal.selfLinks!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
+                                            GoalsRequestManager.sharedInstance.getUsersGoalWithSelfLinkID(goal.selfLinks!, onCompletion: { (success, serverMessage, serverCode, goalReturned, nil, err) in
                                                 print(goalReturned?.activityCategoryLink)
                                                 print(goalReturned?.goalType)
                                                 print(goalReturned?.goalID)
@@ -649,12 +649,12 @@ class GoalAPIServiceTests: XCTestCase {
              "mobileNumber": "+31343" + String(randomPhoneNumber),
              "nickname": "RQ"]
         //Create user
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
             }
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     let newsActivityCategoryLink = "http://85.222.227.142/activityCategories/743738fd-052f-4532-a2a3-ba60dcb1adbf"
                     let postGoalBody = [
@@ -665,11 +665,11 @@ class GoalAPIServiceTests: XCTestCase {
                         "maxDurationMinutes": "30"
                     ]
                     
-                    APIServiceManager.sharedInstance.postUserGoals(postGoalBody) {
+                    GoalsRequestManager.sharedInstance.postUserGoals(postGoalBody) {
                         (success, serverMessage, serverCode, goal, nil, err) in
                         if success {
                             //then once it is posted we can delete it
-                            APIServiceManager.sharedInstance.deleteUserGoal(goal!.editLinks!) { (success, serverMessage, serverCode) in
+                            GoalsRequestManager.sharedInstance.deleteUserGoal(goal!.editLinks!) { (success, serverMessage, serverCode) in
                                 if success {
                                     expectation.fulfill()
                                 } else {

@@ -20,14 +20,13 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        dispatch_async(dispatch_get_main_queue(), {
-            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.pinResetButton.hidden = false
-            } else {
-                self.pinResetButton.hidden = true
-            }
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.pinResetButton.hidden = false
+        } else {
+            self.pinResetButton.hidden = true
+        }
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         //Get user call
         checkUserExists()
@@ -69,10 +68,13 @@ extension LoginViewController: CodeInputViewDelegate {
         if code ==  passcode {
             self.codeInputView.resignFirstResponder()
             let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                navigationController?.pushViewController(dashboardStoryboard, animated: true)
-            }
+            UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                    self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                }
+            })
+
         } else {
             errorLabel.hidden = false
             self.codeInputView.clear()
@@ -96,22 +98,20 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func checkUserExists() {
-        APIServiceManager.sharedInstance.getUser({ (success, message, code, user) in
-            dispatch_async(dispatch_get_main_queue()) {
-                if code == YonaConstants.serverCodes.errorUserNotFound {
-                    if let serverMessage = message {
-                        self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
-                            switch buttonPressed{
-                            case alertButtonType.OK:
-                                if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
-                                }
-                            case alertButtonType.cancel:
-                                break
-                                //do nothing or send back to start of signup?
+        UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+            if code == YonaConstants.serverCodes.errorUserNotFound {
+                if let serverMessage = message {
+                    self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
+                        switch buttonPressed{
+                        case alertButtonType.OK:
+                            if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                                UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
                             }
-                        })
-                    }
+                        case alertButtonType.cancel:
+                            break
+                            //do nothing or send back to start of signup?
+                        }
+                    })
                 }
             }
         })
