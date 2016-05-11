@@ -387,6 +387,10 @@ struct R {
       static var settings: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Settings") }
     }
     
+    struct friendsOverViewViewController {
+      static var addFriendSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "AddFriendSegue") }
+    }
+    
     struct signUpFirstStepViewController {
       static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
     }
@@ -487,6 +491,7 @@ struct R {
     }
     
     struct friends {
+      static var addFriendsStoryboard: AddFriendsViewController? { return instance.instantiateViewControllerWithIdentifier("AddFriendsStoryboard") as? AddFriendsViewController }
       static var friendsStoryboard: FriendsOverViewViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsStoryboard") as? FriendsOverViewViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
@@ -496,6 +501,7 @@ struct R {
       
       static func validateViewControllers() {
         assert(friendsStoryboard != nil, "[R.swift] ViewController with identifier 'friendsStoryboard' could not be loaded from storyboard 'Friends' as 'FriendsOverViewViewController'.")
+        assert(addFriendsStoryboard != nil, "[R.swift] ViewController with identifier 'addFriendsStoryboard' could not be loaded from storyboard 'Friends' as 'AddFriendsViewController'.")
       }
     }
     

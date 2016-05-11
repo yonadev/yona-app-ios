@@ -1,14 +1,14 @@
 //
-//  FriendsOverViewViewController.swift
+//  AddFriendsViewController.swift
 //  Yona
 //
-//  Created by Chandan on 23/03/16.
+//  Created by Chandan on 11/05/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
 import UIKit
 
-class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
+class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
     
     enum FriendsOverviewSelectedTab {
         case TimelineTab
@@ -51,16 +51,12 @@ class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == R.segue.signUpFirstStepViewController.signUpSeconStepSegue.identifier,
-//            let vc = segue.destinationViewController as? SignUpSecondStepViewController {
-//            vc.userFirstName = firstnameTextField.text
-//            vc.userLastName = lastnameTextField.text
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
 }
 
-extension FriendsOverViewViewController {
+extension AddFriendsViewController {
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -81,7 +77,7 @@ extension FriendsOverViewViewController {
 
 // MARK: Touch Event of Custom Segment
 
-extension FriendsOverViewViewController {
+extension AddFriendsViewController {
     
     @IBAction func TimeLineTabAction(sender: AnyObject) {
         overviewTabView.alpha = 0.5
@@ -98,11 +94,6 @@ extension FriendsOverViewViewController {
         overviewTabBottomBorder.hidden = false
         addFriendbutton.hidden = false
     }
-    
-    @IBAction func addFriendAction(sender: AnyObject) {
-         performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendSegue, sender: self)
-    }
-    
 }
 
 

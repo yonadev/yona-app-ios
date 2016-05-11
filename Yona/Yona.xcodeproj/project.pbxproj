@@ -88,6 +88,7 @@
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
+		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
 		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
 		AD84B7321CDA27820085D5B7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7301CDA27820085D5B7 /* Array.swift */; };
@@ -344,6 +345,7 @@
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 			children = (
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
 				AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */,
+				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1586,6 +1589,7 @@
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
 				9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */,
+				AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */,
 				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
