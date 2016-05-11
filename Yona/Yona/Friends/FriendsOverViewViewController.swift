@@ -10,11 +10,6 @@ import UIKit
 
 class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
     
-    enum FriendsOverviewSelectedTab {
-        case TimelineTab
-        case overViewTab
-    }
-    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var timelineTabView: UIView!
     @IBOutlet var overviewTabView: UIView!
@@ -22,26 +17,24 @@ class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var overviewTabBottomBorder: UIView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var addFriendbutton: UIButton!
-    @IBOutlet var allMyEvent:[UIView]!
+    @IBOutlet var screenTitle: UILabel!
+    
     
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        OverviewTabAction(overviewTabView)
         self.setupUI()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         dispatch_async(dispatch_get_main_queue(), {
             self.gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
         })
     }
     
-    override func viewDidAppear(animated:Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
+    
     
     // MARK: - private functions
     private func setupUI() {
@@ -51,13 +44,9 @@ class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == R.segue.signUpFirstStepViewController.signUpSeconStepSegue.identifier,
-//            let vc = segue.destinationViewController as? SignUpSecondStepViewController {
-//            vc.userFirstName = firstnameTextField.text
-//            vc.userLastName = lastnameTextField.text
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.tabBarController?.tabBar.hidden = false
+    }
 }
 
 extension FriendsOverViewViewController {
@@ -75,14 +64,11 @@ extension FriendsOverViewViewController {
        
         return cell
     }
-
 }
-
 
 // MARK: Touch Event of Custom Segment
 
 extension FriendsOverViewViewController {
-    
     @IBAction func TimeLineTabAction(sender: AnyObject) {
         overviewTabView.alpha = 0.5
         overviewTabBottomBorder.hidden = true
@@ -102,7 +88,6 @@ extension FriendsOverViewViewController {
     @IBAction func addFriendAction(sender: AnyObject) {
          performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendSegue, sender: self)
     }
-    
 }
 
 

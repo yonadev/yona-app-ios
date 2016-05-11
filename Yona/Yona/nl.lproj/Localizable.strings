@@ -9,13 +9,13 @@
 
 "join" = "DOE MEE";
 "login" = "INLOGGEN";
-"signup.user.firstname" = "Voornaam";
-"signup.user.lastname" = "Achtenaam";
+//"signup.user.firstname" = "Voornaam";
+//"signup.user.lastname" = "Achtenaam";
 "signup.button.next" = "Volgende";
 "signup.button.previous" = "Vorige";
 
 "signup.user.mobileNumber" = "Mobiel Telefoonnummer";
-"signup.user.nickname" = "Nick Name";
+//"signup.user.nickname" = "Nick Name";
 "signup.user.infoText" = "We gebruiken je mobile nummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een nog betere privacy.";
 "first-name" = "VOORNAAM";
 "last-name" = "ACHTERNAAM";
@@ -104,3 +104,17 @@
 "delete-user" = "Unsubscribe";
 "deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
 
+
+//Friends Overview
+"addfriend" = "VRIEND TOEVOEGEN";
+"invitefriend" = "VRIEND UITNODIGEN";
+"addfriendmanually" = "Handmatig";
+"addfriendcontacts" = "Uit adresboek";
+
+//Add Friends
+"addfriend" = "VRIEND TOEVOEGEN";
+"invitefriend" = "VRIEND UITNODIGEN";
+"addfriendmanually" = "Handmatig";
+"addfriendcontacts" = "Uit adresboek";
+"enteremailvalidation" = "You need to enter email address of friend.";
+"email" = "EMAIL";
