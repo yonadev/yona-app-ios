@@ -27,7 +27,7 @@ class PinResetRequestManager {
      */
     private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
 
-        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
             //success so get the user?
             if success {
                 switch pinRequestType
