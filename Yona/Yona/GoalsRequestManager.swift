@@ -102,8 +102,10 @@ class GoalsRequestManager {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
                 self.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
-                    let tempGoals = self.sortGoalsIntoArray(goalType, goals: goals!)
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, tempGoals, error)
+                    if let goals = goals {
+                        let tempGoals = self.sortGoalsIntoArray(goalType, goals: goals)
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, tempGoals, error)
+                    }
                 }
             } else {
                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
@@ -173,15 +175,6 @@ class GoalsRequestManager {
         UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
             //success so get the user?
             if success {
-//                guard goalRequest == goalRequestTypes.deleteGoal
-//                    || goalRequest == goalRequestTypes.postGoal
-//                    || goalRequest == goalRequestTypes.updateGoal else {
-//                    onCompletion(true, message, code, nil, self.allTheGoals, YonaConstants.YonaErrorTypes.Success)
-//                    return
-//                }
-                #if DEBUG
-                print("getUserGoals")
-                #endif
                 self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
                     #if DEBUG
                         print("Get all goals API call")
