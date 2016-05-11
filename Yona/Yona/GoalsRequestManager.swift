@@ -105,6 +105,8 @@ class GoalsRequestManager {
                     if let goals = goals {
                         let tempGoals = self.sortGoalsIntoArray(goalType, goals: goals)
                         onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, tempGoals, error)
+                    } else {
+                        onCompletion(false, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                     }
                 }
             } else {
