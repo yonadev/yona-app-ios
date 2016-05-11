@@ -52,7 +52,7 @@ class Manager: NSObject {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
     
-        request.timeoutInterval = 2
+        request.timeoutInterval = 30
         
         request.HTTPMethod = httpMethod.rawValue
         
