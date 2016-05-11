@@ -56,19 +56,17 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     }
     
     func hideShowButtons() {
-        dispatch_async(dispatch_get_main_queue(), {
-            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.resendCodeButton.hidden = true
-                self.resendOverrideCode.hidden = true
-            } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
-                self.pinResetButton.hidden = true
-                self.resendCodeButton.hidden = true
-                self.resendOverrideCode.hidden = false
-            } else {
-                self.pinResetButton.hidden = true
-                self.resendOverrideCode.hidden = true
-            }
-        })
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.resendCodeButton.hidden = true
+            self.resendOverrideCode.hidden = true
+        } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
+            self.pinResetButton.hidden = true
+            self.resendCodeButton.hidden = true
+            self.resendOverrideCode.hidden = false
+        } else {
+            self.pinResetButton.hidden = true
+            self.resendOverrideCode.hidden = true
+        }
     }
     
     @IBAction func sendOTPAgain(sender: UIButton) {

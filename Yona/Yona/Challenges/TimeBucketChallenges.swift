@@ -75,6 +75,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
+
         if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
@@ -94,9 +95,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                 setSelectedCategory(self.budgetView)
             }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -116,9 +115,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        }
+        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+        
         backButton.hidden = true
         
         selectedCategoryView = categoryView
@@ -165,18 +163,25 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             self.nogoBadgeLabel.hidden = self.nogoArray.count > 0 ? false : true
             self.nogoBadgeLabel.text = String(self.nogoArray.count)
         }
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        self.tableView.reloadData()
     }
     
-    private func timeBucketData(goal: GoalType) {
+    private func timeBucketData(goaltype: GoalType) {
+        //switch statemetn for goaltype here, update UI with teh array of goal type
+        switch goaltype {
+        case .BudgetGoalString:
+            self.updateUI(goaltype, timeBucketData: self.budgetArray)
+        case .TimeZoneGoalString:
+            self.updateUI(goaltype, timeBucketData: self.timeZoneArray)
+        case .NoGoGoalString:
+            self.updateUI(goaltype, timeBucketData: self.nogoArray)
+
+        }
         
-        GoalsRequestManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
+        GoalsRequestManager.sharedInstance.getGoalsOfType(goaltype , onCompletion: { (success, message, code, nil, goals, err) in
             if success {
                 if let goalsUnwrap = goals {
-                        self.updateUI(goal, timeBucketData: goalsUnwrap)
+                        self.updateUI(goaltype, timeBucketData: goalsUnwrap)
                 }
             } else {
                 Loader.Hide(self)

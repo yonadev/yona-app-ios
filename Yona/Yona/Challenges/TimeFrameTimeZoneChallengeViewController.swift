@@ -88,9 +88,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -181,11 +179,9 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             isFromButton = false
         } else {
             activeIndexPath = nil
-            dispatch_async(dispatch_get_main_queue(), {
-                self.setChallengeButton.enabled = true
-                self.setChallengeButton.alpha = 1.0
-                self.tableView.reloadData()
-            })
+            self.setChallengeButton.enabled = true
+            self.setChallengeButton.alpha = 1.0
+            self.tableView.reloadData()
         }
     }
     

@@ -33,7 +33,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         dispatch_async(dispatch_get_main_queue()) {
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         }
         
         setupUI()
@@ -215,13 +215,12 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     func sendToSMSValidation(){
         //Update flag
         setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-        dispatch_async(dispatch_get_main_queue()) {
-            // update some UI
-            Loader.Hide()
-            if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                self.navigationController?.pushViewController(smsValidation, animated: false)
-            }
+        // update some UI
+        Loader.Hide()
+        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+            self.navigationController?.pushViewController(smsValidation, animated: false)
         }
+        
     }
 }
 

@@ -41,9 +41,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         configurePickerView()
@@ -160,9 +158,9 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     ],
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
-                Loader.Show(delegate:self)
+                Loader.Show()
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
-                    Loader.Hide(self)
+                    Loader.Hide()
                     
                     if success {
                         if let goalUnwrap = goal {
@@ -172,7 +170,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         
                     } else {
-                        Loader.Hide(self)
+                        Loader.Hide()
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
