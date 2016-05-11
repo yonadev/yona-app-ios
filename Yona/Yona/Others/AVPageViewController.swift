@@ -31,15 +31,12 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
             animated: true,
             completion: { [weak self] (finished: Bool) in
                 if finished {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self!.setViewControllers(
-                            viewController as? [UIViewController],
-                            direction: UIPageViewControllerNavigationDirection.Forward,
-                            animated: false,
-                            completion: nil
-                        )
-                        
-                    })
+                    self!.setViewControllers(
+                        viewController as? [UIViewController],
+                        direction: UIPageViewControllerNavigationDirection.Forward,
+                        animated: false,
+                        completion: nil
+                    )
                 }
                 
             })

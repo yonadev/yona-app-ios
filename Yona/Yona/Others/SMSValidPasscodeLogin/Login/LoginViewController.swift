@@ -20,14 +20,13 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        dispatch_async(dispatch_get_main_queue(), {
-            if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-                self.pinResetButton.hidden = false
-            } else {
-                self.pinResetButton.hidden = true
-            }
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.pinResetButton.hidden = false
+        } else {
+            self.pinResetButton.hidden = true
+        }
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         //Get user call
         checkUserExists()
