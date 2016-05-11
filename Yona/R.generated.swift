@@ -487,15 +487,15 @@ struct R {
     }
     
     struct friends {
-      static var friendsStoryboard: FriendsViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsStoryboard") as? FriendsViewController }
+      static var friendsStoryboard: FriendsOverViewViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsStoryboard") as? FriendsOverViewViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnAdd") != nil, "[R.swift] Image named 'icnAdd' is used in storyboard 'Friends', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(friendsStoryboard != nil, "[R.swift] ViewController with identifier 'friendsStoryboard' could not be loaded from storyboard 'Friends' as 'FriendsViewController'.")
+        assert(friendsStoryboard != nil, "[R.swift] ViewController with identifier 'friendsStoryboard' could not be loaded from storyboard 'Friends' as 'FriendsOverViewViewController'.")
       }
     }
     
