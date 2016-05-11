@@ -179,7 +179,7 @@ class GoalsRequestManager {
             if success {
                 self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
                     #if DEBUG
-                        print("Get all goals API call")
+                        print("Get all goals API call: " + String(success))
                     #endif
                     if success {
                         onCompletion(true, message, server, nil, goals, error)

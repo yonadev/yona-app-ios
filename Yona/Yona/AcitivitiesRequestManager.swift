@@ -97,7 +97,7 @@ class ActivitiesRequestManager {
                     if self.activities.count == 0 {
                         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, error in
                             #if DEBUG
-                                print("Get all Activities API call")
+                                print("Get all Activities API call" + String(success))
                             #endif
                             if let json = json {
                                 guard success == true else {
