@@ -26,7 +26,7 @@ class ActivitiesRequestManager {
     func getActivitiesNotAdded(onCompletion: APIActivitiesArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
-                GoalsRequestManager.sharedInstance.getUserGoals(activities!, goalRequest: .getAllGoals, onCompletion: { (success, message, code, nil, goals, error) in
+                GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
                     if success {
                         if let goalsUnwrap = goals{
                             self.activitiesNotGoals = []
@@ -96,6 +96,9 @@ class ActivitiesRequestManager {
                 if let path = user?.activityCategoryLink {
                     if self.activities.count == 0 {
                         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get, onCompletion: { success, json, error in
+                            #if DEBUG
+                                print("Get all Activities API call")
+                            #endif
                             if let json = json {
                                 guard success == true else {
                                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)

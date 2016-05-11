@@ -96,6 +96,9 @@ class UserRequestManager{
     func getUser(onCompletion: APIUserResponse) {
         if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
             if self.newUser == nil {
+                #if DEBUG
+                    print("Get User API call")
+                #endif
                 genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil, onCompletion: onCompletion)
             } else {
                 onCompletion(true, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), self.newUser)

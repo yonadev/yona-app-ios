@@ -62,7 +62,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        
+
         self.setupUI()
     }
     
@@ -71,6 +71,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         
         self.callActivityCategory()
         setDeselectOtherCategory()
+
         self.timeBucketData(.BudgetGoalString)
         self.timeBucketData(.TimeZoneGoalString)
         self.timeBucketData(.NoGoGoalString)
@@ -176,12 +177,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             if success {
                 if let goalsUnwrap = goals {
                         self.updateUI(goal, timeBucketData: goalsUnwrap)
-                    
-                    #if DEBUG
-                        for goal in goals! {
-                            print(goal.goalType)
-                        }
-                    #endif
                 }
             } else {
                 Loader.Hide(self)
