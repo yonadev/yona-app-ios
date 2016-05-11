@@ -68,12 +68,12 @@ extension LoginViewController: CodeInputViewDelegate {
         if code ==  passcode {
             self.codeInputView.resignFirstResponder()
             let defaults = NSUserDefaults.standardUserDefaults()
-            UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+            UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
                 defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
                     self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
                 }
-            })
+            }
         } else {
             errorLabel.hidden = false
             self.codeInputView.clear()
@@ -97,7 +97,7 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser({ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
@@ -113,7 +113,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     })
                 }
             }
-        })
+        }
     }
 }
 

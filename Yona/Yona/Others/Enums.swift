@@ -70,6 +70,12 @@ enum userRequestTypes{
     case resendMobileConfirmCode
 }
 
+enum AllowedGetUserRequest{
+    case deleteDeviceRequest
+    case pinReset
+    case other
+}
+
 enum responseCodes: Int{
     case ok200 = 200
     case ok399 = 399

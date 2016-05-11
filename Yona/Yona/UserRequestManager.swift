@@ -93,9 +93,9 @@ class UserRequestManager{
      
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
-    func getUser(onCompletion: APIUserResponse) {
+    func getUser(userRequestType: AllowedGetUserRequest, onCompletion: APIUserResponse) {
         if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
-            if self.newUser == nil {
+            if self.newUser == nil || NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == AllowedGetUserRequest.deleteDeviceRequest { //if blocked because of pinreset
                 #if DEBUG
                     print("Get User API call")
                 #endif
