@@ -11,12 +11,12 @@ import Foundation
 
 //MARK: - Goal APIService
 class GoalsRequestManager {
-    private var budgetGoals:[Goal] = [] //Array returning budget goals
-    private var timezoneGoals:[Goal] = [] //Array returning timezone goals
-    private var noGoGoals:[Goal] = [] //Array returning no go goals
+    var budgetGoals:[Goal] = [] //Array returning budget goals
+    var timezoneGoals:[Goal] = [] //Array returning timezone goals
+    var noGoGoals:[Goal] = [] //Array returning no go goals
     
     private var newGoal: Goal?
-    private var allTheGoals:[Goal] = [] //Array returning all the goals returned by getGoals
+    var allTheGoals:[Goal] = [] //Array returning all the goals returned by getGoals
 
     let APIService = APIServiceManager.sharedInstance
     let APIUserRequestManager = UserRequestManager.sharedInstance
@@ -62,7 +62,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
      - return [Goal] and array of goals
      */
-    private func sortGoalsIntoArray(goalType: GoalType, goals: [Goal]) -> [Goal]{
+    func sortGoalsIntoArray(goalType: GoalType, goals: [Goal]) -> [Goal] {
         budgetGoals = []
         timezoneGoals = []
         noGoGoals = []
@@ -80,6 +80,7 @@ class GoalsRequestManager {
                 break
             }
         }
+        
         //which array shall we send back?
         switch goalType {
         case GoalType.BudgetGoalString:
@@ -89,7 +90,6 @@ class GoalsRequestManager {
         case GoalType.NoGoGoalString:
             return noGoGoals
         }
-        
     }
     
     /**
@@ -101,53 +101,38 @@ class GoalsRequestManager {
     func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalResponse) {
         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
             if success {
-                switch goalType {
-                    //if the goals arrays have been initialised
-                case .BudgetGoalString:
-                    if self.budgetGoals.count > 0 {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.budgetGoals, error)
-                        break
-                    }
-                case .NoGoGoalString:
-                    if self.noGoGoals.count > 0 {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.noGoGoals, error)
-                        break
-                    }
-                case .TimeZoneGoalString:
-                    if self.timezoneGoals.count > 0 {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.timezoneGoals, error)
-                        break
+//                switch goalType {
+//                case .BudgetGoalString:
+//                    if self.budgetGoals.count > 0 {
+//                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.budgetGoals, error)
+//                        return
+//                    }
+//                case .NoGoGoalString:
+//                    if self.noGoGoals.count > 0 {
+//                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.noGoGoals, error)
+//                        return
+//                    }
+//                case .TimeZoneGoalString:
+//                    if self.timezoneGoals.count > 0 {
+//                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.timezoneGoals, error)
+//                        return
+//                    }
+//                }
+                
+                self.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
+                    if let goals = goals {
+                        let goalsTypeSorted = self.sortGoalsIntoArray(goalType, goals: goals)
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, goalsTypeSorted, error)
+                    } else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                     }
                 }
-                self.getUserGoals(activities!, goalRequest: goalRequestTypes.getAllGoals){ (success, serverMessage, serverCode, nil, goals, error) in
-                    let tempGoals = self.sortGoalsIntoArray(goalType, goals: goals!)
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, tempGoals, error)
-                }
-
             } else {
                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
             }
         }
     }
     
-    /**
-     Helper method to get all the goals associated to the user logged in
-     
-     - parameter none
-     - parameter onCompletion: APIGoalResponse,returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
-     */
-//    func getAllTheGoalsArray(onCompletion: APIGoalResponse) {
-//        ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, serverMessage, serverCode, activities, error) in
-//            if success {
-//                self.getUserGoals(activities!, goalRequest: goalRequestTypes.getAllGoals) { (success, serverMessage, serverCode, nil, goals, error) in
-//                    onCompletion(success, serverMessage, serverCode, nil, goals, error)
-//                }
-//            } else {
-//                onCompletion(false, serverMessage, serverCode, nil, nil, nil)
-//            }
-//        })
-//    }
-//    
     /**
      Generic method to get the goals or post a goal, as they require the same actions but just a different httpmethod
      
@@ -185,9 +170,11 @@ class GoalsRequestManager {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, self.allTheGoals, error)
                             } else { //if we just get one goal, for post goal, just that goals is returned so send that back
                                 self.newGoal = Goal.init(goalData: json, activities: activities!)
+                                //add the new goal to the goals array
+                                self.allTheGoals.append(self.newGoal!)
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newGoal, nil, error)
                             }
-                        } else if httpmethodParam == .delete{
+                        } else {
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
                         }
                     })
@@ -204,14 +191,19 @@ class GoalsRequestManager {
      - parameter activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
-    func getUserGoals(activities: [Activities], goalRequest: goalRequestTypes, onCompletion: APIGoalResponse) {
+    func getUserGoals(activities: [Activities], onCompletion: APIGoalResponse) {
         UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
             //success so get the user?
             if success {
-//                guard self.allTheGoals.count <= 0 && goalRequest == .getAllGoals else {
+//                guard goalRequest == goalRequestTypes.deleteGoal
+//                    || goalRequest == goalRequestTypes.postGoal
+//                    || goalRequest == goalRequestTypes.updateGoal else {
 //                    onCompletion(true, message, code, nil, self.allTheGoals, YonaConstants.YonaErrorTypes.Success)
 //                    return
 //                }
+                #if DEBUG
+                print("getUserGoals")
+                #endif
                 self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
                     if success {
                         onCompletion(true, message, server, nil, goals, error)
@@ -294,9 +286,12 @@ class GoalsRequestManager {
         
         self.goalsHelper(httpMethods.delete, body: nil, goalLinkAction: goalEditLink) { (success, message, serverCode, goal, goals, error) in
             if success {
-                self.getAllTheGoalsArray({ (success, message, code, nil, goals, error) in
-                    onCompletion(success, message, serverCode)
+                ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, code, activites, error) in
+                    self.getUserGoals(activites!) { (success, message, code, nil, goals, error) in
+                        onCompletion(success, message, serverCode)
+                    }
                 })
+
             } else {
                 onCompletion(false, message, serverCode)
             }

@@ -71,9 +71,17 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         
         self.callActivityCategory()
         setDeselectOtherCategory()
-        self.timeBucketData(.BudgetGoalString)
-        self.timeBucketData(.TimeZoneGoalString)
-        self.timeBucketData(.NoGoGoalString)
+        
+        GoalsRequestManager.sharedInstance.getUserGoals(self.activityCategoriesArray) { (success, message, code, nil, goals, error) in
+            self.budgetArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.BudgetGoalString , goals: goals!)
+            self.timeZoneArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.TimeZoneGoalString , goals: goals!)
+            self.nogoArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.NoGoGoalString , goals: goals!)
+
+            //iterate goals returned updaying UI
+        }
+//        self.timeBucketData(.BudgetGoalString)
+//        self.timeBucketData(.TimeZoneGoalString)
+//        self.timeBucketData(.NoGoGoalString)
         if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
@@ -93,9 +101,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                 setSelectedCategory(self.budgetView)
             }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -115,9 +121,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        }
+        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+        
         backButton.hidden = true
         
         selectedCategoryView = categoryView
@@ -164,33 +169,32 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             self.nogoBadgeLabel.hidden = self.nogoArray.count > 0 ? false : true
             self.nogoBadgeLabel.text = String(self.nogoArray.count)
         }
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        self.tableView.reloadData()
     }
     
-    private func timeBucketData(goal: GoalType) {
+    private func timeBucketData(goaltype: GoalType) {
+        //switch statemetn for goaltype here, update UI with teh array of goal type
+//        GoalsRequestManager.sharedInstance.getGoalsOfType(goal, onCompletion: { (success, message, code, nil, goals, err) in
+//            if success {
+
+        switch goaltype {
+        case .BudgetGoalString:
+            self.updateUI(goaltype, timeBucketData: self.budgetArray)
+        case .TimeZoneGoalString:
+            self.updateUI(goaltype, timeBucketData: self.timeZoneArray)
+        case .NoGoGoalString:
+            self.updateUI(goaltype, timeBucketData: self.nogoArray)
+
+        }
         
-        GoalsRequestManager.sharedInstance.getGoalsOfType(goal , onCompletion: { (success, message, code, nil, goals, err) in
-            if success {
-                if let goalsUnwrap = goals {
-                        self.updateUI(goal, timeBucketData: goalsUnwrap)
-                    
-                    #if DEBUG
-                        for goal in goals! {
-                            print(goal.goalType)
-                        }
-                    #endif
-                }
-            } else {
-                Loader.Hide(self)
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
-                }
-                
-            }
-        })
+//            } else {
+//                Loader.Hide(self)
+//                if let message = message {
+//                    self.displayAlertMessage(message, alertDescription: "")
+//                }
+//                
+//            }
+//        })
     }
     
     

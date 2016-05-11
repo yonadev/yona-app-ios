@@ -8,6 +8,10 @@
 
 import Foundation
 
+typealias budgetGoals = Array<Goal>?
+typealias timezoneGoals = Array<Goal>?
+typealias nogoGoals = Array<Goal>?
+
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
 typealias APIPinResetResponse = (Bool, PinCode?, ServerMessage?, ServerCode?) -> Void
@@ -19,6 +23,7 @@ typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, Array<Goa
 typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
+typealias SortedGoals = (Bool, budgetGoals , timezoneGoals, nogoGoals) -> Void
 
 class Manager: NSObject {
 
@@ -47,7 +52,7 @@ class Manager: NSObject {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
     
-        request.timeoutInterval = 30
+        request.timeoutInterval = 2
         
         request.HTTPMethod = httpMethod.rawValue
         

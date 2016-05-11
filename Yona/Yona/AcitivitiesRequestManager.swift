@@ -26,7 +26,7 @@ class ActivitiesRequestManager {
     func getActivitiesNotAdded(onCompletion: APIActivitiesArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
-                GoalsRequestManager.sharedInstance.getUserGoals(activities!, goalRequest: .getAllGoals, onCompletion: { (success, message, code, nil, goals, error) in
+                GoalsRequestManager.sharedInstance.getUserGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
                     if success {
                         if let goalsUnwrap = goals{
                             self.activitiesNotGoals = []
