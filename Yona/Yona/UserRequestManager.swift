@@ -84,7 +84,7 @@ class UserRequestManager{
                 genericUserRequest(httpMethods.put, path: editLink, userRequestType: userRequestTypes.updateUser, body: body, onCompletion: onCompletion)
             } else {
                 //Failed to retrive details for POST user details request
-                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.ok200), nil)
             }
     }
     
@@ -101,7 +101,7 @@ class UserRequestManager{
                 #endif
                 genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil, onCompletion: onCompletion)
             } else {
-                onCompletion(true, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), self.newUser)
+                onCompletion(true, YonaConstants.serverMessages.OK, String(responseCodes.ok200), self.newUser)
             }
         } else {
             //Failed to retrive details for GET user details request
@@ -156,7 +156,14 @@ class UserRequestManager{
     func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIResponse) {
         if let confirmMobileLink = self.newUser?.confirmMobileLink{
             genericUserRequest(httpMethods.post, path: confirmMobileLink, userRequestType: userRequestTypes.confirmMobile, body: body, onCompletion: { (success, message, code, user) in
-                onCompletion(success, message, code)
+                if success {
+                    //if we confirmed successfully get the user as new links need to be parsed
+                    self.genericUserRequest(httpMethods.get, path: KeychainManager.sharedInstance.getUserSelfLink()!, userRequestType: userRequestTypes.getUser, body: nil) { (success, message, code, user) in
+                        onCompletion(success, message, code)
+                    }
+                } else {
+                    onCompletion(success, message, code)
+                }
             })
         } else {
             //Failed to retrive details for confirm mobile request
