@@ -36,9 +36,8 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        })
+        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+    
         footerGradientView.colors = [UIColor.yiWhiteThreeColor(), UIColor.yiWhiteTwoColor()]
         
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
@@ -86,26 +85,22 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
+            GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.deleteGoalButton.selected = true
-                        Loader.Hide(self)
-                        self.navigationController?.popViewControllerAnimated(true)
-                        self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.goalAddedSuccessfully", comment: ""), alertDescription: "")
-                    })
+                    self.deleteGoalButton.selected = true
+                    Loader.Hide(self)
+                    self.navigationController?.popViewControllerAnimated(true)
                     
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        if let message = serverMessage {
-                            self.displayAlertMessage(message, alertDescription: "")
-                        }
-                    })
+                    Loader.Hide(self)
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                    
                 }
             })
         }
@@ -116,20 +111,18 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate: self)
-            APIServiceManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 
                 if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        self.navigationController?.popViewControllerAnimated(true)
-                    })
+                    Loader.Hide(self)
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        Loader.Hide(self)
-                        if let message = serverMessage {
-                        self.displayAlertMessage(message, alertDescription: "")
-                        }
-                    })
+                    Loader.Hide(self)
+                    if let message = serverMessage {
+                    self.displayAlertMessage(message, alertDescription: "")
+                    }
+                    
                 }
             }
         }

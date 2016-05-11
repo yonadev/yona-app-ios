@@ -8,6 +8,10 @@
 
 import Foundation
 
+typealias budgetGoals = Array<Goal>?
+typealias timezoneGoals = Array<Goal>?
+typealias nogoGoals = Array<Goal>?
+
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
 typealias APIPinResetResponse = (Bool, PinCode?, ServerMessage?, ServerCode?) -> Void
@@ -19,6 +23,7 @@ typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, Array<Goa
 typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
+typealias SortedGoals = (Bool, budgetGoals , timezoneGoals, nogoGoals) -> Void
 
 class Manager: NSObject {
 
@@ -42,9 +47,11 @@ class Manager: NSObject {
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         
+
         if let body = body {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         }
+    
         request.timeoutInterval = 30
         
         request.HTTPMethod = httpMethod.rawValue
@@ -58,7 +65,7 @@ class Manager: NSObject {
 extension Manager {
     
     /**
-     This is a generic method that can make any request to YONA's API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
+     This is a generic method that can make any request to YONA API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
      
      - parameter path: String, The required path to the API service that the user wants to access
      - parameter body: BodyDataDictionary?, The data dictionary of [String: AnyObject] type
@@ -66,61 +73,64 @@ extension Manager {
      - parameter httpHeader:[String:String], the header set to a JSON type
      - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
-    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse) {
-        
-        APIServiceManager.sharedInstance.APIServiceCheck { (success, message, code) in
-            if success {
-                do {
-                    let request = try self.setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
-                    //execute our session
-                    let session = NSURLSession.sharedSession()
-                    let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                        if let response = response,
-                            let httpResponse = response as? NSHTTPURLResponse {
-                            //get the code of the response so we can notify the APIServices
-                            let code = httpResponse.statusCode
-                            do {
-                                //try to create json object from the data returned
-                                if let data = data {
-                                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse)
+    {
+        do{
+            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                if error != nil{
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onCompletion(false, nil, error)
+                        return
+                    }
+                }
+                if response != nil{
+                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
+                        do{
+                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error)
+                            let userInfo = [
+                                NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
+                            ]
+                            let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+                            
+                            if requestResult.success == false{
+                                //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
 
-                                    if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code { // successful you get 200 to 204 back, anything else...Houston we gotta a problem
-                                        if let dict = jsonObject as? [String: AnyObject] {
-                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
-                                            self.userInfo = dict
-                                            onCompletion(true, dict , error)
-                                        }
-                                    } else {
-                                        if let dict = jsonObject as? [String: AnyObject] {
-                                            APIServiceManager.sharedInstance.setServerCodeMessage(dict, error: error)
-                                            onCompletion(false, dict, error)
-                                        }
-                                    }
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                                 }
-                            } catch { //if serialisation fails send back messages saying so
-                                if case responseCodes.ok200.rawValue ... responseCodes.ok204.rawValue = code {
-                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
-                                    onCompletion(true, nil, NSError.init(domain: "No Data returned but request succeeded as data body not required", code: code, userInfo: nil))
-                                } else {
-                                    print("error Code: \(code)")
-                                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
-                                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.JsonObjectSerialisationFail)
+                            } else {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                                 }
                             }
-                        } else {
-                            APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
-                            onCompletion(false, nil, error)
+                        } catch let error as NSError{
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onCompletion(false, nil, error)
+                                return
+                            }
                         }
-                    })
-                    task.resume()
-                } catch {
-                    APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
-                    onCompletion(false, nil, YonaConstants.YonaErrorTypes.NSURLRequestSetupFail)
+                    } else {
+                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                        //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
+                        let userInfo = [
+                            NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
+                        ]
+                        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onCompletion(requestResult.success, nil, omdbError)
+                        }
+                    }
                 }
-            } else {
-                APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: YonaConstants.YonaErrorTypes.NetworkFail)
-                onCompletion(false, nil, YonaConstants.YonaErrorTypes.NetworkFail)
+            })
+            task.resume()
+        } catch let error as NSError{
+            dispatch_async(dispatch_get_main_queue()) {
+                onCompletion(false, nil, error)
             }
+            
         }
     }
 }

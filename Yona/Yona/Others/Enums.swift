@@ -54,20 +54,46 @@ enum pinRequestTypes{
     case clearRequest
 }
 
+enum goalRequestTypes{
+    case updateGoal
+    case deleteGoal
+    case getAllGoals
+    case postGoal
+}
+
 enum userRequestTypes{
     case postUser
     case deleteUser
     case getUser
-    case putUser
+    case updateUser
     case confirmMobile
     case resendMobileConfirmCode
 }
 
 enum responseCodes: Int{
     case ok200 = 200
-    case ok204 = 204
-    case timeoutRequest = 408
-    case timeoutRequest2 = -1001
+    case ok399 = 399
+    case connectionFail400 = 400
+    case connectionFail499 = 499
+    case serverProblem500 = 500
+    case serverProblem599 = 599
+    case yonaErrorCode = 600
+    case internalErrorCode = 700
+}
+
+enum errorDomains: String {
+    case yonaErrorDomain = "YONA.Domain"
+    case networkErrorDomain = "Network.Domain"
+    case successDomain = "Success"
+    case internalErrorDomain = "App error"
+}
+
+enum responseMessages: String{
+    case networkConnectionProblem = "Network connection problem"
+    case serverProblem = "Server problem"
+    case YonaError = "You are not Alone! Something went wrong!"
+    case internalErrorMessage = "App error"
+    case success = "Success"
 }
 
 enum timeBucketTabNames: String{
@@ -75,4 +101,3 @@ enum timeBucketTabNames: String{
     case timeZone = "TimeZone"
     case noGo = "NoGo"
 }
-

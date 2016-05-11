@@ -62,7 +62,7 @@ extension LoginSignupValidationMasterView {
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
-                APIServiceManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
+                PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
                     if success {
                         self.pinResetButton.hidden = false
                     }
@@ -79,27 +79,25 @@ extension LoginSignupValidationMasterView {
     func pinResetTapped() {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
-            APIServiceManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if success {
-                        print(pincode!)
-                        if pincode != nil {
-                            
-                            let timeToDisplay = pincode!.convertFromISO8601Duration()
-                            setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                            let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
-                            let alert = NSString(format: localizedString, timeToDisplay!)
-                            self.displayAlertMessage("", alertDescription: String(alert))
-                            
-                            if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                                self.navigationController?.pushViewController(sMSValidation, animated: false)
-                            }
+            PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
+                if success {
+                    print(pincode!)
+                    if pincode != nil {
+                        
+                        let timeToDisplay = pincode!.convertFromISO8601Duration()
+                        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
+                        let alert = NSString(format: localizedString, timeToDisplay!)
+                        self.displayAlertMessage("", alertDescription: String(alert))
+                        
+                        if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                            self.navigationController?.pushViewController(sMSValidation, animated: false)
                         }
-                    } else {
-                        //TODO: Will change this after this build
-                        self.displayAlertMessage("Error", alertDescription: "User not found")
                     }
-                })
+                } else {
+                    //TODO: Will change this after this build
+                    self.displayAlertMessage("Error", alertDescription: "User not found")
+                }
             })
         }
     }

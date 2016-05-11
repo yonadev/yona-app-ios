@@ -12,6 +12,7 @@
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
 		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
 		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
@@ -34,6 +35,7 @@
 		9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */; };
 		9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7491CD898E300100306 /* UITextField+AGi18n.m */; };
 		9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C74B1CD898E300100306 /* UITextView+AGi18n.m */; };
+		9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC831CE2270F00F575E2 /* RequestResult.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
@@ -250,6 +252,7 @@
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
 		603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentManager.m; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
 		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 		9042C7491CD898E300100306 /* UITextField+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AGi18n.m"; sourceTree = "<group>"; };
 		9042C74A1CD898E300100306 /* UITextView+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AGi18n.h"; sourceTree = "<group>"; };
 		9042C74B1CD898E300100306 /* UITextView+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AGi18n.m"; sourceTree = "<group>"; };
+		9054CC831CE2270F00F575E2 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
@@ -685,6 +689,7 @@
 		90DE87991CD2374400C1E706 /* DAOObjects */ = {
 			isa = PBXGroup;
 			children = (
+				9054CC831CE2270F00F575E2 /* RequestResult.swift */,
 				D94A93BC1CB26E3A00ABE0F8 /* Users.swift */,
 				BE03B02A1CBD6CBF0063802E /* Goal.swift */,
 				907DA5271CBE5C5D0031850E /* Activities.swift */,
@@ -954,6 +959,7 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
 				AD84B7301CDA27820085D5B7 /* Array.swift */,
 				AD84B7311CDA27820085D5B7 /* Date.swift */,
 				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
@@ -1537,6 +1543,7 @@
 				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
+				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
@@ -1548,6 +1555,7 @@
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
+				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,

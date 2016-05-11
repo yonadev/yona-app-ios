@@ -38,14 +38,14 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                    PinResetRequestManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
                         XCTAssert(success, pincode!)
                         expectation.fulfill()
                     }
@@ -67,19 +67,19 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
                     //reset pincode
-                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                    PinResetRequestManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
                         //the user waits 24 hours and then 
                         let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
                         //reset verify code withotp
-                        APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, pincode, message, code) in
+                        PinResetRequestManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, pincode, message, code) in
                             XCTAssert(success, message!)
                             if success {
                                 XCTAssert(success, message!)
@@ -104,21 +104,21 @@ class PinResetAPIServiceTests: XCTestCase {
              "mobileNumber": "+316" + String(randomPhoneNumber),
              "nickname": "RQ"]
         
-        APIServiceManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             
             //confirm mobile number check, static code
-            APIServiceManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    APIServiceManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
+                    PinResetRequestManager.sharedInstance.pinResetRequest{ (success, pincode, message, code) in
                         if success {
                             let bodyVerifyPin = ["code": YonaConstants.testKeys.otpTestCode]
                             //reset verify code withotp
-                            APIServiceManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, nil, message, code) in
+                            PinResetRequestManager.sharedInstance.pinResetVerify(bodyVerifyPin) { (success, nil, message, code) in
                                 XCTAssert(success, message!)
                                 if success {
-                                    APIServiceManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
+                                    PinResetRequestManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
                                         XCTAssert(success, message!)
                                         if success {
                                             XCTAssert(success, message!)

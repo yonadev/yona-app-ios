@@ -38,7 +38,6 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
                             animated: false,
                             completion: nil
                         )
-                        
                     })
                 }
                 

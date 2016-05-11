@@ -26,9 +26,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        })
+        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         setupUI()
     }
     
@@ -102,12 +100,10 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
                     if success {
                         NewDeviceRequestManager.sharedInstance.deleteNewDevice({ (success, message, code) in
                             if success {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    //Update flag
-                                    setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                                        self.navigationController?.pushViewController(passcode, animated: false)
-                                    }
+                                //Update flag
+                                setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                                if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                    self.navigationController?.pushViewController(passcode, animated: false)
                                 }
                             } else {
                                 self.displayAlertMessage("", alertDescription: message!)
@@ -115,9 +111,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
                         })
 
                     } else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.displayAlertMessage("", alertDescription: message!)
-                        }
+                        self.displayAlertMessage("", alertDescription: message!)
                     }
                 }
             }
