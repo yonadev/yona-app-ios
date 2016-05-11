@@ -18,23 +18,28 @@ class NewDeviceRequestManager {
     private init() {}
 
     func genericHelper(httpMethod: httpMethods, addDeviceCode: String?, mobileNumber: String?, onCompletion: APIUserResponse) {
-        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
-            //success so get the user?
-            if success {
+
                 switch httpMethod {
                 case httpMethods.put:
-                        if let path = user?.newDeviceRequestsLink{
-                            var bodyNewDevice: BodyDataDictionary?
-                            if let password = addDeviceCode {
-                                bodyNewDevice = ["newDeviceRequestPassword": password]
+                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+                        //success so get the user?
+                        if success {
+                            if let path = user?.newDeviceRequestsLink{
+                                var bodyNewDevice: BodyDataDictionary?
+                                if let password = addDeviceCode {
+                                    bodyNewDevice = ["newDeviceRequestPassword": password]
+                                }
+                                self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
+                                    
+                                })
+                            } else {
+                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
                             }
-                            self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
-
-                            })
                         } else {
-                            onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
+                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
                         }
+                    }
                 case httpMethods.get:
                     let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
                     let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
@@ -61,20 +66,23 @@ class NewDeviceRequestManager {
                     }
                     
                 case httpMethods.delete:
-                    if let path = user?.newDeviceRequestsLink {
-                        self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
-                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
-                        })
-                    } else {
-                        onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
+                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.deleteDeviceRequest) { (success, message, code, user) in
+                        //success so get the user?
+                        if success {
+                            if let path = user?.newDeviceRequestsLink {
+                                self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethod, onCompletion: { (success, json, error) in
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
+                                })
+                            } else {
+                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
+                            }
+                        }  else {
+                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
+                        }
                     }
                 default:
                     break
                 }
-            } else {
-                onCompletion(false , YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
-            }
-        }
     }
     
     /**

@@ -174,7 +174,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func getAllTheGoals(activities: [Activities], onCompletion: APIGoalResponse) {
-        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
             //success so get the user?
             if success {
                 self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
@@ -201,7 +201,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
-        UserRequestManager.sharedInstance.getUser { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
             //success so get the user?
             if success {
                 //success so get the user
