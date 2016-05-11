@@ -43,9 +43,9 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.pinResetButton.hidden = false
-            self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
+            self.codeInputView.resignFirstResponder()
             return;
         }
         
@@ -74,7 +74,6 @@ extension LoginViewController: CodeInputViewDelegate {
                     self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
                 }
             })
-
         } else {
             errorLabel.hidden = false
             self.codeInputView.clear()
@@ -83,8 +82,8 @@ extension LoginViewController: CodeInputViewDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
-                self.displayAlertMessage("Login", alertDescription: NSLocalizedString("login.user.errorinfoText", comment: ""))
                 errorLabel.hidden = false
+                self.codeInputView.resignFirstResponder()
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {
