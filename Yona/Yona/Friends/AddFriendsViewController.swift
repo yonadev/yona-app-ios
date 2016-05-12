@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AddressBook
 
 class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
     
@@ -21,6 +22,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var mobileTextfield: UITextField!
     @IBOutlet var inviteFriendButton: UIButton!
     @IBOutlet var screenTitle: UILabel!
+    var addressBook: ABAddressBookRef?
+    
     
     // MARK: - View
     override func viewDidLoad() {
@@ -86,6 +89,12 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
     }
     
+    func createAddressBook(){
+        var error: Unmanaged<CFError>?
+        addressBook = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
+        
+    }
+    
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -93,6 +102,41 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
     
     func dismissKeyboard(){
         view.endEditing(true)
+    }
+    
+    func addressbookAccess() {
+        switch ABAddressBookGetAuthorizationStatus(){
+        case .Authorized:
+            print("Already authorized")
+            createAddressBook()
+            /* Access the address book */
+        case .Denied:
+            print("Denied access to address book")
+            
+        case .NotDetermined:
+            createAddressBook()
+            if let theBook: ABAddressBookRef = addressBook{
+                ABAddressBookRequestAccessWithCompletion(theBook,
+                                                         {(granted: Bool, error: CFError!) in
+                                                            
+                                                            if granted{
+                                                                if let people = ABAddressBookCopyArrayOfAllPeople(self.addressBook)?.takeRetainedValue() as? NSArray {
+                                                                    // now do something with the array of people
+                                                                }
+                                                                print("Access granted")
+                                                            } else {
+                                                                print("Access not granted")
+                                                            }
+                                                            
+                })
+            }
+            
+        case .Restricted:
+            print("Access restricted")
+            
+        default:
+            print("Other Problem")
+        }
     }
 }
 
@@ -112,6 +156,8 @@ extension AddFriendsViewController {
         manualTabBottomBorder.hidden = true
         addressBookTabView.alpha = 1.0
         addressBookTabBottomBorder.hidden = false
+        
+        addressbookAccess()
     }
 }
 
