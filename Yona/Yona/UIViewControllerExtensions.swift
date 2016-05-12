@@ -41,7 +41,7 @@ extension UIViewController {
      - parameter userData: BodyDataDictionary? Optional data of the user that is trying to be posted
      - return none
      */
-    func displayAlertOption(alertTitle:String, alertDescription:String, onCompletion: DisplayAlertResponse) -> Void {
+    func displayAlertOption(alertTitle:String, cancelButton: Bool, alertDescription:String, onCompletion: DisplayAlertResponse) -> Void {
         if #available(iOS 8.0, *) {
             let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
@@ -49,12 +49,15 @@ extension UIViewController {
                 return
             }
             
-            let CANCELAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
-                onCompletion(alertButtonType.cancel)
-                return
+            if cancelButton {
+                let CANCELAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
+                    onCompletion(alertButtonType.cancel)
+                    return
+                }
+                errorAlert.addAction(CANCELAction)
             }
             errorAlert.addAction(OKAction)
-            errorAlert.addAction(CANCELAction)
+            
 
             self.presentViewController(errorAlert, animated: true) {
                 return

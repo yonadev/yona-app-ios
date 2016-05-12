@@ -100,7 +100,7 @@ extension LoginViewController: CodeInputViewDelegate {
         UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
-                    self.displayAlertOption("", alertDescription: serverMessage, onCompletion: { (buttonPressed) in
+                    self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
                         switch buttonPressed{
                         case alertButtonType.OK:
                             if let welcome = R.storyboard.welcome.welcomeStoryboard {
