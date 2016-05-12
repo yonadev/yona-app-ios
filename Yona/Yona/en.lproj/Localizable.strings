@@ -118,9 +118,6 @@
 "enteremailvalidation" = "You need to enter email address of friend.";
 "email" = "EMAIL";
 
-
-
-
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";

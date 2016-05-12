@@ -82,9 +82,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
         mobileTextfield.rightView = mobile;
         mobileTextfield.rightViewMode = UITextFieldViewMode.Always
         
-        
+        //Add textfields array to manage responder
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
-
     }
     
     // Go Back To Previous VC
@@ -118,9 +117,7 @@ extension AddFriendsViewController {
 
 private extension Selector {
     static let dismissKeyboard = #selector(AddFriendsViewController.dismissKeyboard)
-    
     static let back = #selector(AddFriendsViewController.back(_:))
-    
 }
 
 extension UITextField {
