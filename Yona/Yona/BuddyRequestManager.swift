@@ -11,11 +11,19 @@ import Foundation
 class BuddyRequestManager {
     let APIService = APIServiceManager.sharedInstance
     let APIUserRequestManager = UserRequestManager.sharedInstance
-    static let sharedInstance = ActivitiesRequestManager()
+    static let sharedInstance = BuddyRequestManager()
     
     private init() {}
 
-    func requestNewbuddy(){
-        
+    func requestNewbuddy(buddyBody: BodyDataDictionary, onCompletion: APIResponse) {
+        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+            if success {
+                if let buddieLink = user?.buddiesLink {
+                    self.APIService.callRequestWithAPIServiceResponse(buddyBody, path: buddieLink, httpMethod: httpMethods.post) { (success, json, error) in
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                    }
+                }
+            }
+        }
     }
 }

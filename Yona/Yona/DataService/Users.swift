@@ -53,16 +53,16 @@ struct Users{
             }
         } else {
             
-            if let firstName = userData[YonaConstants.jsonKeys.firstNameKey] as? String {
+            if let firstName = userData[addUserKeys.firstNameKey.rawValue] as? String {
                 self.firstName = firstName
             }
-            if let lastName = userData[YonaConstants.jsonKeys.lastNameKeys] as? String {
+            if let lastName = userData[addUserKeys.lastNameKeys.rawValue] as? String {
                 self.lastName = lastName
             }
-            if let mobileNumber = userData[YonaConstants.jsonKeys.mobileNumberKeys] as? String {
+            if let mobileNumber = userData[addUserKeys.mobileNumberKeys.rawValue] as? String {
                 self.mobileNumber = mobileNumber
             }
-            if let nickname = userData[YonaConstants.jsonKeys.nicknameKeys] as? String {
+            if let nickname = userData[addUserKeys.nicknameKeys.rawValue] as? String {
                 self.nickname = nickname
             }
             
