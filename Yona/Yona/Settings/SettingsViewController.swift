@@ -49,6 +49,11 @@ class SettingsViewController: UIViewController {
                             case alertButtonType.OK:
                                 NewDeviceRequestManager.sharedInstance.deleteNewDevice{ (success, message, code) in
                                     //device request deleted
+                                    if success == false {
+                                        if let message = message {
+                                            self.displayAlertMessage("", alertDescription: message)
+                                        }
+                                    }
                                 }
                             default:
                                 break
