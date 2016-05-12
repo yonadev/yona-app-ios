@@ -106,10 +106,10 @@
 
 
 //Friends Overview
-"addfriend" = "VRIEND TOEVOEGEN";
-"invitefriend" = "VRIEND UITNODIGEN";
-"addfriendmanually" = "Handmatig";
-"addfriendcontacts" = "Uit adresboek";
+"friends" = "VRIENDEN";
+"timeline" = "Timeline";
+"overview" = "Overzicht";
+
 
 //Add Friends
 "addfriend" = "VRIEND TOEVOEGEN";

@@ -30,12 +30,6 @@ class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
         })
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    
     // MARK: - private functions
     private func setupUI() {
         //Nav bar Back button.
@@ -45,7 +39,7 @@ class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.tabBarController?.tabBar.hidden = false
+        
     }
 }
 
@@ -86,7 +80,7 @@ extension FriendsOverViewViewController {
     }
     
     @IBAction func addFriendAction(sender: AnyObject) {
-         performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendSegue, sender: self)
+        performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendsSegue, sender: self)
     }
 }
 
