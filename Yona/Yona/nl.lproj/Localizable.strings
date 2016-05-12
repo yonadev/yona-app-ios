@@ -9,13 +9,13 @@
 
 "join" = "DOE MEE";
 "login" = "INLOGGEN";
-"signup.user.firstname" = "Voornaam";
-"signup.user.lastname" = "Achtenaam";
+//"signup.user.firstname" = "Voornaam";
+//"signup.user.lastname" = "Achtenaam";
 "signup.button.next" = "Volgende";
 "signup.button.previous" = "Vorige";
 
 "signup.user.mobileNumber" = "Mobiel Telefoonnummer";
-"signup.user.nickname" = "Nick Name";
+//"signup.user.nickname" = "Nick Name";
 "signup.user.infoText" = "We gebruiken je mobile nummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een nog betere privacy.";
 "first-name" = "VOORNAAM";
 "last-name" = "ACHTERNAAM";
@@ -47,7 +47,7 @@
 "adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
 "adddevice.user.InputPassCode" = "Behagen ingang wachtwoord";
 "adddevice.user.InputValidCode" = "Gelieve ingang geldig Telefoonnummer";
-"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code in uw andere apparaat";
+"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in uw andere apparaat";
 
 "login.user.errorinfoText" = "Jouw account is geblokkeerd om veiligheidsredenen, gebruik de optie reset-toegangscode om jouw account te activeren.";
 
@@ -104,3 +104,16 @@
 "delete-user" = "Unsubscribe";
 "deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
 
+
+//Friends Overview
+"friends" = "VRIENDEN";
+"timeline" = "Timeline";
+"overview" = "Overzicht";
+
+//Add Friends
+"addfriend" = "VRIEND TOEVOEGEN";
+"invitefriend" = "VRIEND UITNODIGEN";
+"addfriendmanually" = "Handmatig";
+"addfriendcontacts" = "Uit adresboek";
+"enteremailvalidation" = "You need to enter email address of friend.";
+"email" = "EMAIL";

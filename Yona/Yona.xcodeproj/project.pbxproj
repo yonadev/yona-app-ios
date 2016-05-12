@@ -81,7 +81,7 @@
 		AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */; };
 		AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */; };
 		AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
-		AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsViewController.swift */; };
+		AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */; };
 		AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */; };
 		AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6E1CA940A5008CAFB1 /* Profile.storyboard */; };
 		AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* ProfileViewController.swift */; };
@@ -92,6 +92,7 @@
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
+		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
 		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
 		AD84B7321CDA27820085D5B7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7301CDA27820085D5B7 /* Array.swift */; };
@@ -340,7 +341,7 @@
 		AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		AD291D661CA94001008CAFB1 /* Challenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Challenges.storyboard; sourceTree = "<group>"; };
-		AD291D6A1CA9406F008CAFB1 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsOverViewViewController.swift; sourceTree = "<group>"; };
 		AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		AD291D6E1CA940A5008CAFB1 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		AD291D701CA940B0008CAFB1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +353,7 @@
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -814,7 +816,8 @@
 			isa = PBXGroup;
 			children = (
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
-				AD291D6A1CA9406F008CAFB1 /* FriendsViewController.swift */,
+				AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */,
+				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1587,7 +1590,7 @@
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
-				AD291D6B1CA9406F008CAFB1 /* FriendsViewController.swift in Sources */,
+				AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
@@ -1599,6 +1602,7 @@
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
 				9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */,
+				AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */,
 				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,

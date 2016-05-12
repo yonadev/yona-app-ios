@@ -118,7 +118,9 @@ class UserRequestManager{
             //get the get user link...
         if let editLink = self.newUser?.editLink {
             genericUserRequest(httpMethods.delete, path: editLink, userRequestType: userRequestTypes.deleteUser, body: nil, onCompletion: { (success, message, code, nil) in
-                KeychainManager.sharedInstance.clearKeyChain()
+                if success {
+                    KeychainManager.sharedInstance.clearKeyChain()
+                }
                 onCompletion(success, message, code)
             })
 

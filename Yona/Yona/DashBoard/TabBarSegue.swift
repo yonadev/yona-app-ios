@@ -43,10 +43,10 @@ class TabBarSegue: UIStoryboardSegue {
                 tabBarController.currentViewControllers.settingsViewController = destinationViewController as? SettingsViewController
             }
         case SegueId.Friends.rawValue:
-            if let vc = tabBarController.currentViewControllers.friendsViewController {
+            if let vc = tabBarController.currentViewControllers.friendsOverViewViewController {
                 destinationViewController = vc
             } else {
-                tabBarController.currentViewControllers.friendsViewController = destinationViewController as? FriendsViewController
+                tabBarController.currentViewControllers.friendsOverViewViewController = destinationViewController as? FriendsOverViewViewController
             }
         case SegueId.Profile.rawValue:
             if let vc = tabBarController.currentViewControllers.profileViewController {
