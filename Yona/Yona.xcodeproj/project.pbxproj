@@ -47,6 +47,8 @@
 		907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5291CC51C310031850E /* NewDeviceRequests.swift */; };
 		908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */; };
 		908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */; };
+		90C5B5351CE4EFF200D87BFF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		90C5B5361CE4F00F00D87BFF /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */; };
 		90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */; };
 		90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */; };
@@ -1636,12 +1638,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */,
+				90C5B5361CE4F00F00D87BFF /* EnvironmentManager.m in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */,
 				907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
+				90C5B5351CE4EFF200D87BFF /* Enums.swift in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
