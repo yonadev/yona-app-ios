@@ -239,7 +239,7 @@
                         <outlet property="tableView" destination="D0p-La-oo7" id="hr9-uw-euW"/>
                         <outlet property="timelineTabBottomBorder" destination="zYw-AQ-WOA" id="YFZ-AU-Nny"/>
                         <outlet property="timelineTabView" destination="Qp7-5Y-17s" id="tvC-xh-QYN"/>
-                        <segue destination="OjV-ne-DEf" kind="show" identifier="addFriendsSegue" id="cfi-lX-xoX"/>
+                        <segue destination="OjV-ne-DEf" kind="showDetail" identifier="addFriendsSegue" action="showViewController:sender:" id="cfi-lX-xoX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyg-hw-Exf" userLabel="First Responder" sceneMemberID="firstResponder"/>
