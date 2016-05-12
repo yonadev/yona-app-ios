@@ -10,7 +10,7 @@ import UIKit
 
 struct ViewControllerStatus {
     var profileViewController: ProfileViewController?
-    var friendsViewController: FriendsViewController?
+    var friendsOverViewViewController: FriendsOverViewViewController?
     var challengesViewController: TimeBucketChallenges?
     var settingsViewController: SettingsViewController?
 }
