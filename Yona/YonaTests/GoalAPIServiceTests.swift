@@ -81,7 +81,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser(.other) { (success, message, code, user) in
                         //we need to now get the activity link from our activities
                         ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         //set body for goal

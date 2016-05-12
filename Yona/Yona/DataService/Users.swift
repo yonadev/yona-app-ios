@@ -34,7 +34,7 @@ struct Users{
 
     init(userData: BodyDataDictionary) {
         //used to set password on add new device, yonapassword indicates get new device request response
-        if let yonapassword = userData["yonaPassword"] as? String {
+        if let yonapassword = userData[YonaConstants.jsonKeys.yonaPassword] as? String {
             KeychainManager.sharedInstance.setPassword(yonapassword)
             //get the links
             if let links = userData[YonaConstants.jsonKeys.linksKeys] {
@@ -158,8 +158,9 @@ struct Users{
                 
                 //get buddies links
                 if let buddiesLinks = yonaBuddies?[YonaConstants.jsonKeys.linksKeys],
-                    buddiesLinksHref = buddiesLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
-                        self.buddiesLink = buddiesLinksHref
+                    let buddiesLinksSelf = buddiesLinks?[YonaConstants.jsonKeys.selfLinkKeys],
+                    let buddiesLinksSelfHref = buddiesLinksSelf?[YonaConstants.jsonKeys.hrefKey] as? String{
+                        self.buddiesLink = buddiesLinksSelfHref
                 }
             }
         }

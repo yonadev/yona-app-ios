@@ -43,7 +43,7 @@ struct YonaConstants {
     }
     
     struct jsonKeys{
-        static let yonaPassword = "yonaPassword"
+        static let  yonaPassword = "yonaPassword"
         static let  goalType = "@type"
         static let  maxDuration = "maxDurationMinutes"
         static let  activityCategoryName = "activityCategoryName"

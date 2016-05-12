@@ -173,7 +173,6 @@
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
 		D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744E71CB3CA7B008E463A /* KeychainTests.swift */; };
-		D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
@@ -1646,7 +1645,6 @@
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
 				90C5B5351CE4EFF200D87BFF /* Enums.swift in Sources */,
-				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
 				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,

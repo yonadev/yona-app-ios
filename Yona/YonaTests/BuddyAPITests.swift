@@ -42,28 +42,30 @@ class BuddyAPITests: XCTestCase {
         UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
             print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
-            UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
-                let postBuddyBody: [String:AnyObject] = [
-                    postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                    postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                    postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-                    postBuddyBodyKeys._embedded.rawValue: [
-                        postBuddyBodyKeys.yona_user.rawValue: [
-                            addUserKeys.emailAddress.rawValue: "richard@quin.net",
-                            addUserKeys.firstNameKey.rawValue: "Richard",
-                            addUserKeys.lastNameKeys.rawValue: "Quin",
-                            addUserKeys.mobileNumberKeys.rawValue: "+31622282567"
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { (success, message, code) in
+                UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+                    let postBuddyBody: [String:AnyObject] = [
+                        postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                        postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                        postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
+                        postBuddyBodyKeys._embedded.rawValue: [
+                            postBuddyBodyKeys.yona_user.rawValue: [
+                                addUserKeys.emailAddress.rawValue: "richard@quin.net",
+                                addUserKeys.firstNameKey.rawValue: "Richard",
+                                addUserKeys.lastNameKeys.rawValue: "Quin",
+                                addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber
                             ]
                         ]
                     ]
-                BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
-                    XCTAssert(success, message!)
-                    if success {
-                        expectation.fulfill()
-                    }
-                })
-            }
+                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+                        XCTAssert(success, message!)
+                        if success {
+                            expectation.fulfill()
+                        }
+                    })
+                }
+            })
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
 }
