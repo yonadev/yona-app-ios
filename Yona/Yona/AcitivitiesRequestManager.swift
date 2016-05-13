@@ -23,7 +23,11 @@ class ActivitiesRequestManager {
     
     private init() {}
 
-    func getActivitiesNotAdded(onCompletion: APIActivitiesGoalsArrayResponse) {
+    /** Call getActivitiesNotAddedWithTheUsersGoals to return to your UI the activties not yet added to display in a the challenges table. Also it will return the users goals in the APIActivitiesGoalsArrayResponse completion block, because to get activities not added you also need to get the goals so we may as well return the goals as well so that your UI does have to call get goals too
+     
+     - parameter APIActivitiesGoalsArrayResponse Completion block returning the activites not yet added as goals and all the goals the user has to use
+     */
+    func getActivitiesNotAddedWithTheUsersGoals(onCompletion: APIActivitiesGoalsArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
                 GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
@@ -48,23 +52,13 @@ class ActivitiesRequestManager {
     }
     
     /**
-     Helper method to return the activities in and array
-     
-     - parameter none
-     - parameter onCompletion: APIActivitiesArrayResponse, the completion body returning array of activites, success or fail and server messages
-     */
-    func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
-        self.getActivityCategories(onCompletion)
-    }
-    
-    /**
      Returns a self link (used to get an activity not edit) for an activity of a specific type from the get all activities API,
      
      - parameter activityName: CategoryName, Category name such as Social, News or Gambling
      - parameter onCompletion: APIActivityLinkResponse, returns the link for an activity and success or fail and server messages and codes
      */
     func getActivityLinkForActivityName(activityName: CategoryName, onCompletion: APIActivityLinkResponse) {
-        self.getActivitiesArray{ (success, message, code, activities, error) in
+        self.getActivityCategories{ (success, message, code, activities, error) in
             if success {
                 var activityCategoryLink:String?
                 

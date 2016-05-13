@@ -62,7 +62,7 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
