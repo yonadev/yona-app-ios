@@ -11,6 +11,10 @@
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
+		60E5B5B41CE5D69F0090E593 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
+		60E5B5B61CE5D6AF0090E593 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		60E5B5B71CE5D6AF0090E593 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		60E5B5BA1CE5D8480090E593 /* Features in Resources */ = {isa = PBXBuildFile; fileRef = 60E5B5B91CE5D8480090E593 /* Features */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
@@ -252,6 +256,8 @@
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
 		603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentManager.m; sourceTree = "<group>"; };
+		60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YonaTest_Bridging_Header.h; sourceTree = "<group>"; };
+		60E5B5B91CE5D8480090E593 /* Features */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Features; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
@@ -1243,6 +1249,7 @@
 				907DA5291CC51C310031850E /* NewDeviceRequests.swift */,
 				9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */,
 				908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */,
+				60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1250,6 +1257,7 @@
 		D9D54EEB1CA28CD2007805F4 /* YonaUITests */ = {
 			isa = PBXGroup;
 			children = (
+				60E5B5B91CE5D8480090E593 /* Features */,
 				D9C744F61CB3F317008E463A /* Cucumberish */,
 				D9C744F21CB3F2F4008E463A /* CucumberishExampleUITests-Swift.m */,
 				D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */,
@@ -1456,6 +1464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9C745771CB3F317008E463A /* gherkin-languages.json in Resources */,
+				60E5B5BA1CE5D8480090E593 /* Features in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1627,6 +1636,8 @@
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
+				60E5B5B61CE5D6AF0090E593 /* Enums.swift in Sources */,
+				60E5B5B41CE5D69F0090E593 /* EnvironmentManager.m in Sources */,
 				D9C744E91CB3CA84008E463A /* KeychainManager.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
@@ -1663,6 +1674,7 @@
 				D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */,
 				D9C7456A1CB3F317008E463A /* CCIFeature.m in Sources */,
 				D9C745861CB3F317008E463A /* GHScenarioDefinition.m in Sources */,
+				60E5B5B71CE5D6AF0090E593 /* Enums.swift in Sources */,
 				D9C745871CB3F317008E463A /* GHScenarioOutline.m in Sources */,
 				D9C7457A1CB3F317008E463A /* GHGherkinDialect.m in Sources */,
 				D9C745761CB3F317008E463A /* GHDocString.m in Sources */,
@@ -1765,6 +1777,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"SRC_ROOT=@\\\"$(SRCROOT)\\\"",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1868,6 +1881,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.YonaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/YonaTest_Bridging_Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yona.app/Yona";
 			};
 			name = Debug;
@@ -1881,6 +1895,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.YonaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/YonaTest_Bridging_Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yona.app/Yona";
 			};
 			name = Release;

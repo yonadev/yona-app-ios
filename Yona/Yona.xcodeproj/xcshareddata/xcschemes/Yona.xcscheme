@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D9D54EDC1CA28CD2007805F4"

@@ -165,19 +165,19 @@ class UserAPIServiceTests: XCTestCase {
                 let mobileNumber = userUnwrapped.mobileNumber
 
                 //get request to get user we just created!
-                UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
-                    if let userUnwrapped = user{
-                        //test if the posted mobile number is the one returned by our get request
-                        XCTAssertTrue(mobileNumber == userUnwrapped.mobileNumber)
-                    }
-                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
-                        if(success){
-                            expectation.fulfill()
-                        } else {
-                            XCTFail(message!)
-                        }
-                    })
-                }
+//                UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+//                    if let userUnwrapped = user{
+//                        //test if the posted mobile number is the one returned by our get request
+//                        XCTAssertTrue(mobileNumber == userUnwrapped.mobileNumber)
+//                    }
+//                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
+//                        if(success){
+//                            expectation.fulfill()
+//                        } else {
+//                            XCTFail(message!)
+//                        }
+//                    })
+//                }
             }
         }
         

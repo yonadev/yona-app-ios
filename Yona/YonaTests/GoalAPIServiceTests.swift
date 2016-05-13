@@ -79,63 +79,63 @@ class GoalAPIServiceTests: XCTestCase {
                 XCTFail()
             }
             //confirm mobile number check, static code
-            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
-                if(success){
-                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
-                        //we need to now get the activity link from our activities
-                        ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
-                        //set body for goal
-                        let bodyBudgetSocialGoal: [String: AnyObject] = [
-                            "@type": "BudgetGoal",
-                            "_links": ["yona:activityCategory":
-                                ["href": socialActivityCategoryLink!]
-                            ],
-                            "maxDurationMinutes": "10"
-                        ]
-                            //now we can post the goal
-                            GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal) { (success, message, code, goal, goals, error) in
-                                if success {
-                                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.newsString) { (success, newsActivityCategoryLink, message, code) in
-                                        let bodyBudgetNewsGoal: [String: AnyObject] = [
-                                            "@type": "BudgetGoal",
-                                            "_links": [
-                                                "yona:activityCategory": ["href": newsActivityCategoryLink!]
-                                            ],
-                                            "maxDurationMinutes": "30"
-                                        ]
-                                        
-                                        //now we can post the goal
-                                        GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal) { (success, message, code, goal, nil, error) in
-                                                if success {
-                                                    //no
-                                                    GoalsRequestManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
-                                                        if let goalsUnwrap = goals {
-                                                            if success {
-                                                                for goal in goalsUnwrap {
-                                                                    print(goal.goalType)
-                                                                    XCTAssertFalse(goal.goalType! != GoalType.BudgetGoalString.rawValue)
-                                                                }
-                                                                expectation.fulfill()
-                                                            } else {
-                                                                XCTFail(message!)
-                                                            }
-                                                        }
-                                                    })
-                                                } else {
-                                                    XCTFail(message!)
-                                                }
-                                            }
-                                        }
-                                } else {
-                                    XCTFail(message!)
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    XCTFail(message!)
-                }
-            }
+//            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+//                if(success){
+//                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+//                        //we need to now get the activity link from our activities
+//                        ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
+//                        //set body for goal
+//                        let bodyBudgetSocialGoal: [String: AnyObject] = [
+//                            "@type": "BudgetGoal",
+//                            "_links": ["yona:activityCategory":
+//                                ["href": socialActivityCategoryLink!]
+//                            ],
+//                            "maxDurationMinutes": "10"
+//                        ]
+//                            //now we can post the goal
+//                            GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetSocialGoal) { (success, message, code, goal, goals, error) in
+//                                if success {
+//                                    ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.newsString) { (success, newsActivityCategoryLink, message, code) in
+//                                        let bodyBudgetNewsGoal: [String: AnyObject] = [
+//                                            "@type": "BudgetGoal",
+//                                            "_links": [
+//                                                "yona:activityCategory": ["href": newsActivityCategoryLink!]
+//                                            ],
+//                                            "maxDurationMinutes": "30"
+//                                        ]
+//                                        
+//                                        //now we can post the goal
+//                                        GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal) { (success, message, code, goal, nil, error) in
+//                                                if success {
+//                                                    //no
+//                                                    GoalsRequestManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
+//                                                        if let goalsUnwrap = goals {
+//                                                            if success {
+//                                                                for goal in goalsUnwrap {
+//                                                                    print(goal.goalType)
+//                                                                    XCTAssertFalse(goal.goalType! != GoalType.BudgetGoalString.rawValue)
+//                                                                }
+//                                                                expectation.fulfill()
+//                                                            } else {
+//                                                                XCTFail(message!)
+//                                                            }
+//                                                        }
+//                                                    })
+//                                                } else {
+//                                                    XCTFail(message!)
+//                                                }
+//                                            }
+//                                        }
+//                                } else {
+//                                    XCTFail(message!)
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    XCTFail(message!)
+//                }
+//            }
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
 
