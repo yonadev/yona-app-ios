@@ -70,10 +70,9 @@ enum userRequestTypes{
     case resendMobileConfirmCode
 }
 
-enum AllowedGetUserRequest{
-    case deleteDeviceRequest
-    case pinReset
-    case other
+enum GetUserRequest{
+    case allowed
+    case notAllowed //if you set this one then the get User API will not be called, but the USER object will be returned (saves API get user calls)
 }
 
 enum responseCodes: Int{

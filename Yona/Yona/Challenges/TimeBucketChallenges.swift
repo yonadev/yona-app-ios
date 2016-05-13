@@ -201,7 +201,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         print("****** ACTIVITY CALLED ******")
         #endif
         Loader.Show(delegate: self)
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, goals, error) in
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
             if success{
                 Loader.Hide(self)                
                 self.activityCategoriesArray = activities!

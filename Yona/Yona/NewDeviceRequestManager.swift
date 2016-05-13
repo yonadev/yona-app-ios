@@ -21,7 +21,7 @@ class NewDeviceRequestManager {
 
                 switch httpMethod {
                 case httpMethods.put:
-                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
                         //success so get the user?
                         if success {
                             if let path = user?.newDeviceRequestsLink{
@@ -66,7 +66,7 @@ class NewDeviceRequestManager {
                     }
                     
                 case httpMethods.delete:
-                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.deleteDeviceRequest) { (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
                         //success so get the user?
                         if success {
                             if let path = user?.newDeviceRequestsLink {
