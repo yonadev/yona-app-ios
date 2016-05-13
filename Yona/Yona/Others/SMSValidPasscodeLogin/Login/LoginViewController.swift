@@ -20,11 +20,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.pinResetButton.hidden = false
-        } else {
-            self.pinResetButton.hidden = true
-        }
+      
         self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -42,7 +38,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.pinResetButton.hidden = false
+            
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             self.codeInputView.resignFirstResponder()
@@ -78,7 +74,7 @@ extension LoginViewController: CodeInputViewDelegate {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {
-                self.pinResetButton.hidden = false
+                
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
@@ -124,7 +120,6 @@ extension LoginViewController: KeyboardProtocol {
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
-        
         
         let  pos = (pinResetButton?.frame.origin.y)! + (pinResetButton?.frame.size.height)!
         

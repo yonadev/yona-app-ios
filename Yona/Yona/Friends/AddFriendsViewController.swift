@@ -29,20 +29,10 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate {
         self.setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
-        })
-    }
-    
-    override func viewDidAppear(animated:Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     // MARK: - private functions
     private func setupUI() {
+        gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
+
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
