@@ -62,7 +62,7 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
                 if success {
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
@@ -76,7 +76,6 @@ extension LoginViewController: CodeInputViewDelegate {
                         self.displayAlertMessage("", alertDescription: message)
                     }
                 }
-
             }
         } else {
             errorLabel.hidden = false
@@ -101,7 +100,7 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in

@@ -93,7 +93,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
      */
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
                 if let path = user?.activityCategoryLink {
                     if self.activities.count == 0 {
@@ -144,7 +144,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
      */
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
                 if let path = user?.activityCategoryLink {
                     //if the newActivites object has been filled then we can get the link to display activity
