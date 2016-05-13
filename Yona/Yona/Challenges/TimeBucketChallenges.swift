@@ -177,31 +177,22 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         }
     }
     
-    private func callGoals(activities: [Activities]) {
+    private func callGoals(activities: [Activities], goals: [Goal]?) {
         #if DEBUG
         print("****** GOALS CALLED ******")
         #endif
         Loader.Show(delegate: self)
-        GoalsRequestManager.sharedInstance.getAllTheGoals(activities) { (success, message, code, nil, goals, error) in
-            if success {
-                Loader.Hide(self)
-                if let goalsUnwrap = goals {
-                    self.budgetArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.BudgetGoalString, goals: goalsUnwrap)
-                    self.timeBucketData(.BudgetGoalString)
-                    
-                    self.timeZoneArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.TimeZoneGoalString, goals: goalsUnwrap)
-                    self.timeBucketData(.TimeZoneGoalString)
-                    
-                    self.nogoArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.NoGoGoalString, goals: goalsUnwrap)
-                    self.timeBucketData(.NoGoGoalString)
-                }
-            } else {
-                Loader.Hide()
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
-                }
-                
-            }
+
+        Loader.Hide(self)
+        if let goalsUnwrap = goals {
+            self.budgetArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.BudgetGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.BudgetGoalString)
+            
+            self.timeZoneArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.TimeZoneGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.TimeZoneGoalString)
+            
+            self.nogoArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.NoGoGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.NoGoGoalString)
         }
     }
     
@@ -210,12 +201,12 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         print("****** ACTIVITY CALLED ******")
         #endif
         Loader.Show(delegate: self)
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, goals, error) in
             if success{
                 Loader.Hide(self)                
                 self.activityCategoriesArray = activities!
                 self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                self.callGoals(self.activityCategoriesArray)
+                self.callGoals(self.activityCategoriesArray, goals: goals)
             } else {
                 Loader.Hide(self)
                 if let message = message {
