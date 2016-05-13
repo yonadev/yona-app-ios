@@ -72,7 +72,7 @@ extension LoginSignupValidationMasterView {
             if success {
                 print(pincode!)
                 if pincode != nil {
-                    
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     let timeToDisplay = pincode!.convertFromISO8601Duration()
                     setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")

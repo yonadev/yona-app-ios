@@ -32,7 +32,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
     var goalCreated: Goal?
-    var maxDurationMinutes: String = "10"
+    var maxDurationMinutes: String = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
