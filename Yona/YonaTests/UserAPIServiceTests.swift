@@ -165,7 +165,7 @@ class UserAPIServiceTests: XCTestCase {
                 let mobileNumber = userUnwrapped.mobileNumber
 
                 //get request to get user we just created!
-                UserRequestManager.sharedInstance.getUser{ (success, message, code, user) in
+                UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
                     if let userUnwrapped = user{
                         //test if the posted mobile number is the one returned by our get request
                         XCTAssertTrue(mobileNumber == userUnwrapped.mobileNumber)

@@ -103,20 +103,21 @@
 "challenges-budget-subtext" = "Je kunt per dag %1$s minuten %2$s";
 
 
-//================
-//"welcome.button.signup" = "JOIN";
-//"welcome.button.login" = "LOGIN";
-//
-//"signup.user.firstname" = "Firstname";
-//"signup.user.lastname" = "Lastname";
-//"signup.button.next" = "Next";
-//"signup.button.previous" = "Previous";
-//
-//"signup.user.mobileNumber" = "Mobile Number";
-//"signup.user.nickname" = "Nick Name";
-//"signup.user.infoText" = "We use your mobile number for secure registration. Your nickname is mandatory and allows for better privacy.";
-//
-//"smsvalidation.user.errormessage" = "The code is not correct. Try again";
+//TODO: replace english text here(not yet provided by Yona)
+
+//Friends Overview
+"friends" = "FRIENDS";
+"timeline" = "Timeline";
+"overview" = "Overview";
+
+//Add Friends
+"addfriend" = "VRIEND TOEVOEGEN";
+"invitefriend" = "VRIEND UITNODIGEN";
+"addfriendmanually" = "Handmatig";
+"addfriendcontacts" = "Uit adresboek";
+"enteremailvalidation" = "You need to enter email address of friend.";
+"email" = "EMAIL";
+
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
@@ -175,6 +176,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
+"userNotFoundAlert" = "User not found";
 "change-pin" = "Change PIN";
 "privacy" = "Privacy";
 "add-device" = "Add device";

@@ -174,7 +174,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                         let title = NSString(format: localizedString, String(trimmedString))
                         
                         
-                        self.displayAlertOption(title as String, alertDescription: "", onCompletion: { (buttonPressed) in
+                        self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
                             switch buttonPressed{
                             case alertButtonType.OK:
                                 AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in

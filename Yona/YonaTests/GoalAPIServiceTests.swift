@@ -81,7 +81,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    UserRequestManager.sharedInstance.getUser{ (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
                         //we need to now get the activity link from our activities
                         ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         //set body for goal
@@ -217,36 +217,6 @@ class GoalAPIServiceTests: XCTestCase {
         
     }
     
-    func testGetAllTheGoalsArray() {
-        //setup
-        let expectation = expectationWithDescription("Waiting to respond")
-        let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        
-        let body =
-            ["firstName": "Richard",
-             "lastName": "Quin",
-             "mobileNumber": "+31343" + String(randomPhoneNumber),
-             "nickname": "RQ"]
-        //Get user goals
-        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
-            if success == false{
-                XCTFail()
-            }
-            //confirm mobile number check, static code
-            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
-                if(success){
-                    GoalsRequestManager.sharedInstance.getAllTheGoalsArray{ (success, message, code, nil, goals, error) in
-                        print(goals)
-                        XCTAssertTrue(success, "Received Goals")
-                        expectation.fulfill()
-                    }
-                }
-            }
-        }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
-
-    }
-    
     func testGetUserGoal(){
         //setup
         let expectation = expectationWithDescription("Waiting to respond")
@@ -269,7 +239,7 @@ class GoalAPIServiceTests: XCTestCase {
                     ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                         if success {
                             //Get all the goals
-                            GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                            GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                 if(success){
                                     for goal in goals! {
                                         print(goal.goalType)
@@ -401,7 +371,7 @@ class GoalAPIServiceTests: XCTestCase {
                                     ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                                         if success {
                                             //Get the goals again to see if the goals have been updated after our post
-                                            GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                                            GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                                 print(goals)
                                                 //we want to remove the news goal so find it
                                                 for goal in goals! {
@@ -600,7 +570,7 @@ class GoalAPIServiceTests: XCTestCase {
                     if(success){
                         ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
                             if success {
-                                GoalsRequestManager.sharedInstance.getUserGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
+                                GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                     if(success){
                                         for goal in goals! {
                                             print("Goal ID Before" + goal.goalID!)
