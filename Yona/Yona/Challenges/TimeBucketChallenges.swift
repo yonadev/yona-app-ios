@@ -194,7 +194,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     self.timeBucketData(.NoGoGoalString)
                 }
             } else {
-                Loader.Hide(self)
+                Loader.Hide()
                 if let message = message {
                     self.displayAlertMessage(message, alertDescription: "")
                 }

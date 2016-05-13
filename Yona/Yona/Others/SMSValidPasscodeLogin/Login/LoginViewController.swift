@@ -62,13 +62,21 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            self.codeInputView.resignFirstResponder()
-            let defaults = NSUserDefaults.standardUserDefaults()
             UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
-                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                    self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                if success {
+                    self.codeInputView.resignFirstResponder()
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                        self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                    }
+                } else {
+                    if let message = message {
+                        self.codeInputView.clear()
+                        self.displayAlertMessage("", alertDescription: message)
+                    }
                 }
+
             }
         } else {
             errorLabel.hidden = false
@@ -107,6 +115,11 @@ extension LoginViewController: CodeInputViewDelegate {
                             //do nothing or send back to start of signup?
                         }
                     })
+                }
+            }
+            if !success {
+                if let message = message {
+                    self.displayAlertMessage("", alertDescription: message)
                 }
             }
         }

@@ -39,6 +39,8 @@ class ActivitiesRequestManager {
                             }
                         }
                         onCompletion(true, message, code, self.activitiesNotGoals, nil)
+                    } else {
+                        onCompletion(false, message, code, self.activitiesNotGoals, nil)
                     }
                 })
             }
