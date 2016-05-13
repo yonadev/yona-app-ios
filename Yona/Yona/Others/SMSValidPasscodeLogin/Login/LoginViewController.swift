@@ -70,9 +70,12 @@ extension LoginViewController: CodeInputViewDelegate {
             let defaults = NSUserDefaults.standardUserDefaults()
             UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
                 defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                    self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
-                }
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                    
+                
+                
+                
             }
         } else {
             errorLabel.hidden = false

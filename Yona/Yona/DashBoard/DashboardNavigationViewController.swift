@@ -1,20 +1,20 @@
 //
-//  ProfileViewController.swift
+//  DashboardNavigationViewController.swift
 //  Yona
 //
-//  Created by Chandan on 23/03/16.
+//  Created by Ahmed Ali on 13/05/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class DashboardNavigationViewController: UINavigationController {
 
-    @IBOutlet var gradientView: GradientView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setNavigationBarHidden(true, animated: false)
+        let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
+        self.viewControllers = [storyboard.instantiateInitialViewController()!]
         // Do any additional setup after loading the view.
     }
 
