@@ -23,7 +23,7 @@ class ActivitiesRequestManager {
     
     private init() {}
 
-    func getActivitiesNotAdded(onCompletion: APIActivitiesArrayResponse) {
+    func getActivitiesNotAdded(onCompletion: APIActivitiesGoalsArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
                 GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
@@ -38,7 +38,9 @@ class ActivitiesRequestManager {
                                 }
                             }
                         }
-                        onCompletion(true, message, code, self.activitiesNotGoals, nil)
+                        onCompletion(true, message, code, self.activitiesNotGoals, goals, nil)
+                    } else {
+                        onCompletion(false, message, code, self.activitiesNotGoals, goals, nil)
                     }
                 })
             }

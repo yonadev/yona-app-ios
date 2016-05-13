@@ -70,11 +70,8 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         self.callActivityCategory()
+        
         setDeselectOtherCategory()
-
-        self.timeBucketData(.BudgetGoalString)
-        self.timeBucketData(.TimeZoneGoalString)
-        self.timeBucketData(.NoGoGoalString)
 
         if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
             switch tabName {
@@ -146,6 +143,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
+        
        let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
@@ -177,30 +175,38 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
             self.updateUI(goaltype, timeBucketData: self.nogoArray)
 
         }
-        
-        GoalsRequestManager.sharedInstance.getGoalsOfType(goaltype , onCompletion: { (success, message, code, nil, goals, err) in
-            if success {
-                if let goalsUnwrap = goals {
-                        self.updateUI(goaltype, timeBucketData: goalsUnwrap)
-                }
-            } else {
-                Loader.Hide(self)
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
-                }
-                
-            }
-        })
     }
     
+    private func callGoals(activities: [Activities], goals: [Goal]?) {
+        #if DEBUG
+        print("****** GOALS CALLED ******")
+        #endif
+        Loader.Show(delegate: self)
+
+        Loader.Hide(self)
+        if let goalsUnwrap = goals {
+            self.budgetArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.BudgetGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.BudgetGoalString)
+            
+            self.timeZoneArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.TimeZoneGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.TimeZoneGoalString)
+            
+            self.nogoArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.NoGoGoalString, goals: goalsUnwrap)
+            self.timeBucketData(.NoGoGoalString)
+        }
+    }
     
     private func callActivityCategory() {
+        #if DEBUG
+        print("****** ACTIVITY CALLED ******")
+        #endif
         Loader.Show(delegate: self)
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, goals, error) in
             if success{
                 Loader.Hide(self)                
                 self.activityCategoriesArray = activities!
                 self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                self.callGoals(self.activityCategoriesArray, goals: goals)
             } else {
                 Loader.Hide(self)
                 if let message = message {

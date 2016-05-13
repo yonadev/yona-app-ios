@@ -126,7 +126,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
                     PinResetRequestManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
-                        self.displayAlertMessage(NSLocalizedString("passcode.user.UnlockPincode", comment: ""), alertDescription:"")
                         //Now send user back to pinreset screen, let them enter pincode and password again
                         self.codeInputView.resignFirstResponder()
                         //Update flag
