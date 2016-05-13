@@ -85,7 +85,7 @@ extension LoginSignupValidationMasterView {
                 }
             } else {
                 //TODO: Will change this after this build
-                self.displayAlertMessage("Error", alertDescription: "User not found")
+                self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
             }
         })
     }
