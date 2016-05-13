@@ -178,7 +178,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func callGoals(activities: [Activities]) {
+        #if DEBUG
         print("****** GOALS CALLED ******")
+        #endif
         Loader.Show(delegate: self)
         GoalsRequestManager.sharedInstance.getAllTheGoals(activities) { (success, message, code, nil, goals, error) in
             if success {
@@ -204,7 +206,9 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     }
     
     private func callActivityCategory() {
+        #if DEBUG
         print("****** ACTIVITY CALLED ******")
+        #endif
         Loader.Show(delegate: self)
         ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, error) in
             if success{
