@@ -92,12 +92,13 @@ class UserRequestManager{
      V.important method called every time we need to access the user specific API, using the selfLink stored in the Keychain we can access the users details and returne this in a DAO user object in the response.
      
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
+     - parameter userRequestType: GetUserRequest, This can be allowed (so we will allow an API call to the User Request) or not allowed (we will not allow whoever is call ing this to call the API for get User, but just return the stored User body). This changes depending on where we call the get user in the code
      */
-    func getUser(userRequestType: AllowedGetUserRequest, onCompletion: APIUserResponse) {
+    func getUser(userRequestType: GetUserRequest, onCompletion: APIUserResponse) {
         if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
-            if self.newUser == nil || NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == AllowedGetUserRequest.deleteDeviceRequest { //if blocked because of pinreset
+            if self.newUser == nil || NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == GetUserRequest.allowed { //if blocked because of pinreset
                 #if DEBUG
-                    print("Get User API call")
+                    print("***** Get User API call ******")
                 #endif
                 genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil, onCompletion: onCompletion)
             } else {

@@ -46,7 +46,7 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if success {
-                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, activities, goals, error) in
                         if success{
                             //we added a social and there is always a gambling goal so only one goal should be passed back
                             for activity in activities! {
@@ -98,7 +98,7 @@ class ActivityAPIServiceTests: XCTestCase {
                             GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal) {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
-                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded({ (success, message, code, activities, error) in
+                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, activities, goals, error) in
                                         if success{
                                             //we added a social and there is always a gambling goal so only one goal should be passed back
                                             for activity in activities! {
@@ -192,38 +192,6 @@ class ActivityAPIServiceTests: XCTestCase {
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
     
-    func testGetActivitiesArray() {
-        //setup
-        let expectation = expectationWithDescription("Waiting to respond")
-        let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        
-        let body =
-            ["firstName": "Richard",
-             "lastName": "Quin",
-             "mobileNumber": "+31343" + String(randomPhoneNumber),
-             "nickname": "RQ"]
-        
-        //Get user goals
-        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
-            if success == false{
-                XCTFail()
-            }
-            //confirm mobile number check, static code
-            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
-                if(success){
-                    ActivitiesRequestManager.sharedInstance.getActivitiesArray({ (success, message, code, activities, error) in
-                        print(activities)
-                        XCTAssertTrue(success, "Received Activities")
-                        expectation.fulfill()
-                    })
-                }
-            }
-        }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
-
-    }
-    //    func getActivityLinkForActivityName(activityName: YonaConstants.CategoryName, onCompletion: APIActivityLinkResponse) {
-
     func testGetActivityLinkForSocialActivityName() {
         let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8" // hard code this for now for test
         let expectation = expectationWithDescription("Waiting to respond")
