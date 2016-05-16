@@ -15,7 +15,7 @@ struct Messages{
     var nickname: String?
     var message: String?
     var status: buddyRequestStatus?
-    var messageType: buddyRequestStatus?
+    var messageType: String?
 
     //details of user who made request
     var UserRequestfirstName: String?
@@ -81,11 +81,12 @@ struct Messages{
             if let mobileNumber = userDetails[getMessagesKeys.UserRequestmobileNumber.rawValue] as? String {
                 self.UserRequestmobileNumber = mobileNumber
             }
-            if let links = userDetails[getMessagesKeys.links.rawValue],
-                let linksSelf = links[getMessagesKeys.selfLink.rawValue],
-                let linksSelfHref = links[getMessagesKeys.href.rawValue] as? String{
-                self.UserRequestSelfLink = linksSelfHref
-            }
+
+//            if let linksRequest = userDetails[getMessagesKeys.links.rawValue],
+//                let linksRequestSelf = linksRequest[getMessagesKeys.selfLink.rawValue],
+//                let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue]{
+//                self.UserRequestSelfLink = linksRequestSelfHref
+//            }
 
         }
     }

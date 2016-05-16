@@ -1257,8 +1257,8 @@
 				907DA5291CC51C310031850E /* NewDeviceRequests.swift */,
 				9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */,
 				908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */,
-				60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */,
 				BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */,
+				60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";

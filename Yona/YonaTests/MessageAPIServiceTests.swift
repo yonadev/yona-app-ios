@@ -44,10 +44,12 @@ class MessageAPIServiceTests: XCTestCase {
             if success {
                 //confirm mobile number check, static code
                 UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in
-                    MessageRequestManager.sharedInstance.getMessages(10, page: 10)
-                    if(success){
-                        expectation.fulfill()
-                    }
+                    MessageRequestManager.sharedInstance.getMessages(10, page: 1, onCompletion: { (success, serverMessage, serverCode, message, messages) in
+                        if(success){
+                            expectation.fulfill()
+                        }
+                    })
+
                 })
             } else {
                 XCTFail(message ?? "Unknown error")
