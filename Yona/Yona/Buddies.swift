@@ -12,5 +12,7 @@ struct Buddies{
     var editLink: String?
     
     init(userData: BodyDataDictionary) {
+        
+        
     }
 }
