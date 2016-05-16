@@ -30,31 +30,47 @@ class MessageAPIServiceTests: XCTestCase {
     }
     
     func testGetMessages() {
-        //setup
         let expectation = expectationWithDescription("Waiting to respond")
-        let randomPhoneNumber = Int(arc4random_uniform(99999999))
+        
+        var randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
             ["firstName": "Richard",
              "lastName": "Quin",
-             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "mobileNumber": "+31999" + randomPhoneNumber,
              "nickname": "RQ"]
         
-        //Post user data
         UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
-            if success {
-                //confirm mobile number check, static code
-                UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in
-                    MessageRequestManager.sharedInstance.getMessages(10, page: 1, onCompletion: { (success, serverMessage, serverCode, message, messages) in
-                        if(success){
-                            expectation.fulfill()
-                        }
-                    })
-
+            print("PASSWORD:   " + KeychainManager.sharedInstance.getYonaPassword()!)
+            print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { (success, message, code) in
+                randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
+                
+                let postBuddyBody: [String:AnyObject] = [
+                    postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                    postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                    postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
+                    postBuddyBodyKeys._embedded.rawValue: [
+                        postBuddyBodyKeys.yona_user.rawValue: [
+                            addUserKeys.emailAddress.rawValue: "richard@quin.net",
+                            addUserKeys.firstNameKey.rawValue: "Richard",
+                            addUserKeys.lastNameKeys.rawValue: "Quin",
+                            addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber
+                        ]
+                    ]
+                ]
+                
+                BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+                    XCTAssert(success, message!)
+                    if success {
+                        MessageRequestManager.sharedInstance.getMessages(10, page: 1, onCompletion: { (success, serverMessage, serverCode, message, messages) in
+                            if(success){
+                                expectation.fulfill()
+                            }
+                        })
+                    }
                 })
-            } else {
-                XCTFail(message ?? "Unknown error")
-            }
+            })
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectationsWithTimeout(100.0, handler:nil)
     }
 }

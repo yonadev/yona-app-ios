@@ -58,19 +58,6 @@ class BuddyAPITests: XCTestCase {
                             ]
                         ]
                     ]
-//                    let postBuddyBody: [String:AnyObject] = [
-//                        postBuddyBodyKeys.sendingStatus.rawValue: "REQUESTED",
-//                        postBuddyBodyKeys.receivingStatus.rawValue: "REQUESTED",
-//                        postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-//                        postBuddyBodyKeys._embedded.rawValue: [
-//                            postBuddyBodyKeys.yona_user.rawValue: [
-//                                addUserKeys.emailAddress.rawValue: "richard@quin.net",
-//                                addUserKeys.firstNameKey.rawValue: "Richard",
-//                                addUserKeys.lastNameKeys.rawValue: "Quin",
-//                                addUserKeys.mobileNumberKeys.rawValue: "+3194343499" + randomPhoneNumber
-//                            ]
-//                        ]
-//                    ]
             
                     BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
                         XCTAssert(success, message!)
@@ -78,7 +65,6 @@ class BuddyAPITests: XCTestCase {
                             expectation.fulfill()
                         }
                     })
-//                }
             })
         }
         waitForExpectationsWithTimeout(100.0, handler:nil)
