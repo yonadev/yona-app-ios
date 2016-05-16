@@ -17,7 +17,7 @@ class MessageRequestManager {
     
     private init() {}
     
-    func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int?, page: Int?, onCompletion: APIMessageResponse) {
+    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int?, page: Int?, onCompletion: APIMessageResponse) {
         switch httpMethod {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
@@ -55,5 +55,9 @@ class MessageRequestManager {
         case .delete:
             break
         }
+    }
+    
+    func getMessages(size: Int?, page: Int?, onCompletion: APIMessageResponse){
+        self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: 10, page: page, onCompletion: onCompletion)
     }
 }

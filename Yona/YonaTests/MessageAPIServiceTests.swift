@@ -30,5 +30,29 @@ class MessageAPIServiceTests: XCTestCase {
     }
     
     func testGetMessages() {
+        //setup
+        let expectation = expectationWithDescription("Waiting to respond")
+        let randomPhoneNumber = Int(arc4random_uniform(99999999))
+        let body =
+            ["firstName": "Richard",
+             "lastName": "Quin",
+             "mobileNumber": "+31343" + String(randomPhoneNumber),
+             "nickname": "RQ"]
+        
+        //Post user data
+        UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
+            if success {
+                //confirm mobile number check, static code
+                UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { success, message, code in
+                    MessageRequestManager.sharedInstance.getMessages(10, page: 10)
+                    if(success){
+                        expectation.fulfill()
+                    }
+                })
+            } else {
+                XCTFail(message ?? "Unknown error")
+            }
+        }
+        waitForExpectationsWithTimeout(10.0, handler:nil)
     }
 }
