@@ -23,6 +23,7 @@ typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, Array<Goa
 typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
 typealias APIActivitiesGoalsArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, Array<Goal>?, NSError?) -> Void
+typealias APIMessageResponse = (Bool, ServerMessage?, ServerCode?, Messages?, Array<Messages>?) -> Void
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
 typealias SortedGoals = (Bool, budgetGoals , timezoneGoals, nogoGoals) -> Void
 

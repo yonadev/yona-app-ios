@@ -106,3 +106,52 @@ enum timeBucketTabNames: String{
     case timeZone = "TimeZone"
     case noGo = "NoGo"
 }
+
+enum buddyRequestStatus : String {
+    case REQUESTED = "REQUESTED"
+    case NOT_REQUESTED = "NOT_REQUESTED"
+    case ACCEPTED = "ACCEPTED"
+    case REJECTED = "REJECTED"
+}
+
+enum postBuddyBodyKeys : String {
+    case sendingStatus = "sendingStatus"
+    case receivingStatus = "receivingStatus"
+    case message = "message"
+    case _embedded = "_embedded"
+    case yona_user = "yona:user"
+}
+
+enum getMessagesKeys : String {
+    case embedded = "_embedded"
+    case yonaMessages = "yona:messages"
+    case creationTime = "creationTime"
+    case nickname = "nickname"
+    case message = "message"
+    case status = "status"
+    case reject =  "yona:reject"
+    case accept =  "yona:accept"
+    case selfKey = "self"
+    case links = "_links"
+    case yonaUser = "yona:user"
+    case href = "href"
+    case UserRequestfirstName = "firstName"
+    case UserRequestlastName = "lastName"
+    case UserRequestmobileNumber = "mobileNumber"
+    case messageType = "@type"
+    //paging
+    case page = "page"
+    case size = "size"
+    case totalElements = "totalElements"
+    case totalPages = "totalPages"
+    case number = "number"
+
+}
+
+enum addUserKeys : String {
+    case firstNameKey = "firstName"
+    case lastNameKeys = "lastName"
+    case mobileNumberKeys = "mobileNumber"
+    case nicknameKeys = "nickname"
+    case emailAddress = "emailAddress"
+}
