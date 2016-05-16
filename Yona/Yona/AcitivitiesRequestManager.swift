@@ -23,7 +23,11 @@ class ActivitiesRequestManager {
     
     private init() {}
 
-    func getActivitiesNotAdded(onCompletion: APIActivitiesArrayResponse) {
+    /** Call getActivitiesNotAddedWithTheUsersGoals to return to your UI the activties not yet added to display in a the challenges table. Also it will return the users goals in the APIActivitiesGoalsArrayResponse completion block, because to get activities not added you also need to get the goals so we may as well return the goals as well so that your UI does have to call get goals too
+     
+     - parameter APIActivitiesGoalsArrayResponse Completion block returning the activites not yet added as goals and all the goals the user has to use
+     */
+    func getActivitiesNotAddedWithTheUsersGoals(onCompletion: APIActivitiesGoalsArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
                 GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
@@ -38,21 +42,13 @@ class ActivitiesRequestManager {
                                 }
                             }
                         }
-                        onCompletion(true, message, code, self.activitiesNotGoals, nil)
+                        onCompletion(true, message, code, self.activitiesNotGoals, goals, nil)
+                    } else {
+                        onCompletion(false, message, code, self.activitiesNotGoals, goals, nil)
                     }
                 })
             }
         }
-    }
-    
-    /**
-     Helper method to return the activities in and array
-     
-     - parameter none
-     - parameter onCompletion: APIActivitiesArrayResponse, the completion body returning array of activites, success or fail and server messages
-     */
-    func getActivitiesArray(onCompletion: APIActivitiesArrayResponse) {
-        self.getActivityCategories(onCompletion)
     }
     
     /**
@@ -62,7 +58,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityLinkResponse, returns the link for an activity and success or fail and server messages and codes
      */
     func getActivityLinkForActivityName(activityName: CategoryName, onCompletion: APIActivityLinkResponse) {
-        self.getActivitiesArray{ (success, message, code, activities, error) in
+        self.getActivityCategories{ (success, message, code, activities, error) in
             if success {
                 var activityCategoryLink:String?
                 
@@ -91,7 +87,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
      */
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
                 if let path = user?.activityCategoryLink {
                     if self.activities.count == 0 {
@@ -142,7 +138,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
      */
     func getActivityCategoryWithID(activityID: String, onCompletion: APIActivityResponse){
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
                 if let path = user?.activityCategoryLink {
                     //if the newActivites object has been filled then we can get the link to display activity

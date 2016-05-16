@@ -27,6 +27,6 @@ public class CucumberishInitializer: NSObject {
             SStep("I tap the \"Clear All Data\" button")
         }
         //Tell Cucumberish the name of your features folder and let it execute them for you...
-        Cucumberish.executeFeaturesInDirectory("ExampleFeatures", featureTags: nil)
+        Cucumberish.executeFeaturesInDirectory("Features", featureTags: nil)
     }
 }

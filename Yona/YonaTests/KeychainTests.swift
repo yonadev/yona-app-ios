@@ -20,26 +20,26 @@ class KeychainTests: XCTestCase {
         super.tearDown()
     }
     
-//    func testPINCodeSet() {
-//        let keychain = KeychainManager.sharedInstance
-//        
-//        let pin = "1234"
-//        
-//        keychain.savePINCode(pin)
-//        
-//        let result = keychain.getPINCode()
-//        
-//        XCTAssertEqual(result, pin)
-//    }
-//    
-//    func testPINCodeGet() {
-//        let keychain = KeychainManager.sharedInstance
-//        
-//        let pin = "1234"
-//        keychain.savePINCode(pin)
-//
-//        let result = keychain.getPINCode()
-//        
-//        XCTAssertEqual(result, pin)
-//    }
+    func testPINCodeSet() {
+        let keychain = KeychainManager.sharedInstance
+        
+        let pin = "1234"
+        
+        keychain.savePINCode(pin)
+        
+        let result = keychain.getPINCode()
+        
+        XCTAssertEqual(result, pin)
+    }
+    
+    func testPINCodeGet() {
+        let keychain = KeychainManager.sharedInstance
+        
+        let pin = "1234"
+        keychain.savePINCode(pin)
+
+        let result = keychain.getPINCode()
+        
+        XCTAssertEqual(result, pin)
+    }
 }

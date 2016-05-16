@@ -20,11 +20,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.pinResetButton.hidden = false
-        } else {
-            self.pinResetButton.hidden = true
-        }
+      
         self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -42,7 +38,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.pinResetButton.hidden = false
+            
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             self.codeInputView.resignFirstResponder()
@@ -66,19 +62,26 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            self.codeInputView.resignFirstResponder()
-            let defaults = NSUserDefaults.standardUserDefaults()
-            UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
-                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                    self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
+                if success {
+                    self.codeInputView.resignFirstResponder()
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
+                        self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                    }
+                } else {
+                    if let message = message {
+                        self.codeInputView.clear()
+                        self.displayAlertMessage("", alertDescription: message)
+                    }
                 }
             }
         } else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {
-                self.pinResetButton.hidden = false
+                
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
@@ -97,7 +100,7 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
@@ -113,6 +116,11 @@ extension LoginViewController: CodeInputViewDelegate {
                     })
                 }
             }
+            if !success {
+                if let message = message {
+                    self.displayAlertMessage("", alertDescription: message)
+                }
+            }
         }
     }
 }
@@ -124,7 +132,6 @@ extension LoginViewController: KeyboardProtocol {
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
-        
         
         let  pos = (pinResetButton?.frame.origin.y)! + (pinResetButton?.frame.size.height)!
         

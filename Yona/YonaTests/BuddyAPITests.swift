@@ -44,34 +44,6 @@ class BuddyAPITests: XCTestCase {
             print("USER ID:   " + KeychainManager.sharedInstance.getUserID()!)
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode], onCompletion: { (success, message, code) in
                 UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
-//                    let postBuddyBody: [String:AnyObject] = [
-//                        postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-//                        postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-//                        postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-//                        postBuddyBodyKeys._embedded.rawValue: [
-//                            postBuddyBodyKeys.yona_user.rawValue: [
-//                                addUserKeys.emailAddress.rawValue: "richard@quin.net",
-//                                addUserKeys.firstNameKey.rawValue: "Richard",
-//                                addUserKeys.lastNameKeys.rawValue: "Quin",
-//                                addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber
-//                            ]
-//                        ]
-//                    ]
-                    
-//                    let postBuddyBody: [String:AnyObject] = [
-//                        postBuddyBodyKeys.sendingStatus.rawValue: "REQUESTED",
-//                        postBuddyBodyKeys.receivingStatus.rawValue: "REQUESTED",
-//                        postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-//                        postBuddyBodyKeys._embedded.rawValue: [
-//                            postBuddyBodyKeys.yona_user.rawValue: [
-//                                addUserKeys.emailAddress.rawValue: "richard@quin.net",
-//                                addUserKeys.firstNameKey.rawValue: "Richard",
-//                                addUserKeys.lastNameKeys.rawValue: "Quin",
-//                                addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber
-//                            ]
-//                        ]
-//                    ]
-                    
                     let postBuddyBody: [String:AnyObject] = [
                         "sendingStatus": "REQUESTED",
                         "receivingStatus": "REQUESTED",
@@ -81,7 +53,7 @@ class BuddyAPITests: XCTestCase {
                                 "emailAddress": "richard@quin.net",
                                 "firstNameKey": "Richard",
                                 "lastNameKeys": "Quin",
-                                "mobileNumberKeys": "+31622282567"
+                                "mobileNumberKeys": "+3169993999399393"
                             ]
                         ]
                     ]

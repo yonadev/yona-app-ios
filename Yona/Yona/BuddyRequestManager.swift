@@ -16,7 +16,7 @@ class BuddyRequestManager {
     private init() {}
 
     func requestNewbuddy(buddyBody: BodyDataDictionary, onCompletion: APIResponse) {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(.allowed) { (success, message, code, user) in
             if success {
                 if let buddieLink = user?.buddiesLink {
                     self.APIService.callRequestWithAPIServiceResponse(buddyBody, path: buddieLink, httpMethod: httpMethods.post) { (success, json, error) in
