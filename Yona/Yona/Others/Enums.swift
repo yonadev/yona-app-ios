@@ -86,7 +86,7 @@ enum responseCodes: Int{
     case internalErrorCode = 700
 }
 
-enum errorDomains: String {
+enum errorDomains : String {
     case yonaErrorDomain = "YONA.Domain"
     case networkErrorDomain = "Network.Domain"
     case successDomain = "Success"

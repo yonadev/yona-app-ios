@@ -341,7 +341,6 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Create user
-        //Create user
         UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
