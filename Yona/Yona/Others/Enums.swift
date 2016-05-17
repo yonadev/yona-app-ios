@@ -86,7 +86,7 @@ enum responseCodes: Int{
     case internalErrorCode = 700
 }
 
-enum errorDomains: String {
+enum errorDomains : String {
     case yonaErrorDomain = "YONA.Domain"
     case networkErrorDomain = "Network.Domain"
     case successDomain = "Success"
@@ -105,4 +105,27 @@ enum timeBucketTabNames: String{
     case budget = "Budget"
     case timeZone = "TimeZone"
     case noGo = "NoGo"
+}
+
+enum buddyRequestStatus : String {
+    case REQUESTED = "REQUESTED"
+    case NOT_REQUESTED = "NOT_REQUESTED"
+    case ACCEPTED = "ACCEPTED"
+    case REJECTED = "REJECTED"
+}
+
+enum postBuddyBodyKeys : String {
+    case sendingStatus = "sendingStatus"
+    case receivingStatus = "receivingStatus"
+    case message = "message"
+    case _embedded = "_embedded"
+    case yona_user = "yona:user"
+}
+
+enum addUserKeys : String {
+    case firstNameKey = "firstName"
+    case lastNameKeys = "lastName"
+    case mobileNumberKeys = "mobileNumber"
+    case nicknameKeys = "nickname"
+    case emailAddress = "emailAddress"
 }
