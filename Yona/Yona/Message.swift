@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct Messages{
+struct Message{
     var selfLink: String?
     var rejectLink: String?
     var acceptLink: String?

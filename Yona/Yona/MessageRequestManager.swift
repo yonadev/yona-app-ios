@@ -10,20 +10,20 @@ import Foundation
 class MessageRequestManager {
     let APIService = APIServiceManager.sharedInstance
     let APIUserRequestManager = UserRequestManager.sharedInstance
-    var message: Messages?
-    var messages: [Messages] = []
+    var message: Message?
+    var messages: [Message] = []
 
     static let sharedInstance = MessageRequestManager()
     
     private init() {}
     
-    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int?, page: Int?, onCompletion: APIMessageResponse) {
+    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int, page: Int, onCompletion: APIMessageResponse) {
         switch httpMethod {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
                 if success {
                     if let getMessagesLink = user?.messagesLink {
-                        let path = getMessagesLink + "?size=" + String(size) ?? "0" + "&page=" + String(page) ?? "0"
+                        let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page)
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
                             if let json = json {
                                 if let embedded = json[getMessagesKeys.embedded.rawValue],
@@ -31,13 +31,14 @@ class MessageRequestManager {
                                     //iterate messages
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
-                                            self.message = Messages.init(messageData: message)
+                                            self.message = Message.init(messageData: message)
                                             if let message = self.message {
                                                 self.messages.append(message)
                                             }
                                         }
                                     }
                                 }
+                                onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user
                             }
                         }
                     } else {
@@ -57,7 +58,7 @@ class MessageRequestManager {
         }
     }
     
-    func getMessages(size: Int?, page: Int?, onCompletion: APIMessageResponse){
-        self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: 10, page: page, onCompletion: onCompletion)
+    func getMessages(size: Int, page: Int, onCompletion: APIMessageResponse){
+        self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: size, page: page, onCompletion: onCompletion)
     }
 }

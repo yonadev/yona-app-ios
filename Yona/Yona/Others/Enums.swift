@@ -115,11 +115,17 @@ enum buddyRequestStatus : String {
 }
 
 enum postBuddyBodyKeys : String {
+    case embedded = "_embedded"
     case sendingStatus = "sendingStatus"
     case receivingStatus = "receivingStatus"
     case message = "message"
-    case _embedded = "_embedded"
-    case yona_user = "yona:user"
+    case yonaUser = "yona:user"
+    case yonaBuddies = "yona:buddies"
+    case links = "_links"
+    case selfKey = "self"
+    case editKey = "edit"
+    case href = "href"
+
 }
 
 enum getMessagesKeys : String {

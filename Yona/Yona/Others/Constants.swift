@@ -20,6 +20,7 @@ struct YonaConstants {
         static let UserRequestFailed = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveGetUserDetails ?? "Unknown Error"])
         static let UserPasswordRequestFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrievePassword ?? "Unknown Error"])
         static let GetMessagesLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToGetGetMessagesLink ?? "Unknown Error"])
+        static let GetBuddyLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveBuddyLink ?? "Unknown Error"])
         static let Success = NSError.init(domain: errorDomains.successDomain.rawValue, code: responseCodes.ok200.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.OK ?? "Unknown Error"])
     }
     
@@ -104,6 +105,7 @@ struct YonaConstants {
         static let needToGetSomeActivities = "Call get activities to populate array"
         static let noJsonReturned = "No JSON returned from request"
         static let FailedToRetrievePassword = "Failed to get user password"
+        static let FailedToRetrieveBuddyLink = "Failed to retrieve buddy link"
         static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
         static let FailedToRetrieveGetUserDetails = "Failed to retrieve details for user"
         static let FailedToRetrieveUpdateUserDetails = "Failed to get the details to update the user"
