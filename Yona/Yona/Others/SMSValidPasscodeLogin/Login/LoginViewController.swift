@@ -62,22 +62,29 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
+            Loader.Show()
+
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
+                    Loader.Hide()
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                        self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
-                    }
+                    let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                    self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                    
+                        
+                    
                 } else {
+                    Loader.Hide()
                     if let message = message {
                         self.codeInputView.clear()
                         self.displayAlertMessage("", alertDescription: message)
                     }
                 }
             }
-        } else {
+        }
+        else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {

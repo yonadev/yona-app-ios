@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -239,7 +239,7 @@
                         <outlet property="tableView" destination="D0p-La-oo7" id="hr9-uw-euW"/>
                         <outlet property="timelineTabBottomBorder" destination="zYw-AQ-WOA" id="YFZ-AU-Nny"/>
                         <outlet property="timelineTabView" destination="Qp7-5Y-17s" id="tvC-xh-QYN"/>
-                        <segue destination="OjV-ne-DEf" kind="show" identifier="addFriendsSegue" id="cfi-lX-xoX"/>
+                        <segue destination="OjV-ne-DEf" kind="showDetail" identifier="addFriendsSegue" action="showViewController:sender:" id="cfi-lX-xoX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyg-hw-Exf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,24 +257,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="932" y="330"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="19K-rW-IwT">
-            <objects>
-                <navigationController storyboardIdentifier="FriendsStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PYm-3L-t6r" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9LH-GG-xFI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="U6O-cp-2EY" kind="relationship" relationship="rootViewController" id="aqN-cd-GTh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PSN-mW-t5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="122" y="388"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="KFn-zP-KFj">
@@ -454,6 +436,9 @@
                                         <state key="normal" title="invitefriend">
                                             <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addNewBuddyButtonTapped:" destination="OjV-ne-DEf" eventType="touchUpInside" id="qTJ-Y8-TkI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
