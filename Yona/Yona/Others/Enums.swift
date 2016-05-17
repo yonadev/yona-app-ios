@@ -86,7 +86,7 @@ enum responseCodes: Int{
     case internalErrorCode = 700
 }
 
-enum errorDomains: String {
+enum errorDomains : String {
     case yonaErrorDomain = "YONA.Domain"
     case networkErrorDomain = "Network.Domain"
     case successDomain = "Success"
@@ -105,4 +105,59 @@ enum timeBucketTabNames: String{
     case budget = "Budget"
     case timeZone = "TimeZone"
     case noGo = "NoGo"
+}
+
+enum buddyRequestStatus : String {
+    case REQUESTED = "REQUESTED"
+    case NOT_REQUESTED = "NOT_REQUESTED"
+    case ACCEPTED = "ACCEPTED"
+    case REJECTED = "REJECTED"
+}
+
+enum postBuddyBodyKeys : String {
+    case embedded = "_embedded"
+    case sendingStatus = "sendingStatus"
+    case receivingStatus = "receivingStatus"
+    case message = "message"
+    case yonaUser = "yona:user"
+    case yonaBuddies = "yona:buddies"
+    case links = "_links"
+    case selfKey = "self"
+    case editKey = "edit"
+    case href = "href"
+
+}
+
+enum getMessagesKeys : String {
+    case embedded = "_embedded"
+    case yonaMessages = "yona:messages"
+    case creationTime = "creationTime"
+    case nickname = "nickname"
+    case message = "message"
+    case status = "status"
+    case reject =  "yona:reject"
+    case accept =  "yona:accept"
+    case selfKey = "self"
+    case links = "_links"
+    case yonaUser = "yona:user"
+    case href = "href"
+    case UserRequestfirstName = "firstName"
+    case UserRequestlastName = "lastName"
+    case UserRequestmobileNumber = "mobileNumber"
+    case messageType = "@type"
+    //paging
+    case page = "page"
+    case size = "size"
+    case totalElements = "totalElements"
+    case totalPages = "totalPages"
+    case number = "number"
+
+}
+
+enum addUserKeys : String {
+    case firstNameKey = "firstName"
+    case lastNameKeys = "lastName"
+    case mobileNumberKeys = "mobileNumber"
+    case nicknameKeys = "nickname"
+    case emailAddress = "emailAddress"
 }

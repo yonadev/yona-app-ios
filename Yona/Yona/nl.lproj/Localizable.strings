@@ -102,7 +102,7 @@
 "privacy" = "Privacy";
 "add-device" = "Device toevoegen";
 "delete-user" = "Unsubscribe";
-"deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
+"deleteusermessage" = "Unsubscribing means you loose all information (friends, notifications, challenges, activities, etc.) on all of your devices. Press OK if this is intended.";
 
 
 //Friends Overview
