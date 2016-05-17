@@ -98,18 +98,13 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
             } else {
                 NewDeviceRequestManager.sharedInstance.getNewDevice(self.passcodeTextField.text!, mobileNumber: trimmedString) { (success, message, server, user) in
                     if success {
-                        NewDeviceRequestManager.sharedInstance.deleteNewDevice({ (success, message, code) in
-                            if success {
-                                //Update flag
-                                setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                                if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                                    self.navigationController?.pushViewController(passcode, animated: false)
-                                }
-                            } else {
-                                self.displayAlertMessage("", alertDescription: message!)
+                        //Update flag
+                        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
+                            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                                self.navigationController?.pushViewController(passcode, animated: false)
                             }
                         })
-
                     } else {
                         self.displayAlertMessage("", alertDescription: message!)
                     }

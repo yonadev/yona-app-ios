@@ -70,10 +70,9 @@ enum userRequestTypes{
     case resendMobileConfirmCode
 }
 
-enum AllowedGetUserRequest{
-    case deleteDeviceRequest
-    case pinReset
-    case other
+enum GetUserRequest{
+    case allowed
+    case notAllowed //if you set this one then the get User API will not be called, but the USER object will be returned (saves API get user calls)
 }
 
 enum responseCodes: Int{
@@ -87,7 +86,7 @@ enum responseCodes: Int{
     case internalErrorCode = 700
 }
 
-enum errorDomains: String {
+enum errorDomains : String {
     case yonaErrorDomain = "YONA.Domain"
     case networkErrorDomain = "Network.Domain"
     case successDomain = "Success"
@@ -106,4 +105,27 @@ enum timeBucketTabNames: String{
     case budget = "Budget"
     case timeZone = "TimeZone"
     case noGo = "NoGo"
+}
+
+enum buddyRequestStatus : String {
+    case REQUESTED = "REQUESTED"
+    case NOT_REQUESTED = "NOT_REQUESTED"
+    case ACCEPTED = "ACCEPTED"
+    case REJECTED = "REJECTED"
+}
+
+enum postBuddyBodyKeys : String {
+    case sendingStatus = "sendingStatus"
+    case receivingStatus = "receivingStatus"
+    case message = "message"
+    case _embedded = "_embedded"
+    case yona_user = "yona:user"
+}
+
+enum addUserKeys : String {
+    case firstNameKey = "firstName"
+    case lastNameKeys = "lastName"
+    case mobileNumberKeys = "mobileNumber"
+    case nicknameKeys = "nickname"
+    case emailAddress = "emailAddress"
 }

@@ -93,29 +93,6 @@ class GoalsRequestManager {
     }
     
     /**
-     Returns to the UI goals of a certain type that the user has set as a challenge
-     
-     - parameter goalType: GoalType, the GoalType (budget, timezone nogo)
-     - parameter onCompletion: APIGoalResponse, returns success or fail, server messages and either an array of goals, or a goal, depending on what is returned which depends on the httpmethod (goals for a GET, a goal for a POST)
-     */
-    func getGoalsOfType(goalType: GoalType, onCompletion: APIGoalResponse) {
-        ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
-            if success {
-                self.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, error) in
-                    if let goals = goals {
-                        let tempGoals = self.sortGoalsIntoArray(goalType, goals: goals)
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, tempGoals, error)
-                    } else {
-                        onCompletion(false, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
-                    }
-                }
-            } else {
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil, error)
-            }
-        }
-    }
-    
-    /**
      Generic method to get the goals or post a goal, as they require the same actions but just a different httpmethod
      
      - parameter httpmethodParam: httpMethods, The httpmethod enum, POST GET etc
@@ -124,7 +101,7 @@ class GoalsRequestManager {
      */
     private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, goalLinkAction: String?, onCompletion: APIGoalResponse) {
         //success get our activities
-        ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, serverCode, activities, error) in
+        ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, serverCode, activities, error) in
             if success {
                 //get the path to get all the goals from user object
                 if let path = goalLinkAction {
@@ -174,7 +151,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func getAllTheGoals(activities: [Activities], onCompletion: APIGoalResponse) {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             //success so get the user?
             if success {
                 self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
@@ -201,7 +178,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
     func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             //success so get the user?
             if success {
                 //success so get the user

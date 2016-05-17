@@ -42,9 +42,24 @@ class SettingsViewController: UIViewController {
     private func callAddDeviceMethod() {
         NewDeviceRequestManager.sharedInstance.putNewDevice({ (success, message, code, addDeviceCode) in
             if success {
-                let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
-                if let addDeviceCode = addDeviceCode {
-                    self.displayAlertMessage("", alertDescription: String(format: localizedString, addDeviceCode))
+                    let localizedString = NSLocalizedString("adddevice.user.AddDevicePasscodeMessage", comment: "")
+                    if let addDeviceCode = addDeviceCode {
+                        self.displayAlertOption("", cancelButton: false, alertDescription: String(format: localizedString, addDeviceCode), onCompletion: { (buttonPressed) in
+                            switch buttonPressed{
+                            case alertButtonType.OK:
+                                NewDeviceRequestManager.sharedInstance.deleteNewDevice{ (success, message, code) in
+                                    //device request deleted
+                                    if success == false {
+                                        if let message = message {
+                                            self.displayAlertMessage("", alertDescription: message)
+                                        }
+                                    }
+                                }
+                            default:
+                                break
+                            }
+                            
+                        })
                 }
             } else {
                 if let message = message {
@@ -99,7 +114,7 @@ extension SettingsViewController:UITableViewDelegate {
             callAddDeviceMethod()
         }
         else if indexPath.row == 3 {
-            self.displayAlertOption(NSLocalizedString("delete-user", comment: ""), alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
+            self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()

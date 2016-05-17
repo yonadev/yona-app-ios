@@ -75,9 +75,7 @@
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
-"delete-user" = "Unsubscribe";
 "challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
-"delete-user-message" = "This is your latest device with private key and your profile and data will be remove from the yona server";
 "cancel" = "Cancel";
 "challenges-nogo-header" = "Hier leg je vast waar je helemaal niet wilt komen.";
 "challenges-tijdzone-header" = "Kies een categorie waar je een tijdzone voor wilt instellen";
@@ -176,10 +174,11 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
+"userNotFoundAlert" = "User not found";
 "change-pin" = "Change PIN";
 "privacy" = "Privacy";
 "add-device" = "Add device";
 "delete-user" = "Unsubscribe";
-"deleteusermessage" = "This is your latest device with private key and your profile and data will be remove from the yona server, please type OK below.";
+"deleteusermessage" = "Unsubscribing means you loose all information (friends, notifications, challenges, activities, etc.) on all of your devices. Press OK if this is intended.";
 
 

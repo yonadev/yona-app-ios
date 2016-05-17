@@ -127,23 +127,15 @@ class UserAPIServiceTests: XCTestCase {
 
         //Post user data
         UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, user) in
-                //confirm mobile number check, static code
-                UserRequestManager.sharedInstance.otpResendMobile{ success, message, code in
-                    if(success){
-                        expectation.fulfill()
-                    } else {
-                        XCTFail()
-                    }
-                    
-                    //now tidy up and delete the user
-                    UserRequestManager.sharedInstance.deleteUser({ (success, message, code) in
-                        if(success){
-                            expectation.fulfill()
-                        } else {
-                            XCTFail(message!)
-                        }
-                    })
+
+            UserRequestManager.sharedInstance.otpResendMobile{ success, message, code in
+                if(success){
+                    expectation.fulfill()
+                } else {
+                    XCTFail()
                 }
+            }
+            
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
@@ -165,7 +157,7 @@ class UserAPIServiceTests: XCTestCase {
                 let mobileNumber = userUnwrapped.mobileNumber
 
                 //get request to get user we just created!
-                UserRequestManager.sharedInstance.getUser{ (success, message, code, user) in
+                UserRequestManager.sharedInstance.getUser(.allowed){ (success, message, code, user) in
                     if let userUnwrapped = user{
                         //test if the posted mobile number is the one returned by our get request
                         XCTAssertTrue(mobileNumber == userUnwrapped.mobileNumber)
