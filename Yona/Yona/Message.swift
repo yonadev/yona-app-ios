@@ -82,11 +82,11 @@ struct Messages{
                 self.UserRequestmobileNumber = mobileNumber
             }
 
-//            if let linksRequest = userDetails[getMessagesKeys.links.rawValue],
-//                let linksRequestSelf = linksRequest[getMessagesKeys.selfLink.rawValue],
-//                let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue]{
-//                self.UserRequestSelfLink = linksRequestSelfHref
-//            }
+            if let linksRequest = userDetails[getMessagesKeys.links.rawValue] as? BodyDataDictionary,
+                let linksRequestSelf = linksRequest[getMessagesKeys.selfKey.rawValue] as? BodyDataDictionary,
+                let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue] as? String {
+                self.UserRequestSelfLink = linksRequestSelfHref
+            }
 
         }
     }
