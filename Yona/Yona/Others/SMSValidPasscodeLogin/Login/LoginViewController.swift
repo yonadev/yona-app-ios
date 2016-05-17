@@ -61,19 +61,24 @@ class LoginViewController: LoginSignupValidationMasterView {
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
-        if code ==  passcode {
-            self.codeInputView.resignFirstResponder()
-            let defaults = NSUserDefaults.standardUserDefaults()
-            UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
-                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-                self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
-                    
-                
-                
-                
+        if code ==  passcode
+        {
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
+                if success {
+                    self.codeInputView.resignFirstResponder()
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                    self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                } else {
+                    if let message = message {
+                        self.codeInputView.clear()
+                        self.displayAlertMessage("", alertDescription: message)
+                    }
+                }
             }
-        } else {
+        }
+        else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {

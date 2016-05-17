@@ -1253,7 +1253,6 @@
 				9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */,
 				908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */,
 				9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */,
-				60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1261,7 +1260,6 @@
 		D9D54EEB1CA28CD2007805F4 /* YonaUITests */ = {
 			isa = PBXGroup;
 			children = (
-				60E5B5B91CE5D8480090E593 /* Features */,
 				D9C744F61CB3F317008E463A /* Cucumberish */,
 				D9C744F21CB3F2F4008E463A /* CucumberishExampleUITests-Swift.m */,
 				D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */,
@@ -1468,7 +1466,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9C745771CB3F317008E463A /* gherkin-languages.json in Resources */,
-				60E5B5BA1CE5D8480090E593 /* Features in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1492,7 +1489,7 @@
 		};
 		D9D54EFC1CA565B7007805F4 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1500,7 +1497,7 @@
 			name = R.swift;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
@@ -1644,7 +1641,6 @@
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
-				60E5B5B61CE5D6AF0090E593 /* Enums.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
 				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,
@@ -1681,7 +1677,6 @@
 				D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */,
 				D9C7456A1CB3F317008E463A /* CCIFeature.m in Sources */,
 				D9C745861CB3F317008E463A /* GHScenarioDefinition.m in Sources */,
-				60E5B5B71CE5D6AF0090E593 /* Enums.swift in Sources */,
 				D9C745871CB3F317008E463A /* GHScenarioOutline.m in Sources */,
 				D9C7457A1CB3F317008E463A /* GHGherkinDialect.m in Sources */,
 				D9C745761CB3F317008E463A /* GHDocString.m in Sources */,
