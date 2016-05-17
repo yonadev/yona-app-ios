@@ -41,7 +41,6 @@ class BuddyRequestManager {
                                     self.buddy = Buddies.init(buddyData: json)
                                     onCompletion(success, serverMessage, serverCode, self.buddy, nil)
                                 }
-                                onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user
                             } else {
                                 onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
                             }

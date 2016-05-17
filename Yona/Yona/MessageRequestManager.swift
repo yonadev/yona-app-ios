@@ -27,7 +27,7 @@ class MessageRequestManager {
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
                             if let json = json {
                                 if let embedded = json[getMessagesKeys.embedded.rawValue],
-                                    let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray{
+                                let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray{
                                     //iterate messages
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
@@ -37,7 +37,12 @@ class MessageRequestManager {
                                             }
                                         }
                                     }
+                                    onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
+                                } else {
+                                    self.message = Message.init(messageData: json)
+                                    onCompletion(success, serverMessage, serverCode, self.message, nil) //failed to get user
                                 }
+                            } else {
                                 onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user
                             }
                         }
