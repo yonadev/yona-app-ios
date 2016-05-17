@@ -45,6 +45,8 @@ class PinResetRequestManager {
                             }
                         }
                     } else {
+                        //clear the reset request if there is one and it is there waiting to be verified
+                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode))
                     }
                 } else {
@@ -60,6 +62,8 @@ class PinResetRequestManager {
                             onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
+                        //clear the reset request if there is one and it can't be verified for some reason?
+                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
                     }
                 } else {
