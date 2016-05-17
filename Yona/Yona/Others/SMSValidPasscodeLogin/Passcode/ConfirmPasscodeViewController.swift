@@ -88,9 +88,8 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             //Update flag
             setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             
-            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                navigationController?.pushViewController(dashboardStoryboard, animated: true)
-            }
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+            self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
         } else {
             codeInputView.clear()
             navigationController?.popViewControllerAnimated(true)
