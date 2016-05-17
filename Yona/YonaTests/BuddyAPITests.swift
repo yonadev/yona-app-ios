@@ -59,7 +59,7 @@ class BuddyAPITests: XCTestCase {
                         ]
                     ]
 
-                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, nil, nil) in
                         XCTAssert(success, message!)
                         if success {
                             expectation.fulfill()

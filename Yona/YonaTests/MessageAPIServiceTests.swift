@@ -79,7 +79,6 @@ class MessageAPIServiceTests: XCTestCase {
                                             if let message = message as? BodyDataDictionary {
                                                 let message = Message.init(messageData: message)
                                                 messages.append(message)
-                                                
                                             }
                                         }
                                         XCTAssert(messages.count > 0)

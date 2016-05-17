@@ -11,9 +11,7 @@
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
-		60E5B5B61CE5D6AF0090E593 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
-		60E5B5B71CE5D6AF0090E593 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
-		60E5B5BA1CE5D8480090E593 /* Features in Resources */ = {isa = PBXBuildFile; fileRef = 60E5B5B91CE5D8480090E593 /* Features */; };
+		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
@@ -78,7 +76,6 @@
 		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
 		AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
 		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
-		AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */; };
 		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
 		AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */; };
 		AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */; };
@@ -93,6 +90,7 @@
 		AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */; };
 		AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */; };
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
+		AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3931E11CEB311900605FBA /* BaseTabViewController.swift */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
 		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
@@ -230,7 +228,6 @@
 		D9C745901CB3F317008E463A /* NSString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C7455E1CB3F317008E463A /* NSString+Trim.m */; };
 		D9C745911CB3F317008E463A /* NSObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745611CB3F317008E463A /* NSObject+Dictionary.m */; };
 		D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C745631CB3F317008E463A /* NSString+Formatter.m */; };
-		D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */; };
 		D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C7902C1CC2E989007DDF46 /* Extensions.swift */; };
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
@@ -262,8 +259,7 @@
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
 		603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentManager.m; sourceTree = "<group>"; };
-		60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YonaTest_Bridging_Header.h; sourceTree = "<group>"; };
-		60E5B5B91CE5D8480090E593 /* Features */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Features; sourceTree = "<group>"; };
+		60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationViewController.swift; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
@@ -342,7 +338,6 @@
 		AD27E61C1CDB4069001C801D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmPasscode.storyboard; sourceTree = "<group>"; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
-		AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
 		AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +352,7 @@
 		AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+YIColors.swift"; path = "Others/UIColor+YIColors.swift"; sourceTree = "<group>"; };
 		AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageContentViewController.swift; sourceTree = "<group>"; };
 		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageViewController.swift; sourceTree = "<group>"; };
+		AD3931E11CEB311900605FBA /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -549,7 +545,6 @@
 		D9C745611CB3F317008E463A /* NSObject+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dictionary.m"; sourceTree = "<group>"; };
 		D9C745621CB3F317008E463A /* NSString+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Formatter.h"; sourceTree = "<group>"; };
 		D9C745631CB3F317008E463A /* NSString+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Formatter.m"; sourceTree = "<group>"; };
-		D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarSegue.swift; sourceTree = "<group>"; };
 		D9C7902C1CC2E989007DDF46 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D9D54EC71CA28CD2007805F4 /* Yona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -804,8 +799,8 @@
 			isa = PBXGroup;
 			children = (
 				AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */,
-				AD291CE41CA902A0008CAFB1 /* DashboardTabBarController.swift */,
-				D9C7902A1CC23835007DDF46 /* TabBarSegue.swift */,
+				60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */,
+				AD3931E11CEB311900605FBA /* BaseTabViewController.swift */,
 			);
 			path = DashBoard;
 			sourceTree = "<group>";
@@ -1267,7 +1262,6 @@
 				908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */,
 				BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */,
 				9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */,
-				60E5B5B81CE5D7C40090E593 /* YonaTest_Bridging_Header.h */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1275,7 +1269,6 @@
 		D9D54EEB1CA28CD2007805F4 /* YonaUITests */ = {
 			isa = PBXGroup;
 			children = (
-				60E5B5B91CE5D8480090E593 /* Features */,
 				D9C744F61CB3F317008E463A /* Cucumberish */,
 				D9C744F21CB3F2F4008E463A /* CucumberishExampleUITests-Swift.m */,
 				D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */,
@@ -1482,7 +1475,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9C745771CB3F317008E463A /* gherkin-languages.json in Resources */,
-				60E5B5BA1CE5D8480090E593 /* Features in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1506,7 +1498,7 @@
 		};
 		D9D54EFC1CA565B7007805F4 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1514,7 +1506,7 @@
 			name = R.swift;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
@@ -1571,7 +1563,6 @@
 				ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
-				AD291CE91CA90779008CAFB1 /* DashboardTabBarController.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
@@ -1587,10 +1578,10 @@
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
+				60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
-				D9C7902B1CC23835007DDF46 /* TabBarSegue.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
 				AD84B7321CDA27820085D5B7 /* Array.swift in Sources */,
@@ -1629,6 +1620,8 @@
 				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
+				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
+				9054CC8A1CE385C000F575E2 /* Messages.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
@@ -1660,7 +1653,6 @@
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
-				60E5B5B61CE5D6AF0090E593 /* Enums.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,
 				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
 				BEB0CE011CEA81ED0056280A /* MessageAPIServiceTests.swift in Sources */,
@@ -1698,7 +1690,6 @@
 				D9C745921CB3F317008E463A /* NSString+Formatter.m in Sources */,
 				D9C7456A1CB3F317008E463A /* CCIFeature.m in Sources */,
 				D9C745861CB3F317008E463A /* GHScenarioDefinition.m in Sources */,
-				60E5B5B71CE5D6AF0090E593 /* Enums.swift in Sources */,
 				D9C745871CB3F317008E463A /* GHScenarioOutline.m in Sources */,
 				D9C7457A1CB3F317008E463A /* GHGherkinDialect.m in Sources */,
 				D9C745761CB3F317008E463A /* GHDocString.m in Sources */,

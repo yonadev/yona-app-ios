@@ -70,9 +70,11 @@ extension LoginViewController: CodeInputViewDelegate {
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                        self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
-                    }
+                    let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                    self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                    
+                        
+                    
                 } else {
                     Loader.Hide()
                     if let message = message {
@@ -81,7 +83,8 @@ extension LoginViewController: CodeInputViewDelegate {
                     }
                 }
             }
-        } else {
+        }
+        else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {

@@ -102,7 +102,9 @@ class UserRequestManager{
                 #endif
                 genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil, onCompletion: onCompletion)
             } else {
+                dispatch_async(dispatch_get_main_queue(), {
                 onCompletion(true, YonaConstants.serverMessages.OK, String(responseCodes.ok200), self.newUser)
+                })
             }
         } else {
             //Failed to retrive details for GET user details request
