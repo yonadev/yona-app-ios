@@ -68,8 +68,10 @@ extension LoginSignupValidationMasterView {
 //MARK: - Button logic code used on 2 screens
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
+        Loader.Show()
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
+                Loader.Hide()
                 print(pincode!)
                 if pincode != nil {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
@@ -84,6 +86,7 @@ extension LoginSignupValidationMasterView {
                     }
                 }
             } else {
+                Loader.Hide()
                 //TODO: Will change this after this build
                 self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
             }
