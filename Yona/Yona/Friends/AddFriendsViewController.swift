@@ -120,7 +120,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             let phoneNumbers = unmanagedPhones?.takeRetainedValue();
             if(ABMultiValueGetCount(phoneNumbers) > 0) {
                 phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, index).takeRetainedValue() as? String;
-                phoneNumber = "";
+//                phoneNumber = "";
             } else {
                 phoneNumber = "";
             }
@@ -169,6 +169,52 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     func dismissKeyboard(){
         view.endEditing(true)
+    }
+    @IBAction func addNewBuddyButtonTapped(sender: UIButton) {
+        /*
+         enter-first-name-validation
+         enter-last-name-validation
+         enter-number-validation
+         enteremailvalidation
+         */
+        if firstnameTextfield.text!.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                "Please input firstname.")
+        }
+        else if lastnameTextfield.text!.characters.count == 0 {
+                self.displayAlertMessage("", alertDescription:
+                    "Please input lastname.")
+            
+        } else if emailTextfield.text!.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                "Please input email.")
+            
+        } else if mobileTextfield.text!.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                "Please input mobile.")
+            
+        }
+        
+        let yonaUsersDict = [postBuddyBodyKeys.yona_user.rawValue: [
+            addUserKeys.emailAddress.rawValue: emailTextfield.text,
+            addUserKeys.firstNameKey.rawValue: firstnameTextfield.text,
+            addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text,
+            addUserKeys.mobileNumberKeys.rawValue: mobileTextfield.text
+            ]
+        ]
+        
+        let postBuddyBody = [
+            postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+            postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+            postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
+            postBuddyBodyKeys._embedded.rawValue: yonaUsersDict        ]
+        
+        BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+            
+            if success {
+                
+            }
+        })
     }
     
     func addressbookAccess() {
@@ -253,4 +299,6 @@ extension UITextField {
         last.addTarget(last, action: #selector(UIResponder.resignFirstResponder), forControlEvents: .EditingDidEndOnExit)
     }
 }
+
+
 
