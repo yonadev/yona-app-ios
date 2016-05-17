@@ -49,17 +49,17 @@ class BuddyAPITests: XCTestCase {
                         postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
                         postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
                         postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-                        postBuddyBodyKeys._embedded.rawValue: [
-                            postBuddyBodyKeys.yona_user.rawValue: [
+                        postBuddyBodyKeys.embedded.rawValue: [
+                            postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
                                 addUserKeys.emailAddress.rawValue: "richard@quin.net",
                                 addUserKeys.firstNameKey.rawValue: "Richard",
                                 addUserKeys.lastNameKeys.rawValue: "Quin",
-                                addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber
+                                addUserKeys.mobileNumberKeys.rawValue: "+31999" + randomPhoneNumber  //this is the number of the person you are adding as a buddy
                             ]
                         ]
                     ]
 
-                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
                         XCTAssert(success, message!)
                         if success {
                             expectation.fulfill()

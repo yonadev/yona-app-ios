@@ -61,10 +61,12 @@ class LoginViewController: LoginSignupValidationMasterView {
 extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
-        if code ==  passcode
-        {
+        if code ==  passcode {
+            Loader.Show()
+
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
+                    Loader.Hide()
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
@@ -74,6 +76,7 @@ extension LoginViewController: CodeInputViewDelegate {
                         
                     
                 } else {
+                    Loader.Hide()
                     if let message = message {
                         self.codeInputView.clear()
                         self.displayAlertMessage("", alertDescription: message)

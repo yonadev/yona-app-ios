@@ -195,21 +195,21 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             
         }
         
-        let yonaUsersDict = [postBuddyBodyKeys.yona_user.rawValue: [
-            addUserKeys.emailAddress.rawValue: emailTextfield.text,
-            addUserKeys.firstNameKey.rawValue: firstnameTextfield.text,
-            addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text,
-            addUserKeys.mobileNumberKeys.rawValue: mobileTextfield.text
+        let postBuddyBody: [String:AnyObject] = [
+            postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+            postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+            postBuddyBodyKeys.message.rawValue : "Hi there, would you want to become my buddy?",
+            postBuddyBodyKeys.embedded.rawValue: [
+                postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
+                    addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",
+                    addUserKeys.firstNameKey.rawValue: firstnameTextfield.text ?? "",
+                    addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text ?? "",
+                    addUserKeys.mobileNumberKeys.rawValue: mobileTextfield.text ?? ""  //this is the number of the person you are adding as a buddy
+                ]
             ]
         ]
         
-        let postBuddyBody = [
-            postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-            postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-            postBuddyBodyKeys.message.rawValue: "Hi there, would you want to become my buddy?",
-            postBuddyBodyKeys._embedded.rawValue: yonaUsersDict        ]
-        
-        BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code) in
+        BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
             
             if success {
                 
