@@ -8,13 +8,15 @@
 
 import UIKit
 
-class DashboardNavigationViewController: UINavigationController {
-
+class DashboardNavigationViewController: UINavigationController, UITabBarDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBarHidden(true, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
+//        print(self.view!.window?.currentViewController()?.tabBarController)
+//        self.setViewControllers([storyboard.instantiateInitialViewController()!, animated: false)
         // Do any additional setup after loading the view.
     }
 
@@ -23,7 +25,9 @@ class DashboardNavigationViewController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        print(item)
+    }
     /*
     // MARK: - Navigation
 

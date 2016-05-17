@@ -179,9 +179,11 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
             isFromButton = false
         } else {
             activeIndexPath = nil
-            self.setChallengeButton.enabled = true
-            self.setChallengeButton.alpha = 1.0
-            self.tableView.reloadData()
+            if self.zonesArrayString.count > 0 {
+                self.setChallengeButton.enabled = true
+                self.setChallengeButton.alpha = 1.0
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -239,6 +241,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             self.zonesArrayString.removeAtIndex(indexPath.row)
+            self.zonesArrayDate.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             if self.zonesArrayDate.count == 0 {
                 self.setChallengeButton.enabled = false

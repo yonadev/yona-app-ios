@@ -17,7 +17,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbX-Fk-AJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1236" y="355"/>
+            <point key="canvasLocation" x="-376" y="443"/>
         </scene>
         <!--Challenges-->
         <scene sceneID="8d5-sH-Zid">
@@ -31,7 +31,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWr-OG-Bq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1236" y="355"/>
+            <point key="canvasLocation" x="-1052" y="-497"/>
         </scene>
         <!--Friends-->
         <scene sceneID="cwD-Fk-YVI">
@@ -45,7 +45,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZKg-Qq-ZSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1236" y="355"/>
+            <point key="canvasLocation" x="-1942" y="605"/>
         </scene>
         <!--Profile-->
         <scene sceneID="68Z-Ed-c3i">
@@ -59,16 +59,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3i-cH-mV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1236" y="355"/>
+            <point key="canvasLocation" x="-1274" y="521"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Base Tab View Controller-->
         <scene sceneID="iAq-LX-431">
             <objects>
-                <tabBarController id="IHY-FI-AIQ" sceneMemberID="viewController">
+                <tabBarController id="IHY-FI-AIQ" customClass="BaseTabViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P46-oA-9lB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="SGx-PY-cZf" kind="relationship" relationship="viewControllers" id="abs-b4-CM8"/>

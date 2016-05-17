@@ -145,7 +145,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     //        print("email = \(email)")
     //    }
     
-    func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController!) {
+    func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     

@@ -70,6 +70,9 @@ extension LoginViewController: CodeInputViewDelegate {
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
                     self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                    
+                        
+                    
                 } else {
                     if let message = message {
                         self.codeInputView.clear()
