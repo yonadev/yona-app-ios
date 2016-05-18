@@ -10,8 +10,10 @@ import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var screenNameLabel: UILabel!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var topView: UIView!
+    @IBOutlet var avtarImage: UIImageView!
     @IBOutlet var gradientContainerView: UIView!
     var isFromSettings = false
     var loginAttempts:Int = 1
@@ -30,16 +32,21 @@ class LoginViewController: LoginSignupValidationMasterView {
         checkUserExists()
         
         if isFromSettings {
+            screenNameLabel.text = "WIJZIG PINCODE"
             backButton.hidden = false
             topView.backgroundColor = UIColor.yiMangoColor()
-            self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
-            gradientContainerView.backgroundColor = UIColor.yiMango95Color()
+            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
+            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
             
             let viewWidth = self.view.frame.size.width
             let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
             customView.backgroundColor=UIColor.yiDarkishPinkColor()
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
+            avtarImage = UIImageView(image: R.image.icnSecure)
+            self.infoLabel.text = "Huidige pincode"
+            errorLabel.text = "Om je pincode te wijzigen vragen we je om eerst je oude pincode in te voeren."
+            errorLabel.hidden = false
 
         } else {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
@@ -91,6 +98,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     if self.isFromSettings {
                          setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                            passcode.isFromSettings = self.isFromSettings
                         self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     } else {

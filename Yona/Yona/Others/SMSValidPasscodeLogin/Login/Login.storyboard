@@ -190,6 +190,7 @@
                     <navigationItem key="navigationItem" id="0bT-bA-EVK"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="avtarImage" destination="eEy-ql-DuC" id="wSq-rH-zpy"/>
                         <outlet property="backButton" destination="8g5-og-qWk" id="Kpo-Rb-Qc2"/>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
@@ -198,6 +199,7 @@
                         <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
                         <outlet property="pinResetButton" destination="3r8-GS-xeb" id="3jo-M6-qVr"/>
                         <outlet property="progressView" destination="RJC-BX-fly" id="CEr-i1-M0G"/>
+                        <outlet property="screenNameLabel" destination="Yf9-fJ-1ck" id="Y49-P8-GCW"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>
                         <outlet property="topView" destination="U44-VS-5Hu" id="Fuu-KT-JuC"/>
                     </connections>

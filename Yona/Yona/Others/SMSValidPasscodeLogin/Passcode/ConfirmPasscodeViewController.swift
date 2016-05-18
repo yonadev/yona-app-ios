@@ -12,6 +12,12 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
 
+    @IBOutlet var screenNameLabel: UILabel!
+    @IBOutlet var topView: UIView!
+    @IBOutlet var avtarImage: UIImageView!
+    @IBOutlet var gradientContainerView: UIView!
+    var isFromSettings = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Nav bar Back button.
@@ -21,6 +27,22 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
+        if isFromSettings {
+            screenNameLabel.text = "WIJZIG PINCODE"
+            topView.backgroundColor = UIColor.yiMangoColor()
+            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
+            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
+            
+            let viewWidth = self.view.frame.size.width
+            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
+            customView.backgroundColor=UIColor.yiDarkishPinkColor()
+            self.progressView.addSubview(customView)
+            self.progressView.hidden = false
+            avtarImage = UIImageView(image: R.image.icnAccountCreated)
+            headerTitleLabel.text = "Bevestig pincode"
+            infoLabel.text = "Vul je pincode nog een keer in ter bevestiging."
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

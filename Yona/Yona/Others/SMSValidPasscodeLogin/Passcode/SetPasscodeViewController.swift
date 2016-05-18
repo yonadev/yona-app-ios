@@ -13,6 +13,13 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     var passcodeString: String?
     
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var screenNameLabel: UILabel!
+    @IBOutlet var topView: UIView!
+    @IBOutlet var avtarImage: UIImageView!
+    @IBOutlet var gradientContainerView: UIView!
+    var isFromSettings = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +38,23 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
                 
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        if isFromSettings {
+            screenNameLabel.text = "WIJZIG PINCODE"
+            backButton.hidden = false
+            topView.backgroundColor = UIColor.yiMangoColor()
+            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
+            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
+            
+            let viewWidth = self.view.frame.size.width
+            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
+            customView.backgroundColor=UIColor.yiDarkishPinkColor()
+            self.progressView.addSubview(customView)
+            self.progressView.hidden = false
+            avtarImage = UIImageView(image: R.image.icnAccountCreated)
+            headerTitleLabel.text = "Huidige pincode"
+            infoLabel.text = "Om je pincode te wijzigen vragen we je om eerst je oude pincode in te voeren."
+            
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,6 +81,11 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         super.viewDidDisappear(animated)
         self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 
@@ -95,9 +124,15 @@ extension SetPasscodeViewController: CodeInputViewDelegate {
         passcodeString = code
         if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
             passcode.passcode = code
+            if isFromSettings {
+                passcode.isFromSettings = self.isFromSettings
+            }
             self.navigationController?.pushViewController(passcode, animated: false)
         }
         self.codeInputView.clear()
-//        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
+}
+
+private extension Selector {
+    static let back = #selector(SetPasscodeViewController.back(_:))
 }
