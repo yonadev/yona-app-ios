@@ -33,6 +33,18 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Navigation, Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if (segue.identifier == "ShowPrivacy") {
+        }
+    }
+    
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
+    }
+    
     /**
      Will call logout/unsubscribe/ API and removes all the user's data.
      
@@ -117,18 +129,13 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
+        let setting = settingsArray[indexPath.row] as? String
+        if setting == NSLocalizedString("change-pin", comment: "") {
             //change pin
-            if let login = R.storyboard.login.loginStoryboard {
-                login.isFromSettings = true
-                login.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(login, animated: false)
-            }
-        } else if indexPath.row == 1 {
+        } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy
-        } else if indexPath.row == 2 {
-            callAddDeviceMethod()
-        } else if indexPath.row == 3 {
+            performSegueWithIdentifier("privacyStatement", sender: self)
+        } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
@@ -138,6 +145,8 @@ extension SettingsViewController:UITableViewDelegate {
                     //do nothing or send back to start of signup?
                 }
             })
+        } else if setting == NSLocalizedString("add-device", comment: "") {
+            callAddDeviceMethod()
         }
     }
     

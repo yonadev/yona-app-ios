@@ -162,7 +162,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
                 UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
-                    } else if code == YonaConstants.serverCodes.errorUserExists {
+                    } else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
                         Loader.Hide()
                         //alert the user ask if they want to override their account, if ok send back to SMS screen
                         number = (self.nederlandPhonePrefix) + mobilenum
