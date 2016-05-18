@@ -114,12 +114,22 @@
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
 "enteremailvalidation" = "You need to enter email address of friend.";
+"addBuddyMessage" = "Hi there, would you want to become my buddy?";
 "email" = "EMAIL";
 
 "enter-first-name-validation" = "You need to enter a name";
 "enter-last-name-validation"  = "You need to enter a name";
 "enter-number-validation" = "Number should be 9 digits";
 "enteremailvalidation" = "You need to enter email address of friend.";
+
+
+//ChangePin
+"settings_current_pin" = "Huidige pincode";
+"settings_current_pin_message" = "Om je pincode te wijzigen vragenwe je eerst je oude pincode in te voeren.";
+"settings_new_pincode" = "Nieuwe pincode";
+"settings_new_pin_message" = "Vul nu je nieuwe pincode in.";
+"settings_confirm_new_pin" = "Bevestig pincode";
+"settings_confirm_new_pin_message" = "Vul je pincode nogmaals in ter bevestiging.";
 
 
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";

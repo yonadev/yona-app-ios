@@ -115,10 +115,25 @@
 "invitefriend" = "VRIEND UITNODIGEN";
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
-"enteremailvalidation" = "You need to enter email address of friend.";
+"enteremailvalidation" = "Je moet het e-mailadres van de vriend in te voeren.";
+"addBuddyMessage" = "Hallo daar, wil je mijn vriend worden?";
 "email" = "EMAIL";
 
 "enter-first-name-validation" = "Je moet een naam invoeren";
 "enter-last-name-validation"  = "Je moet een naam invoeren";
 "enter-number-validation" = "Nummer moet 9 cijfers bevatten";
 "enteremailvalidation" = "You need to enter email address of friend.";
+
+//ChangePin
+"settings_current_pin" = "Huidige pincode";
+"settings_current_pin_message" = "Om je pincode te wijzigen vragenwe je eerst je oude pincode in te voeren.";
+"settings_new_pincode" = "Nieuwe pincode";
+"settings_new_pin_message" = "Vul nu je nieuwe pincode in.";
+"settings_confirm_new_pin" = "Bevestig pincode";
+"settings_confirm_new_pin_message" = "Vul je pincode nogmaals in ter bevestiging.";
+
+
+
+
+
+

@@ -102,6 +102,13 @@ class SettingsViewController: UIViewController {
             }
         })
     }
+    
+    private func resetPinCode() {
+        //TODO: UnSubscribe API InProgress
+        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+        }
+    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
@@ -133,7 +140,6 @@ extension SettingsViewController:UITableViewDelegate {
                 switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()
-                    
                 case alertButtonType.cancel:
                     break
                     //do nothing or send back to start of signup?
