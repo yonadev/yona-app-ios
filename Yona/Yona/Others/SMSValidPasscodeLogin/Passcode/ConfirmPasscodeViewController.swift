@@ -42,6 +42,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
             avtarImage = UIImageView(image: R.image.icnAccountCreated)
             headerTitleLabel.text = NSLocalizedString("settings_confirm_new_pin", comment: "")
             infoLabel.text = NSLocalizedString("settings_confirm_new_pin_message", comment: "")
+        } else {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         }
     }
     

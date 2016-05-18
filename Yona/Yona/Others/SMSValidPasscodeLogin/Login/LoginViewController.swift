@@ -59,7 +59,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
-        
+        codeInputView.clear()
         self.codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
@@ -96,7 +96,6 @@ extension LoginViewController: CodeInputViewDelegate {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     if self.isFromSettings {
-                         setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             passcode.isFromSettings = self.isFromSettings
                         self.navigationController?.pushViewController(passcode, animated: false)
