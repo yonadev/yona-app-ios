@@ -39,7 +39,7 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         if isFromSettings {
-            screenNameLabel.text = "WIJZIG PINCODE"
+            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
             backButton.hidden = false
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
@@ -51,8 +51,8 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
             avtarImage = UIImageView(image: R.image.icnAccountCreated)
-            headerTitleLabel.text = "Huidige pincode"
-            infoLabel.text = "Om je pincode te wijzigen vragen we je om eerst je oude pincode in te voeren."
+            headerTitleLabel.text = NSLocalizedString("settings_new_pincode", comment: "")
+            infoLabel.text = NSLocalizedString("settings_new_pin_message", comment: "")
             
         }
     }

@@ -32,7 +32,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         checkUserExists()
         
         if isFromSettings {
-            screenNameLabel.text = "WIJZIG PINCODE"
+            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
             backButton.hidden = false
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
@@ -44,8 +44,8 @@ class LoginViewController: LoginSignupValidationMasterView {
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
             avtarImage = UIImageView(image: R.image.icnSecure)
-            self.infoLabel.text = "Huidige pincode"
-            errorLabel.text = "Om je pincode te wijzigen vragen we je om eerst je oude pincode in te voeren."
+            self.infoLabel.text = NSLocalizedString("settings_current_pin", comment: "")
+            errorLabel.text = NSLocalizedString("settings_current_pin_message", comment: "")
             errorLabel.hidden = false
 
         } else {

@@ -29,7 +29,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         if isFromSettings {
-            screenNameLabel.text = "WIJZIG PINCODE"
+            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
             gradientContainerView.backgroundColor = UIColor.yiMangoColor()
@@ -40,8 +40,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
             avtarImage = UIImageView(image: R.image.icnAccountCreated)
-            headerTitleLabel.text = "Bevestig pincode"
-            infoLabel.text = "Vul je pincode nog een keer in ter bevestiging."
+            headerTitleLabel.text = NSLocalizedString("settings_confirm_new_pin", comment: "")
+            infoLabel.text = NSLocalizedString("settings_confirm_new_pin_message", comment: "")
         }
     }
     

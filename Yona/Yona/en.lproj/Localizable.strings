@@ -116,6 +116,15 @@
 "enteremailvalidation" = "You need to enter email address of friend.";
 "email" = "EMAIL";
 
+//ChangePin
+"settings_current_pin" = "Huidige pincode";
+"settings_current_pin_message" = "Om je pincode te wijzigen vragenwe je eerst je oude pincode in te voeren.";
+"settings_new_pincode" = "Nieuwe pincode";
+"settings_new_pin_message" = "Vul nu je nieuwe pincode in.";
+"settings_confirm_new_pin" = "Bevestig pincode";
+"settings_confirm_new_pin_message" = "Vul je pincode nogmaals in ter bevestiging.";
+
+
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
