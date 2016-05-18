@@ -187,36 +187,48 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                         NSLocalizedString("enter-number-validation", comment: ""))
                     
                 }
-            
-            
-                let postBuddyBody: [String:AnyObject] = [
-                    postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                    postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                    postBuddyBodyKeys.message.rawValue : "Hi there, would you want to become my buddy?",
-                    postBuddyBodyKeys.embedded.rawValue: [
-                        postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
-                            addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",
-                            addUserKeys.firstNameKey.rawValue: firstnameTextfield.text ?? "",
-                            addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text ?? "",
-                            addUserKeys.mobileNumberKeys.rawValue: trimmedString //this is the number of the person you are adding as a buddy
+
+                var number = ""
+                if let mobilenum = mobileTextfield.text {
+                    number = (nederlandPhonePrefix) + mobilenum
+                    
+                    let trimmedWhiteSpaceString = number.removeWhitespace()
+                    let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+                    
+                    if trimmedString.validateMobileNumber() == false {
+                        self.displayAlertMessage("", alertDescription:
+                            NSLocalizedString("enter-number-validation", comment: ""))
+                        
+                    }
+                    let postBuddyBody: [String:AnyObject] = [
+                        postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                        postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
+                        postBuddyBodyKeys.message.rawValue : "Hi there, would you want to become my buddy?",
+                        postBuddyBodyKeys.embedded.rawValue: [
+                            postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
+                                addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",
+                                addUserKeys.firstNameKey.rawValue: firstnameTextfield.text ?? "",
+                                addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text ?? "",
+                                addUserKeys.mobileNumberKeys.rawValue: trimmedString //this is the number of the person you are adding as a buddy
+                            ]
                         ]
                     ]
-                ]
-                
-                BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
                     
-                    if success {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    } else {
-                        if let message = message {
-                            self.displayAlertMessage("", alertDescription:message)
+                    BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
+                        
+                        if success {
+                            self.navigationController?.popViewControllerAnimated(true)
+                        } else {
+                            if let message = message {
+                                self.displayAlertMessage("", alertDescription:message)
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
-        }
-        
+    }
+    
         func addressbookAccess() {
             switch ABAddressBookGetAuthorizationStatus(){
             case .Authorized:
