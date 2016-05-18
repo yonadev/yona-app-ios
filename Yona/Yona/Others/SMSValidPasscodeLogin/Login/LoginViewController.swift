@@ -9,7 +9,6 @@
 import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
-    @IBOutlet var backButton: UIButton!
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
@@ -22,8 +21,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         checkUserExists()
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""))
-        backButton.hidden = false
-
     }
 
     override func viewWillAppear(animated: Bool) {
