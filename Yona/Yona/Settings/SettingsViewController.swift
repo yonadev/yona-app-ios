@@ -119,9 +119,10 @@ extension SettingsViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
             //change pin
-            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                self.navigationController?.pushViewController(passcode, animated: false)
+            if let login = R.storyboard.login.loginStoryboard {
+                login.isFromSettings = true
+                login.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(login, animated: false)
             }
         } else if indexPath.row == 1 {
             //privacy

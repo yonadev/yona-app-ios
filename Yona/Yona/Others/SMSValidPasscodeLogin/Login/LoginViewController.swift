@@ -10,7 +10,10 @@ import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var errorLabel: UILabel!
-    
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var topView: UIView!
+    @IBOutlet var gradientContainerView: UIView!
+    var isFromSettings = false
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
@@ -21,11 +24,26 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
       
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
         //Get user call
         checkUserExists()
+        
+        if isFromSettings {
+            backButton.hidden = false
+            topView.backgroundColor = UIColor.yiMangoColor()
+            self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
+            gradientContainerView.backgroundColor = UIColor.yiMango95Color()
+            
+            let viewWidth = self.view.frame.size.width
+            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
+            customView.backgroundColor=UIColor.yiDarkishPinkColor()
+            self.progressView.addSubview(customView)
+            self.progressView.hidden = false
+
+        } else {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,17 +81,22 @@ extension LoginViewController: CodeInputViewDelegate {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             Loader.Show()
-
+            
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
                     Loader.Hide()
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-                    self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
-                    
-                        
+                    if self.isFromSettings {
+                         setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                        self.navigationController?.pushViewController(passcode, animated: false)
+                        }
+                    } else {
+                        let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                        self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                    }
                     
                 } else {
                     Loader.Hide()
@@ -104,6 +127,11 @@ extension LoginViewController: CodeInputViewDelegate {
     
     @IBAction func pinResetTapped(sender: UIButton) {
         self.pinResetTapped()
+    }
+    
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func checkUserExists() {
@@ -154,5 +182,9 @@ extension LoginViewController: KeyboardProtocol {
             posi = position
         }
     }
+}
+
+private extension Selector {
+    static let back = #selector(LoginViewController.back(_:))
 }
 
