@@ -116,6 +116,12 @@
 "enteremailvalidation" = "You need to enter email address of friend.";
 "email" = "EMAIL";
 
+"enter-first-name-validation" = "You need to enter a name";
+"enter-last-name-validation"  = "You need to enter a name";
+"enter-number-validation" = "Number should be 9 digits";
+"enteremailvalidation" = "You need to enter email address of friend.";
+
+
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";

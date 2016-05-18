@@ -117,3 +117,8 @@
 "addfriendcontacts" = "Uit adresboek";
 "enteremailvalidation" = "You need to enter email address of friend.";
 "email" = "EMAIL";
+
+"enter-first-name-validation" = "Je moet een naam invoeren";
+"enter-last-name-validation"  = "Je moet een naam invoeren";
+"enter-number-validation" = "Nummer moet 9 cijfers bevatten";
+"enteremailvalidation" = "You need to enter email address of friend.";
