@@ -116,6 +116,12 @@
 "enteremailvalidation" = "You need to enter email address of friend.";
 "email" = "EMAIL";
 
+"enter-first-name-validation" = "You need to enter a name";
+"enter-last-name-validation"  = "You need to enter a name";
+"enter-number-validation" = "Number should be 9 digits";
+"enteremailvalidation" = "You need to enter email address of friend.";
+
+
 //ChangePin
 "settings_current_pin" = "Huidige pincode";
 "settings_current_pin_message" = "Om je pincode te wijzigen vragenwe je eerst je oude pincode in te voeren.";
