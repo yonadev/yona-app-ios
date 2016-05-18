@@ -25,9 +25,9 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Get user call
         checkUserExists()
         
-        setupPincodeScreenDifferentlyWithText(NSLocalizedString("settings_current_pin", comment: ""), screenNameText: NSLocalizedString("change-pin", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin_message", comment: ""))
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""))
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

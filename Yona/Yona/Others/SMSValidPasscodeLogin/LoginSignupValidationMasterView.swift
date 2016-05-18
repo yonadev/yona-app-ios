@@ -80,9 +80,9 @@ extension LoginSignupValidationMasterView {
      - parameter screenNameText: String, Screen name title
      - parameter infoLabelText: String lable on the information to the user
      */
-    func setupPincodeScreenDifferentlyWithText(headerTitleLabel: String, screenNameText: String, infoLabelText: String) {
+    func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?) {
         if isFromSettings {
-            self.screenNameLabel.text = screenNameText
+            self.screenNameLabel.text = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
             gradientContainerView.backgroundColor = UIColor.yiMangoColor()
@@ -93,10 +93,14 @@ extension LoginSignupValidationMasterView {
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
             avtarImage = UIImageView(image: R.image.icnAccountCreated)
-            self.headerTitleLabel.text = headerTitleLabel
+            if let headerTitleLabelText = headerTitleLabelText{
+                headerTitleLabel.text = headerTitleLabelText
+            }
             infoLabel.text = infoLabelText
-            errorLabel.text = NSLocalizedString("settings_current_pin_message", comment: "")
-            errorLabel.hidden = false
+            if let errorLabelText = errorLabelText {
+                errorLabel.text = errorLabelText
+                errorLabel.hidden = false
+            }
         } else {
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         }

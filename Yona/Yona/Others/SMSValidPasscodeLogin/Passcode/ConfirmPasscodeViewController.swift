@@ -20,7 +20,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
                 
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
-        setupPincodeScreenDifferentlyWithText(NSLocalizedString("settings_confirm_new_pin", comment: ""), screenNameText: NSLocalizedString("change-pin", comment: ""), infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""))
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""))
     }
     
     override func viewWillAppear(animated: Bool) {
