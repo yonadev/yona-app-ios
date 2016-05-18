@@ -32,6 +32,7 @@ class LoginSignupValidationMasterView: UIViewController {
     @IBOutlet var avtarImage: UIImageView!
     @IBOutlet var gradientContainerView: UIView!
     @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var backButton: UIButton!
     var isFromSettings = false
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,6 +84,7 @@ extension LoginSignupValidationMasterView {
     func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?) {
         if isFromSettings {
             //Nav bar Back button.
+            backButton.hidden = false
             self.screenNameLabel.text = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
@@ -104,6 +106,7 @@ extension LoginSignupValidationMasterView {
             }
         } else {
             //Nav bar Back button.
+            backButton.hidden = true
             self.navigationItem.hidesBackButton = true
             self.navigationController?.setNavigationBarHidden(true, animated: false)
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]

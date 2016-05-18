@@ -11,7 +11,6 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
-    @IBOutlet var backButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +18,6 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""))
-        backButton.hidden = true
 
     }
     
