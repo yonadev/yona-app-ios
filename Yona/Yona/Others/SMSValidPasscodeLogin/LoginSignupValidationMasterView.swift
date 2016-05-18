@@ -84,7 +84,6 @@ extension LoginSignupValidationMasterView {
         if isFromSettings {
             //Nav bar Back button.
             self.navigationItem.hidesBackButton = false
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
             self.screenNameLabel.text = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
