@@ -27,12 +27,12 @@ class PinResetRequestManager {
      */
     private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
 
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other) { (success, message, code, user) in
-            //success so get the user?
-            if success {
-                switch pinRequestType
-                {
-                case .resetRequest:
+        switch pinRequestType
+        {
+        case .resetRequest:
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+                //success so get the user?
+                if success {
                     if let path = user?.requestPinResetLink {
                         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
                             if success {
@@ -45,36 +45,43 @@ class PinResetRequestManager {
                             }
                         }
                     } else {
+                        //clear the reset request if there is one and it is there waiting to be verified
+                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode))
                     }
-                case .verifyRequest:
+                } else {
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                }
+            }
+        case .verifyRequest:
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+                //success so get the user?
+                if success {
                     if let path = user?.requestPinVerifyLink{
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                            if success {
-                                onCompletion(true, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
-                            } else {
-                                onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
-                            }
+                            onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
+                        //clear the reset request if there is one and it can't be verified for some reason?
+                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
                     }
-                    
-                case .clearRequest:
+                } else {
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                }
+            }
+        case .clearRequest:
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+                //success so get the user?
+                if success {
                     if let path = user?.requestPinClearLink{
                         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpmethodParam) { (success, json, error) in
-                            if success {
-                                onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
-                            } else {
-                                onCompletion(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
-                            }
+                            onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
                     }
                 }
-            } else {
-                onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
             }
         }
     }

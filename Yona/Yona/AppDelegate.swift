@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		var rootController : UINavigationController
         rootController = getScreenNameToDisplay()
         if let window = self.window {
+            window.backgroundColor = UIColor.whiteColor()
             window.rootViewController = rootController
         }
         IQKeyboardManager.sharedManager().enable = true

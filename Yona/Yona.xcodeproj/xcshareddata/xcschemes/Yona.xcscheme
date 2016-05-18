@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D9D54EDC1CA28CD2007805F4"
+               BuildableName = "YonaTests.xctest"
+               BlueprintName = "YonaTests"
+               ReferencedContainer = "container:Yona.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D9D54EE71CA28CD2007805F4"
+               BuildableName = "YonaUITests.xctest"
+               BlueprintName = "YonaUITests"
+               ReferencedContainer = "container:Yona.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -44,8 +44,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLb-Tc-U4F">
-                                                <rect key="frame" x="30" y="251" width="540" height="2"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLb-Tc-U4F">
+                                                <rect key="frame" x="30" y="250" width="540" height="2"/>
                                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="Azz-mP-9IR"/>
@@ -159,12 +159,17 @@
                     <navigationItem key="navigationItem" id="dxc-dE-O1M"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="avtarImage" destination="NI5-2Q-e8Q" id="or8-4T-khY"/>
+                        <outlet property="backButton" destination="54Q-Tk-ChG" id="cLp-8i-gTP"/>
                         <outlet property="codeView" destination="Tez-Aa-DYz" id="zNg-18-XKw"/>
+                        <outlet property="gradientContainerView" destination="LFi-q3-6n4" id="qVb-Ve-dZY"/>
                         <outlet property="gradientView" destination="58K-kD-jvd" id="Fq8-mw-UrZ"/>
                         <outlet property="headerTitleLabel" destination="OxM-iM-4IC" id="DdA-oD-QEu"/>
                         <outlet property="infoLabel" destination="09h-RE-FIx" id="Wf8-Wc-SfJ"/>
                         <outlet property="progressView" destination="oLb-Tc-U4F" id="Llr-0j-14U"/>
+                        <outlet property="screenNameLabel" destination="wuh-qU-aIj" id="jkS-Ro-Fjo"/>
                         <outlet property="scrollView" destination="tog-87-Hwp" id="Jtf-oE-1qM"/>
+                        <outlet property="topView" destination="zlR-cL-Tgv" id="yJm-jR-c7U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kH-Qe-cpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,6 +197,6 @@
     </scenes>
     <resources>
         <image name="icnBack" width="13" height="21"/>
-        <image name="icnSecure" width="48" height="48"/>
+        <image name="icnSecure" width="44" height="44"/>
     </resources>
 </document>

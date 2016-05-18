@@ -62,7 +62,6 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-
         self.setupUI()
     }
     
@@ -201,7 +200,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         print("****** ACTIVITY CALLED ******")
         #endif
         Loader.Show(delegate: self)
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAdded{ (success, message, code, activities, goals, error) in
+        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
             if success{
                 Loader.Hide(self)                
                 self.activityCategoriesArray = activities!

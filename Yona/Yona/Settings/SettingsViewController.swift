@@ -20,7 +20,6 @@ class SettingsViewController: UIViewController {
         UIApplication.sharedApplication().statusBarHidden = true
         settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
         
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
@@ -31,6 +30,18 @@ class SettingsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Navigation, Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if (segue.identifier == "ShowPrivacy") {
+        }
+    }
+    
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
     }
     
     /**
@@ -90,6 +101,13 @@ class SettingsViewController: UIViewController {
             }
         })
     }
+    
+    private func resetPinCode() {
+        //TODO: UnSubscribe API InProgress
+        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+        }
+    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
@@ -110,20 +128,29 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 2 {
-            callAddDeviceMethod()
-        }
-        else if indexPath.row == 3 {
+        let setting = settingsArray[indexPath.row] as? String
+        if setting == NSLocalizedString("change-pin", comment: "") {
+            //change pin
+            if let login = R.storyboard.login.loginStoryboard {
+                login.isFromSettings = true
+                login.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(login, animated: false)
+            }
+        } else if setting ==  NSLocalizedString("privacy", comment: "") {
+            //privacy
+            performSegueWithIdentifier("privacyStatement", sender: self)
+        } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()
-                    
                 case alertButtonType.cancel:
                     break
                     //do nothing or send back to start of signup?
                 }
             })
+        } else if setting == NSLocalizedString("add-device", comment: "") {
+            callAddDeviceMethod()
         }
     }
     

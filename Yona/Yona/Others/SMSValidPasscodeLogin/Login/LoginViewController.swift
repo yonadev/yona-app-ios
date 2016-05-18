@@ -9,32 +9,30 @@
 import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
-    @IBOutlet var errorLabel: UILabel!
-    
+    @IBOutlet var backButton: UIButton!
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-      
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
         //Get user call
         checkUserExists()
+        
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""))
+        backButton.hidden = false
+
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
-        
+        codeInputView.clear()
         self.codeInputView.becomeFirstResponder()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
@@ -62,23 +60,34 @@ extension LoginViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
-            UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+            Loader.Show()
+            
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
+                    Loader.Hide()
                     self.codeInputView.resignFirstResponder()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                        self.navigationController?.pushViewController(dashboardStoryboard, animated: true)
+                    if self.isFromSettings {
+                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                            passcode.isFromSettings = self.isFromSettings
+                        self.navigationController?.pushViewController(passcode, animated: false)
+                        }
+                    } else {
+                        let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                        self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
                     }
+                    
                 } else {
+                    Loader.Hide()
                     if let message = message {
                         self.codeInputView.clear()
                         self.displayAlertMessage("", alertDescription: message)
                     }
                 }
-
             }
-        } else {
+        }
+        else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {
@@ -100,8 +109,13 @@ extension LoginViewController: CodeInputViewDelegate {
         self.pinResetTapped()
     }
     
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
@@ -148,5 +162,9 @@ extension LoginViewController: KeyboardProtocol {
             posi = position
         }
     }
+}
+
+private extension Selector {
+    static let back = #selector(LoginViewController.back(_:))
 }
 

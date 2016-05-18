@@ -11,16 +11,16 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
+    @IBOutlet var backButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        
+                
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""))
+        backButton.hidden = true
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -88,9 +88,8 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             //Update flag
             setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             
-            if let dashboardStoryboard = R.storyboard.dashboard.dashboardStoryboard {
-                navigationController?.pushViewController(dashboardStoryboard, animated: true)
-            }
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+            self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
         } else {
             codeInputView.clear()
             navigationController?.popViewControllerAnimated(true)

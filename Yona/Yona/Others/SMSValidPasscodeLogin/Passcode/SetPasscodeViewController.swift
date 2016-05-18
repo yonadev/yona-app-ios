@@ -13,26 +13,23 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     var passcodeString: String?
     
+    @IBOutlet var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
         
-
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-                
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""))
+        backButton.hidden = false
+
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -57,6 +54,11 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         super.viewDidDisappear(animated)
         self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // Go Back To Previous VC
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 
@@ -95,9 +97,15 @@ extension SetPasscodeViewController: CodeInputViewDelegate {
         passcodeString = code
         if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
             passcode.passcode = code
+            if isFromSettings {
+                passcode.isFromSettings = self.isFromSettings
+            }
             self.navigationController?.pushViewController(passcode, animated: false)
         }
         self.codeInputView.clear()
-//        performSegueWithIdentifier(R.segue.setPasscodeViewController.confirmPasscodeSegue, sender: self)
     }
+}
+
+private extension Selector {
+    static let back = #selector(SetPasscodeViewController.back(_:))
 }

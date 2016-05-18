@@ -380,13 +380,6 @@ struct R {
   }
   
   struct segue {
-    struct dashboardTabBarController {
-      static var challenges: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Challenges") }
-      static var friends: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Friends") }
-      static var profile: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Profile") }
-      static var settings: StoryboardSegueIdentifier<TabBarSegue, DashboardTabBarController, UIViewController> { return StoryboardSegueIdentifier(identifier: "Settings") }
-    }
-    
     struct friendsOverViewViewController {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
@@ -418,8 +411,7 @@ struct R {
     }
     
     struct challenges {
-      static var challengesStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("ChallengesStoryboard") as? UINavigationController }
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
+      static var initialViewController: TimeBucketChallenges? { return instance.instantiateInitialViewController() as? TimeBucketChallenges }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
       static var timeFrameBudgetChallengeStoryboard: TimeFrameBudgetChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameBudgetChallengeStoryboard") as? TimeFrameBudgetChallengeViewController }
       static var timeFrameNoGoChallengeStoryboard: TimeFrameNoGoChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameNoGoChallengeStoryboard") as? TimeFrameNoGoChallengeViewController }
@@ -435,7 +427,6 @@ struct R {
       }
       
       static func validateViewControllers() {
-        assert(challengesStoryboard != nil, "[R.swift] ViewController with identifier 'challengesStoryboard' could not be loaded from storyboard 'Challenges' as 'UINavigationController'.")
         assert(timeFrameTimeZoneChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameTimeZoneChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameTimeZoneChallengeViewController'.")
         assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
         assert(timeFrameNoGoChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameNoGoChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameNoGoChallengeViewController'.")
@@ -470,8 +461,7 @@ struct R {
     }
     
     struct dashboard {
-      static var dashboardStoryboard: DashboardTabBarController? { return instance.instantiateViewControllerWithIdentifier("DashboardStoryboard") as? DashboardTabBarController }
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
+      static var initialViewController: UITabBarController? { return instance.instantiateInitialViewController() as? UITabBarController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Dashboard", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -486,13 +476,13 @@ struct R {
       }
       
       static func validateViewControllers() {
-        assert(dashboardStoryboard != nil, "[R.swift] ViewController with identifier 'dashboardStoryboard' could not be loaded from storyboard 'Dashboard' as 'DashboardTabBarController'.")
+        
       }
     }
     
     struct friends {
       static var addFriendsStoryboard: AddFriendsViewController? { return instance.instantiateViewControllerWithIdentifier("AddFriendsStoryboard") as? AddFriendsViewController }
-      static var friendsStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("FriendsStoryboard") as? UINavigationController }
+      static var initialViewController: FriendsOverViewViewController? { return instance.instantiateInitialViewController() as? FriendsOverViewViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -501,7 +491,6 @@ struct R {
       }
       
       static func validateViewControllers() {
-        assert(friendsStoryboard != nil, "[R.swift] ViewController with identifier 'friendsStoryboard' could not be loaded from storyboard 'Friends' as 'UINavigationController'.")
         assert(addFriendsStoryboard != nil, "[R.swift] ViewController with identifier 'addFriendsStoryboard' could not be loaded from storyboard 'Friends' as 'AddFriendsViewController'.")
       }
     }
@@ -561,6 +550,7 @@ struct R {
     }
     
     struct profile {
+      static var initialViewController: ProfileViewController? { return instance.instantiateInitialViewController() as? ProfileViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Profile", bundle: _R.hostingBundle) }
       static var profileStoryboard: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? ProfileViewController }
       
@@ -588,15 +578,15 @@ struct R {
     }
     
     struct settings {
+      static var initialViewController: SettingsViewController? { return instance.instantiateInitialViewController() as? SettingsViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
-      static var settingsStoryboard: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("SettingsStoryboard") as? UINavigationController }
       
       static func validateImages() {
         
       }
       
       static func validateViewControllers() {
-        assert(settingsStoryboard != nil, "[R.swift] ViewController with identifier 'settingsStoryboard' could not be loaded from storyboard 'Settings' as 'UINavigationController'.")
+        
       }
     }
     

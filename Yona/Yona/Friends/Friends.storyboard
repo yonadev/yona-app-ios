@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -239,7 +239,7 @@
                         <outlet property="tableView" destination="D0p-La-oo7" id="hr9-uw-euW"/>
                         <outlet property="timelineTabBottomBorder" destination="zYw-AQ-WOA" id="YFZ-AU-Nny"/>
                         <outlet property="timelineTabView" destination="Qp7-5Y-17s" id="tvC-xh-QYN"/>
-                        <segue destination="OjV-ne-DEf" kind="show" identifier="addFriendsSegue" id="cfi-lX-xoX"/>
+                        <segue destination="OjV-ne-DEf" kind="showDetail" identifier="addFriendsSegue" action="showViewController:sender:" id="cfi-lX-xoX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyg-hw-Exf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,24 +257,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="932" y="330"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="19K-rW-IwT">
-            <objects>
-                <navigationController storyboardIdentifier="FriendsStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PYm-3L-t6r" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9LH-GG-xFI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="U6O-cp-2EY" kind="relationship" relationship="rootViewController" id="aqN-cd-GTh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PSN-mW-t5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="122" y="388"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="KFn-zP-KFj">
@@ -418,6 +400,9 @@
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OjV-ne-DEf" id="k8J-VX-iax"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last-name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEP-4R-nOf">
                                         <rect key="frame" x="32" y="88" width="536" height="88"/>
@@ -427,6 +412,9 @@
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OjV-ne-DEf" id="gMI-Dn-Ihy"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhK-cf-R3p">
                                         <rect key="frame" x="32" y="172" width="536" height="88"/>
@@ -436,6 +424,9 @@
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OjV-ne-DEf" id="jUl-q7-2hH"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mobile-number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qBM-hQ-L7Q">
                                         <rect key="frame" x="32" y="260" width="536" height="88"/>
@@ -445,6 +436,9 @@
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OjV-ne-DEf" id="yP5-dZ-dNk"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
                                         <rect key="frame" x="30" y="378" width="540" height="50"/>
@@ -454,6 +448,9 @@
                                         <state key="normal" title="invitefriend">
                                             <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addNewBuddyButtonTapped:" destination="OjV-ne-DEf" eventType="touchUpInside" id="qTJ-Y8-TkI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -478,7 +475,7 @@
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="top" secondItem="h95-OS-lxS" secondAttribute="bottom" constant="84" id="cig-KM-a6G"/>
                                     <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="qBM-hQ-L7Q" secondAttribute="bottom" constant="30" id="rzr-bC-g0p"/>
                                     <constraint firstItem="TPn-S7-xHv" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="30" id="tH8-gI-LED"/>
-                                    <constraint firstAttribute="bottom" secondItem="TPn-S7-xHv" secondAttribute="bottom" constant="10" id="u7g-IM-UwG"/>
+                                    <constraint firstAttribute="bottom" secondItem="TPn-S7-xHv" secondAttribute="bottom" constant="60" id="u7g-IM-UwG"/>
                                     <constraint firstItem="h95-OS-lxS" firstAttribute="top" secondItem="bJK-ti-jOR" secondAttribute="top" id="uEc-Re-fXc"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="wrK-AU-3Of"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="zT0-PF-BPY"/>

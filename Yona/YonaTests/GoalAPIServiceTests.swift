@@ -43,19 +43,23 @@ class GoalAPIServiceTests: XCTestCase {
             if success == false{
                 XCTFail()
             }
-            GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, goal, goals, err) in
-                if let goalsUnwrap = goals {
-                    if success {
-                        for goal in goalsUnwrap {
-                            print(goal.goalType)
-                            XCTAssertFalse(goal.goalType! != GoalType.NoGoGoalString.rawValue )
+            //confirm mobile number check, static code
+            UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
+                if(success){
+                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
+                        if let goalsUnwrap = goals {
+                            if success {
+                                let nogoGoals = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(.NoGoGoalString, goals: goalsUnwrap)
+                                XCTAssert(nogoGoals.count > 0 , message!) //if we don't get one nogo goal back
+                                expectation.fulfill()
+                            } else {
+                                XCTFail(message!)
+                            }
                         }
-                        expectation.fulfill()
-                    } else {
-                        XCTFail(message!)
                     }
                 }
             }
+
 
         }
         waitForExpectationsWithTimeout(10.0, handler:nil)
@@ -81,7 +85,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    UserRequestManager.sharedInstance.getUser(AllowedGetUserRequest.other){ (success, message, code, user) in
+                    UserRequestManager.sharedInstance.getUser(.allowed) { (success, message, code, user) in
                         //we need to now get the activity link from our activities
                         ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.socialString) { (success, socialActivityCategoryLink, message, code) in
                         //set body for goal
@@ -107,20 +111,17 @@ class GoalAPIServiceTests: XCTestCase {
                                         //now we can post the goal
                                         GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetNewsGoal) { (success, message, code, goal, nil, error) in
                                                 if success {
-                                                    //no
-                                                    GoalsRequestManager.sharedInstance.getGoalsOfType(.BudgetGoalString, onCompletion: { (success, message, code, nil, goals, err) in
+                                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
                                                         if let goalsUnwrap = goals {
                                                             if success {
-                                                                for goal in goalsUnwrap {
-                                                                    print(goal.goalType)
-                                                                    XCTAssertFalse(goal.goalType! != GoalType.BudgetGoalString.rawValue)
-                                                                }
+                                                                let budgetGoals = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(.BudgetGoalString, goals: goalsUnwrap)
+                                                                XCTAssert(budgetGoals.count == 2 , message!) //there should be 2 goals returned              
                                                                 expectation.fulfill()
                                                             } else {
                                                                 XCTFail(message!)
                                                             }
                                                         }
-                                                    })
+                                                    }
                                                 } else {
                                                     XCTFail(message!)
                                                 }
@@ -185,20 +186,18 @@ class GoalAPIServiceTests: XCTestCase {
 
                                         GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneNewsGoal, onCompletion: { (success, message, code, goal, nil, error) in
                                             if success {
-                                                //no
-                                                GoalsRequestManager.sharedInstance.getGoalsOfType(.TimeZoneGoalString, onCompletion: { (success, message, code, nil, goals, err) in
+                                                //now we can call getActivitiesNotAddedWithTheUsersGoals in Activtities request manager, this will return the UI the activties not yet added to display in a list, along with the users goals (that is part of getting activities not added) meaning the UI does not have to call the get goals part at all reducing the calls to it
+                                                ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
                                                     if let goalsUnwrap = goals {
                                                         if success {
-                                                            for goal in goalsUnwrap {
-                                                                print(goal.goalType)
-                                                                XCTAssertFalse(goal.goalType! != GoalType.TimeZoneGoalString.rawValue)
-                                                            }
+                                                            let timeZoneGoals = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(.TimeZoneGoalString, goals: goalsUnwrap)
+                                                            XCTAssert(timeZoneGoals.count == 2 , message!) //there should be 2 goals returned
                                                             expectation.fulfill()
                                                         } else {
                                                             XCTFail(message!)
                                                         }
                                                     }
-                                                })
+                                                }
                                             } else {
                                                 XCTFail(message!)
                                             }
@@ -236,7 +235,7 @@ class GoalAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if(success){
-                    ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, server, activities, error) in
                         if success {
                             //Get all the goals
                             GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
@@ -342,7 +341,6 @@ class GoalAPIServiceTests: XCTestCase {
              "nickname": "RQ"]
         
         //Create user
-        //Create user
         UserRequestManager.sharedInstance.postUser(body, confirmCode: nil) { (success, message, code, users) in
             if success == false{
                 XCTFail()
@@ -368,7 +366,7 @@ class GoalAPIServiceTests: XCTestCase {
                             GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal, onCompletion: {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
-                                    ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, server, activities, error) in
                                         if success {
                                             //Get the goals again to see if the goals have been updated after our post
                                             GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
@@ -480,7 +478,7 @@ class GoalAPIServiceTests: XCTestCase {
            
                     GoalsRequestManager.sharedInstance.postUserGoals(postGoalBody, onCompletion: {
                         (success, serverMessage, serverCode, goal, goals, err) in
-                        GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString, onCompletion: { (success, message, server, nil, goals, error) in
+                        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, server, nil, goals, error) in
                             //see what message from the server...in this case we are trying to remove a goal you are not allowed to remove
                             if success {
                                 for goal in goals! {
@@ -493,7 +491,7 @@ class GoalAPIServiceTests: XCTestCase {
                             } else {
                                 XCTFail(message!)
                             }
-                        })
+                        }
 
                     })
                 }
@@ -526,7 +524,7 @@ class GoalAPIServiceTests: XCTestCase {
                     ActivitiesRequestManager.sharedInstance.getActivityLinkForActivityName(.gamblingString) { (success, gamblingActivityCategoryLink, message, code) in
                         if success {
                             //As the user has just been created there is one mandatory goal, Gambling, this has no editlink so cannot be removed
-                            GoalsRequestManager.sharedInstance.getGoalsOfType(.NoGoGoalString) { (success, message, code, nil, goals, error) in
+                            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals { (success, message, code, nil, goals, error) in
                                 for goal in goals! {
                                     //so get this goal
                                     if goal.goalType == GoalType.NoGoGoalString.rawValue {
@@ -568,7 +566,7 @@ class GoalAPIServiceTests: XCTestCase {
                 //confirm mobile number check, static code
                 UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                     if(success){
-                        ActivitiesRequestManager.sharedInstance.getActivitiesArray{ (success, message, server, activities, error) in
+                        ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, server, activities, error) in
                             if success {
                                 GoalsRequestManager.sharedInstance.getAllTheGoals(activities!){ (success, serverMessage, serverCode, nil, goals, err) in
                                     if(success){
