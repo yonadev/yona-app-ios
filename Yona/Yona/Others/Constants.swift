@@ -79,6 +79,7 @@ struct YonaConstants {
 
     struct serverCodes{
         static let errorUserExists = "error.user.exists"
+        static let errorAddBuddyUserExists = "error.user.exists.created.on.buddy.request"
         static let errorUserNotFound = "error.user.not.found.id"
         static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
         static let tooManyResendOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
