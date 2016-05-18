@@ -122,15 +122,13 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
+        let setting = settingsArray[indexPath.row] as? String
+        if setting == NSLocalizedString("change-pin", comment: "") {
             //change pin
-        } else if indexPath.row == 1 {
+        } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy
             performSegueWithIdentifier("privacyStatement", sender: self)
-        } else if indexPath.row == 2 {
-            callAddDeviceMethod()
-        }
-        else if indexPath.row == 3 {
+        } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
@@ -141,6 +139,8 @@ extension SettingsViewController:UITableViewDelegate {
                     //do nothing or send back to start of signup?
                 }
             })
+        } else if setting == NSLocalizedString("add-device", comment: "") {
+            callAddDeviceMethod()
         }
     }
     
