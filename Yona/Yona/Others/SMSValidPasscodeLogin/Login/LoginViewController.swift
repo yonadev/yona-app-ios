@@ -9,13 +9,7 @@
 import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
-    @IBOutlet var errorLabel: UILabel!
-    @IBOutlet var screenNameLabel: UILabel!
     @IBOutlet var backButton: UIButton!
-    @IBOutlet var topView: UIView!
-    @IBOutlet var avtarImage: UIImageView!
-    @IBOutlet var gradientContainerView: UIView!
-    var isFromSettings = false
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     
@@ -31,26 +25,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         //Get user call
         checkUserExists()
         
-        if isFromSettings {
-            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
-            backButton.hidden = false
-            topView.backgroundColor = UIColor.yiMangoColor()
-            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
-            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
-            
-            let viewWidth = self.view.frame.size.width
-            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
-            customView.backgroundColor=UIColor.yiDarkishPinkColor()
-            self.progressView.addSubview(customView)
-            self.progressView.hidden = false
-            avtarImage = UIImageView(image: R.image.icnSecure)
-            self.infoLabel.text = NSLocalizedString("settings_current_pin", comment: "")
-            errorLabel.text = NSLocalizedString("settings_current_pin_message", comment: "")
-            errorLabel.hidden = false
-
-        } else {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        }
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("settings_current_pin", comment: ""), screenNameText: NSLocalizedString("change-pin", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin_message", comment: ""))
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -26,6 +26,14 @@ class LoginSignupValidationMasterView: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var gradientView: GradientView!
     
+    //passcode screen variables
+    @IBOutlet var screenNameLabel: UILabel!
+    @IBOutlet var topView: UIView!
+    @IBOutlet var avtarImage: UIImageView!
+    @IBOutlet var gradientContainerView: UIView!
+    @IBOutlet var errorLabel: UILabel!
+    var isFromSettings = false
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -61,6 +69,36 @@ extension LoginSignupValidationMasterView {
             } else {
                 self.displayAlertMessage("", alertDescription: serverMessage)
             }
+        }
+    }
+}
+
+//MARK: - Setup Pincode screen differently for change pin
+extension LoginSignupValidationMasterView {
+    /** Helps to setup the pincode screen differnetly if you come from the settings menu and you want to change the pin, uses yellow background and different text
+     - parameter headerTitleLabel: String, Title of header
+     - parameter screenNameText: String, Screen name title
+     - parameter infoLabelText: String lable on the information to the user
+     */
+    func setupPincodeScreenDifferentlyWithText(headerTitleLabel: String, screenNameText: String, infoLabelText: String) {
+        if isFromSettings {
+            self.screenNameLabel.text = screenNameText
+            topView.backgroundColor = UIColor.yiMangoColor()
+            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
+            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
+            
+            let viewWidth = self.view.frame.size.width
+            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
+            customView.backgroundColor=UIColor.yiDarkishPinkColor()
+            self.progressView.addSubview(customView)
+            self.progressView.hidden = false
+            avtarImage = UIImageView(image: R.image.icnAccountCreated)
+            self.headerTitleLabel.text = headerTitleLabel
+            infoLabel.text = infoLabelText
+            errorLabel.text = NSLocalizedString("settings_current_pin_message", comment: "")
+            errorLabel.hidden = false
+        } else {
+            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         }
     }
 }

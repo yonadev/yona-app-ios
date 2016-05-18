@@ -14,11 +14,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     var passcodeString: String?
     
     @IBOutlet var backButton: UIButton!
-    @IBOutlet var screenNameLabel: UILabel!
-    @IBOutlet var topView: UIView!
-    @IBOutlet var avtarImage: UIImageView!
-    @IBOutlet var gradientContainerView: UIView!
-    var isFromSettings = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,24 +31,7 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
                 
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
-        if isFromSettings {
-            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
-            backButton.hidden = false
-            topView.backgroundColor = UIColor.yiMangoColor()
-            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
-            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
-            
-            let viewWidth = self.view.frame.size.width
-            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
-            customView.backgroundColor=UIColor.yiDarkishPinkColor()
-            self.progressView.addSubview(customView)
-            self.progressView.hidden = false
-            avtarImage = UIImageView(image: R.image.icnAccountCreated)
-            headerTitleLabel.text = NSLocalizedString("settings_new_pincode", comment: "")
-            infoLabel.text = NSLocalizedString("settings_new_pin_message", comment: "")
-        } else {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        }
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("settings_new_pincode", comment: ""), screenNameText: NSLocalizedString("change-pin", comment: ""), infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""))
     }
     
     override func viewWillAppear(animated: Bool) {
