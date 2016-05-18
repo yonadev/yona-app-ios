@@ -83,7 +83,6 @@ extension LoginSignupValidationMasterView {
     func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?) {
         if isFromSettings {
             //Nav bar Back button.
-            self.navigationItem.hidesBackButton = false
             self.screenNameLabel.text = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]

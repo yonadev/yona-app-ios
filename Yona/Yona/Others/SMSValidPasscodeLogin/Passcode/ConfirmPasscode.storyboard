@@ -160,6 +160,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="avtarImage" destination="NI5-2Q-e8Q" id="or8-4T-khY"/>
+                        <outlet property="backButton" destination="54Q-Tk-ChG" id="cLp-8i-gTP"/>
                         <outlet property="codeView" destination="Tez-Aa-DYz" id="zNg-18-XKw"/>
                         <outlet property="gradientContainerView" destination="LFi-q3-6n4" id="qVb-Ve-dZY"/>
                         <outlet property="gradientView" destination="58K-kD-jvd" id="Fq8-mw-UrZ"/>

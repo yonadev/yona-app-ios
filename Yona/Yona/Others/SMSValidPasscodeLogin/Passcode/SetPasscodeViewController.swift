@@ -26,6 +26,8 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""))
+        backButton.hidden = false
+
     }
 
     override func viewWillAppear(animated: Bool) {
