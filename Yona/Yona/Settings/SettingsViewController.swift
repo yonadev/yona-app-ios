@@ -33,6 +33,18 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Navigation, Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if (segue.identifier == "ShowPrivacy") {
+        }
+    }
+    
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
+    }
+    
     /**
      Will call logout/unsubscribe/ API and removes all the user's data.
      
@@ -112,13 +124,9 @@ extension SettingsViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
             //change pin
-            if let login = R.storyboard.login.loginStoryboard {
-                login.isFromSettings = true
-//                login.hidesBottomBarWhenPushed = true
-                self.navigationController?.(login, animated: true)
-            }
         } else if indexPath.row == 1 {
             //privacy
+            performSegueWithIdentifier("privacyStatement", sender: self)
         } else if indexPath.row == 2 {
             callAddDeviceMethod()
         }
