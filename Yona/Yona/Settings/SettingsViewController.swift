@@ -90,6 +90,13 @@ class SettingsViewController: UIViewController {
             }
         })
     }
+    
+    private func resetPinCode() {
+        //TODO: UnSubscribe API InProgress
+        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+        }
+    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
@@ -110,15 +117,21 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 2 {
+        if indexPath.row == 0 {
+            //change pin
+            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                self.navigationController?.pushViewController(passcode, animated: false)
+            }
+        } else if indexPath.row == 1 {
+            //privacy
+        } else if indexPath.row == 2 {
             callAddDeviceMethod()
-        }
-        else if indexPath.row == 3 {
+        } else if indexPath.row == 3 {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()
-                    
                 case alertButtonType.cancel:
                     break
                     //do nothing or send back to start of signup?
