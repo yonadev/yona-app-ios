@@ -41,6 +41,7 @@
 		9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC871CE384AB00F575E2 /* Buddies.swift */; };
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
+		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
@@ -299,6 +300,7 @@
 		9054CC871CE384AB00F575E2 /* Buddies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buddies.swift; sourceTree = "<group>"; };
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
+		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 			children = (
 				AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */,
 				AD291D741CA940D9008CAFB1 /* Settings.storyboard */,
+				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1614,6 +1617,7 @@
 				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
+				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,

@@ -110,7 +110,16 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 2 {
+        if indexPath.row == 0 {
+            //change pin
+            if let login = R.storyboard.login.loginStoryboard {
+                login.isFromSettings = true
+//                login.hidesBottomBarWhenPushed = true
+                self.navigationController?.(login, animated: true)
+            }
+        } else if indexPath.row == 1 {
+            //privacy
+        } else if indexPath.row == 2 {
             callAddDeviceMethod()
         }
         else if indexPath.row == 3 {
