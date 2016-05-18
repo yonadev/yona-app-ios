@@ -20,7 +20,6 @@ class SettingsViewController: UIViewController {
         UIApplication.sharedApplication().statusBarHidden = true
         settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
         
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
