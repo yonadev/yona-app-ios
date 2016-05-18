@@ -297,7 +297,6 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 if ((previousRange?.location >= range.location) ) {
                     if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
                         textField.text = String(textField.text!.characters.dropLast())
-                        textField.text = String(textField.text!.characters.dropLast())
                     }
                 } else  {
                     if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
