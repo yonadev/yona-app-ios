@@ -90,6 +90,19 @@ class SettingsViewController: UIViewController {
             }
         })
     }
+    
+    private func resetPinCode() {
+        //TODO: UnSubscribe API InProgress
+        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+        }
+    }
+    
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
+    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
@@ -110,15 +123,23 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 2 {
+        if indexPath.row == 0 {
+            //change pin
+            if let login = R.storyboard.login.loginStoryboard {
+                login.isFromSettings = true
+                login.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(login, animated: false)
+            }
+        } else if indexPath.row == 1 {
+            //privacy
+            performSegueWithIdentifier("privacyStatement", sender: self)
+        } else if indexPath.row == 2 {
             callAddDeviceMethod()
-        }
-        else if indexPath.row == 3 {
+        } else if indexPath.row == 3 {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
                 case alertButtonType.OK:
                     self.callUnSubscribeMethod()
-                    
                 case alertButtonType.cancel:
                     break
                     //do nothing or send back to start of signup?
