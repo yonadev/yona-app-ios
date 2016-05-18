@@ -25,8 +25,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         
         let viewWidth = self.view.frame.size.width
         let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
