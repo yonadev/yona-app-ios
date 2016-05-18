@@ -97,6 +97,12 @@ class SettingsViewController: UIViewController {
             UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
         }
     }
+    
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
+    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
