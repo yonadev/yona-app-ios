@@ -16,16 +16,14 @@ class LoginViewController: LoginSignupValidationMasterView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-      
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //Get user call
         checkUserExists()
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""))
+        backButton.hidden = false
+
     }
 
     override func viewWillAppear(animated: Bool) {
