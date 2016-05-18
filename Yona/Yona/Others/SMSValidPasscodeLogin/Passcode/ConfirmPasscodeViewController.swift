@@ -23,9 +23,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        
+                
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         if isFromSettings {
