@@ -16,10 +16,6 @@ class LoginViewController: LoginSignupValidationMasterView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-      
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //Get user call

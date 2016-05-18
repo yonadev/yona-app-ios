@@ -82,6 +82,9 @@ extension LoginSignupValidationMasterView {
      */
     func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?) {
         if isFromSettings {
+            //Nav bar Back button.
+            self.navigationItem.hidesBackButton = false
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
             self.screenNameLabel.text = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
             self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
@@ -102,6 +105,9 @@ extension LoginSignupValidationMasterView {
                 errorLabel.hidden = false
             }
         } else {
+            //Nav bar Back button.
+            self.navigationItem.hidesBackButton = true
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
             self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         }
     }
