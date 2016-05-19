@@ -81,7 +81,7 @@ extension LoginSignupValidationMasterView {
      - parameter screenNameText: String, Screen name title
      - parameter infoLabelText: String lable on the information to the user
      */
-    func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?) {
+    func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?, avtarImageName: UIImage?) {
         if isFromSettings {
             //Nav bar Back button.
             backButton.hidden = false
@@ -95,7 +95,7 @@ extension LoginSignupValidationMasterView {
             customView.backgroundColor=UIColor.yiDarkishPinkColor()
             self.progressView.addSubview(customView)
             self.progressView.hidden = false
-            avtarImage = UIImageView(image: R.image.icnAccountCreated)
+            avtarImage.image = avtarImageName
             if let headerTitleLabelText = headerTitleLabelText{
                 headerTitleLabel.text = headerTitleLabelText
             }
