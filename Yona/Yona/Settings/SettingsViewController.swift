@@ -97,10 +97,8 @@ class SettingsViewController: BaseViewController {
         }
     }
     
-    //MARK: Navigation, Segue
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        //return false so we can load our detail data before pushing segue
-        return false
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
     }
 }
 
@@ -132,7 +130,9 @@ extension SettingsViewController:UITableViewDelegate {
             }
         } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy
-            performSegueWithIdentifier("privacyStatement", sender: self)
+            if let privacy = R.storyboard.privacy.privacyStatementStoryboard {
+                self.navigationController?.pushViewController(privacy, animated: false)
+            }
         } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
