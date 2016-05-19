@@ -17,7 +17,7 @@ protocol TimeZoneChallengeDelegate {
     func callGoalsMethod()
 }
 
-class TimeFrameTimeZoneChallengeViewController: UIViewController {
+class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     
     var delegate: TimeZoneChallengeDelegate?
     @IBOutlet var gradientView: GradientView!

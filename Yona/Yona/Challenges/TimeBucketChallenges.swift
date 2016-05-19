@@ -9,7 +9,7 @@
 
 import UIKit
 
-class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
+class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate,NoGoChallengeDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
