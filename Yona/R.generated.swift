@@ -15,10 +15,10 @@ struct R {
     storyboard.profile.validateViewControllers()
     storyboard.signUp.validateImages()
     storyboard.signUp.validateViewControllers()
-    storyboard.login.validateImages()
-    storyboard.login.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
+    storyboard.login.validateImages()
+    storyboard.login.validateViewControllers()
     storyboard.launchScreen.validateImages()
     storyboard.launchScreen.validateViewControllers()
     storyboard.challenges.validateImages()
@@ -27,12 +27,12 @@ struct R {
     storyboard.settings.validateViewControllers()
     storyboard.confirmPasscode.validateImages()
     storyboard.confirmPasscode.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.passcode.validateImages()
     storyboard.passcode.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
     storyboard.main.validateImages()
@@ -348,6 +348,7 @@ struct R {
     static var icnNext: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNext", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNext") } }
     static var icnNickname: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNickname", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNickname") } }
     static var icnNo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNo") } }
+    static var icnNotifications: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNotifications") } }
     static var icnOk: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOk") } }
     static var icnReminder: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnReminder") } }
     static var icnSecure: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSecure") } }
@@ -371,17 +372,28 @@ struct R {
   }
   
   struct nib {
+    static var friendsNotificationsTab: _R.nib._FriendsNotificationsTab { return _R.nib._FriendsNotificationsTab() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
   }
   
   struct reuseIdentifier {
+    static var notifcationsCell: ReuseIdentifier<NotificationsCell> { return ReuseIdentifier(identifier: "notifcationsCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
   struct segue {
     struct friendsOverViewViewController {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
+    }
+    
+    struct profileViewController {
+      static var notificationsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ProfileViewController, NotificationsViewController> { return StoryboardSegueIdentifier(identifier: "notificationsSegue") }
+      static var userDetails: StoryboardSegueIdentifier<UIStoryboardSegue, ProfileViewController, UserDetails> { return StoryboardSegueIdentifier(identifier: "userDetails") }
+    }
+    
+    struct settingsViewController {
+      static var privacyStatement: StoryboardSegueIdentifier<UIStoryboardSegue, SettingsViewController, PrivacyStatementVC> { return StoryboardSegueIdentifier(identifier: "privacyStatement") }
     }
     
     struct signUpFirstStepViewController {
@@ -461,7 +473,7 @@ struct R {
     }
     
     struct dashboard {
-      static var initialViewController: UITabBarController? { return instance.instantiateInitialViewController() as? UITabBarController }
+      static var initialViewController: BaseTabViewController? { return instance.instantiateInitialViewController() as? BaseTabViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Dashboard", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -515,6 +527,7 @@ struct R {
       
       static func validateImages() {
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
@@ -541,6 +554,7 @@ struct R {
       static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Passcode', but couldn't be loaded.")
         assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Passcode', but couldn't be loaded.")
       }
       
@@ -552,14 +566,18 @@ struct R {
     struct profile {
       static var initialViewController: ProfileViewController? { return instance.instantiateInitialViewController() as? ProfileViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Profile", bundle: _R.hostingBundle) }
-      static var profileStoryboard: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? ProfileViewController }
+      static var profileStoryboard: UserDetails? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? UserDetails }
+      static var profileViewController: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnNotifications") != nil, "[R.swift] Image named 'icnNotifications' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.")
+        assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.")
+        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'Profile' as 'UserDetails'.")
       }
     }
     
@@ -582,7 +600,7 @@ struct R {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Settings', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
@@ -653,6 +671,27 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
   
   struct nib {
+    struct _FriendsNotificationsTab: NibResource {
+      var instance: UINib { return UINib.init(nibName: "FriendsNotificationsTab", bundle: _R.hostingBundle) }
+      var name: String { return "FriendsNotificationsTab" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? UIView
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+      
+      func secondView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[1] as? UIView
+      }
+      
+      func thirdView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[2] as? UIView
+      }
+    }
+    
     struct _YonaCustomDatePickerView: NibResource {
       var instance: UINib { return UINib.init(nibName: "YonaCustomDatePickerView", bundle: _R.hostingBundle) }
       var name: String { return "YonaCustomDatePickerView" }

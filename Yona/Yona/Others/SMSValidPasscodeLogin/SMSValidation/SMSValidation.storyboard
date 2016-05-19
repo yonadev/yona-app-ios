@@ -100,7 +100,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="079-6Q-Vvd">
-                                                <rect key="frame" x="205.5" y="404" width="189" height="28"/>
+                                                <rect key="frame" x="206" y="404" width="189" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendCode"/>
                                                 <connections>

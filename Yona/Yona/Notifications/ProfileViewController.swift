@@ -1,14 +1,14 @@
 //
-//  FriendsOverViewViewController.swift
+//  NotificationsOverviewController.swift
 //  Yona
 //
-//  Created by Chandan on 23/03/16.
+//  Created by Ben Smith on 19/05/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class FriendsOverViewViewController: FriendsProfileMasterView {
+class ProfileViewController: FriendsProfileMasterView {
     @IBOutlet var tableView: UITableView!
 
     // MARK: - View
@@ -17,7 +17,7 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
         OverviewTabAction(overviewTabView)
         self.setupUI()
         dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
+            self.gradientView.colors = [UIColor.yiGrapeColor(), UIColor.yiGrapeColor()]
         })
     }
     
@@ -27,13 +27,18 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
+//        performSegueWithIdentifier(R.segue., sender: <#T##AnyObject?#>)
     }
     
 }
 
 // MARK: Touch Event of Custom Segment
-extension FriendsOverViewViewController {
-    @IBAction func addFriendAction(sender: AnyObject) {
-        performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendsSegue, sender: self)
+extension FriendsProfileMasterView {
+    @IBAction func showUserDetails(sender: AnyObject) {
+        performSegueWithIdentifier(R.segue.profileViewController.userDetails , sender: self)
+    }
+    
+    @IBAction func showNotificationsScreen(sender: AnyObject) {
+        performSegueWithIdentifier(R.segue.profileViewController.notificationsSegue , sender: self)
     }
 }

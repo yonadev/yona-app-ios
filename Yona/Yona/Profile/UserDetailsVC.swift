@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class UserDetails: UIViewController {
 
     @IBOutlet var gradientView: GradientView!
     
