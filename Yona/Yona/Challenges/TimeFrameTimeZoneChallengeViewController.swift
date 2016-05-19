@@ -249,6 +249,7 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.zonesArrayDate.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             if self.zonesArrayDate.count == 0 {
+                picker?.hideShowDatePickerView(isToShow: false)
                 self.setChallengeButton.enabled = false
                 self.setChallengeButton.alpha = 0.5
             }
