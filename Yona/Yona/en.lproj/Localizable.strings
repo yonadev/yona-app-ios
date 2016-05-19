@@ -114,6 +114,7 @@
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
 "enteremailvalidation" = "You need to enter email address of friend.";
+"addBuddyMessage" = "Hi there, would you want to become my buddy?";
 "email" = "EMAIL";
 
 "enter-first-name-validation" = "You need to enter a name";

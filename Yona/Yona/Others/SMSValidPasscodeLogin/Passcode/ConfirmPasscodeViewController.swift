@@ -12,37 +12,13 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
 
-    @IBOutlet var screenNameLabel: UILabel!
-    @IBOutlet var topView: UIView!
-    @IBOutlet var avtarImage: UIImageView!
-    @IBOutlet var gradientContainerView: UIView!
-    var isFromSettings = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
                 
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
-        if isFromSettings {
-            screenNameLabel.text = NSLocalizedString("change-pin", comment: "")
-            topView.backgroundColor = UIColor.yiMangoColor()
-            self.gradientView.colors = [UIColor.yiMangoTriangleColor(), UIColor.yiMangoTriangleColor()]
-            gradientContainerView.backgroundColor = UIColor.yiMangoColor()
-            
-            let viewWidth = self.view.frame.size.width
-            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
-            customView.backgroundColor=UIColor.yiDarkishPinkColor()
-            self.progressView.addSubview(customView)
-            self.progressView.hidden = false
-            avtarImage = UIImageView(image: R.image.icnAccountCreated)
-            headerTitleLabel.text = NSLocalizedString("settings_confirm_new_pin", comment: "")
-            infoLabel.text = NSLocalizedString("settings_confirm_new_pin_message", comment: "")
-        } else {
-            self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
-        }
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""))
+
     }
     
     override func viewWillAppear(animated: Bool) {

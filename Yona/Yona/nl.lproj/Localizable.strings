@@ -115,7 +115,8 @@
 "invitefriend" = "VRIEND UITNODIGEN";
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
-"enteremailvalidation" = "You need to enter email address of friend.";
+"enteremailvalidation" = "Je moet het e-mailadres van de vriend in te voeren.";
+"addBuddyMessage" = "Hallo daar, wil je mijn vriend worden?";
 "email" = "EMAIL";
 
 "enter-first-name-validation" = "Je moet een naam invoeren";
