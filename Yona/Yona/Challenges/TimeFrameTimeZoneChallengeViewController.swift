@@ -13,8 +13,13 @@ struct ToFromDate {
     var toDate: NSDate?
 }
 
+protocol TimeZoneChallengeDelegate {
+    func callGoalsMethod()
+}
+
 class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
+    var delegate: TimeZoneChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
@@ -273,6 +278,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -303,6 +309,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -338,6 +345,7 @@ extension TimeFrameTimeZoneChallengeViewController {
             Loader.Show(delegate: self)
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 if success {
+                    self.delegate?.callGoalsMethod()
                     Loader.Hide(self)
                     self.navigationController?.popViewControllerAnimated(true)
                 } else {

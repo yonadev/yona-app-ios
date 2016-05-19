@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol BudgetChallengeDelegate {
+    func callGoalsMethod()
+}
+
 class TimeFrameBudgetChallengeViewController: UIViewController {
     
+    var delegate: BudgetChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
@@ -134,6 +139,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     Loader.Hide(self)
                     
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -163,6 +169,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     Loader.Hide()
                     
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -185,6 +192,8 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        self.delegate?.callGoalsMethod()
+
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
@@ -206,8 +215,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 }
 
 private extension Selector {
-    
     static let back = #selector(TimeFrameBudgetChallengeViewController.back(_:))
-    
 }
 
