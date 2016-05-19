@@ -41,7 +41,6 @@
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* ProfileViewController.swift */; };
 		906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */; };
-		906FED841CEDC2FD00029845 /* FriendsNotificationsTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906FED831CEDC2FD00029845 /* FriendsNotificationsTab.xib */; };
 		906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED851CEDC72300029845 /* NotificationsViewController.swift */; };
 		906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED881CEE06DE00029845 /* NotificationsCell.swift */; };
 		906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
@@ -309,7 +308,6 @@
 		906FED7A1CEDB25500029845 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../Notifications/ProfileViewController.swift; sourceTree = "<group>"; };
 		906FED7C1CEDB31A00029845 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Notifications/Profile.storyboard; sourceTree = "<group>"; };
 		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsProfileMasterView.swift; sourceTree = "<group>"; };
-		906FED831CEDC2FD00029845 /* FriendsNotificationsTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsNotificationsTab.xib; sourceTree = "<group>"; };
 		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		906FED881CEE06DE00029845 /* NotificationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsCell.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -728,7 +726,6 @@
 			children = (
 				AD291D251CA92808008CAFB1 /* Friends */,
 				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
-				906FED831CEDC2FD00029845 /* FriendsNotificationsTab.xib */,
 			);
 			name = FriendsNotifications;
 			sourceTree = "<group>";
@@ -1480,7 +1477,6 @@
 				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
 				9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */,
 				ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */,
-				906FED841CEDC2FD00029845 /* FriendsNotificationsTab.xib in Resources */,
 				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
 				ADEF8F091CADFD0C001D5EED /* Roboto-LightItalic.ttf in Resources */,
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
