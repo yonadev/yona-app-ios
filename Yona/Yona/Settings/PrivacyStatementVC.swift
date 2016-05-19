@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
+class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
     @IBOutlet var backButton: UIButton!
+    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,6 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     }
     
     @IBAction func backButton(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(false)
     }
 }
