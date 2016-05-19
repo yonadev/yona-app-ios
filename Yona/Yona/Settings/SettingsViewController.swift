@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     @IBOutlet var gradientView: GradientView!
