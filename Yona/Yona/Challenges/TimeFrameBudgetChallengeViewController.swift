@@ -8,8 +8,13 @@
 
 import UIKit
 
-class TimeFrameBudgetChallengeViewController: UIViewController {
+protocol BudgetChallengeDelegate {
+    func callGoalsMethod()
+}
+
+class TimeFrameBudgetChallengeViewController: BaseViewController {
     
+    var delegate: BudgetChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
@@ -99,16 +104,17 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.pickerBackgroundView.frame.size.width = UIScreen.mainScreen().bounds.width
         
         picker.frame.size.width = UIScreen.mainScreen().bounds.width
-        self.view.addSubview(pickerBackgroundView)
+        UIApplication.sharedApplication().keyWindow?.addSubview(pickerBackgroundView)
+//        self.view.addSubview(pickerBackgroundView)
     }
     
     func showHidePicker(isToShow: Bool) {
         UIView.animateWithDuration(0.6,
                                    animations: {
                                     if isToShow {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 130
+                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 200
                                     } else {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 130
+                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
                                     }
             },
                                    completion: nil)
@@ -134,6 +140,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     Loader.Hide(self)
                     
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -163,6 +170,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
                     Loader.Hide()
                     
                     if success {
+                        self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
@@ -185,6 +193,8 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        self.delegate?.callGoalsMethod()
+
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
@@ -206,8 +216,6 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
 }
 
 private extension Selector {
-    
     static let back = #selector(TimeFrameBudgetChallengeViewController.back(_:))
-    
 }
 

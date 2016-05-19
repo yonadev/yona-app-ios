@@ -9,7 +9,7 @@
 
 import UIKit
 
-class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
+class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate,NoGoChallengeDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
@@ -63,12 +63,13 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         self.setupUI()
+        self.callActivityCategory()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.callActivityCategory()
+        
         
         setDeselectOtherCategory()
 
@@ -97,6 +98,11 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
     override func viewDidAppear(animated:Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    //Delegate fires
+    func callGoalsMethod() {
+        self.callActivityCategory()
     }
     
     // MARK: - private functions
@@ -306,6 +312,7 @@ class TimeBucketChallenges: UIViewController,UIScrollViewDelegate {
                     detailView.goalCreated = budgetGoalSelectedUnwrap
                 }
                 detailView.isFromActivity = isfromActivity
+                detailView.delegate = self
             case .TimeZoneChallengeSegue:
                 
                 let detailView = destinationViewController as! TimeFrameTimeZoneChallengeViewController

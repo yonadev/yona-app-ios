@@ -19,7 +19,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         //Get user call
         checkUserExists()
-        
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""))
     }
 
@@ -71,8 +70,13 @@ extension LoginViewController: CodeInputViewDelegate {
                         self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     } else {
-                        let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-                        self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        let aVariable = appDelegate.viewControllers
+                        if self.view.window?.rootViewController == aVariable {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        } else {
+                            self.view.window?.rootViewController = aVariable
+                        }
                     }
                     
                 } else {

@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
+class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
     @IBOutlet var backButton: UIButton!
+    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
-        self.privacyView.delegate = self
         let requestObj = NSURLRequest(URL: NSURL(string: "http://www.yona.nu/app/privacy")!);
         self.privacyView.loadRequest(requestObj)
     }
@@ -27,6 +28,6 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     }
     
     @IBAction func backButton(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(false)
     }
 }

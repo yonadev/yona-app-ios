@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import AddressBookUI
 
-class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
+class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
     
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var manualTabView: UIView!
