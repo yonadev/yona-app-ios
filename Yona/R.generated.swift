@@ -372,7 +372,6 @@ struct R {
   }
   
   struct nib {
-    static var friendsNotificationsTab: _R.nib._FriendsNotificationsTab { return _R.nib._FriendsNotificationsTab() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
   }
@@ -671,27 +670,6 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
   
   struct nib {
-    struct _FriendsNotificationsTab: NibResource {
-      var instance: UINib { return UINib.init(nibName: "FriendsNotificationsTab", bundle: _R.hostingBundle) }
-      var name: String { return "FriendsNotificationsTab" }
-      
-      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? UIView
-      }
-      
-      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
-        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
-      }
-      
-      func secondView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[1] as? UIView
-      }
-      
-      func thirdView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[2] as? UIView
-      }
-    }
-    
     struct _YonaCustomDatePickerView: NibResource {
       var instance: UINib { return UINib.init(nibName: "YonaCustomDatePickerView", bundle: _R.hostingBundle) }
       var name: String { return "YonaCustomDatePickerView" }

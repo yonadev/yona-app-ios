@@ -21,15 +21,22 @@ class ProfileViewController: FriendsProfileMasterView {
         })
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     // MARK: - private functions
     private func setupUI() {
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
-//        performSegueWithIdentifier(R.segue., sender: <#T##AnyObject?#>)
     }
     
+    //MARK: Navigation, Segue
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        //return false so we can load our detail data before pushing segue
+        return false
+    }
 }
 
 // MARK: Touch Event of Custom Segment
