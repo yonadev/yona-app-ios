@@ -104,16 +104,17 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
         self.pickerBackgroundView.frame.size.width = UIScreen.mainScreen().bounds.width
         
         picker.frame.size.width = UIScreen.mainScreen().bounds.width
-        self.view.addSubview(pickerBackgroundView)
+        UIApplication.sharedApplication().keyWindow?.addSubview(pickerBackgroundView)
+//        self.view.addSubview(pickerBackgroundView)
     }
     
     func showHidePicker(isToShow: Bool) {
         UIView.animateWithDuration(0.6,
                                    animations: {
                                     if isToShow {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 130
+                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 200
                                     } else {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 130
+                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
                                     }
             },
                                    completion: nil)
