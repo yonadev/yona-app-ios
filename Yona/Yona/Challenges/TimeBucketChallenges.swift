@@ -323,7 +323,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                     detailView.goalCreated = timezoneGoalSelectedUnwrap
                 }
                 detailView.isFromActivity = isfromActivity
-                
+                detailView.delegate = self
             case .NoGoChallengeSegue:
                 let detailView = destinationViewController as! TimeFrameNoGoChallengeViewController
                 if let activitySelectedUnwrap = self.activitySelected {
@@ -333,6 +333,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                     detailView.goalCreated = nogoGoalSelectedUnwrap
                 }
                 detailView.isFromActivity = isfromActivity
+                detailView.delegate = self
             }
         }
     }
