@@ -32,11 +32,6 @@ class ProfileViewController: FriendsProfileMasterView {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    //MARK: Navigation, Segue
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        //return false so we can load our detail data before pushing segue
-        return false
-    }
 }
 
 // MARK: Touch Event of Custom Segment

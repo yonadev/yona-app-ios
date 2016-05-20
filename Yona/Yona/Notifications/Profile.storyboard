@@ -136,7 +136,6 @@
                                         </constraints>
                                         <state key="normal" image="icnAvatar"/>
                                         <connections>
-                                            <action selector="showUserDetails:" destination="Z05-OL-lvB" eventType="touchUpInside" id="Cih-SL-77P"/>
                                             <segue destination="xCU-fF-PB5" kind="show" identifier="userDetails" id="3cq-Mg-UqK"/>
                                         </connections>
                                     </button>
