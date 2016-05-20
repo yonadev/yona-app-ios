@@ -8,13 +8,14 @@
 
 import UIKit
 
-protocol BudgetChallengeDelegate {
+protocol BudgetChallengeDelegate: class {
     func callGoalsMethod()
 }
 
 class TimeFrameBudgetChallengeViewController: BaseViewController {
     
-    var delegate: BudgetChallengeDelegate?
+    weak var delegate: BudgetChallengeDelegate?
+    
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
