@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol NoGoChallengeDelegate: class {
+protocol NoGoChallengeDelegate {
     func callGoalsMethod()
 }
 
 class TimeFrameNoGoChallengeViewController: UIViewController {
     
-    weak var delegate: NoGoChallengeDelegate?
-    
+    var delegate: NoGoChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var setChallengeButton: UIButton!

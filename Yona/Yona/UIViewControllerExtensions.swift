@@ -79,6 +79,7 @@ func setViewControllerToDisplay(value: String, key: String) {
 
 func getViewControllerToDisplay(key: String)-> AnyObject? {
     let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
     if (defaults.objectForKey(key) == nil) && (key == YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
         setViewControllerToDisplay("WalkThrough",key: key)
     }

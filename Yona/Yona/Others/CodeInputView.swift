@@ -1,7 +1,7 @@
 import UIKit
 
 class CodeInputView: UIView, UIKeyInput {
-    weak var delegate: CodeInputViewDelegate?
+    var delegate: CodeInputViewDelegate?
     var nextTag = 1
     var secureCode = ""
     var secure:Bool = false
@@ -85,7 +85,7 @@ class CodeInputView: UIView, UIKeyInput {
     var keyboardType: UIKeyboardType { get { return .NumberPad } set { } }
 }
 
-protocol CodeInputViewDelegate: class {
+protocol CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String)
 
 }

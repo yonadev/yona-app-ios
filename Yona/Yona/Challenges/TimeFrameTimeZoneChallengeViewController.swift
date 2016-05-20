@@ -13,14 +13,13 @@ struct ToFromDate {
     var toDate: NSDate?
 }
 
-protocol TimeZoneChallengeDelegate: class {
+protocol TimeZoneChallengeDelegate {
     func callGoalsMethod()
 }
 
 class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     
-    weak var delegate: TimeZoneChallengeDelegate?
-    
+    var delegate: TimeZoneChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     
