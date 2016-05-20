@@ -51,7 +51,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         
         configurePickerView()
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.timeZoneLabel", comment: "")
+        self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.budgetLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
@@ -80,6 +80,10 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.showHidePicker(false)
     }
     
     // MARK: functions
