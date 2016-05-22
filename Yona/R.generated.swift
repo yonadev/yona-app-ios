@@ -96,6 +96,7 @@ struct R {
     static var sFUITextRegularOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Regular", withExtension: "otf") }
     static var sFUITextSemiboldItalicOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-SemiboldItalic", withExtension: "otf") }
     static var sFUITextSemiboldOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Semibold", withExtension: "otf") }
+    static var secretKeysPlist: NSURL? { return _R.hostingBundle?.URLForResource("SecretKeys", withExtension: "plist") }
     static var settingsBundle: NSURL? { return _R.hostingBundle?.URLForResource("Settings", withExtension: "bundle") }
   }
   
@@ -462,7 +463,7 @@ struct R {
     }
     
     struct dashboard {
-      static var initialViewController: UITabBarController? { return instance.instantiateInitialViewController() as? UITabBarController }
+      static var initialViewController: BaseTabViewController? { return instance.instantiateInitialViewController() as? BaseTabViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Dashboard", bundle: _R.hostingBundle) }
       
       static func validateImages() {

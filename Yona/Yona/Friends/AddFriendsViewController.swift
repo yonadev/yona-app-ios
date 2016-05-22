@@ -268,6 +268,9 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
                 
             case .Restricted:
                 print("Access restricted")
+                
+            default:
+                print("Other Problem")
             }
         }
     }
