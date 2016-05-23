@@ -965,7 +965,7 @@ Pinterest, Instagram, Snapchat</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0G-at-WY5" userLabel="HeaderView">
                                         <rect key="frame" x="0.0" y="300" width="600" height="100"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijdzone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APG-DO-NcS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tegoed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APG-DO-NcS">
                                                 <rect key="frame" x="30" y="27" width="480" height="18"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
@@ -1332,6 +1332,7 @@ Pinterest, Instagram, Snapchat</string>
                                         </variation>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="e9H-xl-pNz" secondAttribute="trailing" id="63D-kw-6HH"/>
                                     <constraint firstItem="olM-AX-pnp" firstAttribute="centerX" secondItem="KhB-rS-Ocr" secondAttribute="centerX" id="8id-jz-02F"/>

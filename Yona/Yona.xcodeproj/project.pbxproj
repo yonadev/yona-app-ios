@@ -90,9 +90,11 @@
 		AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */; };
 		AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */; };
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
+		AD2DF23B1CEDCA31002A42AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */; };
 		AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3931E11CEB311900605FBA /* BaseTabViewController.swift */; };
 		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
+		AD7472DB1CEE2A19001E753A /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD7472DA1CEE2A19001E753A /* Privacy.storyboard */; };
 		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
 		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
@@ -354,10 +356,12 @@
 		AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+YIColors.swift"; path = "Others/UIColor+YIColors.swift"; sourceTree = "<group>"; };
 		AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageContentViewController.swift; sourceTree = "<group>"; };
 		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageViewController.swift; sourceTree = "<group>"; };
+		AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AD3931E11CEB311900605FBA /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD7472DA1CEE2A19001E753A /* Privacy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
 		AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
@@ -846,6 +850,7 @@
 			isa = PBXGroup;
 			children = (
 				AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */,
+				AD7472DA1CEE2A19001E753A /* Privacy.storyboard */,
 				AD291D741CA940D9008CAFB1 /* Settings.storyboard */,
 				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
 			);
@@ -1253,6 +1258,7 @@
 				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
+				AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1421,6 +1427,7 @@
 				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */,
+				AD7472DB1CEE2A19001E753A /* Privacy.storyboard in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
 				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
@@ -1521,7 +1528,7 @@
 		};
 		D9D54EFC1CA565B7007805F4 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1529,7 +1536,7 @@
 			name = R.swift;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
@@ -1596,6 +1603,7 @@
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
+				AD2DF23B1CEDCA31002A42AE /* BaseViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,

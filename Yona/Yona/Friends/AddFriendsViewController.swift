@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import AddressBookUI
 
-class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
+class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
     
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var manualTabView: UIView!
@@ -82,6 +82,15 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         mobileTextfield.rightView = mobile;
         mobileTextfield.rightViewMode = UITextFieldViewMode.Always
         
+        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
+        label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        label.textColor = UIColor.yiBlackColor()
+        label.contentMode = UIViewContentMode.Center
+        label.textAlignment = NSTextAlignment.Center
+        label.text = nederlandPhonePrefix
+        self.mobileTextfield.leftView = label
+        self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
+        
         //Add textfields array to manage responder
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
     }
@@ -128,6 +137,13 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             } else {
                 phoneNumber = "";
             }
+            print(phoneNumber)
+            if let strippedPhoneNumber = phoneNumber {
+                let tempNumber = strippedPhoneNumber.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
+                
+                phoneNumber = tempNumber.substringFromIndex(tempNumber.endIndex.advancedBy(-9))
+            }
+            
             mobileTextfield.text = phoneNumber;
         }
         
@@ -188,18 +204,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                     
                 }
 
-                var number = ""
-                if let mobilenum = mobileTextfield.text {
-                    number = (nederlandPhonePrefix) + mobilenum
-                    
-                    let trimmedWhiteSpaceString = number.removeWhitespace()
-                    let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                    
-                    if trimmedString.validateMobileNumber() == false {
-                        self.displayAlertMessage("", alertDescription:
-                            NSLocalizedString("enter-number-validation", comment: ""))
-                        
-                    }
+                
                     let postBuddyBody: [String:AnyObject] = [
                         postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
                         postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
@@ -226,7 +231,6 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                     })
                 }
             }
-        }
     }
     
         func addressbookAccess() {

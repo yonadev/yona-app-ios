@@ -8,12 +8,26 @@
 
 import UIKit
 
+let selectedTab = "selectedTab"
+enum Tab: Int {
+    case profile = 0
+    case friends = 1
+    case challenges = 2
+    case settings = 3
+}
+
 class BaseTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = 2
-        // Do any additional setup after loading the view.
+        updateSelectedIndex()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationDidBecomeActiveNotification, object: nil)
+    }
+    
+    
+    func presentLoginScreen() {
+        self.presentViewController(R.storyboard.login.loginStoryboard!, animated: false) {
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +35,15 @@ class BaseTabViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        print(item)
-        
+    func updateSelectedIndex() {
+        if userHasGaols(){
+            self.selectedIndex = Tab.profile.rawValue
+        }else{
+            self.selectedIndex = Tab.challenges.rawValue
+        }
     }
     
-
+    func userHasGaols() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded);
+    }
 }

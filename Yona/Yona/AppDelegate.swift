@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         hockeyAppSetup()
 		var rootController : UINavigationController
@@ -26,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        
         return true
         
     }
@@ -42,12 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        
-        var rootController : UINavigationController
-        rootController = getScreenNameToDisplay()
-        if let window = self.window {
-            window.rootViewController = rootController
-        }
     }
 
     private func hockeyAppSetup() {
@@ -116,4 +108,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UINavigationController(rootViewController: rootController)
     }
 }
-
