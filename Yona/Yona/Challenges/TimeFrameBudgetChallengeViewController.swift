@@ -39,6 +39,8 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     var goalCreated: Goal?
     var maxDurationMinutes: String = "1"
     
+    var picker = YonaCustomPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
@@ -83,26 +85,34 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.showHidePicker(false)
+        picker.showHidePicker(isToShow: false)
     }
     
     // MARK: functions
     func configurePickerView() {
         pickerBackgroundView = YonaCustomPickerView().loadPickerView()
-        let picker = pickerBackgroundView as! YonaCustomPickerView
+        picker = pickerBackgroundView as! YonaCustomPickerView
         var arr = [Int]()
         arr += 1...96
-        picker.setData(data: arr,
-                       withCancelListener: {
-                        self.showHidePicker(false)
+        
+//        picker.setData(data: arr,
+//                       withCancelListener: {
+//                        self.showHidePicker(false)
+//        }) { (doneValue) in
+      
+        picker.setData(onView: self.view, data: arr, withCancelListener:{
+            self.picker.showHidePicker(isToShow: false)
         }) { (doneValue) in
-            self.showHidePicker(false)
+            self.picker.showHidePicker(isToShow: false)
             if doneValue != "" {
                 self.maxDurationMinutes = doneValue
                 
                 self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
             }
         }
+        
+        
+
         
         self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
         self.pickerBackgroundView.frame.size.width = UIScreen.mainScreen().bounds.width
@@ -112,17 +122,17 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
 //        self.view.addSubview(pickerBackgroundView)
     }
     
-    func showHidePicker(isToShow: Bool) {
-        UIView.animateWithDuration(0.6,
-                                   animations: {
-                                    if isToShow {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 200
-                                    } else {
-                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
-                                    }
-            },
-                                   completion: nil)
-    }
+//    func showHidePicker(isToShow: Bool) {
+//        UIView.animateWithDuration(0.6,
+//                                   animations: {
+//                                    if isToShow {
+//                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 200
+//                                    } else {
+//                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
+//                                    }
+//            },
+//                                   completion: nil)
+//    }
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
@@ -195,7 +205,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     }
     
     @IBAction func maxTimebuttonTapped(sender: AnyObject) {
-        showHidePicker(true)
+        picker.showHidePicker(isToShow: true)
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
