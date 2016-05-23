@@ -96,10 +96,6 @@ class SettingsViewController: BaseViewController {
             UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
         }
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
 }
 
 extension SettingsViewController:UITableViewDelegate {
