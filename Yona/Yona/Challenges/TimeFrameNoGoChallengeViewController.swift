@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol NoGoChallengeDelegate: class {
+    func callGoalsMethod()
+}
+
 class TimeFrameNoGoChallengeViewController: UIViewController {
     
+    weak var delegate: NoGoChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var setChallengeButton: UIButton!
@@ -88,13 +93,15 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, goals, err) in
                 if success {
+                    self.delegate?.callGoalsMethod()
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
                     self.deleteGoalButton.selected = true
                     Loader.Hide(self)
                     self.navigationController?.popViewControllerAnimated(true)
-                    
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                    NSUserDefaults.standardUserDefaults().synchronize()
                 } else {
                     Loader.Hide(self)
                     if let message = serverMessage {
@@ -114,6 +121,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
                 
                 if success {
+                    self.delegate?.callGoalsMethod()
                     Loader.Hide(self)
                     self.navigationController?.popViewControllerAnimated(true)
                     

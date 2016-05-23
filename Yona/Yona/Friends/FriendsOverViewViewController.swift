@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsOverViewViewController: UIViewController, UIScrollViewDelegate {
+class FriendsOverViewViewController: BaseViewController, UIScrollViewDelegate {
     
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var timelineTabView: UIView!

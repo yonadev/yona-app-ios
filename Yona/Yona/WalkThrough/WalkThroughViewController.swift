@@ -46,7 +46,7 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
 }
 
 
-protocol ButtonEvents {
+protocol ButtonEvents: class {
     func buttonAction(index: Int)
 }
 
@@ -59,7 +59,7 @@ enum TourScreen: Int {
 }
 
 class TourScreenViewController: AVPageContentViewController {
-    var delegate: ButtonEvents? = nil
+    weak var delegate: ButtonEvents?
     @IBOutlet var imageV: UIImageView?
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var descLabel: UILabel?

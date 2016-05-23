@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     @IBOutlet var gradientView: GradientView!
@@ -30,18 +30,6 @@ class SettingsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    //MARK: Navigation, Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        if (segue.identifier == "ShowPrivacy") {
-        }
-    }
-    
-    //MARK: Navigation, Segue
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        //return false so we can load our detail data before pushing segue
-        return false
     }
     
     /**
@@ -138,7 +126,9 @@ extension SettingsViewController:UITableViewDelegate {
             }
         } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy
-            performSegueWithIdentifier("privacyStatement", sender: self)
+            if let privacy = R.storyboard.privacy.privacyStatementStoryboard {
+                self.navigationController?.pushViewController(privacy, animated: false)
+            }
         } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {

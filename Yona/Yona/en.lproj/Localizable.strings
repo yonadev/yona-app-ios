@@ -70,7 +70,6 @@
 "no" = "No";
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE SAVE";
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
-"challenges.addBudgetGoal.timeZoneLabel" = "Tijdzone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
@@ -174,9 +173,9 @@
 "challenges.nogoGoal.Title" = "NO GO";
 
 "challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
-"challenges.addBudgetGoal.timeZoneLabel" = "Timezone";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minutes per day";
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Determine how much time you want to spend on %@";
+"challenges.addBudgetGoal.budgetLabel" = "Budget";
 "challenges.addBudgetGoal.bottomLabelText" = "The following apps are part of this challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Deleted Goal";
 "challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Cannot delete mandatory goal";
