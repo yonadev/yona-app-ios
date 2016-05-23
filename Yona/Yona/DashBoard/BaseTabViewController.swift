@@ -21,6 +21,13 @@ class BaseTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedIndex()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationDidBecomeActiveNotification, object: nil)
+    }
+    
+    
+    func presentLoginScreen() {
+        self.presentViewController(R.storyboard.login.loginStoryboard!, animated: false) {
+        }
     }
 
     override func didReceiveMemoryWarning() {
