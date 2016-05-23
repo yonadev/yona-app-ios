@@ -386,11 +386,6 @@ struct R {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
-    struct profileViewController {
-      static var notificationsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, ProfileViewController, NotificationsViewController> { return StoryboardSegueIdentifier(identifier: "notificationsSegue") }
-      static var userDetails: StoryboardSegueIdentifier<UIStoryboardSegue, ProfileViewController, UserDetails> { return StoryboardSegueIdentifier(identifier: "userDetails") }
-    }
-    
     struct settingsViewController {
       static var privacyStatement: StoryboardSegueIdentifier<UIStoryboardSegue, SettingsViewController, PrivacyStatementVC> { return StoryboardSegueIdentifier(identifier: "privacyStatement") }
     }
@@ -569,9 +564,9 @@ struct R {
       static var profileViewController: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnNotifications") != nil, "[R.swift] Image named 'icnNotifications' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {

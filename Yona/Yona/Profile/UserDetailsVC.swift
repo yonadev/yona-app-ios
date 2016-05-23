@@ -14,13 +14,7 @@ class UserDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        let nav = self.navigationController?.navigationBar
-        nav?.tintColor = UIColor.yiGrapeColor()
-        nav?.barTintColor = UIColor.yiGrapeColor()
-        nav?.translucent = false
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {

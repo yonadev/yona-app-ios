@@ -9,15 +9,12 @@
 import UIKit
 
 class DashboardNavigationViewController: UINavigationController, UITabBarDelegate {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBarHidden(true, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
-//        print(self.view!.window?.currentViewController()?.tabBarController)
-//        self.setViewControllers([storyboard.instantiateInitialViewController()!, animated: false)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,14 +25,5 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         print(item)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
