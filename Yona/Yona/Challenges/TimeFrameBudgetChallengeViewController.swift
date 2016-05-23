@@ -150,7 +150,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                         }
                         self.deleteGoalButton.selected = true
                         self.navigationController?.popToRootViewControllerAnimated(true)
-                        
+                        YonaConstants.nsUserDefaultsKeys.isGoalsAdded
+                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                        NSUserDefaults.standardUserDefaults().synchronize()
                         
                     } else {
                         if let message = serverMessage {

@@ -12,9 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var storyboardName: UIStoryboard?
-    var viewControllers: UIViewController?
-    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         var rootController : UINavigationController
@@ -26,9 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        NSUserDefaults.standardUserDefaults().setInteger(Tab()!.getTag(Tab.challenges.rawValue), forKey: selectedTab)
-        storyboardName = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-        viewControllers = storyboardName?.instantiateInitialViewController()
         return true
         
     }
@@ -76,4 +70,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UINavigationController(rootViewController: rootController)
     }
 }
-

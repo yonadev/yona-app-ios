@@ -9,37 +9,18 @@
 import UIKit
 
 let selectedTab = "selectedTab"
-enum Tab: String {
-    case profile = "Profile"
-    case friends = "Friends"
-    case challenges = "Challenges"
-    case settings = "Settings"
-    
-    init?() {
-        self = .challenges
-    }
-    
-    func getTag(value: String) -> Int {
-        switch value {
-        case Tab.profile.rawValue:
-            return 0
-        case Tab.friends.rawValue:
-            return 1
-        case Tab.challenges.rawValue:
-            return 2
-        case Tab.settings.rawValue:
-            return 3
-        default:
-            return 2
-        }
-    }
+enum Tab: Int {
+    case profile = 0
+    case friends = 1
+    case challenges = 2
+    case settings = 3
 }
 
 class BaseTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = NSUserDefaults.standardUserDefaults().integerForKey(selectedTab)
+        updateSelectedIndex()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +28,15 @@ class BaseTabViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        NSUserDefaults.standardUserDefaults().setInteger(Tab()!.getTag(item.title!), forKey: selectedTab)
+    func updateSelectedIndex() {
+        if userHasGaols(){
+            self.selectedIndex = Tab.profile.rawValue
+        }else{
+            self.selectedIndex = Tab.challenges.rawValue
+        }
+    }
+    
+    func userHasGaols() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded);
     }
 }
