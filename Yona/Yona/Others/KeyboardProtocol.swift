@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol KeyboardProtocol {
+protocol KeyboardProtocol:class {
     var posi:CGFloat {get set}
     
     func keyboardWasShown(notification: NSNotification)
