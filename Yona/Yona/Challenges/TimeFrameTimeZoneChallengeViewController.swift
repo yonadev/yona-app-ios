@@ -286,7 +286,8 @@ extension TimeFrameTimeZoneChallengeViewController {
                         self.deleteGoalButton.selected = true
                         Loader.Hide(self)
                         self.navigationController?.popViewControllerAnimated(true)
-                        
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                        NSUserDefaults.standardUserDefaults().synchronize()
                     } else {
                         Loader.Hide(self)
                         if let message = serverMessage {
