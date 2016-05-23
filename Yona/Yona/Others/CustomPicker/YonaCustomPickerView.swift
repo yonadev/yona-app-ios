@@ -12,6 +12,7 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     var gDoneListener: DoneListener?
     var data: AnyObject!
     var selectedValue: String?
+    var parentView: UIView?
     
     @IBAction func cancelAction(sender: AnyObject) {
         gCancelListener?()
@@ -24,22 +25,35 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
         }else{
             gDoneListener?("")
         }
-
-//        gDoneListener?(selectedValue!)
     }
-    
-    
-    
+
     
     func loadPickerView() -> UIView {
         var views = NSBundle.mainBundle().loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
         return views[0] as! UIView
     }
     
-    func setData(data d: AnyObject, withCancelListener cancel: CancelListener, andDoneListener done: DoneListener) {
+    
+    func setData(onView v:UIView, data d: AnyObject, withCancelListener cancel: CancelListener, andDoneListener done: DoneListener) {
         data = d
         gCancelListener = cancel
         gDoneListener = done
+        parentView = v
+        UIApplication.sharedApplication().keyWindow?.addSubview(self)
+    }
+    
+    
+    func showHidePicker(isToShow show: Bool) -> YonaCustomPickerView {
+        UIView.animateWithDuration(0.3,
+                                   animations: {
+                                    if show {
+                                        self.frame.origin.y = self.parentView!.frame.size.height - 200
+                                    } else {
+                                        self.frame.origin.y = self.parentView!.frame.size.height + 200
+                                    }
+            },completion: nil)
+        
+        return self
     }
     
     
