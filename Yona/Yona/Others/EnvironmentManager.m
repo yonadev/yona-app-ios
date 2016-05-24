@@ -28,7 +28,6 @@ static NSString * baseUrl;
         #ifndef DISTRIBUTE
         
         if (!env || [env integerValue] == 0) {
-        
             env = @(DeploymentEnvironmentQA);
         }
         
