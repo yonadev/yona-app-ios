@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
         //set universal settings for our navigation bar
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor()]
         //get rid of the pixel line in the nav bar
         UINavigationBar.appearance().setBackgroundImage(
             UIImage(),

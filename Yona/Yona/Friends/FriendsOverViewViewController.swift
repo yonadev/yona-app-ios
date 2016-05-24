@@ -16,15 +16,12 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
         super.viewDidLoad()
         OverviewTabAction(overviewTabView)
         self.setupUI()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
-        })
     }
     
     // MARK: - private functions
     private func setupUI() {
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
@@ -33,7 +30,7 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
 
 // MARK: Touch Event of Custom Segment
 extension FriendsOverViewViewController {
-    @IBAction func addFriendAction(sender: AnyObject) {
-        performSegueWithIdentifier(R.segue.friendsOverViewViewController.addFriendsSegue, sender: self)
+    @IBAction func unwindToFriendsOverview(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
     }
 }

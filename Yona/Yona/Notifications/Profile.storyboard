@@ -194,7 +194,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icnEdit" id="fCv-V5-hWc">
                             <connections>
-                                <segue destination="vEb-Ig-NeG" kind="show" id="yuI-qe-5OW"/>
+                                <segue destination="vEb-Ig-NeG" kind="show" id="CxY-j7-UUz"/>
                             </connections>
                         </barButtonItem>
                         <connections>

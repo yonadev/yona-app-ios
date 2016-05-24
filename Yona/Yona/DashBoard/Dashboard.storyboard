@@ -42,10 +42,15 @@
             <objects>
                 <navigationController title="Friends" id="m70-iS-oHB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="icnFriends" selectedImage="icnFriendsActive" id="ohe-Hg-b0e"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.21960784310000001" green="0.50588235290000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.11372549086809158" green="0.44313725829124451" blue="0.72156864404678345" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZKg-Qq-ZSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -61,13 +66,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="darkGradientColor">
                                 <color key="value" red="0.33725490196078434" green="0.11764705882352941" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.33725490200000002" green="0.1176470588" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
