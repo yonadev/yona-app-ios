@@ -342,6 +342,14 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQv-Uo-p0Y" customClass="GradientView" customModule="Yona" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="addfriend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUh-8R-dlu">
+                                                <rect key="frame" x="30" y="33" width="540" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MH7-Ch-h3t"/>
@@ -358,12 +366,6 @@
                                             <action selector="back:" destination="OjV-ne-DEf" eventType="touchUpInside" id="kbq-KN-Skm"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addfriend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUh-8R-dlu">
-                                        <rect key="frame" x="30" y="30" width="540" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21960784310000001" green="0.50588235290000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -373,17 +375,13 @@
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="top" secondItem="lQv-Uo-p0Y" secondAttribute="bottom" constant="10" id="4oK-uF-cyR"/>
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="width" secondItem="IrP-L3-HFn" secondAttribute="width" id="7K1-3c-dzU"/>
                                     <constraint firstItem="IrP-L3-HFn" firstAttribute="top" secondItem="lQv-Uo-p0Y" secondAttribute="bottom" constant="10" id="CCr-6l-F3p"/>
-                                    <constraint firstItem="YUh-8R-dlu" firstAttribute="top" secondItem="81H-E4-YLn" secondAttribute="top" constant="30" id="G9G-Vs-ZsR"/>
                                     <constraint firstItem="29g-yw-qqS" firstAttribute="leading" secondItem="81H-E4-YLn" secondAttribute="leading" constant="10" id="GIT-oQ-44V"/>
-                                    <constraint firstAttribute="trailing" secondItem="YUh-8R-dlu" secondAttribute="trailing" constant="30" id="NCE-TB-DAR"/>
                                     <constraint firstAttribute="trailing" secondItem="n7R-QG-MCm" secondAttribute="trailing" id="OKg-Wx-BU2"/>
                                     <constraint firstAttribute="trailing" secondItem="lQv-Uo-p0Y" secondAttribute="trailing" id="OP7-Hh-pN1"/>
                                     <constraint firstItem="IrP-L3-HFn" firstAttribute="leading" secondItem="81H-E4-YLn" secondAttribute="leading" id="P0E-vK-jT2"/>
                                     <constraint firstItem="lQv-Uo-p0Y" firstAttribute="centerX" secondItem="81H-E4-YLn" secondAttribute="centerX" id="ajb-wV-16U"/>
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="leading" secondItem="IrP-L3-HFn" secondAttribute="trailing" id="cqL-2N-ukk"/>
                                     <constraint firstItem="29g-yw-qqS" firstAttribute="top" secondItem="81H-E4-YLn" secondAttribute="top" constant="14" id="kgE-Sf-Zfg"/>
-                                    <constraint firstItem="YUh-8R-dlu" firstAttribute="centerX" secondItem="81H-E4-YLn" secondAttribute="centerX" id="l9q-5W-VQd"/>
-                                    <constraint firstItem="YUh-8R-dlu" firstAttribute="leading" secondItem="81H-E4-YLn" secondAttribute="leading" constant="30" id="w8m-5Z-rFN"/>
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="height" secondItem="IrP-L3-HFn" secondAttribute="height" id="yoc-EA-aiX"/>
                                     <constraint firstAttribute="bottom" secondItem="n7R-QG-MCm" secondAttribute="bottom" id="z2m-Mp-zlS"/>
                                     <constraint firstItem="lQv-Uo-p0Y" firstAttribute="leading" secondItem="81H-E4-YLn" secondAttribute="leading" id="zdx-L3-ABw"/>

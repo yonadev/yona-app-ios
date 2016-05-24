@@ -29,7 +29,7 @@ static NSString * baseUrl;
         
         if (!env || [env integerValue] == 0) {
         
-            env = @(DeploymentEnvironmentDev);
+            env = @(DeploymentEnvironmentQA);
         }
         
         #else
