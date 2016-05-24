@@ -61,7 +61,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
-        //        configureDatePickerView()
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
@@ -94,12 +93,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         picker = pickerBackgroundView as! YonaCustomPickerView
         var arr = [Int]()
         arr += 1...96
-        
-//        picker.setData(data: arr,
-//                       withCancelListener: {
-//                        self.showHidePicker(false)
-//        }) { (doneValue) in
-      
         picker.setData(onView: self.view, data: arr, withCancelListener:{
             self.picker.showHidePicker(isToShow: false)
         }) { (doneValue) in
@@ -111,28 +104,12 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             }
         }
         
-        
-
-        
         self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
         self.pickerBackgroundView.frame.size.width = UIScreen.mainScreen().bounds.width
         
         picker.frame.size.width = UIScreen.mainScreen().bounds.width
         UIApplication.sharedApplication().keyWindow?.addSubview(pickerBackgroundView)
-//        self.view.addSubview(pickerBackgroundView)
     }
-    
-//    func showHidePicker(isToShow: Bool) {
-//        UIView.animateWithDuration(0.6,
-//                                   animations: {
-//                                    if isToShow {
-//                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height - 200
-//                                    } else {
-//                                        self.pickerBackgroundView.frame.origin.y = self.view.frame.size.height + 200
-//                                    }
-//            },
-//                                   completion: nil)
-//    }
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
@@ -161,7 +138,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                         self.deleteGoalButton.selected = true
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         YonaConstants.nsUserDefaultsKeys.isGoalsAdded
-                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                         NSUserDefaults.standardUserDefaults().synchronize()
                         
                     } else {
@@ -209,9 +186,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-        self.delegate?.callGoalsMethod()
-
-        //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show(delegate:self)
@@ -219,6 +193,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                 Loader.Hide(self)
                 
                 if success {
+                    self.delegate?.callGoalsMethod()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                     
                 } else {
