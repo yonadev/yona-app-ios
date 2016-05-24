@@ -9,8 +9,6 @@
 import UIKit
 
 class UserDetails: UIViewController {
-
-    @IBOutlet var gradientView: GradientView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

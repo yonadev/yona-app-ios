@@ -565,8 +565,9 @@ struct R {
       
       static func validateImages() {
         assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {

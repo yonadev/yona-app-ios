@@ -25,15 +25,7 @@ class ProfileViewController: FriendsProfileMasterView {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    
-    
-}
-
-// MARK: Touch Event of Custom Segment
-extension FriendsProfileMasterView {
-    @IBAction func showUserDetails(sender: AnyObject) {
-    }
-    
-    @IBAction func showNotificationsScreen(sender: AnyObject) {
+    @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
     }
 }
