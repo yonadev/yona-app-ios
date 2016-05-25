@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IHY-FI-AIQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IHY-FI-AIQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,7 @@
         <scene sceneID="Ugf-V2-vg5">
             <objects>
                 <navigationController title="Settings" id="rng-1n-xFW" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="icnSettings" selectedImage="icnSettingsActive" id="CmE-iO-eeK"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnSettings" selectedImage="icnSettingsActive" id="CmE-iO-eeK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJp-9t-hfr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,7 +23,7 @@
         <scene sceneID="8d5-sH-Zid">
             <objects>
                 <navigationController title="Challenges" id="hVk-qi-HFB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Challenges" image="icnChallenges" selectedImage="icnChallengeActive" id="L4N-oF-7Fa"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnChallenges" selectedImage="icnChallengeActive" id="L4N-oF-7Fa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xBy-py-dGd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -37,7 +37,7 @@
         <scene sceneID="cwD-Fk-YVI">
             <objects>
                 <navigationController title="Friends" id="m70-iS-oHB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="icnFriends" selectedImage="icnFriendsActive" id="ohe-Hg-b0e"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnFriends" selectedImage="icnFriendsActive" id="ohe-Hg-b0e"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -51,7 +51,7 @@
         <scene sceneID="68Z-Ed-c3i">
             <objects>
                 <navigationController title="Profile" id="SGx-PY-cZf" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="icnMe" selectedImage="icnMeActive" id="7HF-lQ-fB8"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnMe" selectedImage="icnMeActive" id="7HF-lQ-fB8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="caN-yz-5ht">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
