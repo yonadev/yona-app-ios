@@ -18,36 +18,44 @@ typedef NS_ENUM(NSInteger, DeploymentEnvironment) {
 
 static NSString * baseUrl;
 
+static DeploymentEnvironment environment;
 
 @implementation EnvironmentManager
+
+
 + (NSString *)baseUrlString
 {
-
-    if(baseUrl == nil){
-        NSNumber *env = [XTSettings settingsForKey:@"PrefsBundleMyOrderEnvironment"];
-        #ifndef DISTRIBUTE
-        
-        if (!env || [env integerValue] == 0) {
-            env = @(DeploymentEnvironmentQA);
-        }
-        
-        #else
-        env = @(DeploymentEnvironmentProduction);
-        #endif
-        
-        switch (env.unsignedIntegerValue) {
-            case DeploymentEnvironmentDev:
-                baseUrl = @"http://85.222.227.142/";
-                break;
-            default:
-                baseUrl = @"http://85.222.227.84/";
-                break;
-        }
-    }
-
     
-
+    switch (environment) {
+        case DeploymentEnvironmentDev:
+            baseUrl = @"http://85.222.227.142/";
+            break;
+        default:
+            baseUrl = @"http://85.222.227.84/";
+            break;
+    }
     return baseUrl;
     
+}
+
++ (BOOL)updateEnvironment
+{
+    NSNumber *env = [XTSettings settingsForKey:@"PrefsBundleMyOrderEnvironment"];
+#ifndef DISTRIBUTE
+    
+    if (!env || [env integerValue] == 0) {
+        env = @(DeploymentEnvironmentQA);
+    }
+    
+#else
+    env = @(DeploymentEnvironmentProduction);
+#endif
+    BOOL changed = NO;
+    
+    if(env.integerValue != environment){
+        changed = YES;
+        environment = env.integerValue;
+    }
+    return changed;
 }
 @end

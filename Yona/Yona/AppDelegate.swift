@@ -14,12 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        var rootController : UINavigationController
-        rootController = getScreenNameToDisplay()
-        if let window = self.window {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = rootController
-        }
+        updateEnvironmentSettings()
+        updateRootScreen()
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
@@ -38,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        let settingsChanged = updateEnvironmentSettings()
+        if settingsChanged{
+            updateRootScreen()
+        }
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -49,6 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     //MARK: User Methods
+    func updateRootScreen()
+    {
+        var rootController : UINavigationController
+        rootController = getScreenNameToDisplay()
+        if let window = self.window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = rootController
+        }
+    }
+    
     func getScreenNameToDisplay() -> UINavigationController{
         var rootController: UIViewController = UINavigationController.init()
         if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
@@ -68,5 +78,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return UINavigationController(rootViewController: rootController)
         }
         return UINavigationController(rootViewController: rootController)
+    }
+    
+    //MARK: Handle environment switch
+    func updateEnvironmentSettings() -> Bool
+    {
+        let environemtnSettingsChanged = EnvironmentManager.updateEnvironment()
+        if environemtnSettingsChanged{
+            logout()
+        }
+        
+        return environemtnSettingsChanged
+    }
+    
+    func logout()
+    {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
