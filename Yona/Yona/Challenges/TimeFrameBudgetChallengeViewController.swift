@@ -57,8 +57,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
-        self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
+        
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
+            maxDurationMinutes = String(maxDurationMinutesUnwrapped)
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
         
@@ -69,6 +70,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.deleteGoalButton.hidden = false
