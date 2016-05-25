@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
-		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
@@ -1401,7 +1400,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */,
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
 				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
