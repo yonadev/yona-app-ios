@@ -18,7 +18,6 @@ typedef NS_ENUM(NSInteger, DeploymentEnvironment) {
 
 static NSString * baseUrl;
 
-static DeploymentEnvironment environment;
 
 @implementation EnvironmentManager
 
@@ -26,7 +25,7 @@ static DeploymentEnvironment environment;
 + (NSString *)baseUrlString
 {
     
-    switch (environment) {
+    switch ([[self environment] integerValue]) {
         case DeploymentEnvironmentDev:
             baseUrl = @"http://85.222.227.142/";
             break;
@@ -36,6 +35,22 @@ static DeploymentEnvironment environment;
     }
     return baseUrl;
     
+}
+
++ (NSNumber *)environment
+{
+    NSNumber * environment = [[NSUserDefaults standardUserDefaults] objectForKey:@"YonaEnvironment"];
+    if(environment == nil){
+        environment = @(DeploymentEnvironmentProduction);
+        [self setEnvironment:environment];
+    }
+    return environment;
+}
+
++ (void)setEnvironment:(NSNumber *)environment
+{
+    [[NSUserDefaults standardUserDefaults] setObject:environment forKey:@"YonaEnvironment"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (BOOL)updateEnvironment
@@ -51,10 +66,11 @@ static DeploymentEnvironment environment;
     env = @(DeploymentEnvironmentProduction);
 #endif
     BOOL changed = NO;
-    
+    NSUInteger environment = [[self environment] integerValue];
     if(env.integerValue != environment){
         changed = YES;
         environment = env.integerValue;
+        [self setEnvironment:env];
     }
     return changed;
 }
