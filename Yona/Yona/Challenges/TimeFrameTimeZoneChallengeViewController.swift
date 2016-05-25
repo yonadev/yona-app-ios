@@ -263,21 +263,20 @@ extension TimeFrameTimeZoneChallengeViewController {
                     ],
                                                YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
-                Loader.Show(delegate: self)
+                Loader.Show()
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
+                    Loader.Hide()
                     if success {
                         self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        Loader.Hide(self)
                         self.navigationController?.popViewControllerAnimated(true)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                         NSUserDefaults.standardUserDefaults().synchronize()
                     } else {
-                        Loader.Hide(self)
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
@@ -295,16 +294,17 @@ extension TimeFrameTimeZoneChallengeViewController {
                     ],
                     YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
-                Loader.Show(delegate: self)
+                Loader.Show()
                 
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                    Loader.Hide()
                     if success {
                         self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        Loader.Hide(self)
+                        
                         self.navigationController?.popViewControllerAnimated(true)
                         
                     }
@@ -326,14 +326,13 @@ extension TimeFrameTimeZoneChallengeViewController {
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
-            Loader.Show(delegate: self)
+            Loader.Show()
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+                Loader.Hide()
                 if success {
                     self.delegate?.callGoalsMethod()
-                    Loader.Hide(self)
                     self.navigationController?.popViewControllerAnimated(true)
                 } else {
-                    Loader.Hide(self)
                     self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
                     
                 }
