@@ -14,12 +14,9 @@ extension Array {
         dateFormatter.dateFormat = "HH:mm"
         var finalZoneArray = [ToFromDate]()
         for arr in self {
-            let arrT = (arr as! String).dashRemoval()
-            finalZoneArray.append(ToFromDate(fromDate: dateFormatter.dateFromString(arrT[0]), toDate: dateFormatter.dateFromString(arrT[1])))
+            let bifurcateArray = String(arr).dashRemoval()
+            finalZoneArray.append(ToFromDate(fromDate: dateFormatter.dateFromString(bifurcateArray[0])!, toDate: dateFormatter.dateFromString(bifurcateArray[1])!))
         }
-        
-        
-        
         return finalZoneArray
     }
     
@@ -29,8 +26,8 @@ extension Array {
         dateFormatter.dateFormat = "HH:mm"
         var finalZoneArray = [String]()
         for arr in self {
-            let arrT = (arr as! ToFromDate)
-            finalZoneArray.append("\(dateFormatter.stringFromDate(arrT.fromDate!))-\(dateFormatter.stringFromDate(arrT.toDate!))")
+            let bifurcateArray = (arr as! ToFromDate)
+            finalZoneArray.append("\(dateFormatter.stringFromDate(bifurcateArray.fromDate))-\(dateFormatter.stringFromDate(bifurcateArray.toDate))")
         }
         
         
