@@ -64,7 +64,7 @@ extension String {
         return randomString
     }
     
-    func convertFromISO8601Duration() -> (String?, String?, String?){
+    func convertFromISO8601Duration() -> (String, String, String){
         
         var displayedString: String?
         var hasHitTimeSection = false

@@ -12,9 +12,8 @@ class LoginSignupValidationMasterView: UIViewController {
     
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
-    
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-        
+
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var resendOverrideCode: UIButton!
@@ -121,13 +120,11 @@ extension LoginSignupValidationMasterView {
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
                 Loader.Hide()
-                if pincode != nil {
+                if let timeISOCode = pincode {
+                    //we need to store this incase the app is backgrounded
+                    NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
+                    self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    let (hour, minute, second) = pincode!.convertFromISO8601Duration()
-                    let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
-                    let alert = NSString(format: localizedString, String(hour ?? ""), String(minute ?? ""), String(second ?? ""))
-                    self.displayAlertMessage("", alertDescription: String(alert))
-                    
                     setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
                         self.navigationController?.pushViewController(sMSValidation, animated: false)
@@ -139,6 +136,16 @@ extension LoginSignupValidationMasterView {
                 self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
             }
         })
+    }
+
+    func displayPincodeRemainingMessage(){
+        guard let timeISOCode = NSUserDefaults.standardUserDefaults().valueForKey(YonaConstants.nsUserDefaultsKeys.timeToPinReset) as? String else {
+            return
+        }
+        let (hour, minute, seconds) = timeISOCode.convertFromISO8601Duration()
+        let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
+        let alert = NSString(format: localizedString, String(hour), String(minute), String(seconds))
+        self.displayAlertMessage("", alertDescription: String(alert))
     }
 }
 
