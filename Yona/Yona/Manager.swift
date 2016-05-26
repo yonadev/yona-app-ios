@@ -97,16 +97,8 @@ extension Manager {
                             ]
                             let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
                             
-                            if requestResult.success == false{
-                                //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
-
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
-                                }
-                            } else {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
-                                }
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                             }
                         } catch let error as NSError{
                             dispatch_async(dispatch_get_main_queue()) {

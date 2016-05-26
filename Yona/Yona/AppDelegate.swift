@@ -60,26 +60,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getScreenNameToDisplay() -> UINavigationController{
-        var rootController: UIViewController = UINavigationController.init()
+        var rootController: UINavigationController!
         if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
             switch viewName {
             case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.initialViewController! as UINavigationController
+                rootController = R.storyboard.sMSValidation.initialViewController!
             case YonaConstants.screenNames.passcode:
-                rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
+                rootController = R.storyboard.passcode.initialViewController!
             case YonaConstants.screenNames.login:
-                rootController = R.storyboard.login.loginStoryboard! as LoginViewController
+                rootController = R.storyboard.login.initialViewController!
             case YonaConstants.screenNames.welcome:
-                rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+                rootController = R.storyboard.welcome.initialViewController!
                 
             default:
-                rootController = R.storyboard.walkThrough.walkThroughStoryboard! as WalkThroughViewController
+                rootController = R.storyboard.walkThrough.initialViewController!
             }
-            if rootController is UINavigationController{
-                return rootController as! UINavigationController
-            }else{
-                return UINavigationController(rootViewController: rootController)
-            }
+            return rootController
             
         }
         return UINavigationController(rootViewController: rootController)
