@@ -121,7 +121,6 @@ extension LoginSignupValidationMasterView {
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
                 Loader.Hide()
-                print(pincode!)
                 if pincode != nil {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     let timeToDisplay = pincode!.convertFromISO8601Duration()
