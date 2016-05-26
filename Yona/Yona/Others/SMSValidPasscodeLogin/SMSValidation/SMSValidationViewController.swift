@@ -147,8 +147,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
         } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
             //if the admin override flag is true, then we need to post the users new details (passed from signup2 controller) with the confirm code they entered, necessary to use userdefaults incase the user  closes app during the override process and has to complete the process
             if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
+                Loader.Show()
                 UserRequestManager.sharedInstance.postUser(userBody, confirmCode: code){ (success, message, serverCode, user) in
-                    Loader.Show()
+                    Loader.Hide()
                     if success {
                         //reset our userdefaults to store the new user body
                         NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
@@ -172,8 +173,9 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 [
                     YonaConstants.jsonKeys.bodyCode: code
                 ]
-            
+            Loader.Show()
             UserRequestManager.sharedInstance.confirmMobileNumber(body) { success, message, serverCode in
+                Loader.Hide()
                 if (success) {
                     self.codeInputView.resignFirstResponder()
                     //Update flag
