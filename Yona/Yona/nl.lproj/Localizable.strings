@@ -87,7 +87,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "NOGO VASTLEGGEN";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
 
-"login.user.pinResetReuestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen % @ uur.";
+"login.user.pinResetReuestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen %@uur %@minute(s) %@seconde(n).";
 "userNotFoundAlert" = "Gebruiker niet gevonden";
 "screentitle1" = "Transparantie";
 "screentitle2" = "Delen";

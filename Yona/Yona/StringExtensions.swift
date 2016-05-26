@@ -24,7 +24,7 @@ extension String {
     func replacePlusSign() -> String {
         return self.replace("+", replacement: "%2B")
     }
-
+    
     //validate PhoneNumber
     var isPhoneNumber: Bool {
         
@@ -41,7 +41,7 @@ extension String {
         let character  = NSCharacterSet(charactersInString: "+0123456789").invertedSet
         let inputString:NSArray = self.componentsSeparatedByCharactersInSet(character)
         let filtered = inputString.componentsJoinedByString("")
- 
+        
         if (self != filtered || self.characters.count == 0 || self.characters.count <= YonaConstants.mobilePhoneLength.netherlands || self == "+31") {
             return false
         } else {
@@ -64,7 +64,7 @@ extension String {
         return randomString
     }
     
-    func convertFromISO8601Duration() -> String? {
+    func convertFromISO8601Duration() -> (String?, String?, String?){
         
         var displayedString: String?
         var hasHitTimeSection = false
@@ -72,6 +72,8 @@ extension String {
         
         var hours = 0
         var days = 0
+        var minutes = 0
+        var seconds = 0
         
         displayedString = String()
         
@@ -143,6 +145,7 @@ extension String {
                         } else {
                             tempString += " Minutes "
                         }
+                        minutes = Int(displayedString!)!
                     }
                     else {
                         
@@ -192,20 +195,24 @@ extension String {
                     } else {
                         tempString += " Seconds "
                     }
-                    
+                    seconds = Int(displayedString!)!
                     break
                     
                 default:
                     break
-                    
                 }
+                displayedString = ""
                 // reset our singular flag, since we're starting a new duration.
                 isSingular = false
             }
-            
         }
-        let timeToDisplay = String(hours + (days * 24))
-        return timeToDisplay
+        #if DEBUG
+            print("hour\(hours)")
+            print("minute\(minutes)")
+            print("seconds\(seconds)")
+        #endif
+        return (String(hours), String(minutes), String(seconds))
+        
     }
     
     func dashRemoval() -> Array<String> {
