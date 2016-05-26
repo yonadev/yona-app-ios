@@ -45,8 +45,6 @@ class PinResetRequestManager {
                             }
                         }
                     } else {
-                        //clear the reset request if there is one and it is there waiting to be verified
-                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode))
                     }
                 } else {
@@ -62,8 +60,6 @@ class PinResetRequestManager {
                             onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
-                        //clear the reset request if there is one and it can't be verified for some reason?
-                        self.pinResetClear(onCompletion)
                         onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
                     }
                 } else {
@@ -96,7 +92,10 @@ class PinResetRequestManager {
             if success {
                 onCompletion(true, ISOCode, serverMessage, serverCode)
             } else {
-                onCompletion(false, nil, serverMessage, serverCode)
+                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin
+                self.pinResetClear({ (success, nil, serverMessage, Code) in
+                    onCompletion(false, nil, serverMessage, serverCode)
+                })
             }
         }
     }
@@ -112,7 +111,10 @@ class PinResetRequestManager {
             if success {
                 onCompletion(true, nil, serverMessage, serverCode)
             } else {
-                onCompletion(false, nil, serverMessage, serverCode)
+                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin again
+                self.pinResetClear({ (success, nil, serverMessage, Code) in
+                    onCompletion(false, nil, serverMessage, serverCode)
+                })
             }
         }
     }
