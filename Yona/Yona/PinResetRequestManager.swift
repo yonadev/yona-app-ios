@@ -92,6 +92,7 @@ class PinResetRequestManager {
             if success {
                 onCompletion(true, ISOCode, serverMessage, serverCode)
             } else {
+                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin
                 self.pinResetClear({ (success, nil, serverMessage, Code) in
                     onCompletion(false, nil, serverMessage, serverCode)
                 })
@@ -110,6 +111,7 @@ class PinResetRequestManager {
             if success {
                 onCompletion(true, nil, serverMessage, serverCode)
             } else {
+                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin again
                 self.pinResetClear({ (success, nil, serverMessage, Code) in
                     onCompletion(false, nil, serverMessage, serverCode)
                 })
