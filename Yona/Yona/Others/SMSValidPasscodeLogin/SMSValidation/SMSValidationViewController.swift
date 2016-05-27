@@ -121,8 +121,6 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 Loader.Hide()
                 if success {
                     self.pinResetButton.hidden = false
-                    
-                    
                     //pin verify succeeded, unblock app
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     //clear pincode when reset is verified
@@ -137,9 +135,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         }
                         self.codeInputView.clear()
                     })
-                } else {
-                    //pin reset verify code is wrong
-                    self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
+                } else {//pin reset verify code is wrong
+                    self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     self.codeInputView.clear()
                 }
