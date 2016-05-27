@@ -9,8 +9,14 @@
 import UIKit
 
 struct ToFromDate {
-    var fromDate: NSDate?
-    var toDate: NSDate?
+    private static let formatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
+    
+    var fromDate:NSDate = NSDate()
+    var toDate: NSDate = NSDate()
 }
 
 protocol TimeZoneChallengeDelegate: class {
@@ -45,6 +51,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     var picker: YonaCustomDatePickerView?
     var activeIndexPath: NSIndexPath?
     var isFromButton: Bool = true
+    var tempToFromDate: ToFromDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +76,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
                 self.picker?.pickerTitleLabel.title = "From"
                 
                 if (self.activeIndexPath != nil) {
-                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[(self.activeIndexPath?.row)!].fromDate!)
+                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[(self.activeIndexPath?.row)!].fromDate)
                 } else {
-                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[self.zonesArrayDate.endIndex - 1].fromDate!)
+                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[self.zonesArrayDate.endIndex - 1].fromDate)
                 }
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
@@ -137,34 +144,28 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
      */
     private func configureTimeZone(doneValue: NSDate?) {
         if doneValue != nil {
-            
-            var tempArr: ToFromDate!
-            if activeIndexPath != nil {
-                tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArrayDate[(self.activeIndexPath?.row)!], withDoneValue: doneValue!)
-            } else {
-                tempArr = self.generateTimeZoneArray(isFrom: isFromButton, fromToValue: zonesArrayDate[zonesArrayDate.endIndex - 1], withDoneValue: doneValue!)
+            if tempToFromDate == nil {
+                tempToFromDate = ToFromDate()
             }
-            if self.isFromButton {
-                if activeIndexPath != nil {
-                    zonesArrayDate[(self.activeIndexPath?.row)!] = tempArr
-                    zonesArrayString = self.zonesArrayDate.convertToString()
+            if let unWrappedDoneValue = doneValue {
+                if isFromButton {
+                    tempToFromDate!.fromDate = unWrappedDoneValue
                 } else {
-                    zonesArrayDate[zonesArrayDate.endIndex - 1] = tempArr
-                    zonesArrayString = self.zonesArrayDate.convertToString()
-                }
-            } else {
-                if tempArr.toDate!.isGreaterThanDate(tempArr.fromDate!) {
-                    if activeIndexPath != nil {
-                        zonesArrayDate[(self.activeIndexPath?.row)!] = tempArr
-                        zonesArrayString = self.zonesArrayDate.convertToString()
-                    } else {
-                        zonesArrayDate[zonesArrayDate.endIndex - 1] = tempArr
-                        zonesArrayString = self.zonesArrayDate.convertToString()
+                    tempToFromDate!.toDate = unWrappedDoneValue
+                    if let unWrappedTempToFromDate = tempToFromDate {
+                        
+                        if (unWrappedTempToFromDate.toDate).isGreaterThanDate(unWrappedTempToFromDate.fromDate) {
+                            if activeIndexPath != nil {
+                                zonesArrayDate[(self.activeIndexPath?.row)!] = unWrappedTempToFromDate
+                                zonesArrayString = self.zonesArrayDate.convertToString()
+                            } else {
+                                zonesArrayDate.append(unWrappedTempToFromDate)
+                                zonesArrayString = self.zonesArrayDate.convertToString()
+                            }
+                        } else {
+                            displayAlertMessage("To time must be greater than From time", alertDescription: "")
+                        }
                     }
-                } else {
-                    zonesArrayString.removeLast()
-                    zonesArrayDate.removeLast()
-                    displayAlertMessage("To time must be greater than \(tempArr.fromDate!)", alertDescription: "")
                 }
             }
         }
@@ -173,7 +174,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
         
         if isFromButton {
             if (activeIndexPath != nil) {
-                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(zonesArrayDate[(self.activeIndexPath?.row)!].toDate!)
+                picker?.hideShowDatePickerView(isToShow: true).configureWithTime(zonesArrayDate[(self.activeIndexPath?.row)!].toDate)
             } else {
                 picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
             }
@@ -190,19 +191,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    func generateTimeZoneArray(isFrom iFrom: Bool, fromToValue ft: ToFromDate, withDoneValue: NSDate) -> ToFromDate {
-        
-        var fromValue = ft.fromDate
-        var toValue = ft.toDate
-        
-        if iFrom {
-            fromValue = withDoneValue
-        } else {
-            toValue = withDoneValue
-        }
-        return ToFromDate(fromDate: fromValue, toDate: toValue)
     }
 }
 
@@ -225,14 +213,14 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.okButtonTitle.title = "Next"
-            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate!)
+            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             self.activeIndexPath = indexPath
             self.isFromButton = false
             self.picker?.pickerTitleLabel("To")
             self.picker?.okButtonTitle.title = "Done"
             self.picker?.cancelButtonTitle.title = "Prev"
-            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].toDate!)
+            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
         }
         cell.rowNumber.text = String(indexPath.row + 1)
         
@@ -275,21 +263,20 @@ extension TimeFrameTimeZoneChallengeViewController {
                     ],
                                                YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
-                Loader.Show(delegate: self)
+                Loader.Show()
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
                     (success, serverMessage, serverCode, goal, goals, err) in
+                    Loader.Hide()
                     if success {
                         self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        Loader.Hide(self)
                         self.navigationController?.popViewControllerAnimated(true)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                         NSUserDefaults.standardUserDefaults().synchronize()
                     } else {
-                        Loader.Hide(self)
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
@@ -307,16 +294,17 @@ extension TimeFrameTimeZoneChallengeViewController {
                     ],
                     YonaConstants.jsonKeys.zones: zonesArrayString
                 ];
-                Loader.Show(delegate: self)
+                Loader.Show()
                 
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                    Loader.Hide()
                     if success {
                         self.delegate?.callGoalsMethod()
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
                         self.deleteGoalButton.selected = true
-                        Loader.Hide(self)
+                        
                         self.navigationController?.popViewControllerAnimated(true)
                         
                     }
@@ -326,12 +314,6 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
-        let df = NSDateFormatter()
-        df.dateFormat = "HH:mm"
-        let formattedTime = df.stringFromDate(NSDate().dateRoundedDownTo15Minute())
-        
-        zonesArrayString.append("\(formattedTime)-\(formattedTime)")
-        zonesArrayDate = zonesArrayString.converToDate()
         isFromButton = true
         picker?.pickerTitleLabel("From")
         picker?.okButtonTitle.title = "Next"
@@ -344,14 +326,13 @@ extension TimeFrameTimeZoneChallengeViewController {
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
-            Loader.Show(delegate: self)
+            Loader.Show()
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+                Loader.Hide()
                 if success {
                     self.delegate?.callGoalsMethod()
-                    Loader.Hide(self)
                     self.navigationController?.popViewControllerAnimated(true)
                 } else {
-                    Loader.Hide(self)
                     self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
                     
                 }

@@ -36,7 +36,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9K-JV-DQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="-187"/>
+            <point key="canvasLocation" x="591" y="-196"/>
         </scene>
         <!--Validation View Controller-->
         <scene sceneID="yt2-PP-BDh">
@@ -100,7 +100,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="079-6Q-Vvd">
-                                                <rect key="frame" x="205.5" y="404" width="189" height="28"/>
+                                                <rect key="frame" x="206" y="404" width="189" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendCode"/>
                                                 <connections>

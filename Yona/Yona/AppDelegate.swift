@@ -40,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        let settingsChanged = updateEnvironmentSettings()
+        if settingsChanged{
+            updateRootScreen()
+        }
     }
 
     private func hockeyAppSetup() {
@@ -87,24 +91,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     //MARK: User Methods
+    func updateRootScreen()
+    {
+        var rootController : UINavigationController
+        rootController = getScreenNameToDisplay()
+        if let window = self.window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = rootController
+        }
+    }
+    
     func getScreenNameToDisplay() -> UINavigationController{
-        var rootController: UIViewController = UINavigationController.init()
+        var rootController: UINavigationController!
         if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
             switch viewName {
             case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.sMSValidationViewController! as LoginSignupValidationMasterView
+                rootController = R.storyboard.sMSValidation.initialViewController!
             case YonaConstants.screenNames.passcode:
-                rootController = R.storyboard.passcode.passcodeStoryboard! as SetPasscodeViewController
+                rootController = R.storyboard.passcode.initialViewController!
             case YonaConstants.screenNames.login:
-                rootController = R.storyboard.login.loginStoryboard! as LoginViewController
+                rootController = R.storyboard.login.initialViewController!
             case YonaConstants.screenNames.welcome:
-                rootController = R.storyboard.welcome.welcomeStoryboard! as WelcomeViewController
+                rootController = R.storyboard.welcome.initialViewController!
                 
             default:
-                rootController = R.storyboard.walkThrough.walkThroughStoryboard! as WalkThroughViewController
+                rootController = R.storyboard.walkThrough.initialViewController!
             }
-            return UINavigationController(rootViewController: rootController)
+            return rootController
+            
         }
         return UINavigationController(rootViewController: rootController)
+    }
+    
+    //MARK: Handle environment switch
+    func updateEnvironmentSettings() -> Bool
+    {
+        let environemtnSettingsChanged = EnvironmentManager.updateEnvironment()
+        if environemtnSettingsChanged{
+            logout()
+        }
+        
+        return environemtnSettingsChanged
+    }
+    
+    func logout()
+    {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

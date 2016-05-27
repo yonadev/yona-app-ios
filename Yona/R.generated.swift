@@ -436,6 +436,7 @@ struct R {
     
     struct confirmPasscode {
       static var confirmPasscodeStoryboard: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeStoryboard") as? ConfirmPasscodeViewController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "ConfirmPasscode", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -539,6 +540,7 @@ struct R {
     }
     
     struct passcode {
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Passcode", bundle: _R.hostingBundle) }
       static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
       

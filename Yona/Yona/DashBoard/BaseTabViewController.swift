@@ -26,7 +26,7 @@ class BaseTabViewController: UITabBarController {
     
     
     func presentLoginScreen() {
-        self.presentViewController(R.storyboard.login.loginStoryboard!, animated: false) {
+        self.presentViewController(R.storyboard.login.initialViewController!, animated: false) {
         }
     }
 

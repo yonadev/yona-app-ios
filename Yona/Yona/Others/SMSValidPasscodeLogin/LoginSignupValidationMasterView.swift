@@ -121,15 +121,14 @@ extension LoginSignupValidationMasterView {
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
                 Loader.Hide()
-                print(pincode!)
                 if pincode != nil {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    let timeToDisplay = pincode!.convertFromISO8601Duration()
-                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    let (hour, minute, second) = pincode!.convertFromISO8601Duration()
                     let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
-                    let alert = NSString(format: localizedString, timeToDisplay!)
+                    let alert = NSString(format: localizedString, String(hour ?? ""), String(minute ?? ""), String(second ?? ""))
                     self.displayAlertMessage("", alertDescription: String(alert))
                     
+                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
                         self.navigationController?.pushViewController(sMSValidation, animated: false)
                     }

@@ -57,8 +57,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
-        self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
+        
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
+            maxDurationMinutes = String(maxDurationMinutesUnwrapped)
             self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
         }
         
@@ -69,6 +70,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.deleteGoalButton.hidden = false
@@ -126,9 +128,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                     ],
                     "maxDurationMinutes": String(maxDurationMinutes)
                 ]
-                Loader.Show(delegate:self)
+                Loader.Show()
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
-                    Loader.Hide(self)
+                    Loader.Hide()
                     
                     if success {
                         self.delegate?.callGoalsMethod()
@@ -171,7 +173,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         
                     } else {
-                        Loader.Hide()
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
@@ -188,9 +189,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
-            Loader.Show(delegate:self)
+            Loader.Show()
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
-                Loader.Hide(self)
+                Loader.Hide()
                 
                 if success {
                     self.delegate?.callGoalsMethod()

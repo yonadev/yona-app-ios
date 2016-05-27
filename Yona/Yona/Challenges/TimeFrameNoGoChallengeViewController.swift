@@ -89,21 +89,21 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                 ],
                 "maxDurationMinutes": String(maxDurationMinutes)
             ]
-            Loader.Show(delegate: self)
+            Loader.Show()
             GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal, onCompletion: {
                 (success, serverMessage, serverCode, goal, goals, err) in
+                Loader.Hide()
                 if success {
                     self.delegate?.callGoalsMethod()
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
                     self.deleteGoalButton.selected = true
-                    Loader.Hide(self)
+                    
                     self.navigationController?.popViewControllerAnimated(true)
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                     NSUserDefaults.standardUserDefaults().synchronize()
                 } else {
-                    Loader.Hide(self)
                     if let message = serverMessage {
                         self.displayAlertMessage(message, alertDescription: "")
                     }
@@ -117,16 +117,16 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
-            Loader.Show(delegate: self)
+            Loader.Show()
             GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
-                
+                Loader.Hide()
                 if success {
+                    
                     self.delegate?.callGoalsMethod()
-                    Loader.Hide(self)
+                    
                     self.navigationController?.popViewControllerAnimated(true)
                     
                 } else {
-                    Loader.Hide(self)
                     if let message = serverMessage {
                     self.displayAlertMessage(message, alertDescription: "")
                     }

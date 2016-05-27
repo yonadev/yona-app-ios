@@ -188,7 +188,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIMEZONE ALLOWED";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
 
-"login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@ hours.";
+"login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s) %@minute(s) %@second(s).";
 "userNotFoundAlert" = "User not found";
 "change-pin" = "Change PIN";
 "privacy" = "Privacy";
