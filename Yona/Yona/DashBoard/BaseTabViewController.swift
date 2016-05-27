@@ -21,7 +21,7 @@ class BaseTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedIndex()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     
