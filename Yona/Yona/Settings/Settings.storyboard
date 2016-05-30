@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xo0-ls-zNR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xo0-ls-zNR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SF-UI-Display-Bold.otf">
@@ -96,11 +97,98 @@
                         <outlet property="gradientView" destination="CeI-9b-Yre" id="od1-45-mkR"/>
                         <outlet property="screenName" destination="M7w-cn-Hub" id="8gt-C6-tcc"/>
                         <outlet property="tableView" destination="uw9-6P-tae" id="1zR-Z9-ASQ"/>
+                        <segue destination="400-kj-P61" kind="show" identifier="PrivacyStatementSegue" id="OoF-Mc-VlM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MTL-ir-QnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="465"/>
+            <point key="canvasLocation" x="-8" y="490"/>
+        </scene>
+        <!--Privacy StatementVC-->
+        <scene sceneID="F0B-Ts-OJY">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="400-kj-P61" customClass="PrivacyStatementVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b4o-Te-6zz"/>
+                        <viewControllerLayoutGuide type="bottom" id="gU1-8f-qUs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LxM-pP-hzy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXW-Kg-iea" userLabel="Gradient ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STh-dw-doQ" customClass="GradientView" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.63529411759999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6qT-HC-ULp"/>
+                                    <constraint firstItem="STh-dw-doQ" firstAttribute="leading" secondItem="LXW-Kg-iea" secondAttribute="leading" id="FJb-AH-Cu2"/>
+                                    <constraint firstAttribute="trailing" secondItem="STh-dw-doQ" secondAttribute="trailing" id="OlE-rv-ayt"/>
+                                    <constraint firstItem="STh-dw-doQ" firstAttribute="top" secondItem="LXW-Kg-iea" secondAttribute="top" id="VpK-pT-7Or"/>
+                                    <constraint firstAttribute="bottom" secondItem="STh-dw-doQ" secondAttribute="bottom" id="dV5-MS-wWM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ud5-XE-Hgc"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVT-ZX-1jK">
+                                <rect key="frame" x="0.0" y="50" width="600" height="548"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="400-kj-P61" id="6tJ-uO-VLe"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUv-63-Gs8">
+                                <rect key="frame" x="0.0" y="3" width="46" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Du3-Pi-cYk"/>
+                                    <constraint firstAttribute="width" constant="46" id="nU9-A9-aUi"/>
+                                </constraints>
+                                <state key="normal" image="icnBack"/>
+                                <connections>
+                                    <action selector="backButton:" destination="400-kj-P61" eventType="touchUpInside" id="EBx-J0-7ma"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVACY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37p-2i-Mdd">
+                                <rect key="frame" x="30" y="17" width="540" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gU1-8f-qUs" firstAttribute="top" secondItem="xVT-ZX-1jK" secondAttribute="bottom" constant="2" id="5Hg-Fu-U8i"/>
+                            <constraint firstItem="LXW-Kg-iea" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" id="6hS-Zo-29P"/>
+                            <constraint firstAttribute="trailing" secondItem="LXW-Kg-iea" secondAttribute="trailing" id="AhK-ey-aDD"/>
+                            <constraint firstAttribute="trailing" secondItem="xVT-ZX-1jK" secondAttribute="trailing" id="GhQ-nb-2Bo"/>
+                            <constraint firstItem="37p-2i-Mdd" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" constant="30" id="Ivf-Ny-0MO"/>
+                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="top" secondItem="LxM-pP-hzy" secondAttribute="top" constant="50" id="JUe-UR-XVZ"/>
+                            <constraint firstItem="LXW-Kg-iea" firstAttribute="top" secondItem="LxM-pP-hzy" secondAttribute="topMargin" id="K4g-um-Da0"/>
+                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" id="Ksi-vb-Q8G"/>
+                            <constraint firstItem="DUv-63-Gs8" firstAttribute="top" secondItem="LxM-pP-hzy" secondAttribute="top" constant="3" id="a0Y-UQ-VXi"/>
+                            <constraint firstItem="DUv-63-Gs8" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" id="fUp-zb-Gko"/>
+                            <constraint firstItem="37p-2i-Mdd" firstAttribute="top" secondItem="LxM-pP-hzy" secondAttribute="top" constant="17" id="pSw-fF-7O9"/>
+                            <constraint firstAttribute="trailing" secondItem="37p-2i-Mdd" secondAttribute="trailing" constant="30" id="qO3-rM-soU"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backButton" destination="DUv-63-Gs8" id="bZH-Nt-M2q"/>
+                        <outlet property="gradientView" destination="STh-dw-doQ" id="CQe-3L-MWN"/>
+                        <outlet property="privacyView" destination="xVT-ZX-1jK" id="DYK-Mp-bOR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a4S-Hi-5Ui" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="687" y="490"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icnBack" width="13" height="21"/>
+    </resources>
 </document>
