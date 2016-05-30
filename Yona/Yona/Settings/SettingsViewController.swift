@@ -125,10 +125,8 @@ extension SettingsViewController:UITableViewDelegate {
                 self.navigationController?.pushViewController(login, animated: false)
             }
         } else if setting ==  NSLocalizedString("privacy", comment: "") {
-            //privacy
-            if let privacy = R.storyboard.privacy.privacyStatementStoryboard {
-                self.navigationController?.pushViewController(privacy, animated: false)
-            }
+            //privacy            
+            performSegueWithIdentifier(R.segue.settingsViewController.privacyStatementSegue, sender: self)
         } else if setting == NSLocalizedString("delete-user", comment: "") {
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {

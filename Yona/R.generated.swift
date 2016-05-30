@@ -27,14 +27,12 @@ struct R {
     storyboard.settings.validateViewControllers()
     storyboard.confirmPasscode.validateImages()
     storyboard.confirmPasscode.validateViewControllers()
-    storyboard.privacy.validateImages()
-    storyboard.privacy.validateViewControllers()
     storyboard.passcode.validateImages()
     storyboard.passcode.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
     storyboard.main.validateImages()
@@ -386,6 +384,10 @@ struct R {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
+    struct settingsViewController {
+      static var privacyStatementSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SettingsViewController, PrivacyStatementVC> { return StoryboardSegueIdentifier(identifier: "PrivacyStatementSegue") }
+    }
+    
     struct signUpFirstStepViewController {
       static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
     }
@@ -555,20 +557,6 @@ struct R {
       }
     }
     
-    struct privacy {
-      static var initialViewController: PrivacyStatementVC? { return instance.instantiateInitialViewController() as? PrivacyStatementVC }
-      static var instance: UIStoryboard { return UIStoryboard(name: "Privacy", bundle: _R.hostingBundle) }
-      static var privacyStatementStoryboard: PrivacyStatementVC? { return instance.instantiateViewControllerWithIdentifier("PrivacyStatementStoryboard") as? PrivacyStatementVC }
-      
-      static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Privacy', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(privacyStatementStoryboard != nil, "[R.swift] ViewController with identifier 'privacyStatementStoryboard' could not be loaded from storyboard 'Privacy' as 'PrivacyStatementVC'.")
-      }
-    }
-    
     struct profile {
       static var initialViewController: ProfileViewController? { return instance.instantiateInitialViewController() as? ProfileViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Profile", bundle: _R.hostingBundle) }
@@ -602,7 +590,7 @@ struct R {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Settings', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
