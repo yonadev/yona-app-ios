@@ -107,6 +107,7 @@
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
 		AD84B7321CDA27820085D5B7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7301CDA27820085D5B7 /* Array.swift */; };
 		AD84B7331CDA27820085D5B7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7311CDA27820085D5B7 /* Date.swift */; };
+		AD9E63C21CFC448D006CD6D6 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
 		ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC6C88B1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift */; };
@@ -377,6 +378,7 @@
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		AD84B7311CDA27820085D5B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
 		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -1040,6 +1042,9 @@
 				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
 				AD84B7301CDA27820085D5B7 /* Array.swift */,
 				AD84B7311CDA27820085D5B7 /* Date.swift */,
+				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
+				AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */,
+				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
 				ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */,
 				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
@@ -1626,6 +1631,7 @@
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
+				AD9E63C21CFC448D006CD6D6 /* CALayerExtensions.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
