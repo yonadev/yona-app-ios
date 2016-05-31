@@ -18,12 +18,9 @@
 		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
 		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
 		9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */; };
-		9042C72C1CD78F7200100306 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
 		9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7231CD78F7200100306 /* LoginViewController.swift */; };
 		9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */; };
-		9042C72F1CD78F7200100306 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7261CD78F7200100306 /* Passcode.storyboard */; };
 		9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */; };
-		9042C7311CD78F7200100306 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7291CD78F7200100306 /* SMSValidation.storyboard */; };
 		9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */; };
 		9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */; };
 		9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7391CD898E300100306 /* NSObject+AGi18n.m */; };
@@ -36,12 +33,32 @@
 		9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */; };
 		9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7491CD898E300100306 /* UITextField+AGi18n.m */; };
 		9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C74B1CD898E300100306 /* UITextView+AGi18n.m */; };
+		904DD4881CF2F3E400E894A5 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */; };
+		904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */; };
 		9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC831CE2270F00F575E2 /* RequestResult.swift */; };
 		9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */; };
 		9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC871CE384AB00F575E2 /* Buddies.swift */; };
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
+		906FED7B1CEDB25500029845 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* ProfileViewController.swift */; };
+		906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */; };
+		906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED851CEDC72300029845 /* NotificationsViewController.swift */; };
+		906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED881CEE06DE00029845 /* NotificationsCell.swift */; };
+		906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
+		906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */; };
+		906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
+		906FED8D1CEE23C100029845 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
+		906FED8E1CEE23C500029845 /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
+		906FED8F1CEE23C800029845 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7261CD78F7200100306 /* Passcode.storyboard */; };
+		906FED901CEE23CB00029845 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7291CD78F7200100306 /* SMSValidation.storyboard */; };
+		906FED911CEE23CE00029845 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906FED7C1CEDB31A00029845 /* Profile.storyboard */; };
+		906FED921CEE23D200029845 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */; };
+		906FED931CEE23D600029845 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D741CA940D9008CAFB1 /* Settings.storyboard */; };
+		906FED941CEE23D900029845 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
+		906FED951CEE23DC00029845 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
+		906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
+		906FED971CEE23E200029845 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
@@ -75,33 +92,22 @@
 		AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */; };
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
 		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
-		AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
-		AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
-		AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
 		AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */; };
 		AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */; };
-		AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */; };
-		AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
 		AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */; };
-		AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */; };
-		AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6E1CA940A5008CAFB1 /* Profile.storyboard */; };
-		AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* ProfileViewController.swift */; };
+		AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */; };
 		AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */; };
-		AD291D751CA940D9008CAFB1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D741CA940D9008CAFB1 /* Settings.storyboard */; };
 		AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */; };
 		AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */; };
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
 		AD2DF23B1CEDCA31002A42AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */; };
 		AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3931E11CEB311900605FBA /* BaseTabViewController.swift */; };
-		AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
 		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
-		AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
 		AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */; };
 		AD84B7321CDA27820085D5B7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7301CDA27820085D5B7 /* Array.swift */; };
 		AD84B7331CDA27820085D5B7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84B7311CDA27820085D5B7 /* Date.swift */; };
 		ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */; };
-		ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */; };
 		ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC6C88B1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift */; };
 		ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD108101CC78C3B0048852F /* Oswald-Bold.ttf */; };
@@ -296,12 +302,19 @@
 		9042C7491CD898E300100306 /* UITextField+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AGi18n.m"; sourceTree = "<group>"; };
 		9042C74A1CD898E300100306 /* UITextView+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AGi18n.h"; sourceTree = "<group>"; };
 		9042C74B1CD898E300100306 /* UITextView+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AGi18n.m"; sourceTree = "<group>"; };
+		904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientNavBar.swift; path = ../GradientNavBar.swift; sourceTree = "<group>"; };
 		9054CC831CE2270F00F575E2 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyRequestManager.swift; sourceTree = "<group>"; };
 		9054CC871CE384AB00F575E2 /* Buddies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buddies.swift; sourceTree = "<group>"; };
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
+		906FED7A1CEDB25500029845 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../Notifications/ProfileViewController.swift; sourceTree = "<group>"; };
+		906FED7C1CEDB31A00029845 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Notifications/Profile.storyboard; sourceTree = "<group>"; };
+		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsProfileMasterView.swift; sourceTree = "<group>"; };
+		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		906FED881CEE06DE00029845 /* NotificationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsCell.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -348,8 +361,7 @@
 		AD291D661CA94001008CAFB1 /* Challenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Challenges.storyboard; sourceTree = "<group>"; };
 		AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsOverViewViewController.swift; sourceTree = "<group>"; };
 		AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
-		AD291D6E1CA940A5008CAFB1 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		AD291D701CA940B0008CAFB1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsVC.swift; sourceTree = "<group>"; };
 		AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AD291D741CA940D9008CAFB1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+YIColors.swift"; path = "Others/UIColor+YIColors.swift"; sourceTree = "<group>"; };
@@ -388,7 +400,7 @@
 		ADD108301CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameBudgetChallengeViewController.swift; sourceTree = "<group>"; };
 		ADD108321CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameNoGoChallengeViewController.swift; sourceTree = "<group>"; };
 		ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
-		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		ADE0E0321CBE49EB009FEF31 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = ../../GradientView.swift; sourceTree = "<group>"; };
 		ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecondStepViewController.swift; sourceTree = "<group>"; };
 		ADEF8EF01CADFD0C001D5EED /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		ADEF8EF11CADFD0C001D5EED /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -410,7 +422,7 @@
 		BE8254431CEA92F400F97045 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
-		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = ../../StringExtensions.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -626,14 +638,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9042C7091CD7581E00100306 /* CustomPicker */ = {
+		9042C7091CD7581E00100306 /* CustomSubclasses */ = {
 			isa = PBXGroup;
 			children = (
-				9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */,
-				9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */,
-				9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */,
-				9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */,
+				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
+				904DD48D1CF36C9700E894A5 /* CustomPicker */,
+				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
+				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 			);
+			name = CustomSubclasses;
 			path = CustomPicker;
 			sourceTree = "<group>";
 		};
@@ -703,6 +716,44 @@
 			);
 			name = AGi18nLocalizableStrings;
 			path = lib;
+			sourceTree = "<group>";
+		};
+		904DD48D1CF36C9700E894A5 /* CustomPicker */ = {
+			isa = PBXGroup;
+			children = (
+				9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */,
+				9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */,
+				9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */,
+				9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */,
+			);
+			name = CustomPicker;
+			sourceTree = "<group>";
+		};
+		906FED791CEDB1C700029845 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				906FED851CEDC72300029845 /* NotificationsViewController.swift */,
+				906FED881CEE06DE00029845 /* NotificationsCell.swift */,
+			);
+			name = Notifications;
+			path = ../Notifications;
+			sourceTree = "<group>";
+		};
+		906FED7E1CEDB7EC00029845 /* FriendsNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				AD291D251CA92808008CAFB1 /* Friends */,
+				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
+			);
+			name = FriendsNotifications;
+			sourceTree = "<group>";
+		};
+		906FED871CEDE74200029845 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */,
+			);
+			name = UserDetails;
 			sourceTree = "<group>";
 		};
 		90DE87991CD2374400C1E706 /* DAOObjects */ = {
@@ -835,8 +886,10 @@
 		AD291D261CA92808008CAFB1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AD291D6E1CA940A5008CAFB1 /* Profile.storyboard */,
-				AD291D701CA940B0008CAFB1 /* ProfileViewController.swift */,
+				906FED7A1CEDB25500029845 /* ProfileViewController.swift */,
+				906FED7C1CEDB31A00029845 /* Profile.storyboard */,
+				906FED871CEDE74200029845 /* UserDetails */,
+				906FED791CEDB1C700029845 /* Notifications */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -876,7 +929,7 @@
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
-				9042C7091CD7581E00100306 /* CustomPicker */,
+				9042C7091CD7581E00100306 /* CustomSubclasses */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
 				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
 				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
@@ -987,12 +1040,11 @@
 				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
 				AD84B7301CDA27820085D5B7 /* Array.swift */,
 				AD84B7311CDA27820085D5B7 /* Date.swift */,
-				ADE0E0321CBE49EB009FEF31 /* GradientView.swift */,
-				D91CE1EA1CB3A46C00F342C5 /* StringExtensions.swift */,
 				AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */,
 				ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */,
 				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
 				D9C7902C1CC2E989007DDF46 /* Extensions.swift */,
+				904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -1242,9 +1294,9 @@
 				AD291D241CA92808008CAFB1 /* Challenges */,
 				AD291D281CA9286C008CAFB1 /* CreateAccount */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
-				AD291D251CA92808008CAFB1 /* Friends */,
 				AD291DA21CAAA7AB008CAFB1 /* Others */,
 				AD291D261CA92808008CAFB1 /* Profile */,
+				906FED7E1CEDB7EC00029845 /* FriendsNotifications */,
 				AD291D271CA92808008CAFB1 /* Settings */,
 				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
@@ -1401,10 +1453,10 @@
 				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
 				ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */,
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
+				906FED8E1CEE23C500029845 /* ConfirmPasscode.storyboard in Resources */,
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
-				AD27E61F1CDBBEAF001C801D /* ConfirmPasscode.storyboard in Resources */,
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,
@@ -1412,46 +1464,45 @@
 				D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
+				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
+				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
 				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
-				ADAEAFE31CB40FA4005ED7B4 /* Welcome.storyboard in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
-				AD291D651CA93EC2008CAFB1 /* CreateAccount.storyboard in Resources */,
-				9042C72F1CD78F7200100306 /* Passcode.storyboard in Resources */,
+				906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */,
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
-				9042C7311CD78F7200100306 /* SMSValidation.storyboard in Resources */,
+				906FED911CEE23CE00029845 /* Profile.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
-				AD5571F41CAAD88D000BF880 /* SignUp.storyboard in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
-				AD291D671CA94001008CAFB1 /* Challenges.storyboard in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
-				AD291D6D1CA9407A008CAFB1 /* Friends.storyboard in Resources */,
+				906FED921CEE23D200029845 /* Friends.storyboard in Resources */,
 				ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */,
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
 				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
+				906FED951CEE23DC00029845 /* SignUp.storyboard in Resources */,
+				906FED8D1CEE23C100029845 /* Login.storyboard in Resources */,
 				9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */,
+				906FED901CEE23CB00029845 /* SMSValidation.storyboard in Resources */,
+				906FED931CEE23D600029845 /* Settings.storyboard in Resources */,
 				ADD108281CC78C3B0048852F /* Oswald-LightItalic.ttf in Resources */,
 				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
-				9042C72C1CD78F7200100306 /* Login.storyboard in Resources */,
 				9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */,
-				AD291D6F1CA940A5008CAFB1 /* Profile.storyboard in Resources */,
-				AD291CE61CA902A0008CAFB1 /* Dashboard.storyboard in Resources */,
 				ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */,
 				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
-				AD291D2B1CA928A2008CAFB1 /* WalkThrough.storyboard in Resources */,
-				AD84B72E1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard in Resources */,
 				ADEF8F091CADFD0C001D5EED /* Roboto-LightItalic.ttf in Resources */,
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
+				906FED941CEE23D900029845 /* AddDeviceViewController.storyboard in Resources */,
 				ADEF8F0A1CADFD0C001D5EED /* Roboto-Medium.ttf in Resources */,
 				ADEF8F031CADFD0C001D5EED /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */,
+				906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
@@ -1462,10 +1513,11 @@
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
-				AD291D751CA940D9008CAFB1 /* Settings.storyboard in Resources */,
+				906FED8F1CEE23C800029845 /* Passcode.storyboard in Resources */,
 				AD00DEE01CD3648F006BBA7E /* IQKeyboardManager.bundle in Resources */,
 				ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */,
 				D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */,
+				906FED971CEE23E200029845 /* WalkThrough.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,6 +1608,7 @@
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
+				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
 				BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */,
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
@@ -1565,6 +1618,7 @@
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
 				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
+				904DD4881CF2F3E400E894A5 /* UIImageExtension.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				ADE0E0331CBE49EB009FEF31 /* GradientView.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
@@ -1585,9 +1639,10 @@
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
+				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
 				60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
-				AD291D711CA940B0008CAFB1 /* ProfileViewController.swift in Sources */,
+				AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
@@ -1604,6 +1659,7 @@
 				AD00DED31CD3648F006BBA7E /* IQUIView+Hierarchy.swift in Sources */,
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
+				906FED7B1CEDB25500029845 /* ProfileViewController.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
@@ -1636,11 +1692,13 @@
 				D91CE1EB1CB3A46C00F342C5 /* StringExtensions.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
+				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */,
 				9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */,
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
+				906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
 				9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */,

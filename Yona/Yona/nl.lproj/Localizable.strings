@@ -132,6 +132,21 @@
 "settings_confirm_new_pin" = "Bevestig pincode";
 "settings_confirm_new_pin_message" = "Vul je pincode nogmaals in ter bevestiging.";
 
+//strings for notifications
+"notifications.day.monday" = "Maandag";
+"notifications.day.tuesday" = "Dinsdag";
+"notifications.day.wednesday" = "Woensdag";
+"notifications.day.thursday" = "Donderdag";
+"notifications.day.friday" = "Vrijdag";
+"notifications.day.saturday" = "Zaterdag";
+"notifications.day.sunday" = "Zondag";
+"notifications.tabtitle.perday" = "Per dag";
+"notifications.tabtitle.perweek" = "Per week";
+"notifications.maintitle.dashboard" = "Dashboard";
+"notifications.messages.title" = "Meldingen";
+"notifications.messages.title" = "Meldingen";
+"notifications.user.profile" = "Profiel";
+"notifications.user.badges" = "Badges";
 
 
 

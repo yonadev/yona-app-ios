@@ -196,4 +196,19 @@
 "delete-user" = "Unsubscribe";
 "deleteusermessage" = "Unsubscribing means you loose all information (friends, notifications, challenges, activities, etc.) on all of your devices. Press OK if this is intended.";
 
+//strings for notifications
+"notifications.day.monday" = "Monday";
+"notifications.day.tuesday" = "Tuesday";
+"notifications.day.wednesday" = "Wednesday";
+"notifications.day.thursday" = "Thursday";
+"notifications.day.friday" = "Friday";
+"notifications.day.saturday" = "Saturday";
+"notifications.day.sunday" = "Sunday";
+"notifications.tabtitle.perday" = "Per Day";
+"notifications.tabtitle.perweek" = "Per Week";
+"notifications.maintitle.dashboard" = "Dashboard";
+"notifications.messages.title" = "Messages";
+"notifications.messages.title" = "Messages";
+"notifications.user.profile" = "Profile";
+"notifications.user.badges" = "Badges";
 
