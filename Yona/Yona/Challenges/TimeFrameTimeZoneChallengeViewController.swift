@@ -190,6 +190,10 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
             }
         }
     }
+    
+    func tableReload(){
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Table view data source
@@ -242,6 +246,8 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.alpha = 0.5
             }
             self.tableView.endUpdates()
+            
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
 }
@@ -343,4 +349,6 @@ extension TimeFrameTimeZoneChallengeViewController {
 
 private extension Selector {
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
+    
+    static let tableReload = #selector(TimeFrameTimeZoneChallengeViewController.tableReload)
 }
