@@ -75,19 +75,17 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
                 self.isFromButton = true
                 self.picker?.pickerTitleLabel.title = "From"
                 
-                if (self.activeIndexPath != nil) {
+                if self.activeIndexPath != nil {
                     self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[(self.activeIndexPath?.row)!].fromDate)
                 } else {
-                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[self.zonesArrayDate.endIndex - 1].fromDate)
+                    if let fromDate = self.tempToFromDate?.fromDate {
+                        self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(fromDate)
+                    }
                 }
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
-            } else if self.picker?.cancelButtonTitle.title == "Cancel" {
-                if self.activeIndexPath != nil { } else {
-                    self.zonesArrayString.removeLast()
-                    self.zonesArrayDate.removeLast()
-                }
             }
+            
         }) { doneValue in
             self.configureTimeZone(doneValue)
         }
@@ -213,6 +211,7 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.okButtonTitle.title = "Next"
+            self.picker?.cancelButtonTitle.title = "Cancel"
             self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             self.activeIndexPath = indexPath
@@ -233,6 +232,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            self.tableView.beginUpdates()
             self.zonesArrayString.removeAtIndex(indexPath.row)
             self.zonesArrayDate.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -241,6 +241,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.enabled = false
                 self.setChallengeButton.alpha = 0.5
             }
+            self.tableView.endUpdates()
         }
     }
 }
@@ -280,7 +281,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
-                        
                     }
                 })
             }
@@ -334,7 +334,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                     self.navigationController?.popViewControllerAnimated(true)
                 } else {
                     self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                    
                 }
             }
         }
