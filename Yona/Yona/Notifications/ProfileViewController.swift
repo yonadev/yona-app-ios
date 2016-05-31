@@ -1,14 +1,14 @@
 //
-//  FriendsOverViewViewController.swift
+//  NotificationsOverviewController.swift
 //  Yona
 //
-//  Created by Chandan on 23/03/16.
+//  Created by Ben Smith on 19/05/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class FriendsOverViewViewController: FriendsProfileMasterView {
+class ProfileViewController: FriendsProfileMasterView {
     @IBOutlet var tableView: UITableView!
 
     // MARK: - View
@@ -16,21 +16,16 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
         super.viewDidLoad()
         OverviewTabAction(overviewTabView)
         self.setupUI()
+        self.navigationController?.navigationBarHidden = false
     }
     
     // MARK: - private functions
     private func setupUI() {
-        //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-}
-
-// MARK: Touch Event of Custom Segment
-extension FriendsOverViewViewController {
-    @IBAction func unwindToFriendsOverview(segue: UIStoryboardSegue) {
+    @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
         print(segue.sourceViewController)
     }
 }

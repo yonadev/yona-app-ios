@@ -9,6 +9,7 @@
 import UIKit
 
 class GradientView: UIView {
+    var shapeLayer = CAShapeLayer()
     
     // Default Colors
     var colors:[UIColor] = [] {
@@ -18,33 +19,32 @@ class GradientView: UIView {
     }
     
     func setGradient(color1: UIColor, color2: UIColor) {
-        let mask = CAShapeLayer()
-        mask.frame = self.layer.bounds
         
-        let width = self.layer.frame.size.width
-        let height = self.layer.frame.size.height
+        shapeLayer.frame = self.bounds
+        shapeLayer.path = getPath()
+        shapeLayer.lineWidth = 3.0
+        shapeLayer.strokeColor = color1.CGColor
+        shapeLayer.fillColor = color2.CGColor
         
+        self.layer.insertSublayer(shapeLayer, atIndex: 0)
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.shapeLayer.path = getPath()
+    }
+    
+    func getPath() -> CGPath {
+        let size = self.bounds.size
         let path = CGPathCreateMutable()
         
         CGPathMoveToPoint(path, nil, 0, 0)
-        CGPathAddLineToPoint(path, nil, (width/3)*2, 0)
-        CGPathAddLineToPoint(path, nil, 0, height)
-        CGPathAddLineToPoint(path, nil, 0, height)
+        CGPathAddLineToPoint(path, nil, (size.width/3)*2, 0)
+        CGPathAddLineToPoint(path, nil, 0, size.height)
+        CGPathAddLineToPoint(path, nil, 0, size.height)
         CGPathAddLineToPoint(path, nil, 0, 0)
         
-        mask.path = path
-        
-        self.layer.mask = mask
-        
-        let shape = CAShapeLayer()
-        shape.frame = self.bounds
-        shape.path = path
-        shape.lineWidth = 3.0
-        
-        shape.strokeColor = color1.CGColor//UIColor.yiGrapeColor().CGColor
-        shape.fillColor = color2.CGColor//UIColor.yiGrapeTwoColor().CGColor
-        
-        self.layer.insertSublayer(shape, atIndex: 0)
-        
+        return path
     }
 }
