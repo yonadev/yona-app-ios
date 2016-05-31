@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserDetails: UIViewController {
+class UserDetails: FriendsProfileMasterView {
     
     override func viewDidLoad() {
         super.viewDidLoad()

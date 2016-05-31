@@ -89,11 +89,11 @@
                                     <outlet property="delegate" destination="Z05-OL-lvB" id="qU0-Gn-bnh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNk-K9-WMu" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNk-K9-WMu" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="-66" width="600" height="114"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-TJ-zi0" userLabel="TimelineTab">
-                                        <rect key="frame" x="0.0" y="32" width="300" height="16"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-TJ-zi0" userLabel="TimelineTab">
+                                        <rect key="frame" x="0.0" y="98" width="300" height="16"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOu-0p-cGI">
                                                 <rect key="frame" x="0.0" y="12" width="300" height="4"/>
@@ -114,8 +114,8 @@
                                             <outletCollection property="gestureRecognizers" destination="yij-rI-wMK" appends="YES" id="LyP-eF-V2h"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJ8-SG-r8Z" userLabel="OverviewTab">
-                                        <rect key="frame" x="300" y="32" width="300" height="16"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJ8-SG-r8Z" userLabel="OverviewTab">
+                                        <rect key="frame" x="300" y="98" width="300" height="16"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM7-EZ-kI4">
                                                 <rect key="frame" x="0.0" y="12" width="300" height="4"/>
@@ -137,14 +137,14 @@
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="notifications.tabtitle.perday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATP-Ot-zjW" userLabel="TimelineLabel">
-                                        <rect key="frame" x="0.0" y="6" width="300" height="34"/>
+                                        <rect key="frame" x="0.0" y="72" width="300" height="34"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notifications.tabtitle.perweek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQF-Am-sht">
-                                        <rect key="frame" x="300" y="24" width="300" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="notifications.tabtitle.perweek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQF-Am-sht">
+                                        <rect key="frame" x="300" y="90" width="300" height="16"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -240,11 +240,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqV-xz-my2" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="285"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqV-xz-my2" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="221"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="qhm-6H-4X6">
-                                        <rect key="frame" x="268" y="111" width="64" height="64"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="qhm-6H-4X6">
+                                        <rect key="frame" x="268" y="47" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="Er4-4h-ZoZ"/>
                                             <constraint firstAttribute="height" constant="64" id="OTv-1k-z9J"/>
@@ -281,7 +281,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="457" y="889"/>
+            <point key="canvasLocation" x="417" y="883"/>
         </scene>
         <!--notifications.messages.title-->
         <scene sceneID="2b2-Hb-0BV">
@@ -309,7 +309,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiX-cg-UYg">
                                             <rect key="frame" x="72" y="16" width="434" height="18"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-vt-Xq0">
@@ -326,7 +326,7 @@
                                                 <constraint firstAttribute="height" constant="18" id="pBm-iU-mty"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
