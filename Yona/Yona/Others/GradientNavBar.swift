@@ -20,7 +20,7 @@ class GradientNavBar: UINavigationBar {
         gradientView.frame = self.bounds
         //set gradient view to the colour set by our inspectable property
         gradientView.setGradient(gradientColor, color2: gradientColor)
-        self.addSubview(gradientView)
+//        self.addSubview(gradientView)
     }
     
     override func layoutSubviews() {

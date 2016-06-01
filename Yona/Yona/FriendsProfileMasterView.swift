@@ -15,9 +15,6 @@ class FriendsProfileMasterView: UIViewController, UIScrollViewDelegate {
     @IBOutlet var overviewTabView: UIView!
     @IBOutlet var timelineTabBottomBorder: UIView!
     @IBOutlet var overviewTabBottomBorder: UIView!
-    @IBOutlet var addFriendbutton: UIButton?
-    @IBOutlet var notificationsButton: UIButton?
-    @IBOutlet var userDetailsButton: UIButton?
     @IBOutlet var screenTitle: UILabel!
 }
 
@@ -46,9 +43,6 @@ extension FriendsProfileMasterView {
         overviewTabBottomBorder.hidden = true
         timelineTabView.alpha = 1.0
         timelineTabBottomBorder.hidden = false
-        if let addFriendbutton = self.addFriendbutton {
-            addFriendbutton.hidden = true
-        }
     }
     
     @IBAction func OverviewTabAction(sender: AnyObject) {
@@ -56,14 +50,5 @@ extension FriendsProfileMasterView {
         timelineTabBottomBorder.hidden = true
         overviewTabView.alpha = 1.0
         overviewTabBottomBorder.hidden = false
-        if let addFriendbutton = self.addFriendbutton {
-            addFriendbutton.hidden = false
-        }
-        if let userDetailsButton = self.userDetailsButton {
-            userDetailsButton.hidden = false
-        }
-        if let notificationsButton = self.notificationsButton {
-            notificationsButton.hidden = false
-        }
     }
 }

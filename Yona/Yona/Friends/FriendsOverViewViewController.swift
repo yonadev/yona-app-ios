@@ -10,6 +10,7 @@ import UIKit
 
 class FriendsOverViewViewController: FriendsProfileMasterView {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var addFriendbutton: UIButton?
 
     // MARK: - View
     override func viewDidLoad() {
