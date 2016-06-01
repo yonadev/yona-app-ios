@@ -21,9 +21,7 @@ class GradientNavBar: UINavigationBar {
         //set gradient view to the colour set by our inspectable property
         gradientView.setGradient(gradientColor, color2: gradientColor)
         self.addSubview(gradientView)
-
         self.sendSubviewToBack(gradientView)
-//        self.layer.zPosition = 3
 
     }
     
@@ -32,7 +30,7 @@ class GradientNavBar: UINavigationBar {
         var frame = self.bounds
         //our frame (set to bounds is at 0,0 but the status bar covers is 20 px above, we want the gradient view to go all the way to the top, so take 20 pixels off the start of our bounds, add 20 to the height
         frame.origin.y -=  20
-        frame.size.height += 19
+        frame.size.height += 20
         //make sure gradient view frame is set to the same bounds as the nav bar so that is goes all the way to the top
         gradientView.frame = frame
 

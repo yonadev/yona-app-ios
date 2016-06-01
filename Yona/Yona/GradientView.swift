@@ -22,7 +22,7 @@ class GradientView: UIView {
         
         shapeLayer.frame = self.bounds
         shapeLayer.path = getPath()
-        shapeLayer.lineWidth = 3.0
+        shapeLayer.lineWidth = 1.0
         shapeLayer.strokeColor = color1.CGColor
         shapeLayer.fillColor = color2.CGColor
         
