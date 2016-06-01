@@ -45,6 +45,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">

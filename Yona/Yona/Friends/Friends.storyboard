@@ -195,6 +195,9 @@
                                 <segue destination="OjV-ne-DEf" kind="show" identifier="addFriendsSegue" id="kI1-fK-3IB"/>
                             </connections>
                         </barButtonItem>
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="w9M-vt-cqM" id="224-C8-et4"/>
+                        </connections>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
