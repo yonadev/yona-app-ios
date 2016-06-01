@@ -185,7 +185,7 @@
                             <constraint firstItem="ODB-V6-jlL" firstAttribute="centerX" secondItem="pD2-lc-RXn" secondAttribute="centerX" id="DHj-mU-t4l"/>
                             <constraint firstAttribute="trailing" secondItem="ODB-V6-jlL" secondAttribute="trailing" id="Hg0-0B-NM9"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="leading" secondItem="pD2-lc-RXn" secondAttribute="leading" id="JMJ-lo-gZz"/>
-                            <constraint firstItem="ODB-V6-jlL" firstAttribute="top" secondItem="pD2-lc-RXn" secondAttribute="top" constant="64" id="MS1-43-TIT"/>
+                            <constraint firstItem="ODB-V6-jlL" firstAttribute="top" secondItem="95f-iK-CZN" secondAttribute="bottom" id="bgd-go-0Oa"/>
                             <constraint firstAttribute="bottom" secondItem="D0p-La-oo7" secondAttribute="bottom" id="c8A-iG-Iop"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="centerX" secondItem="pD2-lc-RXn" secondAttribute="centerX" id="dJg-wo-flG"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="top" secondItem="ODB-V6-jlL" secondAttribute="bottom" id="jiY-L5-Inc"/>
@@ -240,11 +240,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81H-E4-YLn" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="44" width="600" height="66"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81H-E4-YLn" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="46"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrP-L3-HFn" userLabel="Manual Tab">
-                                        <rect key="frame" x="0.0" y="16" width="300" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrP-L3-HFn" userLabel="Manual Tab">
+                                        <rect key="frame" x="0.0" y="-4" width="300" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addfriendmanually" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx3-TL-Df4" userLabel="Handmatig Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
@@ -277,8 +277,8 @@
                                             <outletCollection property="gestureRecognizers" destination="025-q3-qlF" appends="YES" id="po0-rQ-Kk6"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7R-QG-MCm" userLabel="AddressBook Tab">
-                                        <rect key="frame" x="300" y="16" width="300" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7R-QG-MCm" userLabel="AddressBook Tab">
+                                        <rect key="frame" x="300" y="-4" width="300" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addfriendcontacts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjF-ZW-GHM">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
@@ -316,6 +316,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="IrP-L3-HFn" secondAttribute="bottom" id="0Ku-iZ-fWY"/>
                                     <constraint firstAttribute="height" constant="110" id="3oR-Qt-K5F"/>
+                                    <constraint firstAttribute="height" constant="46" id="4uM-wB-AZS"/>
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="width" secondItem="IrP-L3-HFn" secondAttribute="width" id="7K1-3c-dzU"/>
                                     <constraint firstAttribute="trailing" secondItem="n7R-QG-MCm" secondAttribute="trailing" id="OKg-Wx-BU2"/>
                                     <constraint firstItem="IrP-L3-HFn" firstAttribute="leading" secondItem="81H-E4-YLn" secondAttribute="leading" id="P0E-vK-jT2"/>
@@ -323,6 +324,11 @@
                                     <constraint firstItem="n7R-QG-MCm" firstAttribute="height" secondItem="IrP-L3-HFn" secondAttribute="height" id="yoc-EA-aiX"/>
                                     <constraint firstAttribute="bottom" secondItem="n7R-QG-MCm" secondAttribute="bottom" id="z2m-Mp-zlS"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3oR-Qt-K5F"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJK-ti-jOR">
                                 <rect key="frame" x="0.0" y="110" width="600" height="490"/>
@@ -420,6 +426,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bJK-ti-jOR" firstAttribute="top" secondItem="81H-E4-YLn" secondAttribute="bottom" id="34C-4S-UZ0"/>
+                            <constraint firstItem="81H-E4-YLn" firstAttribute="top" secondItem="0vT-Jh-oD1" secondAttribute="bottom" id="Igl-HL-I4h"/>
                             <constraint firstAttribute="trailing" secondItem="bJK-ti-jOR" secondAttribute="trailing" id="Mat-HJ-pCR"/>
                             <constraint firstAttribute="trailing" secondItem="81H-E4-YLn" secondAttribute="trailing" id="YfN-RR-3zl"/>
                             <constraint firstItem="81H-E4-YLn" firstAttribute="centerX" secondItem="XCo-UI-oEf" secondAttribute="centerX" id="bJu-6a-ihL"/>
@@ -429,6 +436,11 @@
                             <constraint firstItem="81H-E4-YLn" firstAttribute="top" secondItem="XCo-UI-oEf" secondAttribute="top" id="qR8-Ue-21Q"/>
                             <constraint firstItem="bJK-ti-jOR" firstAttribute="centerX" secondItem="XCo-UI-oEf" secondAttribute="centerX" id="rnC-bM-Lrc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qR8-Ue-21Q"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="addfriend" id="0CF-J0-aGj">
@@ -438,7 +450,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>

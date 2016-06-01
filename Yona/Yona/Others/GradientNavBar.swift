@@ -20,6 +20,7 @@ class GradientNavBar: UINavigationBar {
         gradientView.frame = self.bounds
         //set gradient view to the colour set by our inspectable property
         gradientView.setGradient(gradientColor, color2: gradientColor)
+        gradientView.backgroundColor = self.backgroundColor
         self.addSubview(gradientView)
         self.sendSubviewToBack(gradientView)
 

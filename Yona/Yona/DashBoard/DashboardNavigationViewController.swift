@@ -16,13 +16,6 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
     }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        var frame = self.navigationBar.frame
-        frame.size.height = 86
-        frame.origin.y = -20
-        self.navigationBar.frame = frame
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
