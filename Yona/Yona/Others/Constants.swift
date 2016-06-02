@@ -159,5 +159,6 @@ struct YonaConstants {
         static let smsValidation = "SMSValidation"
         static let passcode = "Passcode"
         static let login = "Login"
+        static let dashboard = "Dashboard"
     }    
 }

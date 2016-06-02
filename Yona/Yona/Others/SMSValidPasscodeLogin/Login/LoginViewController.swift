@@ -73,14 +73,18 @@ extension LoginViewController: CodeInputViewDelegate {
                         self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     } else {
-                       if self.view.window?.rootViewController is UITabBarController {
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        } else {
-                        let storyboard = R.storyboard.dashboard.instance
-                        let dashbaord = storyboard.instantiateInitialViewController()
+//                        setViewControllerToDisplay("Dashboard", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.navigationController?.popViewControllerAnimated(false)
                         
-                        self.view.window?.rootViewController = dashbaord
-                        }
+                        self.dismissViewControllerAnimated(true, completion: nil)
+//                       if self.view.window?.rootViewController is UITabBarController {
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                        } else {
+//                        let storyboard = R.storyboard.dashboard.instance
+//                        let dashbaord = storyboard.instantiateInitialViewController()
+//                        
+//                        self.view.window?.rootViewController = dashbaord
+//                        }
                     }
                     
                 } else {

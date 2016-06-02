@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = self.window {
             window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = R.storyboard.walkThrough.initialViewController!
+            window.rootViewController = R.storyboard.dashboard.initialViewController!
         }
         return true
         

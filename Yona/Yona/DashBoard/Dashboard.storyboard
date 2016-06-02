@@ -88,7 +88,7 @@
         <!--Base Tab View Controller-->
         <scene sceneID="iAq-LX-431">
             <objects>
-                <tabBarController id="IHY-FI-AIQ" customClass="BaseTabViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="IHY-FI-AIQ" customClass="BaseTabViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P46-oA-9lB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
