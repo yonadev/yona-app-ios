@@ -20,7 +20,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         case NoGoActivity
     }
     
-    @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var headerLabel: UILabel!
     
@@ -35,7 +34,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var backButton: UIButton!
+    @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var addNewGoalButton: UIButton!
     
     
@@ -91,7 +90,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                 setSelectedCategory(self.budgetView)
             }
         }
-        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -117,8 +115,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     private func setSelectedCategory(categoryView: UIView) {
         self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        
-        backButton.hidden = true
         
         selectedCategoryView = categoryView
         
@@ -275,7 +271,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
         sender.hidden = true
-        backButton.hidden = false
         if selectedCategoryView == budgetView {
             categoryHeader = .BudgetActivity
             
