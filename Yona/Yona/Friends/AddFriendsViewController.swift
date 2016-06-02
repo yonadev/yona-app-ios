@@ -35,6 +35,19 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
         self.setupUI()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiBlackColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    }
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    }
+    
     // MARK: - private functions
     private func setupUI() {
         if var label = previousRange {
@@ -317,7 +330,7 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
             return true
         }
     }
-    
+
     private extension Selector {
         static let dismissKeyboard = #selector(AddFriendsViewController.dismissKeyboard)
 }

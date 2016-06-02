@@ -62,14 +62,13 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         super.viewDidLoad()
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        self.tableView.estimatedRowHeight = 100
         self.setupUI()
         self.callActivityCategory()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
         
         setDeselectOtherCategory()
 
@@ -460,12 +459,23 @@ extension TimeBucketChallenges {
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
-            return 100.0
+            tableView.rowHeight =  100.0
         } else {
-            return 60.0
+            tableView.rowHeight =  60.0
         }
+        
+        return self.tableView.rowHeight
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+        print(tableView.estimatedRowHeight)
+        print(tableView.rowHeight)
+        cell.contentView.layer.configureGradientBackground(tableView.rowHeight,colors: UIColor.yiBgGradientTwoColor().CGColor, UIColor.yiBgGradientOneColor().CGColor)
     }
 }
 

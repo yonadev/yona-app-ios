@@ -11,9 +11,6 @@ import UIKit
 
 class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
-    @IBOutlet var backButton: UIButton!
-    @IBOutlet var gradientView: GradientView!
-    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +22,5 @@ class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
     //when webview is loaded stop the loading wheel and hide the view
     func webViewDidFinishLoad(webView: UIWebView) {
         Loader.Hide()
-    }
-    
-    @IBAction func backButton(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(false)
     }
 }
