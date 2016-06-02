@@ -11,17 +11,13 @@ import UIKit
 class SettingsViewController: BaseViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
-    @IBOutlet var gradientView: GradientView!
-    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        
-        self.gradientView.colors = [UIColor.yiMango95Color(), UIColor.yiMangoColor()]
         self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         
     }
@@ -94,6 +90,10 @@ class SettingsViewController: BaseViewController {
         if let welcome = R.storyboard.welcome.welcomeStoryboard {
             UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
         }
+    }
+    
+    @IBAction func unwindToSettingsView(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
     }
 }
 

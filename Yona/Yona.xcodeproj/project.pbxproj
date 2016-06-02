@@ -644,8 +644,8 @@
 			isa = PBXGroup;
 			children = (
 				90FF6DF81D00344900A674C4 /* GradientView.swift */,
-				904DD48D1CF36C9700E894A5 /* CustomPicker */,
 				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
+				904DD48D1CF36C9700E894A5 /* CustomPicker */,
 			);
 			name = CustomSubclasses;
 			path = CustomPicker;
