@@ -12,7 +12,6 @@ import UIKit
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     var passcodeString: String?
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,6 +93,8 @@ extension SetPasscodeViewController: CodeInputViewDelegate {
         passcodeString = code
         if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
             passcode.passcode = code
+            passcode.isFromPinReset = self.isFromPinReset
+            
             if isFromSettings {
                 passcode.isFromSettings = self.isFromSettings
             }

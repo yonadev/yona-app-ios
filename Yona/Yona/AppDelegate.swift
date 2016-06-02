@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         updateEnvironmentSettings()
-        updateRootScreen()
+        
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             forBarPosition: .Any,
             barMetrics: .Default)
         UINavigationBar.appearance().shadowImage = UIImage()
+        
+        if let window = self.window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = R.storyboard.walkThrough.initialViewController!
+        }
         return true
         
     }
@@ -47,10 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        let settingsChanged = updateEnvironmentSettings()
-        if settingsChanged{
-            updateRootScreen()
-        }
+        updateEnvironmentSettings()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -61,38 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    //MARK: User Methods
-    func updateRootScreen()
-    {
-        var rootController : UINavigationController
-        rootController = getScreenNameToDisplay()
-        if let window = self.window {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = rootController
-        }
-    }
     
-    func getScreenNameToDisplay() -> UINavigationController{
-        var rootController: UINavigationController!
-        if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
-            switch viewName {
-            case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.initialViewController!
-            case YonaConstants.screenNames.passcode:
-                rootController = R.storyboard.passcode.initialViewController!
-            case YonaConstants.screenNames.login:
-                rootController = R.storyboard.login.initialViewController!
-            case YonaConstants.screenNames.welcome:
-                rootController = R.storyboard.welcome.initialViewController!
-                
-            default:
-                rootController = R.storyboard.walkThrough.initialViewController!
-            }
-            return rootController
-            
-        }
-        return UINavigationController(rootViewController: rootController)
-    }
     
     //MARK: Handle environment switch
     func updateEnvironmentSettings() -> Bool

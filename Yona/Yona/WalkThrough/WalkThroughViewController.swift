@@ -15,6 +15,38 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
     var allControllers = [UIViewController]()
     let margin: CGFloat = 0.0
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let viewController = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String where viewController != YonaConstants.screenNames.walkThrough {
+            self.navigationController?.pushViewController(getScreen(viewController), animated: false)
+        }
+        
+    }
+    
+    func getScreen(viewControllerName: String) -> UIViewController{
+        var rootController: UIViewController!
+        if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
+            switch viewName {
+            case YonaConstants.screenNames.smsValidation:
+                rootController = R.storyboard.sMSValidation.sMSValidationViewController
+            case YonaConstants.screenNames.passcode:
+                rootController = R.storyboard.passcode.passcodeStoryboard
+            case YonaConstants.screenNames.login:
+                rootController = R.storyboard.login.loginStoryboard
+            case YonaConstants.screenNames.welcome:
+                rootController = R.storyboard.welcome.welcomeStoryboard
+            
+            default:
+                rootController = R.storyboard.welcome.welcomeStoryboard
+                
+            }
+            return rootController
+        }
+        return rootController
+    }
+    
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)

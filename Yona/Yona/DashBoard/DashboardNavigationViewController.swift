@@ -15,6 +15,7 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         self.setNavigationBarHidden(false, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
+        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
