@@ -10,6 +10,8 @@ import Foundation
 
 class ProfileViewController: FriendsProfileMasterView {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var userDetailButton: UIBarButtonItem!
+    @IBOutlet var notificationsButton: UIButton?
 
     // MARK: - View
     override func viewDidLoad() {

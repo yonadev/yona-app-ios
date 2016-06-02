@@ -50,7 +50,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U44-VS-5Hu" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="410"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnY" translatesAutoresizingMaskIntoConstraints="NO" id="eEy-ql-DuC">
                                                 <rect key="frame" x="268" y="112" width="48" height="48"/>
@@ -96,7 +96,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="5dw-qe-qyA"/>
                                             <constraint firstItem="MpR-Wr-PFo" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="15" id="6dz-zP-NZ1"/>
@@ -105,6 +105,7 @@
                                             <constraint firstAttribute="trailing" secondItem="RJC-BX-fly" secondAttribute="trailing" constant="30" id="CbV-C4-LFV"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="top" secondItem="U44-VS-5Hu" secondAttribute="top" constant="112" id="IPQ-Ph-jdm"/>
                                             <constraint firstAttribute="trailing" secondItem="MpR-Wr-PFo" secondAttribute="trailing" constant="15" id="SqK-oe-SCB"/>
+                                            <constraint firstAttribute="bottom" secondItem="3r8-GS-xeb" secondAttribute="bottom" constant="20" id="Tnp-UR-h9K"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="VYX-79-0ZW"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="top" secondItem="MpR-Wr-PFo" secondAttribute="bottom" constant="20" id="Vvm-s4-UNz"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="top" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="25" id="W8P-fL-Tzy"/>
@@ -116,8 +117,14 @@
                                             <constraint firstItem="RJC-BX-fly" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="30" id="ps1-yp-bKu"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="wg7-NH-SqD"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="iOO-ed-NH8"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="U44-VS-5Hu" secondAttribute="trailing" id="C6o-5G-FdB"/>
                                     <constraint firstItem="U44-VS-5Hu" firstAttribute="top" secondItem="cuS-pj-Nh4" secondAttribute="top" id="GM8-hD-wgR"/>
@@ -165,6 +172,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8g5-og-qWk" firstAttribute="top" secondItem="Dbk-MT-JXe" secondAttribute="bottom" id="6FP-JS-I6e"/>
                             <constraint firstItem="cuS-pj-Nh4" firstAttribute="leading" secondItem="TBR-kW-Tkf" secondAttribute="leading" id="7dr-em-lgM"/>
@@ -183,6 +191,14 @@
                             <constraint firstAttribute="trailing" secondItem="Yf9-fJ-1ck" secondAttribute="trailing" constant="30" id="pvv-Fi-nV6"/>
                             <constraint firstItem="BLw-2G-xsI" firstAttribute="top" secondItem="TBR-kW-Tkf" secondAttribute="top" id="qwA-Rw-VUB"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="94v-Tj-1fe"/>
+                                <exclude reference="aL0-xx-l21"/>
+                                <exclude reference="fSe-hf-7ti"/>
+                                <exclude reference="b2F-F1-Tyi"/>
+                            </mask>
+                        </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="cuS-pj-Nh4"/>

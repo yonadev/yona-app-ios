@@ -12,11 +12,11 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBarHidden(true, animated: false)
+        self.setNavigationBarHidden(false, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
