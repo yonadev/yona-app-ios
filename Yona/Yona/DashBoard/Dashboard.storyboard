@@ -10,9 +10,16 @@
             <objects>
                 <navigationController title="Settings" id="rng-1n-xFW" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icnSettings" selectedImage="icnSettingsActive" id="CmE-iO-eeK"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJp-9t-hfr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJp-9t-hfr" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.91764706373214722" green="0.63529413938522339" blue="0.12941177189350128" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbX-Fk-AJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
