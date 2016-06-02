@@ -522,7 +522,6 @@ struct R {
       
       static func validateImages() {
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {

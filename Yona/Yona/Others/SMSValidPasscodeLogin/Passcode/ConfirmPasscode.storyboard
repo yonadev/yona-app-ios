@@ -13,7 +13,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Confirm Passcode View Controller-->
+        <!--PINCODE-->
         <scene sceneID="CrO-tD-15c">
             <objects>
                 <viewController storyboardIdentifier="ConfirmPasscodeStoryboard" id="Hlf-mX-yoh" customClass="ConfirmPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,56 +95,14 @@
                                     <outlet property="delegate" destination="Hlf-mX-yoh" id="hG2-Lj-ZOc"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFi-q3-6n4" userLabel="Gradient ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58K-kD-jvd" customClass="GradientView" customModule="Yona" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="I6Q-Fq-elu"/>
-                                    <constraint firstAttribute="bottom" secondItem="58K-kD-jvd" secondAttribute="bottom" id="IPw-qs-x41"/>
-                                    <constraint firstItem="58K-kD-jvd" firstAttribute="top" secondItem="LFi-q3-6n4" secondAttribute="top" id="Mp9-a3-kMm"/>
-                                    <constraint firstAttribute="trailing" secondItem="58K-kD-jvd" secondAttribute="trailing" id="g09-SS-KHH"/>
-                                    <constraint firstItem="58K-kD-jvd" firstAttribute="leading" secondItem="LFi-q3-6n4" secondAttribute="leading" id="mQW-NP-30j"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zeA-1w-zLB"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-qU-aIj">
-                                <rect key="frame" x="30" y="30" width="540" height="17"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-Tk-ChG">
-                                <rect key="frame" x="10" y="14" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="FMW-JE-t1O"/>
-                                    <constraint firstAttribute="height" constant="50" id="n3v-Nj-COE"/>
-                                </constraints>
-                                <state key="normal" image="icnBack"/>
-                                <connections>
-                                    <action selector="back:" destination="Hlf-mX-yoh" eventType="touchUpInside" id="Hfj-HP-vqS"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="LFi-q3-6n4" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="2yr-yj-chr"/>
-                            <constraint firstItem="LFi-q3-6n4" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" id="53a-0n-GBU"/>
-                            <constraint firstAttribute="trailing" secondItem="wuh-qU-aIj" secondAttribute="trailing" constant="30" id="OJg-aO-qwu"/>
+                            <constraint firstItem="tog-87-Hwp" firstAttribute="top" secondItem="zxn-E4-PSR" secondAttribute="bottom" constant="-64" id="BVy-hV-tZC"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" id="Oyf-Wt-4Or"/>
-                            <constraint firstItem="54Q-Tk-ChG" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" constant="14" id="Stj-md-Cc2"/>
-                            <constraint firstItem="wuh-qU-aIj" firstAttribute="top" secondItem="zxn-E4-PSR" secondAttribute="bottom" constant="10" id="TtB-3X-hVF"/>
-                            <constraint firstItem="wuh-qU-aIj" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" constant="30" id="WIJ-Qg-qbC"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="WLU-c5-NNx"/>
-                            <constraint firstAttribute="trailing" secondItem="LFi-q3-6n4" secondAttribute="trailing" id="aBz-gm-RZd"/>
                             <constraint firstItem="89i-sh-drl" firstAttribute="top" secondItem="tog-87-Hwp" secondAttribute="bottom" id="h18-Cd-dQX"/>
                             <constraint firstItem="89i-sh-drl" firstAttribute="top" secondItem="tog-87-Hwp" secondAttribute="bottom" id="iMl-JH-Tgt"/>
-                            <constraint firstItem="54Q-Tk-ChG" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" constant="10" id="osh-FQ-Oro"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="leading" secondItem="7TH-2w-Pci" secondAttribute="leading" id="r9B-Q7-fp1"/>
                             <constraint firstItem="tog-87-Hwp" firstAttribute="top" secondItem="7TH-2w-Pci" secondAttribute="top" id="ydm-yq-sIv"/>
                             <constraint firstAttribute="trailing" secondItem="tog-87-Hwp" secondAttribute="trailing" id="zIY-1y-Jcu"/>
@@ -156,18 +114,21 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="dxc-dE-O1M"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" title="PINCODE" id="cve-ul-xHq">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="dwm-kh-4oR">
+                            <connections>
+                                <action selector="back:" destination="Hlf-mX-yoh" id="it6-8E-d2u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="avtarImage" destination="NI5-2Q-e8Q" id="or8-4T-khY"/>
-                        <outlet property="backButton" destination="54Q-Tk-ChG" id="cLp-8i-gTP"/>
+                        <outlet property="backButton" destination="dwm-kh-4oR" id="IFn-sN-NJp"/>
                         <outlet property="codeView" destination="Tez-Aa-DYz" id="zNg-18-XKw"/>
-                        <outlet property="gradientContainerView" destination="LFi-q3-6n4" id="qVb-Ve-dZY"/>
-                        <outlet property="gradientView" destination="58K-kD-jvd" id="Fq8-mw-UrZ"/>
                         <outlet property="headerTitleLabel" destination="OxM-iM-4IC" id="DdA-oD-QEu"/>
                         <outlet property="infoLabel" destination="09h-RE-FIx" id="Wf8-Wc-SfJ"/>
                         <outlet property="progressView" destination="oLb-Tc-U4F" id="Llr-0j-14U"/>
-                        <outlet property="screenNameLabel" destination="wuh-qU-aIj" id="jkS-Ro-Fjo"/>
                         <outlet property="scrollView" destination="tog-87-Hwp" id="Jtf-oE-1qM"/>
                         <outlet property="topView" destination="zlR-cL-Tgv" id="yJm-jR-c7U"/>
                     </connections>
@@ -181,9 +142,17 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s7K-Pc-UrI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qPH-9D-9rW">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qPH-9D-9rW" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.34509804840000002" green="0.14509804549999999" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
