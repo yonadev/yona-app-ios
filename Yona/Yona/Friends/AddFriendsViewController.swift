@@ -41,10 +41,8 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
             label.length = 1
         }
         
-        gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
-        
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //Looks for single or multiple taps.
@@ -162,13 +160,7 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
     func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
+ 
     func dismissKeyboard(){
         view.endEditing(true)
     }
@@ -268,9 +260,6 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
                 
             case .Restricted:
                 print("Access restricted")
-                
-            default:
-                print("Other Problem")
             }
         }
     }
@@ -331,7 +320,6 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
     
     private extension Selector {
         static let dismissKeyboard = #selector(AddFriendsViewController.dismissKeyboard)
-        static let back = #selector(AddFriendsViewController.back(_:))
 }
 
 

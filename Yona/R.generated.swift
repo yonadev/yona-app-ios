@@ -15,10 +15,10 @@ struct R {
     storyboard.profile.validateViewControllers()
     storyboard.signUp.validateImages()
     storyboard.signUp.validateViewControllers()
-    storyboard.login.validateImages()
-    storyboard.login.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
+    storyboard.login.validateImages()
+    storyboard.login.validateViewControllers()
     storyboard.launchScreen.validateImages()
     storyboard.launchScreen.validateViewControllers()
     storyboard.challenges.validateImages()
@@ -27,12 +27,12 @@ struct R {
     storyboard.settings.validateViewControllers()
     storyboard.confirmPasscode.validateImages()
     storyboard.confirmPasscode.validateViewControllers()
+    storyboard.sMSValidation.validateImages()
+    storyboard.sMSValidation.validateViewControllers()
     storyboard.passcode.validateImages()
     storyboard.passcode.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
     storyboard.main.validateImages()
@@ -348,6 +348,7 @@ struct R {
     static var icnNext: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNext", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNext") } }
     static var icnNickname: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNickname", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNickname") } }
     static var icnNo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNo") } }
+    static var icnNotifications: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNotifications") } }
     static var icnOk: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOk") } }
     static var icnReminder: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnReminder") } }
     static var icnSecure: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSecure") } }
@@ -376,6 +377,7 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var notifcationsCell: ReuseIdentifier<NotificationsCell> { return ReuseIdentifier(identifier: "notifcationsCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
@@ -560,14 +562,19 @@ struct R {
     struct profile {
       static var initialViewController: ProfileViewController? { return instance.instantiateInitialViewController() as? ProfileViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Profile", bundle: _R.hostingBundle) }
-      static var profileStoryboard: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? ProfileViewController }
+      static var profileStoryboard: UserDetails? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? UserDetails }
+      static var profileViewController: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.")
+        assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.")
+        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'Profile' as 'UserDetails'.")
       }
     }
     

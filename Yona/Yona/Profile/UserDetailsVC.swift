@@ -8,14 +8,11 @@
 
 import UIKit
 
-class ProfileViewController: BaseViewController {
-
-    @IBOutlet var gradientView: GradientView!
+class UserDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
