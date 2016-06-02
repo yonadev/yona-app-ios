@@ -85,9 +85,13 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             
             //Update flag
             setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if self.view.window?.rootViewController is BaseTabViewController{
+                self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }else{
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
+                self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+            }
             
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-            self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
         } else {
             codeInputView.clear()
             navigationController?.popViewControllerAnimated(true)
