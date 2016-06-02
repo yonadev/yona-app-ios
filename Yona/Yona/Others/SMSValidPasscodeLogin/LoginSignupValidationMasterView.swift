@@ -13,7 +13,7 @@ class LoginSignupValidationMasterView: UIViewController {
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-
+    
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var resendOverrideCode: UIButton!
@@ -85,7 +85,6 @@ extension LoginSignupValidationMasterView {
             //Nav bar Back button.
             self.navigationItem.title = screenNameLabelText
             topView.backgroundColor = UIColor.yiMangoColor()
-            self.navigationItem.hidesBackButton = false
             self.view.backgroundColor = UIColor.yiMangoColor()
             gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
                         
@@ -105,7 +104,6 @@ extension LoginSignupValidationMasterView {
             }
         } else {
             //Nav bar Back button.
-            self.navigationItem.hidesBackButton = true
             self.navigationController?.setNavigationBarHidden(false, animated: false)
             gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
         }
@@ -124,6 +122,11 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+//                    if self.isFromSettings { //need to reset the colour back to grape colour
+//                        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
+//                        gradientNavBar?.backgroundColor = UIColor.yiGrapeColor()
+//                        gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
+//                    }
                     setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
                         self.navigationController?.pushViewController(sMSValidation, animated: false)

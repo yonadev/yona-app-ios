@@ -70,17 +70,17 @@ extension LoginViewController: CodeInputViewDelegate {
                     if self.isFromSettings {
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             passcode.isFromSettings = self.isFromSettings
-                        self.navigationController?.pushViewController(passcode, animated: false)
+                            self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     } else {
                        if self.view.window?.rootViewController is UITabBarController {
                             self.dismissViewControllerAnimated(true, completion: nil)
                         } else {
-                        let storyboard = R.storyboard.dashboard.instance
-                        let dashbaord = storyboard.instantiateInitialViewController()
-                        
-                        self.view.window?.rootViewController = dashbaord
+                            let storyboard = R.storyboard.dashboard.instance
+                            let dashbaord = storyboard.instantiateInitialViewController()
+                            self.view.window?.rootViewController = dashbaord
                         }
+                        
                     }
                     
                 } else {

@@ -33,7 +33,6 @@
 		9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7471CD898E300100306 /* UITabBarItem+AGi18n.m */; };
 		9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7491CD898E300100306 /* UITextField+AGi18n.m */; };
 		9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C74B1CD898E300100306 /* UITextView+AGi18n.m */; };
-		904DD4881CF2F3E400E894A5 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */; };
 		904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */; };
 		9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC831CE2270F00F575E2 /* RequestResult.swift */; };
 		9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */; };
@@ -303,7 +302,6 @@
 		9042C7491CD898E300100306 /* UITextField+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AGi18n.m"; sourceTree = "<group>"; };
 		9042C74A1CD898E300100306 /* UITextView+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AGi18n.h"; sourceTree = "<group>"; };
 		9042C74B1CD898E300100306 /* UITextView+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AGi18n.m"; sourceTree = "<group>"; };
-		904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientNavBar.swift; path = ../GradientNavBar.swift; sourceTree = "<group>"; };
 		9054CC831CE2270F00F575E2 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyRequestManager.swift; sourceTree = "<group>"; };
@@ -1047,7 +1045,6 @@
 				ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */,
 				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
 				D9C7902C1CC2E989007DDF46 /* Extensions.swift */,
-				904DD4871CF2F3E400E894A5 /* UIImageExtension.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -1621,7 +1618,6 @@
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
 				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
-				904DD4881CF2F3E400E894A5 /* UIImageExtension.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
