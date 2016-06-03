@@ -18,9 +18,8 @@ class LoginViewController: LoginSignupValidationMasterView {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         if !isFromSettings {
-        //Get user call
-        checkUserExists()
-        
+            //Get user call
+            checkUserExists()
         }
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
     }

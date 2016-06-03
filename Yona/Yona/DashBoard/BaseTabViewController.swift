@@ -32,7 +32,7 @@ class BaseTabViewController: UITabBarController {
 
     /* This method returns the view controller we ask for as a string
      
-     - parameter viewControllerName: String,
+     - parameter viewControllerName: String, this is the name the view controller we want to display
      - return UIViewController, UIViewController instance returned according to the parameter passed in
      */
     func getScreen(viewControllerName: String) -> UIViewController{

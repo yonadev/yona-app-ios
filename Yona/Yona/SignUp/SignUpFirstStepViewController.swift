@@ -13,7 +13,6 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     
-    @IBOutlet var gradientView: GradientView!
     @IBOutlet var firstnameTextField: UITextField!
     @IBOutlet var lastnameTextField: UITextField!
     @IBOutlet var personalQuoteLabel: UILabel!
@@ -24,7 +23,6 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         setupUI()
     }
     
@@ -44,7 +42,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == R.segue.signUpFirstStepViewController.signUpSeconStepSegue.identifier,
+        if segue.identifier == R.segue.welcomeViewController.signUpFirstStepViewController.identifier,
             let vc = segue.destinationViewController as? SignUpSecondStepViewController {
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text
@@ -116,6 +114,10 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func unwindToFirstStep(segue: UIStoryboardSegue) {
+
+    }
+    
     @IBAction func nextPressed(sender: UIButton) {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:
@@ -126,7 +128,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
                 "Please input a Last Name.")
             
         } else {
-            performSegueWithIdentifier(R.segue.signUpFirstStepViewController.signUpSeconStepSegue, sender: self)
+            performSegueWithIdentifier(R.segue.signUpFirstStepViewController.signUpSecondStepViewController , sender: self)
         }
     }
 }

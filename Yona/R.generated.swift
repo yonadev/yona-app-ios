@@ -13,12 +13,10 @@ struct R {
     storyboard.addDeviceViewController.validateViewControllers()
     storyboard.profile.validateImages()
     storyboard.profile.validateViewControllers()
-    storyboard.signUp.validateImages()
-    storyboard.signUp.validateViewControllers()
-    storyboard.dashboard.validateImages()
-    storyboard.dashboard.validateViewControllers()
     storyboard.login.validateImages()
     storyboard.login.validateViewControllers()
+    storyboard.dashboard.validateImages()
+    storyboard.dashboard.validateViewControllers()
     storyboard.launchScreen.validateImages()
     storyboard.launchScreen.validateViewControllers()
     storyboard.challenges.validateImages()
@@ -391,13 +389,17 @@ struct R {
     }
     
     struct signUpFirstStepViewController {
-      static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
+      static var signUpSecondStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSecondStepViewController") }
     }
     
     struct timeBucketChallenges {
       static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
       static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
       static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
+    
+    struct welcomeViewController {
+      static var signUpFirstStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, SignUpFirstStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpFirstStepViewController") }
     }
   }
   
@@ -604,23 +606,6 @@ struct R {
       }
     }
     
-    struct signUp {
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "SignUp", bundle: _R.hostingBundle) }
-      static var signUpFirstStepViewController: SignUpFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpFirstStepViewController") as? SignUpFirstStepViewController }
-      static var signUpSecondStepViewController: SignUpSecondStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController") as? SignUpSecondStepViewController }
-      
-      static func validateImages() {
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SignUp', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'SignUp', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(signUpFirstStepViewController != nil, "[R.swift] ViewController with identifier 'signUpFirstStepViewController' could not be loaded from storyboard 'SignUp' as 'SignUpFirstStepViewController'.")
-        assert(signUpSecondStepViewController != nil, "[R.swift] ViewController with identifier 'signUpSecondStepViewController' could not be loaded from storyboard 'SignUp' as 'SignUpSecondStepViewController'.")
-      }
-    }
-    
     struct walkThrough {
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "WalkThrough", bundle: _R.hostingBundle) }
@@ -650,14 +635,19 @@ struct R {
     struct welcome {
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Welcome", bundle: _R.hostingBundle) }
+      static var signUpFirstStepViewController: SignUpFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpFirstStepViewController") as? SignUpFirstStepViewController }
+      static var signUpSecondStepViewController: SignUpSecondStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController") as? SignUpSecondStepViewController }
       static var welcomeStoryboard: WelcomeViewController? { return instance.instantiateViewControllerWithIdentifier("WelcomeStoryboard") as? WelcomeViewController }
       
       static func validateImages() {
         assert(UIImage(named: "welcomeScreen") != nil, "[R.swift] Image named 'welcomeScreen' is used in storyboard 'Welcome', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Welcome', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(welcomeStoryboard != nil, "[R.swift] ViewController with identifier 'welcomeStoryboard' could not be loaded from storyboard 'Welcome' as 'WelcomeViewController'.")
+        assert(signUpFirstStepViewController != nil, "[R.swift] ViewController with identifier 'signUpFirstStepViewController' could not be loaded from storyboard 'Welcome' as 'SignUpFirstStepViewController'.")
+        assert(signUpSecondStepViewController != nil, "[R.swift] ViewController with identifier 'signUpSecondStepViewController' could not be loaded from storyboard 'Welcome' as 'SignUpSecondStepViewController'.")
       }
     }
   }

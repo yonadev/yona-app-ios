@@ -16,9 +16,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     var userFirstName: String?
     var userLastName: String?
-    
-    @IBOutlet var gradientView: GradientView!
-    
+        
     private let nederlandPhonePrefix = "+31 (0) "
     
     @IBOutlet var mobileTextField: UITextField!
@@ -32,7 +30,6 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
         setupUI()
     }
     

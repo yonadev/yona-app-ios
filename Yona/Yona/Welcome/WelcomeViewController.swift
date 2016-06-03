@@ -26,9 +26,7 @@ class WelcomeViewController: BaseViewController {
     }
     
     @IBAction func signUp(sender: AnyObject) {
-        if let signupStoryboard = R.storyboard.signUp.signUpFirstStepViewController {
-            navigationController?.pushViewController(signupStoryboard, animated: true)
-        }
+        performSegueWithIdentifier(R.segue.welcomeViewController.signUpFirstStepViewController, sender: self)
     }
     
     @IBAction func login(sender: AnyObject) {
