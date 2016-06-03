@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
+class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
-        let requestObj = NSURLRequest(URL: NSURL(string: "http://www.yona.nu/app/privacy")!);
+        let requestObj = NSURLRequest(URL: NSURL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
         self.privacyView.loadRequest(requestObj)
     }
     

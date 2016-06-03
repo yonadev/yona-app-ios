@@ -14,6 +14,9 @@ typealias PinCode = String
 typealias AddDeviceCode = String
 
 struct YonaConstants {
+    struct urlLinks {
+        static let privacyStatementURLString = "http://www.yona.nu/app/privacy"
+    }
     
     struct YonaErrorTypes {
         static let FailedToGetActivityLink = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToGetActivityLink ?? "Unknown Error"])

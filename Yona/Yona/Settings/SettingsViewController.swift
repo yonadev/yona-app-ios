@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: BaseViewController {
+class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     
@@ -140,7 +140,6 @@ extension SettingsViewController:UITableViewDelegate {
             callAddDeviceMethod()
         }
     }
-    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70.0
