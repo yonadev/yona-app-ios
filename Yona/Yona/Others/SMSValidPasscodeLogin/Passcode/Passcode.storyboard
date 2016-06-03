@@ -13,7 +13,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Set Passcode View Controller-->
+        <!--PINCODE-->
         <scene sceneID="2X9-VS-Uv7">
             <objects>
                 <viewController storyboardIdentifier="PasscodeStoryboard" id="Jgq-7q-JPY" customClass="SetPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,26 +38,23 @@
                                                     <constraint firstAttribute="height" constant="48" id="Wro-WC-qA2"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="passcode.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="passcode.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i3D-Co-7A4">
                                                 <rect key="frame" x="15" y="201" width="570" height="28"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3x-wX-Dki">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3x-wX-Dki">
                                                 <rect key="frame" x="30" y="250" width="540" height="2"/>
                                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="Tvt-nC-wj5"/>
-                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="passcode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-63-J6j">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passcode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-63-J6j">
                                                 <rect key="frame" x="15" y="282" width="570" height="17"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hq3-T3-bt8">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hq3-T3-bt8">
                                                 <rect key="frame" x="170" y="329" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="kfN-z1-piR"/>
@@ -67,22 +64,24 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="top" secondItem="IYK-aF-xSH" secondAttribute="top" constant="250" id="1Dj-pc-FKj"/>
                                             <constraint firstItem="bZH-63-J6j" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="3pX-wU-gdJ"/>
-                                            <constraint firstItem="bZH-63-J6j" firstAttribute="top" secondItem="F3x-wX-Dki" secondAttribute="bottom" constant="30" id="6Iz-Sb-XOO"/>
+                                            <constraint firstItem="bZH-63-J6j" firstAttribute="top" secondItem="F3x-wX-Dki" secondAttribute="bottom" constant="30" id="Dom-fk-W62"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="Efa-QZ-TL3"/>
-                                            <constraint firstAttribute="trailing" secondItem="F3x-wX-Dki" secondAttribute="trailing" constant="30" id="HOs-ke-zqJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="F3x-wX-Dki" secondAttribute="bottom" constant="348" id="Fti-YH-joc"/>
                                             <constraint firstAttribute="trailing" secondItem="i3D-Co-7A4" secondAttribute="trailing" constant="15" id="TqD-oG-vTf"/>
                                             <constraint firstItem="E2o-LE-vVd" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" constant="-8" id="XTR-pf-9ab"/>
                                             <constraint firstItem="E2o-LE-vVd" firstAttribute="top" secondItem="IYK-aF-xSH" secondAttribute="top" constant="112" id="YlG-fN-Pda"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="top" secondItem="E2o-LE-vVd" secondAttribute="bottom" constant="41" id="d7u-wN-ENc"/>
-                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="top" secondItem="i3D-Co-7A4" secondAttribute="bottom" constant="21" id="egj-So-6yq"/>
                                             <constraint firstItem="bZH-63-J6j" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="15" id="g4G-ad-Vfp"/>
                                             <constraint firstAttribute="trailing" secondItem="bZH-63-J6j" secondAttribute="trailing" constant="15" id="gfe-mM-2ue"/>
-                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="30" id="i8Y-xn-gzO"/>
+                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="30" id="iSi-MG-FPT"/>
                                             <constraint firstItem="hq3-T3-bt8" firstAttribute="top" secondItem="bZH-63-J6j" secondAttribute="bottom" constant="30" id="jgl-sR-oi5"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="leading" secondItem="IYK-aF-xSH" secondAttribute="leading" constant="15" id="jh7-zr-8dL"/>
+                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="centerX" secondItem="bZH-63-J6j" secondAttribute="centerX" id="k1O-aJ-5kZ"/>
                                             <constraint firstAttribute="bottom" secondItem="E2o-LE-vVd" secondAttribute="bottom" constant="440" id="qsf-u1-G1o"/>
                                             <constraint firstItem="i3D-Co-7A4" firstAttribute="centerX" secondItem="IYK-aF-xSH" secondAttribute="centerX" id="tXy-dg-p54"/>
+                                            <constraint firstItem="F3x-wX-Dki" firstAttribute="top" secondItem="i3D-Co-7A4" secondAttribute="bottom" constant="21" id="tym-5E-lTJ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -97,58 +96,16 @@
                                     <outlet property="delegate" destination="Jgq-7q-JPY" id="4wx-m7-Lak"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZY-eu-h3d" userLabel="Gradient ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMb-lK-9HK" customClass="GradientView" customModule="Yona" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Jhj-TM-lll"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cev-av-PQ8"/>
-                                    <constraint firstItem="GMb-lK-9HK" firstAttribute="leading" secondItem="XZY-eu-h3d" secondAttribute="leading" id="jHt-v9-dXr"/>
-                                    <constraint firstAttribute="bottom" secondItem="GMb-lK-9HK" secondAttribute="bottom" id="ppa-MF-r7p"/>
-                                    <constraint firstAttribute="trailing" secondItem="GMb-lK-9HK" secondAttribute="trailing" id="shN-1N-qf8"/>
-                                    <constraint firstItem="GMb-lK-9HK" firstAttribute="top" secondItem="XZY-eu-h3d" secondAttribute="top" id="wNQ-1l-wka"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afW-tT-vUB">
-                                <rect key="frame" x="30" y="30" width="540" height="17"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqQ-hm-v6q">
-                                <rect key="frame" x="10" y="10" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="qul-6I-XiA"/>
-                                    <constraint firstAttribute="height" constant="50" id="uod-01-ugC"/>
-                                </constraints>
-                                <state key="normal" image="icnBack"/>
-                                <connections>
-                                    <action selector="back:" destination="Jgq-7q-JPY" eventType="touchUpInside" id="rio-bq-sm5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="47x-7E-3D8"/>
-                            <constraint firstAttribute="trailing" secondItem="afW-tT-vUB" secondAttribute="trailing" constant="30" id="8DY-7b-fwb"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="Aqg-ew-26l"/>
-                            <constraint firstItem="XZY-eu-h3d" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="Kmk-i7-0d5"/>
+                            <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="vNn-kd-ZDq" secondAttribute="bottom" constant="-64" id="NDc-5t-bc4"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="NMN-N3-G8k"/>
-                            <constraint firstItem="afW-tT-vUB" firstAttribute="top" secondItem="vNn-kd-ZDq" secondAttribute="bottom" constant="10" id="Nyj-Zf-WX1"/>
-                            <constraint firstItem="afW-tT-vUB" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" constant="30" id="WmQ-CQ-WQe"/>
                             <constraint firstAttribute="trailing" secondItem="cxr-Zu-0dh" secondAttribute="trailing" id="eja-Y0-3bt"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="fpn-PA-Ux9"/>
-                            <constraint firstItem="XZY-eu-h3d" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" id="hox-DY-zlW"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="nMr-Ui-QCV"/>
-                            <constraint firstItem="MqQ-hm-v6q" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" constant="10" id="oVM-pd-nVY"/>
-                            <constraint firstItem="MqQ-hm-v6q" firstAttribute="leading" secondItem="7nZ-0f-pk7" secondAttribute="leading" constant="10" id="qAA-SD-pGb"/>
-                            <constraint firstAttribute="trailing" secondItem="XZY-eu-h3d" secondAttribute="trailing" id="tnB-dj-rE3"/>
                             <constraint firstItem="leI-JS-8P2" firstAttribute="top" secondItem="cxr-Zu-0dh" secondAttribute="bottom" id="y4i-mJ-Ash"/>
                             <constraint firstItem="cxr-Zu-0dh" firstAttribute="top" secondItem="7nZ-0f-pk7" secondAttribute="top" id="yhr-yY-eDP"/>
                         </constraints>
@@ -158,18 +115,21 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="T9a-un-uwf"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" title="PINCODE" id="T9a-un-uwf">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="ggD-Vo-avF">
+                            <connections>
+                                <action selector="back:" destination="Jgq-7q-JPY" id="flA-9Y-BzH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="avtarImage" destination="E2o-LE-vVd" id="WOL-2i-ms5"/>
-                        <outlet property="backButton" destination="MqQ-hm-v6q" id="VLT-LR-Kq8"/>
+                        <outlet property="backButton" destination="ggD-Vo-avF" id="MgZ-PU-4LN"/>
                         <outlet property="codeView" destination="hq3-T3-bt8" id="3bk-hm-zpo"/>
-                        <outlet property="gradientContainerView" destination="XZY-eu-h3d" id="t94-jz-ka0"/>
-                        <outlet property="gradientView" destination="GMb-lK-9HK" id="52G-dH-hvB"/>
                         <outlet property="headerTitleLabel" destination="i3D-Co-7A4" id="iJ1-gL-eYj"/>
                         <outlet property="infoLabel" destination="bZH-63-J6j" id="HHP-ai-WRI"/>
                         <outlet property="progressView" destination="F3x-wX-Dki" id="cb4-OJ-sO2"/>
-                        <outlet property="screenNameLabel" destination="afW-tT-vUB" id="SI6-UI-7r6"/>
                         <outlet property="scrollView" destination="cxr-Zu-0dh" id="MUt-mz-vPg"/>
                         <outlet property="topView" destination="IYK-aF-xSH" id="xaX-WB-Cym"/>
                     </connections>
@@ -183,9 +143,16 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g02-M2-e4m" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHU-Ly-Cbt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHU-Ly-Cbt" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.34509804840000002" green="0.14509804549999999" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

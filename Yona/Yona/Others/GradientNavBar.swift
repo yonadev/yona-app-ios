@@ -11,7 +11,11 @@ import UIKit
 class GradientNavBar: UINavigationBar {
     
     /** This is a custom value on so that any Nav bar using this class has a property in which you can set the colour */
-    @IBInspectable var gradientColor: UIColor!
+    @IBInspectable var gradientColor: UIColor! {
+        didSet{
+            self.awakeFromNib()
+        }
+    }
     /** An instance of our gradient view subview that we can reuse in our nav bar */
     var gradientView: GradientView = GradientView()
     
@@ -21,6 +25,8 @@ class GradientNavBar: UINavigationBar {
         //set gradient view to the colour set by our inspectable property
         gradientView.setGradient(gradientColor, color2: gradientColor)
         gradientView.backgroundColor = self.backgroundColor
+        gradientView.userInteractionEnabled = false
+
         self.addSubview(gradientView)
         self.sendSubviewToBack(gradientView)
 
