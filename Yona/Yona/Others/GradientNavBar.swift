@@ -26,7 +26,10 @@ class GradientNavBar: UINavigationBar {
         gradientView.setGradient(gradientColor, color2: gradientColor)
         gradientView.backgroundColor = self.backgroundColor
         gradientView.userInteractionEnabled = false
+
         self.addSubview(gradientView)
+        self.sendSubviewToBack(gradientView)
+
     }
     
     override func layoutSubviews() {

@@ -15,7 +15,7 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
-        let requestObj = NSURLRequest(URL: NSURL(string: "http://www.yona.nu/app/privacy")!);
+        let requestObj = NSURLRequest(URL: NSURL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
         self.privacyView.loadRequest(requestObj)
     }
     

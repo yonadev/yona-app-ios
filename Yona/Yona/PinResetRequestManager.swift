@@ -89,14 +89,7 @@ class PinResetRequestManager {
      */
     func pinResetRequest(onCompletion: APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.resetRequest, body: nil) { (success, ISOCode, serverMessage, serverCode) in
-            if success {
-                onCompletion(true, ISOCode, serverMessage, serverCode)
-            } else {
-                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin
-                self.pinResetClear({ (success, nil, serverMessage, Code) in
-                    onCompletion(false, nil, serverMessage, serverCode)
-                })
-            }
+            onCompletion(success, ISOCode, serverMessage, serverCode)
         }
     }
     
@@ -108,14 +101,8 @@ class PinResetRequestManager {
      */
     func pinResetVerify(body: BodyDataDictionary, onCompletion: APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.verifyRequest, body: body) { (success, nil, serverMessage, serverCode) in
-            if success {
-                onCompletion(true, nil, serverMessage, serverCode)
-            } else {
-                //incase you get stuck in reset attempt we make sure it is cleared so it is possible for the user to reset the pin again
-                self.pinResetClear({ (success, nil, serverMessage, Code) in
-                    onCompletion(false, nil, serverMessage, serverCode)
-                })
-            }
+            onCompletion(success, nil, serverMessage, serverCode)
+
         }
     }
     

@@ -89,11 +89,11 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
                 if self.presentingViewController != nil{
                     self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                 }else{
-//                    if self.isFromSettings { //need to reset the colour back to grape colour
+                    if self.isFromSettings { //need to reset the colour back to yellow colour
                         let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-                        gradientNavBar?.backgroundColor = UIColor.yiMangoColor()
-                        gradientNavBar?.gradientColor = UIColor.yiMangoColor()
-//                    }
+                        gradientNavBar?.backgroundColor = UIColor.yiMango95Color()
+                        gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
+                    }
                     self.navigationController?.popToRootViewControllerAnimated(false)
                 }
                 

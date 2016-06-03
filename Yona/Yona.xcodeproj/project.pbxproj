@@ -72,6 +72,7 @@
 		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
+		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */; };
 		AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */; };
 		AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBD1CD3648F006BBA7E /* IQUITextFieldView+Additions.swift */; };
@@ -346,7 +347,7 @@
 		AD00DECD1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		AD00DECF1CD3648F006BBA7E /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBucketChallenges.swift; sourceTree = "<group>"; };
-		AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yona-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yona-Bridging-Header.h"; path = "Others/Yona-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		AD2263291CD2668000AD4AB1 /* YonaUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YonaUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -808,6 +809,16 @@
 			name = LoginSignUpFlow;
 			sourceTree = "<group>";
 		};
+		90FF6DFF1D016E8A00A674C4 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
+				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
+				AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */,
+			);
+			name = ProgressHUD;
+			sourceTree = "<group>";
+		};
 		AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -949,19 +960,17 @@
 			path = WalkThrough;
 			sourceTree = "<group>";
 		};
-		AD291DA21CAAA7AB008CAFB1 /* Others */ = {
+		AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */ = {
 			isa = PBXGroup;
 			children = (
+				90FF6DFF1D016E8A00A674C4 /* ProgressHUD */,
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
-				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
-				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
-				AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
-				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
 			);
+			name = 3rd_Party_APIs;
 			path = Others;
 			sourceTree = "<group>";
 		};
@@ -1299,6 +1308,7 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				D9C744EC1CB3DFCA008E463A /* Protocols_Enums_Constants */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
@@ -1306,16 +1316,16 @@
 				90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
+				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
+				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				AD27E61C1CDB4069001C801D /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
-				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
-				AD291DA21CAAA7AB008CAFB1 /* Others */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1728,6 +1738,7 @@
 				BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */,
 				907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */,
 				D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */,
+				90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */,
 				908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */,
 				907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */,
 				BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */,

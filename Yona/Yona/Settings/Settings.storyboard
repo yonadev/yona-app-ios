@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="-8" y="490"/>
         </scene>
-        <!--Privacy-->
+        <!--settings.privacy-->
         <scene sceneID="F0B-Ts-OJY">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="400-kj-P61" customClass="PrivacyStatementVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVT-ZX-1jK">
-                                <rect key="frame" x="0.0" y="64" width="600" height="534"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="400-kj-P61" id="6tJ-uO-VLe"/>
@@ -93,13 +93,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gU1-8f-qUs" firstAttribute="top" secondItem="xVT-ZX-1jK" secondAttribute="bottom" constant="2" id="2x2-5m-Zsh"/>
-                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" id="Ivo-KJ-R9Y"/>
-                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="top" secondItem="b4o-Te-6zz" secondAttribute="bottom" id="ONR-6L-wdk"/>
-                            <constraint firstAttribute="trailing" secondItem="xVT-ZX-1jK" secondAttribute="trailing" id="bhf-Ei-eSI"/>
+                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="top" secondItem="b4o-Te-6zz" secondAttribute="bottom" id="AC8-Mw-mnZ"/>
+                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="leading" secondItem="LxM-pP-hzy" secondAttribute="leading" id="cnd-Bj-Pmd"/>
+                            <constraint firstItem="xVT-ZX-1jK" firstAttribute="bottom" secondItem="gU1-8f-qUs" secondAttribute="top" id="daG-9t-1jx"/>
+                            <constraint firstAttribute="trailing" secondItem="xVT-ZX-1jK" secondAttribute="trailing" id="sZn-Qj-iVl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Privacy" id="FJG-PA-jbg"/>
+                    <navigationItem key="navigationItem" title="settings.privacy" id="FJG-PA-jbg">
+                        <barButtonItem key="backBarButtonItem" title=" " id="APe-In-4MZ"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
