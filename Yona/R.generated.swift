@@ -596,7 +596,7 @@ struct R {
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Settings', but couldn't be loaded.")
+        
       }
       
       static func validateViewControllers() {

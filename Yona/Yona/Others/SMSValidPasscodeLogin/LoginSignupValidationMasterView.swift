@@ -122,11 +122,6 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-//                    if self.isFromSettings { //need to reset the colour back to grape colour
-//                        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-//                        gradientNavBar?.backgroundColor = UIColor.yiGrapeColor()
-//                        gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
-//                    }
                     setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
                         self.navigationController?.pushViewController(sMSValidation, animated: false)

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
+class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
     
     override func viewDidLoad() {

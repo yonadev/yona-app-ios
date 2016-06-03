@@ -12,7 +12,7 @@ protocol BudgetChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameBudgetChallengeViewController: BaseViewController {
+class TimeFrameBudgetChallengeViewController: UIViewController {
     
     weak var delegate: BudgetChallengeDelegate?
     @IBOutlet var gradientView: GradientView!

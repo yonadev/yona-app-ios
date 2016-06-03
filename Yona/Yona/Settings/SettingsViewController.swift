@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: BaseViewController {
+class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     

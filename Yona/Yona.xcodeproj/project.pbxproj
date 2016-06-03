@@ -101,7 +101,6 @@
 		AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */; };
 		AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */; };
 		AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */; };
-		AD2DF23B1CEDCA31002A42AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */; };
 		AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3931E11CEB311900605FBA /* BaseTabViewController.swift */; };
 		AD5571F91CABA022000BF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F71CABA022000BF880 /* Main.storyboard */; };
 		AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */; };
@@ -311,7 +310,7 @@
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../Notifications/ProfileViewController.swift; sourceTree = "<group>"; };
 		906FED7C1CEDB31A00029845 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Notifications/Profile.storyboard; sourceTree = "<group>"; };
-		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsProfileMasterView.swift; sourceTree = "<group>"; };
+		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsProfileMasterView.swift; path = ../FriendsProfileMasterView.swift; sourceTree = "<group>"; };
 		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		906FED881CEE06DE00029845 /* NotificationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsCell.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -366,9 +365,8 @@
 		AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AD291D741CA940D9008CAFB1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+YIColors.swift"; path = "Others/UIColor+YIColors.swift"; sourceTree = "<group>"; };
-		AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageContentViewController.swift; sourceTree = "<group>"; };
-		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPageViewController.swift; sourceTree = "<group>"; };
-		AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPageContentViewController.swift; path = ../Others/AVPageContentViewController.swift; sourceTree = "<group>"; };
+		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPageViewController.swift; path = ../Others/AVPageViewController.swift; sourceTree = "<group>"; };
 		AD3931E11CEB311900605FBA /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
@@ -379,7 +377,7 @@
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		AD84B7311CDA27820085D5B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
+		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CodeInputView.swift; path = Others/CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ADC6C88B1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameTimeZoneChallengeViewController.swift; sourceTree = "<group>"; };
@@ -646,7 +644,7 @@
 				904DD48D1CF36C9700E894A5 /* CustomPicker */,
 			);
 			name = CustomSubclasses;
-			path = CustomPicker;
+			path = Others/CustomPicker;
 			sourceTree = "<group>";
 		};
 		9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */ = {
@@ -657,7 +655,8 @@
 				9042C7241CD78F7200100306 /* Passcode */,
 				9042C7281CD78F7200100306 /* SMSValidation */,
 			);
-			path = SMSValidPasscodeLogin;
+			name = SMSValidPasscodeLogin;
+			path = Others/SMSValidPasscodeLogin;
 			sourceTree = "<group>";
 		};
 		9042C7201CD78F7200100306 /* Login */ = {
@@ -742,7 +741,6 @@
 			isa = PBXGroup;
 			children = (
 				AD291D251CA92808008CAFB1 /* Friends */,
-				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 			);
 			name = FriendsNotifications;
 			sourceTree = "<group>";
@@ -783,6 +781,31 @@
 				9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		90FF6DFC1D0095C000A674C4 /* TabBarViews */ = {
+			isa = PBXGroup;
+			children = (
+				AD291D241CA92808008CAFB1 /* Challenges */,
+				AD291D261CA92808008CAFB1 /* Profile */,
+				AD291D271CA92808008CAFB1 /* Settings */,
+				906FED7E1CEDB7EC00029845 /* FriendsNotifications */,
+			);
+			name = TabBarViews;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */ = {
+			isa = PBXGroup;
+			children = (
+				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
+				AD291D281CA9286C008CAFB1 /* CreateAccount */,
+				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
+				AD5571F21CAAD87B000BF880 /* SignUp */,
+				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
+				AD291D291CA9286C008CAFB1 /* WalkThrough */,
+			);
+			name = LoginSignUpFlow;
 			sourceTree = "<group>";
 		};
 		AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */ = {
@@ -852,9 +875,11 @@
 		AD291CE01CA90202008CAFB1 /* DashBoard */ = {
 			isa = PBXGroup;
 			children = (
+				90FF6DFC1D0095C000A674C4 /* TabBarViews */,
 				AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */,
 				60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */,
 				AD3931E11CEB311900605FBA /* BaseTabViewController.swift */,
+				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 			);
 			path = DashBoard;
 			sourceTree = "<group>";
@@ -896,6 +921,7 @@
 		AD291D271CA92808008CAFB1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */,
 				AD291D741CA940D9008CAFB1 /* Settings.storyboard */,
 				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
@@ -915,6 +941,8 @@
 		AD291D291CA9286C008CAFB1 /* WalkThrough */ = {
 			isa = PBXGroup;
 			children = (
+				AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */,
+				AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */,
 				AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */,
 				AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */,
 			);
@@ -927,22 +955,11 @@
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
-				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
-				9042C7091CD7581E00100306 /* CustomSubclasses */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
 				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
 				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
 				AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */,
-				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
-				AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */,
-				AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */,
-				900972B31CC7B77000EEB7E7 /* Enums.swift */,
-				D94A93C41CB291FC00ABE0F8 /* Constants.swift */,
-				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
-				D94A93B81CB26E2D00ABE0F8 /* DataService */,
-				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
-				D9C744EC1CB3DFCA008E463A /* Protocols */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
 			);
 			path = Others;
@@ -965,7 +982,7 @@
 				AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */,
 			);
 			name = AddNewDevice;
-			path = Others/AddNewDevice;
+			path = ../Others/AddNewDevice;
 			sourceTree = "<group>";
 		};
 		ADAEAFE01CB40FA4005ED7B4 /* Welcome */ = {
@@ -1030,7 +1047,6 @@
 				90DE87991CD2374400C1E706 /* DAOObjects */,
 			);
 			name = DataService;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
@@ -1047,7 +1063,6 @@
 				D9C7902C1CC2E989007DDF46 /* Extensions.swift */,
 			);
 			name = Extensions;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */ = {
@@ -1087,15 +1102,17 @@
 				D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */,
 			);
 			name = Fonts;
-			path = ..;
 			sourceTree = "<group>";
 		};
-		D9C744EC1CB3DFCA008E463A /* Protocols */ = {
+		D9C744EC1CB3DFCA008E463A /* Protocols_Enums_Constants */ = {
 			isa = PBXGroup;
 			children = (
+				900972B31CC7B77000EEB7E7 /* Enums.swift */,
+				D94A93C41CB291FC00ABE0F8 /* Constants.swift */,
 				D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */,
 			);
-			name = Protocols;
+			name = Protocols_Enums_Constants;
+			path = Others;
 			sourceTree = "<group>";
 		};
 		D9C744F61CB3F317008E463A /* Cucumberish */ = {
@@ -1282,6 +1299,13 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				D9C744EC1CB3DFCA008E463A /* Protocols_Enums_Constants */,
+				D98635681CABF44400A8535C /* Fonts */,
+				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
+				9042C7091CD7581E00100306 /* CustomSubclasses */,
+				90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */,
+				D94A93B81CB26E2D00ABE0F8 /* DataService */,
+				AD291CE01CA90202008CAFB1 /* DashBoard */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
@@ -1291,18 +1315,7 @@
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
-				AD291D241CA92808008CAFB1 /* Challenges */,
-				AD291D281CA9286C008CAFB1 /* CreateAccount */,
-				AD291CE01CA90202008CAFB1 /* DashBoard */,
 				AD291DA21CAAA7AB008CAFB1 /* Others */,
-				AD291D261CA92808008CAFB1 /* Profile */,
-				906FED7E1CEDB7EC00029845 /* FriendsNotifications */,
-				AD291D271CA92808008CAFB1 /* Settings */,
-				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
-				AD5571F21CAAD87B000BF880 /* SignUp */,
-				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
-				AD291D291CA9286C008CAFB1 /* WalkThrough */,
-				AD2DF23A1CEDCA31002A42AE /* BaseViewController.swift */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1632,7 +1645,6 @@
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
-				AD2DF23B1CEDCA31002A42AE /* BaseViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,

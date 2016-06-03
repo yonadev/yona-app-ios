@@ -191,7 +191,7 @@
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s) %@minute(s) %@second(s).";
 "userNotFoundAlert" = "User not found";
 "change-pin" = "Change PIN";
-"privacy" = "Privacy";
+"settings.privacy" = "Privacy";
 "add-device" = "Add device";
 "delete-user" = "Unsubscribe";
 "deleteusermessage" = "Unsubscribing means you loose all information (friends, notifications, challenges, activities, etc.) on all of your devices. Press OK if this is intended.";
