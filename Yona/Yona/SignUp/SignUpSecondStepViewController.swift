@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
+class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
@@ -211,7 +211,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
         if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {

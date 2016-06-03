@@ -12,7 +12,7 @@ protocol BudgetChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameBudgetChallengeViewController: UIViewController {
+class TimeFrameBudgetChallengeViewController: BaseViewController {
     
     weak var delegate: BudgetChallengeDelegate?
     @IBOutlet var gradientView: GradientView!
@@ -43,7 +43,7 @@ class TimeFrameBudgetChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(timeBucketTabNames.budget.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5

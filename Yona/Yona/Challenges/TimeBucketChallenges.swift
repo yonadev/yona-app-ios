@@ -9,7 +9,7 @@
 
 import UIKit
 
-class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
+class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
@@ -61,7 +61,7 @@ class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChalle
     override func viewDidLoad() {
         super.viewDidLoad()
         //It will select NoGo tab by default
-        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
         self.callActivityCategory()
@@ -72,7 +72,7 @@ class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChalle
         
         setDeselectOtherCategory()
 
-        if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
+        if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
                 

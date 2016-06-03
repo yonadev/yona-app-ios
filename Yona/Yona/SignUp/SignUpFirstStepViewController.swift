@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpFirstStepViewController: UIViewController, UIScrollViewDelegate {
+class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: BaseViewController {
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func setupUI() {
-        setViewControllerToDisplay("Welcome", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
     }
     
     @IBAction func signUp(sender: AnyObject) {

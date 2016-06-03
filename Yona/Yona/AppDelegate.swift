@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         updateEnvironmentSettings()
-        updateRootScreen()
+        
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
         
     }
-    
+        
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -47,10 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        let settingsChanged = updateEnvironmentSettings()
-        if settingsChanged{
-            updateRootScreen()
-        }
+        updateEnvironmentSettings()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -61,38 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    //MARK: User Methods
-    func updateRootScreen()
-    {
-        var rootController : UINavigationController
-        rootController = getScreenNameToDisplay()
-        if let window = self.window {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = rootController
-        }
-    }
     
-    func getScreenNameToDisplay() -> UINavigationController{
-        var rootController: UINavigationController!
-        if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
-            switch viewName {
-            case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.initialViewController!
-            case YonaConstants.screenNames.passcode:
-                rootController = R.storyboard.passcode.initialViewController!
-            case YonaConstants.screenNames.login:
-                rootController = R.storyboard.login.initialViewController!
-            case YonaConstants.screenNames.welcome:
-                rootController = R.storyboard.welcome.initialViewController!
-                
-            default:
-                rootController = R.storyboard.walkThrough.initialViewController!
-            }
-            return rootController
-            
-        }
-        return UINavigationController(rootViewController: rootController)
-    }
     
     //MARK: Handle environment switch
     func updateEnvironmentSettings() -> Bool

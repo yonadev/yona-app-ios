@@ -127,9 +127,10 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         //Now send user back to pinreset screen, let them enter pincode and password again
                         self.codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                            passcode.isFromPinReset = self.isFromPinReset
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
                         self.codeInputView.clear()
@@ -151,7 +152,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                         self.codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
                         if let passcode = R.storyboard.passcode.passcodeStoryboard {
                             self.navigationController?.pushViewController(passcode, animated: false)
@@ -175,7 +176,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 if (success) {
                     self.codeInputView.resignFirstResponder()
                     //Update flag
-                    setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    
+                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     
                     if let passcode = R.storyboard.passcode.passcodeStoryboard {
                         self.navigationController?.pushViewController(passcode, animated: false)

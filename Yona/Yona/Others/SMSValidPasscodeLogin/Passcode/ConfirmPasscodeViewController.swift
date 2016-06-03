@@ -11,7 +11,6 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
-
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -84,24 +83,22 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             KeychainManager.sharedInstance.savePINCode(code)
             
             //Update flag
-            setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if self.view.window?.rootViewController is BaseTabViewController{
-                if self.presentingViewController != nil{
-                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                }else{
-                    if self.isFromSettings { //need to reset the colour back to yellow colour
-                        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-                        gradientNavBar?.backgroundColor = UIColor.yiMango95Color()
-                        gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
-                    }
-                    self.navigationController?.popToRootViewControllerAnimated(false)
-                }
-                
-            } else{
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+/*if self.view.window?.rootViewController is BaseTabViewController{
+                self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }else{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
                 self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+            }*/
+            if isFromPinReset == true {
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                
+            } else {
+                
+                if let dashboard = R.storyboard.dashboard.initialViewController {
+                    self.navigationController?.pushViewController(dashboard, animated: false)
+                }
             }
-            
         } else {
             codeInputView.clear()
             navigationController?.popViewControllerAnimated(true)

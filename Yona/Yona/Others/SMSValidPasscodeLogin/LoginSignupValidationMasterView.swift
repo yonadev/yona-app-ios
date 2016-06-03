@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoginSignupValidationMasterView: UIViewController {
+class LoginSignupValidationMasterView: BaseViewController {
     
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
@@ -31,6 +31,7 @@ class LoginSignupValidationMasterView: UIViewController {
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var backButton: UIBarButtonItem!
     var isFromSettings = false
+    var isFromPinReset:Bool?
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
@@ -113,6 +114,7 @@ extension LoginSignupValidationMasterView {
 //MARK: - Button logic code used on 2 screens
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
+        isFromPinReset = true
         Loader.Show()
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
@@ -127,8 +129,9 @@ extension LoginSignupValidationMasterView {
                         gradientNavBar?.backgroundColor = UIColor.yiGrapeColor()
                         gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
                     }
-                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                        sMSValidation.isFromPinReset = true
                         self.navigationController?.pushViewController(sMSValidation, animated: false)
                     }
                 }

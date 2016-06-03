@@ -10,10 +10,15 @@ import UIKit
 
 public class WalkThroughViewController: UIViewController, ButtonEvents {
     @IBOutlet var pageController: AVPageViewController!
-    
-    
+        
     var allControllers = [UIViewController]()
     let margin: CGFloat = 0.0
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()

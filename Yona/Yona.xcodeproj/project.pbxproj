@@ -73,6 +73,7 @@
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6E001D01D73000A674C4 /* BaseViewController.swift */; };
 		AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */; };
 		AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */; };
 		AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBD1CD3648F006BBA7E /* IQUITextFieldView+Additions.swift */; };
@@ -328,6 +329,7 @@
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
@@ -1309,6 +1311,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
+				90FF6E001D01D73000A674C4 /* BaseViewController.swift */,
 				D9C744EC1CB3DFCA008E463A /* Protocols_Enums_Constants */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
@@ -1651,6 +1654,7 @@
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
+				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
 				9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,

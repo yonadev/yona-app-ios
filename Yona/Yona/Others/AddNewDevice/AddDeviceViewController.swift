@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
+class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
@@ -100,7 +100,7 @@ class AddDeviceViewController: UIViewController,UIScrollViewDelegate {
                     if success {
                         //Update flag
                         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
-                            setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                             if let passcode = R.storyboard.passcode.passcodeStoryboard {
                                 self.navigationController?.pushViewController(passcode, animated: false)
                             }
