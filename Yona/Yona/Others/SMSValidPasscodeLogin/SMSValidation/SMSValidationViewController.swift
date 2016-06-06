@@ -27,7 +27,6 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         #if DEBUG
             self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {

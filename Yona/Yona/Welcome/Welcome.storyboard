@@ -35,7 +35,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="wJr-LV-LhE">
             <objects>
-                <viewController storyboardIdentifier="WelcomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dEx-Je-Enr" customClass="WelcomeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dEx-Je-Enr" customClass="WelcomeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l3H-Om-yjj"/>
                         <viewControllerLayoutGuide type="bottom" id="GPe-ch-MPs"/>
@@ -58,8 +58,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="dEx-Je-Enr" eventType="touchUpInside" id="Kf7-R7-tes"/>
-                                    <segue destination="HVP-ZG-kdZ" kind="show" identifier="LoginStoryboard" id="JhI-Dz-Trd"/>
+                                    <segue destination="HVP-ZG-kdZ" kind="show" identifier="zd" id="JhI-Dz-Trd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuO-p0-ekh">
@@ -101,7 +100,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dyM-lm-8aR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BVV-Xz-ZoM" sceneMemberID="viewController">
+                <navigationController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="BVV-Xz-ZoM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BkW-V5-f9t" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

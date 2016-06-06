@@ -14,9 +14,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+                
         if !isFromSettings {
             //Get user call
             checkUserExists()
@@ -49,7 +47,6 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
@@ -119,7 +116,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
                         switch buttonPressed{
                         case alertButtonType.OK:
-                            if let welcome = R.storyboard.welcome.welcomeStoryboard {
+                            if let welcome = R.storyboard.welcome.initialViewController {
                                 UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
                             }
                         case alertButtonType.cancel:

@@ -20,8 +20,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
         self.navigationController?.navigationBarHidden = false
-
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
 

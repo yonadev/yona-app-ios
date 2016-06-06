@@ -51,7 +51,7 @@ class BaseTabViewController: UITabBarController {
             rootController = R.storyboard.dashboard.initialViewController
             
         default:
-            rootController = R.storyboard.welcome.welcomeStoryboard
+            rootController = R.storyboard.welcome.initialViewController
             
         }
         return rootController

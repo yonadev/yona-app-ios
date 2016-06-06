@@ -42,7 +42,7 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
         } else {
             // last index
             print("welcome")
-            if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            if let welcome = R.storyboard.welcome.initialViewController {
                 self.navigationController?.pushViewController(welcome, animated: false)
             }
         }
@@ -71,7 +71,7 @@ class TourScreenViewController: AVPageContentViewController {
     
     @IBAction func nextAction(sender: UIButton) {
         delegate?.buttonAction(self.viewControllerIndex)
-        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+        if let welcome = R.storyboard.welcome.initialViewController {
             self.navigationController?.pushViewController(welcome, animated: false)
         }
     }

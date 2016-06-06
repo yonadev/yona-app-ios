@@ -17,7 +17,7 @@ class WelcomeViewController: BaseViewController {
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
         setupUI()
     }
     

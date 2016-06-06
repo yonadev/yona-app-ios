@@ -399,8 +399,8 @@ struct R {
     }
     
     struct welcomeViewController {
-      static var loginStoryboard: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, LoginViewController> { return StoryboardSegueIdentifier(identifier: "LoginStoryboard") }
       static var signUpFirstStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, SignUpFirstStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpFirstStepViewController") }
+      static var zd: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, LoginViewController> { return StoryboardSegueIdentifier(identifier: "zd") }
     }
   }
   

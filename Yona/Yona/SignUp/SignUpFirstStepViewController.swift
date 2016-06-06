@@ -23,6 +23,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupUI()
     }
     
@@ -87,11 +88,6 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)
-        
-        //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         // Adding right mode image to text fields
         let firstname = UIImageView(image: R.image.icnName)
