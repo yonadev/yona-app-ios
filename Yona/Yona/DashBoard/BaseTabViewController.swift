@@ -46,7 +46,7 @@ class BaseTabViewController: UITabBarController {
         case ViewControllerTypeString.login.rawValue:
             rootController = R.storyboard.login.loginStoryboard
         case ViewControllerTypeString.welcome.rawValue:
-            rootController = R.storyboard.welcome.welcomeStoryboard
+            rootController = R.storyboard.welcome.initialViewController
         case ViewControllerTypeString.dashboard.rawValue:
             rootController = R.storyboard.dashboard.initialViewController
             

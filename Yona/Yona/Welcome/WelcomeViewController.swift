@@ -25,13 +25,4 @@ class WelcomeViewController: BaseViewController {
         setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
     }
     
-    @IBAction func signUp(sender: AnyObject) {
-        performSegueWithIdentifier(R.segue.welcomeViewController.signUpFirstStepViewController, sender: self)
-    }
-    
-    @IBAction func login(sender: AnyObject) {
-        if let addDeviceStoryboard = R.storyboard.addDeviceViewController.addDeviceStoryboard {
-            navigationController?.pushViewController(addDeviceStoryboard, animated: true)
-        }
-    }
 }
