@@ -503,16 +503,26 @@ struct R {
     }
     
     struct login {
+      static var confirmPasscodeStoryboard: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeStoryboard") as? ConfirmPasscodeViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginStoryboard: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginStoryboard") as? LoginViewController }
+      static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
+      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Login', but couldn't be loaded.")
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(loginStoryboard != nil, "[R.swift] ViewController with identifier 'loginStoryboard' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
+        assert(confirmPasscodeStoryboard != nil, "[R.swift] ViewController with identifier 'confirmPasscodeStoryboard' could not be loaded from storyboard 'Login' as 'ConfirmPasscodeViewController'.")
+        assert(passcodeStoryboard != nil, "[R.swift] ViewController with identifier 'passcodeStoryboard' could not be loaded from storyboard 'Login' as 'SetPasscodeViewController'.")
+        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'SMSValidationViewController'.")
       }
     }
     
