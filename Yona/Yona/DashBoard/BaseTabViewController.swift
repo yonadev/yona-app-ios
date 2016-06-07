@@ -28,6 +28,7 @@ class BaseTabViewController: UITabBarController {
         if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
             self.view.window?.rootViewController?.presentViewController(getScreen(viewControllerName), animated: false, completion: nil)
         }
+
     }
 
     /* This method returns the view controller we ask for as a string

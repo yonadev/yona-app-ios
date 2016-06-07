@@ -87,10 +87,7 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
                 self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 
             } else {
-                
-                if let dashboard = R.storyboard.dashboard.initialViewController {
-                    self.navigationController?.pushViewController(dashboard, animated: false)
-                }
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             }
         } else {
             codeInputView.clear()
