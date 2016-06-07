@@ -115,19 +115,22 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
 
     }
     
-    @IBAction func nextPressed(sender: UIButton) {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:
                 "Please input a First Name.")
-            
+            return false
+
         } else if self.lastnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid Last Name", alertDescription:
                 "Please input a Last Name.")
+            return false
             
         } else {
-            performSegueWithIdentifier(R.segue.signUpFirstStepViewController.signUpSecondStepViewController , sender: self)
+            return true
         }
     }
+
 }
 
 //MARK: - UITextFieldDelegate
