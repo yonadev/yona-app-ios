@@ -83,12 +83,12 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         nicknameTextField.delegate = self
-        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
-        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
-        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
+//        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
+//        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
+//        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
         
-        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
+//        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
+//        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         
         //Looks for single or multiple taps.
