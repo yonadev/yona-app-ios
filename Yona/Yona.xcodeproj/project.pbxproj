@@ -795,6 +795,7 @@
 		90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */ = {
 			isa = PBXGroup;
 			children = (
+				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
@@ -927,7 +928,6 @@
 		AD291D271CA92808008CAFB1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */,
 				AD291D741CA940D9008CAFB1 /* Settings.storyboard */,
 				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
@@ -976,7 +976,7 @@
 				AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */,
 			);
 			name = AddNewDevice;
-			path = ../Others/AddNewDevice;
+			path = Others/AddNewDevice;
 			sourceTree = "<group>";
 		};
 		ADAEAFE01CB40FA4005ED7B4 /* Welcome */ = {
