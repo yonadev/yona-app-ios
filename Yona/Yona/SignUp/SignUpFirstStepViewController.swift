@@ -43,7 +43,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == R.segue.welcomeViewController.signUpFirstStepViewController.identifier,
+        if segue.identifier == R.segue.signUpFirstStepViewController.signUpSecondStepViewController.identifier,
+        
             let vc = segue.destinationViewController as? SignUpSecondStepViewController {
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text

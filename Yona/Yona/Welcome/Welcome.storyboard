@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -105,7 +105,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BkW-V5-f9t" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.34509804840000002" green="0.14509804549999999" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
@@ -233,7 +233,6 @@
                                 </state>
                                 <connections>
                                     <action selector="nextPressed:" destination="GWi-O9-poi" eventType="touchUpInside" id="Agd-Va-I7J"/>
-                                    <segue destination="3UE-eC-VFS" kind="show" identifier="SignUpSecondStepViewController" id="IPd-KS-ymH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -267,11 +266,12 @@
                         <outlet property="personalQuoteLabel" destination="0vU-zC-yra" id="6WW-z8-X5a"/>
                         <outlet property="topView" destination="Fbo-FK-WGI" id="dtt-qi-RXw"/>
                         <outlet property="topViewHeightConstraint" destination="Lah-Fe-pUL" id="O79-bt-nOo"/>
+                        <segue destination="3UE-eC-VFS" kind="show" identifier="SignUpSecondStepViewController" id="rEx-5c-l0A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40q-gD-SfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="-440"/>
+            <point key="canvasLocation" x="2206" y="-440"/>
         </scene>
         <!--DOE MEE-->
         <scene sceneID="M0g-le-X2V">

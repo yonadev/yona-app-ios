@@ -5,8 +5,6 @@ import UIKit
 
 struct R {
   static func validate() {
-    storyboard.createAccount.validateImages()
-    storyboard.createAccount.validateViewControllers()
     storyboard.friends.validateImages()
     storyboard.friends.validateViewControllers()
     storyboard.addDeviceViewController.validateImages()
@@ -27,10 +25,10 @@ struct R {
     storyboard.confirmPasscode.validateViewControllers()
     storyboard.sMSValidation.validateImages()
     storyboard.sMSValidation.validateViewControllers()
-    storyboard.passcode.validateImages()
-    storyboard.passcode.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
+    storyboard.passcode.validateImages()
+    storyboard.passcode.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
     storyboard.main.validateImages()
@@ -454,19 +452,6 @@ struct R {
       
       static func validateViewControllers() {
         assert(confirmPasscodeStoryboard != nil, "[R.swift] ViewController with identifier 'confirmPasscodeStoryboard' could not be loaded from storyboard 'ConfirmPasscode' as 'ConfirmPasscodeViewController'.")
-      }
-    }
-    
-    struct createAccount {
-      static var createAccountStoryboard: CreateAccountViewController? { return instance.instantiateViewControllerWithIdentifier("CreateAccountStoryboard") as? CreateAccountViewController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "CreateAccount", bundle: _R.hostingBundle) }
-      
-      static func validateImages() {
-        
-      }
-      
-      static func validateViewControllers() {
-        assert(createAccountStoryboard != nil, "[R.swift] ViewController with identifier 'createAccountStoryboard' could not be loaded from storyboard 'CreateAccount' as 'CreateAccountViewController'.")
       }
     }
     

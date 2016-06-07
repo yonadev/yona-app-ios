@@ -45,7 +45,6 @@
 		906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED851CEDC72300029845 /* NotificationsViewController.swift */; };
 		906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED881CEE06DE00029845 /* NotificationsCell.swift */; };
 		906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
-		906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */; };
 		906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		906FED8D1CEE23C100029845 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
 		906FED8E1CEE23C500029845 /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
@@ -95,7 +94,6 @@
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
 		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
 		AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */; };
-		AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */; };
 		AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */; };
 		AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */; };
 		AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */; };
@@ -358,8 +356,6 @@
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
 		AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
-		AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		AD291D661CA94001008CAFB1 /* Challenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Challenges.storyboard; sourceTree = "<group>"; };
 		AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsOverViewViewController.swift; sourceTree = "<group>"; };
 		AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
@@ -800,7 +796,6 @@
 			isa = PBXGroup;
 			children = (
 				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
-				AD291D281CA9286C008CAFB1 /* CreateAccount */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
 				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
@@ -938,15 +933,6 @@
 				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		AD291D281CA9286C008CAFB1 /* CreateAccount */ = {
-			isa = PBXGroup;
-			children = (
-				AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */,
-				AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */,
-			);
-			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 		AD291D291CA9286C008CAFB1 /* WalkThrough */ = {
@@ -1496,7 +1482,6 @@
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
-				906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */,
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				906FED911CEE23CE00029845 /* Profile.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
@@ -1658,7 +1643,6 @@
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
-				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,

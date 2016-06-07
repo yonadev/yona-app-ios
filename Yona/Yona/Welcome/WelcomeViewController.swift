@@ -16,9 +16,13 @@ class WelcomeViewController: BaseViewController {
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         setupUI()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
     
     private func setupUI() {
