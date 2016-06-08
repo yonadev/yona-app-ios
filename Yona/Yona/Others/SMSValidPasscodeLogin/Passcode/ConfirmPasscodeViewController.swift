@@ -78,6 +78,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         if (passcode == code) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
             KeychainManager.sharedInstance.savePINCode(code)
             
             //Update flag

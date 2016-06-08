@@ -203,19 +203,27 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         print("****** ACTIVITY CALLED ******")
         #endif
         Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
-            Loader.Hide()
-            if success{
-                self.activityCategoriesArray = activities!
-                self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                self.callGoals(self.activityCategoriesArray, goals: goals)
-            } else {
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+            if success {
+                ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
+                    Loader.Hide()
+                    if success{
+                        self.activityCategoriesArray = activities!
+                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                        self.callGoals(self.activityCategoriesArray, goals: goals)
+                    } else {
+                        if let message = message {
+                            self.displayAlertMessage(message, alertDescription: "")
+                        }
+                        
+                    }
                 }
-                
+            } else {
+                Loader.Hide()
+                return
             }
         }
+
     }
     
     private func setupUI() {

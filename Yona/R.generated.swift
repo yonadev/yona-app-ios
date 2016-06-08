@@ -542,7 +542,7 @@ struct R {
       static var walkThrough2: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? TourScreenViewController }
       static var walkThrough3: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? TourScreenViewController }
       static var walkThrough4: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? TourScreenViewController }
-      static var walkThroughStoryboard: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughStoryboard") as? WalkThroughViewController }
+      static var walkThroughViewController: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughViewController") as? WalkThroughViewController }
       
       static func validateImages() {
         assert(UIImage(named: "sharingSlide") != nil, "[R.swift] Image named 'sharingSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
@@ -554,7 +554,7 @@ struct R {
       
       static func validateViewControllers() {
         assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
-        assert(walkThroughStoryboard != nil, "[R.swift] ViewController with identifier 'walkThroughStoryboard' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
+        assert(walkThroughViewController != nil, "[R.swift] ViewController with identifier 'walkThroughViewController' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
         assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
         assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
         assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")

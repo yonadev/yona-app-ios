@@ -44,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        setViewControllerToDisplay(ViewControllerTypeString.login,key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -56,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        setViewControllerToDisplay(ViewControllerTypeString.login,key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
     }
     
     
@@ -71,9 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return environemtnSettingsChanged
     }
     
+    /** This ius called by the environment settings if we switch to a different environment then the user is returned to the main scree
+     */
     func logout()
     {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         NSUserDefaults.standardUserDefaults().synchronize()
+        UserRequestManager.sharedInstance.deleteUser { (success, message, code) in
+            //delete user on log out
+        }
     }
 }

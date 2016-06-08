@@ -876,6 +876,7 @@
 				AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */,
 				60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */,
 				AD3931E11CEB311900605FBA /* BaseTabViewController.swift */,
+				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 			);
 			path = DashBoard;
 			sourceTree = "<group>";
@@ -946,7 +947,7 @@
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
 			);
 			name = 3rd_Party_APIs;
-			path = Others;
+			path = ../Others;
 			sourceTree = "<group>";
 		};
 		AD5571F21CAAD87B000BF880 /* SignUp */ = {
@@ -1290,7 +1291,6 @@
 				90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
-				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,

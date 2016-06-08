@@ -22,15 +22,18 @@ class BaseTabViewController: UITabBarController {
         super.viewDidLoad()
         updateSelectedIndex()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
-        if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
-            let viewControllerToShow = getScreen(viewControllerName)
-            self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
-        }
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
+            let viewControllerToShow = getScreen(viewControllerName)
+            
+            if !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+                self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
+            }
+        }
     }
 
     /* This method returns the view controller we ask for as a string
@@ -56,11 +59,16 @@ class BaseTabViewController: UITabBarController {
             navController = R.storyboard.login.initialViewController
             
         case ViewControllerTypeString.welcome.rawValue:
+            rootController = R.storyboard.welcome.welcomeViewController
             navController = R.storyboard.welcome.initialViewController
 
+        case ViewControllerTypeString.walkThrough.rawValue:
+            rootController = R.storyboard.walkThrough.walkThroughViewController
+            navController = R.storyboard.walkThrough.initialViewController
+            
         default:
-            rootController = R.storyboard.login.loginViewController
-            navController = R.storyboard.login.initialViewController
+//            rootController = R.storyboard.welcome.welcomeViewController
+            navController = R.storyboard.welcome.initialViewController
             
         }
         
@@ -72,7 +80,6 @@ class BaseTabViewController: UITabBarController {
 
     func presentLoginScreen() {
         let viewControllerToShow = getScreen(ViewControllerTypeString.login.rawValue)
-
         self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false) {
         }
     }

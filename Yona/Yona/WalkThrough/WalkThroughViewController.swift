@@ -42,7 +42,8 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
         } else {
             // last index
             print("welcome")
-            if let welcome = R.storyboard.welcome.initialViewController {
+            setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if let welcome = R.storyboard.welcome.welcomeViewController {
                 self.navigationController?.pushViewController(welcome, animated: false)
             }
         }
@@ -71,11 +72,10 @@ class TourScreenViewController: AVPageContentViewController {
     
     @IBAction func nextAction(sender: UIButton) {
         delegate?.buttonAction(self.viewControllerIndex)
-        if let welcome = R.storyboard.welcome.initialViewController {
+        
+        setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        if let welcome = R.storyboard.welcome.welcomeViewController {
             self.navigationController?.pushViewController(welcome, animated: false)
         }
     }
 }
-
-
-

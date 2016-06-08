@@ -56,7 +56,7 @@ extension LoginViewController: CodeInputViewDelegate {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             Loader.Show()
-            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
                     Loader.Hide()
