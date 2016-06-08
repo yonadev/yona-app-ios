@@ -83,7 +83,7 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             KeychainManager.sharedInstance.savePINCode(code)
             
             //Update flag
-            setViewControllerToDisplay(ViewControllerTypeString.dashboard, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
 
         } else {

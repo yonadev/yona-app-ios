@@ -60,16 +60,16 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         //It will select NoGo tab by default
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
         self.callActivityCategory()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         setDeselectOtherCategory()
 
         if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
@@ -202,25 +202,20 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         #if DEBUG
         print("****** ACTIVITY CALLED ******")
         #endif
-        Loader.Show()
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
-            if success {
-                ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
-                    Loader.Hide()
-                    if success{
-                        self.activityCategoriesArray = activities!
-                        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                        self.callGoals(self.activityCategoriesArray, goals: goals)
-                    } else {
-                        if let message = message {
-                            self.displayAlertMessage(message, alertDescription: "")
-                        }
-                        
-                    }
-                }
-            } else {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+            Loader.Show()
+            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
                 Loader.Hide()
-                return
+                if success{
+                    self.activityCategoriesArray = activities!
+                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                } else {
+                    if let message = message {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                    
+                }
             }
         }
 

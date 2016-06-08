@@ -21,12 +21,17 @@ class BaseTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedIndex()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        self.presentView()
 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.presentView()
+    }
+
+    func presentView(){
         if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
             let viewControllerToShow = getScreen(viewControllerName)
             
@@ -35,7 +40,6 @@ class BaseTabViewController: UITabBarController {
             }
         }
     }
-
     /* This method returns the view controller we ask for as a string
      
      - parameter viewControllerName: String, this is the name the view controller we want to display
@@ -67,7 +71,7 @@ class BaseTabViewController: UITabBarController {
             navController = R.storyboard.walkThrough.initialViewController
             
         default:
-//            rootController = R.storyboard.welcome.welcomeViewController
+            rootController = R.storyboard.welcome.welcomeViewController
             navController = R.storyboard.welcome.initialViewController
             
         }
