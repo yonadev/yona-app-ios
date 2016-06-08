@@ -22,12 +22,14 @@ class BaseTabViewController: UITabBarController {
         super.viewDidLoad()
         updateSelectedIndex()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
+            let viewControllerToShow = getScreen(viewControllerName)
+            self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
-        if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
-            self.view.window?.rootViewController?.presentViewController(getScreen(viewControllerName), animated: false, completion: nil)
-        }
+        super.viewDidAppear(animated)
 
     }
 
@@ -37,29 +39,41 @@ class BaseTabViewController: UITabBarController {
      - return UIViewController, UIViewController instance returned according to the parameter passed in
      */
     func getScreen(viewControllerName: String) -> UIViewController{
-        var rootController: UIViewController!
-        
+        var navController: UINavigationController?
+        var rootController: UIViewController?
+
         switch viewControllerName {
         case ViewControllerTypeString.smsValidation.rawValue:
-            rootController = R.storyboard.sMSValidation.sMSValidationViewController
-        case ViewControllerTypeString.passcode.rawValue:
-            rootController = R.storyboard.passcode.passcodeStoryboard
-        case ViewControllerTypeString.login.rawValue:
-            rootController = R.storyboard.login.loginStoryboard
-        case ViewControllerTypeString.welcome.rawValue:
-            rootController = R.storyboard.welcome.initialViewController
-        case ViewControllerTypeString.dashboard.rawValue:
-            rootController = R.storyboard.dashboard.initialViewController
+            rootController = R.storyboard.login.sMSValidationViewController
+            navController = R.storyboard.login.initialViewController
             
+        case ViewControllerTypeString.passcode.rawValue:
+            rootController = R.storyboard.login.passcodeViewController
+            navController = R.storyboard.login.initialViewController
+
+        case ViewControllerTypeString.login.rawValue:
+            rootController = R.storyboard.login.loginViewController
+            navController = R.storyboard.login.initialViewController
+            
+        case ViewControllerTypeString.welcome.rawValue:
+            navController = R.storyboard.welcome.initialViewController
+
         default:
-            rootController = R.storyboard.welcome.initialViewController
+            rootController = R.storyboard.login.loginViewController
+            navController = R.storyboard.login.initialViewController
             
         }
-        return rootController
+        
+        if let rootController = rootController {
+            navController?.pushViewController(rootController, animated: false)
+        }
+        return navController ?? rootController!
     }
 
     func presentLoginScreen() {
-        self.presentViewController(R.storyboard.login.initialViewController!, animated: false) {
+        let viewControllerToShow = getScreen(ViewControllerTypeString.login.rawValue)
+
+        self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false) {
         }
     }
     

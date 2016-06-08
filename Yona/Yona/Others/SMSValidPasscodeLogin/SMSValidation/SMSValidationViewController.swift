@@ -128,7 +128,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         //Update flag
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
-                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                        if let passcode = R.storyboard.login.passcodeViewController {
                             passcode.isFromPinReset = self.isFromPinReset
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
@@ -153,7 +153,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         //Update flag
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         
-                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                        if let passcode = R.storyboard.login.passcodeViewController {
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
                         
@@ -178,7 +178,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     
                     setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     
-                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                    if let passcode = R.storyboard.login.passcodeViewController {
                         self.navigationController?.pushViewController(passcode, animated: false)
                     }
                     

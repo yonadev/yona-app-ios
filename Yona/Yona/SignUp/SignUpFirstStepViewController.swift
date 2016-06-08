@@ -80,12 +80,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
-//        
-//        firstnameTextField.placeholder = NSLocalizedString("first-name", comment: "").uppercaseString
-//        lastnameTextField.placeholder = NSLocalizedString("last-name", comment: "").uppercaseString
-//        
-//        nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        
+   
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         view.addGestureRecognizer(tap)

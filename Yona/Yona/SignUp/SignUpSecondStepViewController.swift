@@ -83,13 +83,6 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         nicknameTextField.delegate = self
-//        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
-//        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
-//        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
-        
-//        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
-//        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
-        
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
@@ -203,7 +196,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
-        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+        if let smsValidation = R.storyboard.login.sMSValidationViewController {
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }
         

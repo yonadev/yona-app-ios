@@ -118,7 +118,7 @@ extension SettingsViewController:UITableViewDelegate {
         let setting = settingsArray[indexPath.row] as? String
         if setting == NSLocalizedString("change-pin", comment: "") {
             //change pin
-            if let login = R.storyboard.login.loginStoryboard {
+            if let login = R.storyboard.login.loginViewController {
                 login.isFromSettings = true
                 login.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(login, animated: false)

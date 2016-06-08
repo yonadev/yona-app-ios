@@ -101,7 +101,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
                         //Update flag
                         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
                             setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                            if let passcode = R.storyboard.passcode.passcodeStoryboard {
+                            if let passcode = R.storyboard.login.passcodeViewController {
                                 self.navigationController?.pushViewController(passcode, animated: false)
                             }
                         })

@@ -55,7 +55,7 @@
         <!--INLOGGEN-->
         <scene sceneID="yt2-PP-BDh">
             <objects>
-                <viewController storyboardIdentifier="LoginStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dbk-MT-JXe"/>
                         <viewControllerLayoutGuide type="bottom" id="It4-At-g8z"/>
@@ -194,7 +194,7 @@
         <!--PINCODE-->
         <scene sceneID="i7a-iD-5Oh">
             <objects>
-                <viewController storyboardIdentifier="ConfirmPasscodeStoryboard" id="3Ev-hk-3Tr" customClass="ConfirmPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmPasscodeViewController" id="3Ev-hk-3Tr" customClass="ConfirmPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cdj-54-fvN"/>
                         <viewControllerLayoutGuide type="bottom" id="Y64-Jh-Ep7"/>
@@ -313,12 +313,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Of8-HP-eT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3087" y="230"/>
+            <point key="canvasLocation" x="3167" y="-133"/>
         </scene>
         <!--PINCODE-->
         <scene sceneID="opM-6p-xR7">
             <objects>
-                <viewController storyboardIdentifier="PasscodeStoryboard" id="x8m-IB-u9n" customClass="SetPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasscodeViewController" id="x8m-IB-u9n" customClass="SetPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EcW-hZ-u6R"/>
                         <viewControllerLayoutGuide type="bottom" id="RHG-2k-yU8"/>
@@ -439,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVv-oF-jYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="230"/>
+            <point key="canvasLocation" x="2279" y="-133"/>
         </scene>
         <!--DOE MEE-->
         <scene sceneID="ugD-cH-7XQ">

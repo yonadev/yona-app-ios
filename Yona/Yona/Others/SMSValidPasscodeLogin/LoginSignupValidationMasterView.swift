@@ -130,7 +130,7 @@ extension LoginSignupValidationMasterView {
                         gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
                     }
                     setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+                    if let sMSValidation = R.storyboard.login.sMSValidationViewController {
                         sMSValidation.isFromPinReset = true
                         self.navigationController?.pushViewController(sMSValidation, animated: false)
                     }

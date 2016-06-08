@@ -90,7 +90,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
+        if let passcode = R.storyboard.login.confirmPasscodeViewController {
             passcode.passcode = code
             passcode.isFromPinReset = self.isFromPinReset
             
