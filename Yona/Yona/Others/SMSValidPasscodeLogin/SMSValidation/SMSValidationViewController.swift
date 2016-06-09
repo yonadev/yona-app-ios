@@ -199,9 +199,7 @@ extension SMSValidationViewController: KeyboardProtocol {
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
         
-        
         let  pos = (resendCodeButton?.frame.origin.y)! + (resendCodeButton?.frame.size.height)!
-        
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)

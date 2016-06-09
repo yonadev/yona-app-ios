@@ -114,7 +114,7 @@ extension LoginViewController: CodeInputViewDelegate {
                         switch buttonPressed{
                         case alertButtonType.OK:
                             if let welcome = R.storyboard.welcome.initialViewController {
-                                UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                                self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
                             }
                         case alertButtonType.cancel:
                             break

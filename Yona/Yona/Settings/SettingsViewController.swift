@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController {
         UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
                 if let welcome = R.storyboard.welcome.initialViewController {
-                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                    self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
                 }
             }
             else {
@@ -88,7 +88,7 @@ class SettingsViewController: UIViewController {
     private func resetPinCode() {
         //TODO: UnSubscribe API InProgress
         if let welcome = R.storyboard.welcome.initialViewController {
-            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+            self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
         }
     }
     

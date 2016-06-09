@@ -33,7 +33,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         codeView.addSubview(codeInputView)
         codeInputView.becomeFirstResponder()
         
-        
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)

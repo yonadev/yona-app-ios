@@ -17,7 +17,7 @@ enum Tab: Int {
 }
 
 class BaseTabViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedIndex()
@@ -35,6 +35,7 @@ class BaseTabViewController: UITabBarController {
         if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
             let viewControllerToShow = getScreen(viewControllerName)
             
+            //if the user is not logged in then show login window
             if !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
                 self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
             }
