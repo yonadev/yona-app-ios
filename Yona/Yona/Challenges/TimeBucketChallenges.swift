@@ -115,7 +115,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     private func setSelectedCategory(categoryView: UIView) {
         self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        
+        self.navigationItem.leftBarButtonItem = nil
+
         selectedCategoryView = categoryView
         
         categoryView.alpha = 1.0
@@ -216,9 +217,10 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     private func setupUI() {
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        self.navigationItem.leftBarButtonItem = nil
         //    Looks for single or multiple taps.
         let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.budgetView.addGestureRecognizer(budgetTap)
@@ -271,6 +273,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
         sender.hidden = true
+        self.navigationItem.leftBarButtonItem = self.backButton
         if selectedCategoryView == budgetView {
             categoryHeader = .BudgetActivity
             
@@ -482,4 +485,10 @@ private extension Selector {
     static let back = #selector(TimeBucketChallenges.back(_:))
 }
 
+// MARK: Touch Event of Custom Segment
+extension TimeBucketChallenges {
+    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
+    }
+}
 

@@ -15,7 +15,7 @@ protocol BudgetChallengeDelegate: class {
 class TimeFrameBudgetChallengeViewController: BaseViewController {
     
     weak var delegate: BudgetChallengeDelegate?
-    @IBOutlet var gradientView: GradientView!
+    
     @IBOutlet var headerView: UIView!
     
     @IBOutlet weak var setChallengeButton: UIButton!
@@ -25,8 +25,8 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     @IBOutlet weak var budgetChallengeDescription: UILabel!
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var maxTimeButton: UIButton!
-    @IBOutlet weak var budgetChallengeMainTitle: UILabel!
-    @IBOutlet weak var deleteGoalButton: UIButton!
+
+    @IBOutlet var deleteGoalButton: UIBarButtonItem!
     
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
@@ -48,7 +48,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
+
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         
         configurePickerView()
@@ -56,7 +56,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.budgetLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeMainTitle", comment: "")
+
         
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
             maxDurationMinutes = String(maxDurationMinutesUnwrapped)
@@ -65,6 +65,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
+        self.navigationItem.rightBarButtonItem = nil
         if isFromActivity == true {
             self.budgetChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
@@ -73,9 +74,8 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
-                self.deleteGoalButton.hidden = false
-            } else {
-                self.deleteGoalButton.hidden = true
+                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+
             }
             
             self.budgetChallengeTitle.text = goalCreated?.GoalName
@@ -137,7 +137,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        self.deleteGoalButton.selected = true
+                        self.navigationItem.rightBarButtonItem = self.deleteGoalButton
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         YonaConstants.nsUserDefaultsKeys.isGoalsAdded
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
@@ -169,7 +169,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        self.deleteGoalButton.selected = true
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         
                     } else {
