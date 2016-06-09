@@ -11,6 +11,7 @@ import UIKit
 
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
+    @IBOutlet weak var bottomViewLayout: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,12 +32,14 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         codeInputView.delegate = self
         codeInputView.secure = true
         codeView.addSubview(codeInputView)
-        codeInputView.becomeFirstResponder()
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+
+        codeInputView.becomeFirstResponder()
+        scrollView.setContentOffset(CGPointZero, animated:false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -64,20 +67,23 @@ extension SetPasscodeViewController: KeyboardProtocol {
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
+//        bottomViewLayout.constant = 200
+//        scrollView.layoutIfNeeded()
         
-        
-        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
-        
-        
-        if (pos > (viewHeight-keyboardSize.height)) {
-            posi = pos-(viewHeight-keyboardSize.height)
-            UIView.animateWithDuration(0.2, animations: {
-                self.view.frame.origin.y -= self.posi
-            })
-            
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-        }
+        scrollView.backgroundColor = UIColor.redColor()
+        topView.backgroundColor = UIColor.greenColor()
+//        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
+//        
+//        
+//        if (pos > (viewHeight-keyboardSize.height)) {
+//            posi = pos-(viewHeight-keyboardSize.height)
+//            UIView.animateWithDuration(0.2, animations: {
+//                self.view.frame.origin.y -= self.posi
+//            })
+//            
+//        } else {
+//            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+//        }
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {

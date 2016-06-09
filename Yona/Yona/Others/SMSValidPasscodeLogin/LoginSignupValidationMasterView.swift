@@ -43,6 +43,7 @@ class LoginSignupValidationMasterView: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         setBackgroundColour()
+        
         if let confirmPasscodeVC = segue.destinationViewController as? ConfirmPasscodeViewController {
             confirmPasscodeVC.isFromSettings = isFromSettings
             confirmPasscodeVC.isFromPinReset = isFromPinReset
