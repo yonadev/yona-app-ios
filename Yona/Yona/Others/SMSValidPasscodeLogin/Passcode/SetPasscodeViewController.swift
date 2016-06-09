@@ -11,7 +11,6 @@ import UIKit
 
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
-    var passcodeString: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +21,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.setLeftBarButtonItem(nil, animated: false)
         self.navigationItem.setHidesBackButton(true, animated: false)
-        
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
 
     }
@@ -48,22 +46,12 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
- //       self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    //MARK: - display methods
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is ConfirmPasscodeViewController {
-            let controller = segue.destinationViewController as! ConfirmPasscodeViewController
-            controller.isFromSettings = isFromSettings
-            controller.passcode = passcodeString
-        }
     }
 
 }
@@ -103,7 +91,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        performSegueWithIdentifier("showConfirmPinCode", sender: self)
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
         self.codeInputView.clear()
     }
 }

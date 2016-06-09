@@ -87,11 +87,8 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             //Update flag
             setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             
-            if isFromSettings {
-                self.navigationController?.popToRootViewControllerAnimated(true)
-            } else {
-                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-            }
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             
 
         } else {

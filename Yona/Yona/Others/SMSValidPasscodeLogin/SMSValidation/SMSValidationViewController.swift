@@ -106,12 +106,6 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             }
         }
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if sender is R.storyboard.login.passcodeViewController {
-//           sender
-//        }
-//    }
 }
 
 extension SMSValidationViewController: CodeInputViewDelegate {
@@ -134,12 +128,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         self.codeInputView.resignFirstResponder()
                         //Update flag
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        
-                        if let passcode = R.storyboard.login.passcodeViewController {
-                            passcode.isFromPinReset = self.isFromPinReset
-                            //self.performSegueWithIdentifier("transToPincode", sender: self)
-                           self.navigationController?.pushViewController(passcode, animated: true)
-                        }
+                        self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
                         self.codeInputView.clear()
                     })
                 } else {//pin reset verify code is wrong

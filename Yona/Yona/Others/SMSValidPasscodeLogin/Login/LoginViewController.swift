@@ -64,11 +64,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     if self.isFromSettings {
-                        if let passcode = R.storyboard.login.passcodeViewController {
-                            passcode.isFromSettings = self.isFromSettings
-                            self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
-                            self.navigationController?.pushViewController(passcode, animated: false)
-                        }
+                        self.performSegueWithIdentifier(R.segue.loginViewController.transToPasscode, sender: self)
                     } else {
                         self.navigationController?.popViewControllerAnimated(false)
                         self.dismissViewControllerAnimated(true, completion: nil)
