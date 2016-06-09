@@ -37,6 +37,8 @@ class LoginSignupValidationMasterView: BaseViewController {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+
 }
 //MARK: - Messaging for views from server
 extension LoginSignupValidationMasterView {

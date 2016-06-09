@@ -34,7 +34,7 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
@@ -55,6 +55,16 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    //MARK: - display methods
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is ConfirmPasscodeViewController {
+            let controller = segue.destinationViewController as! ConfirmPasscodeViewController
+            controller.isFromSettings = isFromSettings
+            controller.passcode = passcodeString
+        }
+    }
+
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
@@ -90,15 +100,17 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        if let passcode = R.storyboard.login.confirmPasscodeViewController {
-            passcode.passcode = code
-            passcode.isFromPinReset = self.isFromPinReset
-            
-            if isFromSettings {
-                passcode.isFromSettings = self.isFromSettings
-            }
-            self.navigationController?.pushViewController(passcode, animated: false)
-        }
+//        if let passcode = R.storyboard.login.confirmPasscodeViewController {
+//            passcode.passcode = code
+//            passcode.isFromPinReset = self.isFromPinReset
+//            
+//            
+//            if isFromSettings {
+//                passcode.isFromSettings = self.isFromSettings
+//            }
+//            self.navigationController?.pushViewController(passcode, animated: false)
+//        }
+        performSegueWithIdentifier("showConfirmPinCode", sender: self)
         self.codeInputView.clear()
     }
 }

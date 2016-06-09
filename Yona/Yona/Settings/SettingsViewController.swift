@@ -120,8 +120,8 @@ extension SettingsViewController:UITableViewDelegate {
             //change pin
             if let login = R.storyboard.login.loginViewController {
                 login.isFromSettings = true
-                login.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(login, animated: false)
+                login.hidesBottomBarWhenPushed = false
+                self.navigationController?.pushViewController(login, animated: true)
             }
         } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy            

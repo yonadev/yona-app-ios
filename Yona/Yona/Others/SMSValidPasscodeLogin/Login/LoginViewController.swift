@@ -40,8 +40,8 @@ class LoginViewController: LoginSignupValidationMasterView {
         }
         
         //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        let notificationCenter = NSNotificationCenter.defaultCenter() 
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     

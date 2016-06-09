@@ -25,7 +25,8 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         #if DEBUG
-            self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+            print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
+            //self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
     }
     
@@ -105,6 +106,12 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
             }
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if sender is R.storyboard.login.passcodeViewController {
+//           sender
+//        }
+//    }
 }
 
 extension SMSValidationViewController: CodeInputViewDelegate {
@@ -130,7 +137,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         
                         if let passcode = R.storyboard.login.passcodeViewController {
                             passcode.isFromPinReset = self.isFromPinReset
-                            self.navigationController?.pushViewController(passcode, animated: false)
+                            //self.performSegueWithIdentifier("transToPincode", sender: self)
+                           self.navigationController?.pushViewController(passcode, animated: true)
                         }
                         self.codeInputView.clear()
                     })

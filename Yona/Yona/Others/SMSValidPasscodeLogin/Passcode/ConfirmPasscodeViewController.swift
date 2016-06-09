@@ -27,7 +27,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
@@ -84,7 +84,13 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
             
             //Update flag
             setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            
+            if isFromSettings {
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            } else {
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
 
         } else {
             codeInputView.clear()

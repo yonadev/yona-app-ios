@@ -374,6 +374,14 @@ struct R {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
+    struct sMSValidationViewController {
+      static var transToPincode: StoryboardSegueIdentifier<UIStoryboardSegue, SMSValidationViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPincode") }
+    }
+    
+    struct setPasscodeViewController {
+      static var showConfirmPinCode: StoryboardSegueIdentifier<UIStoryboardSegue, SetPasscodeViewController, ConfirmPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "showConfirmPinCode") }
+    }
+    
     struct settingsViewController {
       static var privacyStatementSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SettingsViewController, PrivacyStatementVC> { return StoryboardSegueIdentifier(identifier: "PrivacyStatementSegue") }
     }
