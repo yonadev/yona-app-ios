@@ -66,6 +66,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     if self.isFromSettings {
                         if let passcode = R.storyboard.login.passcodeViewController {
                             passcode.isFromSettings = self.isFromSettings
+                            self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
                             self.navigationController?.pushViewController(passcode, animated: false)
                         }
                     } else {

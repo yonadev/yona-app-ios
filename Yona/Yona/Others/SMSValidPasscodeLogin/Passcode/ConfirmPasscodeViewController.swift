@@ -25,6 +25,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
         
+        codeInputView.becomeFirstResponder()
+       
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
@@ -33,9 +35,9 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animateWithDuration(0.1) {
-            self.codeInputView.becomeFirstResponder()
-        }
+//        UIView.animateWithDuration(0.1) {
+//            self.codeInputView.becomeFirstResponder()
+//        }
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
@@ -59,7 +61,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animateWithDuration(0.0, animations: {
                 self.view.frame.origin.y -= self.posi
             })
             
