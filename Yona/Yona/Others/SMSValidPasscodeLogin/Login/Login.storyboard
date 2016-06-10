@@ -115,7 +115,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="gpb-gk-t69"/>
-                                                    <segue destination="Xgc-vU-mdu" kind="show" identifier="transToSMS" id="oTA-yO-n1X"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -186,6 +185,7 @@
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>
                         <outlet property="topView" destination="U44-VS-5Hu" id="Fuu-KT-JuC"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToPasscode" id="kBX-Qa-igm"/>
+                        <segue destination="Xgc-vU-mdu" kind="show" identifier="transToSMS" id="y2O-PM-mqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZP-fR-Wcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,7 +602,7 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="csq-qR-NzM"/>
-        <segue reference="oTA-yO-n1X"/>
+        <segue reference="kBX-Qa-igm"/>
+        <segue reference="y2O-PM-mqs"/>
     </inferredMetricsTieBreakers>
 </document>

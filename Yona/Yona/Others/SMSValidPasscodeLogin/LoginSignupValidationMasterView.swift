@@ -154,8 +154,7 @@ extension LoginSignupValidationMasterView {
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    //This causes doubele segue?? But we need it?!
-//                    self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
+                    self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
                 }
             } else {
                 Loader.Hide()
