@@ -44,13 +44,6 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
             })
     }
     
-    
-    
-    
-    
-    
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -67,7 +60,6 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
             vc.viewControllerIndex = i
         }
     }
-    
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let viewController = viewController as! AVPageContentViewController
@@ -91,11 +83,7 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         return self.viewController(atIndex: index)
     }
     
-    
     func gotoNextViewController(index: Int) {
         setupControllers(self.contentViews!, viewControllerFrameRect: self.view.frame, withPresentingViewControllerIndex: index)
     }
-    
-
-    
 }

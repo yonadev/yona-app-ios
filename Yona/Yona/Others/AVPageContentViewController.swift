@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AVPageContentViewController: UIViewController {
+class AVPageContentViewController: BaseViewController {
 
     @IBOutlet var imageView: UIImageView?
     var viewControllerIndex: Int = 0

@@ -9,16 +9,14 @@
 
 import UIKit
 
-class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
+class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
     var userFirstName: String?
     var userLastName: String?
-    
-    @IBOutlet var gradientView: GradientView!
-    
+        
     private let nederlandPhonePrefix = "+31 (0) "
     
     @IBOutlet var mobileTextField: UITextField!
@@ -32,7 +30,7 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.gradientView.colors = [UIColor.yiGrapeTwoColor(), UIColor.yiGrapeTwoColor()]
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupUI()
     }
     
@@ -85,26 +83,10 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         nicknameTextField.delegate = self
-        mobileTextField.placeholder = NSLocalizedString("mobile-number", comment: "").uppercaseString
-        nicknameTextField.placeholder = NSLocalizedString("nick-name", comment: "").uppercaseString
-        infoLabel.text = NSLocalizedString("user-signup-message", comment: "")
-        
-        self.nextButton.setTitle(NSLocalizedString("next", comment: "").uppercaseString, forState: UIControlState.Normal)
-        self.previousButton.setTitle(NSLocalizedString("previous", comment: "").uppercaseString, forState: UIControlState.Normal)
-        
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         self.view.addGestureRecognizer(tap)
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: Selector.back)
-        self.navigationItem.leftBarButtonItem = newBackButton;
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
         
         // Adding right mode image to text fields
         let mobileImage = UIImageView(image: R.image.icnMobile)
@@ -211,10 +193,10 @@ class SignUpSecondStepViewController: UIViewController,UIScrollViewDelegate {
     
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
-        if let smsValidation = R.storyboard.sMSValidation.sMSValidationViewController {
+        if let smsValidation = R.storyboard.login.sMSValidationViewController {
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }
         

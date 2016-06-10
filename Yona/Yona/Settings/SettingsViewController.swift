@@ -73,8 +73,8 @@ class SettingsViewController: UIViewController {
         //TODO: UnSubscribe API InProgress
         UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
-                if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                    UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                if let welcome = R.storyboard.welcome.initialViewController {
+                    self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
                 }
             }
             else {
@@ -83,13 +83,6 @@ class SettingsViewController: UIViewController {
                 }
             }
         })
-    }
-    
-    private func resetPinCode() {
-        //TODO: UnSubscribe API InProgress
-        if let welcome = R.storyboard.welcome.welcomeStoryboard {
-            UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
-        }
     }
     
     @IBAction func unwindToSettingsView(segue: UIStoryboardSegue) {
@@ -118,10 +111,11 @@ extension SettingsViewController:UITableViewDelegate {
         let setting = settingsArray[indexPath.row] as? String
         if setting == NSLocalizedString("change-pin", comment: "") {
             //change pin
-            if let login = R.storyboard.login.loginStoryboard {
-                login.isFromSettings = true
-                login.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(login, animated: false)
+            if let loginVC = R.storyboard.login.loginViewController { //root view
+                loginVC.isFromSettings = true
+                loginVC.hidesBottomBarWhenPushed = false
+                self.navigationController?.pushViewController(loginVC, animated: true)
+                
             }
         } else if setting ==  NSLocalizedString("privacy", comment: "") {
             //privacy            

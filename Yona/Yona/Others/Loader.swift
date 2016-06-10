@@ -10,35 +10,24 @@ import UIKit
 
 class Loader:  NSObject {
     
-//    class func Show(message:String = "loading..."){
-//        var load : MBProgressHUD = MBProgressHUD()
-//        load = MBProgressHUD.showHUDAddedTo((UIApplication.sharedApplication().delegate!.window!?.rootViewController!.view)!, animated: true)
-//        load.mode = MBProgressHUDMode.Indeterminate
-//        load.label.text = message;
-//        
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//        
-//    }
     
-//    class func Hide(delegate:UIViewController){
-//        MBProgressHUD.hideHUDForView(delegate.view, animated: true)
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//    }
-    
-    
+    class func setup()
+    {
+        SVProgressHUD.setDefaultMaskType(.Black)
+        SVProgressHUD.setBackgroundColor(UIColor(white: 0, alpha: 0.7))
+        SVProgressHUD.setForegroundColor(UIColor(white: 1, alpha: 1))
+        
+    }
     
     class func Show(message:String = "loading..."){
-        var load : MBProgressHUD = MBProgressHUD()
-        load = MBProgressHUD.showHUDAddedTo(UIApplication.sharedApplication().keyWindow!, animated: true)
-        load.mode = MBProgressHUDMode.Indeterminate
-        load.label.text = message;
-        
+
+        SVProgressHUD.showWithStatus(message)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
     }
     
     class func Hide(){
-        MBProgressHUD.hideHUDForView(UIApplication.sharedApplication().keyWindow!, animated: true)
+        SVProgressHUD.dismiss()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 }

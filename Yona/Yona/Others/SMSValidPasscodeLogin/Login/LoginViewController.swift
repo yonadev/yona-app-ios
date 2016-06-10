@@ -14,13 +14,10 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+                
         if !isFromSettings {
-        //Get user call
-        checkUserExists()
-        
+            //Get user call
+            checkUserExists()
         }
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
     }
@@ -43,14 +40,13 @@ class LoginViewController: LoginSignupValidationMasterView {
         }
         
         //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        let notificationCenter = NSNotificationCenter.defaultCenter() 
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
@@ -60,7 +56,7 @@ extension LoginViewController: CodeInputViewDelegate {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             Loader.Show()
-            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
                 if success {
                     Loader.Hide()
@@ -68,19 +64,10 @@ extension LoginViewController: CodeInputViewDelegate {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     if self.isFromSettings {
-                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                            passcode.isFromSettings = self.isFromSettings
-                            self.navigationController?.pushViewController(passcode, animated: false)
-                        }
+                        self.performSegueWithIdentifier(R.segue.loginViewController.transToPasscode, sender: self)
                     } else {
-                       if self.view.window?.rootViewController is UITabBarController {
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        } else {
-                            let storyboard = R.storyboard.dashboard.instance
-                            let dashbaord = storyboard.instantiateInitialViewController()
-                            self.view.window?.rootViewController = dashbaord
-                        }
-                        
+                        self.navigationController?.popViewControllerAnimated(false)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                     
                 } else {
@@ -119,26 +106,24 @@ extension LoginViewController: CodeInputViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    /** If the user has been deleted on another device then this method will check if the user exists, and if not then it will send the user back to the welcome screen to re-register
+     */
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
                         switch buttonPressed{
                         case alertButtonType.OK:
-                            if let welcome = R.storyboard.welcome.welcomeStoryboard {
-                                UIApplication.sharedApplication().keyWindow?.rootViewController =  UINavigationController(rootViewController: welcome)
+                            if let welcome = R.storyboard.welcome.welcomeViewController {
+                                self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion:nil)
+                                self.view.window?.rootViewController?.presentViewController(welcome, animated: false, completion: nil)
                             }
                         case alertButtonType.cancel:
                             break
                             //do nothing or send back to start of signup?
                         }
                     })
-                }
-            }
-            if !success {
-                if let message = message {
-                    self.displayAlertMessage("", alertDescription: message)
                 }
             }
         }

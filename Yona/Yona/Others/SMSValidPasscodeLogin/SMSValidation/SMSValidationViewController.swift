@@ -25,14 +25,19 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         #if DEBUG
-            self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+            print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
+            //self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if self.isFromSettings {
+            if let topView = topView {
+                topView.backgroundColor = UIColor.yiMangoColor()
+            }
+            self.view.backgroundColor = UIColor.yiMangoColor()
+        }
         self.codeInputView.becomeFirstResponder()
         
         self.codeInputView.delegate = self
@@ -127,11 +132,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         //Now send user back to pinreset screen, let them enter pincode and password again
                         self.codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        
-                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                            self.navigationController?.pushViewController(passcode, animated: false)
-                        }
+                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
                         self.codeInputView.clear()
                     })
                 } else {//pin reset verify code is wrong
@@ -151,11 +153,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                         self.codeInputView.resignFirstResponder()
                         //Update flag
-                        setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        
-                        if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                            self.navigationController?.pushViewController(passcode, animated: false)
-                        }
+                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
                         
                         self.codeInputView.clear()
                     } else {
@@ -175,12 +174,10 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                 if (success) {
                     self.codeInputView.resignFirstResponder()
                     //Update flag
-                    setViewControllerToDisplay("Passcode", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     
-                    if let passcode = R.storyboard.passcode.passcodeStoryboard {
-                        self.navigationController?.pushViewController(passcode, animated: false)
-                    }
-                    
+                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
+
                     self.codeInputView.clear()
                     
                 } else {
@@ -201,9 +198,7 @@ extension SMSValidationViewController: KeyboardProtocol {
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
         let keyboardInset = keyboardSize.height - viewHeight/3
         
-        
         let  pos = (resendCodeButton?.frame.origin.y)! + (resendCodeButton?.frame.size.height)!
-        
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)

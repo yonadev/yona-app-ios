@@ -11,8 +11,6 @@ import UIKit
 
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
-    var passcodeString: String?
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +19,8 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
         self.navigationController?.navigationBarHidden = false
-
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
 
     }
@@ -31,26 +28,23 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.codeInputView.delegate = self
-        self.codeInputView.secure = true
-        codeView.addSubview(self.codeInputView)
+        codeInputView.delegate = self
+        codeInputView.secure = true
+        codeView.addSubview(codeInputView)
+        codeInputView.becomeFirstResponder()
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.clear()
-        UIView.animateWithDuration(0.1) {
-            self.codeInputView.becomeFirstResponder()
-        }
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -58,10 +52,13 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
+
+        
         
         let viewHeight = self.view.frame.size.height
         let info : NSDictionary = notification.userInfo!
@@ -93,13 +90,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
-            passcode.passcode = code
-            if isFromSettings {
-                passcode.isFromSettings = self.isFromSettings
-            }
-            self.navigationController?.pushViewController(passcode, animated: false)
-        }
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
         self.codeInputView.clear()
     }
 }

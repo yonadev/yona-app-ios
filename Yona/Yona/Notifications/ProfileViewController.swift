@@ -23,7 +23,6 @@ class ProfileViewController: FriendsProfileMasterView {
     
     // MARK: - private functions
     private func setupUI() {
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     

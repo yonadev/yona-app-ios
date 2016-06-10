@@ -149,18 +149,11 @@ struct YonaConstants {
     struct nsUserDefaultsKeys{
         static let timeToPinReset = "timeToPinReset"
         static let isBlocked = "isBlocked"
+        static let isLoggedIn = "isLoggedIn"
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
         static let adminOverride = "adminOverride"
         static let userToOverride = "userToOverride"
         static let isGoalsAdded = "isGoalsAdded"
-    }
-
-    struct screenNames{
-        static let walkThrough = "WalkThrough"
-        static let welcome = "Welcome"
-        static let smsValidation = "SMSValidation"
-        static let passcode = "Passcode"
-        static let login = "Login"
-    }    
+    }   
 }

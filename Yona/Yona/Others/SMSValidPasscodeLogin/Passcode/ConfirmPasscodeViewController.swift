@@ -11,12 +11,9 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
-
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+                        
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
 
     }
@@ -28,18 +25,14 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
         
+        codeInputView.becomeFirstResponder()
+       
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        UIView.animateWithDuration(0.1) {
-            self.codeInputView.becomeFirstResponder()
-        }
-    }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -62,7 +55,7 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         
         if (pos > (viewHeight-keyboardSize.height)) {
             posi = pos-(viewHeight-keyboardSize.height)
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animateWithDuration(0.0, animations: {
                 self.view.frame.origin.y -= self.posi
             })
             
@@ -81,27 +74,20 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         if (passcode == code) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
             KeychainManager.sharedInstance.savePINCode(code)
             
             //Update flag
-            setViewControllerToDisplay("Login", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if self.view.window?.rootViewController is BaseTabViewController{
-                if self.presentingViewController != nil{
-                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                }else{
-                    if self.isFromSettings { //need to reset the colour back to yellow colour
-                        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-                        gradientNavBar?.backgroundColor = UIColor.yiMango95Color()
-                        gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
-                    }
-                    self.navigationController?.popToRootViewControllerAnimated(false)
-                }
-                
-            } else{
-                let storyboard = UIStoryboard(name: "Dashboard", bundle: NSBundle.mainBundle())
-                self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            
+            if isFromSettings {
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            } else {
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             }
             
+
         } else {
             codeInputView.clear()
             navigationController?.popViewControllerAnimated(true)

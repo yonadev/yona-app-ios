@@ -7,6 +7,23 @@
 */
 
 
+//Signup screens
+
+"join" = "JOIN";
+"login" = "LOGIN";
+"first-name" = "FIRST NAME";
+"last-name" = "LAST NAME";
+"privacy-policy" = "Yona is committed to respecting and protecting your privacy. All sensitive data is secured with encryption.";
+"previous" = "PREVIOUS";
+"next" = "NEXT";
+"nick-name" = "NICKNAME";
+"mobile-number" = "MOBILE PHONE NUMBER";
+"user-signup-message" = "We use your mobile phone for a secure registration. Your nickname is mandatory and ensures better privacy.";
+
+
+//Pending
+
+
 "app-name" = "yona";
 "dashboard" = "DASHBOARD";
 "friends" = "FRIENDS";
@@ -25,17 +42,11 @@
 "challenges-no-go" = "NO GO";
 "change-pin" = "Change PIN";
 "privacy" = "Privacy";
-"join" = "JOIN";
-"login" = "LOGIN";
-"previous" = "PREVIOUS";
-"next" = "NEXT";
+
 "connection-not-available" = "OOPS! No Internet Connection Available";
-"first-name" = "FIRST NAME";
-"last-name" = "LAST NAME";
-"nick-name" = "NICKNAME";
-"privacy-policy" = "Yona is committed to respecting and protecting your privacy. All sensitive data is secured with encryption.";
-"mobile-number" = "MOBILE PHONE NUMBER";
-"user-signup-message" = "We use your mobile phone for a secure registration. Your nickname is mandatory and ensures better privacy.";
+
+
+
 "enter-first-name-validation" = "You need to enter a name";
 "enter-last-name-validation" = "You need to enter a name";
 "enter-number-validation" = "Number should be 9 digits";
