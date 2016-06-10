@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         updateEnvironmentSettings()
         
         IQKeyboardManager.sharedManager().enable = true
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             forBarPosition: .Any,
             barMetrics: .Default)
         UINavigationBar.appearance().shadowImage = UIImage()
+        Loader.setup()
         return true
         
     }
