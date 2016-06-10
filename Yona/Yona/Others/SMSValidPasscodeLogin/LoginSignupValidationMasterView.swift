@@ -69,9 +69,6 @@ class LoginSignupValidationMasterView: BaseViewController {
             self.view.backgroundColor = UIColor.yiMangoColor()
             gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
             gradientNavBar?.backgroundColor = UIColor.yiMangoColor()
-        } else {
-            gradientNavBar?.backgroundColor =  UIColor.yiGrapeColor()
-            gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
         }
     }
 
@@ -154,9 +151,10 @@ extension LoginSignupValidationMasterView {
                 if let timeISOCode = pincode {
                     //we need to store this incase the app is backgrounded
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
-//                    self.displayPincodeRemainingMessage()
+                    self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-//                    setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    //This causes doubele segue?? But we need it?!
 //                    self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
                 }
             } else {

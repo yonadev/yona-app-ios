@@ -62,13 +62,6 @@
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
 		907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5291CC51C310031850E /* NewDeviceRequests.swift */; };
-		90826C761D09B42600DA471B /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C6F1D09B42600DA471B /* Behavior.swift */; };
-		90826C771D09B42600DA471B /* KeyboardTriggerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C701D09B42600DA471B /* KeyboardTriggerBehavior.swift */; };
-		90826C781D09B42600DA471B /* NavigationHideScrollBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C711D09B42600DA471B /* NavigationHideScrollBehavior.swift */; };
-		90826C791D09B42600DA471B /* ScrollingTriggerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C721D09B42600DA471B /* ScrollingTriggerBehavior.swift */; };
-		90826C7A1D09B42600DA471B /* TextFieldResponderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C731D09B42600DA471B /* TextFieldResponderBehavior.swift */; };
-		90826C7B1D09B42600DA471B /* TextFieldScrollBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C741D09B42600DA471B /* TextFieldScrollBehavior.swift */; };
-		90826C7C1D09B42600DA471B /* ViewPositionKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90826C751D09B42600DA471B /* ViewPositionKeyboardBehavior.swift */; };
 		908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */; };
 		908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */; };
 		90C5B5361CE4F00F00D87BFF /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
@@ -332,13 +325,6 @@
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		907DA5291CC51C310031850E /* NewDeviceRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequests.swift; sourceTree = "<group>"; };
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		90826C6F1D09B42600DA471B /* Behavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
-		90826C701D09B42600DA471B /* KeyboardTriggerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTriggerBehavior.swift; sourceTree = "<group>"; };
-		90826C711D09B42600DA471B /* NavigationHideScrollBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHideScrollBehavior.swift; sourceTree = "<group>"; };
-		90826C721D09B42600DA471B /* ScrollingTriggerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingTriggerBehavior.swift; sourceTree = "<group>"; };
-		90826C731D09B42600DA471B /* TextFieldResponderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldResponderBehavior.swift; sourceTree = "<group>"; };
-		90826C741D09B42600DA471B /* TextFieldScrollBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldScrollBehavior.swift; sourceTree = "<group>"; };
-		90826C751D09B42600DA471B /* ViewPositionKeyboardBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPositionKeyboardBehavior.swift; sourceTree = "<group>"; };
 		9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminRequestManager.swift; sourceTree = "<group>"; };
 		908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideRequestsTest.swift; sourceTree = "<group>"; };
 		90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetRequestManager.swift; sourceTree = "<group>"; };
@@ -781,20 +767,6 @@
 			name = UserDetails;
 			sourceTree = "<group>";
 		};
-		90826C6E1D09B42600DA471B /* Behaviors */ = {
-			isa = PBXGroup;
-			children = (
-				90826C6F1D09B42600DA471B /* Behavior.swift */,
-				90826C701D09B42600DA471B /* KeyboardTriggerBehavior.swift */,
-				90826C711D09B42600DA471B /* NavigationHideScrollBehavior.swift */,
-				90826C721D09B42600DA471B /* ScrollingTriggerBehavior.swift */,
-				90826C731D09B42600DA471B /* TextFieldResponderBehavior.swift */,
-				90826C741D09B42600DA471B /* TextFieldScrollBehavior.swift */,
-				90826C751D09B42600DA471B /* ViewPositionKeyboardBehavior.swift */,
-			);
-			path = Behaviors;
-			sourceTree = "<group>";
-		};
 		90DE87991CD2374400C1E706 /* DAOObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -985,7 +957,7 @@
 			isa = PBXGroup;
 			children = (
 				604282801D0AD9F200F5543C /* SVProgressHUD */,
-				90826C6E1D09B42600DA471B /* Behaviors */,
+				
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
@@ -1685,13 +1657,12 @@
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
-				90826C7C1D09B42600DA471B /* ViewPositionKeyboardBehavior.swift in Sources */,
 				AD84B7321CDA27820085D5B7 /* Array.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
 				908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
-				90826C761D09B42600DA471B /* Behavior.swift in Sources */,
+				
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
@@ -1708,7 +1679,6 @@
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
 				AD84B7331CDA27820085D5B7 /* Date.swift in Sources */,
-				90826C791D09B42600DA471B /* ScrollingTriggerBehavior.swift in Sources */,
 				AD00DEDF1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
 				6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */,
@@ -1721,19 +1691,15 @@
 				90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
-				90826C781D09B42600DA471B /* NavigationHideScrollBehavior.swift in Sources */,
 				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
-				90826C771D09B42600DA471B /* KeyboardTriggerBehavior.swift in Sources */,
 				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
-				90826C7B1D09B42600DA471B /* TextFieldScrollBehavior.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
-				90826C7A1D09B42600DA471B /* TextFieldResponderBehavior.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,

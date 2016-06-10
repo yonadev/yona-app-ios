@@ -32,7 +32,12 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if self.isFromSettings {
+            if let topView = topView {
+                topView.backgroundColor = UIColor.yiMangoColor()
+            }
+            self.view.backgroundColor = UIColor.yiMangoColor()
+        }
         self.codeInputView.becomeFirstResponder()
         
         self.codeInputView.delegate = self
@@ -149,10 +154,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         self.codeInputView.resignFirstResponder()
                         //Update flag
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        
-                        if let passcode = R.storyboard.login.passcodeViewController {
-                            self.navigationController?.pushViewController(passcode, animated: false)
-                        }
+                        self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
                         
                         self.codeInputView.clear()
                     } else {
@@ -174,11 +176,8 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                     //Update flag
                     
                     setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    
-                    if let passcode = R.storyboard.login.passcodeViewController {
-                        self.navigationController?.pushViewController(passcode, animated: false)
-                    }
-                    
+                    self.performSegueWithIdentifier(R.segue.sMSValidationViewController.transToSetPincode, sender: self)
+
                     self.codeInputView.clear()
                     
                 } else {

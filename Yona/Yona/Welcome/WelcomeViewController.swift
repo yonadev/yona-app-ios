@@ -22,7 +22,6 @@ class WelcomeViewController: BaseViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
     }
     
     private func setupUI() {

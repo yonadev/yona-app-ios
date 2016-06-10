@@ -85,13 +85,6 @@ class SettingsViewController: UIViewController {
         })
     }
     
-    private func resetPinCode() {
-        //TODO: UnSubscribe API InProgress
-        if let welcome = R.storyboard.welcome.initialViewController {
-            self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func unwindToSettingsView(segue: UIStoryboardSegue) {
         print(segue.sourceViewController)
     }
