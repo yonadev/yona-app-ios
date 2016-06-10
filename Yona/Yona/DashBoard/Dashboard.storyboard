@@ -31,10 +31,16 @@
             <objects>
                 <navigationController title="Challenges" id="hVk-qi-HFB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icnChallenges" selectedImage="icnChallengeActive" id="L4N-oF-7Fa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xBy-py-dGd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xBy-py-dGd" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.21960784310000001" green="0.50588235290000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.54117649793624878" green="0.70980393886566162" blue="0.094117648899555206" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="barImageName" value=""/>
