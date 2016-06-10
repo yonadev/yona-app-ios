@@ -615,7 +615,7 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kBX-Qa-igm"/>
         <segue reference="y2O-PM-mqs"/>
+        <segue reference="csq-qR-NzM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -40,8 +40,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         
