@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -349,7 +349,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-7P-Xxd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-7P-Xxd">
                                                     <rect key="frame" x="30" y="32" width="448" height="17"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -371,6 +371,7 @@
                                                 <constraint firstItem="sCh-7P-Xxd" firstAttribute="centerY" secondItem="SQq-2J-rok" secondAttribute="centerY" id="Oab-ng-WEl"/>
                                                 <constraint firstAttribute="trailing" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="122" id="RgC-KQ-IG4"/>
                                                 <constraint firstItem="bDM-lS-sgm" firstAttribute="centerY" secondItem="SQq-2J-rok" secondAttribute="centerY" id="WGF-HV-XZj"/>
+                                                <constraint firstItem="sCh-7P-Xxd" firstAttribute="top" secondItem="SQq-2J-rok" secondAttribute="top" constant="32" id="WfK-cx-DgD"/>
                                             </constraints>
                                         </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="f0A-2f-o4g">
@@ -414,7 +415,6 @@
                                 <constraints>
                                     <constraint firstItem="V23-83-bue" firstAttribute="centerX" secondItem="3Ir-Xp-QJZ" secondAttribute="centerX" id="14Z-ux-3sl"/>
                                     <constraint firstItem="438-xm-SYq" firstAttribute="top" secondItem="V23-83-bue" secondAttribute="bottom" id="1nn-03-Wfz"/>
-                                    <constraint firstAttribute="bottom" secondItem="V23-83-bue" secondAttribute="bottom" constant="400" id="Dnv-kT-Wx4"/>
                                     <constraint firstAttribute="trailing" secondItem="438-xm-SYq" secondAttribute="trailing" id="MDU-wR-EOJ"/>
                                     <constraint firstItem="V23-83-bue" firstAttribute="top" secondItem="3Ir-Xp-QJZ" secondAttribute="top" id="QC4-Ng-CEz"/>
                                     <constraint firstAttribute="bottom" secondItem="438-xm-SYq" secondAttribute="bottom" id="Yu4-we-QyU"/>
@@ -427,6 +427,7 @@
                         <constraints>
                             <constraint firstItem="3Ir-Xp-QJZ" firstAttribute="top" secondItem="UEW-nE-2vl" secondAttribute="top" id="7Kc-CT-Dze"/>
                             <constraint firstItem="5QO-v2-pRk" firstAttribute="top" secondItem="3Ir-Xp-QJZ" secondAttribute="bottom" id="HYg-rR-iAX"/>
+                            <constraint firstItem="5QO-v2-pRk" firstAttribute="top" secondItem="438-xm-SYq" secondAttribute="bottom" id="eX5-AX-BaU"/>
                             <constraint firstItem="3Ir-Xp-QJZ" firstAttribute="leading" secondItem="UEW-nE-2vl" secondAttribute="leading" id="fTj-wf-wta"/>
                             <constraint firstAttribute="trailing" secondItem="3Ir-Xp-QJZ" secondAttribute="trailing" id="mtR-K8-QG2"/>
                         </constraints>
