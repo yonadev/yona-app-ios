@@ -15,6 +15,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         super.viewDidLoad()
                         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_confirm_new_pin", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_confirm_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
 
     }
     
@@ -39,13 +41,22 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func viewDidLayoutSubviews()
+    {
+        
+        var scrollViewInsets = UIEdgeInsetsZero
+        scrollViewInsets.top = 0
+        scrollView.contentInset = scrollViewInsets
+    }
+
+    
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     func keyboardWasShown (notification: NSNotification) {
-        
+        return
         let viewHeight = self.view.frame.size.height
         let info : NSDictionary = notification.userInfo!
         let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size

@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
     @IBOutlet weak var bottomViewLayout: NSLayoutConstraint!
@@ -19,7 +20,9 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
+        
         self.navigationController?.navigationBarHidden = false
+
         self.navigationItem.setLeftBarButtonItem(nil, animated: false)
         self.navigationItem.setHidesBackButton(true, animated: false)
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
@@ -39,16 +42,24 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
 
         codeInputView.becomeFirstResponder()
-        scrollView.setContentOffset(CGPointZero, animated:false)
+//        scrollView.setContentOffset(CGPointZero, animated:false)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.clear()
+        
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    override func viewDidLayoutSubviews()
+    {
+
+        var scrollViewInsets = UIEdgeInsetsZero
+        scrollViewInsets.top = 0
+        scrollView.contentInset = scrollViewInsets
     }
     
     // Go Back To Previous VC
@@ -70,8 +81,6 @@ extension SetPasscodeViewController: KeyboardProtocol {
 //        bottomViewLayout.constant = 200
 //        scrollView.layoutIfNeeded()
         
-        scrollView.backgroundColor = UIColor.redColor()
-        topView.backgroundColor = UIColor.greenColor()
 //        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
 //        
 //        
