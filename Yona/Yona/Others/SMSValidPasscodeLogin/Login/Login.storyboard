@@ -91,8 +91,8 @@
                                                     <constraint firstAttribute="height" constant="2" id="1ko-Se-1j3"/>
                                                 </constraints>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
-                                                <rect key="frame" x="15" y="251" width="570" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
+                                                <rect key="frame" x="15" y="222" width="570" height="46"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -184,6 +184,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="avtarImage" destination="eEy-ql-DuC" id="gnR-JT-ru5"/>
+                        <outlet property="closeButton" destination="gOT-9b-uqI" id="I4p-On-tFT"/>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
                         <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
@@ -224,15 +225,6 @@
                                                     <constraint firstAttribute="height" constant="48" id="rjC-xl-nm1"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="confirmpasscode.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="k0Q-Jc-tS0">
-                                                <rect key="frame" x="129" y="126" width="343" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="P43-Ei-oGw"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="una-2o-DP8">
                                                 <rect key="frame" x="30" y="175" width="540" height="2"/>
                                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,8 +232,8 @@
                                                     <constraint firstAttribute="height" constant="2" id="ATv-CC-DbT"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confirmpasscode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wh0-5w-1Gt">
-                                                <rect key="frame" x="15" y="207" width="570" height="34"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="confirmpasscode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wh0-5w-1Gt">
+                                                <rect key="frame" x="15" y="193" width="570" height="62"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="qH4-P8-EnY"/>
                                                 </constraints>
@@ -256,6 +248,15 @@
                                                     <constraint firstAttribute="height" constant="55" id="abS-bP-wUT"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="confirmpasscode.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="k0Q-Jc-tS0">
+                                                <rect key="frame" x="129" y="126" width="343" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="29" id="P43-Ei-oGw"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
