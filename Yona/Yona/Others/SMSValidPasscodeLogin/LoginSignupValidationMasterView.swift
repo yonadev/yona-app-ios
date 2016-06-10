@@ -69,9 +69,6 @@ class LoginSignupValidationMasterView: BaseViewController {
             self.view.backgroundColor = UIColor.yiMangoColor()
             gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
             gradientNavBar?.backgroundColor = UIColor.yiMangoColor()
-        } else {
-            gradientNavBar?.backgroundColor =  UIColor.yiGrapeColor()
-            gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
         }
     }
 
