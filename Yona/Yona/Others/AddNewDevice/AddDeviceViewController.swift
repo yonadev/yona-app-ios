@@ -26,6 +26,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupUI()
     }
     
@@ -37,15 +38,6 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         
         mobileTextField.delegate = self
         passcodeTextField.delegate = self
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: R.image.icnBack, style: UIBarButtonItemStyle.Plain, target: self, action: Selector.back)
-        self.navigationItem.leftBarButtonItem = newBackButton;
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
         
         // Adding right mode image to text fields
         let mobileImage = UIImageView(image: R.image.icnMobile)
@@ -69,12 +61,6 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         self.mobileTextField.leftView = label
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
-    
-    // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     
     // Go To Another ViewController
     @IBAction func loginPressed(sender: UIButton) {
@@ -160,7 +146,5 @@ extension AddDeviceViewController: UITextFieldDelegate {
 
 
 private extension Selector {
-    static let back = #selector(AddDeviceViewController.back(_:))
-    
     static let dismissKeyboard = #selector(AddDeviceViewController.dismissKeyboard)
 }

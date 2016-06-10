@@ -33,12 +33,6 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-//        UIView.animateWithDuration(0.1) {
-//            self.codeInputView.becomeFirstResponder()
-//        }
-    }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         

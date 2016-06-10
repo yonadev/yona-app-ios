@@ -106,26 +106,24 @@ extension LoginViewController: CodeInputViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    /** If the user has been deleted on another device then this method will check if the user exists, and if not then it will send the user back to the welcome screen to re-register
+     */
     func checkUserExists() {
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
                         switch buttonPressed{
                         case alertButtonType.OK:
-                            if let welcome = R.storyboard.welcome.initialViewController {
-                                self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
+                            if let welcome = R.storyboard.welcome.welcomeViewController {
+                                self.view.window?.rootViewController?.dismissViewControllerAnimated(false, completion:nil)
+                                self.view.window?.rootViewController?.presentViewController(welcome, animated: false, completion: nil)
                             }
                         case alertButtonType.cancel:
                             break
                             //do nothing or send back to start of signup?
                         }
                     })
-                }
-            }
-            if !success {
-                if let message = message {
-                    self.displayAlertMessage("", alertDescription: message)
                 }
             }
         }
