@@ -32,12 +32,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if self.isFromSettings {
-            if let topView = topView {
-                topView.backgroundColor = UIColor.yiMangoColor()
-            }
-            self.view.backgroundColor = UIColor.yiMangoColor()
-        }
+        setBackgroundColour()
         self.codeInputView.becomeFirstResponder()
         
         self.codeInputView.delegate = self

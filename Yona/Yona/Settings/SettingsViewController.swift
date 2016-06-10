@@ -137,8 +137,10 @@ extension SettingsViewController:UITableViewDelegate {
             //change pin
             if let loginVC = R.storyboard.login.loginViewController { //root view
                 loginVC.isFromSettings = true
-                loginVC.hidesBottomBarWhenPushed = false
-                self.navigationController?.pushViewController(loginVC, animated: true)
+                //make sure the change password is presented as a nav controller else we run into issues when backgrounding the app
+                let navController = R.storyboard.login.initialViewController
+                navController?.pushViewController(loginVC, animated: false)
+                self.view.window?.rootViewController?.presentViewController(navController!, animated: false, completion: nil)
                 
             }
 

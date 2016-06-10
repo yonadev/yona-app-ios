@@ -282,7 +282,7 @@
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
 		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
 		9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
-		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
 		9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		AD84B7311CDA27820085D5B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CodeInputView.swift; path = Others/CodeInputView.swift; sourceTree = "<group>"; };
+		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CodeInputView.swift; path = ../CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ADC6C88B1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameTimeZoneChallengeViewController.swift; sourceTree = "<group>"; };
@@ -656,6 +656,7 @@
 		9042C7091CD7581E00100306 /* CustomSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				90FF6DF81D00344900A674C4 /* GradientView.swift */,
 				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
 				904DD48D1CF36C9700E894A5 /* CustomPicker */,
@@ -667,6 +668,7 @@
 		9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */ = {
 			isa = PBXGroup;
 			children = (
+				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */,
 				9042C7201CD78F7200100306 /* Login */,
 				9042C7241CD78F7200100306 /* Passcode */,
@@ -679,7 +681,6 @@
 		9042C7201CD78F7200100306 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7231CD78F7200100306 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -813,10 +814,7 @@
 		90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
-				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
-				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
 			);
@@ -957,7 +955,6 @@
 			isa = PBXGroup;
 			children = (
 				604282801D0AD9F200F5543C /* SVProgressHUD */,
-				
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
@@ -974,7 +971,8 @@
 				AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */,
 				ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */,
 			);
-			path = SignUp;
+			name = SignUp;
+			path = ../SignUp;
 			sourceTree = "<group>";
 		};
 		AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */ = {
@@ -983,12 +981,14 @@
 				AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */,
 			);
 			name = AddNewDevice;
-			path = Others/AddNewDevice;
+			path = ../Others/AddNewDevice;
 			sourceTree = "<group>";
 		};
 		ADAEAFE01CB40FA4005ED7B4 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
+				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */,
 				ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */,
 			);
@@ -1662,7 +1662,6 @@
 				908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
-				
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,

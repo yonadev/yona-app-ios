@@ -11,20 +11,26 @@ import UIKit
 class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
-    
+    @IBOutlet var closeButton: UIBarButtonItem?
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        if !isFromSettings {
-            //Get user call
-            checkUserExists()
-        }
+
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if !isFromSettings {
+            //Get user call
+            self.closeButton?.enabled = false
+            self.closeButton?.tintColor = UIColor.clearColor()
+            checkUserExists()
+        } else {
+            self.closeButton?.enabled = true
+            self.closeButton?.tintColor = UIColor.whiteColor()
+        }
         
+        setBackgroundColour()
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
@@ -102,8 +108,8 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backToSettings(sender: AnyObject) {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /** If the user has been deleted on another device then this method will check if the user exists, and if not then it will send the user back to the welcome screen to re-register
@@ -155,6 +161,6 @@ extension LoginViewController: KeyboardProtocol {
 }
 
 private extension Selector {
-    static let back = #selector(LoginViewController.back(_:))
+    static let back = #selector(LoginViewController.backToSettings(_:))
 }
 
