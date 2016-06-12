@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
+    @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
+   
     @IBOutlet var closeButton: UIBarButtonItem?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,10 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
         codeInputView.clear()
-        self.codeInputView.becomeFirstResponder()
+        //self.codeInputView.becomeFirstResponder()
+        
+//        scrollView.backgroundColor = UIColor.redColor()
+//        topView.backgroundColor = UIColor.greenColor()
         
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
@@ -47,14 +52,27 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter() 
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.codeInputView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+
+    override func viewDidLayoutSubviews()
+    {
+        
+        var scrollViewInsets = UIEdgeInsetsZero
+        scrollViewInsets.top = 0
+        scrollView.contentInset = scrollViewInsets
+    }
+
 }
 
 extension LoginViewController: CodeInputViewDelegate {
@@ -139,24 +157,25 @@ extension LoginViewController: CodeInputViewDelegate {
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
-        
-        let  pos = (pinResetButton?.frame.origin.y)! + (pinResetButton?.frame.size.height)!
-        
-        if (pos > (viewHeight-keyboardSize.height)) {
-            scrollView.setContentOffset(CGPointMake(0, pos-(viewHeight-keyboardSize.height)), animated: true)
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        if let activeField = self.pinResetButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.scrollView.bounds
+            aRect.size.height -= keyboardSize.size.height
+            if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
+                var frameToScrollTo = activeField.frame
+                frameToScrollTo.size.height += 30
+                self.scrollView.scrollRectToVisible(frameToScrollTo, animated: true)
+            }
         }
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
-            posi = position
-        }
+        let contentInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
     }
 }
 

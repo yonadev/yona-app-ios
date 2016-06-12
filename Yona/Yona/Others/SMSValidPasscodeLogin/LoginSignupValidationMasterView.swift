@@ -73,7 +73,11 @@ class LoginSignupValidationMasterView: BaseViewController {
         }
     }
 
+    
 }
+ 
+
+ 
 //MARK: - Messaging for views from server
 extension LoginSignupValidationMasterView {
     func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){

@@ -159,7 +159,7 @@ extension SettingsViewController:UITableViewDelegate {
         default:
             return
         }
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
      }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
