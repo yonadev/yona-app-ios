@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lZQ-TZ-ft8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lZQ-TZ-ft8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -112,14 +112,13 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
                                                 <rect key="frame" x="273" y="304" width="53" height="28"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="53" id="Bsa-dM-Wf5"/>
                                                     <constraint firstAttribute="height" constant="28" id="D0j-gJ-r5R"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="PIN reset">
-                                                    <color key="titleColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
@@ -234,15 +233,6 @@
                                                     <constraint firstAttribute="height" constant="2" id="ATv-CC-DbT"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confirmpasscode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wh0-5w-1Gt">
-                                                <rect key="frame" x="15" y="193" width="570" height="62"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="62" id="qH4-P8-EnY"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1R-FL-a8A">
                                                 <rect key="frame" x="170" y="254" width="260" height="55"/>
                                                 <constraints>
@@ -256,6 +246,15 @@
                                                     <constraint firstAttribute="height" constant="29" id="P43-Ei-oGw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confirmpasscode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wh0-5w-1Gt">
+                                                <rect key="frame" x="15" y="193" width="570" height="62"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="62" id="qH4-P8-EnY"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -318,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Of8-HP-eT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2603" y="-133"/>
+            <point key="canvasLocation" x="2847" y="-133"/>
         </scene>
         <!--PINCODE-->
         <scene sceneID="opM-6p-xR7">
@@ -361,7 +360,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="gNj-cG-miF"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passcode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-Ec-BzQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passcode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-Ec-BzQ">
                                                 <rect key="frame" x="15" y="207" width="570" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="EBQ-r1-DRd"/>
@@ -450,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVv-oF-jYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2001" y="-133"/>
+            <point key="canvasLocation" x="2088" y="-133"/>
         </scene>
         <!--DOE MEE-->
         <scene sceneID="ugD-cH-7XQ">
@@ -509,22 +508,8 @@
                                                     <constraint firstAttribute="height" constant="55" id="sFQ-9H-bQC"/>
                                                 </constraints>
                                             </view>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLS-KZ-DUU">
-                                                <rect key="frame" x="274" y="404" width="53" height="28"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="1b5-Bw-EcO"/>
-                                                    <constraint firstAttribute="width" constant="53" id="fdD-y3-CmE"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="PIN reset">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="pinResetTapped:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="yok-5A-2wo"/>
-                                                </connections>
-                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL4-iE-0Ur">
-                                                <rect key="frame" x="206" y="404" width="189" height="28"/>
+                                                <rect key="frame" x="206" y="329" width="189" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="189" id="Ljf-Ww-h6l"/>
                                                     <constraint firstAttribute="height" constant="28" id="gKb-WA-G7g"/>
@@ -549,6 +534,20 @@
                                                     <action selector="sendOTPAgain:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="JR1-3N-TSu"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLS-KZ-DUU">
+                                                <rect key="frame" x="274" y="329" width="53" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="1b5-Bw-EcO"/>
+                                                    <constraint firstAttribute="width" constant="53" id="fdD-y3-CmE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
+                                                <state key="normal" title="PIN reset">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pinResetTapped:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="yok-5A-2wo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -557,7 +556,7 @@
                                             <constraint firstItem="L1l-qz-vR4" firstAttribute="centerX" secondItem="RT0-uA-aN2" secondAttribute="centerX" id="7jQ-cs-Ek6"/>
                                             <constraint firstItem="OaW-Ei-xzT" firstAttribute="top" secondItem="HZF-No-bKb" secondAttribute="bottom" constant="8" id="96g-Lz-y5Q"/>
                                             <constraint firstItem="Y3U-jd-qFN" firstAttribute="top" secondItem="L1l-qz-vR4" secondAttribute="bottom" constant="25" id="Frw-VR-JdA"/>
-                                            <constraint firstItem="HL4-iE-0Ur" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="47" id="Hjh-ri-4QM"/>
+                                            <constraint firstItem="HL4-iE-0Ur" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="-28" id="Hjh-ri-4QM"/>
                                             <constraint firstItem="Y3U-jd-qFN" firstAttribute="leading" secondItem="RT0-uA-aN2" secondAttribute="leading" constant="15" id="I1B-2g-ZD1"/>
                                             <constraint firstItem="HZF-No-bKb" firstAttribute="leading" secondItem="RT0-uA-aN2" secondAttribute="leading" constant="15" id="Kdf-00-gi7"/>
                                             <constraint firstItem="8uv-mB-Hzi" firstAttribute="leading" secondItem="RT0-uA-aN2" secondAttribute="leading" constant="30" id="Omf-NO-Zsc"/>
@@ -566,10 +565,10 @@
                                             <constraint firstItem="OaW-Ei-xzT" firstAttribute="centerX" secondItem="RT0-uA-aN2" secondAttribute="centerX" id="ciX-HG-LaT"/>
                                             <constraint firstAttribute="trailing" secondItem="Y3U-jd-qFN" secondAttribute="trailing" constant="15" id="dCT-Ik-GI0"/>
                                             <constraint firstAttribute="trailing" secondItem="8uv-mB-Hzi" secondAttribute="trailing" constant="30" id="gFc-pQ-3MU"/>
-                                            <constraint firstItem="ZLS-KZ-DUU" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="47" id="h5M-bJ-hbP"/>
-                                            <constraint firstAttribute="bottom" secondItem="HL4-iE-0Ur" secondAttribute="bottom" constant="7" id="ijJ-df-w5V"/>
+                                            <constraint firstItem="ZLS-KZ-DUU" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="-28" id="h5M-bJ-hbP"/>
+                                            <constraint firstAttribute="bottom" secondItem="HL4-iE-0Ur" secondAttribute="bottom" constant="82" id="ijJ-df-w5V"/>
                                             <constraint firstAttribute="height" constant="439" id="ilx-gy-OdA"/>
-                                            <constraint firstItem="HL4-iE-0Ur" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="47" id="khV-CR-Q7d"/>
+                                            <constraint firstItem="HL4-iE-0Ur" firstAttribute="top" secondItem="S6z-Uu-baF" secondAttribute="bottom" constant="-28" id="khV-CR-Q7d"/>
                                             <constraint firstItem="L1l-qz-vR4" firstAttribute="top" secondItem="RT0-uA-aN2" secondAttribute="top" constant="37" id="obu-gl-ZmD"/>
                                             <constraint firstItem="HZF-No-bKb" firstAttribute="top" secondItem="8uv-mB-Hzi" secondAttribute="bottom" constant="24" id="uFV-Ox-lnF"/>
                                             <constraint firstItem="8uv-mB-Hzi" firstAttribute="top" secondItem="Y3U-jd-qFN" secondAttribute="bottom" constant="21" id="vh3-AD-Irt"/>
@@ -630,7 +629,7 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="csq-qR-NzM"/>
         <segue reference="y2O-PM-mqs"/>
+        <segue reference="csq-qR-NzM"/>
     </inferredMetricsTieBreakers>
 </document>

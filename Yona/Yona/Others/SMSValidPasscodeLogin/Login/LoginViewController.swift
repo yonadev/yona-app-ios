@@ -37,11 +37,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
         codeInputView.clear()
-        //self.codeInputView.becomeFirstResponder()
-        
-//        scrollView.backgroundColor = UIColor.redColor()
-//        topView.backgroundColor = UIColor.greenColor()
-        
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
             errorLabel.hidden = false

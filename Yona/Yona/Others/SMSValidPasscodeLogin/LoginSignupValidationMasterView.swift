@@ -88,6 +88,7 @@ extension LoginSignupValidationMasterView {
                 self.resendCodeButton.hidden = false
                 self.pinResetButton.hidden = true
                 self.codeInputView.userInteractionEnabled = false
+                self.infoLabel.text = message
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
@@ -97,6 +98,7 @@ extension LoginSignupValidationMasterView {
                 self.resendCodeButton.hidden = true
                 self.pinResetButton.hidden = false
                 self.codeInputView.userInteractionEnabled = false
+                self.infoLabel.text = message
                 #if DEBUG
                     self.displayAlertMessage("", alertDescription: serverMessage)
                 #endif
@@ -105,8 +107,12 @@ extension LoginSignupValidationMasterView {
                         self.pinResetButton.hidden = false
                     }
                 })
-            } else {
-                self.displayAlertMessage("", alertDescription: serverMessage)
+            } else if (codeMessage == YonaConstants.serverCodes.pinResetMismatch) {
+                self.infoLabel.text = message
+                self.resendCodeButton.hidden = false
+            }
+            else {
+                self.displayPincodeRemainingMessage()
             }
         }
     }

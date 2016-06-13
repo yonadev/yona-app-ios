@@ -26,7 +26,6 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         
         #if DEBUG
             print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
-            //self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
         #endif
     }
     
@@ -67,14 +66,16 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     
     func hideShowButtons() {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.resendCodeButton.hidden = true
+            self.resendCodeButton.hidden = false
             self.resendOverrideCode.hidden = true
+            self.pinResetButton.hidden = true
         } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
             self.pinResetButton.hidden = true
-            self.resendCodeButton.hidden = true
+            self.resendCodeButton.hidden = false
             self.resendOverrideCode.hidden = false
         } else {
             self.pinResetButton.hidden = true
+            self.resendCodeButton.hidden = true
             self.resendOverrideCode.hidden = true
         }
     }
@@ -86,7 +87,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
                     Loader.Hide()
                 self.codeInputView.userInteractionEnabled = true
                 #if DEBUG
-                    self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                    print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
                 #endif
             } else {
                 Loader.Hide()
@@ -105,7 +106,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
                 //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
                 if success {
                     #if DEBUG
-                        self.displayAlertMessage(YonaConstants.testKeys.otpTestCode, alertDescription:"Pincode")
+                        print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
                     #endif
                     NSUserDefaults.standardUserDefaults().setObject(userBody, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
@@ -145,7 +146,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
                         self.codeInputView.clear()
                     })
                 } else {//pin reset verify code is wrong
-                    self.displayPincodeRemainingMessage()
+                    self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     self.codeInputView.clear()
                 }
@@ -222,35 +223,3 @@ extension SMSValidationViewController: KeyboardProtocol {
         
     }
 }
-
-
-//extension SMSValidationViewController: KeyboardProtocol {
-//    
-//    func keyboardWasShown (notification: NSNotification) {
-//        
-//        let frameToShow = codeView.frame
-//        scrollView.scrollRectToVisible(frameToShow, animated: true)
-//        return
-//        
-//        let viewHeight = self.view.frame.size.height
-//        let info : NSDictionary = notification.userInfo!
-//        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-//        let keyboardInset = keyboardSize.height - viewHeight/3
-//        
-//        let  pos = (resendCodeButton?.frame.origin.y)! + (resendCodeButton?.frame.size.height)!
-//        
-//        if (pos > (viewHeight-keyboardSize.height)) {
-//            posi = pos-(viewHeight-keyboardSize.height)
-//            self.view.frame.origin.y -= posi
-//            
-//        } else {
-//            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
-//        }
-//    }
-//    
-//    func keyboardWillBeHidden(notification: NSNotification) {
-//        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
-//            posi = position
-//        }
-//    }
-//}

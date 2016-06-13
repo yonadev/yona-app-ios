@@ -81,6 +81,7 @@ struct YonaConstants {
     }
 
     struct serverCodes{
+        static let pinResetMismatch = "error.pin.reset.request.confirmation.code.mismatch"
         static let errorUserExists = "error.user.exists"
         static let errorAddBuddyUserExists = "error.user.exists.created.on.buddy.request"
         static let errorUserNotFound = "error.user.not.found.id"
