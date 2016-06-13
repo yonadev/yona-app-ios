@@ -8,6 +8,31 @@
 
 import UIKit
 
+enum  settingsOptions : Int {
+    case changepin = 0
+    case privacy
+    case adddevice
+    case unsubscribe
+    case lastrow
+    
+    func simpleDescription() -> String {
+        switch self {
+        case .changepin:
+            return NSLocalizedString("change-pin", comment: "")
+        case .privacy:
+            return NSLocalizedString("privacy", comment: "")
+        case .adddevice:
+            return NSLocalizedString("add-device", comment: "")
+        case .unsubscribe:
+            return NSLocalizedString("delete-user", comment: "")
+        default:
+            return NSLocalizedString("no option", comment: "")
+        }
+    }
+
+}
+
+
 class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
@@ -15,8 +40,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        settingsArray = [ NSLocalizedString("change-pin", comment: ""), NSLocalizedString("privacy", comment: ""), NSLocalizedString("add-device", comment: ""), NSLocalizedString("delete-user", comment: "")]
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
         
@@ -97,43 +120,47 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.settingsArray.count
+        return settingsOptions.lastrow.rawValue
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel?.text = settingsArray[indexPath.row] as? String;
-        
+        cell.textLabel?.text = settingsOptions(rawValue: indexPath.row)?.simpleDescription()
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let setting = settingsArray[indexPath.row] as? String
-        if setting == NSLocalizedString("change-pin", comment: "") {
+        switch indexPath.row {
+        case settingsOptions.changepin.rawValue:
             //change pin
             if let loginVC = R.storyboard.login.loginViewController { //root view
                 loginVC.isFromSettings = true
-                loginVC.hidesBottomBarWhenPushed = false
-                self.navigationController?.pushViewController(loginVC, animated: true)
+                //make sure the change password is presented as a nav controller else we run into issues when backgrounding the app
+                let navController = R.storyboard.login.initialViewController
+                navController?.pushViewController(loginVC, animated: false)
+                self.view.window?.rootViewController?.presentViewController(navController!, animated: false, completion: nil)
                 
             }
-        } else if setting ==  NSLocalizedString("privacy", comment: "") {
-            //privacy            
-            performSegueWithIdentifier(R.segue.settingsViewController.privacyStatementSegue, sender: self)
-        } else if setting == NSLocalizedString("delete-user", comment: "") {
+
+        case settingsOptions.privacy.rawValue:
+             performSegueWithIdentifier(R.segue.settingsViewController.privacyStatementSegue, sender: self)
+        case settingsOptions.adddevice.rawValue:
+            callAddDeviceMethod()
+        case settingsOptions.unsubscribe.rawValue:
             self.displayAlertOption(NSLocalizedString("delete-user", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("deleteusermessage", comment: ""), onCompletion: { (buttonPressed) in
                 switch buttonPressed {
-                case alertButtonType.OK:
-                    self.callUnSubscribeMethod()
-                case alertButtonType.cancel:
+                    case alertButtonType.OK:
+                        self.callUnSubscribeMethod()
+                    case alertButtonType.cancel:
                     break
                     //do nothing or send back to start of signup?
-                }
-            })
-        } else if setting == NSLocalizedString("add-device", comment: "") {
-            callAddDeviceMethod()
+                    }
+                })
+        default:
+            return
         }
-    }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70.0

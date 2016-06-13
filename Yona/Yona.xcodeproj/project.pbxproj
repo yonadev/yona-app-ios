@@ -656,6 +656,7 @@
 		9042C7091CD7581E00100306 /* CustomSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				90FF6DF81D00344900A674C4 /* GradientView.swift */,
 				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
 				904DD48D1CF36C9700E894A5 /* CustomPicker */,

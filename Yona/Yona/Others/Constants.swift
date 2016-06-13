@@ -149,6 +149,7 @@ struct YonaConstants {
     struct nsUserDefaultsKeys{
         static let timeToPinReset = "timeToPinReset"
         static let isBlocked = "isBlocked"
+        static let isFromSettings = "isFromSettings"
         static let isLoggedIn = "isLoggedIn"
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"

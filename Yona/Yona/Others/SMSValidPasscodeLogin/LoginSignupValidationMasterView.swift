@@ -43,6 +43,7 @@ class LoginSignupValidationMasterView: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         setBackgroundColour()
+        
         if let confirmPasscodeVC = segue.destinationViewController as? ConfirmPasscodeViewController {
             confirmPasscodeVC.isFromSettings = isFromSettings
             confirmPasscodeVC.isFromPinReset = isFromPinReset
@@ -72,7 +73,11 @@ class LoginSignupValidationMasterView: BaseViewController {
         }
     }
 
+    
 }
+ 
+
+ 
 //MARK: - Messaging for views from server
 extension LoginSignupValidationMasterView {
     func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
