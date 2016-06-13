@@ -9,25 +9,18 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: BaseViewController, UIWebViewDelegate{
+class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     @IBOutlet var privacyView: UIWebView!
-    @IBOutlet var backButton: UIButton!
-    @IBOutlet var gradientView: GradientView!
-    @IBOutlet var screenName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
-        let requestObj = NSURLRequest(URL: NSURL(string: "http://www.yona.nu/app/privacy")!);
+        let requestObj = NSURLRequest(URL: NSURL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
         self.privacyView.loadRequest(requestObj)
     }
     
     //when webview is loaded stop the loading wheel and hide the view
     func webViewDidFinishLoad(webView: UIWebView) {
         Loader.Hide()
-    }
-    
-    @IBAction func backButton(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(false)
     }
 }

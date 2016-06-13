@@ -38,3 +38,39 @@ extension UIView {
         self.layer.addSublayer(border)
     }
 }
+
+func getViewControllerToDisplay(key: String)-> String? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
+    if (defaults.objectForKey(key) == nil) && (key == YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
+        setViewControllerToDisplay(ViewControllerTypeString.walkThrough,key: key)
+    }
+    return defaults.objectForKey(key) as? String
+}
+
+func setViewControllerToDisplay(value: ViewControllerTypeString?, key: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setValue(value?.rawValue, forKey: key)
+    defaults.synchronize()
+}
+
+func getTabToDisplay(key: String)-> String? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
+    if (defaults.objectForKey(key) == nil) && (key == YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
+        setViewControllerToDisplay(ViewControllerTypeString.walkThrough,key: key)
+    }
+    return defaults.objectForKey(key) as? String
+}
+
+func setTimeBucketTabToDisplay(value: timeBucketTabNames?, key: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setValue(value?.rawValue, forKey: key)
+    defaults.synchronize()
+}
+
+func getTimeBucketToDisplay(key: String)-> AnyObject? {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.objectForKey(key)
+    return defaults.objectForKey(key)
+}

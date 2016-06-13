@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import AddressBookUI
 
-class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
+class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
     
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var manualTabView: UIView!
@@ -35,16 +35,27 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
         self.setupUI()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiBlackColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    }
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    }
+    
     // MARK: - private functions
     private func setupUI() {
         if var label = previousRange {
             label.length = 1
         }
         
-        gradientView.colors = [UIColor.yiMidBlueColor(), UIColor.yiMidBlueColor()]
-        
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
         //Looks for single or multiple taps.
@@ -162,13 +173,7 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
     func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
+ 
     func dismissKeyboard(){
         view.endEditing(true)
     }
@@ -268,9 +273,6 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
                 
             case .Restricted:
                 print("Access restricted")
-                
-            default:
-                print("Other Problem")
             }
         }
     }
@@ -328,10 +330,9 @@ class AddFriendsViewController: BaseViewController, UIScrollViewDelegate, UINavi
             return true
         }
     }
-    
+
     private extension Selector {
         static let dismissKeyboard = #selector(AddFriendsViewController.dismissKeyboard)
-        static let back = #selector(AddFriendsViewController.back(_:))
 }
 
 

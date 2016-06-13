@@ -20,7 +20,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         case NoGoActivity
     }
     
-    @IBOutlet var gradientView: GradientView!
     @IBOutlet var headerView: UIView!
     @IBOutlet var headerLabel: UILabel!
     
@@ -35,7 +34,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var backButton: UIButton!
+    @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var addNewGoalButton: UIButton!
     
     
@@ -60,20 +59,19 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        //It will select NoGo tab by default
-        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        self.setupUI()
-        self.callActivityCategory()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        
+        //It will select NoGo tab by default
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        self.tableView.estimatedRowHeight = 100
+        self.setupUI()
+        self.callActivityCategory()
         setDeselectOtherCategory()
 
-        if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
+        if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
                 
@@ -92,7 +90,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                 setSelectedCategory(self.budgetView)
             }
         }
-        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
     }
     
     override func viewDidAppear(animated:Bool) {
@@ -118,9 +115,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     private func setSelectedCategory(categoryView: UIView) {
         self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-        
-        backButton.hidden = true
-        
+        self.navigationItem.leftBarButtonItem = nil
+
         selectedCategoryView = categoryView
         
         categoryView.alpha = 1.0
@@ -203,27 +199,31 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         #if DEBUG
         print("****** ACTIVITY CALLED ******")
         #endif
-        Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
-            Loader.Hide()
-            if success{
-                self.activityCategoriesArray = activities!
-                self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                self.callGoals(self.activityCategoriesArray, goals: goals)
-            } else {
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+            Loader.Show()
+            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
+                Loader.Hide()
+                if success{
+                    self.activityCategoriesArray = activities!
+                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                } else {
+                    if let message = message {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                    
                 }
-                
             }
         }
+
     }
     
     private func setupUI() {
         //Nav bar Back button.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        self.navigationItem.leftBarButtonItem = nil
         //    Looks for single or multiple taps.
         let budgetTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.budgetView.addGestureRecognizer(budgetTap)
@@ -276,7 +276,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
         sender.hidden = true
-        backButton.hidden = false
+        self.navigationItem.leftBarButtonItem = self.backButton
         if selectedCategoryView == budgetView {
             categoryHeader = .BudgetActivity
             
@@ -460,12 +460,23 @@ extension TimeBucketChallenges {
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
-            return 100.0
+            tableView.rowHeight =  100.0
         } else {
-            return 60.0
+            tableView.rowHeight =  60.0
         }
+        
+        return self.tableView.rowHeight
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+        print(tableView.estimatedRowHeight)
+        print(tableView.rowHeight)
+        cell.contentView.layer.configureGradientBackground(tableView.rowHeight,colors: UIColor.yiBgGradientTwoColor().CGColor, UIColor.yiBgGradientOneColor().CGColor)
     }
 }
 
@@ -477,4 +488,10 @@ private extension Selector {
     static let back = #selector(TimeBucketChallenges.back(_:))
 }
 
+// MARK: Touch Event of Custom Segment
+extension TimeBucketChallenges {
+    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
+    }
+}
 

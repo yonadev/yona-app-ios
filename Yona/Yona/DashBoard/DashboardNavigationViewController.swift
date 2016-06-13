@@ -9,17 +9,15 @@
 import UIKit
 
 class DashboardNavigationViewController: UINavigationController, UITabBarDelegate {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBarHidden(true, animated: false)
+        self.setNavigationBarHidden(false, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -100), forBarMetrics: .Default)
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
-//        print(self.view!.window?.currentViewController()?.tabBarController)
-//        self.setViewControllers([storyboard.instantiateInitialViewController()!, animated: false)
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -28,14 +26,5 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         print(item)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

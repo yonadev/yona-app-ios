@@ -25,25 +25,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        //set universal settings for our navigation bar
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+        NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
+        
+        //get rid of the pixel line in the nav bar
+        UINavigationBar.appearance().setBackgroundImage(
+            UIImage(),
+            forBarPosition: .Any,
+            barMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        Loader.setup()
         return true
         
     }
-    
+        
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        let settingsChanged = updateEnvironmentSettings()
-        if settingsChanged{
-            updateRootScreen()
-        }
+        updateEnvironmentSettings()
     }
 
     private func hockeyAppSetup() {
@@ -88,40 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+
     }
     
-    //MARK: User Methods
-    func updateRootScreen()
-    {
-        var rootController : UINavigationController
-        rootController = getScreenNameToDisplay()
-        if let window = self.window {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = rootController
-        }
-    }
     
-    func getScreenNameToDisplay() -> UINavigationController{
-        var rootController: UINavigationController!
-        if let viewName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) as? String {
-            switch viewName {
-            case YonaConstants.screenNames.smsValidation:
-                rootController = R.storyboard.sMSValidation.initialViewController!
-            case YonaConstants.screenNames.passcode:
-                rootController = R.storyboard.passcode.initialViewController!
-            case YonaConstants.screenNames.login:
-                rootController = R.storyboard.login.initialViewController!
-            case YonaConstants.screenNames.welcome:
-                rootController = R.storyboard.welcome.initialViewController!
-                
-            default:
-                rootController = R.storyboard.walkThrough.initialViewController!
-            }
-            return rootController
-            
-        }
-        return UINavigationController(rootViewController: rootController)
-    }
     
     //MARK: Handle environment switch
     func updateEnvironmentSettings() -> Bool
@@ -134,9 +119,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return environemtnSettingsChanged
     }
     
+    /** This ius called by the environment settings if we switch to a different environment then the user is returned to the main scree
+     */
     func logout()
     {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         NSUserDefaults.standardUserDefaults().synchronize()
+        UserRequestManager.sharedInstance.deleteUser { (success, message, code) in
+            //delete user on log out
+        }
     }
 }

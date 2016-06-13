@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: BaseViewController {
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     override func viewDidLoad() {
@@ -16,24 +16,16 @@ class WelcomeViewController: UIViewController {
         
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
         setupUI()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setupUI() {
-        setViewControllerToDisplay("Welcome", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
     }
     
-    @IBAction func signUp(sender: AnyObject) {
-        if let signupStoryboard = R.storyboard.signUp.signUpFirstStepViewController {
-            navigationController?.pushViewController(signupStoryboard, animated: true)
-        }
-    }
-    
-    @IBAction func login(sender: AnyObject) {
-        if let addDeviceStoryboard = R.storyboard.addDeviceViewController.addDeviceStoryboard {
-            navigationController?.pushViewController(addDeviceStoryboard, animated: true)
-        }
-    }
 }

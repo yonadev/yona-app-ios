@@ -5,3 +5,4 @@
 #import "MacroAccessor.h"
 #import "MBProgressHUD.h"
 #import "EnvironmentManager.h"
+#import "SVProgressHUD.h"

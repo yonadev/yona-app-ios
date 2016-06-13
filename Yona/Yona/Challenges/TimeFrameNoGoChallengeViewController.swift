@@ -12,17 +12,16 @@ protocol NoGoChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameNoGoChallengeViewController: UIViewController {
+class TimeFrameNoGoChallengeViewController: BaseViewController {
     
     weak var delegate: NoGoChallengeDelegate?
-    @IBOutlet var gradientView: GradientView!
+    
     @IBOutlet var headerView: UIView!
     @IBOutlet var setChallengeButton: UIButton!
     @IBOutlet weak var budgetChallengeTitle: UILabel!
     @IBOutlet weak var budgetChallengeDescription: UILabel!
     @IBOutlet weak var bottomLabelText: UILabel!
-    @IBOutlet weak var budgetChallengeMainTitle: UILabel!
-    @IBOutlet weak var deleteGoalButton: UIButton!
+    @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     @IBOutlet var headerImage: UIImageView!
     
     @IBOutlet var footerGradientView: GradientView!
@@ -36,15 +35,14 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-    
-        footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         
+        footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
+        self.navigationItem.rightBarButtonItem = nil
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
         if isFromActivity == true {
@@ -58,9 +56,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
             setChallengeButton.enabled = false
             setChallengeButton.alpha = 0.5
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
-                self.deleteGoalButton.hidden = false
-            } else {
-                self.deleteGoalButton.hidden = true
+                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
             }
             self.budgetChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
@@ -71,7 +67,6 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        self.budgetChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeMainTitle", comment: "")
     }
     
     // MARK: - Actions
@@ -98,8 +93,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
-                    self.deleteGoalButton.selected = true
-                    
+
                     self.navigationController?.popViewControllerAnimated(true)
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                     NSUserDefaults.standardUserDefaults().synchronize()

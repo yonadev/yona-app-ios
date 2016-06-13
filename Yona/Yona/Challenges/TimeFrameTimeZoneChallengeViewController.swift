@@ -26,7 +26,7 @@ protocol TimeZoneChallengeDelegate: class {
 class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     
     weak var delegate: TimeZoneChallengeDelegate?
-    @IBOutlet var gradientView: GradientView!
+    
     @IBOutlet var headerView: UIView!
     
     @IBOutlet weak var setChallengeButton: UIButton!
@@ -35,7 +35,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     @IBOutlet weak var timezoneChallengeDescription: UILabel!
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var timezoneChallengeMainTitle: UILabel!
-    @IBOutlet weak var deleteGoalButton: UIButton!
+    @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
@@ -75,19 +75,17 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
                 self.isFromButton = true
                 self.picker?.pickerTitleLabel.title = "From"
                 
-                if (self.activeIndexPath != nil) {
+                if self.activeIndexPath != nil {
                     self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[(self.activeIndexPath?.row)!].fromDate)
                 } else {
-                    self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[self.zonesArrayDate.endIndex - 1].fromDate)
+                    if let fromDate = self.tempToFromDate?.fromDate {
+                        self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(fromDate)
+                    }
                 }
                 self.picker?.cancelButtonTitle.title = "Cancel"
                 self.picker?.okButtonTitle.title = "Next"
-            } else if self.picker?.cancelButtonTitle.title == "Cancel" {
-                if self.activeIndexPath != nil { } else {
-                    self.zonesArrayString.removeLast()
-                    self.zonesArrayDate.removeLast()
-                }
             }
+            
         }) { doneValue in
             self.configureTimeZone(doneValue)
         }
@@ -95,19 +93,18 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     
     
     func configureView() {
-        setTimeBucketTabToDisplay(timeBucketTabNames.timeZone.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-        self.gradientView.colors = [UIColor.yiSicklyGreenColor(), UIColor.yiSicklyGreenColor()]
-        
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
-        timezoneChallengeMainTitle.text = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeMainTitle", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
+        
+        self.navigationItem.rightBarButtonItem = nil
         
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
@@ -117,9 +114,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
             
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
-                self.deleteGoalButton.hidden = false
-            } else {
-                self.deleteGoalButton.hidden = true
+                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
             }
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
@@ -213,6 +208,7 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.okButtonTitle.title = "Next"
+            self.picker?.cancelButtonTitle.title = "Cancel"
             self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             self.activeIndexPath = indexPath
@@ -233,6 +229,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            self.tableView.beginUpdates()
             self.zonesArrayString.removeAtIndex(indexPath.row)
             self.zonesArrayDate.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -241,6 +238,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.enabled = false
                 self.setChallengeButton.alpha = 0.5
             }
+            self.tableView.endUpdates()
         }
     }
 }
@@ -272,7 +270,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        self.deleteGoalButton.selected = true
                         self.navigationController?.popViewControllerAnimated(true)
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                         NSUserDefaults.standardUserDefaults().synchronize()
@@ -280,7 +277,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let message = serverMessage {
                             self.displayAlertMessage(message, alertDescription: "")
                         }
-                        
                     }
                 })
             }
@@ -303,8 +299,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        self.deleteGoalButton.selected = true
-                        
                         self.navigationController?.popViewControllerAnimated(true)
                         
                     }
@@ -334,7 +328,6 @@ extension TimeFrameTimeZoneChallengeViewController {
                     self.navigationController?.popViewControllerAnimated(true)
                 } else {
                     self.displayAlertMessage(NSLocalizedString("challenges.addBudgetGoal.deletedGoalMessage", comment: ""), alertDescription: "")
-                    
                 }
             }
         }

@@ -9,10 +9,10 @@
 import UIKit
 
 
+
 class SetPasscodeViewController: LoginSignupValidationMasterView {
     
-    var passcodeString: String?
-        
+    @IBOutlet weak var bottomViewLayout: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +21,10 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
+        self.navigationController?.navigationBarHidden = false
+
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
 
     }
@@ -30,75 +32,72 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.codeInputView.delegate = self
-        self.codeInputView.secure = true
-        codeView.addSubview(self.codeInputView)
+        codeInputView.delegate = self
+        codeInputView.secure = true
+        codeView.addSubview(codeInputView)
         
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+
+        
+//        scrollView.setContentOffset(CGPointZero, animated:false)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.clear()
-        UIView.animateWithDuration(0.1) {
-            self.codeInputView.becomeFirstResponder()
-        }
+        codeInputView.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.codeInputView.resignFirstResponder()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    override func viewDidLayoutSubviews()
+    {
+
+        var scrollViewInsets = UIEdgeInsetsZero
+        scrollViewInsets.top = 0
+        scrollView.contentInset = scrollViewInsets
     }
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+
 }
 
 extension SetPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        let viewHeight = self.view.frame.size.height
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)!.CGRectValue.size
-        let keyboardInset = keyboardSize.height - viewHeight/3
-        
-        
-        let  pos = (codeView?.frame.origin.y)! + (codeView?.frame.size.height)! + 30.0
-        
-        
-        if (pos > (viewHeight-keyboardSize.height)) {
-            posi = pos-(viewHeight-keyboardSize.height)
-            UIView.animateWithDuration(0.2, animations: {
-                self.view.frame.origin.y -= self.posi
-            })
-            
-        } else {
-            scrollView.setContentOffset(CGPointMake(0, keyboardInset), animated: true)
+        if let activeField = self.codeView, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.scrollView.bounds
+            aRect.size.height -= keyboardSize.size.height
+            if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
+                var frameToScrollTo = activeField.frame
+                frameToScrollTo.size.height += 30
+                self.scrollView.scrollRectToVisible(frameToScrollTo, animated: true)
+            }
         }
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        if let position = resetTheView(posi, scrollView: scrollView, view: view) {
-            posi = position
-        }
+        let contentInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
     }
 }
 
 extension SetPasscodeViewController: CodeInputViewDelegate {
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        if let passcode = R.storyboard.confirmPasscode.confirmPasscodeStoryboard {
-            passcode.passcode = code
-            if isFromSettings {
-                passcode.isFromSettings = self.isFromSettings
-            }
-            self.navigationController?.pushViewController(passcode, animated: false)
-        }
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
         self.codeInputView.clear()
     }
 }

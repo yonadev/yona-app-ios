@@ -2,14 +2,14 @@
 //  BaseViewController.swift
 //  Yona
 //
-//  Created by Chandan on 19/05/16.
+//  Created by Ben Smith on 03/06/16.
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
-   
+    
+
 }
-
-
