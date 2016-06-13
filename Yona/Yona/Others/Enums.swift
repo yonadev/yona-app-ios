@@ -8,6 +8,15 @@
 
 import Foundation
 
+enum ViewControllerTypeString: String {
+    case walkThrough = "WalkThrough"
+    case welcome = "Welcome"
+    case smsValidation = "SMSValidation"
+    case passcode = "Passcode"
+    case login = "Login"
+    case dashboard = "Dashboard"
+}
+
 enum GoalType: String {
     case BudgetGoalString = "BudgetGoal"
     case TimeZoneGoalString = "TimeZoneGoal"

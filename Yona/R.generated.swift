@@ -5,36 +5,24 @@ import UIKit
 
 struct R {
   static func validate() {
-    storyboard.createAccount.validateImages()
-    storyboard.createAccount.validateViewControllers()
     storyboard.friends.validateImages()
     storyboard.friends.validateViewControllers()
-    storyboard.addDeviceViewController.validateImages()
-    storyboard.addDeviceViewController.validateViewControllers()
     storyboard.profile.validateImages()
     storyboard.profile.validateViewControllers()
-    storyboard.signUp.validateImages()
-    storyboard.signUp.validateViewControllers()
-    storyboard.dashboard.validateImages()
-    storyboard.dashboard.validateViewControllers()
     storyboard.login.validateImages()
     storyboard.login.validateViewControllers()
-    storyboard.launchScreen.validateImages()
-    storyboard.launchScreen.validateViewControllers()
-    storyboard.challenges.validateImages()
-    storyboard.challenges.validateViewControllers()
-    storyboard.settings.validateImages()
-    storyboard.settings.validateViewControllers()
-    storyboard.confirmPasscode.validateImages()
-    storyboard.confirmPasscode.validateViewControllers()
-    storyboard.sMSValidation.validateImages()
-    storyboard.sMSValidation.validateViewControllers()
-    storyboard.passcode.validateImages()
-    storyboard.passcode.validateViewControllers()
+    storyboard.dashboard.validateImages()
+    storyboard.dashboard.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
+    storyboard.launchScreen.validateImages()
+    storyboard.launchScreen.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
+    storyboard.settings.validateImages()
+    storyboard.settings.validateViewControllers()
+    storyboard.challenges.validateImages()
+    storyboard.challenges.validateViewControllers()
     storyboard.main.validateImages()
     storyboard.main.validateViewControllers()
   }
@@ -94,6 +82,7 @@ struct R {
     static var sFUITextRegularOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Regular", withExtension: "otf") }
     static var sFUITextSemiboldItalicOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-SemiboldItalic", withExtension: "otf") }
     static var sFUITextSemiboldOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Semibold", withExtension: "otf") }
+    static var sVProgressHUDBundle: NSURL? { return _R.hostingBundle?.URLForResource("SVProgressHUD", withExtension: "bundle") }
     static var secretKeysPlist: NSURL? { return _R.hostingBundle?.URLForResource("SecretKeys", withExtension: "plist") }
     static var settingsBundle: NSURL? { return _R.hostingBundle?.URLForResource("Settings", withExtension: "bundle") }
   }
@@ -386,12 +375,25 @@ struct R {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
+    struct loginViewController {
+      static var transToPasscode: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPasscode") }
+      static var transToSMS: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SMSValidationViewController> { return StoryboardSegueIdentifier(identifier: "transToSMS") }
+    }
+    
+    struct sMSValidationViewController {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, SMSValidationViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    }
+    
+    struct setPasscodeViewController {
+      static var transToConfirmPincode: StoryboardSegueIdentifier<UIStoryboardSegue, SetPasscodeViewController, ConfirmPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToConfirmPincode") }
+    }
+    
     struct settingsViewController {
       static var privacyStatementSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SettingsViewController, PrivacyStatementVC> { return StoryboardSegueIdentifier(identifier: "PrivacyStatementSegue") }
     }
     
     struct signUpFirstStepViewController {
-      static var signUpSeconStepSegue: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSeconStepSegue") }
+      static var signUpSecondStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, SignUpFirstStepViewController, SignUpSecondStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpSecondStepViewController") }
     }
     
     struct timeBucketChallenges {
@@ -399,23 +401,13 @@ struct R {
       static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
       static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
     }
+    
+    struct welcomeViewController {
+      static var signUpFirstStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, SignUpFirstStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpFirstStepViewController") }
+    }
   }
   
   struct storyboard {
-    struct addDeviceViewController {
-      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "AddDeviceViewController", bundle: _R.hostingBundle) }
-      
-      static func validateImages() {
-        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'AddDeviceViewController', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'AddDeviceViewController' as 'AddDeviceViewController'.")
-      }
-    }
-    
     struct challenges {
       static var initialViewController: TimeBucketChallenges? { return instance.instantiateInitialViewController() as? TimeBucketChallenges }
       static var instance: UIStoryboard { return UIStoryboard(name: "Challenges", bundle: _R.hostingBundle) }
@@ -436,34 +428,6 @@ struct R {
         assert(timeFrameTimeZoneChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameTimeZoneChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameTimeZoneChallengeViewController'.")
         assert(timeFrameBudgetChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameBudgetChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameBudgetChallengeViewController'.")
         assert(timeFrameNoGoChallengeStoryboard != nil, "[R.swift] ViewController with identifier 'timeFrameNoGoChallengeStoryboard' could not be loaded from storyboard 'Challenges' as 'TimeFrameNoGoChallengeViewController'.")
-      }
-    }
-    
-    struct confirmPasscode {
-      static var confirmPasscodeStoryboard: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeStoryboard") as? ConfirmPasscodeViewController }
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "ConfirmPasscode", bundle: _R.hostingBundle) }
-      
-      static func validateImages() {
-        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'ConfirmPasscode', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'ConfirmPasscode', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(confirmPasscodeStoryboard != nil, "[R.swift] ViewController with identifier 'confirmPasscodeStoryboard' could not be loaded from storyboard 'ConfirmPasscode' as 'ConfirmPasscodeViewController'.")
-      }
-    }
-    
-    struct createAccount {
-      static var createAccountStoryboard: CreateAccountViewController? { return instance.instantiateViewControllerWithIdentifier("CreateAccountStoryboard") as? CreateAccountViewController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "CreateAccount", bundle: _R.hostingBundle) }
-      
-      static func validateImages() {
-        
-      }
-      
-      static func validateViewControllers() {
-        assert(createAccountStoryboard != nil, "[R.swift] ViewController with identifier 'createAccountStoryboard' could not be loaded from storyboard 'CreateAccount' as 'CreateAccountViewController'.")
       }
     }
     
@@ -516,16 +480,26 @@ struct R {
     }
     
     struct login {
+      static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
-      static var loginStoryboard: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginStoryboard") as? LoginViewController }
+      static var loginViewController: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController }
+      static var passcodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeViewController") as? SetPasscodeViewController }
+      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Login', but couldn't be loaded.")
         assert(UIImage(named: "icnY") != nil, "[R.swift] Image named 'icnY' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Login', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Login', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(loginStoryboard != nil, "[R.swift] ViewController with identifier 'loginStoryboard' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
+        assert(loginViewController != nil, "[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
+        assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'Login' as 'ConfirmPasscodeViewController'.")
+        assert(passcodeViewController != nil, "[R.swift] ViewController with identifier 'passcodeViewController' could not be loaded from storyboard 'Login' as 'SetPasscodeViewController'.")
+        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'SMSValidationViewController'.")
       }
     }
     
@@ -540,21 +514,6 @@ struct R {
       
       static func validateViewControllers() {
         
-      }
-    }
-    
-    struct passcode {
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "Passcode", bundle: _R.hostingBundle) }
-      static var passcodeStoryboard: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeStoryboard") as? SetPasscodeViewController }
-      
-      static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Passcode', but couldn't be loaded.")
-        assert(UIImage(named: "icnAccountCreated") != nil, "[R.swift] Image named 'icnAccountCreated' is used in storyboard 'Passcode', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(passcodeStoryboard != nil, "[R.swift] ViewController with identifier 'passcodeStoryboard' could not be loaded from storyboard 'Passcode' as 'SetPasscodeViewController'.")
       }
     }
     
@@ -577,20 +536,6 @@ struct R {
       }
     }
     
-    struct sMSValidation {
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "SMSValidation", bundle: _R.hostingBundle) }
-      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
-      
-      static func validateImages() {
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SMSValidation', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'SMSValidation' as 'SMSValidationViewController'.")
-      }
-    }
-    
     struct settings {
       static var initialViewController: SettingsViewController? { return instance.instantiateInitialViewController() as? SettingsViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Settings", bundle: _R.hostingBundle) }
@@ -604,23 +549,6 @@ struct R {
       }
     }
     
-    struct signUp {
-      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "SignUp", bundle: _R.hostingBundle) }
-      static var signUpFirstStepViewController: SignUpFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpFirstStepViewController") as? SignUpFirstStepViewController }
-      static var signUpSecondStepViewController: SignUpSecondStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController") as? SignUpSecondStepViewController }
-      
-      static func validateImages() {
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'SignUp', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'SignUp', but couldn't be loaded.")
-      }
-      
-      static func validateViewControllers() {
-        assert(signUpFirstStepViewController != nil, "[R.swift] ViewController with identifier 'signUpFirstStepViewController' could not be loaded from storyboard 'SignUp' as 'SignUpFirstStepViewController'.")
-        assert(signUpSecondStepViewController != nil, "[R.swift] ViewController with identifier 'signUpSecondStepViewController' could not be loaded from storyboard 'SignUp' as 'SignUpSecondStepViewController'.")
-      }
-    }
-    
     struct walkThrough {
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "WalkThrough", bundle: _R.hostingBundle) }
@@ -628,7 +556,7 @@ struct R {
       static var walkThrough2: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough2") as? TourScreenViewController }
       static var walkThrough3: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough3") as? TourScreenViewController }
       static var walkThrough4: TourScreenViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThrough4") as? TourScreenViewController }
-      static var walkThroughStoryboard: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughStoryboard") as? WalkThroughViewController }
+      static var walkThroughViewController: WalkThroughViewController? { return instance.instantiateViewControllerWithIdentifier("WalkThroughViewController") as? WalkThroughViewController }
       
       static func validateImages() {
         assert(UIImage(named: "sharingSlide") != nil, "[R.swift] Image named 'sharingSlide' is used in storyboard 'WalkThrough', but couldn't be loaded.")
@@ -640,7 +568,7 @@ struct R {
       
       static func validateViewControllers() {
         assert(walkThrough1 != nil, "[R.swift] ViewController with identifier 'walkThrough1' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
-        assert(walkThroughStoryboard != nil, "[R.swift] ViewController with identifier 'walkThroughStoryboard' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
+        assert(walkThroughViewController != nil, "[R.swift] ViewController with identifier 'walkThroughViewController' could not be loaded from storyboard 'WalkThrough' as 'WalkThroughViewController'.")
         assert(walkThrough2 != nil, "[R.swift] ViewController with identifier 'walkThrough2' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
         assert(walkThrough3 != nil, "[R.swift] ViewController with identifier 'walkThrough3' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
         assert(walkThrough4 != nil, "[R.swift] ViewController with identifier 'walkThrough4' could not be loaded from storyboard 'WalkThrough' as 'TourScreenViewController'.")
@@ -648,16 +576,24 @@ struct R {
     }
     
     struct welcome {
+      static var addDeviceStoryboard: AddDeviceViewController? { return instance.instantiateViewControllerWithIdentifier("AddDeviceStoryboard") as? AddDeviceViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Welcome", bundle: _R.hostingBundle) }
-      static var welcomeStoryboard: WelcomeViewController? { return instance.instantiateViewControllerWithIdentifier("WelcomeStoryboard") as? WelcomeViewController }
+      static var signUpFirstStepViewController: SignUpFirstStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpFirstStepViewController") as? SignUpFirstStepViewController }
+      static var signUpSecondStepViewController: SignUpSecondStepViewController? { return instance.instantiateViewControllerWithIdentifier("SignUpSecondStepViewController") as? SignUpSecondStepViewController }
+      static var welcomeViewController: WelcomeViewController? { return instance.instantiateViewControllerWithIdentifier("WelcomeViewController") as? WelcomeViewController }
       
       static func validateImages() {
         assert(UIImage(named: "welcomeScreen") != nil, "[R.swift] Image named 'welcomeScreen' is used in storyboard 'Welcome', but couldn't be loaded.")
+        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Welcome', but couldn't be loaded.")
+        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Welcome', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(welcomeStoryboard != nil, "[R.swift] ViewController with identifier 'welcomeStoryboard' could not be loaded from storyboard 'Welcome' as 'WelcomeViewController'.")
+        assert(welcomeViewController != nil, "[R.swift] ViewController with identifier 'welcomeViewController' could not be loaded from storyboard 'Welcome' as 'WelcomeViewController'.")
+        assert(signUpFirstStepViewController != nil, "[R.swift] ViewController with identifier 'signUpFirstStepViewController' could not be loaded from storyboard 'Welcome' as 'SignUpFirstStepViewController'.")
+        assert(signUpSecondStepViewController != nil, "[R.swift] ViewController with identifier 'signUpSecondStepViewController' could not be loaded from storyboard 'Welcome' as 'SignUpSecondStepViewController'.")
+        assert(addDeviceStoryboard != nil, "[R.swift] ViewController with identifier 'addDeviceStoryboard' could not be loaded from storyboard 'Welcome' as 'AddDeviceViewController'.")
       }
     }
   }

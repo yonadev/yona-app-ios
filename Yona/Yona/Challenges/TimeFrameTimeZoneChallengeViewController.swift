@@ -23,7 +23,7 @@ protocol TimeZoneChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameTimeZoneChallengeViewController: UIViewController {
+class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     
     weak var delegate: TimeZoneChallengeDelegate?
     
@@ -93,7 +93,7 @@ class TimeFrameTimeZoneChallengeViewController: UIViewController {
     
     
     func configureView() {
-        setTimeBucketTabToDisplay(timeBucketTabNames.timeZone.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5

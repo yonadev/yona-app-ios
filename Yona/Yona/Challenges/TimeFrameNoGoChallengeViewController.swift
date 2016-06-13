@@ -12,7 +12,7 @@ protocol NoGoChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameNoGoChallengeViewController: UIViewController {
+class TimeFrameNoGoChallengeViewController: BaseViewController {
     
     weak var delegate: NoGoChallengeDelegate?
     
@@ -35,7 +35,7 @@ class TimeFrameNoGoChallengeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
         setChallengeButton.layer.borderWidth = 1.5

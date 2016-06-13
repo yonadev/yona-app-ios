@@ -9,7 +9,7 @@
 
 import UIKit
 
-class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
+class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
     
     enum SelectedCategoryHeader {
         case BudgetGoal
@@ -59,19 +59,19 @@ class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChalle
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        //It will select NoGo tab by default
-        setTimeBucketTabToDisplay(timeBucketTabNames.noGo.rawValue, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        self.tableView.estimatedRowHeight = 100
-        self.setupUI()
-        self.callActivityCategory()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //It will select NoGo tab by default
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        self.tableView.estimatedRowHeight = 100
+        self.setupUI()
+        self.callActivityCategory()
         setDeselectOtherCategory()
 
-        if let tabName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) as? String {
+        if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
                 
@@ -199,20 +199,23 @@ class TimeBucketChallenges: UIViewController, UIScrollViewDelegate, BudgetChalle
         #if DEBUG
         print("****** ACTIVITY CALLED ******")
         #endif
-        Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
-            Loader.Hide()
-            if success{
-                self.activityCategoriesArray = activities!
-                self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                self.callGoals(self.activityCategoriesArray, goals: goals)
-            } else {
-                if let message = message {
-                    self.displayAlertMessage(message, alertDescription: "")
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+            Loader.Show()
+            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
+                Loader.Hide()
+                if success{
+                    self.activityCategoriesArray = activities!
+                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                } else {
+                    if let message = message {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                    
                 }
-                
             }
         }
+
     }
     
     private func setupUI() {

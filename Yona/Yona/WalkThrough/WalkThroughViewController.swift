@@ -10,10 +10,15 @@ import UIKit
 
 public class WalkThroughViewController: UIViewController, ButtonEvents {
     @IBOutlet var pageController: AVPageViewController!
-    
-    
+        
     var allControllers = [UIViewController]()
     let margin: CGFloat = 0.0
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +42,8 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
         } else {
             // last index
             print("welcome")
-            if let welcome = R.storyboard.welcome.welcomeStoryboard {
+            setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if let welcome = R.storyboard.welcome.welcomeViewController {
                 self.navigationController?.pushViewController(welcome, animated: false)
             }
         }
@@ -66,11 +72,10 @@ class TourScreenViewController: AVPageContentViewController {
     
     @IBAction func nextAction(sender: UIButton) {
         delegate?.buttonAction(self.viewControllerIndex)
-        if let welcome = R.storyboard.welcome.welcomeStoryboard {
+        
+        setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        if let welcome = R.storyboard.welcome.welcomeViewController {
             self.navigationController?.pushViewController(welcome, animated: false)
         }
     }
 }
-
-
-

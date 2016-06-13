@@ -1,4 +1,4 @@
-//
+ //
 //  LoginSignupValidationMasterView.swift
 //  Yona
 //
@@ -8,12 +8,13 @@
 
 import Foundation
 
-class LoginSignupValidationMasterView: UIViewController {
+class LoginSignupValidationMasterView: BaseViewController {
     
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-    
+    var passcodeString: String? //the passcode to pass to confirm passcode view
+
     @IBOutlet var resendCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var resendOverrideCode: UIButton!
@@ -31,12 +32,52 @@ class LoginSignupValidationMasterView: UIViewController {
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var backButton: UIBarButtonItem!
     var isFromSettings = false
+    var isFromPinReset:Bool?
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    //MARK: - display methods
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        setBackgroundColour()
+        
+        if let confirmPasscodeVC = segue.destinationViewController as? ConfirmPasscodeViewController {
+            confirmPasscodeVC.isFromSettings = isFromSettings
+            confirmPasscodeVC.isFromPinReset = isFromPinReset
+            confirmPasscodeVC.passcode = passcodeString
+        } else if let passcodeVC = segue.destinationViewController as? SetPasscodeViewController {
+            passcodeVC.isFromPinReset = isFromPinReset
+            passcodeVC.isFromSettings = isFromSettings
+
+        } else if let smsValidationVC = segue.destinationViewController as? SMSValidationViewController {
+            smsValidationVC.isFromPinReset = isFromPinReset
+            smsValidationVC.isFromSettings = isFromSettings
+            if smsValidationVC.isFromSettings {
+                self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
+            }
+        }
+
+    }
+    func setBackgroundColour(){
+        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
+        if self.isFromSettings {
+            if let topView = topView {
+                topView.backgroundColor = UIColor.yiMangoColor()
+            }
+            self.view.backgroundColor = UIColor.yiMangoColor()
+            gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
+            gradientNavBar?.backgroundColor = UIColor.yiMangoColor()
+        }
+    }
+
+    
 }
+ 
+
+ 
 //MARK: - Messaging for views from server
 extension LoginSignupValidationMasterView {
     func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
@@ -79,15 +120,10 @@ extension LoginSignupValidationMasterView {
      - parameter infoLabelText: String lable on the information to the user
      */
     func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?, avtarImageName: UIImage?) {
-        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-
+        setBackgroundColour()
         if isFromSettings {
             //Nav bar Back button.
             self.navigationItem.title = screenNameLabelText
-            topView.backgroundColor = UIColor.yiMangoColor()
-            self.view.backgroundColor = UIColor.yiMangoColor()
-            gradientNavBar?.gradientColor = UIColor.yiMangoTriangleColor()
-                        
             let viewWidth = self.view.frame.size.width
             let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
             customView.backgroundColor=UIColor.yiDarkishPinkColor()
@@ -105,7 +141,6 @@ extension LoginSignupValidationMasterView {
         } else {
             //Nav bar Back button.
             self.navigationController?.setNavigationBarHidden(false, animated: false)
-            gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
         }
     }
 }
@@ -113,6 +148,7 @@ extension LoginSignupValidationMasterView {
 //MARK: - Button logic code used on 2 screens
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
+        isFromPinReset = true
         Loader.Show()
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
@@ -122,15 +158,8 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    if self.isFromSettings { //need to reset the colour back to grape colour
-                        let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
-                        gradientNavBar?.backgroundColor = UIColor.yiGrapeColor()
-                        gradientNavBar?.gradientColor = UIColor.yiGrapeTwoColor()
-                    }
-                    setViewControllerToDisplay("SMSValidation", key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    if let sMSValidation = R.storyboard.sMSValidation.sMSValidationViewController {
-                        self.navigationController?.pushViewController(sMSValidation, animated: false)
-                    }
+                    setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
                 }
             } else {
                 Loader.Hide()

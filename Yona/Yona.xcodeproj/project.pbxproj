@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
+		604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */; };
+		6042829A1D0ADA4600F5543C /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282931D0ADA4600F5543C /* SVProgressAnimatedView.m */; };
+		6042829B1D0ADA4600F5543C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604282941D0ADA4600F5543C /* SVProgressHUD.bundle */; };
+		6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282961D0ADA4600F5543C /* SVProgressHUD.m */; };
+		6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
@@ -45,17 +51,11 @@
 		906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED851CEDC72300029845 /* NotificationsViewController.swift */; };
 		906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED881CEE06DE00029845 /* NotificationsCell.swift */; };
 		906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
-		906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */; };
 		906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		906FED8D1CEE23C100029845 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
-		906FED8E1CEE23C500029845 /* ConfirmPasscode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */; };
-		906FED8F1CEE23C800029845 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7261CD78F7200100306 /* Passcode.storyboard */; };
-		906FED901CEE23CB00029845 /* SMSValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7291CD78F7200100306 /* SMSValidation.storyboard */; };
 		906FED911CEE23CE00029845 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906FED7C1CEDB31A00029845 /* Profile.storyboard */; };
 		906FED921CEE23D200029845 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */; };
 		906FED931CEE23D600029845 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D741CA940D9008CAFB1 /* Settings.storyboard */; };
-		906FED941CEE23D900029845 /* AddDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */; };
-		906FED951CEE23DC00029845 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5571F31CAAD88D000BF880 /* SignUp.storyboard */; };
 		906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		906FED971CEE23E200029845 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
@@ -73,6 +73,7 @@
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6E001D01D73000A674C4 /* BaseViewController.swift */; };
 		AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */; };
 		AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */; };
 		AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DEBD1CD3648F006BBA7E /* IQUITextFieldView+Additions.swift */; };
@@ -91,11 +92,8 @@
 		AD00DEDF1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00DECD1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift */; };
 		AD00DEE01CD3648F006BBA7E /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD00DECF1CD3648F006BBA7E /* IQKeyboardManager.bundle */; };
 		AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */; };
-		AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */; };
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
-		AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD27E61C1CDB4069001C801D /* SecretKeys.plist */; };
 		AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */; };
-		AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */; };
 		AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */; };
 		AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */; };
 		AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */; };
@@ -262,11 +260,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
 		603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentManager.m; sourceTree = "<group>"; };
+		604282901D0ADA4600F5543C /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		604282921D0ADA4600F5543C /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		604282931D0ADA4600F5543C /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		604282941D0ADA4600F5543C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		604282951D0ADA4600F5543C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		604282961D0ADA4600F5543C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		604282971D0ADA4600F5543C /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationViewController.swift; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
@@ -274,12 +282,10 @@
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
 		9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomPickerView.swift; sourceTree = "<group>"; };
 		9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
-		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
-		9042C7261CD78F7200100306 /* Passcode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
-		9042C7291CD78F7200100306 /* SMSValidation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SMSValidation.storyboard; sourceTree = "<group>"; };
 		9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
 		9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupValidationMasterView.swift; sourceTree = "<group>"; };
 		9042C7381CD898E300100306 /* NSObject+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AGi18n.h"; sourceTree = "<group>"; };
@@ -311,7 +317,7 @@
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../Notifications/ProfileViewController.swift; sourceTree = "<group>"; };
 		906FED7C1CEDB31A00029845 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Notifications/Profile.storyboard; sourceTree = "<group>"; };
-		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsProfileMasterView.swift; path = ../FriendsProfileMasterView.swift; sourceTree = "<group>"; };
+		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsProfileMasterView.swift; sourceTree = "<group>"; };
 		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		906FED881CEE06DE00029845 /* NotificationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsCell.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -328,6 +334,7 @@
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD00DEBB1CD3648F006BBA7E /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		AD00DEBC1CD3648F006BBA7E /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
@@ -348,17 +355,11 @@
 		AD00DECF1CD3648F006BBA7E /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBucketChallenges.swift; sourceTree = "<group>"; };
 		AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yona-Bridging-Header.h"; path = "Others/Yona-Bridging-Header.h"; sourceTree = "<group>"; };
-		AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		AD2263291CD2668000AD4AB1 /* YonaUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YonaUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD22632A1CD2672F00AD4AB1 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
-		AD27E61C1CDB4069001C801D /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
-		AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmPasscode.storyboard; sourceTree = "<group>"; };
 		AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
 		AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
-		AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		AD291D661CA94001008CAFB1 /* Challenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Challenges.storyboard; sourceTree = "<group>"; };
 		AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsOverViewViewController.swift; sourceTree = "<group>"; };
 		AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
@@ -369,16 +370,14 @@
 		AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPageContentViewController.swift; path = ../Others/AVPageContentViewController.swift; sourceTree = "<group>"; };
 		AD291DA61CAAA8CC008CAFB1 /* AVPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPageViewController.swift; path = ../Others/AVPageViewController.swift; sourceTree = "<group>"; };
 		AD3931E11CEB311900605FBA /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
-		AD5571F31CAAD88D000BF880 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		AD5571F81CABA022000BF880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
-		AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDeviceViewController.storyboard; sourceTree = "<group>"; };
 		AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		AD84B7301CDA27820085D5B7 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		AD84B7311CDA27820085D5B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AD9E63C11CFC448D006CD6D6 /* CALayerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CodeInputView.swift; path = Others/CodeInputView.swift; sourceTree = "<group>"; };
+		ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CodeInputView.swift; path = ../CodeInputView.swift; sourceTree = "<group>"; };
 		ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ADC6C88B1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameTimeZoneChallengeViewController.swift; sourceTree = "<group>"; };
@@ -628,6 +627,23 @@
 			name = "Environment Switching";
 			sourceTree = "<group>";
 		};
+		604282801D0AD9F200F5543C /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				604282901D0ADA4600F5543C /* SVIndefiniteAnimatedView.h */,
+				604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */,
+				604282921D0ADA4600F5543C /* SVProgressAnimatedView.h */,
+				604282931D0ADA4600F5543C /* SVProgressAnimatedView.m */,
+				604282941D0ADA4600F5543C /* SVProgressHUD.bundle */,
+				604282951D0ADA4600F5543C /* SVProgressHUD.h */,
+				604282961D0ADA4600F5543C /* SVProgressHUD.m */,
+				604282971D0ADA4600F5543C /* SVRadialGradientLayer.h */,
+				604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */,
+				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
+			);
+			name = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		803143D5A6C19514CFFD49E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +656,7 @@
 		9042C7091CD7581E00100306 /* CustomSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
 				90FF6DF81D00344900A674C4 /* GradientView.swift */,
 				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
 				904DD48D1CF36C9700E894A5 /* CustomPicker */,
@@ -651,6 +668,7 @@
 		9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */ = {
 			isa = PBXGroup;
 			children = (
+				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */,
 				9042C7201CD78F7200100306 /* Login */,
 				9042C7241CD78F7200100306 /* Passcode */,
@@ -663,7 +681,6 @@
 		9042C7201CD78F7200100306 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7231CD78F7200100306 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -672,8 +689,6 @@
 		9042C7241CD78F7200100306 /* Passcode */ = {
 			isa = PBXGroup;
 			children = (
-				AD27E61E1CDBBEAF001C801D /* ConfirmPasscode.storyboard */,
-				9042C7261CD78F7200100306 /* Passcode.storyboard */,
 				9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */,
 				9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */,
 			);
@@ -683,7 +698,6 @@
 		9042C7281CD78F7200100306 /* SMSValidation */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7291CD78F7200100306 /* SMSValidation.storyboard */,
 				9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */,
 			);
 			path = SMSValidation;
@@ -787,6 +801,7 @@
 		90FF6DFC1D0095C000A674C4 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
+				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
 				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
@@ -799,24 +814,11 @@
 		90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */ = {
 			isa = PBXGroup;
 			children = (
-				ADAEAFDA1CB2E32E005ED7B4 /* CodeInputView.swift */,
-				AD291D281CA9286C008CAFB1 /* CreateAccount */,
 				9042C71F1CD78F7200100306 /* SMSValidPasscodeLogin */,
-				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE01CB40FA4005ED7B4 /* Welcome */,
 				AD291D291CA9286C008CAFB1 /* WalkThrough */,
 			);
 			name = LoginSignUpFlow;
-			sourceTree = "<group>";
-		};
-		90FF6DFF1D016E8A00A674C4 /* ProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				AD22632A1CD2672F00AD4AB1 /* Loader.swift */,
-				AD2263261CD2656300AD4AB1 /* MBProgressHUD.h */,
-				AD2263271CD2656300AD4AB1 /* MBProgressHUD.m */,
-			);
-			name = ProgressHUD;
 			sourceTree = "<group>";
 		};
 		AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */ = {
@@ -890,7 +892,6 @@
 				AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */,
 				60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */,
 				AD3931E11CEB311900605FBA /* BaseTabViewController.swift */,
-				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 			);
 			path = DashBoard;
 			sourceTree = "<group>";
@@ -932,21 +933,11 @@
 		AD291D271CA92808008CAFB1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
 				AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */,
 				AD291D741CA940D9008CAFB1 /* Settings.storyboard */,
 				906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		AD291D281CA9286C008CAFB1 /* CreateAccount */ = {
-			isa = PBXGroup;
-			children = (
-				AD291D641CA93EC2008CAFB1 /* CreateAccount.storyboard */,
-				AD291D621CA93EB5008CAFB1 /* CreateAccountViewController.swift */,
-			);
-			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 		AD291D291CA9286C008CAFB1 /* WalkThrough */ = {
@@ -963,7 +954,7 @@
 		AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */ = {
 			isa = PBXGroup;
 			children = (
-				90FF6DFF1D016E8A00A674C4 /* ProgressHUD */,
+				604282801D0AD9F200F5543C /* SVProgressHUD */,
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
@@ -977,17 +968,16 @@
 		AD5571F21CAAD87B000BF880 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				AD5571F31CAAD88D000BF880 /* SignUp.storyboard */,
 				AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */,
 				ADEF8EED1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift */,
 			);
-			path = SignUp;
+			name = SignUp;
+			path = ../SignUp;
 			sourceTree = "<group>";
 		};
 		AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */ = {
 			isa = PBXGroup;
 			children = (
-				AD84B72C1CD8E65D0085D5B7 /* AddDeviceViewController.storyboard */,
 				AD84B72D1CD8E65D0085D5B7 /* AddDeviceViewController.swift */,
 			);
 			name = AddNewDevice;
@@ -997,6 +987,8 @@
 		ADAEAFE01CB40FA4005ED7B4 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				AD84B72B1CD8E65D0085D5B7 /* AddNewDevice */,
+				AD5571F21CAAD87B000BF880 /* SignUp */,
 				ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */,
 				ADAEAFE21CB40FA4005ED7B4 /* WelcomeViewController.swift */,
 			);
@@ -1309,6 +1301,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
+				90FF6E001D01D73000A674C4 /* BaseViewController.swift */,
 				D9C744EC1CB3DFCA008E463A /* Protocols_Enums_Constants */,
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
@@ -1323,7 +1316,7 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				AD27E61C1CDB4069001C801D /* SecretKeys.plist */,
+				16D73D8E1D08453800181AC9 /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 			);
@@ -1471,12 +1464,12 @@
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
 				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
+				6042829B1D0ADA4600F5543C /* SVProgressHUD.bundle in Resources */,
 				ADD1082C1CC78C3B0048852F /* Oswald-RegularItalic.ttf in Resources */,
 				ADD108261CC78C3B0048852F /* Oswald-HeavyItalic.ttf in Resources */,
 				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
 				ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */,
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
-				906FED8E1CEE23C500029845 /* ConfirmPasscode.storyboard in Resources */,
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
@@ -1496,7 +1489,6 @@
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
-				906FED8B1CEE23BC00029845 /* CreateAccount.storyboard in Resources */,
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				906FED911CEE23CE00029845 /* Profile.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
@@ -1509,10 +1501,8 @@
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
 				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
-				906FED951CEE23DC00029845 /* SignUp.storyboard in Resources */,
 				906FED8D1CEE23C100029845 /* Login.storyboard in Resources */,
 				9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */,
-				906FED901CEE23CB00029845 /* SMSValidation.storyboard in Resources */,
 				906FED931CEE23D600029845 /* Settings.storyboard in Resources */,
 				ADD108281CC78C3B0048852F /* Oswald-LightItalic.ttf in Resources */,
 				D986355D1CABF44000A8535C /* SF-UI-Text-BoldItalic.otf in Resources */,
@@ -1521,22 +1511,20 @@
 				D986355C1CABF44000A8535C /* SF-UI-Text-Bold.otf in Resources */,
 				ADEF8F091CADFD0C001D5EED /* Roboto-LightItalic.ttf in Resources */,
 				ADEF8F051CADFD0C001D5EED /* Roboto-Condensed.ttf in Resources */,
-				906FED941CEE23D900029845 /* AddDeviceViewController.storyboard in Resources */,
 				ADEF8F0A1CADFD0C001D5EED /* Roboto-Medium.ttf in Resources */,
 				ADEF8F031CADFD0C001D5EED /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */,
 				906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
+				16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
-				AD27E61D1CDB4069001C801D /* SecretKeys.plist in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
-				906FED8F1CEE23C800029845 /* Passcode.storyboard in Resources */,
 				AD00DEE01CD3648F006BBA7E /* IQKeyboardManager.bundle in Resources */,
 				ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */,
 				D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */,
@@ -1651,14 +1639,15 @@
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
+				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
 				9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
+				604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
-				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
@@ -1672,7 +1661,7 @@
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
 				908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
-				AD2263281CD2656300AD4AB1 /* MBProgressHUD.m in Sources */,
+				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
@@ -1691,6 +1680,7 @@
 				AD84B7331CDA27820085D5B7 /* Date.swift in Sources */,
 				AD00DEDF1CD3648F006BBA7E /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */,
+				6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */,
 				ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */,
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
@@ -1721,6 +1711,7 @@
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
 				906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */,
+				6042829A1D0ADA4600F5543C /* SVProgressAnimatedView.m in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
 				9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */,

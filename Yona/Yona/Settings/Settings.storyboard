@@ -14,7 +14,7 @@
         <!--SETTINGS-->
         <scene sceneID="qUM-h3-L6K">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xo0-ls-zNR" customClass="SettingsViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xo0-ls-zNR" customClass="SettingsViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X8y-8h-YGB"/>
                         <viewControllerLayoutGuide type="bottom" id="kLa-Qt-UHN"/>

@@ -47,6 +47,8 @@ class ActivitiesRequestManager {
                         onCompletion(false, message, code, self.activitiesNotGoals, goals, nil)
                     }
                 })
+            }else{
+                onCompletion(false, serverMessage, serverCode, nil, nil, nil)
             }
         }
     }
