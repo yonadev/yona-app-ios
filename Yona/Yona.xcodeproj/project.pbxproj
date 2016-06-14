@@ -27,7 +27,7 @@
 		9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7231CD78F7200100306 /* LoginViewController.swift */; };
 		9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */; };
 		9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */; };
-		9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */; };
+		9042C7321CD78F7200100306 /* ConfirmMobileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* ConfirmMobileVC.swift */; };
 		9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */; };
 		9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7391CD898E300100306 /* NSObject+AGi18n.m */; };
 		9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C73B1CD898E300100306 /* UIBarButtonItem+AGi18n.m */; };
@@ -151,6 +151,7 @@
 		BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */; };
 		BEB0CE011CEA81ED0056280A /* MessageAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */; };
+		BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
@@ -286,7 +287,7 @@
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
 		9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
-		9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
+		9042C72A1CD78F7200100306 /* ConfirmMobileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMobileVC.swift; sourceTree = "<group>"; };
 		9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupValidationMasterView.swift; sourceTree = "<group>"; };
 		9042C7381CD898E300100306 /* NSObject+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AGi18n.h"; sourceTree = "<group>"; };
 		9042C7391CD898E300100306 /* NSObject+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AGi18n.m"; sourceTree = "<group>"; };
@@ -421,6 +422,7 @@
 		BE8254431CEA92F400F97045 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
+		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -698,7 +700,8 @@
 		9042C7281CD78F7200100306 /* SMSValidation */ = {
 			isa = PBXGroup;
 			children = (
-				9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */,
+				9042C72A1CD78F7200100306 /* ConfirmMobileVC.swift */,
+				BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */,
 			);
 			path = SMSValidation;
 			sourceTree = "<group>";
@@ -1663,6 +1666,7 @@
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
+				BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */,
@@ -1707,7 +1711,7 @@
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */,
-				9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */,
+				9042C7321CD78F7200100306 /* ConfirmMobileVC.swift in Sources */,
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
 				906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */,
