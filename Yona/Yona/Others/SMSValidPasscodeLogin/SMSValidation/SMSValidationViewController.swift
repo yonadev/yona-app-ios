@@ -66,21 +66,21 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
     
     func hideShowButtons() {
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            self.resendCodeButton.hidden = false
-            self.resendOverrideCode.hidden = true
             self.pinResetButton.hidden = true
+            self.resendOTPConfirmCodeButton.hidden = false
+            self.resendOTPResetCode.hidden = true
         } else if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.adminOverride) {
             self.pinResetButton.hidden = true
-            self.resendCodeButton.hidden = false
-            self.resendOverrideCode.hidden = false
+            self.resendOTPConfirmCodeButton.hidden = true
+            self.resendOTPResetCode.hidden = false
         } else {
             self.pinResetButton.hidden = true
-            self.resendCodeButton.hidden = true
-            self.resendOverrideCode.hidden = true
+            self.resendOTPConfirmCodeButton.hidden = true
+            self.resendOTPResetCode.hidden = true
         }
     }
     
-    @IBAction func sendOTPAgain(sender: UIButton) {
+    @IBAction func sendOTPConfirmMobileAgain(sender: UIButton) {
         Loader.Show()
         UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
             if success {
@@ -100,6 +100,7 @@ final class SMSValidationViewController: LoginSignupValidationMasterView {
         self.pinResetTapped()
     }
     
+    //calls the admin request manager overriding it so that the pin can be reset
     @IBAction func overrideRequestTapped(sender: UIButton) {
         if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
             AdminRequestManager.sharedInstance.adminRequestOverride(userBody) { (success, message, code) in
@@ -202,7 +203,7 @@ extension SMSValidationViewController: CodeInputViewDelegate {
 extension SMSValidationViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        if let activeField = self.resendCodeButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let activeField = self.resendOTPConfirmCodeButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets

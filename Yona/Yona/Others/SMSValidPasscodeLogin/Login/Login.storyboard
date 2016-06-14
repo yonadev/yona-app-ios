@@ -508,31 +508,25 @@
                                                     <constraint firstAttribute="height" constant="55" id="sFQ-9H-bQC"/>
                                                 </constraints>
                                             </view>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL4-iE-0Ur">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL4-iE-0Ur" userLabel="Resend OTP Reset Code">
                                                 <rect key="frame" x="206" y="329" width="189" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="189" id="Ljf-Ww-h6l"/>
                                                     <constraint firstAttribute="height" constant="28" id="gKb-WA-G7g"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendCode"/>
-                                                <connections>
-                                                    <action selector="overrideRequestTapped:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="Bdu-wE-cDA"/>
-                                                </connections>
+                                                <state key="normal" title="smsvalidation.button.resendResetOTPCode"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF" userLabel="Resend OTP Confirm Mobile">
                                                 <rect key="frame" x="203" y="329" width="195" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="195" id="0xh-Ph-VMn"/>
                                                     <constraint firstAttribute="height" constant="28" id="UL6-eR-UYa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendCode">
+                                                <state key="normal" title="smsvalidation.button.resendConfirmOTPCode">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="sendOTPAgain:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="JR1-3N-TSu"/>
-                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLS-KZ-DUU">
                                                 <rect key="frame" x="274" y="329" width="53" height="28"/>
@@ -609,8 +603,8 @@
                         <outlet property="infoLabel" destination="HZF-No-bKb" id="oTm-o2-QWW"/>
                         <outlet property="pinResetButton" destination="ZLS-KZ-DUU" id="MV7-Ch-h2G"/>
                         <outlet property="progressView" destination="8uv-mB-Hzi" id="cUD-r9-3wx"/>
-                        <outlet property="resendCodeButton" destination="S6z-Uu-baF" id="9Uj-5t-DH1"/>
-                        <outlet property="resendOverrideCode" destination="HL4-iE-0Ur" id="7Dc-VK-kIl"/>
+                        <outlet property="resendOTPConfirmCodeButton" destination="S6z-Uu-baF" id="hUn-7S-Ib8"/>
+                        <outlet property="resendOTPResetCode" destination="HL4-iE-0Ur" id="SLL-vd-0cC"/>
                         <outlet property="scrollView" destination="aBW-v4-tiq" id="0ny-Lf-s2M"/>
                         <outlet property="topView" destination="RT0-uA-aN2" id="fkg-MP-mqd"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="csq-qR-NzM"/>

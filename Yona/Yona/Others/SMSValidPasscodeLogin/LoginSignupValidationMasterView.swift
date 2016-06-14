@@ -15,9 +15,9 @@ class LoginSignupValidationMasterView: BaseViewController {
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
     var passcodeString: String? //the passcode to pass to confirm passcode view
 
-    @IBOutlet var resendCodeButton: UIButton!
+    @IBOutlet var resendOTPConfirmCodeButton: UIButton!
     @IBOutlet var pinResetButton: UIButton!
-    @IBOutlet var resendOverrideCode: UIButton!
+    @IBOutlet var resendOTPResetCode: UIButton!
     
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var progressView:UIView!
@@ -85,7 +85,7 @@ extension LoginSignupValidationMasterView {
             let serverMessage = message {
             if codeMessage == YonaConstants.serverCodes.tooManyResendOTPAttemps {
                 //make sure they are never on screen at same time
-                self.resendCodeButton.hidden = false
+                self.resendOTPConfirmCodeButton.hidden = false
                 self.pinResetButton.hidden = true
                 self.codeInputView.userInteractionEnabled = false
                 self.infoLabel.text = message
@@ -95,7 +95,7 @@ extension LoginSignupValidationMasterView {
             }//too many pin verify attempts so we need to clear and the user needs to request another one
             else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
                 //make sure they are never on screen at same time
-                self.resendCodeButton.hidden = true
+                self.resendOTPConfirmCodeButton.hidden = true
                 self.pinResetButton.hidden = false
                 self.codeInputView.userInteractionEnabled = false
                 self.infoLabel.text = message
@@ -109,7 +109,7 @@ extension LoginSignupValidationMasterView {
                 })
             } else if (codeMessage == YonaConstants.serverCodes.pinResetMismatch) {
                 self.infoLabel.text = message
-                self.resendCodeButton.hidden = false
+                self.resendOTPConfirmCodeButton.hidden = false
             }
             else {
                 self.displayPincodeRemainingMessage()
@@ -164,8 +164,11 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
+                    //don't push to sms view if we are already on that screen
+                    if (getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) != ViewControllerTypeString.smsValidation.rawValue) {
+                        setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
+                    }
                 }
             } else {
                 Loader.Hide()
