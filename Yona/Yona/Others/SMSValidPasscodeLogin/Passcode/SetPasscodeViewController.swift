@@ -40,9 +40,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-
-        
-//        scrollView.setContentOffset(CGPointZero, animated:false)
     }
     
     override func viewDidAppear(animated: Bool) {

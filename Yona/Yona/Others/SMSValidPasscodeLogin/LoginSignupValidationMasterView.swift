@@ -15,9 +15,6 @@ class LoginSignupValidationMasterView: BaseViewController {
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
     var passcodeString: String? //the passcode to pass to confirm passcode view
 
-    @IBOutlet var resendOTPConfirmCodeButton: UIButton!
-    @IBOutlet var pinResetButton: UIButton!
-    @IBOutlet var resendOTPResetCode: UIButton!
     
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var progressView:UIView!
@@ -52,15 +49,28 @@ class LoginSignupValidationMasterView: BaseViewController {
             passcodeVC.isFromPinReset = isFromPinReset
             passcodeVC.isFromSettings = isFromSettings
 
-        } else if let smsValidationVC = segue.destinationViewController as? SMSValidationViewController {
-            smsValidationVC.isFromPinReset = isFromPinReset
-            smsValidationVC.isFromSettings = isFromSettings
-            if smsValidationVC.isFromSettings {
+        } else if let confirmMobile = segue.destinationViewController as? ConfirmMobileValidationVC {
+            confirmMobile.isFromPinReset = isFromPinReset
+            confirmMobile.isFromSettings = isFromSettings
+            if confirmMobile.isFromSettings {
+                self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
+            }
+        } else if let pinReset = segue.destinationViewController as? PinResetValidationVC {
+            pinReset.isFromPinReset = isFromPinReset
+            pinReset.isFromSettings = isFromSettings
+            if pinReset.isFromSettings {
+                self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
+            }
+        }else if let adminOverride = segue.destinationViewController as? AdminOverrideValidationVC {
+            adminOverride.isFromPinReset = isFromPinReset
+            adminOverride.isFromSettings = isFromSettings
+            if adminOverride.isFromSettings {
                 self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
             }
         }
 
     }
+    
     func setBackgroundColour(){
         let gradientNavBar = self.navigationController?.navigationBar as? GradientNavBar
         if self.isFromSettings {
@@ -76,48 +86,6 @@ class LoginSignupValidationMasterView: BaseViewController {
     
 }
  
-
- 
-//MARK: - Messaging for views from server
-extension LoginSignupValidationMasterView {
-    func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
-        if let codeMessage = serverMessageCode,
-            let serverMessage = message {
-            if codeMessage == YonaConstants.serverCodes.tooManyResendOTPAttemps {
-                //make sure they are never on screen at same time
-                self.resendOTPConfirmCodeButton.hidden = false
-                self.pinResetButton.hidden = true
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-            }//too many pin verify attempts so we need to clear and the user needs to request another one
-            else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
-                //make sure they are never on screen at same time
-                self.resendOTPConfirmCodeButton.hidden = true
-                self.pinResetButton.hidden = false
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-                PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
-                    if success {
-                        self.pinResetButton.hidden = false
-                    }
-                })
-            } else if (codeMessage == YonaConstants.serverCodes.pinResetMismatch) {
-                self.infoLabel.text = message
-                self.resendOTPConfirmCodeButton.hidden = false
-            }
-            else {
-                self.displayPincodeRemainingMessage()
-            }
-        }
-    }
-}
-
 //MARK: - Setup Pincode screen differently for change pin
 extension LoginSignupValidationMasterView {
     /** Helps to setup the pincode screen differnetly if you come from the settings menu and you want to change the pin, uses yellow background and different text
@@ -164,11 +132,10 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    
                     //don't push to sms view if we are already on that screen
-                    if (getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) != ViewControllerTypeString.smsValidation.rawValue) {
-                        setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        self.performSegueWithIdentifier(R.segue.loginViewController.transToSMS, sender: self)
-                    }
+                    setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
                 }
             } else {
                 Loader.Hide()
@@ -192,6 +159,5 @@ extension LoginSignupValidationMasterView {
 extension Selector {
     static let keyboardWasShown = #selector(ConfirmPasscodeViewController.keyboardWasShown(_:))
     static let keyboardWillBeHidden = #selector(ConfirmPasscodeViewController.keyboardWillBeHidden(_:))
-    static let pinResetTapped = #selector(SMSValidationViewController.pinResetTapped(_:))
     
 }

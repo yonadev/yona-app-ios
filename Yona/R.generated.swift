@@ -371,17 +371,25 @@ struct R {
   }
   
   struct segue {
+    struct adminOverrideValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, AdminOverrideValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    }
+    
+    struct confirmMobileValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, ConfirmMobileValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    }
+    
     struct friendsOverViewViewController {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
     struct loginViewController {
       static var transToPasscode: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPasscode") }
-      static var transToSMS: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SMSValidationViewController> { return StoryboardSegueIdentifier(identifier: "transToSMS") }
+      static var transToPinResetValidation: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, PinResetValidationVC> { return StoryboardSegueIdentifier(identifier: "transToPinResetValidation") }
     }
     
-    struct sMSValidationViewController {
-      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, SMSValidationViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    struct pinResetValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, PinResetValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
     }
     
     struct setPasscodeViewController {
@@ -400,6 +408,10 @@ struct R {
       static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
       static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
       static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
+    
+    struct uINavigationController {
+      static var transToAdminOverrideValidation: StoryboardSegueIdentifier<UIStoryboardSegue, UINavigationController, AdminOverrideValidationVC> { return StoryboardSegueIdentifier(identifier: "transToAdminOverrideValidation") }
     }
     
     struct welcomeViewController {
@@ -480,12 +492,14 @@ struct R {
     }
     
     struct login {
+      static var adminOverrideValidationViewController: AdminOverrideValidationVC? { return instance.instantiateViewControllerWithIdentifier("adminOverrideValidationViewController") as? AdminOverrideValidationVC }
       static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginViewController: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController }
       static var passcodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeViewController") as? SetPasscodeViewController }
-      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
+      static var pinResetValidationController: PinResetValidationVC? { return instance.instantiateViewControllerWithIdentifier("pinResetValidationController") as? PinResetValidationVC }
+      static var sMSValidationViewController: ConfirmMobileValidationVC? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? ConfirmMobileValidationVC }
       
       static func validateImages() {
         assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Login', but couldn't be loaded.")
@@ -499,7 +513,9 @@ struct R {
         assert(loginViewController != nil, "[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
         assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'Login' as 'ConfirmPasscodeViewController'.")
         assert(passcodeViewController != nil, "[R.swift] ViewController with identifier 'passcodeViewController' could not be loaded from storyboard 'Login' as 'SetPasscodeViewController'.")
-        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'SMSValidationViewController'.")
+        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'ConfirmMobileValidationVC'.")
+        assert(pinResetValidationController != nil, "[R.swift] ViewController with identifier 'pinResetValidationController' could not be loaded from storyboard 'Login' as 'PinResetValidationVC'.")
+        assert(adminOverrideValidationViewController != nil, "[R.swift] ViewController with identifier 'adminOverrideValidationViewController' could not be loaded from storyboard 'Login' as 'AdminOverrideValidationVC'.")
       }
     }
     

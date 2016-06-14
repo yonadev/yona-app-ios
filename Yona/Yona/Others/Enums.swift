@@ -11,7 +11,9 @@ import Foundation
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"
-    case smsValidation = "SMSValidation"
+    case confirmMobileValidation = "confirmMobileValidation"
+    case pinResetValidation = "pinResetValidation"
+    case adminOverrideValidation = "adminOverrideValidation"
     case passcode = "Passcode"
     case login = "Login"
     case dashboard = "Dashboard"

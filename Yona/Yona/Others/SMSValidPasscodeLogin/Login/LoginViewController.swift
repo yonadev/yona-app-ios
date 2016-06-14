@@ -12,7 +12,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
-   
+    @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
     override func viewDidLoad() {
         super.viewDidLoad()
