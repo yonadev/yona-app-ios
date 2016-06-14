@@ -58,6 +58,30 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     }
     
 }
+
+extension ConfirmPasscodeViewController: CodeInputViewDelegate {
+    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+        if (passcode == code) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+            codeInputView.resignFirstResponder()
+            
+            KeychainManager.sharedInstance.savePINCode(code)
+            //Update flag
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+
+        } else {
+            codeInputView.clear()
+            navigationController?.popViewControllerAnimated(true)
+        }
+    }
+}
+
+private extension Selector {
+    static let back = #selector(ConfirmPasscodeViewController.back(_:))
+}
+
+
 extension ConfirmPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -81,25 +105,4 @@ extension ConfirmPasscodeViewController: KeyboardProtocol {
         self.scrollView.scrollIndicatorInsets = contentInsets
         
     }
-}
-extension ConfirmPasscodeViewController: CodeInputViewDelegate {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        if (passcode == code) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
-            codeInputView.resignFirstResponder()
-            
-            KeychainManager.sharedInstance.savePINCode(code)
-            //Update flag
-            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-
-        } else {
-            codeInputView.clear()
-            navigationController?.popViewControllerAnimated(true)
-        }
-    }
-}
-
-private extension Selector {
-    static let back = #selector(ConfirmPasscodeViewController.back(_:))
 }

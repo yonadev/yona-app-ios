@@ -506,7 +506,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-Ei-xzT" customClass="CodeInputView" customModule="Yona" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-Ei-xzT">
                                                 <rect key="frame" x="170" y="255" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="dVN-rr-KgL"/>
@@ -641,7 +641,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94a-VO-ITS" customClass="CodeInputView" customModule="Yona" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94a-VO-ITS">
                                                 <rect key="frame" x="170" y="255" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="4Dd-qf-F8P"/>
@@ -772,7 +772,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-2m-xlP" customClass="CodeInputView" customModule="Yona" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-2m-xlP">
                                                 <rect key="frame" x="170" y="255" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="6JL-yf-ooD"/>
@@ -842,7 +842,7 @@
                     <navigationItem key="navigationItem" title="DOE MEE" id="fY1-hy-zQi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="codeView" destination="ZCv-2m-xlP" id="RDI-ed-4ST"/>
+                        <outlet property="codeView" destination="ZCv-2m-xlP" id="eqA-KE-Ma5"/>
                         <outlet property="headerTitleLabel" destination="DEN-t8-Ffh" id="Z38-yp-hzn"/>
                         <outlet property="infoLabel" destination="IFo-Rw-FBt" id="PWO-c6-Tjm"/>
                         <outlet property="progressView" destination="PnJ-hF-gQt" id="XJh-D6-XCj"/>

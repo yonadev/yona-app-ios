@@ -66,6 +66,21 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
 
 }
 
+
+
+extension SetPasscodeViewController: CodeInputViewDelegate {
+    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+        passcodeString = code
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
+        self.codeInputView.clear()
+    }
+}
+
+private extension Selector {
+    static let back = #selector(SetPasscodeViewController.back(_:))
+}
+
+
 extension SetPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -89,16 +104,4 @@ extension SetPasscodeViewController: KeyboardProtocol {
         self.scrollView.scrollIndicatorInsets = contentInsets
         
     }
-}
-
-extension SetPasscodeViewController: CodeInputViewDelegate {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
-        self.codeInputView.clear()
-    }
-}
-
-private extension Selector {
-    static let back = #selector(SetPasscodeViewController.back(_:))
 }

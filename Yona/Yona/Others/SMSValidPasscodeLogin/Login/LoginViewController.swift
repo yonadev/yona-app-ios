@@ -149,10 +149,15 @@ extension LoginViewController: CodeInputViewDelegate {
     }
 }
 
+private extension Selector {
+    static let back = #selector(LoginViewController.backToSettings(_:))
+}
+
+
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        if let activeField = self.pinResetButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let activeField = self.codeView, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
@@ -173,8 +178,3 @@ extension LoginViewController: KeyboardProtocol {
         
     }
 }
-
-private extension Selector {
-    static let back = #selector(LoginViewController.backToSettings(_:))
-}
-

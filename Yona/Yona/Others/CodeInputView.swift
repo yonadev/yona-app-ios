@@ -40,8 +40,6 @@ class CodeInputView: UIView, UIKeyInput {
         return nextTag > 1 ? true : false
     }
 
-   
-    
     func insertText(text: String) {
         
         if nextTag < 5 {
