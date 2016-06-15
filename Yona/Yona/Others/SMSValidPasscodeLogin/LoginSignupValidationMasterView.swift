@@ -131,16 +131,24 @@ extension LoginSignupValidationMasterView {
                     //we need to store this incase the app is backgrounded
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
                     self.displayPincodeRemainingMessage()
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+//                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     
-                    //don't push to sms view if we are already on that screen
                     setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
                 }
             } else {
-                Loader.Hide()
-                //TODO: Will change this after this build
-                self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
+                PinResetRequestManager.sharedInstance.pinResendResetRequest({ (success, pincode, message, code) in
+                    Loader.Hide()
+                    if success {
+                        
+                        setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
+                    } else {
+                        //TODO: Will change this after this build
+                        self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
+                    }
+                })
+
             }
         })
     }
@@ -152,7 +160,9 @@ extension LoginSignupValidationMasterView {
         let (hour, minute, seconds) = timeISOCode.convertFromISO8601Duration()
         let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
         let alert = NSString(format: localizedString, String(hour), String(minute), String(seconds))
-        self.displayAlertMessage("", alertDescription: String(alert))
+        if let infolabelText = self.infoLabel {
+            infolabelText.text = String(alert)
+        }
     }
 }
 

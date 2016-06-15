@@ -21,6 +21,7 @@
             <string>SFUIDisplay-Light</string>
             <string>SFUIDisplay-Light</string>
             <string>SFUIDisplay-Light</string>
+            <string>SFUIDisplay-Light</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Medium.otf">
             <string>SFUIDisplay-Medium</string>
@@ -83,7 +84,7 @@
                                                     <constraint firstAttribute="width" constant="48" id="YUe-Oz-8ra"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="you are not alone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-u0-8lk">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="you are not alone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-u0-8lk" userLabel="Title Label">
                                                 <rect key="frame" x="15" y="109" width="570" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="iDW-DQ-Ua3"/>
@@ -92,10 +93,10 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
-                                                <rect key="frame" x="15" y="146" width="570" height="46"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Probeer opnieuw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpR-Wr-PFo">
+                                                <rect key="frame" x="35" y="146" width="530" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="46" id="7SS-qv-K8H"/>
+                                                    <constraint firstAttribute="height" constant="60" id="7SS-qv-K8H"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,10 +117,10 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-GS-xeb">
-                                                <rect key="frame" x="273" y="304" width="53" height="28"/>
+                                                <rect key="frame" x="144" y="291" width="312" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="53" id="Bsa-dM-Wf5"/>
-                                                    <constraint firstAttribute="height" constant="28" id="D0j-gJ-r5R"/>
+                                                    <constraint firstAttribute="width" constant="312" id="Bsa-dM-Wf5"/>
+                                                    <constraint firstAttribute="height" constant="50" id="D0j-gJ-r5R"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="PIN reset">
@@ -132,22 +133,34 @@
                                                     <action selector="pinResetTapped:" destination="Mnl-Nx-TV9" eventType="touchUpInside" id="gpb-gk-t69"/>
                                                 </connections>
                                             </button>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="login-accountBlocked-title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3c-WY-Qi6" userLabel="Account Blocked TItle">
+                                                <rect key="frame" x="15" y="109" width="570" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="29" id="ltj-Ys-imZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="RJC-BX-fly" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="30" id="1kK-1F-wcK"/>
+                                            <constraint firstItem="c3c-WY-Qi6" firstAttribute="leading" secondItem="HGP-u0-8lk" secondAttribute="leading" id="3Cv-Y4-bWx"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="top" secondItem="U44-VS-5Hu" secondAttribute="top" constant="37" id="FaC-6w-n80"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="15" id="G8c-8C-kcU"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="Ifg-3a-mJF"/>
                                             <constraint firstItem="MpR-Wr-PFo" firstAttribute="top" secondItem="HGP-u0-8lk" secondAttribute="bottom" constant="8" id="Ihk-DC-ziz"/>
-                                            <constraint firstItem="MpR-Wr-PFo" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="15" id="M8U-eY-5WF"/>
+                                            <constraint firstItem="MpR-Wr-PFo" firstAttribute="leading" secondItem="U44-VS-5Hu" secondAttribute="leading" constant="35" id="M8U-eY-5WF"/>
+                                            <constraint firstItem="c3c-WY-Qi6" firstAttribute="trailing" secondItem="HGP-u0-8lk" secondAttribute="trailing" id="Ngu-RE-UAZ"/>
                                             <constraint firstAttribute="trailing" secondItem="RJC-BX-fly" secondAttribute="trailing" constant="30" id="QYj-nm-gxQ"/>
                                             <constraint firstItem="Ngp-Jb-LFA" firstAttribute="top" secondItem="RJC-BX-fly" secondAttribute="bottom" constant="23" id="UtC-d5-IFh"/>
-                                            <constraint firstItem="RJC-BX-fly" firstAttribute="top" secondItem="MpR-Wr-PFo" secondAttribute="bottom" constant="11" id="VNN-2B-xIJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="3r8-GS-xeb" secondAttribute="bottom" constant="43" id="ZgN-LK-SEG"/>
+                                            <constraint firstItem="RJC-BX-fly" firstAttribute="top" secondItem="MpR-Wr-PFo" secondAttribute="bottom" constant="-3" id="VNN-2B-xIJ"/>
+                                            <constraint firstItem="c3c-WY-Qi6" firstAttribute="baseline" secondItem="HGP-u0-8lk" secondAttribute="baseline" id="XLD-ze-Reo"/>
+                                            <constraint firstAttribute="bottom" secondItem="3r8-GS-xeb" secondAttribute="bottom" constant="34" id="ZgN-LK-SEG"/>
                                             <constraint firstAttribute="trailing" secondItem="HGP-u0-8lk" secondAttribute="trailing" constant="15" id="cyD-Lf-irb"/>
-                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="21" id="e0g-SY-uvG"/>
-                                            <constraint firstAttribute="trailing" secondItem="MpR-Wr-PFo" secondAttribute="trailing" constant="15" id="fQq-Fe-oQJ"/>
+                                            <constraint firstItem="3r8-GS-xeb" firstAttribute="top" secondItem="Ngp-Jb-LFA" secondAttribute="bottom" constant="8" id="e0g-SY-uvG"/>
+                                            <constraint firstAttribute="trailing" secondItem="MpR-Wr-PFo" secondAttribute="trailing" constant="35" id="fQq-Fe-oQJ"/>
                                             <constraint firstItem="3r8-GS-xeb" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="fuL-jh-4Pg"/>
                                             <constraint firstItem="HGP-u0-8lk" firstAttribute="top" secondItem="eEy-ql-DuC" secondAttribute="bottom" constant="24" id="w8Y-c3-APj"/>
                                             <constraint firstItem="eEy-ql-DuC" firstAttribute="centerX" secondItem="U44-VS-5Hu" secondAttribute="centerX" id="xm6-WM-WQ1"/>
@@ -189,11 +202,12 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="accountBlockedTitle" destination="c3c-WY-Qi6" id="jga-LA-DBO"/>
                         <outlet property="avtarImage" destination="eEy-ql-DuC" id="gnR-JT-ru5"/>
                         <outlet property="closeButton" destination="gOT-9b-uqI" id="I4p-On-tFT"/>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
-                        <outlet property="infoLabel" destination="HGP-u0-8lk" id="Sg7-Sp-23F"/>
+                        <outlet property="loginTitle" destination="HGP-u0-8lk" id="91V-JN-yRb"/>
                         <outlet property="pinResetButton" destination="3r8-GS-xeb" id="3jo-M6-qVr"/>
                         <outlet property="progressView" destination="RJC-BX-fly" id="CEr-i1-M0G"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>
@@ -204,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZP-fR-Wcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="-1781"/>
+            <point key="canvasLocation" x="1880" y="-1781"/>
         </scene>
         <!--ConfirmPasscode-->
         <scene sceneID="i7a-iD-5Oh">
@@ -322,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Of8-HP-eT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2847" y="-133"/>
+            <point key="canvasLocation" x="2844" y="-109"/>
         </scene>
         <!--PINCODE-->
         <scene sceneID="opM-6p-xR7">
@@ -366,9 +380,9 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passcode.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-Ec-BzQ">
-                                                <rect key="frame" x="15" y="207" width="570" height="17"/>
+                                                <rect key="frame" x="15" y="193" width="570" height="62"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="EBQ-r1-DRd"/>
+                                                    <constraint firstAttribute="height" constant="62" id="EBQ-r1-DRd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -387,7 +401,7 @@
                                             <constraint firstItem="XMb-Ec-BzQ" firstAttribute="leading" secondItem="h3z-xH-SnV" secondAttribute="leading" constant="15" id="9yR-YJ-78s"/>
                                             <constraint firstItem="vI8-yz-5Bf" firstAttribute="centerX" secondItem="h3z-xH-SnV" secondAttribute="centerX" id="FRy-cF-PN9"/>
                                             <constraint firstItem="4pc-iD-fbV" firstAttribute="leading" secondItem="h3z-xH-SnV" secondAttribute="leading" constant="30" id="Knr-FQ-iqy"/>
-                                            <constraint firstItem="XMb-Ec-BzQ" firstAttribute="top" secondItem="4pc-iD-fbV" secondAttribute="bottom" constant="30" id="Kyx-zv-QmH"/>
+                                            <constraint firstItem="XMb-Ec-BzQ" firstAttribute="top" secondItem="4pc-iD-fbV" secondAttribute="bottom" constant="16" id="Kyx-zv-QmH"/>
                                             <constraint firstItem="vI8-yz-5Bf" firstAttribute="top" secondItem="h3z-xH-SnV" secondAttribute="top" constant="37" id="LKU-TF-Bkf"/>
                                             <constraint firstItem="AKz-cm-IxL" firstAttribute="leading" secondItem="h3z-xH-SnV" secondAttribute="leading" constant="15" id="ORs-tT-Ug8"/>
                                             <constraint firstItem="bLa-TY-Jaw" firstAttribute="centerX" secondItem="h3z-xH-SnV" secondAttribute="centerX" id="PFf-2c-amL"/>
@@ -395,7 +409,7 @@
                                             <constraint firstItem="AKz-cm-IxL" firstAttribute="top" secondItem="vI8-yz-5Bf" secondAttribute="bottom" constant="41" id="fhf-QZ-4MQ"/>
                                             <constraint firstAttribute="bottom" secondItem="bLa-TY-Jaw" secondAttribute="bottom" constant="53" id="fsK-8y-Xgr"/>
                                             <constraint firstAttribute="trailing" secondItem="AKz-cm-IxL" secondAttribute="trailing" constant="15" id="loK-af-qe1"/>
-                                            <constraint firstItem="bLa-TY-Jaw" firstAttribute="top" secondItem="XMb-Ec-BzQ" secondAttribute="bottom" constant="30" id="nW3-my-8iL"/>
+                                            <constraint firstItem="bLa-TY-Jaw" firstAttribute="top" secondItem="XMb-Ec-BzQ" secondAttribute="bottom" constant="-1" id="nW3-my-8iL"/>
                                             <constraint firstAttribute="trailing" secondItem="XMb-Ec-BzQ" secondAttribute="trailing" constant="15" id="uDz-Q3-zSK"/>
                                             <constraint firstItem="4pc-iD-fbV" firstAttribute="top" secondItem="AKz-cm-IxL" secondAttribute="bottom" constant="21" id="xWg-s8-7vT"/>
                                         </constraints>
@@ -454,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVv-oF-jYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2088" y="-133"/>
+            <point key="canvasLocation" x="2109" y="-109"/>
         </scene>
         <!--DOE MEE-->
         <scene sceneID="ugD-cH-7XQ">
@@ -497,7 +511,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="NoL-5m-9rc"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-No-bKb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-No-bKb">
                                                 <rect key="frame" x="15" y="202" width="570" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="O0j-jL-QZ8"/>
@@ -520,7 +534,7 @@
                                                     <constraint firstAttribute="height" constant="28" id="UL6-eR-UYa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendConfirmOTPCode">
+                                                <state key="normal" title="smsvalidation.button.resendCode">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -632,7 +646,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="XVb-UQ-7ab"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-Kx-ebN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-Kx-ebN">
                                                 <rect key="frame" x="15" y="202" width="570" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="GzC-q7-4BC"/>
@@ -654,10 +668,9 @@
                                                     <constraint firstAttribute="width" constant="256" id="uyM-tc-cpg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendResetOTPCode"/>
+                                                <state key="normal" title="smsvalidation.button.resendCode"/>
                                                 <connections>
-                                                    <action selector="resendPinResetRequestOTPCode:" destination="z24-12-ZEv" eventType="touchUpInside" id="dAd-UJ-zch"/>
-                                                    <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="lB4-ml-ZKq"/>
+                                                    <action selector="resendPinResetRequestOTPCode:" destination="z24-12-ZEv" eventType="touchUpInside" id="fp3-cT-c00"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -716,11 +729,12 @@
                         <outlet property="progressView" destination="KYb-3d-j0Y" id="mXQ-FF-4pp"/>
                         <outlet property="scrollView" destination="ZUV-dI-feb" id="gxK-8V-m0z"/>
                         <outlet property="topView" destination="ChD-co-TJf" id="gik-kd-hKK"/>
+                        <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="BLL-RE-SXW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Au5-0N-YRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1324" y="-1001"/>
+            <point key="canvasLocation" x="1318" y="-968"/>
         </scene>
         <!--DOE MEE-->
         <scene sceneID="lhX-ow-6Ny">
@@ -763,7 +777,7 @@
                                                     <constraint firstAttribute="height" constant="2" id="wLK-Gf-5nv"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFo-Rw-FBt">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFo-Rw-FBt">
                                                 <rect key="frame" x="15" y="202" width="570" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="gFV-IY-FWq"/>
@@ -785,7 +799,7 @@
                                                     <constraint firstAttribute="width" constant="284" id="LgJ-Sn-thp"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
-                                                <state key="normal" title="smsvalidation.button.resendConfirmOTPCode">
+                                                <state key="normal" title="smsvalidation.button.resendCode">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -865,6 +879,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lB4-ml-ZKq"/>
+        <segue reference="kBX-Qa-igm"/>
     </inferredMetricsTieBreakers>
 </document>

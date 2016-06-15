@@ -14,6 +14,9 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
+    @IBOutlet var loginTitle: UILabel?
+    @IBOutlet var accountBlockedTitle: UILabel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +35,10 @@ class LoginViewController: LoginSignupValidationMasterView {
             self.closeButton?.tintColor = UIColor.whiteColor()
         }
         
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            
+        }
+        
         setBackgroundColour()
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
@@ -39,9 +46,13 @@ class LoginViewController: LoginSignupValidationMasterView {
         codeInputView.clear()
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
+            self.codeInputView.hidden = true
+            self.setCornerRadius()
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             self.codeInputView.resignFirstResponder()
+            self.accountBlockedTitle?.hidden = false
+            self.loginTitle?.hidden = true
             return;
         }
         
@@ -108,12 +119,23 @@ extension LoginViewController: CodeInputViewDelegate {
                 defaults.synchronize()
                 errorLabel.hidden = false
                 self.codeInputView.resignFirstResponder()
+                self.codeInputView.hidden = true
+                self.accountBlockedTitle?.hidden = false
+                self.loginTitle?.hidden = true
+                self.setCornerRadius()
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {
                 loginAttempts += 1
             }
         }
+    }
+    
+    func setCornerRadius(){
+        self.pinResetButton.backgroundColor = UIColor.whiteColor()
+        self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), forState: UIControlState.Normal)
+        pinResetButton.layer.cornerRadius = pinResetButton.frame.size.height/2
+        pinResetButton.layer.borderWidth = 1
     }
     
     @IBAction func pinResetTapped(sender: UIButton) {

@@ -98,7 +98,7 @@ class PinResetRequestManager {
     }
     
     /**
-     Resets the pin when the user enters their pin (password) wrong 5 times
+     Resends the pin reset request, clears and requests making it simpler
      
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */

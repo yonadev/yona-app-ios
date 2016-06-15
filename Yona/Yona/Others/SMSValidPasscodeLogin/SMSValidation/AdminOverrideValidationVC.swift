@@ -11,25 +11,6 @@ import Foundation
 class AdminOverrideValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPConfirmCodeButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        
-        let viewWidth = self.view.frame.size.width
-        let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
-        customView.backgroundColor=UIColor.yiDarkishPinkColor()
-        
-        self.progressView.addSubview(customView)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
-        #if DEBUG
-            print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
-        #endif
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setBackgroundColour()
@@ -42,22 +23,6 @@ class AdminOverrideValidationVC: ValidationMasterView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.codeInputView.becomeFirstResponder()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func viewDidLayoutSubviews()
-    {
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = 0
-        scrollView.contentInset = scrollViewInsets
     }
     
     @IBAction func sendAdminRequestOTPConfirmMobileAgain(sender: UIButton) {
@@ -80,7 +45,6 @@ class AdminOverrideValidationVC: ValidationMasterView {
         }
 
     }
-    
 
 }
 

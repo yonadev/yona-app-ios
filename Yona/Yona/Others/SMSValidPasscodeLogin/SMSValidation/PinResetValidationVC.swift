@@ -10,29 +10,11 @@ import Foundation
 
 final class PinResetValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPResetCode: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Nav bar Back button.
-        self.navigationItem.hidesBackButton = true
-        
-        let viewWidth = self.view.frame.size.width
-        let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
-        customView.backgroundColor=UIColor.yiDarkishPinkColor()
-        
-        self.progressView.addSubview(customView)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
-        #if DEBUG
-            print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
-        #endif
-    }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setBackgroundColour()
-        
+        displayPincodeRemainingMessage()
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
@@ -41,22 +23,6 @@ final class PinResetValidationVC: ValidationMasterView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.codeInputView.becomeFirstResponder()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func viewDidLayoutSubviews()
-    {
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = 0
-        scrollView.contentInset = scrollViewInsets
     }
     
     @IBAction func resendPinResetRequestOTPCode(sender: UIButton) {
@@ -69,8 +35,15 @@ final class PinResetValidationVC: ValidationMasterView {
                     print ("pincode is \(code)")
                 #endif
             } else {
-                Loader.Hide()
-                self.displayAlertMessage(message!, alertDescription: "")
+                PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
+                    Loader.Hide()
+                    if success {
+                        self.displayPincodeRemainingMessage()
+                        self.codeInputView.userInteractionEnabled = true
+                    } else {
+                        self.displayAlertMessage(message!, alertDescription: "")
+                    }
+                })
             }
         }
     }
@@ -80,7 +53,7 @@ extension PinResetValidationVC: CodeInputViewDelegate {
     
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
         //the app becomes blocked if the user enters their passcode incorrectly 5 times, in this case we must verify the pin they enter
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+//        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             self.codeInputView.userInteractionEnabled = true
             let body = ["code": code]
             Loader.Show()
@@ -106,7 +79,7 @@ extension PinResetValidationVC: CodeInputViewDelegate {
                 }
             })
         }
-    }
+//    }
 
 }
 
