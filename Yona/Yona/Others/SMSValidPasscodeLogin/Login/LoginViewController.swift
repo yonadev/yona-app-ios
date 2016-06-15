@@ -14,7 +14,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
-    @IBOutlet var loginTitle: UILabel?
+    //@IBOutlet var loginTitle: UILabel?
     @IBOutlet var accountBlockedTitle: UILabel?
 
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class LoginViewController: LoginSignupValidationMasterView {
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             self.codeInputView.resignFirstResponder()
             self.accountBlockedTitle?.hidden = false
-            self.loginTitle?.hidden = true
+            self.infoLabel?.hidden = true
             return;
         }
         
@@ -121,7 +121,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 self.codeInputView.resignFirstResponder()
                 self.codeInputView.hidden = true
                 self.accountBlockedTitle?.hidden = false
-                self.loginTitle?.hidden = true
+                self.infoLabel?.hidden = true
                 self.setCornerRadius()
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }

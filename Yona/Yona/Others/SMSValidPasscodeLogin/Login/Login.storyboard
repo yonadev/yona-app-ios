@@ -207,7 +207,7 @@
                         <outlet property="closeButton" destination="gOT-9b-uqI" id="I4p-On-tFT"/>
                         <outlet property="codeView" destination="Ngp-Jb-LFA" id="0mt-tX-a8H"/>
                         <outlet property="errorLabel" destination="MpR-Wr-PFo" id="RxM-FR-2x5"/>
-                        <outlet property="loginTitle" destination="HGP-u0-8lk" id="91V-JN-yRb"/>
+                        <outlet property="infoLabel" destination="HGP-u0-8lk" id="b2d-et-w9K"/>
                         <outlet property="pinResetButton" destination="3r8-GS-xeb" id="3jo-M6-qVr"/>
                         <outlet property="progressView" destination="RJC-BX-fly" id="CEr-i1-M0G"/>
                         <outlet property="scrollView" destination="cuS-pj-Nh4" id="K8F-ku-TPV"/>

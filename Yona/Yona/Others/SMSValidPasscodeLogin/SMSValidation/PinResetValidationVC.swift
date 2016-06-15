@@ -77,3 +77,28 @@ extension PinResetValidationVC: CodeInputViewDelegate {
         })
     }
 }
+
+extension PinResetValidationVC: KeyboardProtocol {
+    func keyboardWasShown (notification: NSNotification) {
+        
+        if let activeField = self.codeView, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.scrollView.bounds
+            aRect.size.height -= keyboardSize.size.height
+            if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
+                var frameToScrollTo = activeField.frame
+                frameToScrollTo.size.height += 30
+                self.scrollView.scrollRectToVisible(frameToScrollTo, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+    }
+}
