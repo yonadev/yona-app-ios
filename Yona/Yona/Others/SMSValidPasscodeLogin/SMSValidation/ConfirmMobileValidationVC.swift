@@ -74,11 +74,13 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
 extension ConfirmMobileValidationVC: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        if let activeField = self.codeView, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let activeField = self.resendOTPConfirmCodeButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
-            var aRect = self.scrollView.bounds
+            var aRect = self.view.bounds
+            aRect.origin.x = 64
+            aRect.size.height -= 64
             aRect.size.height -= keyboardSize.size.height
             if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
                 var frameToScrollTo = activeField.frame

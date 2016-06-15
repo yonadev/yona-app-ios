@@ -727,6 +727,7 @@
                         <outlet property="headerTitleLabel" destination="Hwm-z9-zGQ" id="5RP-3U-SGE"/>
                         <outlet property="infoLabel" destination="BCP-Kx-ebN" id="Uhr-tc-5TZ"/>
                         <outlet property="progressView" destination="KYb-3d-j0Y" id="mXQ-FF-4pp"/>
+                        <outlet property="resendOTPResetCode" destination="nKs-XF-BWF" id="eko-XP-kmj"/>
                         <outlet property="scrollView" destination="ZUV-dI-feb" id="gxK-8V-m0z"/>
                         <outlet property="topView" destination="ChD-co-TJf" id="gik-kd-hKK"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="BLL-RE-SXW"/>
@@ -879,6 +880,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kBX-Qa-igm"/>
+        <segue reference="JfZ-TS-1eC"/>
     </inferredMetricsTieBreakers>
 </document>

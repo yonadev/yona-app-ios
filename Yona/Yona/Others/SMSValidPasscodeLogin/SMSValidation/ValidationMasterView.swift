@@ -40,9 +40,9 @@ class ValidationMasterView: LoginSignupValidationMasterView {
     
     override func viewDidLayoutSubviews()
     {
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = 0
-        scrollView.contentInset = scrollViewInsets
+//        var scrollViewInsets = UIEdgeInsetsZero
+//        scrollViewInsets.top = 0
+//        scrollView.contentInset = scrollViewInsets
     }
     
     func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
