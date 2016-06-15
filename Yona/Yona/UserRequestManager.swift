@@ -78,6 +78,8 @@ class UserRequestManager{
              }
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
+    
+    
     func updateUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
             if let editLink = self.newUser?.editLink {
                 ///now post updated user data

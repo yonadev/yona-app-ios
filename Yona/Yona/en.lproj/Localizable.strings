@@ -227,3 +227,14 @@
 "notifications.user.profile" = "Profile";
 "notifications.user.badges" = "Badges";
 
+
+
+// String for Profile
+
+"profile.user.data.firstname" = "FIRST NAME";
+"profile.user.data.lastname" = "LAST NAME";
+"profile.user.data.nickname" = "NICKNAME";
+"profile.user.data.mobilenumber" = "MOBILE PHONE NUMBER";
+
+"profile.tab.profile" = "profile";
+"profile.tab.badges" = "badges";

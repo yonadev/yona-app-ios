@@ -170,7 +170,36 @@ struct Users{
                 }
             }
         }
-        
+        /*
+        - parameter body: BodyDataDictionary, pass in the body as below on how you want to update the user
+        {
+            "firstName": "Richard",
+            "lastName": "Quin",
+            "mobileNumber": "+31612345678",
+            "nickname": "RQ"
+        }
+        */
         
     }
+    func userDataDictionaryForServer() -> BodyDataDictionary {
+        var body = ["firstName": "",
+                    "lastName": "",
+                    "mobileNumber": "",
+                    "nickname": ""]
+        
+        if let txt = firstName {
+            body["firstName"] = txt
+        }
+        if let txt = lastName {
+            body["lastName"] = txt
+        }
+        if let txt = mobileNumber {
+            body["mobileNumber"] = txt
+        }
+        if let txt = nickname {
+            body["nickname"] = txt
+        }
+        return body
+    }
+
 }
