@@ -30,7 +30,7 @@ extension UIViewController {
      - return none
      */
     func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
-        ##if DEBUG
+        #if DEBUG
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
         #endif
