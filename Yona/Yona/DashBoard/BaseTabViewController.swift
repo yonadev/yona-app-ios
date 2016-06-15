@@ -51,8 +51,16 @@ class BaseTabViewController: UITabBarController {
         var rootController: UIViewController?
 
         switch viewControllerName {
-        case ViewControllerTypeString.smsValidation.rawValue:
-            rootController = R.storyboard.login.sMSValidationViewController
+        case ViewControllerTypeString.confirmMobileValidation.rawValue:
+            rootController = R.storyboard.login.confirmPasscodeViewController
+            navController = R.storyboard.login.initialViewController
+            
+        case ViewControllerTypeString.pinResetValidation.rawValue:
+            rootController = R.storyboard.login.pinResetValidationController
+            navController = R.storyboard.login.initialViewController
+            
+        case ViewControllerTypeString.adminOverrideValidation.rawValue:
+            rootController = R.storyboard.login.adminOverrideValidationViewController
             navController = R.storyboard.login.initialViewController
             
         case ViewControllerTypeString.passcode.rawValue:

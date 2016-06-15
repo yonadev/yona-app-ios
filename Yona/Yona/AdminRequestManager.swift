@@ -25,14 +25,24 @@ class AdminRequestManager {
      - parameter userBody: BodyDataDictionary Dictionary of user details for the admin request, we need the mobile from here
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
-    func adminRequestOverride(userBody: BodyDataDictionary, onCompletion: APIResponse) {
-        if let mobileNumber = userBody["mobileNumber"] as? String {
-            let path = YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
-            //not in user body need to hardcode
-            self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+    func adminRequestOverride(mobileNumber: String?, onCompletion: APIResponse) {
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+            if let mobileNumber = user?.mobileNumber {
+                let path = YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
+                //not in user body need to hardcode
+                self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                }
+            } else if let mobileNumber = mobileNumber {
+                let path = YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
+                //not in user body need to hardcode
+                self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.post) { (success, json, error) in
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                }
             }
+        
         }
+
     }
 }
 

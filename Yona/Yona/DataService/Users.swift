@@ -29,6 +29,7 @@ struct Users{
     var requestPinResetLink: String?
     var requestPinVerifyLink: String?
     var requestPinClearLink: String?
+    var resendRequestPinResetLinks: String?
     var buddiesLink: String?
     var getAllGoalsLink: String?
 
@@ -128,6 +129,11 @@ struct Users{
                 if let requestPinResetLinks = links[YonaConstants.jsonKeys.yonaPinRequest],
                     let hrefrequestPinResetLinks = requestPinResetLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                     self.requestPinResetLink = hrefrequestPinResetLinks
+                }
+                
+                if let resendRequestPinResetLinks = links[YonaConstants.jsonKeys.yonaResendPinResetRequest],
+                    let hrefresendRequestPinResetLinks = resendRequestPinResetLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    self.resendRequestPinResetLinks = hrefresendRequestPinResetLinks
                 }
                 
                 if let requestPinVerifyLinks = links[YonaConstants.jsonKeys.yonaPinVerify],

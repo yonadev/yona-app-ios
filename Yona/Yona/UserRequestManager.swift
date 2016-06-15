@@ -1,4 +1,4 @@
-//
+ //
 //  UserRequestManager.swift
 //  Yona
 //
@@ -141,14 +141,27 @@ class UserRequestManager{
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func otpResendMobile(onCompletion: APIResponse) {
-        if let otpResendMobileLink = self.newUser?.otpResendMobileLink{
-            genericUserRequest(httpMethods.post, path: otpResendMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
-                onCompletion(success, message, code)
-            })
-        } else {
-            //Failed to retrive details for otp resend request
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveOTP, String(responseCodes.internalErrorCode))
+        if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
+            genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil) {(success, message, code, user) in
+                if let otpResendMobileLink = user?.otpResendMobileLink{
+                    self.genericUserRequest(httpMethods.post, path: otpResendMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
+                        onCompletion(success, message, code)
+                    })
+                } else {
+                    //Failed to retrive details for otp resend request
+                    onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveOTP, String(responseCodes.internalErrorCode))
+                }
+            }
         }
+        
+//        if let otpResendMobileLink = self.newUser?.otpResendMobileLink{
+//            genericUserRequest(httpMethods.post, path: otpResendMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
+//                onCompletion(success, message, code)
+//            })
+//        } else {
+//            //Failed to retrive details for otp resend request
+//            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveOTP, String(responseCodes.internalErrorCode))
+//        }
     }
     
     /**

@@ -11,7 +11,9 @@ import Foundation
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"
-    case smsValidation = "SMSValidation"
+    case confirmMobileValidation = "confirmPinValidationViewController"
+    case pinResetValidation = "pinResetValidationController"
+    case adminOverrideValidation = "adminOverrideValidationViewController"
     case passcode = "Passcode"
     case login = "Login"
     case dashboard = "Dashboard"
@@ -59,6 +61,7 @@ enum alertButtonType{
 
 enum pinRequestTypes{
     case resetRequest
+    case resendResetRequest
     case verifyRequest
     case clearRequest
 }

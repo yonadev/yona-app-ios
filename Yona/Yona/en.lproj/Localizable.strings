@@ -63,14 +63,18 @@
 "passcode-step1-desc" = "For security";
 "passcode-step2-title" = "Confirm pincode";
 "passcode-step2-desc" = "Enter your PIN again to confirm.";
+"login-accountBlocked-title" = "Your account is blocked";
 "msg-block-user" = "Your account has been locked for security reasons";
 "passcode-reset" = "PIN reset";
 "invalid-otp" = "Invalid accesscode";
 "account-login" = "Account be created";
 "account-login-security-message" = "For security";
-"send-otp-again" = "Send code again";
 "add-device" = "ADD DEVICE";
-"smsvalidation.button.resendCode" = "Send code again";
+
+"send-otp-again" = "Send code again";
+"smsvalidation.button.resendConfirmOTPCode" = "Send Confirm Mobile OTP code again";
+"smsvalidation.button.resendResetOTPCode" = "Send Reset Pin OTP code again";
+
 "yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
 "loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
 "passcode" = "CODE";
