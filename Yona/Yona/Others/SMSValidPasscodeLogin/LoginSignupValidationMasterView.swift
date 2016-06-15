@@ -134,7 +134,7 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     
                     //don't push to sms view if we are already on that screen
-                    setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
                 }
             } else {

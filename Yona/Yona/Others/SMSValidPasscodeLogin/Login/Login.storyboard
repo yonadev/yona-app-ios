@@ -459,7 +459,7 @@
         <!--DOE MEE-->
         <scene sceneID="ugD-cH-7XQ">
             <objects>
-                <viewController storyboardIdentifier="sMSValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmPinValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OCL-ox-qpy"/>
                         <viewControllerLayoutGuide type="bottom" id="vhI-uD-xhe"/>
@@ -656,6 +656,7 @@
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendResetOTPCode"/>
                                                 <connections>
+                                                    <action selector="resendPinResetRequestOTPCode:" destination="z24-12-ZEv" eventType="touchUpInside" id="dAd-UJ-zch"/>
                                                     <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="lB4-ml-ZKq"/>
                                                 </connections>
                                             </button>
@@ -713,7 +714,6 @@
                         <outlet property="headerTitleLabel" destination="Hwm-z9-zGQ" id="5RP-3U-SGE"/>
                         <outlet property="infoLabel" destination="BCP-Kx-ebN" id="Uhr-tc-5TZ"/>
                         <outlet property="progressView" destination="KYb-3d-j0Y" id="mXQ-FF-4pp"/>
-                        <outlet property="resendOTPResetCode" destination="nKs-XF-BWF" id="pGF-wc-HNq"/>
                         <outlet property="scrollView" destination="ZUV-dI-feb" id="gxK-8V-m0z"/>
                         <outlet property="topView" destination="ChD-co-TJf" id="gik-kd-hKK"/>
                     </connections>
@@ -789,7 +789,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendOTPConfirmMobileAgain:" destination="IYW-3h-xN3" eventType="touchUpInside" id="jRf-7A-RP7"/>
+                                                    <action selector="sendAdminRequestOTPConfirmMobileAgain:" destination="IYW-3h-xN3" eventType="touchUpInside" id="N5v-oh-xeZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -865,6 +865,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JfZ-TS-1eC"/>
+        <segue reference="lB4-ml-ZKq"/>
     </inferredMetricsTieBreakers>
 </document>

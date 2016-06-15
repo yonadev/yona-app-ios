@@ -1,4 +1,4 @@
-//
+ //
 //  AdminOverrideValidationVC.swift
 //  Yona
 //
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AdminOverrideValidationVC: LoginSignupValidationMasterView {
+class AdminOverrideValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPConfirmCodeButton: UIButton!
     
     override func viewDidLoad() {
@@ -60,51 +60,28 @@ class AdminOverrideValidationVC: LoginSignupValidationMasterView {
         scrollView.contentInset = scrollViewInsets
     }
     
-    @IBAction func sendOTPConfirmMobileAgain(sender: UIButton) {
+    @IBAction func sendAdminRequestOTPConfirmMobileAgain(sender: UIButton) {
         Loader.Show()
-        UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
-            if success {
-                Loader.Hide()
-                self.codeInputView.userInteractionEnabled = true
-                #if DEBUG
-                    print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
-                #endif
-            } else {
-                Loader.Hide()
-                self.displayAlertMessage(message!, alertDescription: "")
+        if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
+            if let mobileNumber = userBody["mobileNumber"] as? String {
+                AdminRequestManager.sharedInstance.adminRequestOverride(mobileNumber){ (success, message, code) in
+                    Loader.Hide()
+                    //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                    if success {
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                    } else {
+                        if let message = message,
+                            let code = code {
+                            self.displayAlertMessage(code, alertDescription: message)
+                        }
+                    }
+                }
             }
         }
+
     }
     
-    func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
-        if let codeMessage = serverMessageCode,
-            let serverMessage = message {
-            if codeMessage == YonaConstants.serverCodes.tooManyFailedConfirmOTPAttemps {
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-            }//too many pin verify attempts so we need to clear and the user needs to request another one
-            else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-                PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
-                    if success {
-                        //                        self.pinResetButton.hidden = false
-                    }
-                })
-            } else if (codeMessage == YonaConstants.serverCodes.pinResetMismatch) {
-                self.infoLabel.text = message
-            }
-            else {
-                self.displayPincodeRemainingMessage()
-            }
-        }
-    }
+
 }
 
 extension AdminOverrideValidationVC: CodeInputViewDelegate {

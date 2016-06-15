@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class PinResetValidationVC: LoginSignupValidationMasterView {
+final class PinResetValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPResetCode: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,70 +59,18 @@ final class PinResetValidationVC: LoginSignupValidationMasterView {
         scrollView.contentInset = scrollViewInsets
     }
     
-    //calls the admin request manager overriding it so that the pin can be reset
-    @IBAction func overrideRequestTapped(sender: UIButton) {
-        if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
-            AdminRequestManager.sharedInstance.adminRequestOverride(userBody) { (success, message, code) in
-                //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
-                if success {
-                    #if DEBUG
-                        print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
-                    #endif
-                    NSUserDefaults.standardUserDefaults().setObject(userBody, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                    self.codeInputView.clear()
-                }  else {
-                    if let message = message,
-                        let code = code {
-                        self.displayAlertMessage(code, alertDescription: message)
-                    }
-                }
-            }
-        }
-    }
-    
-    @IBAction func sendOTPConfirmMobileAgain(sender: UIButton) {
+    @IBAction func resendPinResetRequestOTPCode(sender: UIButton) {
         Loader.Show()
-        UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
+        PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {
                 Loader.Hide()
                 self.codeInputView.userInteractionEnabled = true
                 #if DEBUG
-                    print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
+                    print ("pincode is \(code)")
                 #endif
             } else {
                 Loader.Hide()
                 self.displayAlertMessage(message!, alertDescription: "")
-            }
-        }
-    }
-    
-    func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
-        if let codeMessage = serverMessageCode,
-            let serverMessage = message {
-            if codeMessage == YonaConstants.serverCodes.tooManyFailedConfirmOTPAttemps {
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-            }//too many pin verify attempts so we need to clear and the user needs to request another one
-            else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
-                self.codeInputView.userInteractionEnabled = false
-                self.infoLabel.text = message
-                #if DEBUG
-                    self.displayAlertMessage("", alertDescription: serverMessage)
-                #endif
-                PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
-                    if success {
-                        //                        self.pinResetButton.hidden = false
-                    }
-                })
-            } else if (codeMessage == YonaConstants.serverCodes.pinResetMismatch) {
-                self.infoLabel.text = message
-            }
-            else {
-                self.displayPincodeRemainingMessage()
             }
         }
     }
@@ -131,7 +79,33 @@ final class PinResetValidationVC: LoginSignupValidationMasterView {
 extension PinResetValidationVC: CodeInputViewDelegate {
     
     func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-
+        //the app becomes blocked if the user enters their passcode incorrectly 5 times, in this case we must verify the pin they enter
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            self.codeInputView.userInteractionEnabled = true
+            let body = ["code": code]
+            Loader.Show()
+            PinResetRequestManager.sharedInstance.pinResetVerify(body, onCompletion: { (success, nil, message, code) in
+                Loader.Hide()
+                if success {
+//                    self.pinResetButton.hidden = false
+                    //pin verify succeeded, unblock app
+                    NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    //clear pincode when reset is verified
+                    PinResetRequestManager.sharedInstance.pinResetClear({ (success, nil, message, code) in
+                        //Now send user back to pinreset screen, let them enter pincode and password again
+                        self.codeInputView.resignFirstResponder()
+                        //Update flag
+                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        self.performSegueWithIdentifier(R.segue.pinResetValidationVC.transToSetPincode, sender: self)
+                        self.codeInputView.clear()
+                    })
+                } else {//pin reset verify code is wrong
+                    self.checkCodeMessageShowAlert(message, serverMessageCode: code, codeInputView: codeInputView)
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                    self.codeInputView.clear()
+                }
+            })
+        }
     }
 
 }

@@ -494,12 +494,12 @@ struct R {
     struct login {
       static var adminOverrideValidationViewController: AdminOverrideValidationVC? { return instance.instantiateViewControllerWithIdentifier("adminOverrideValidationViewController") as? AdminOverrideValidationVC }
       static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
+      static var confirmPinValidationViewController: ConfirmMobileValidationVC? { return instance.instantiateViewControllerWithIdentifier("confirmPinValidationViewController") as? ConfirmMobileValidationVC }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginViewController: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController }
       static var passcodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeViewController") as? SetPasscodeViewController }
       static var pinResetValidationController: PinResetValidationVC? { return instance.instantiateViewControllerWithIdentifier("pinResetValidationController") as? PinResetValidationVC }
-      static var sMSValidationViewController: ConfirmMobileValidationVC? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? ConfirmMobileValidationVC }
       
       static func validateImages() {
         assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Login', but couldn't be loaded.")
@@ -513,7 +513,7 @@ struct R {
         assert(loginViewController != nil, "[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
         assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'Login' as 'ConfirmPasscodeViewController'.")
         assert(passcodeViewController != nil, "[R.swift] ViewController with identifier 'passcodeViewController' could not be loaded from storyboard 'Login' as 'SetPasscodeViewController'.")
-        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'ConfirmMobileValidationVC'.")
+        assert(confirmPinValidationViewController != nil, "[R.swift] ViewController with identifier 'confirmPinValidationViewController' could not be loaded from storyboard 'Login' as 'ConfirmMobileValidationVC'.")
         assert(pinResetValidationController != nil, "[R.swift] ViewController with identifier 'pinResetValidationController' could not be loaded from storyboard 'Login' as 'PinResetValidationVC'.")
         assert(adminOverrideValidationViewController != nil, "[R.swift] ViewController with identifier 'adminOverrideValidationViewController' could not be loaded from storyboard 'Login' as 'AdminOverrideValidationVC'.")
       }

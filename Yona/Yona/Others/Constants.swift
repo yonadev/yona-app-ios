@@ -75,12 +75,15 @@ struct YonaConstants {
         static let  yonaNewDeviceRequest = "yona:newDeviceRequest"
         static let  yonaAppActivity = "yona:appActivity"
         static let  yonaPinRequest = "yona:requestPinReset"
+        static let  yonaResendPinResetRequest = "yona:resendPinResetConfirmationCode"
         static let  yonaPinVerify = "yona:verifyPinReset"
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
     }
 
     struct serverCodes{
+        static let userOverWriteConfirmCodeMismatch = "error.user.overwrite.confirmation.code.mismatch"
+        static let mobileConfirmMismatch = "error.mobile.number.confirmation.code.mismatch"
         static let pinResetMismatch = "error.pin.reset.request.confirmation.code.mismatch"
         static let errorUserExists = "error.user.exists"
         static let errorAddBuddyUserExists = "error.user.exists.created.on.buddy.request"
@@ -120,6 +123,7 @@ struct YonaConstants {
         static let FailedToGetActivityLink = "Failed to get activity Link"
         static let FailedToGetResetPinLink = "Failed to get reset pin link"
         static let FailedToGetResetPinVerifyLink = "Failed to get pin verify link"
+        static let FailedToGetResendResetRequestLink = "Failed to get Resend pin verify link"
         static let FailedToGetResetPinClearLink = "Failed to get pin clear link"
         static let FailedToGetDeviceRequestLink = "Failed to get device request  link"
         static let FailedToGetGetMessagesLink = "Failed to get Get Messages link from user body"
