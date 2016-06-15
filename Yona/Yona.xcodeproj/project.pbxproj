@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */; };
+		167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */; };
 		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
@@ -260,6 +262,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
+		167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTopTableViewCell.swift; sourceTree = "<group>"; };
 		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
@@ -764,6 +768,8 @@
 			isa = PBXGroup;
 			children = (
 				AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */,
+				167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */,
+				167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */,
 			);
 			name = UserDetails;
 			sourceTree = "<group>";
@@ -1617,6 +1623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
+				167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
@@ -1698,6 +1705,7 @@
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
+				167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,

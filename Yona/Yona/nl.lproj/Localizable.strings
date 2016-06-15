@@ -151,5 +151,11 @@
 
 
 
+// String for Profile
+
+"profile.user.data.firstname" = "VOORNAAM";
+"profile.user.data.lastname" = "ACHTERNAAM";
+"profile.user.data.nickname" = "NICKNAME";
+"profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
 

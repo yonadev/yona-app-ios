@@ -315,6 +315,7 @@ struct R {
     static var iQButtonBarArrowRight: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowRight") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
     static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
+    static var icnAddPicture: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAddPicture", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAddPicture") } }
     static var icnAvatar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAvatar") } }
     static var icnBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnBack") } }
     static var icnChallengeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeActive") } }
@@ -367,6 +368,8 @@ struct R {
   
   struct reuseIdentifier {
     static var notifcationsCell: ReuseIdentifier<NotificationsCell> { return ReuseIdentifier(identifier: "notifcationsCell") }
+    static var profileDisplayTableViewCell: ReuseIdentifier<ProfileDisplayTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTableViewCell") }
+    static var profileDisplayTopTableViewCell: ReuseIdentifier<ProfileDisplayTopTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTopTableViewCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
@@ -526,7 +529,7 @@ struct R {
       static func validateImages() {
         assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnAddPicture") != nil, "[R.swift] Image named 'icnAddPicture' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       
