@@ -12,8 +12,11 @@ class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 5
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
-   
+    @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
+    //@IBOutlet var loginTitle: UILabel?
+    @IBOutlet var accountBlockedTitle: UILabel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,21 +35,24 @@ class LoginViewController: LoginSignupValidationMasterView {
             self.closeButton?.tintColor = UIColor.whiteColor()
         }
         
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
+            
+        }
+        
         setBackgroundColour()
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
         codeInputView.clear()
-        //self.codeInputView.becomeFirstResponder()
-        
-//        scrollView.backgroundColor = UIColor.redColor()
-//        topView.backgroundColor = UIColor.greenColor()
-        
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
+            self.codeInputView.hidden = true
+            self.setCornerRadius()
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             self.codeInputView.resignFirstResponder()
+            self.accountBlockedTitle?.hidden = false
+            self.infoLabel?.hidden = true
             return;
         }
         
@@ -113,12 +119,23 @@ extension LoginViewController: CodeInputViewDelegate {
                 defaults.synchronize()
                 errorLabel.hidden = false
                 self.codeInputView.resignFirstResponder()
+                self.codeInputView.hidden = true
+                self.accountBlockedTitle?.hidden = false
+                self.infoLabel?.hidden = true
+                self.setCornerRadius()
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {
                 loginAttempts += 1
             }
         }
+    }
+    
+    func setCornerRadius(){
+        self.pinResetButton.backgroundColor = UIColor.whiteColor()
+        self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), forState: UIControlState.Normal)
+        pinResetButton.layer.cornerRadius = pinResetButton.frame.size.height/2
+        pinResetButton.layer.borderWidth = 1
     }
     
     @IBAction func pinResetTapped(sender: UIButton) {
@@ -154,6 +171,11 @@ extension LoginViewController: CodeInputViewDelegate {
     }
 }
 
+private extension Selector {
+    static let back = #selector(LoginViewController.backToSettings(_:))
+}
+
+
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -161,7 +183,10 @@ extension LoginViewController: KeyboardProtocol {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
-            var aRect = self.scrollView.bounds
+            var aRect = self.view.bounds
+            aRect.origin.x = 64
+            aRect.size.height -= 64
+
             aRect.size.height -= keyboardSize.size.height
             if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
                 var frameToScrollTo = activeField.frame
@@ -178,8 +203,3 @@ extension LoginViewController: KeyboardProtocol {
         
     }
 }
-
-private extension Selector {
-    static let back = #selector(LoginViewController.backToSettings(_:))
-}
-

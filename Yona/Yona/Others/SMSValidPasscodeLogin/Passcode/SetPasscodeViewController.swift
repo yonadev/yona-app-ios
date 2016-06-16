@@ -40,9 +40,6 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
-
-        
-//        scrollView.setContentOffset(CGPointZero, animated:false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,6 +66,21 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
 
 }
 
+
+
+extension SetPasscodeViewController: CodeInputViewDelegate {
+    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+        passcodeString = code
+        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
+        self.codeInputView.clear()
+    }
+}
+
+private extension Selector {
+    static let back = #selector(SetPasscodeViewController.back(_:))
+}
+
+
 extension SetPasscodeViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
@@ -76,7 +88,9 @@ extension SetPasscodeViewController: KeyboardProtocol {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
-            var aRect = self.scrollView.bounds
+            var aRect = self.view.bounds
+            aRect.origin.x = 64
+            aRect.size.height -= 64
             aRect.size.height -= keyboardSize.size.height
             if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
                 var frameToScrollTo = activeField.frame
@@ -92,16 +106,4 @@ extension SetPasscodeViewController: KeyboardProtocol {
         self.scrollView.scrollIndicatorInsets = contentInsets
         
     }
-}
-
-extension SetPasscodeViewController: CodeInputViewDelegate {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
-        self.codeInputView.clear()
-    }
-}
-
-private extension Selector {
-    static let back = #selector(SetPasscodeViewController.back(_:))
 }

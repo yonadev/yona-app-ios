@@ -11,7 +11,9 @@ import Foundation
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"
-    case smsValidation = "SMSValidation"
+    case confirmMobileValidation = "confirmPinValidationViewController"
+    case pinResetValidation = "pinResetValidationController"
+    case adminOverrideValidation = "adminOverrideValidationViewController"
     case passcode = "Passcode"
     case login = "Login"
     case dashboard = "Dashboard"
@@ -59,6 +61,7 @@ enum alertButtonType{
 
 enum pinRequestTypes{
     case resetRequest
+    case resendResetRequest
     case verifyRequest
     case clearRequest
 }
@@ -170,3 +173,41 @@ enum addUserKeys : String {
     case nicknameKeys = "nickname"
     case emailAddress = "emailAddress"
 }
+
+// Used in Profile 
+enum ProfileCategoryHeader : Int {
+    case FirstName = 0
+    case LastName
+    case NickName
+    case CellNumber
+    
+    
+    func headerText() -> String{
+        switch self {
+        case ProfileCategoryHeader.FirstName:
+            return  NSLocalizedString("profile.user.data.firstname", comment: "ProfileCell FirstName header")
+        case ProfileCategoryHeader.LastName:
+            return  NSLocalizedString("profile.user.data.lastname", comment: "ProfileCell LastName header")
+        case ProfileCategoryHeader.NickName:
+            return  NSLocalizedString("profile.user.data.nickname", comment: "ProfileCell NickName header")
+        case ProfileCategoryHeader.CellNumber:
+            return  NSLocalizedString("profile.user.data.mobilenumber", comment: "ProfileCell Mobile Phone header")
+        }
+    }
+
+    func imageType() -> UIImage {
+        
+        switch self {
+        case ProfileCategoryHeader.FirstName:
+            return  UIImage(named: "icnName")!
+        case ProfileCategoryHeader.LastName:
+            return  UIImage(named: "icnName")!
+        case ProfileCategoryHeader.NickName:
+            return  UIImage(named: "icnNickname")!
+        case ProfileCategoryHeader.CellNumber:
+            return  UIImage(named: "icnMobile")!
+        }
+    }
+
+}
+

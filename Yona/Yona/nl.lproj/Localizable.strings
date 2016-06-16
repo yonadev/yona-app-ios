@@ -11,6 +11,7 @@
 
 "join" = "DOE MEE";
 "login" = "INLOGGEN";
+"login-accountBlocked-title" = "Je account is geblok";
 "first-name" = "VOORNAAM";
 "last-name" = "ACHTERNAAM";
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
@@ -151,5 +152,11 @@
 
 
 
+// String for Profile
+
+"profile.user.data.firstname" = "VOORNAAM";
+"profile.user.data.lastname" = "ACHTERNAAM";
+"profile.user.data.nickname" = "NICKNAME";
+"profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
 

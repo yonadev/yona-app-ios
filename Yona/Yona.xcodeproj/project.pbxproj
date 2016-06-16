@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */; };
+		167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */; };
 		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
@@ -18,6 +20,8 @@
 		6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
+		90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */; };
+		90351BF61D101FD90012E983 /* ValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF51D101FD90012E983 /* ValidationMasterView.swift */; };
 		903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */; };
 		9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */; };
 		9042C70F1CD7581E00100306 /* YonaCustomDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */; };
@@ -26,7 +30,7 @@
 		9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7231CD78F7200100306 /* LoginViewController.swift */; };
 		9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */; };
 		9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */; };
-		9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */; };
+		9042C7321CD78F7200100306 /* ConfirmMobileValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* ConfirmMobileValidationVC.swift */; };
 		9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */; };
 		9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7391CD898E300100306 /* NSObject+AGi18n.m */; };
 		9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C73B1CD898E300100306 /* UIBarButtonItem+AGi18n.m */; };
@@ -150,6 +154,7 @@
 		BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */; };
 		BEB0CE011CEA81ED0056280A /* MessageAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */; };
+		BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
@@ -181,7 +186,6 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
-		D9C3C0251CDCA98C0019C456 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9C3C0241CDCA98C0019C456 /* SecretKeys.plist */; };
 		D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744E71CB3CA7B008E463A /* KeychainTests.swift */; };
 		D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
@@ -261,6 +265,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
+		167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTopTableViewCell.swift; sourceTree = "<group>"; };
 		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
@@ -278,6 +284,8 @@
 		604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationViewController.swift; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideValidationVC.swift; sourceTree = "<group>"; };
+		90351BF51D101FD90012E983 /* ValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationMasterView.swift; sourceTree = "<group>"; };
 		903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatusCodes.swift; path = Others/HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		9042C70A1CD7581E00100306 /* YonaCustomDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaCustomDatePickerView.swift; sourceTree = "<group>"; };
 		9042C70B1CD7581E00100306 /* YonaCustomDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomDatePickerView.xib; sourceTree = "<group>"; };
@@ -287,7 +295,7 @@
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
 		9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
-		9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSValidationViewController.swift; sourceTree = "<group>"; };
+		9042C72A1CD78F7200100306 /* ConfirmMobileValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMobileValidationVC.swift; sourceTree = "<group>"; };
 		9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupValidationMasterView.swift; sourceTree = "<group>"; };
 		9042C7381CD898E300100306 /* NSObject+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AGi18n.h"; sourceTree = "<group>"; };
 		9042C7391CD898E300100306 /* NSObject+AGi18n.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AGi18n.m"; sourceTree = "<group>"; };
@@ -422,6 +430,7 @@
 		BE8254431CEA92F400F97045 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
+		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -456,7 +465,6 @@
 		D98635751CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D9C3C0241CDCA98C0019C456 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		D9C744E71CB3CA7B008E463A /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
 		D9C744F21CB3F2F4008E463A /* CucumberishExampleUITests-Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CucumberishExampleUITests-Swift.m"; sourceTree = "<group>"; };
@@ -702,7 +710,10 @@
 		9042C7281CD78F7200100306 /* SMSValidation */ = {
 			isa = PBXGroup;
 			children = (
-				9042C72A1CD78F7200100306 /* SMSValidationViewController.swift */,
+				90351BF51D101FD90012E983 /* ValidationMasterView.swift */,
+				9042C72A1CD78F7200100306 /* ConfirmMobileValidationVC.swift */,
+				BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */,
+				90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */,
 			);
 			path = SMSValidation;
 			sourceTree = "<group>";
@@ -768,6 +779,8 @@
 			isa = PBXGroup;
 			children = (
 				AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */,
+				167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */,
+				167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */,
 			);
 			name = UserDetails;
 			sourceTree = "<group>";
@@ -964,8 +977,6 @@
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
-				D9C744EC1CB3DFCA008E463A /* Protocols */,
-				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
 				D98492191CD3B48600291B56 /* MacroAccessor.h */,
 				D984921A1CD3B48600291B56 /* MacroAccessor.m */,
 			);
@@ -1639,9 +1650,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
+				167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
+				90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */,
 				BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */,
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
@@ -1654,6 +1667,7 @@
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
+				90351BF61D101FD90012E983 /* ValidationMasterView.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
@@ -1671,7 +1685,6 @@
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				D984921B1CD3B48600291B56 /* MacroAccessor.m in Sources */,
-				AD291D631CA93EB5008CAFB1 /* CreateAccountViewController.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
@@ -1687,6 +1700,7 @@
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
+				BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */,
@@ -1722,6 +1736,7 @@
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
+				167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
@@ -1731,7 +1746,7 @@
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */,
-				9042C7321CD78F7200100306 /* SMSValidationViewController.swift in Sources */,
+				9042C7321CD78F7200100306 /* ConfirmMobileValidationVC.swift in Sources */,
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
 				906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */,
