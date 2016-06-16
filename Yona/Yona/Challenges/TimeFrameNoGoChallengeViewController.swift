@@ -59,7 +59,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
             setChallengeButton.alpha = 0.5
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
-                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.whiteColor()
                 self.navigationItem.rightBarButtonItem?.enabled = true
             } else {
                 self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
