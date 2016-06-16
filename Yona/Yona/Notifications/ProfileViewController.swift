@@ -29,4 +29,13 @@ class ProfileViewController: FriendsProfileMasterView {
     @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
         print(segue.sourceViewController)
     }
+    
+    // MARK: - tableview Override
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
 }

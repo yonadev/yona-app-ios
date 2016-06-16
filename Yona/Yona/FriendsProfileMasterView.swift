@@ -115,6 +115,9 @@ extension FriendsProfileMasterView {
             
             Loader.Hide()
             if success{
+                self.buddiesOverviewArray.removeAll()
+                self.RequestedBuddy.removeAll()
+                self.AcceptedBuddy.removeAll()
                 if (buddies?.count ?? 0) > 0 {
                     self.buddiesOverviewArray = buddies!
 

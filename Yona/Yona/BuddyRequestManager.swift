@@ -24,6 +24,7 @@ class BuddyRequestManager {
                 if let buddieLink = user?.buddiesLink {
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: buddieLink, httpMethod: httpMethod) { (success, json, error) in
                         if success {
+                            self.buddies.removeAll()
                             if let json = json {
                                 if let embedded = json[postBuddyBodyKeys.embedded.rawValue],
                                     let yonaBuddies = embedded[postBuddyBodyKeys.yonaBuddies.rawValue] as? NSArray{
