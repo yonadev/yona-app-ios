@@ -44,6 +44,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
@@ -171,6 +172,10 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         dismissViewControllerAnimated(true, completion: nil)
     }
  

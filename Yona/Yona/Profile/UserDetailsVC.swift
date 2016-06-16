@@ -115,6 +115,10 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
             return 0
         }
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {

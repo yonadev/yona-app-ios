@@ -69,6 +69,7 @@ extension FriendsProfileMasterView {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     if isFromFriends == true {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         if indexPath.section == 0 {
             cell.textLabel?.text = self.AcceptedBuddy[indexPath.row].UserRequestfirstName! + self.AcceptedBuddy[indexPath.row].UserRequestlastName!
@@ -77,6 +78,13 @@ extension FriendsProfileMasterView {
         }
 
         return cell
+
+     } else {
+    //  this MST be corrected
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        return cell
+    }
+    
     }
 }
 
