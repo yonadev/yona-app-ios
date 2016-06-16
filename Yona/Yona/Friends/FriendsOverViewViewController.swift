@@ -9,14 +9,17 @@
 import UIKit
 
 class FriendsOverViewViewController: FriendsProfileMasterView {
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var addFriendbutton: UIButton?
+    
 
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
         OverviewTabAction(overviewTabView)
         self.setupUI()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        isFromFriends = true
     }
     
     // MARK: - private functions

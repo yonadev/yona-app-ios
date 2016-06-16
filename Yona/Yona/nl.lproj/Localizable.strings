@@ -106,11 +106,15 @@
 "delete-user" = "Unsubscribe";
 "deleteusermessage" = "Unsubscribing means you loose all information (friends, notifications, challenges, activities, etc.) on all of your devices. Press OK if this is intended.";
 
+"yesterday" = "GISTEREN";
+"today" = "VANDAAG";
 
 //Friends Overview
 "friends" = "VRIENDEN";
 "timeline" = "Timeline";
 "overview" = "Overzicht";
+"requested" = "VERZOEKEN";
+"accepted" = "VERBONDEN";
 
 //Add Friends
 "addfriend" = "VRIEND TOEVOEGEN";
