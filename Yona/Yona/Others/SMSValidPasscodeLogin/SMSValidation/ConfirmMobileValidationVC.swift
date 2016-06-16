@@ -36,7 +36,9 @@ class ConfirmMobileValidationVC: ValidationMasterView {
                 #endif
             } else {
                 Loader.Hide()
-                self.displayAlertMessage(message!, alertDescription: "")
+                if let message = message {
+                    self.infoLabel.text = message
+                }
             }
         }
     }
