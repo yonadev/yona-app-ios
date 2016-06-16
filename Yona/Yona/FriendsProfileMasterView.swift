@@ -69,6 +69,7 @@ extension FriendsProfileMasterView {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     if isFromFriends == true {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         if isFromFriends == true {
         if indexPath.section == 0 {
@@ -78,6 +79,13 @@ extension FriendsProfileMasterView {
         }
         }
         return cell
+
+     } else {
+    //  this MST be corrected
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        return cell
+    }
+    
     }
 }
 
