@@ -55,13 +55,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     var budgetGoalSelected: Goal?
     
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
-    
-    // MARK: - View
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //It will select NoGo tab by default

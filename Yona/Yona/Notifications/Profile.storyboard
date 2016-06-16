@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -231,18 +231,6 @@
         <!--User Details-->
         <scene sceneID="2eb-Pq-zZf">
             <objects>
-                <tapGestureRecognizer id="lkz-O1-VwS">
-                    <connections>
-                        <action selector="badgesTabAction:" destination="xCU-fF-PB5" id="JsN-HK-Faa"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="hPL-qX-fNS">
-                    <connections>
-                        <action selector="profileTabAction:" destination="xCU-fF-PB5" id="4R9-UQ-rsE"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
                 <viewController storyboardIdentifier="ProfileStoryboard" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xCU-fF-PB5" customClass="UserDetails" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wmt-t6-oxs"/>
@@ -361,7 +349,7 @@
                                                         <constraint firstAttribute="height" constant="29" id="c6n-iP-4l2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-uD-OPy">
@@ -370,7 +358,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="cSY-Ei-IE2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -433,7 +421,7 @@
                                                         <constraint firstAttribute="height" constant="14" id="0cr-7y-9t9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTs-1Y-tnV">
@@ -501,6 +489,18 @@
                         <outlet property="theTableView" destination="EBw-38-uEX" id="y86-af-j4N"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="lkz-O1-VwS">
+                    <connections>
+                        <action selector="badgesTabAction:" destination="xCU-fF-PB5" id="JsN-HK-Faa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="hPL-qX-fNS">
+                    <connections>
+                        <action selector="profileTabAction:" destination="xCU-fF-PB5" id="4R9-UQ-rsE"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="417" y="883"/>
         </scene>

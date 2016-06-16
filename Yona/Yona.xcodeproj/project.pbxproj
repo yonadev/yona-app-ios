@@ -927,7 +927,6 @@
 		AD291D251CA92808008CAFB1 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
 				AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */,
 				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
@@ -1439,7 +1438,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 96BR3NJAPH;
+						DevelopmentTeam = CWK29L7ZPT;
 					};
 					D9D54EDC1CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;

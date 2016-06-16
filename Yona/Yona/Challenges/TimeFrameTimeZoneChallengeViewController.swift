@@ -104,7 +104,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
-        self.navigationItem.rightBarButtonItem = nil
+//        self.navigationItem.rightBarButtonItem = nil
         
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
@@ -114,7 +114,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
             
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
-                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+//                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
             }
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
@@ -243,7 +243,8 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.alpha = 0.5
             }
             self.tableView.endUpdates()
-            
+            activeIndexPath = nil
+
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
