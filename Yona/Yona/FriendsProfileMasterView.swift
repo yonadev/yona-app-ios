@@ -69,22 +69,17 @@ extension FriendsProfileMasterView {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     if isFromFriends == true {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        if indexPath.section == 0 {
-            cell.textLabel?.text = self.AcceptedBuddy[indexPath.row].UserRequestfirstName! + self.AcceptedBuddy[indexPath.row].UserRequestlastName!
-        } else if indexPath.section == 1 {
-            cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
+        if isFromFriends == true {
+            if indexPath.section == 0 {
+                cell.textLabel?.text = self.AcceptedBuddy[indexPath.row].UserRequestfirstName! + self.AcceptedBuddy[indexPath.row].UserRequestlastName!
+            } else if indexPath.section == 1 {
+                cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
+            }
+
         }
-
+        //no correct implementation returning a different cell but prevents a crash because if we are in the profile view then we cannot access these buddies!! Need to separate out the profile controller stuff from the friends
         return cell
-
-     } else {
-    //  this MST be corrected
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        return cell
-    }
-    
     }
 }
 

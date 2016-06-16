@@ -104,18 +104,21 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
-//        self.navigationItem.rightBarButtonItem = nil
-        
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
-            
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+            self.navigationItem.rightBarButtonItem?.enabled = false
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
-//                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+            } else {
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
+            
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
