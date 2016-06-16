@@ -104,7 +104,7 @@ extension LoginViewController: CodeInputViewDelegate {
                     Loader.Hide()
                     if let message = message {
                         self.codeInputView.clear()
-                        self.displayAlertMessage("", alertDescription: message)
+                        self.infoLabel.text = message
                     }
                 }
             }
