@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,6 @@
             <string>SFUIDisplay-Bold</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
-            <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
@@ -123,31 +122,12 @@
                                     <constraint firstItem="ZEX-Z3-5pU" firstAttribute="height" secondItem="Qp7-5Y-17s" secondAttribute="height" id="vOg-Mb-b4d"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D0p-La-oo7">
-                                <rect key="frame" x="0.0" y="110" width="600" height="490"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="53" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D0p-La-oo7">
+                                <rect key="frame" x="0.0" y="110" width="600" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="KEu-e1-kPk" userLabel="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overzicht" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5c-NG-qfu">
-                                            <rect key="frame" x="19" y="19" width="562" height="17"/>
-                                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="U5c-NG-qfu" firstAttribute="top" secondItem="KEu-e1-kPk" secondAttribute="top" constant="19" id="U1E-Fv-bK5"/>
-                                        <constraint firstAttribute="bottom" secondItem="U5c-NG-qfu" secondAttribute="bottom" constant="19" id="cRi-X1-JM1"/>
-                                        <constraint firstItem="U5c-NG-qfu" firstAttribute="leading" secondItem="KEu-e1-kPk" secondAttribute="leading" constant="19" id="jNe-ME-ID3"/>
-                                        <constraint firstAttribute="trailing" secondItem="U5c-NG-qfu" secondAttribute="trailing" constant="19" id="xSI-Zf-t0o"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="C5C-As-bj5" detailTextLabel="K3j-SV-sbd" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="Lzc-xb-iZx">
-                                        <rect key="frame" x="0.0" y="135" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="53" width="600" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lzc-xb-iZx" id="IUt-gq-vKr">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="87.5"/>
@@ -186,7 +166,7 @@
                             <constraint firstAttribute="trailing" secondItem="ODB-V6-jlL" secondAttribute="trailing" id="Hg0-0B-NM9"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="leading" secondItem="pD2-lc-RXn" secondAttribute="leading" id="JMJ-lo-gZz"/>
                             <constraint firstItem="ODB-V6-jlL" firstAttribute="top" secondItem="95f-iK-CZN" secondAttribute="bottom" id="bgd-go-0Oa"/>
-                            <constraint firstAttribute="bottom" secondItem="D0p-La-oo7" secondAttribute="bottom" id="c8A-iG-Iop"/>
+                            <constraint firstAttribute="bottom" secondItem="D0p-La-oo7" secondAttribute="bottom" constant="44" id="c8A-iG-Iop"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="centerX" secondItem="pD2-lc-RXn" secondAttribute="centerX" id="dJg-wo-flG"/>
                             <constraint firstItem="D0p-La-oo7" firstAttribute="top" secondItem="ODB-V6-jlL" secondAttribute="bottom" id="jiY-L5-Inc"/>
                         </constraints>
@@ -205,6 +185,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addBuddyButton" destination="w9M-vt-cqM" id="idF-jj-eOY"/>
                         <outlet property="overviewTabBottomBorder" destination="lMq-2v-O1f" id="281-Qm-orr"/>
                         <outlet property="overviewTabView" destination="ZEX-Z3-5pU" id="6bO-OM-F8e"/>
                         <outlet property="tableView" destination="D0p-La-oo7" id="hr9-uw-euW"/>

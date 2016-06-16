@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,6 @@
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -35,31 +34,12 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wFB-LI-Dhz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="53" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wFB-LI-Dhz">
                                 <rect key="frame" x="0.0" y="48" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="5WE-JP-tqK" userLabel="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overzicht" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBr-5v-GIw">
-                                            <rect key="frame" x="19" y="19" width="562" height="17"/>
-                                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="WBr-5v-GIw" secondAttribute="bottom" constant="19" id="7MX-Un-eZM"/>
-                                        <constraint firstItem="WBr-5v-GIw" firstAttribute="top" secondItem="5WE-JP-tqK" secondAttribute="top" constant="19" id="Kw4-eS-bPe"/>
-                                        <constraint firstItem="WBr-5v-GIw" firstAttribute="leading" secondItem="5WE-JP-tqK" secondAttribute="leading" constant="19" id="MM1-t2-7sv"/>
-                                        <constraint firstAttribute="trailing" secondItem="WBr-5v-GIw" secondAttribute="trailing" constant="19" id="Wuc-85-jAc"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="HbG-IH-kBp" detailTextLabel="yBV-zX-Z56" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="oQA-cv-cgc">
-                                        <rect key="frame" x="0.0" y="135" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="53" width="600" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oQA-cv-cgc" id="xeX-I4-xN1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="87.5"/>
@@ -231,18 +211,6 @@
         <!--User Details-->
         <scene sceneID="2eb-Pq-zZf">
             <objects>
-                <tapGestureRecognizer id="lkz-O1-VwS">
-                    <connections>
-                        <action selector="badgesTabAction:" destination="xCU-fF-PB5" id="JsN-HK-Faa"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="hPL-qX-fNS">
-                    <connections>
-                        <action selector="profileTabAction:" destination="xCU-fF-PB5" id="4R9-UQ-rsE"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
                 <viewController storyboardIdentifier="ProfileStoryboard" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xCU-fF-PB5" customClass="UserDetails" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wmt-t6-oxs"/>
@@ -501,6 +469,18 @@
                         <outlet property="theTableView" destination="EBw-38-uEX" id="y86-af-j4N"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="lkz-O1-VwS">
+                    <connections>
+                        <action selector="badgesTabAction:" destination="xCU-fF-PB5" id="JsN-HK-Faa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="hPL-qX-fNS">
+                    <connections>
+                        <action selector="profileTabAction:" destination="xCU-fF-PB5" id="4R9-UQ-rsE"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="417" y="883"/>
         </scene>

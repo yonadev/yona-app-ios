@@ -117,10 +117,15 @@
 
 //TODO: replace english text here(not yet provided by Yona)
 
+"yesterday" = "YESTERDAY";
+"today" = "TODAY";
+
 //Friends Overview
 "friends" = "FRIENDS";
 "timeline" = "Timeline";
 "overview" = "Overview";
+"requested" = "REQUESTED";
+"accepted" = "ACCEPTED";
 
 //Add Friends
 "addfriend" = "VRIEND TOEVOEGEN";
