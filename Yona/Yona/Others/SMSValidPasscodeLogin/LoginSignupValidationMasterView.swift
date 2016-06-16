@@ -145,7 +145,9 @@ extension LoginSignupValidationMasterView {
                         self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
                     } else {
                         //TODO: Will change this after this build
-                        self.displayAlertMessage("", alertDescription: NSLocalizedString("userNotFoundAlert", comment: ""))
+                        if let message = message {
+                            self.infoLabel.text = message
+                        }
                     }
                 })
 

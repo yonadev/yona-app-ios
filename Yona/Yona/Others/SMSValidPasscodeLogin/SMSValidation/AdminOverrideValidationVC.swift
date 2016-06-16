@@ -35,9 +35,8 @@ class AdminOverrideValidationVC: ValidationMasterView {
                     if success {
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                     } else {
-                        if let message = message,
-                            let code = code {
-                            self.displayAlertMessage(code, alertDescription: message)
+                        if let message = message {
+                            self.infoLabel.text = message
                         }
                     }
                 }
