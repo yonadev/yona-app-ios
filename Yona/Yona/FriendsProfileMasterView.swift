@@ -63,19 +63,20 @@ extension FriendsProfileMasterView {
         }
         else {
             //TODO: return profile notifications counts
-            return self.buddiesOverviewArray.count
+            return 1
         }
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        if isFromFriends == true {
         if indexPath.section == 0 {
             cell.textLabel?.text = self.AcceptedBuddy[indexPath.row].UserRequestfirstName! + self.AcceptedBuddy[indexPath.row].UserRequestlastName!
         } else if indexPath.section == 1 {
             cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
         }
-
+        }
         return cell
     }
 }
