@@ -144,7 +144,8 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                 UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
-                    } else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
+                    } //if the user already exists asks to override
+                    else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
                         Loader.Hide()
                         //alert the user ask if they want to override their account, if ok send back to SMS screen
                         number = (self.nederlandPhonePrefix) + mobilenum
@@ -159,12 +160,12 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                         self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
                             switch buttonPressed{
                             case alertButtonType.OK:
-                                AdminRequestManager.sharedInstance.adminRequestOverride(body) { (success, message, code) in
+                                AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
                                     //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
                                     if success {
                                         NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
                                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                                        self.sendToSMSValidation()
+                                        self.sendToAdminOverrideValidation()
                                     } else {
                                         if let message = message,
                                             let code = code {
@@ -193,11 +194,21 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay(ViewControllerTypeString.smsValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
-        if let smsValidation = R.storyboard.login.sMSValidationViewController {
+        if let smsValidation = R.storyboard.login.confirmPinValidationViewController {
             self.navigationController?.pushViewController(smsValidation, animated: false)
+        }
+    }
+    
+    func sendToAdminOverrideValidation(){
+        //Update flag
+        setViewControllerToDisplay(ViewControllerTypeString.adminOverrideValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        // update some UI
+        Loader.Hide()
+        if let adminOverrideVC = R.storyboard.login.adminOverrideValidationViewController {
+            self.navigationController?.pushViewController(adminOverrideVC, animated: false)
         }
         
     }

@@ -50,6 +50,14 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewDidLayoutSubviews()
+    {
+        
+        var tableViewInsets = UIEdgeInsetsZero
+        tableViewInsets.top = 0
+        tableView.contentInset = tableViewInsets
+    }
     /**
      Will call logout/unsubscribe/ API and removes all the user's data.
      

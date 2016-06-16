@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SF-UI-Display-Bold.otf">
@@ -53,10 +54,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uw9-6P-tae" secondAttribute="trailing" id="OKU-ZV-Fgs"/>
-                            <constraint firstItem="uw9-6P-tae" firstAttribute="top" secondItem="X8y-8h-YGB" secondAttribute="bottom" id="bex-oA-pRx"/>
-                            <constraint firstItem="kLa-Qt-UHN" firstAttribute="top" secondItem="uw9-6P-tae" secondAttribute="bottom" id="exS-sf-769"/>
-                            <constraint firstItem="uw9-6P-tae" firstAttribute="leading" secondItem="iQ9-Bz-fwH" secondAttribute="leading" id="kGH-SO-yHX"/>
+                            <constraint firstItem="uw9-6P-tae" firstAttribute="top" secondItem="X8y-8h-YGB" secondAttribute="bottom" id="KMt-p0-faA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uw9-6P-tae" secondAttribute="trailing" constant="-20" id="Udy-2H-44a"/>
+                            <constraint firstItem="kLa-Qt-UHN" firstAttribute="top" secondItem="uw9-6P-tae" secondAttribute="bottom" id="ezE-SI-ShS"/>
+                            <constraint firstItem="uw9-6P-tae" firstAttribute="leading" secondItem="iQ9-Bz-fwH" secondAttribute="leadingMargin" constant="-20" id="pRS-3c-Dcy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SETTINGS" id="yW2-u9-5vA"/>

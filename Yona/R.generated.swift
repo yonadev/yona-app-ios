@@ -315,6 +315,7 @@ struct R {
     static var iQButtonBarArrowRight: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowRight") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
     static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
+    static var icnAddPicture: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAddPicture", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAddPicture") } }
     static var icnAvatar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAvatar") } }
     static var icnBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnBack") } }
     static var icnChallengeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeActive") } }
@@ -367,21 +368,31 @@ struct R {
   
   struct reuseIdentifier {
     static var notifcationsCell: ReuseIdentifier<NotificationsCell> { return ReuseIdentifier(identifier: "notifcationsCell") }
+    static var profileDisplayTableViewCell: ReuseIdentifier<ProfileDisplayTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTableViewCell") }
+    static var profileDisplayTopTableViewCell: ReuseIdentifier<ProfileDisplayTopTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTopTableViewCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
   }
   
   struct segue {
+    struct adminOverrideValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, AdminOverrideValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    }
+    
+    struct confirmMobileValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, ConfirmMobileValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    }
+    
     struct friendsOverViewViewController {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
     struct loginViewController {
       static var transToPasscode: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPasscode") }
-      static var transToSMS: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SMSValidationViewController> { return StoryboardSegueIdentifier(identifier: "transToSMS") }
+      static var transToPinResetValidation: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, PinResetValidationVC> { return StoryboardSegueIdentifier(identifier: "transToPinResetValidation") }
     }
     
-    struct sMSValidationViewController {
-      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, SMSValidationViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
+    struct pinResetValidationVC {
+      static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, PinResetValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
     }
     
     struct setPasscodeViewController {
@@ -400,6 +411,10 @@ struct R {
       static var budgetChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameBudgetChallengeViewController> { return StoryboardSegueIdentifier(identifier: "BudgetChallengeSegue") }
       static var noGoChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameNoGoChallengeViewController> { return StoryboardSegueIdentifier(identifier: "NoGoChallengeSegue") }
       static var timezoneChallengeSegue: StoryboardSegueIdentifier<UIStoryboardSegue, TimeBucketChallenges, TimeFrameTimeZoneChallengeViewController> { return StoryboardSegueIdentifier(identifier: "TimezoneChallengeSegue") }
+    }
+    
+    struct uINavigationController {
+      static var transToAdminOverrideValidation: StoryboardSegueIdentifier<UIStoryboardSegue, UINavigationController, AdminOverrideValidationVC> { return StoryboardSegueIdentifier(identifier: "transToAdminOverrideValidation") }
     }
     
     struct welcomeViewController {
@@ -480,12 +495,14 @@ struct R {
     }
     
     struct login {
+      static var adminOverrideValidationViewController: AdminOverrideValidationVC? { return instance.instantiateViewControllerWithIdentifier("adminOverrideValidationViewController") as? AdminOverrideValidationVC }
       static var confirmPasscodeViewController: ConfirmPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("ConfirmPasscodeViewController") as? ConfirmPasscodeViewController }
+      static var confirmPinValidationViewController: ConfirmMobileValidationVC? { return instance.instantiateViewControllerWithIdentifier("confirmPinValidationViewController") as? ConfirmMobileValidationVC }
       static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "Login", bundle: _R.hostingBundle) }
       static var loginViewController: LoginViewController? { return instance.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController }
       static var passcodeViewController: SetPasscodeViewController? { return instance.instantiateViewControllerWithIdentifier("PasscodeViewController") as? SetPasscodeViewController }
-      static var sMSValidationViewController: SMSValidationViewController? { return instance.instantiateViewControllerWithIdentifier("sMSValidationViewController") as? SMSValidationViewController }
+      static var pinResetValidationController: PinResetValidationVC? { return instance.instantiateViewControllerWithIdentifier("pinResetValidationController") as? PinResetValidationVC }
       
       static func validateImages() {
         assert(UIImage(named: "icnSecure") != nil, "[R.swift] Image named 'icnSecure' is used in storyboard 'Login', but couldn't be loaded.")
@@ -499,7 +516,9 @@ struct R {
         assert(loginViewController != nil, "[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.")
         assert(confirmPasscodeViewController != nil, "[R.swift] ViewController with identifier 'confirmPasscodeViewController' could not be loaded from storyboard 'Login' as 'ConfirmPasscodeViewController'.")
         assert(passcodeViewController != nil, "[R.swift] ViewController with identifier 'passcodeViewController' could not be loaded from storyboard 'Login' as 'SetPasscodeViewController'.")
-        assert(sMSValidationViewController != nil, "[R.swift] ViewController with identifier 'sMSValidationViewController' could not be loaded from storyboard 'Login' as 'SMSValidationViewController'.")
+        assert(confirmPinValidationViewController != nil, "[R.swift] ViewController with identifier 'confirmPinValidationViewController' could not be loaded from storyboard 'Login' as 'ConfirmMobileValidationVC'.")
+        assert(pinResetValidationController != nil, "[R.swift] ViewController with identifier 'pinResetValidationController' could not be loaded from storyboard 'Login' as 'PinResetValidationVC'.")
+        assert(adminOverrideValidationViewController != nil, "[R.swift] ViewController with identifier 'adminOverrideValidationViewController' could not be loaded from storyboard 'Login' as 'AdminOverrideValidationVC'.")
       }
     }
     
@@ -526,7 +545,7 @@ struct R {
       static func validateImages() {
         assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "addAvatar") != nil, "[R.swift] Image named 'addAvatar' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnAddPicture") != nil, "[R.swift] Image named 'icnAddPicture' is used in storyboard 'Profile', but couldn't be loaded.")
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Profile', but couldn't be loaded.")
       }
       

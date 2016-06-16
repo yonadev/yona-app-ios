@@ -51,6 +51,21 @@ class PinResetRequestManager {
                     onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
                 }
             }
+        case .resendResetRequest:
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+                //success so get the user?
+                if success {
+                    if let path = user?.resendRequestPinResetLinks{
+                        self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam) { (success, json, error) in
+                            onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+                        }
+                    } else {
+                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResendResetRequestLink, String(responseCodes.internalErrorCode))
+                    }
+                } else {
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                }
+            }
         case .verifyRequest:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
                 //success so get the user?
@@ -79,6 +94,17 @@ class PinResetRequestManager {
                     }
                 }
             }
+        }
+    }
+    
+    /**
+     Resends the pin reset request, clears and requests making it simpler
+     
+     - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
+     */
+    func pinResendResetRequest(onCompletion: APIPinResetResponse) {
+        pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.resendResetRequest, body: nil) { (success, ISOCode, serverMessage, serverCode) in
+            onCompletion(success, ISOCode, serverMessage, serverCode)
         }
     }
     
