@@ -30,6 +30,13 @@ class FriendsOverViewViewController: FriendsProfileMasterView {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
+    
+    // MARK: - tableview Override
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
+
+    
 }
 
 // MARK: Touch Event of Custom Segment

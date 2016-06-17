@@ -33,8 +33,25 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 0
     
+    override func viewDidLayoutSubviews()
+    {
+        let vi = view.frame
+        var scrollFrame = scrollView.frame
+        scrollFrame.origin.x = 0
+    //    scrollFrame.size.height = vi.height-(64+30)
+        
+        
+        scrollView.frame = scrollFrame
+        
+
+        
+    }
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
@@ -74,6 +91,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
         
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+    
     }
     
     // MARK: - Actions
