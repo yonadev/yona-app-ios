@@ -9,11 +9,11 @@
 import Foundation
 
 struct Users{
-    var userID: String?
-    var firstName: String?
-    var lastName: String?
-    var mobileNumber: String?
-    var nickname: String?
+    var userID: String!
+    var firstName: String!
+    var lastName: String!
+    var mobileNumber: String!
+    var nickname: String!
     
     //links
     var editLink: String?
@@ -34,6 +34,13 @@ struct Users{
     var getAllGoalsLink: String?
 
     init(userData: BodyDataDictionary) {
+        
+        userID = "NOID"
+        firstName = ""
+        lastName = ""
+        mobileNumber = ""
+        nickname = ""
+
         //used to set password on add new device, yonapassword indicates get new device request response
         if let yonapassword = userData[YonaConstants.jsonKeys.yonaPassword] as? String {
             KeychainManager.sharedInstance.setPassword(yonapassword)
@@ -77,7 +84,7 @@ struct Users{
                     
                     if let lastPath = NSURL(string: self.editLink!)!.lastPathComponent {
                         self.userID = lastPath
-                        KeychainManager.sharedInstance.saveUserID(self.userID!)
+                        KeychainManager.sharedInstance.saveUserID(self.userID)
                     }
                 }
                 
@@ -187,18 +194,10 @@ struct Users{
                     "mobileNumber": "",
                     "nickname": ""]
         
-        if let txt = firstName {
-            body["firstName"] = txt
-        }
-        if let txt = lastName {
-            body["lastName"] = txt
-        }
-        if let txt = mobileNumber {
-            body["mobileNumber"] = txt
-        }
-        if let txt = nickname {
-            body["nickname"] = txt
-        }
+            body["firstName"] = firstName
+            body["lastName"] = lastName
+            body["mobileNumber"] = mobileNumber
+            body["nickname"] = nickname
         return body
     }
 

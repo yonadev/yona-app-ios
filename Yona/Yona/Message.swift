@@ -7,28 +7,91 @@
 //
 
 import Foundation
+
+//TODO: this has not implemeneted ALL notificationstypes
+// http://wiki.yona.nu/display/DEV/Me+-+Notifications
+enum notificationType : String {
+    case BuddyConnectRequestMessage = "BuddyConnectRequestMessage"
+    case BuddyConnectResponseMessage = "BuddyConnectResponseMessage"
+    case BuddyDisconnectMessage = "BuddyDisconnectMessage"
+    case GoalConflictMessage = "GoalConflictMessage"
+    case NoValue = "Not found"
+    
+    func simpleDescription() -> String {
+        switch self {
+        case .BuddyConnectRequestMessage:
+            return NSLocalizedString("Vriendenverzoek", comment: "")
+        case .BuddyConnectResponseMessage:
+            return NSLocalizedString("Vriendenverzoek afgewezen", comment: "")
+        case .BuddyDisconnectMessage:
+            return NSLocalizedString("Je bent verwijderd als vriend", comment: "")
+        case .GoalConflictMessage:
+            return NSLocalizedString("NoGo Alert", comment: "")
+        default :
+            return NSLocalizedString("Error", comment: "")
+        }
+    }
+
+    func iconForStatus() -> UIImage {
+        switch self {
+        case .BuddyConnectRequestMessage:
+            return UIImage(named: "icnOk")!
+        case .BuddyConnectResponseMessage:
+            return UIImage(named: "")!
+        case .BuddyDisconnectMessage:
+            return UIImage(named: "")!
+        case .GoalConflictMessage:
+            return UIImage(named: "")!
+        default :
+            return UIImage(named: "")!
+        }
+    }
+
+
+}
+
+
+
+
+
 struct Message{
     var selfLink: String?
     var rejectLink: String?
     var acceptLink: String?
-    var creationTime: String?
+    //var creationTime: String?
     var nickname: String?
-    var message: String?
+    var message: String
     var status: buddyRequestStatus?
-    var messageType: String?
-
-    //details of user who made request
-    var UserRequestfirstName: String?
-    var UserRequestlastName: String?
-    var UserRequestmobileNumber: String?
-    var UserRequestSelfLink: String?
+    var messageType: notificationType
+    var creationTime : NSDate
     
+    //details of user who made request
+    var UserRequestfirstName: String
+    var UserRequestlastName: String
+    var UserRequestmobileNumber: String
+    var UserRequestSelfLink: String
+
     init(messageData: BodyDataDictionary) {
-        if let messageType = messageData[getMessagesKeys.messageType.rawValue] as? String{
-            self.messageType = messageType
+        message = ""
+        UserRequestfirstName = ""
+        UserRequestlastName = ""
+        UserRequestmobileNumber = ""
+        UserRequestSelfLink = ""
+        
+        messageType = .NoValue
+        
+        creationTime = NSDate.init()
+        if let data = messageData[getMessagesKeys.messageType.rawValue] as? String{
+            if let type  = notificationType(rawValue:data) {
+                messageType = type
+            }
         }
-        if let creationTime = messageData[getMessagesKeys.creationTime.rawValue] as? String{
-            self.creationTime = creationTime
+        if let aCreationTime = messageData[getMessagesKeys.creationTime.rawValue] as? String{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
+            if let aDate = dateFormatter.dateFromString(aCreationTime) {
+                creationTime = aDate
+            }
         }
         if let nickname = messageData[getMessagesKeys.nickname.rawValue] as? String{
             self.nickname = nickname
