@@ -36,4 +36,17 @@ extension NSDate {
         let date = NSDate.init(timeIntervalSinceReferenceDate: timeRound15)
         return date
     }
-}
+    
+    struct Date {
+        static let formatterYYYYMMDD: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyyMMdd"
+            return formatter
+        }()
+    }
+    var yearMonthDay: String {
+        return Date.formatterYYYYMMDD.stringFromDate(self)
+    }
+    func isSameDayAs(date:NSDate) -> Bool {
+        return yearMonthDay == date.yearMonthDay
+    }}

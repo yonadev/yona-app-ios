@@ -1,5 +1,5 @@
 //
-//  ProfileDisplayTopTableViewCell.swift
+//  YonaUserHeaderWithTwoTabTableViewCell.swift
 //  Yona
 //
 //  Created by Anders Liebl on 15/06/2016.
@@ -8,7 +8,12 @@
 
 import Foundation
 
-class ProfileDisplayTopTableViewCell: UITableViewCell {
+protocol YonaUserHeaderTabProtocol {
+    func didSelectProfileTab()
+    func didSelectBadgesTab()
+}
+
+class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -25,7 +30,8 @@ class ProfileDisplayTopTableViewCell: UITableViewCell {
     @IBOutlet weak var badgesTabLabel: UILabel!
 
     var aUser : Users?
-
+    var delegate : YonaUserHeaderTabProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.text = ""
@@ -45,6 +51,14 @@ class ProfileDisplayTopTableViewCell: UITableViewCell {
         iconAddAvatarImageView.alpha = 0.0
         
         showProfileTab()
+        
+        // add gestures to tabs
+        let profilegesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showProfileTab))
+        profileTabMainView.addGestureRecognizer(profilegesture)
+
+        let badgegesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showBadgesTab))
+        badgesTabMainView.addGestureRecognizer(badgegesture)
+
     }
     
     func setData (userModel userModel : Users){
@@ -72,16 +86,15 @@ class ProfileDisplayTopTableViewCell: UITableViewCell {
         
         badgesTabSelectionsView.hidden = true
         badgesTabLabel.alpha = 0.5
-
+        delegate?.didSelectProfileTab()
     }
-    func showBadgesTab () {
+    @IBAction func showBadgesTab (sender : AnyObject) {
         profileTabLabel.alpha = 0.5
         profileTabSelcetionView.hidden = true
         
         badgesTabSelectionsView.hidden = false
         badgesTabLabel.alpha = 1.0
-        
-        
+        delegate?.didSelectBadgesTab()
     }
 
     
