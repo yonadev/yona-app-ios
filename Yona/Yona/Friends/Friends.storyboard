@@ -16,6 +16,7 @@
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -320,7 +321,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mobile-number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qBM-hQ-L7Q">
-                                        <rect key="frame" x="32" y="260" width="536" height="88"/>
+                                        <rect key="frame" x="32" y="263" width="536" height="88"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="88" id="m4U-kY-yio"/>
                                         </constraints>
@@ -331,8 +332,20 @@
                                             <outlet property="delegate" destination="OjV-ne-DEf" id="yP5-dZ-dNk"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="message-to-buddie" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ynk-t5-H0M">
+                                        <rect key="frame" x="32" y="347" width="536" height="88"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="ttj-IC-5iF"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OjV-ne-DEf" id="xWH-uf-Syz"/>
+                                        </connections>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
-                                        <rect key="frame" x="30" y="378" width="540" height="50"/>
+                                        <rect key="frame" x="30" y="438" width="540" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="TJx-22-Und"/>
                                         </constraints>
@@ -350,8 +363,10 @@
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="2G2-rf-tdy"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="4VL-jc-zsc"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="B8P-QJ-kOd"/>
-                                    <constraint firstItem="qBM-hQ-L7Q" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" id="BIv-Oo-C2r"/>
+                                    <constraint firstItem="qBM-hQ-L7Q" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="3" id="BIv-Oo-C2r"/>
+                                    <constraint firstItem="Ynk-t5-H0M" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="87" id="BmW-ib-eyo"/>
                                     <constraint firstItem="h95-OS-lxS" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="Dzl-Xa-OFj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ynk-t5-H0M" secondAttribute="trailing" constant="32" id="E4P-pG-BKm"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="top" secondItem="h95-OS-lxS" secondAttribute="bottom" id="G6R-32-wIt"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="Icj-hu-O1Y"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="Jh7-oQ-bdf"/>
@@ -364,7 +379,8 @@
                                     <constraint firstAttribute="trailing" secondItem="uEP-4R-nOf" secondAttribute="trailing" constant="32" id="YGv-6t-3XO"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="b64-ms-2lG"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="top" secondItem="h95-OS-lxS" secondAttribute="bottom" constant="84" id="cig-KM-a6G"/>
-                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="qBM-hQ-L7Q" secondAttribute="bottom" constant="30" id="rzr-bC-g0p"/>
+                                    <constraint firstItem="Ynk-t5-H0M" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="ls1-58-1Oj"/>
+                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="qBM-hQ-L7Q" secondAttribute="bottom" constant="87" id="rzr-bC-g0p"/>
                                     <constraint firstItem="TPn-S7-xHv" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="30" id="tH8-gI-LED"/>
                                     <constraint firstAttribute="bottom" secondItem="TPn-S7-xHv" secondAttribute="bottom" constant="60" id="u7g-IM-UwG"/>
                                     <constraint firstItem="h95-OS-lxS" firstAttribute="top" secondItem="bJK-ti-jOR" secondAttribute="top" id="uEc-Re-fXc"/>
@@ -411,6 +427,7 @@
                         <outlet property="lastnameTextfield" destination="uEP-4R-nOf" id="PJv-gs-uqP"/>
                         <outlet property="manualTabBottomBorder" destination="t7K-7C-15q" id="cBc-CS-K9j"/>
                         <outlet property="manualTabView" destination="IrP-L3-HFn" id="Yw5-7u-Xgz"/>
+                        <outlet property="messageTextfield" destination="Ynk-t5-H0M" id="1bo-AX-I3u"/>
                         <outlet property="mobileTextfield" destination="qBM-hQ-L7Q" id="qAA-aw-B03"/>
                     </connections>
                 </viewController>
