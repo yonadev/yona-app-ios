@@ -10,6 +10,10 @@ import Foundation
 
 class YonaDefaultTableHeaderView: UITableViewHeaderFooterView {
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        headerTextLabel.backgroundColor = UIColor.yiTableBGGreyColor()
+    }
     
     @IBOutlet weak var headerTextLabel: UILabel!
     

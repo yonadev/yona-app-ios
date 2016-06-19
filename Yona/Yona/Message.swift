@@ -36,15 +36,15 @@ enum notificationType : String {
         switch self {
             //TODO: these images must be set to the correct images for the state
         case .BuddyConnectRequestMessage:
-            return UIImage(named: "")!
+            return UIImage.init()
         case .BuddyConnectResponseMessage:
-            return UIImage(named: "")!
+            return UIImage.init()//UIImage(named: "")!
         case .BuddyDisconnectMessage:
-            return UIImage(named: "")!
+            return UIImage.init()//UIImage(named: "")!
         case .GoalConflictMessage:
-            return UIImage(named: "")!
+            return UIImage.init()//UIImage(named: "")!
         default :
-            return UIImage(named: "")!
+            return UIImage.init()//UIImage(named: "")!
         }
     }
 
