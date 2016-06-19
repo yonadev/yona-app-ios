@@ -34,8 +34,9 @@ enum notificationType : String {
 
     func iconForStatus() -> UIImage {
         switch self {
+            //TODO: these images must be set to the correct images for the state
         case .BuddyConnectRequestMessage:
-            return UIImage(named: "icnOk")!
+            return UIImage(named: "")!
         case .BuddyConnectResponseMessage:
             return UIImage(named: "")!
         case .BuddyDisconnectMessage:
