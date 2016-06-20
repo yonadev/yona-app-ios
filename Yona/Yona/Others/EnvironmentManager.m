@@ -56,15 +56,7 @@ static NSString * baseUrl;
 + (BOOL)updateEnvironment
 {
     NSNumber *env = [XTSettings settingsForKey:@"PrefsBundleMyOrderEnvironment"];
-#ifndef DISTRIBUTE
-    
-    if (!env || [env integerValue] == 0) {
-        env = @(DeploymentEnvironmentQA);
-    }
-    
-#else
     env = @(DeploymentEnvironmentProduction);
-#endif
     BOOL changed = NO;
     NSUInteger environment = [[self environment] integerValue];
     if(env.integerValue != environment){
