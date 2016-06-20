@@ -372,6 +372,8 @@ struct R {
   
   struct reuseIdentifier {
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
+    static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
+    static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
     static var yonaUserDisplayTableViewCell: ReuseIdentifier<YonaUserDisplayTableViewCell> { return ReuseIdentifier(identifier: "YonaUserDisplayTableViewCell") }
     static var yonaUserHeaderWithTwoTabTableViewCell: ReuseIdentifier<YonaUserHeaderWithTwoTabTableViewCell> { return ReuseIdentifier(identifier: "YonaUserHeaderWithTwoTabTableViewCell") }
     static var yonaUserTableViewCell: ReuseIdentifier<YonaUserTableViewCell> { return ReuseIdentifier(identifier: "YonaUserTableViewCell") }
@@ -393,6 +395,10 @@ struct R {
     struct loginViewController {
       static var transToPasscode: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPasscode") }
       static var transToPinResetValidation: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, PinResetValidationVC> { return StoryboardSegueIdentifier(identifier: "transToPinResetValidation") }
+    }
+    
+    struct notificationsViewController {
+      static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
     }
     
     struct pinResetValidationVC {
@@ -545,6 +551,7 @@ struct R {
       static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
       static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
       static var profileViewController: MeDashBoardMainViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? MeDashBoardMainViewController }
+      static var yonaNotificationAcceptFriendRequestViewController: YonaNotificationAcceptFriendRequestViewController? { return instance.instantiateViewControllerWithIdentifier("YonaNotificationAcceptFriendRequestViewController") as? YonaNotificationAcceptFriendRequestViewController }
       
       static func validateImages() {
         assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
@@ -556,6 +563,7 @@ struct R {
       static func validateViewControllers() {
         assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
         assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
+        assert(yonaNotificationAcceptFriendRequestViewController != nil, "[R.swift] ViewController with identifier 'yonaNotificationAcceptFriendRequestViewController' could not be loaded from storyboard 'MeDashBoard' as 'YonaNotificationAcceptFriendRequestViewController'.")
       }
     }
     

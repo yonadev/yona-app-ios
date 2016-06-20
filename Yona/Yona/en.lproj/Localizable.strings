@@ -233,6 +233,8 @@
 "notifications.user.badges" = "Badges";
 
 
+"notifications.accept.title" = "Accept request";
+"notifications.accept.type"  = "Vriendschapsverzoek";
 
 // String for Profile
 

@@ -18,6 +18,10 @@
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Semibold.otf">
+            <string>SFUIDisplay-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -317,11 +321,115 @@
                         </connections>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <segue destination="WCO-lA-rh6" kind="show" identifier="showAcceptFriend" id="dQJ-b8-YTO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPq-EN-rhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4fa-FB-FqU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="889"/>
+            <point key="canvasLocation" x="1207" y="878"/>
+        </scene>
+        <!--confirm.request.title-->
+        <scene sceneID="ooq-AF-k4X">
+            <objects>
+                <viewController storyboardIdentifier="YonaNotificationAcceptFriendRequestViewController" id="WCO-lA-rh6" customClass="YonaNotificationAcceptFriendRequestViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WoS-5l-XVD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y2U-3w-9Mx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UPR-ON-f3l">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5aQ-qF-D8T">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YonaNotificationsAccessTypeTableViewCell" id="Mhu-nG-DpJ" customClass="YonaNotificationsAccessTypeTableViewCell" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhu-nG-DpJ" id="Feb-BH-9kE">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c5-uE-gKm">
+                                                    <rect key="frame" x="32" y="13" width="545" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="UiC-R7-YcZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6c5-uE-gKm" firstAttribute="leading" secondItem="Feb-BH-9kE" secondAttribute="leadingMargin" constant="24" id="AbZ-UC-1jF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6c5-uE-gKm" secondAttribute="trailing" constant="15" id="D1S-no-Bh1"/>
+                                                <constraint firstItem="6c5-uE-gKm" firstAttribute="centerY" secondItem="Feb-BH-9kE" secondAttribute="centerY" id="G9b-5f-OZp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="typeTextLable" destination="6c5-uE-gKm" id="uGq-dG-VmT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YonaNotificationsAccessTextTableViewCell" rowHeight="70" id="urc-Az-SNt" customClass="YonaNotificationsAccessTextTableViewCell" customModule="Yona" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="urc-Az-SNt" id="4kl-ja-rAz">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE8-2H-YDk">
+                                                    <rect key="frame" x="32" y="8" width="545" height="54"/>
+                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aE8-2H-YDk" firstAttribute="top" secondItem="4kl-ja-rAz" secondAttribute="topMargin" id="GDg-5X-iCS"/>
+                                                <constraint firstItem="aE8-2H-YDk" firstAttribute="bottom" secondItem="4kl-ja-rAz" secondAttribute="bottomMargin" id="R11-W4-YJB"/>
+                                                <constraint firstItem="aE8-2H-YDk" firstAttribute="leading" secondItem="4kl-ja-rAz" secondAttribute="leadingMargin" constant="24" id="exJ-JM-7LF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="aE8-2H-YDk" secondAttribute="trailing" constant="15" id="k5s-e2-x0C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aTextLabel" destination="aE8-2H-YDk" id="FYr-7j-h03"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WCO-lA-rh6" id="4ao-NF-rUx"/>
+                                    <outlet property="delegate" destination="WCO-lA-rh6" id="Uc2-q5-0kp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y2U-3w-9Mx" firstAttribute="top" secondItem="5aQ-qF-D8T" secondAttribute="bottom" id="IGn-Uu-wxe"/>
+                            <constraint firstItem="5aQ-qF-D8T" firstAttribute="leading" secondItem="UPR-ON-f3l" secondAttribute="leadingMargin" constant="-20" id="L9t-Eb-XZ8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5aQ-qF-D8T" secondAttribute="trailing" constant="-20" id="O2e-G1-MbS"/>
+                            <constraint firstItem="5aQ-qF-D8T" firstAttribute="top" secondItem="UPR-ON-f3l" secondAttribute="topMargin" id="QZP-Yj-iMJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="confirm.request.title" id="rzP-pF-2RE">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="Lad-fC-BES">
+                            <connections>
+                                <action selector="backAction:" destination="WCO-lA-rh6" id="nyk-Tj-Zxe"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="backBarButtonItem" destination="Lad-fC-BES" id="92s-aS-fWH"/>
+                        </connections>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="5aQ-qF-D8T" id="Ewg-GJ-Jzq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZd-3g-eWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="883"/>
         </scene>
     </scenes>
     <resources>

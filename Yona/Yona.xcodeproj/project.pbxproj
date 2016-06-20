@@ -17,6 +17,9 @@
 		16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */; };
 		16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */; };
 		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
+		16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */; };
+		16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */; };
+		16F951A41D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
@@ -280,6 +283,9 @@
 		16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaDefaultTableHeaderView.xib; sourceTree = "<group>"; };
 		16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaDefaultTableHeaderView.swift; sourceTree = "<group>"; };
 		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationAcceptFriendRequestViewController.swift; sourceTree = "<group>"; };
+		16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationsAccessTypeTableViewCell.swift; sourceTree = "<group>"; };
+		16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationsAccessTextTableViewCell.swift; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
@@ -792,6 +798,9 @@
 			isa = PBXGroup;
 			children = (
 				906FED851CEDC72300029845 /* NotificationsViewController.swift */,
+				16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */,
+				16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */,
+				16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */,
 			);
 			name = Notifications;
 			path = ../Notifications;
@@ -1690,6 +1699,7 @@
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
+				16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */,
 				60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
@@ -1713,6 +1723,7 @@
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
+				16F951A41D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
@@ -1747,6 +1758,7 @@
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
+				16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */,
 				AD00DED21CD3648F006BBA7E /* IQUITextFieldView+Additions.swift in Sources */,
 				9042C7321CD78F7200100306 /* ConfirmMobileValidationVC.swift in Sources */,
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,

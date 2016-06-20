@@ -32,9 +32,11 @@ class MessageRequestManager {
                                     //iterate messages
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
-                                            self.message = Message.init(messageData: message)
-                                            if let message = self.message {
-                                                self.messages.append(message)
+                                            let aMessage = Message.init(messageData: message)
+//                                            if let theMessage = aMessage {
+                                                if aMessage.UserRequestmobileNumber.characters.count > 1 {
+                                                    self.messages.append(aMessage)
+  //                                              }
                                             }
                                         }
                                     }

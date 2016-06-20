@@ -154,7 +154,9 @@
 "notifications.user.profile" = "Profiel";
 "notifications.user.badges" = "Badges";
 
-
+"notifications.accept.title" = "Accept request";
+"notifications.accept.type"  = "Vriendschapsverzoek";
+"notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 
 // String for Profile
 
@@ -163,4 +165,5 @@
 "profile.user.data.nickname" = "NICKNAME";
 "profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
-
+"profile.tab.profile" = "profile";
+"profile.tab.badges" = "badges";

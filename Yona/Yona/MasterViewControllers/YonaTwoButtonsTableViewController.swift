@@ -28,7 +28,7 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
 
     var selectedTab : currentSelectedTab = .left
     
-    
+    var isFromfriends = true
     
 // MARK: - Table view data source
     /*
@@ -37,19 +37,22 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
      */
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+      print("ERROR 'numberOfSectionsInTableView' has not been overiden")
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        print("ERROR 'numberOfRowsInSection' has not been overiden")
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         print("ERROR 'cellForRowAtIndexPath' has not been overiden")
         
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         return cell
+        
     }
 
     //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
