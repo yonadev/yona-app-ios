@@ -14,13 +14,18 @@ struct Buddies{
     var receivingStatus: buddyRequestStatus?
 
     //details of user who made request
-    var UserRequestfirstName: String?
-    var UserRequestlastName: String?
-    var UserRequestmobileNumber: String?
-    var UserRequestSelfLink: String?
+    var UserRequestfirstName: String
+    var UserRequestlastName: String
+    var UserRequestmobileNumber: String
+    var UserRequestSelfLink: String
+    var buddyNickName : String
     
     init(buddyData: BodyDataDictionary) {
-
+        UserRequestfirstName = ""
+        UserRequestlastName = ""
+        UserRequestmobileNumber = ""
+        UserRequestSelfLink = ""
+        buddyNickName = ""
         if let sendingStatusFeed = buddyData[postBuddyBodyKeys.sendingStatus.rawValue] as? String{
             switch sendingStatusFeed {
             case buddyRequestStatus.ACCEPTED.rawValue:
@@ -63,6 +68,11 @@ struct Buddies{
                 self.editLink = editLinkHref
             }
         }
+        //store nickname 
+        if let txt = buddyData[getMessagesKeys.nickname.rawValue] as? String {
+            buddyNickName = txt
+        }
+        
         
         //store user who made the request
         if let embedded = buddyData[postBuddyBodyKeys.embedded.rawValue],

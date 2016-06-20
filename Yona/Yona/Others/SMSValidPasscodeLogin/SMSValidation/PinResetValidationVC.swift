@@ -41,7 +41,9 @@ final class PinResetValidationVC: ValidationMasterView {
                         self.displayPincodeRemainingMessage()
                         self.codeInputView.userInteractionEnabled = true
                     } else {
-                        self.displayAlertMessage(message!, alertDescription: "")
+                        if let message = message {
+                            self.infoLabel.text = message
+                        }
                     }
                 })
             }

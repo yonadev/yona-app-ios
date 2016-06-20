@@ -41,8 +41,9 @@ class GradientView: UIView {
         
         CGPathMoveToPoint(path, nil, 0, 0)
         CGPathAddLineToPoint(path, nil, (size.width/3)*2, 0)
-        CGPathAddLineToPoint(path, nil, 0, size.height)
-        CGPathAddLineToPoint(path, nil, 0, size.height)
+        CGPathAddLineToPoint(path, nil, 0, size.height-15)
+//        CGPathAddLineToPoint(path, nil, size.width, 0)
+//        CGPathAddLineToPoint(path, nil, 0, size.height)
         CGPathAddLineToPoint(path, nil, 0, 0)
         
         return path

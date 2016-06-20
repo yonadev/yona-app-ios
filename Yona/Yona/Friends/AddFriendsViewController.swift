@@ -21,6 +21,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     @IBOutlet var lastnameTextfield: UITextField!
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var mobileTextfield: UITextField!
+    @IBOutlet var messageTextfield: UITextField!
     @IBOutlet var inviteFriendButton: UIButton!
     @IBOutlet var screenTitle: UILabel!
     var addressBook: ABAddressBookRef?
@@ -44,6 +45,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
@@ -92,7 +94,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         mobile.contentMode = UIViewContentMode.Center
         mobileTextfield.rightView = mobile;
         mobileTextfield.rightViewMode = UITextFieldViewMode.Always
+
         
+        let messageToUser = UIImageView(image: R.image.icnName)
+        messageToUser.frame = CGRectMake(0.0, 0.0, mobile.image!.size.width+10.0, mobile.image!.size.height);
+        messageToUser.contentMode = UIViewContentMode.Center
+        messageTextfield.rightView = messageToUser;
+        messageTextfield.rightViewMode = UITextFieldViewMode.Always
+
         let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
         label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         label.textColor = UIColor.yiBlackColor()
@@ -103,7 +112,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
         
         //Add textfields array to manage responder
-        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
+        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield,messageTextfield])
     }
     
     func createAddressBook(){
@@ -171,6 +180,10 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         dismissViewControllerAnimated(true, completion: nil)
     }
  
@@ -213,7 +226,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                     let postBuddyBody: [String:AnyObject] = [
                         postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
                         postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                        postBuddyBodyKeys.message.rawValue : "Hi there, would you want to become my buddy?",
+                        postBuddyBodyKeys.message.rawValue : messageTextfield.text ?? "",//"Hi there, would you want to become my buddy?",
                         postBuddyBodyKeys.embedded.rawValue: [
                             postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
                                 addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",

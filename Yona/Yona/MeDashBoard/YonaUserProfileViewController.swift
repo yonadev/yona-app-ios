@@ -8,13 +8,12 @@
 
 import UIKit
 
-class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDataSource {
+class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol {
     
-    @IBOutlet weak var theTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rightSideButton : UIBarButtonItem!
 
-    var topCell :ProfileDisplayTopTableViewCell?
-    //
+    var topCell : YonaUserHeaderWithTwoTabTableViewCell?
     
     var aUser : Users?
     var isShowingProfile = true
@@ -22,15 +21,17 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
-      //  profileTabAction(profileTabSelcetionView)
+        registreTableViewCells()
         dataLoading()
-        setupUI()
-        
     }
 
-    func setupUI() {
+    func registreTableViewCells () {
+        var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserDisplayTableViewCell")
+        nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
     }
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,7 +46,7 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
                 self.aUser = user
                 //success so get the user
               //  self.setData()
-                self.theTableView.reloadData()
+                self.tableView.reloadData()
             } else {
                 //response from request failed
                 
@@ -57,33 +58,31 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
     
     // MARK: - Actions
 
-    @IBAction func profileTabAction(sender: AnyObject) {
-        topCell?.showProfileTab()
+    func didSelectProfileTab() {
         isShowingProfile = true
         if let itmes = rightSideButtonItems {
             self.navigationItem.rightBarButtonItems = itmes
         }
-        theTableView.reloadData()
+        tableView.reloadData()
     }
 
-    @IBAction func badgesTabAction(sender: AnyObject) {
-        topCell?.showBadgesTab()
+    func didSelectBadgesTab() {
         isShowingProfile = false
         rightSideButtonItems = self.navigationItem.rightBarButtonItems
         self.navigationItem.rightBarButtonItems = nil
-        theTableView.reloadData()
+        tableView.reloadData()
     }
 
     @IBAction func userDidSelectEdit(sender: AnyObject) {
-        if theTableView.editing {
+        if tableView.editing {
             rightSideButton.image = UIImage.init(named: "icnEdit")
-            theTableView.setEditing(false, animated: true)
+            tableView.setEditing(false, animated: true)
             topCell?.setTopViewInNormalMode()
             updateUser()
             
         } else {
             rightSideButton.image = UIImage.init(named: "icnCreate")
-            theTableView.setEditing(true, animated: true)
+            tableView.setEditing(true, animated: true)
             topCell?.setTopViewInEditMode()
             
         }
@@ -100,11 +99,11 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - tableView methods
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
@@ -115,11 +114,16 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
             return 0
         }
     }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if topCell == nil {
-                topCell = (theTableView.dequeueReusableCellWithIdentifier("ProfileDisplayTopTableViewCell", forIndexPath: indexPath) as! ProfileDisplayTopTableViewCell)
+                topCell = (tableView.dequeueReusableCellWithIdentifier("YonaUserHeaderWithTwoTabTableViewCell", forIndexPath: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell)
+                topCell?.delegate = self
             }
             if let theUser = aUser {
                 topCell!.setData(userModel: theUser)
@@ -129,12 +133,12 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
         }
         
         if isShowingProfile {
-            let cell: ProfileDisplayTableViewCell = theTableView.dequeueReusableCellWithIdentifier("ProfileDisplayTableViewCell", forIndexPath: indexPath) as! ProfileDisplayTableViewCell
+            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
         } else {
         // must be changed to show badges
-            let cell: ProfileDisplayTableViewCell = theTableView.dequeueReusableCellWithIdentifier("ProfileDisplayTableViewCell", forIndexPath: indexPath) as! ProfileDisplayTableViewCell
+            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
 
@@ -165,7 +169,7 @@ class UserDetails: FriendsProfileMasterView, UITableViewDelegate, UITableViewDat
                     self.aUser = user
                 //success so get the user
                 //  self.setData()
-                    self.theTableView.reloadData()
+                    self.tableView.reloadData()
                 } else {
                 //response from request failed
                 }

@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbX-Fk-AJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-376" y="443"/>
+            <point key="canvasLocation" x="-556" y="471"/>
         </scene>
         <!--Challenges-->
         <scene sceneID="8d5-sH-Zid">
@@ -45,7 +45,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWr-OG-Bq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1052" y="-497"/>
+            <point key="canvasLocation" x="-1254" y="477"/>
         </scene>
         <!--Friends-->
         <scene sceneID="cwD-Fk-YVI">
@@ -66,12 +66,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZKg-Qq-ZSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1942" y="605"/>
+            <point key="canvasLocation" x="-1958" y="471"/>
         </scene>
-        <!--Profile-->
+        <!--MeDashBoard-->
         <scene sceneID="68Z-Ed-c3i">
             <objects>
-                <navigationController title="Profile" id="SGx-PY-cZf" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3i-cH-mV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController title="MeDashBoard" id="SGx-PY-cZf" userLabel="MeDashBoard" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icnMe" selectedImage="icnMeActive" id="7HF-lQ-fB8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="caN-yz-5ht" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -91,14 +92,14 @@
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3i-cH-mV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274" y="521"/>
+            <point key="canvasLocation" x="-2776" y="461"/>
         </scene>
         <!--Base Tab View Controller-->
         <scene sceneID="iAq-LX-431">
             <objects>
                 <tabBarController hidesBottomBarWhenPushed="YES" id="IHY-FI-AIQ" customClass="BaseTabViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P46-oA-9lB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -110,15 +111,15 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="SGx-PY-cZf" kind="relationship" relationship="viewControllers" id="abs-b4-CM8"/>
-                        <segue destination="m70-iS-oHB" kind="relationship" relationship="viewControllers" id="ElN-Pu-gAL"/>
-                        <segue destination="hVk-qi-HFB" kind="relationship" relationship="viewControllers" id="zPq-mS-zu7"/>
-                        <segue destination="rng-1n-xFW" kind="relationship" relationship="viewControllers" id="oQy-7h-HqM"/>
+                        <segue destination="SGx-PY-cZf" kind="relationship" relationship="viewControllers" id="C5u-MH-fmZ"/>
+                        <segue destination="m70-iS-oHB" kind="relationship" relationship="viewControllers" id="ekR-bn-9Su"/>
+                        <segue destination="hVk-qi-HFB" kind="relationship" relationship="viewControllers" id="RJd-kh-LPU"/>
+                        <segue destination="rng-1n-xFW" kind="relationship" relationship="viewControllers" id="P4l-6m-S4V"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cp0-2S-Jjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2377" y="-560"/>
+            <point key="canvasLocation" x="-1591" y="-362"/>
         </scene>
     </scenes>
     <resources>

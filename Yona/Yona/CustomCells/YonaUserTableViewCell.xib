@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Bold.otf">
+            <string>SFUIDisplay-Bold</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YonaUserTableViewCell" rowHeight="44" id="JJX-QR-1hb" customClass="YonaUserTableViewCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJX-QR-1hb" id="P30-7E-3LL">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uCZ-Kg-Seh" userLabel="Avatar View">
+                        <rect key="frame" x="16" y="16" width="56" height="56"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="dub-hJ-dWa"/>
+                            <constraint firstAttribute="width" constant="56" id="yck-lH-VeL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rC-4f-MDB">
+                        <rect key="frame" x="16" y="33" width="56" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="csD-Mt-7T8"/>
+                            <constraint firstAttribute="height" constant="21" id="erC-u9-SZB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee6-12-OjT">
+                        <rect key="frame" x="80" y="24" width="227" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="far-g0-S5t"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ric-Ra-Qlj">
+                        <rect key="frame" x="80" y="43" width="227" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="z22-gw-eHc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0W-l2-iHi" userLabel="Status Image View">
+                        <rect key="frame" x="319" y="24" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="A2n-vd-NpP"/>
+                            <constraint firstAttribute="height" constant="40" id="Veo-Sr-hfH"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9rC-4f-MDB" firstAttribute="centerY" secondItem="P30-7E-3LL" secondAttribute="centerY" id="2me-GE-omr"/>
+                    <constraint firstItem="Ee6-12-OjT" firstAttribute="top" secondItem="P30-7E-3LL" secondAttribute="topMargin" constant="16" id="2yS-G2-2co"/>
+                    <constraint firstItem="X0W-l2-iHi" firstAttribute="leading" secondItem="Ee6-12-OjT" secondAttribute="trailing" constant="12" id="4BN-BP-yqk"/>
+                    <constraint firstItem="9rC-4f-MDB" firstAttribute="leading" secondItem="P30-7E-3LL" secondAttribute="leadingMargin" constant="8" id="8RC-89-JeA"/>
+                    <constraint firstItem="Ee6-12-OjT" firstAttribute="leading" secondItem="uCZ-Kg-Seh" secondAttribute="trailing" constant="8" id="DOH-x3-jtP"/>
+                    <constraint firstItem="X0W-l2-iHi" firstAttribute="leading" secondItem="Ric-Ra-Qlj" secondAttribute="trailing" constant="12" id="KCb-Ra-zle"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="X0W-l2-iHi" secondAttribute="trailing" constant="8" id="Up9-RB-nzc"/>
+                    <constraint firstItem="uCZ-Kg-Seh" firstAttribute="centerY" secondItem="P30-7E-3LL" secondAttribute="centerY" id="aId-3a-pWa"/>
+                    <constraint firstItem="Ric-Ra-Qlj" firstAttribute="leading" secondItem="uCZ-Kg-Seh" secondAttribute="trailing" constant="8" id="gu4-lv-nsE"/>
+                    <constraint firstItem="uCZ-Kg-Seh" firstAttribute="leading" secondItem="P30-7E-3LL" secondAttribute="leadingMargin" constant="8" id="heh-Mj-jGg"/>
+                    <constraint firstItem="Ric-Ra-Qlj" firstAttribute="top" secondItem="P30-7E-3LL" secondAttribute="topMargin" constant="35" id="j0P-6l-ArZ"/>
+                    <constraint firstItem="X0W-l2-iHi" firstAttribute="centerY" secondItem="P30-7E-3LL" secondAttribute="centerY" id="rxZ-gj-dDq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="uCZ-Kg-Seh" id="eEa-6L-evz"/>
+                <outlet property="avatarNameLabel" destination="9rC-4f-MDB" id="cCD-e0-Uqh"/>
+                <outlet property="boldLineLabel" destination="Ee6-12-OjT" id="IbS-eM-cgO"/>
+                <outlet property="normalLineLabel" destination="Ric-Ra-Qlj" id="d73-UA-GdG"/>
+                <outlet property="statusImageConstraint" destination="Up9-RB-nzc" id="K8k-vK-p4h"/>
+                <outlet property="statusImageView" destination="X0W-l2-iHi" id="Bju-YT-FXh"/>
+            </connections>
+            <point key="canvasLocation" x="218.5" y="271"/>
+        </tableViewCell>
+    </objects>
+</document>
