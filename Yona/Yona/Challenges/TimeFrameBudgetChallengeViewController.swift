@@ -51,17 +51,14 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
 
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         
-        configurePickerView()
+        
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.budgetLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
 
         
-        if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
-            maxDurationMinutes = String(maxDurationMinutesUnwrapped)
-            self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
-        }
+        
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
         
@@ -73,6 +70,11 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             }
             self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
+            if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
+                maxDurationMinutes = String(maxDurationMinutesUnwrapped)
+                self.maxTimeButton.setTitle(String(maxDurationMinutesUnwrapped), forState: UIControlState.Normal)
+            }
+            
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
 
@@ -83,6 +85,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
         }
+        configurePickerView()
     }
     
     override func viewWillDisappear(animated: Bool) {

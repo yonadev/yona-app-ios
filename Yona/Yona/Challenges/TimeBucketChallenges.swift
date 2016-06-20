@@ -59,13 +59,13 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //It will select NoGo tab by default
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //It will select NoGo tab by default
-        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+       
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
         self.callActivityCategory()
@@ -94,7 +94,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     override func viewDidAppear(animated:Bool) {
         super.viewDidAppear(animated)
-        
+        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+
     }
     
     //Delegate fires
