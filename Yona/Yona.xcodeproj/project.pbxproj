@@ -25,6 +25,7 @@
 		6042829B1D0ADA4600F5543C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604282941D0ADA4600F5543C /* SVProgressHUD.bundle */; };
 		6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282961D0ADA4600F5543C /* SVProgressHUD.m */; };
 		6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */; };
+		60443D201D18075E00474277 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */; };
@@ -1560,6 +1561,7 @@
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
 				16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */,
+				60443D201D18075E00474277 /* Settings.bundle in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
