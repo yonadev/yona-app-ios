@@ -243,7 +243,7 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.alpha = 0.5
             }
             self.tableView.endUpdates()
-            
+            activeIndexPath = nil
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }

@@ -65,7 +65,18 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return
+        switch indexPath.row {
+        case acceptFriendRequest.number.rawValue:
+            if let msg = aMessage {
+                if let aURL = NSURL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
+                    UIApplication.sharedApplication().openURL(aURL)
+                }
+                
+            }
+           return
+        default:
+            return
+        }
     }
     
     
