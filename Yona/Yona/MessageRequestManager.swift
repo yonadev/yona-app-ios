@@ -69,4 +69,16 @@ class MessageRequestManager {
     func getMessages(size: Int, page: Int, onCompletion: APIMessageResponse){
         self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: size, page: page, onCompletion: onCompletion)
     }
+
+    
+    func postAcceptMessage(aMesage : Message, onCompletion: APIResponse ){
+        if let acceptLink = aMesage.acceptLink {        
+            let body = ["properties":""]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
+          
+                print("how did we do \(success)")
+            })
+        }
+    }
+
 }

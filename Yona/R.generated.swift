@@ -365,6 +365,7 @@ struct R {
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
     static var yonaDefaultTableHeaderView: _R.nib._YonaDefaultTableHeaderView { return _R.nib._YonaDefaultTableHeaderView() }
+    static var yonaTwoButtonTableViewCell: _R.nib._YonaTwoButtonTableViewCell { return _R.nib._YonaTwoButtonTableViewCell() }
     static var yonaUserDisplayTableViewCell: _R.nib._YonaUserDisplayTableViewCell { return _R.nib._YonaUserDisplayTableViewCell() }
     static var yonaUserHeaderWithTwoTabTableViewCell: _R.nib._YonaUserHeaderWithTwoTabTableViewCell { return _R.nib._YonaUserHeaderWithTwoTabTableViewCell() }
     static var yonaUserTableViewCell: _R.nib._YonaUserTableViewCell { return _R.nib._YonaUserTableViewCell() }
@@ -374,6 +375,7 @@ struct R {
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
     static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
+    static var yonaTwoButtonTableViewCell: ReuseIdentifier<YonaTwoButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaTwoButtonTableViewCell") }
     static var yonaUserDisplayTableViewCell: ReuseIdentifier<YonaUserDisplayTableViewCell> { return ReuseIdentifier(identifier: "YonaUserDisplayTableViewCell") }
     static var yonaUserHeaderWithTwoTabTableViewCell: ReuseIdentifier<YonaUserHeaderWithTwoTabTableViewCell> { return ReuseIdentifier(identifier: "YonaUserHeaderWithTwoTabTableViewCell") }
     static var yonaUserTableViewCell: ReuseIdentifier<YonaUserTableViewCell> { return ReuseIdentifier(identifier: "YonaUserTableViewCell") }
@@ -666,6 +668,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaDefaultTableHeaderView? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaDefaultTableHeaderView
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaTwoButtonTableViewCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "YonaTwoButtonTableViewCell", bundle: _R.hostingBundle) }
+      var name: String { return "YonaTwoButtonTableViewCell" }
+      var reuseIdentifier: ReuseIdentifier<YonaTwoButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaTwoButtonTableViewCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaTwoButtonTableViewCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaTwoButtonTableViewCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

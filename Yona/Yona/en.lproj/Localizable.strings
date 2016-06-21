@@ -235,6 +235,7 @@
 
 "notifications.accept.title" = "Accept request";
 "notifications.accept.type"  = "Vriendschapsverzoek";
+"notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 
 // String for Profile
 

@@ -30,12 +30,23 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     func registreTableViewCells () {
-        let nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
+        var nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
+        nib = UINib(nibName: "YonaTwoButtonTableViewCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "YonaTwoButtonTableViewCell")
     
     
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+/// THIS CAN BE ADDED FOR TEST UNTIL UI IS FINISHED
+//        if let mes = aMessage {
+//            MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
+//            })
+//        }
+    }
     
 // MARK: - Actions
     @IBAction func backAction (sender : AnyObject) {
@@ -49,7 +60,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 // must be 5
+        return 5
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -78,20 +89,20 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         case acceptFriendRequest.message.rawValue:
             let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
             if let msg = aMessage {
-                cell.aTextLabel.text = msg.message
+                cell.setMessageFromPoster( msg)
             }
             return cell
         case acceptFriendRequest.number.rawValue:
             let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
             if let msg = aMessage {
-                let num = msg.UserRequestmobileNumber
-                let text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
-            cell.aTextLabel.text = text
+                cell.setPhoneNumber(msg)
             }
 
             return cell
-        
-            
+        case acceptFriendRequest.buttons.rawValue:
+            let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
+            return cell
+    
             
         default:
             return UITableViewCell(frame: CGRectZero)
@@ -102,16 +113,42 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
             return 221
+        case acceptFriendRequest.message.rawValue:
+            return calculateHeightForCell(acceptFriendRequest.message)
+        case acceptFriendRequest.number.rawValue:
+            return calculateHeightForCell(acceptFriendRequest.number)
+        case acceptFriendRequest.buttons.rawValue:
+            return 60
+        
         default:
-            return 44
+            return 40
         }
     }
     
+    
+    
     // MARK : Utility methods
     
-    func calculateHeightForCell(aText: String) -> CGFloat{
-    
-        return 100
+    func calculateHeightForCell(row :acceptFriendRequest) -> CGFloat{
+        var text = ""
+        if let msg = aMessage {
+            switch row {
+            case acceptFriendRequest.message:
+                let num = msg.UserRequestmobileNumber
+                text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
+                
+            case acceptFriendRequest.number:
+                text = msg.message
+            default:
+                text = ""
+            }
+            let font = UIFont(name: "HelveticaNeue", size: 14)!
+            let heigth = text.heightForWithFont(font, width: tableView.frame.size.width, insets: UIEdgeInsetsMake(10, 20, 10, 20))
+            return heigth+15
+        }
+       
+
+        return 10
     }
     
 }

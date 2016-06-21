@@ -154,4 +154,18 @@ struct Message{
 
         }
     }
+    
+    func messageDataDictionaryForServer() -> BodyDataDictionary {
+        var body = ["firstName": "",
+                    "lastName": "",
+                    "mobileNumber": "",
+                    "nickname": ""]
+        
+        body["firstName"] = UserRequestfirstName
+        body["lastName"] = UserRequestlastName
+        body["mobileNumber"] = UserRequestmobileNumber
+        body["nickname"] = nickname
+        return body
+    }
+
 }
