@@ -59,6 +59,7 @@ struct Message{
     var selfLink: String?
     var rejectLink: String?
     var acceptLink: String?
+    var yonaProcessLink: String?
     //var creationTime: String?
     var nickname: String?
     var message: String
@@ -130,6 +131,11 @@ struct Message{
             if let acceptLink = links[getMessagesKeys.accept.rawValue],
                 let acceptLinkHref = acceptLink[getMessagesKeys.href.rawValue] as? String{
                 self.acceptLink = acceptLinkHref
+            }
+            
+            if let processLink = links[getMessagesKeys.process.rawValue],
+                let processLinkHref = processLink[getMessagesKeys.href.rawValue] as? String{
+                self.yonaProcessLink = processLinkHref
             }
         }
         

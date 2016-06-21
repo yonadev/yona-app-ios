@@ -42,10 +42,11 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         super.viewDidAppear(animated)
         
 /// THIS CAN BE ADDED FOR TEST UNTIL UI IS FINISHED
-//        if let mes = aMessage {
-//            MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
-//            })
-//        }
+        if let mes = aMessage {
+            MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
+                print(json)
+            })
+        }
     }
     
 // MARK: - Actions

@@ -150,6 +150,7 @@ enum getMessagesKeys : String {
     case status = "status"
     case reject =  "yona:reject"
     case accept =  "yona:accept"
+    case process =  "yona:process"
     case selfKey = "self"
     case links = "_links"
     case yonaUser = "yona:user"
