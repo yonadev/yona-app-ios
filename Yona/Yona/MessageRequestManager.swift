@@ -77,6 +77,7 @@ class MessageRequestManager {
             self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
           
                 print("how did we do \(success)")
+                onCompletion(success , "", "")
             })
         }
     }

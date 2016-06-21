@@ -28,18 +28,23 @@ class YonaTwoButtonTableViewCell : UITableViewCell{
         leftButton.backgroundColor = UIColor.yiDarkishPinkColor()
         leftButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal)
         
+        leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), forState: UIControlState.Normal)
+        
         rightButton.layer.cornerRadius = rightButton.frame.size.height/2
         rightButton.layer.masksToBounds = true
         rightButton.backgroundColor = UIColor.yiPeaColor()
         rightButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal)
+    
+        rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), forState: UIControlState.Normal)
     }
     
     
-    @IBAction func rightButtonAction(sender: AnyObject) {
+    @IBAction func rightButtonAction(sender: UIButton) {
+        delegate?.didSelectRightButton(sender)
     }
     
     
-    @IBAction func leftButtonAction(sender: AnyObject) {
-       
+    @IBAction func leftButtonAction(sender: UIButton) {
+       delegate?.didSelectLeftButton(sender)
     }
 }

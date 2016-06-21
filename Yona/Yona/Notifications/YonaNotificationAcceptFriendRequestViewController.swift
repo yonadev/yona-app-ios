@@ -17,7 +17,7 @@ enum acceptFriendRequest : Int {
     case buttons
 }
 
-class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, YonaTwoButtonTableViewCellProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -101,6 +101,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             return cell
         case acceptFriendRequest.buttons.rawValue:
             let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
+            cell.delegate = self
             return cell
     
             
@@ -151,4 +152,32 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         return 10
     }
     
+    // MARK - YonaTowButtonCellProtocol
+    
+    func didSelectLeftButton(button: UIButton) {
+    
+        view.userInteractionEnabled = false
+
+        self.view.userInteractionEnabled = true
+        
+        // TODO:  add the reject server method
+        self.navigationController?.popViewControllerAnimated(true)
+
+        
+    }
+    func didSelectRightButton(button: UIButton) {
+        view.userInteractionEnabled = false
+        Loader.Show()
+        if let mes = aMessage {
+            MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
+                Loader.Hide()
+                if success {
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                    })
+        }
+
+    }
 }
+
