@@ -20,13 +20,13 @@ enum notificationType : String {
     func simpleDescription() -> String {
         switch self {
         case .BuddyConnectRequestMessage:
-            return NSLocalizedString("Vriendenverzoek", comment: "")
+            return NSLocalizedString("message.type.friendrequest", comment: "")
         case .BuddyConnectResponseMessage:
-            return NSLocalizedString("Vriendenverzoek afgewezen", comment: "")
+            return NSLocalizedString("message.type.friendrequestrejected", comment: "")
         case .BuddyDisconnectMessage:
-            return NSLocalizedString("Je bent verwijderd als vriend", comment: "")
+            return NSLocalizedString("message.type.friendremoved", comment: "")
         case .GoalConflictMessage:
-            return NSLocalizedString("NoGo Alert", comment: "")
+            return NSLocalizedString("message.type.nogoalert", comment: "")
         default :
             return NSLocalizedString("Error", comment: "")
         }
@@ -47,13 +47,7 @@ enum notificationType : String {
             return UIImage.init()//UIImage(named: "")!
         }
     }
-
-
 }
-
-
-
-
 
 struct Message{
     var selfLink: String?

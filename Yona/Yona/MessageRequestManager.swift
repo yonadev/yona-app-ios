@@ -33,11 +33,8 @@ class MessageRequestManager {
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
                                             let aMessage = Message.init(messageData: message)
-//                                            if let theMessage = aMessage {
-                                                if aMessage.UserRequestmobileNumber.characters.count > 1 {
-                                                    self.messages.append(aMessage)
-  //                                              }
-                                            }
+                                            self.messages.append(aMessage)
+
                                         }
                                     }
                                     onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user

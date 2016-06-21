@@ -61,7 +61,7 @@ class YonaUserTableViewCell: UITableViewCell {
         normalLineLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
         
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
+//        avatarNameLabel.text = "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
         
         
         statusImageView.image = aMessage.messageType.iconForStatus()

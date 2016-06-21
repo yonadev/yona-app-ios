@@ -248,3 +248,9 @@
 
 "profile.tab.profile" = "profile";
 "profile.tab.badges" = "badges";
+
+//message types
+"message.type.friendrequest" = "Friend Request";
+"message.type.friendrequestrejected" = "Friend Request Rejected";
+"message.type.friendremoved" = "You have been removed as a friend";
+"message.type.nogoalert" = "NoGo Alert";
