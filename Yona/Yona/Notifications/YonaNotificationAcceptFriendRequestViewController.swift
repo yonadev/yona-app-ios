@@ -40,15 +40,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-/// THIS CAN BE ADDED FOR TEST UNTIL UI IS FINISHED
-        if let mes = aMessage {
-            MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
-                print(json)
-            })
-        }
     }
-    
 // MARK: - Actions
     @IBAction func backAction (sender : AnyObject) {
         navigationController?.popViewControllerAnimated(true)
@@ -65,7 +57,18 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return
+        switch indexPath.row {
+        case acceptFriendRequest.number.rawValue:
+            if let msg = aMessage {
+                if let aURL = NSURL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
+                    UIApplication.sharedApplication().openURL(aURL)
+                }
+                
+            }
+           return
+        default:
+            return
+        }
     }
     
     
@@ -158,10 +161,10 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     func didSelectLeftButton(button: UIButton) {
     
         view.userInteractionEnabled = false
-
-        self.view.userInteractionEnabled = true
-        
         // TODO:  add the reject server method
+
+        view.userInteractionEnabled = true
+        
         self.navigationController?.popViewControllerAnimated(true)
 
         
