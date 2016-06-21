@@ -28,7 +28,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
 
     @IBOutlet var deleteGoalButton: UIBarButtonItem!
     
-    @IBOutlet var footerGradientView: GradientView!
+    @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
