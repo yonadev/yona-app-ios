@@ -373,7 +373,7 @@
                                             <outlet property="typeTextLable" destination="6c5-uE-gKm" id="uGq-dG-VmT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YonaNotificationsAccessTextTableViewCell" rowHeight="70" id="urc-Az-SNt" customClass="YonaNotificationsAccessTextTableViewCell" customModule="Yona" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YonaNotificationsAccessTextTableViewCell" rowHeight="70" id="urc-Az-SNt" customClass="YonaNotificationsAccessTextTableViewCell" customModule="Yona" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="urc-Az-SNt" id="4kl-ja-rAz">
