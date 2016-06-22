@@ -35,11 +35,9 @@ class NotificationsViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-        
-        
+
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         loadMessages()
@@ -67,7 +65,10 @@ class NotificationsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
-        performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        if aMessage.status == buddyRequestStatus.REQUESTED {
+            performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
