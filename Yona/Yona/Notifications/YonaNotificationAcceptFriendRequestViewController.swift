@@ -179,7 +179,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                     self.view.userInteractionEnabled = true
                     self.navigationController?.popViewControllerAnimated(true)
                 }
-                    })
+            })
         }
 
     }

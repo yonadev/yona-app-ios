@@ -33,8 +33,9 @@ class MessageRequestManager {
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
                                             let aMessage = Message.init(messageData: message)
-                                            self.messages.append(aMessage)
-
+                                            if aMessage.UserRequestmobileNumber.characters.count > 0 {
+                                                self.messages.append(aMessage)
+                                            }
                                         }
                                     }
                                     onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
@@ -70,9 +71,8 @@ class MessageRequestManager {
     
     func postAcceptMessage(aMesage : Message, onCompletion: APIResponse ){
         if let acceptLink = aMesage.acceptLink {        
-            let body = ["properties":""]
+            let body = ["properties":[:]]
             self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
-          
                 print("how did we do \(success)")
                 onCompletion(success , "", "")
             })
