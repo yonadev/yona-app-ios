@@ -17,36 +17,6 @@ enum notificationType : String {
     case GoalConflictMessage = "GoalConflictMessage"
     case NoValue = "Not found"
     
-    func simpleDescription() -> String {
-        switch self {
-        case .BuddyConnectRequestMessage:
-            return NSLocalizedString("message.type.friendrequest", comment: "")
-        case .BuddyConnectResponseMessage:
-            return NSLocalizedString("message.type.friendrequestrejected", comment: "")
-        case .BuddyDisconnectMessage:
-            return NSLocalizedString("message.type.friendremoved", comment: "")
-        case .GoalConflictMessage:
-            return NSLocalizedString("message.type.nogoalert", comment: "")
-        default :
-            return NSLocalizedString("Error", comment: "")
-        }
-    }
-
-    func iconForStatus() -> UIImage {
-        switch self {
-            //TODO: these images must be set to the correct images for the state
-        case .BuddyConnectRequestMessage:
-            return UIImage(named: "icnOk")!
-        case .BuddyConnectResponseMessage:
-            return UIImage(named: "icnOk")!
-        case .BuddyDisconnectMessage:
-            return UIImage.init()//UIImage(named: "")!
-        case .GoalConflictMessage:
-            return UIImage.init()//UIImage(named: "")!
-        default :
-            return UIImage.init()//UIImage(named: "")!
-        }
-    }
 }
 
 struct Message{
@@ -56,7 +26,7 @@ struct Message{
     var acceptLink: String?
     var yonaProcessLink: String?
     //var creationTime: String?
-    var nickname: String?
+    var nickname: String
     var message: String
     var status: buddyRequestStatus?
     var messageType: notificationType
@@ -74,7 +44,7 @@ struct Message{
         UserRequestlastName = ""
         UserRequestmobileNumber = ""
         UserRequestSelfLink = ""
-        
+        nickname = ""
         messageType = .NoValue
         
         creationTime = NSDate.init()
@@ -174,4 +144,51 @@ struct Message{
         return body
     }
 
+    
+    
+    // MARK: - Icon and message methods
+    
+    func simpleDescription() -> String {
+        switch messageType {
+        case .BuddyConnectRequestMessage:
+            return NSLocalizedString("message.type.friendrequest", comment: "")
+        case .BuddyConnectResponseMessage:
+            if status == buddyRequestStatus.ACCEPTED {
+                return NSLocalizedString("message.type.friendresponse.accepted", comment: "")
+            } else if status == buddyRequestStatus.REJECTED {
+                return NSLocalizedString("message.type.friendresponse.rejected", comment: "")
+            }
+            
+        case .BuddyDisconnectMessage:
+            return NSLocalizedString("message.type.friendremoved", comment: "")
+        case .GoalConflictMessage:
+            return NSLocalizedString("message.type.nogoalert", comment: "")
+        default :
+            return NSLocalizedString("Error", comment: "")
+        }
+        return NSLocalizedString("Error", comment: "")
+    }
+    
+    func iconForStatus() -> UIImage {
+        switch messageType {
+        //TODO: these images must be set to the correct images for the state
+        case .BuddyConnectRequestMessage:
+            if status == buddyRequestStatus.ACCEPTED {
+                return UIImage(named: "icnOk")!
+            } else if status == buddyRequestStatus.REJECTED {
+                return UIImage(named: "icnNo")!
+            }
+        case .BuddyConnectResponseMessage:
+            return UIImage(named: "icnOk")!
+        case .BuddyDisconnectMessage:
+            return UIImage.init()//UIImage(named: "")!
+        case .GoalConflictMessage:
+            return UIImage.init()//UIImage(named: "")!
+        default :
+            return UIImage.init()//UIImage(named: "")!
+        }
+        return UIImage.init()
+    }
+
+    
 }

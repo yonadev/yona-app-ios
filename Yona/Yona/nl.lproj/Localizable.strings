@@ -172,6 +172,8 @@
 
 //message types
 "message.type.friendrequest" = "Vriendenverzoek";
-"message.type.friendrequestrejected" = "Vriendenverzoek afgewezen";
+
+"message.type.friendresponse.accepted" = "Vriendenverzoek geaccepteerd";
+"message.type.friendresponse.rejected" = "Vriendenverzoek afgewezen";
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";

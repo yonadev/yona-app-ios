@@ -251,6 +251,10 @@
 
 //message types
 "message.type.friendrequest" = "Friend Request";
-"message.type.friendrequestrejected" = "Friend Request Rejected";
+
+"message.type.friendresponse.accepted" = "Friend Request Accepted";
+"message.type.friendresponse.rejected" = "Friend Request Rejected";
+
+"message.type.friendrequestrejected" = "";
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
