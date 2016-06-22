@@ -36,9 +36,9 @@ enum notificationType : String {
         switch self {
             //TODO: these images must be set to the correct images for the state
         case .BuddyConnectRequestMessage:
-            return UIImage.init()
+            return UIImage(named: "icnOk")!
         case .BuddyConnectResponseMessage:
-            return UIImage.init()//UIImage(named: "")!
+            return UIImage(named: "icnOk")!
         case .BuddyDisconnectMessage:
             return UIImage.init()//UIImage(named: "")!
         case .GoalConflictMessage:
@@ -51,6 +51,7 @@ enum notificationType : String {
 
 struct Message{
     var selfLink: String?
+    var editLink: String?
     var rejectLink: String?
     var acceptLink: String?
     var yonaProcessLink: String?
@@ -115,6 +116,11 @@ struct Message{
             if let linksSelf = links[getMessagesKeys.selfKey.rawValue],
                 let linksSelfHref = linksSelf[getMessagesKeys.href.rawValue] as? String{
                 self.selfLink = linksSelfHref
+            }
+            
+            if let linksEdit = links[getMessagesKeys.edit.rawValue],
+                let linksEditHref = linksEdit[getMessagesKeys.href.rawValue] as? String{
+                self.editLink = linksEditHref
             }
             
             if let rejectLink = links[getMessagesKeys.reject.rawValue],

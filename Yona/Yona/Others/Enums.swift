@@ -153,6 +153,7 @@ enum getMessagesKeys : String {
     case process =  "yona:process"
     case selfKey = "self"
     case links = "_links"
+    case edit = "edit"
     case yonaUser = "yona:user"
     case href = "href"
     case UserRequestfirstName = "firstName"

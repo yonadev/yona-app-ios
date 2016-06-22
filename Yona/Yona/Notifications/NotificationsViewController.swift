@@ -74,11 +74,10 @@ class NotificationsViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+        let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
-                
-            return cell
-        }
+        return cell
+    }
 
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -103,6 +102,21 @@ class NotificationsViewController: UITableViewController {
         
     }
     
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            selectedIndex = indexPath
+            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+                if success {
+                    self.loadMessages()
+                } else {
+                    self.displayAlertMessage(message!, alertDescription: "")
+                }
+            })
+        }
+    }
+    
     // MARK: - server methods
     
     func loadMessages() {
@@ -118,6 +132,10 @@ class NotificationsViewController: UITableViewController {
                     if data.count > 0 {
                         let sortedArray  = data.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
                         for aMessage in sortedArray {
+                            MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
+                                //so not every link will have one, so what now?
+                                print(message)
+                            })
                             if tmpArray.count == 0 {
                                 tmpArray.append(aMessage)
                             } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {

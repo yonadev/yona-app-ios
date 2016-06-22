@@ -161,11 +161,18 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     func didSelectLeftButton(button: UIButton) {
     
         view.userInteractionEnabled = false
-        // TODO:  add the reject server method
+        Loader.Show()
+        if let mes = aMessage {
+            MessageRequestManager.sharedInstance.postRejectMessage(mes, onCompletion: { (success, message, code) in
+                Loader.Hide()
+                if success {
+                    // TODO:  add the reject server method
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            })
+        }
 
-        view.userInteractionEnabled = true
-        
-        self.navigationController?.popViewControllerAnimated(true)
 
         
     }
