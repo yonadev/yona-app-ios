@@ -113,7 +113,7 @@
 "challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
 "challenges-timzoe-subtext" = "Timeslot tussen %1$sen tussen %2$s";
 "challenges-budget-subtext" = "Je kunt per dag %1$s minuten %2$s";
-
+"pull-to-refresh" = "Pull to refresh";
 
 //TODO: replace english text here(not yet provided by Yona)
 

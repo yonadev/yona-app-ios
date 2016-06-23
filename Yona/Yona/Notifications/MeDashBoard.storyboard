@@ -310,6 +310,7 @@
                             <outlet property="delegate" destination="vEb-Ig-NeG" id="jHg-jM-Mcx"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="notifications.messages.title" id="4Qf-Mt-7Nh">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="hcZ-EF-ROd">
                             <connections>

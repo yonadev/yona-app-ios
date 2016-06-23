@@ -36,6 +36,10 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
      
      */
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
       print("ERROR 'numberOfSectionsInTableView' has not been overiden")
         return 1

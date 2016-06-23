@@ -108,6 +108,7 @@
 
 "yesterday" = "GISTEREN";
 "today" = "VANDAAG";
+"pull-to-refresh" = "Trek op te frissen";
 
 //Friends Overview
 "friends" = "VRIENDEN";

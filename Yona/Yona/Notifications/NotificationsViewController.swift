@@ -26,6 +26,9 @@ class NotificationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
     }
@@ -40,7 +43,7 @@ class NotificationsViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        loadMessages()
+        loadMessages(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -109,7 +112,7 @@ class NotificationsViewController: UITableViewController {
             let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
             MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
                 if success {
-                    self.loadMessages()
+                    self.loadMessages(self)
                 } else {
                     self.displayAlertMessage(message!, alertDescription: "")
                 }
@@ -132,7 +135,7 @@ class NotificationsViewController: UITableViewController {
     
     // MARK: - server methods
     
-    func loadMessages() {
+    func loadMessages(sender:AnyObject) {
         Loader.Show()
         MessageRequestManager.sharedInstance.getMessages(10, page: 0, onCompletion: {
         (success, message, code, text, theMessages) in
@@ -171,6 +174,7 @@ class NotificationsViewController: UITableViewController {
             } else {
                 //response from request failed
             }
+            self.refreshControl!.endRefreshing()
             Loader.Hide()
         })
         
