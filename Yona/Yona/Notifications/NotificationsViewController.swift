@@ -117,6 +117,19 @@ class NotificationsViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        selectedIndex = indexPath
+
+        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        //we can only delete a buddy request if it has been accepted or rejected
+        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+            return true
+        } else {
+            return false
+        }
+
+    }
+    
     // MARK: - server methods
     
     func loadMessages() {
@@ -151,6 +164,8 @@ class NotificationsViewController: UITableViewController {
                     } else {
                         self.messages = []
                     }
+                } else {
+                    self.messages = []
                 }
                 
             } else {
