@@ -22,6 +22,7 @@ class MessageRequestManager {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
                 if success {
+                    self.messages.removeAll()
                     if let getMessagesLink = user?.messagesLink {
                         let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page)
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in

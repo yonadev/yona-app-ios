@@ -126,6 +126,7 @@ enum buddyRequestStatus : String {
     case REJECTED = "REJECTED"
 }
 
+
 enum postBuddyBodyKeys : String {
     case embedded = "_embedded"
     case sendingStatus = "sendingStatus"
@@ -164,6 +165,7 @@ enum getMessagesKeys : String {
     case totalPages = "totalPages"
     case number = "number"
 
+    case dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSZZZ"
 }
 
 enum addUserKeys : String {

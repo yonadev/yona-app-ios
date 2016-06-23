@@ -1,5 +1,5 @@
 //
-//  ProfileDisplayTableViewCell.swift
+//  YonaUserDisplayTableViewCell.swift
 //  Yona
 //
 //  Created by Anders Liebl on 13/06/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ProfileDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
+class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var theTitleLable: UILabel!
     @IBOutlet weak var theTextField: UITextField!
@@ -17,14 +17,14 @@ class ProfileDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     var theCellType : ProfileCategoryHeader?
     //var theUserModel :Users?
     
-    var delegate : UserDetails?
+    var delegate : YonaUserProfileViewController?
     override func awakeFromNib() {
         theTitleLable.text = ""
         theTextField.text = ""
         
         
     }
-    func setData (delegate theDelegate: UserDetails, cellType : ProfileCategoryHeader){
+    func setData (delegate theDelegate: YonaUserProfileViewController, cellType : ProfileCategoryHeader){
         theCellType = cellType
         //theUserModel = userModel
         delegate = theDelegate

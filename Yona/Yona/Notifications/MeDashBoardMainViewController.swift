@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ProfileViewController: FriendsProfileMasterView {
+class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     @IBOutlet var userDetailButton: UIBarButtonItem!
     @IBOutlet var notificationsButton: UIButton?
@@ -16,14 +16,19 @@ class ProfileViewController: FriendsProfileMasterView {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        OverviewTabAction(overviewTabView)
-        self.setupUI()
+        //OverviewTabAction(overviewTabView)
+        setupUI()
         self.navigationController?.navigationBarHidden = false
+        navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
     }
+    
+    
+    
     
     // MARK: - private functions
     private func setupUI() {
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        showLeftTab(leftTabMainView)
+        
     }
     
     @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
@@ -31,11 +36,21 @@ class ProfileViewController: FriendsProfileMasterView {
     }
     
     // MARK: - tableview Override
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nil
-    }
 
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 0
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        return cell
+    }
+
 }

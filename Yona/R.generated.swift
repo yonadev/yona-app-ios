@@ -5,26 +5,26 @@ import UIKit
 
 struct R {
   static func validate() {
+    storyboard.main.validateImages()
+    storyboard.main.validateViewControllers()
     storyboard.friends.validateImages()
     storyboard.friends.validateViewControllers()
-    storyboard.profile.validateImages()
-    storyboard.profile.validateViewControllers()
-    storyboard.login.validateImages()
-    storyboard.login.validateViewControllers()
+    storyboard.meDashBoard.validateImages()
+    storyboard.meDashBoard.validateViewControllers()
     storyboard.dashboard.validateImages()
     storyboard.dashboard.validateViewControllers()
+    storyboard.login.validateImages()
+    storyboard.login.validateViewControllers()
     storyboard.walkThrough.validateImages()
     storyboard.walkThrough.validateViewControllers()
-    storyboard.launchScreen.validateImages()
-    storyboard.launchScreen.validateViewControllers()
     storyboard.welcome.validateImages()
     storyboard.welcome.validateViewControllers()
     storyboard.settings.validateImages()
     storyboard.settings.validateViewControllers()
     storyboard.challenges.validateImages()
     storyboard.challenges.validateViewControllers()
-    storyboard.main.validateImages()
-    storyboard.main.validateViewControllers()
+    storyboard.launchScreen.validateImages()
+    storyboard.launchScreen.validateViewControllers()
   }
   
   struct file {
@@ -364,13 +364,17 @@ struct R {
   struct nib {
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
+    static var yonaDefaultTableHeaderView: _R.nib._YonaDefaultTableHeaderView { return _R.nib._YonaDefaultTableHeaderView() }
+    static var yonaUserDisplayTableViewCell: _R.nib._YonaUserDisplayTableViewCell { return _R.nib._YonaUserDisplayTableViewCell() }
+    static var yonaUserHeaderWithTwoTabTableViewCell: _R.nib._YonaUserHeaderWithTwoTabTableViewCell { return _R.nib._YonaUserHeaderWithTwoTabTableViewCell() }
+    static var yonaUserTableViewCell: _R.nib._YonaUserTableViewCell { return _R.nib._YonaUserTableViewCell() }
   }
   
   struct reuseIdentifier {
-    static var notifcationsCell: ReuseIdentifier<NotificationsCell> { return ReuseIdentifier(identifier: "notifcationsCell") }
-    static var profileDisplayTableViewCell: ReuseIdentifier<ProfileDisplayTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTableViewCell") }
-    static var profileDisplayTopTableViewCell: ReuseIdentifier<ProfileDisplayTopTableViewCell> { return ReuseIdentifier(identifier: "ProfileDisplayTopTableViewCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
+    static var yonaUserDisplayTableViewCell: ReuseIdentifier<YonaUserDisplayTableViewCell> { return ReuseIdentifier(identifier: "YonaUserDisplayTableViewCell") }
+    static var yonaUserHeaderWithTwoTabTableViewCell: ReuseIdentifier<YonaUserHeaderWithTwoTabTableViewCell> { return ReuseIdentifier(identifier: "YonaUserHeaderWithTwoTabTableViewCell") }
+    static var yonaUserTableViewCell: ReuseIdentifier<YonaUserTableViewCell> { return ReuseIdentifier(identifier: "YonaUserTableViewCell") }
   }
   
   struct segue {
@@ -382,8 +386,8 @@ struct R {
       static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, ConfirmMobileValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
     }
     
-    struct friendsOverViewViewController {
-      static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsOverViewViewController, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
+    struct friendsProfileMasterView {
+      static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
     }
     
     struct loginViewController {
@@ -468,7 +472,7 @@ struct R {
     
     struct friends {
       static var addFriendsStoryboard: AddFriendsViewController? { return instance.instantiateViewControllerWithIdentifier("AddFriendsStoryboard") as? AddFriendsViewController }
-      static var initialViewController: FriendsOverViewViewController? { return instance.instantiateInitialViewController() as? FriendsOverViewViewController }
+      static var initialViewController: FriendsProfileMasterView? { return instance.instantiateInitialViewController() as? FriendsProfileMasterView }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
       static func validateImages() {
@@ -536,22 +540,22 @@ struct R {
       }
     }
     
-    struct profile {
-      static var initialViewController: ProfileViewController? { return instance.instantiateInitialViewController() as? ProfileViewController }
-      static var instance: UIStoryboard { return UIStoryboard(name: "Profile", bundle: _R.hostingBundle) }
-      static var profileStoryboard: UserDetails? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? UserDetails }
-      static var profileViewController: ProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController }
+    struct meDashBoard {
+      static var initialViewController: MeDashBoardMainViewController? { return instance.instantiateInitialViewController() as? MeDashBoardMainViewController }
+      static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
+      static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
+      static var profileViewController: MeDashBoardMainViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? MeDashBoardMainViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "icnAddPicture") != nil, "[R.swift] Image named 'icnAddPicture' is used in storyboard 'Profile', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Profile', but couldn't be loaded.")
+        assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
+        assert(UIImage(named: "icnReminder") != nil, "[R.swift] Image named 'icnReminder' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
+        assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
-        assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.")
-        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'Profile' as 'UserDetails'.")
+        assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
+        assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
       }
     }
     
@@ -641,6 +645,61 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaCustomPickerView? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaCustomPickerView
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaDefaultTableHeaderView: NibResource {
+      var instance: UINib { return UINib.init(nibName: "YonaDefaultTableHeaderView", bundle: _R.hostingBundle) }
+      var name: String { return "YonaDefaultTableHeaderView" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaDefaultTableHeaderView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaDefaultTableHeaderView
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaUserDisplayTableViewCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "YonaUserDisplayTableViewCell", bundle: _R.hostingBundle) }
+      var name: String { return "YonaUserDisplayTableViewCell" }
+      var reuseIdentifier: ReuseIdentifier<YonaUserDisplayTableViewCell> { return ReuseIdentifier(identifier: "YonaUserDisplayTableViewCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaUserDisplayTableViewCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaUserDisplayTableViewCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaUserHeaderWithTwoTabTableViewCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: _R.hostingBundle) }
+      var name: String { return "YonaUserHeaderWithTwoTabTableViewCell" }
+      var reuseIdentifier: ReuseIdentifier<YonaUserHeaderWithTwoTabTableViewCell> { return ReuseIdentifier(identifier: "YonaUserHeaderWithTwoTabTableViewCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaUserHeaderWithTwoTabTableViewCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaUserHeaderWithTwoTabTableViewCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaUserTableViewCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "YonaUserTableViewCell", bundle: _R.hostingBundle) }
+      var name: String { return "YonaUserTableViewCell" }
+      var reuseIdentifier: ReuseIdentifier<YonaUserTableViewCell> { return ReuseIdentifier(identifier: "YonaUserTableViewCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaUserTableViewCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaUserTableViewCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

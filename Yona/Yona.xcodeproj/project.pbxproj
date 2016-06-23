@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */; };
-		167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */; };
+		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
+		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
+		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
+		16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */; };
+		16B1CD2D1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD2B1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift */; };
+		16B1CD2E1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD2C1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift */; };
+		16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */; };
+		16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */; };
+		16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */; };
 		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
@@ -50,14 +57,13 @@
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
-		906FED7B1CEDB25500029845 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* ProfileViewController.swift */; };
+		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
 		906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */; };
 		906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED851CEDC72300029845 /* NotificationsViewController.swift */; };
-		906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED881CEE06DE00029845 /* NotificationsCell.swift */; };
 		906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D661CA94001008CAFB1 /* Challenges.storyboard */; };
 		906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291CE31CA902A0008CAFB1 /* Dashboard.storyboard */; };
 		906FED8D1CEE23C100029845 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9042C7221CD78F7200100306 /* Login.storyboard */; };
-		906FED911CEE23CE00029845 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906FED7C1CEDB31A00029845 /* Profile.storyboard */; };
+		906FED911CEE23CE00029845 /* MeDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */; };
 		906FED921CEE23D200029845 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */; };
 		906FED931CEE23D600029845 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D741CA940D9008CAFB1 /* Settings.storyboard */; };
 		906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
@@ -98,8 +104,7 @@
 		AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */; };
 		AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22632A1CD2672F00AD4AB1 /* Loader.swift */; };
 		AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */; };
-		AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */; };
-		AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */; };
+		AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D701CA940B0008CAFB1 /* YonaUserProfileViewController.swift */; };
 		AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */; };
 		AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */; };
 		AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291DA51CAAA8CC008CAFB1 /* AVPageContentViewController.swift */; };
@@ -265,8 +270,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
-		167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTopTableViewCell.swift; sourceTree = "<group>"; };
+		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
+		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
+		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
+		16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserHeaderWithTwoTabTableViewCell.xib; sourceTree = "<group>"; };
+		16B1CD2B1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserDisplayTableViewCell.swift; sourceTree = "<group>"; };
+		16B1CD2C1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserHeaderWithTwoTabTableViewCell.swift; sourceTree = "<group>"; };
+		16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserDisplayTableViewCell.xib; sourceTree = "<group>"; };
+		16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaDefaultTableHeaderView.xib; sourceTree = "<group>"; };
+		16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaDefaultTableHeaderView.swift; sourceTree = "<group>"; };
 		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
@@ -324,11 +336,10 @@
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
-		906FED7A1CEDB25500029845 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../Notifications/ProfileViewController.swift; sourceTree = "<group>"; };
-		906FED7C1CEDB31A00029845 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Notifications/Profile.storyboard; sourceTree = "<group>"; };
+		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
+		906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeDashBoard.storyboard; path = ../Notifications/MeDashBoard.storyboard; sourceTree = "<group>"; };
 		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsProfileMasterView.swift; path = Yona/FriendsProfileMasterView.swift; sourceTree = SOURCE_ROOT; };
 		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		906FED881CEE06DE00029845 /* NotificationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsCell.swift; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -370,9 +381,8 @@
 		AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
 		AD291D321CA92975008CAFB1 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		AD291D661CA94001008CAFB1 /* Challenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Challenges.storyboard; sourceTree = "<group>"; };
-		AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsOverViewViewController.swift; sourceTree = "<group>"; };
 		AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
-		AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsVC.swift; sourceTree = "<group>"; };
+		AD291D701CA940B0008CAFB1 /* YonaUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserProfileViewController.swift; sourceTree = "<group>"; };
 		AD291D721CA940D0008CAFB1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AD291D741CA940D9008CAFB1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AD291DA31CAAA7AB008CAFB1 /* UIColor+YIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+YIColors.swift"; path = "Others/UIColor+YIColors.swift"; sourceTree = "<group>"; };
@@ -610,6 +620,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		166DE3591D147EDB007AEAAC /* MasterViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */,
+			);
+			path = MasterViewControllers;
+			sourceTree = "<group>";
+		};
+		16B1CD221D15730F00A1ABA7 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */,
+				16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */,
+				16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */,
+				16B1CD2C1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift */,
+				16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */,
+				16B1CD2B1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift */,
+				16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */,
+				16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
 		3B39B85C599061F064F0007D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,28 +792,9 @@
 			isa = PBXGroup;
 			children = (
 				906FED851CEDC72300029845 /* NotificationsViewController.swift */,
-				906FED881CEE06DE00029845 /* NotificationsCell.swift */,
 			);
 			name = Notifications;
 			path = ../Notifications;
-			sourceTree = "<group>";
-		};
-		906FED7E1CEDB7EC00029845 /* FriendsNotifications */ = {
-			isa = PBXGroup;
-			children = (
-				AD291D251CA92808008CAFB1 /* Friends */,
-			);
-			name = FriendsNotifications;
-			sourceTree = "<group>";
-		};
-		906FED871CEDE74200029845 /* UserDetails */ = {
-			isa = PBXGroup;
-			children = (
-				AD291D701CA940B0008CAFB1 /* UserDetailsVC.swift */,
-				167AEC7A1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift */,
-				167AEC391D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift */,
-			);
-			name = UserDetails;
 			sourceTree = "<group>";
 		};
 		90DE87991CD2374400C1E706 /* DAOObjects */ = {
@@ -816,11 +830,11 @@
 		90FF6DFC1D0095C000A674C4 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
-				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
+				16B1CD221D15730F00A1ABA7 /* CustomCells */,
+				AD291D261CA92808008CAFB1 /* MeDashBoard */,
+				AD291D251CA92808008CAFB1 /* Friends */,
 				AD291D241CA92808008CAFB1 /* Challenges */,
-				AD291D261CA92808008CAFB1 /* Profile */,
 				AD291D271CA92808008CAFB1 /* Settings */,
-				906FED7E1CEDB7EC00029845 /* FriendsNotifications */,
 			);
 			name = TabBarViews;
 			path = ..;
@@ -928,21 +942,21 @@
 			isa = PBXGroup;
 			children = (
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
-				AD291D6A1CA9406F008CAFB1 /* FriendsOverViewViewController.swift */,
+				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
 		};
-		AD291D261CA92808008CAFB1 /* Profile */ = {
+		AD291D261CA92808008CAFB1 /* MeDashBoard */ = {
 			isa = PBXGroup;
 			children = (
-				906FED7A1CEDB25500029845 /* ProfileViewController.swift */,
-				906FED7C1CEDB31A00029845 /* Profile.storyboard */,
-				906FED871CEDE74200029845 /* UserDetails */,
+				906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */,
+				906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */,
+				AD291D701CA940B0008CAFB1 /* YonaUserProfileViewController.swift */,
 				906FED791CEDB1C700029845 /* Notifications */,
 			);
-			path = Profile;
+			path = MeDashBoard;
 			sourceTree = "<group>";
 		};
 		AD291D271CA92808008CAFB1 /* Settings */ = {
@@ -1324,6 +1338,7 @@
 				90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
+				166DE3591D147EDB007AEAAC /* MasterViewControllers */,
 				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
@@ -1438,7 +1453,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CWK29L7ZPT;
+						DevelopmentTeam = SFWNSYN8YK;
 					};
 					D9D54EDC1CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1487,11 +1502,13 @@
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
+				16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,
 				ADD108251CC78C3B0048852F /* Oswald-Heavy.ttf in Resources */,
+				16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */,
 				D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
@@ -1505,13 +1522,14 @@
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
-				906FED911CEE23CE00029845 /* Profile.storyboard in Resources */,
+				906FED911CEE23CE00029845 /* MeDashBoard.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
 				906FED921CEE23D200029845 /* Friends.storyboard in Resources */,
+				16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */,
 				ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */,
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
@@ -1537,6 +1555,7 @@
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
+				16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
@@ -1632,7 +1651,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
-				167AEC7B1D11124B00D2A36E /* ProfileDisplayTopTableViewCell.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
@@ -1642,11 +1660,13 @@
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */,
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
+				16B1CD2E1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
 				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
+				16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
 				90351BF61D101FD90012E983 /* ValidationMasterView.swift in Sources */,
@@ -1654,6 +1674,7 @@
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
 				AD9E63C21CFC448D006CD6D6 /* CALayerExtensions.swift in Sources */,
+				16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
@@ -1671,7 +1692,7 @@
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
 				60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
-				AD291D711CA940B0008CAFB1 /* UserDetailsVC.swift in Sources */,
+				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
@@ -1689,9 +1710,8 @@
 				AD00DED31CD3648F006BBA7E /* IQUIView+Hierarchy.swift in Sources */,
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
-				906FED7B1CEDB25500029845 /* ProfileViewController.swift in Sources */,
+				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
-				AD291D6B1CA9406F008CAFB1 /* FriendsOverViewViewController.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
@@ -1710,6 +1730,7 @@
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,
+				166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
@@ -1717,11 +1738,11 @@
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
-				167AEC3A1D0F3CE500D2A36E /* ProfileDisplayTableViewCell.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
+				16B1CD2D1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
@@ -1730,7 +1751,6 @@
 				9042C7321CD78F7200100306 /* ConfirmMobileValidationVC.swift in Sources */,
 				AD00DED61CD3648F006BBA7E /* IQKeyboardManagerConstants.swift in Sources */,
 				9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */,
-				906FED891CEE06DE00029845 /* NotificationsCell.swift in Sources */,
 				6042829A1D0ADA4600F5543C /* SVProgressAnimatedView.m in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,

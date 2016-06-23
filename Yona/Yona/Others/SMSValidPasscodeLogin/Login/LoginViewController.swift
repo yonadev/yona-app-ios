@@ -58,7 +58,9 @@ class LoginViewController: LoginSignupValidationMasterView {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.codeInputView.becomeFirstResponder()
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+            self.codeInputView.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

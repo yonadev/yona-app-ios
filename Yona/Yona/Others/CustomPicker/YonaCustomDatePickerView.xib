@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GFc-5W-zgM">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="GFc-5W-zgM">
                     <rect key="frame" x="0.0" y="44" width="600" height="216"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="600" id="dAG-PK-eVx"/>
