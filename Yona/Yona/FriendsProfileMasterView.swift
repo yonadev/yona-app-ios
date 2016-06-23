@@ -119,8 +119,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 
             } else if indexPath.section == friendsSections.pending.rawValue {
                 cell.setBuddie(RequestedBuddy[indexPath.row])
-
-//                cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
             }
             
             return cell
@@ -132,8 +130,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     override func actionsAfterLeftButtonPush() {
         self.navigationItem.rightBarButtonItem = nil
         self.tableView.reloadData()
-    }
     
+        
+    }
     override func actionsAfterRightButtonPush() {
         self.navigationItem.rightBarButtonItem = self.addBuddyButton
         callAllBuddyList(self)

@@ -14,7 +14,6 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
-    //@IBOutlet var loginTitle: UILabel?
     @IBOutlet var accountBlockedTitle: UILabel?
 
     override func viewDidLoad() {
@@ -33,10 +32,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         } else {
             self.closeButton?.enabled = true
             self.closeButton?.tintColor = UIColor.whiteColor()
-        }
-        
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            
         }
         
         setBackgroundColour()
@@ -63,7 +58,9 @@ class LoginViewController: LoginSignupValidationMasterView {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.codeInputView.becomeFirstResponder()
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+            self.codeInputView.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
