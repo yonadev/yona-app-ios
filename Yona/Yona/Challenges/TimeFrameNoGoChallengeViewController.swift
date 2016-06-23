@@ -24,7 +24,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     @IBOutlet var headerImage: UIImageView!
     
-    @IBOutlet var footerGradientView: GradientView!
+    @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     

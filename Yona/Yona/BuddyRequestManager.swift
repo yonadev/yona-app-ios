@@ -32,8 +32,11 @@ class BuddyRequestManager {
                                     for buddy in yonaBuddies {
                                         if let buddy = buddy as? BodyDataDictionary {
                                             self.buddy = Buddies.init(buddyData: buddy)
+                                            
                                             if let buddy = self.buddy {
-                                                self.buddies.append(buddy)
+                                                if buddy.UserRequestmobileNumber.characters.count > 0 {
+                                                    self.buddies.append(buddy)
+                                                }
                                             }
                                         }
                                     }

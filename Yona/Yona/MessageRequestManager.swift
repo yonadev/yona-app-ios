@@ -32,10 +32,12 @@ class MessageRequestManager {
                                     //iterate messages
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
-                                            self.message = Message.init(messageData: message)
-                                            if let message = self.message {
-                                                self.messages.append(message)
-                                            }
+                                            let aMessage = Message.init(messageData: message)
+                                            
+                                            // FOR NAW IT HAS BEEN REMOVED
+                                            //if aMessage.UserRequestmobileNumber.characters.count > 0 {
+                                                self.messages.append(aMessage)
+                                            //}
                                         }
                                     }
                                     onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
@@ -67,4 +69,53 @@ class MessageRequestManager {
     func getMessages(size: Int, page: Int, onCompletion: APIMessageResponse){
         self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: size, page: page, onCompletion: onCompletion)
     }
+    
+    func deleteMessage(aMessage : Message, onCompletion: APIResponse ){
+        if let deleteLink = aMessage.editLink {
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
+                print("how did we do \(success)")
+                onCompletion(success , "", "")
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveDeleteLink, String(responseCodes.internalErrorCode))
+        }
+    }
+
+    func postRejectMessage(aMesage : Message, onCompletion: APIResponse ){
+        if let rejectLink = aMesage.rejectLink {
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: rejectLink, httpMethod: .post, onCompletion: {success, json, error in
+                print("how did we do \(success)")
+                onCompletion(success , "", "")
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveRejectLink, String(responseCodes.internalErrorCode))
+        }
+    }
+    
+    func postAcceptMessage(aMesage : Message, onCompletion: APIResponse ){
+        if let acceptLink = aMesage.acceptLink {        
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
+                print("how did we do \(success)")
+                onCompletion(success , "", "")
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(responseCodes.internalErrorCode))
+        }
+    }
+    
+    func postProcessLink(aMesage : Message, onCompletion: APIResponse ){
+        if let processLink = aMesage.yonaProcessLink {
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: processLink, httpMethod: .post, onCompletion: {success, json, error in
+                print("how did we do \(success)")
+                onCompletion(success , "", "")
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveProcessLink, String(responseCodes.internalErrorCode))
+        }
+    }
+
 }
