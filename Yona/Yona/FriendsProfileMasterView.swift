@@ -120,8 +120,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 
             } else if indexPath.section == friendsSections.pending.rawValue {
                 cell.setBuddie(RequestedBuddy[indexPath.row])
-
-//                cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
             }
             
             return cell

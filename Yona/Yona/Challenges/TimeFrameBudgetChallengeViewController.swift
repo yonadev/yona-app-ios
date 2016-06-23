@@ -71,11 +71,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+            self.navigationItem.rightBarButtonItem?.enabled = false
             self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
-
+            } else {
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
             
             self.budgetChallengeTitle.text = goalCreated?.GoalName
