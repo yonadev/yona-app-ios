@@ -131,8 +131,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     override func actionsAfterLeftButtonPush() {
         self.navigationItem.rightBarButtonItem = nil
         self.tableView.reloadData()
-    }
     
+        
+    }
     override func actionsAfterRightButtonPush() {
         self.navigationItem.rightBarButtonItem = self.addBuddyButton
         self.callAllBuddyList()
