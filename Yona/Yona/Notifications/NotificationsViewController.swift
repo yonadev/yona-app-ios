@@ -149,6 +149,9 @@ class NotificationsViewController: UITableViewController {
                         let sortedArray  = data.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
                         for aMessage in sortedArray {
                             MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
+                                if success {
+                                    self.loadMessages(self)
+                                }
                                 //so not every link will have one, so what now?
                                 print(message)
                             })
