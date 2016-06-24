@@ -59,7 +59,6 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
-        self.navigationItem.rightBarButtonItem = nil
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
         if isFromActivity == true {
@@ -69,11 +68,19 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            
         } else {
             setChallengeButton.enabled = false
             setChallengeButton.alpha = 0.5
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.whiteColor()
+                self.navigationItem.rightBarButtonItem?.enabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
             self.budgetChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {

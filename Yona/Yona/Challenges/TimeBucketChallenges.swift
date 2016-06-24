@@ -55,16 +55,12 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     var budgetGoalSelected: Goal?
     
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
-    
-    // MARK: - View
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //It will select NoGo tab by default
+
         
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
@@ -86,8 +82,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                 setSelectedCategory(self.nogoView)
                 
             default:
-                self.timeBucketData(.BudgetGoalString)
-                setSelectedCategory(self.budgetView)
+                self.timeBucketData(.NoGoGoalString )
+                setSelectedCategory(self.nogoView)
             }
         }
     }
@@ -97,12 +93,15 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         
     }
     
+    
+    
     //Delegate fires
     func callGoalsMethod() {
         self.callActivityCategory()
     }
     
     // MARK: - private functions
+    
     private func setDeselectOtherCategory() {
         self.budgetViewBottomBorder.hidden = true
         self.timezoneViewBottomBorder.hidden = true
@@ -126,14 +125,19 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         case budgetView:
             categoryHeader = .BudgetGoal
             self.budgetViewBottomBorder.hidden = false
+        
+            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.budget.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+
             
         case timezoneView:
             categoryHeader = .TimeZoneGoal
             self.timezoneViewBottomBorder.hidden = false
+            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.timeZone.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
             
         case nogoView:
             categoryHeader = .NoGoGoal
             self.nogoViewBottomBorder.hidden = false
+            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.noGo.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
             
         default:
             print("")
@@ -234,13 +238,15 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.nogoView.addGestureRecognizer(nogoTap)
         
+
+        
         self.budgetBadgeLabel.hidden = true
         self.nogoBadgeLabel.hidden = true
         self.timezoneBadgeLabel.hidden = true
         
         setDeselectOtherCategory()
-        setSelectedCategory(self.budgetView)
-        
+           // setSelectedCategory(self.nogoView)
+
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
