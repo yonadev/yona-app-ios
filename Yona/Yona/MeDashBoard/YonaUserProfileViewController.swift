@@ -126,7 +126,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 topCell?.delegate = self
             }
             if let theUser = aUser {
-                topCell!.setData(userModel: theUser)
+                topCell!.setUser(theUser)
             }
             return topCell!
 

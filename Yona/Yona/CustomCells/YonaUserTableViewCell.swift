@@ -57,14 +57,14 @@ class YonaUserTableViewCell: UITableViewCell {
     // MARK: using cell as Message
     
     func setMessage(aMessage : Message) {
-        boldLineLabel.text = aMessage.messageType.simpleDescription()
-        normalLineLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
+        boldLineLabel.text = aMessage.simpleDescription()
+        normalLineLabel.text = "\(aMessage.nickname)"
         
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
+//        avatarNameLabel.text = "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
         
         
-        statusImageView.image = aMessage.messageType.iconForStatus()
+        statusImageView.image = aMessage.iconForStatus()
     }
 
 }

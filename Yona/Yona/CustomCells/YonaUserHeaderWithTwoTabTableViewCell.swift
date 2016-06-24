@@ -61,7 +61,14 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
 
     }
     
-    func setData (userModel userModel : Users){
+    func setMessage (aMessage : Message) {
+        nameLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
+        nicknameLabel.text = aMessage.nickname
+       
+        
+    }
+    
+    func setUser(userModel : Users){
         aUser = userModel
         var tmpFirst = ""
         var tmpLast = ""
@@ -97,6 +104,14 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         delegate?.didSelectBadgesTab()
     }
 
+    
+    // MARK: - hide both tabs
+    
+    func setAcceptFriendsMode () {
+        profileTabMainView.hidden = true
+        badgesTabMainView.hidden = true
+    }
+    
     
     // MARK:  - edit positioning metods
     

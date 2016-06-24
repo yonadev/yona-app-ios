@@ -113,7 +113,7 @@
 "challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
 "challenges-timzoe-subtext" = "Timeslot tussen %1$sen tussen %2$s";
 "challenges-budget-subtext" = "Je kunt per dag %1$s minuten %2$s";
-
+"pull-to-refresh" = "Pull to refresh";
 
 //TODO: replace english text here(not yet provided by Yona)
 
@@ -233,6 +233,11 @@
 "notifications.user.badges" = "Badges";
 
 
+"notifications.accept.title" = "Accept request";
+"notifications.accept.type"  = "Vriendschapsverzoek";
+"notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
+"notifications.accept.reject" = "REJECT";
+"notifications.accept.accept" = "ACCEPT";
 
 // String for Profile
 
@@ -243,3 +248,13 @@
 
 "profile.tab.profile" = "profile";
 "profile.tab.badges" = "badges";
+
+//message types
+"message.type.friendrequest" = "Friend Request";
+
+"message.type.friendresponse.accepted" = "Friend Request Accepted";
+"message.type.friendresponse.rejected" = "Friend Request Rejected";
+
+"message.type.friendrequestrejected" = "";
+"message.type.friendremoved" = "You have been removed as a friend";
+"message.type.nogoalert" = "NoGo Alert";

@@ -11,7 +11,7 @@ import Foundation
 class NotificationsViewController: UITableViewController {
     
     @IBOutlet weak var tableHeaderView: UIView!
-    
+    var selectedIndex : NSIndexPath?
     
     //MARK: searchResultMovies hold the movie search results
     var messages = [[Message]]() {
@@ -26,6 +26,9 @@ class NotificationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
     }
@@ -35,14 +38,20 @@ class NotificationsViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-        
-        
+
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        loadMessages()
+        loadMessages(self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
+            let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
+            controller.aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!]
+            selectedIndex = nil
+        }
     }
     
     //MARK: - tableview methods
@@ -58,16 +67,20 @@ class NotificationsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return
+        selectedIndex = indexPath
+        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        if aMessage.status == buddyRequestStatus.REQUESTED {
+            performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+        let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
-                
-            return cell
-        }
+        return cell
+    }
 
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -92,36 +105,79 @@ class NotificationsViewController: UITableViewController {
         
     }
     
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            selectedIndex = indexPath
+            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+                if success {
+                    self.loadMessages(self)
+                } else {
+                    self.displayAlertMessage(message!, alertDescription: "")
+                }
+            })
+        }
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        selectedIndex = indexPath
+
+        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        //we can only delete a buddy request if it has been accepted or rejected
+        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+            return true
+        } else {
+            return false
+        }
+
+    }
+    
     // MARK: - server methods
     
-    func loadMessages() {
+    func loadMessages(sender:AnyObject) {
         Loader.Show()
         MessageRequestManager.sharedInstance.getMessages(10, page: 0, onCompletion: {
-        (success, message, code, text, messages) in
+        (success, message, code, text, theMessages) in
             if success {
                 var allLoadedMessage : [[Message]] = []
                 var tmpArray: [Message] = []
                 //success so sort by date... and create sub arrays
-                if let data = messages {                    
-                    let sortedArray  = data.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
-                    for aMessage in sortedArray {
-                        if tmpArray.count == 0 {
-                            tmpArray.append(aMessage)
-                        } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
-                            tmpArray.append(aMessage)
-                        } else {
-                            allLoadedMessage.append(tmpArray)
-                            tmpArray.removeAll()
-                            tmpArray.append(aMessage)
+                if let data = theMessages   {
+                    
+                    if data.count > 0 {
+                        let sortedArray  = data.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
+                        for aMessage in sortedArray {
+                            MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
+                                if success {
+                                    self.loadMessages(self)
+                                }
+                                //so not every link will have one, so what now?
+                                print(message)
+                            })
+                            if tmpArray.count == 0 {
+                                tmpArray.append(aMessage)
+                            } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
+                                tmpArray.append(aMessage)
+                            } else {
+                                allLoadedMessage.append(tmpArray)
+                                tmpArray.removeAll()
+                                tmpArray.append(aMessage)
+                            }
                         }
+                        allLoadedMessage.append(tmpArray)
+                        self.messages = allLoadedMessage
+                    } else {
+                        self.messages = []
                     }
-                    allLoadedMessage.append(tmpArray)
-                    self.messages = allLoadedMessage
+                } else {
+                    self.messages = []
                 }
                 
             } else {
                 //response from request failed
             }
+            self.refreshControl!.endRefreshing()
             Loader.Hide()
         })
         
