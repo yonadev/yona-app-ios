@@ -79,6 +79,9 @@ struct YonaConstants {
         static let  yonaPinVerify = "yona:verifyPinReset"
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
+
+        static let  historyItem = "historyItem"
+
     }
 
     struct serverCodes{

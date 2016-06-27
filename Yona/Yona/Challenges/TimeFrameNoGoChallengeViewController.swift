@@ -33,20 +33,6 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
     var goalCreated: Goal?
     var maxDurationMinutes: Int = 0
     
-    override func viewDidLayoutSubviews()
-    {
-        let vi = view.frame
-        var scrollFrame = scrollView.frame
-        scrollFrame.origin.x = 0
-    //    scrollFrame.size.height = vi.height-(64+30)
-        
-        
-        scrollView.frame = scrollFrame
-        
-
-        
-    }
-
     
     
     override func viewDidLoad() {
