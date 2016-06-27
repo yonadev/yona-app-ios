@@ -18,7 +18,7 @@ struct Goal {
     var goalType: String?
     var zonesStore:[String] = []
     var isMandatory: Bool?
-
+    var isHistoryItem : Bool!
     init(goalData: BodyDataDictionary, activities: [Activities]) {
             if let links = goalData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
                 if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
@@ -57,7 +57,12 @@ struct Goal {
             if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
                 self.goalType = goalType
             }
-            
+            if let history = goalData[YonaConstants.jsonKeys.historyItem] as? Bool {
+                    isHistoryItem = history
+            } else {
+                    isHistoryItem = false
+            }
+        
             //if goal is of type no go, it has no max minutes, and is type budgetgoal, then mandatory is true
             if self.maxDurationMinutes == 0 && self.goalType == GoalType.BudgetGoalString.rawValue {
                 self.isMandatory = true
