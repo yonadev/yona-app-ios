@@ -17,13 +17,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //OverviewTabAction(overviewTabView)
+        registreTableViewCells()
         setupUI()
         self.navigationController?.navigationBarHidden = false
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
     }
     
     
-    
+    func registreTableViewCells () {
+        let nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        
+    }
+
     
     // MARK: - private functions
     private func setupUI() {
@@ -38,18 +44,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     // MARK: - tableview Override
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+        cell.setUpView(0, positive: 25)
         return cell
     }
 
