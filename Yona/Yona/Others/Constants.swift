@@ -80,6 +80,8 @@ struct YonaConstants {
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
 
+        static let  yonadayDetails = "yona:dayDetails"
+        static let  yonadayActivityOverviews = "yona:dayActivityOverviews"
         static let  historyItem = "historyItem"
 
     }

@@ -173,7 +173,7 @@ class ActivitiesRequestManager {
      - paramter page : The page to be fetched
      - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
      */
-    func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityResponse){
+    func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityGoalResponse){
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
                 if let path = user?.dailyActivityReportsLink {
@@ -187,8 +187,17 @@ class ActivitiesRequestManager {
                                 return
                             }
                             print(json)
-                            self.newActivity = Activities.init(activityData: json)
-                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newActivity, error)
+                            var newData : [ActivitiesGoal] = []
+                            if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                let embeddedActivities = embedded[YonaConstants.jsonKeys.yonadayActivityOverviews] as? NSArray{
+                                for activity in embeddedActivities {
+                                    if let activity = activity as? BodyDataDictionary {
+                                        let aActivityGoal = ActivitiesGoal.init(activityData: activity)
+                                        newData.append(aActivityGoal)
+                                    }
+                                }
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                            }
                         } else {
                             //response from request failed
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
