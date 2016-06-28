@@ -122,7 +122,10 @@ class GoalsRequestManager {
                                     if let goal = goal as? BodyDataDictionary {
                                         self.newGoal = Goal.init(goalData: goal, activities: activities!)
                                         if let goal = self.newGoal {
+                                            if !goal.isHistoryItem {
                                             self.allTheGoals.append(goal)
+                                            }
+                                            
                                         }
                                     }
                                 }

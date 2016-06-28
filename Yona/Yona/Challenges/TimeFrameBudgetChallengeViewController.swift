@@ -28,7 +28,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
 
     @IBOutlet var deleteGoalButton: UIBarButtonItem!
     
-    @IBOutlet var footerGradientView: GradientView!
+    @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     
@@ -71,11 +71,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+            self.navigationItem.rightBarButtonItem?.enabled = false
             self.maxTimeButton.setTitle(String(maxDurationMinutes), forState: UIControlState.Normal)
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
-
+            } else {
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
             
             self.budgetChallengeTitle.text = goalCreated?.GoalName
@@ -89,7 +93,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         picker.showHidePicker(isToShow: false)
     }
     
-    // MARK: functions
+    // MARK: - functions
     func configurePickerView() {
         pickerBackgroundView = YonaCustomPickerView().loadPickerView()
         picker = pickerBackgroundView as! YonaCustomPickerView
@@ -97,9 +101,11 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         arr += 1...96
         picker.setData(onView: self.view, data: arr, withCancelListener:{
             self.picker.showHidePicker(isToShow: false)
+            self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
         }) { (doneValue) in
             self.picker.showHidePicker(isToShow: false)
             if doneValue != "" {
+                self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
                 self.maxDurationMinutes = doneValue
                 
                 self.maxTimeButton.setTitle(String(self.maxDurationMinutes), forState: UIControlState.Normal)
@@ -111,6 +117,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
         
         picker.frame.size.width = UIScreen.mainScreen().bounds.width
         UIApplication.sharedApplication().keyWindow?.addSubview(pickerBackgroundView)
+        
     }
     
     // MARK: - Actions
@@ -183,6 +190,10 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     
     @IBAction func maxTimebuttonTapped(sender: AnyObject) {
         picker.showHidePicker(isToShow: true)
+        
+        if view.frame.size.height < 568 {
+            scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
+        }
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {

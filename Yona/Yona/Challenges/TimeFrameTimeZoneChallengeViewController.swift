@@ -104,18 +104,21 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
-        self.navigationItem.rightBarButtonItem = nil
-        
         if isFromActivity == true{
             self.timezoneChallengeTitle.text = activitiyToPost?.activityCategoryName
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
-            
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+            self.navigationItem.rightBarButtonItem?.enabled = false
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
+            } else {
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
+            
             self.timezoneChallengeTitle.text = goalCreated?.GoalName
             if let activityName = goalCreated?.GoalName {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
@@ -208,24 +211,27 @@ extension TimeFrameTimeZoneChallengeViewController {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
         let s: String = zonesArrayString[indexPath.row]
         cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
+            
             self.activeIndexPath = indexPath
             self.isFromButton = true
             self.picker?.pickerTitleLabel("From")
             self.picker?.okButtonTitle.title = "Next"
             self.picker?.cancelButtonTitle.title = "Cancel"
-            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
+            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             self.activeIndexPath = indexPath
             self.isFromButton = false
             self.picker?.pickerTitleLabel("To")
             self.picker?.okButtonTitle.title = "Done"
             self.picker?.cancelButtonTitle.title = "Prev"
-            self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
+            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
         }
         cell.rowNumber.text = String(indexPath.row + 1)
         
         return cell
     }
+    
+    
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -243,7 +249,8 @@ extension TimeFrameTimeZoneChallengeViewController {
                 self.setChallengeButton.alpha = 0.5
             }
             self.tableView.endUpdates()
-            
+            activeIndexPath = nil
+
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
@@ -258,6 +265,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
+        self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
         if isFromActivity == true {
             
             if let activityCategoryLink = activitiyToPost?.selfLinks {
@@ -319,6 +327,9 @@ extension TimeFrameTimeZoneChallengeViewController {
         picker?.okButtonTitle.title = "Next"
         picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
         picker?.datePicker.minuteInterval = timeInterval
+        if view.frame.size.height < 568 {
+            scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
+        }
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {

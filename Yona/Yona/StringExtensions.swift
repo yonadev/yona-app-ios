@@ -218,4 +218,16 @@ extension String {
     func dashRemoval() -> Array<String> {
         return self.characters.split{$0 == "-"}.map(String.init)
     }
+    
+    func heightForWithFont(font: UIFont, width: CGFloat, insets: UIEdgeInsets) -> CGFloat {
+        
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, width + insets.left + insets.right, CGFloat.max))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font = font
+        label.text = self
+        
+        label.sizeToFit()
+        return label.frame.height + insets.top + insets.bottom
+    }
 }

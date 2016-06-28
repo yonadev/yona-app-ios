@@ -108,6 +108,7 @@
 
 "yesterday" = "GISTEREN";
 "today" = "VANDAAG";
+"pull-to-refresh" = "Trek op te frissen";
 
 //Friends Overview
 "friends" = "VRIENDEN";
@@ -154,7 +155,11 @@
 "notifications.user.profile" = "Profiel";
 "notifications.user.badges" = "Badges";
 
-
+"notifications.accept.title" = "Accept request";
+"notifications.accept.type"  = "Vriendschapsverzoek";
+"notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
+"notifications.accept.reject" = "AFWIJZEN";
+"notifications.accept.accept" = "ACCEPTEER";
 
 // String for Profile
 
@@ -163,4 +168,13 @@
 "profile.user.data.nickname" = "NICKNAME";
 "profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
+"profile.tab.profile" = "profile";
+"profile.tab.badges" = "badges";
 
+//message types
+"message.type.friendrequest" = "Vriendenverzoek";
+
+"message.type.friendresponse.accepted" = "Vriendenverzoek geaccepteerd";
+"message.type.friendresponse.rejected" = "Vriendenverzoek afgewezen";
+"message.type.friendremoved" = "Je bent verwijderd als vriend";
+"message.type.nogoalert" = "NoGo Alert";

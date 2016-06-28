@@ -17,50 +17,16 @@ enum notificationType : String {
     case GoalConflictMessage = "GoalConflictMessage"
     case NoValue = "Not found"
     
-    func simpleDescription() -> String {
-        switch self {
-        case .BuddyConnectRequestMessage:
-            return NSLocalizedString("Vriendenverzoek", comment: "")
-        case .BuddyConnectResponseMessage:
-            return NSLocalizedString("Vriendenverzoek afgewezen", comment: "")
-        case .BuddyDisconnectMessage:
-            return NSLocalizedString("Je bent verwijderd als vriend", comment: "")
-        case .GoalConflictMessage:
-            return NSLocalizedString("NoGo Alert", comment: "")
-        default :
-            return NSLocalizedString("Error", comment: "")
-        }
-    }
-
-    func iconForStatus() -> UIImage {
-        switch self {
-            //TODO: these images must be set to the correct images for the state
-        case .BuddyConnectRequestMessage:
-            return UIImage.init()
-        case .BuddyConnectResponseMessage:
-            return UIImage.init()//UIImage(named: "")!
-        case .BuddyDisconnectMessage:
-            return UIImage.init()//UIImage(named: "")!
-        case .GoalConflictMessage:
-            return UIImage.init()//UIImage(named: "")!
-        default :
-            return UIImage.init()//UIImage(named: "")!
-        }
-    }
-
-
 }
-
-
-
-
 
 struct Message{
     var selfLink: String?
+    var editLink: String?
     var rejectLink: String?
     var acceptLink: String?
+    var yonaProcessLink: String?
     //var creationTime: String?
-    var nickname: String?
+    var nickname: String
     var message: String
     var status: buddyRequestStatus?
     var messageType: notificationType
@@ -78,7 +44,7 @@ struct Message{
         UserRequestlastName = ""
         UserRequestmobileNumber = ""
         UserRequestSelfLink = ""
-        
+        nickname = ""
         messageType = .NoValue
         
         creationTime = NSDate.init()
@@ -122,6 +88,11 @@ struct Message{
                 self.selfLink = linksSelfHref
             }
             
+            if let linksEdit = links[getMessagesKeys.edit.rawValue],
+                let linksEditHref = linksEdit[getMessagesKeys.href.rawValue] as? String{
+                self.editLink = linksEditHref
+            }
+            
             if let rejectLink = links[getMessagesKeys.reject.rawValue],
                 let rejectLinkHref = rejectLink[getMessagesKeys.href.rawValue] as? String{
                 self.rejectLink = rejectLinkHref
@@ -130,6 +101,11 @@ struct Message{
             if let acceptLink = links[getMessagesKeys.accept.rawValue],
                 let acceptLinkHref = acceptLink[getMessagesKeys.href.rawValue] as? String{
                 self.acceptLink = acceptLinkHref
+            }
+            
+            if let processLink = links[getMessagesKeys.process.rawValue],
+                let processLinkHref = processLink[getMessagesKeys.href.rawValue] as? String{
+                self.yonaProcessLink = processLinkHref
             }
         }
         
@@ -154,4 +130,65 @@ struct Message{
 
         }
     }
+    
+    func messageDataDictionaryForServer() -> BodyDataDictionary {
+        var body = ["firstName": "",
+                    "lastName": "",
+                    "mobileNumber": "",
+                    "nickname": ""]
+        
+        body["firstName"] = UserRequestfirstName
+        body["lastName"] = UserRequestlastName
+        body["mobileNumber"] = UserRequestmobileNumber
+        body["nickname"] = nickname
+        return body
+    }
+
+    
+    
+    // MARK: - Icon and message methods
+    
+    func simpleDescription() -> String {
+        switch messageType {
+        case .BuddyConnectRequestMessage:
+            return NSLocalizedString("message.type.friendrequest", comment: "")
+        case .BuddyConnectResponseMessage:
+            if status == buddyRequestStatus.ACCEPTED {
+                return NSLocalizedString("message.type.friendresponse.accepted", comment: "")
+            } else if status == buddyRequestStatus.REJECTED {
+                return NSLocalizedString("message.type.friendresponse.rejected", comment: "")
+            }
+            
+        case .BuddyDisconnectMessage:
+            return NSLocalizedString("message.type.friendremoved", comment: "")
+        case .GoalConflictMessage:
+            return NSLocalizedString("message.type.nogoalert", comment: "")
+        default :
+            return NSLocalizedString("Error", comment: "")
+        }
+        return NSLocalizedString("Error", comment: "")
+    }
+    
+    func iconForStatus() -> UIImage {
+        switch messageType {
+        //TODO: these images must be set to the correct images for the state
+        case .BuddyConnectRequestMessage:
+            if status == buddyRequestStatus.ACCEPTED {
+                return UIImage(named: "icnOk")!
+            } else if status == buddyRequestStatus.REJECTED {
+                return UIImage(named: "icnNo")!
+            }
+        case .BuddyConnectResponseMessage:
+            return UIImage(named: "icnOk")!
+        case .BuddyDisconnectMessage:
+            return UIImage.init()//UIImage(named: "")!
+        case .GoalConflictMessage:
+            return UIImage.init()//UIImage(named: "")!
+        default :
+            return UIImage.init()//UIImage(named: "")!
+        }
+        return UIImage.init()
+    }
+
+    
 }

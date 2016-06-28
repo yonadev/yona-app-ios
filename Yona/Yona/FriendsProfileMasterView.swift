@@ -26,27 +26,26 @@ enum  friendsSections : Int {
     
 }
 
-
 class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
-    
-
     
     var buddiesOverviewArray = [Buddies]()
     @IBOutlet var addBuddyButton: UIBarButtonItem!
     
-    
     var AcceptedBuddy = [Buddies]()
     var RequestedBuddy = [Buddies]()
-
+    var refreshControl: UIRefreshControl!
 
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        callAllBuddyList(self)
+        refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl!.addTarget(self, action: #selector(callAllBuddyList(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
         setupUI()
         registreTableViewCells()
     }
-    
     
     func setupUI() {
         showRightTab(rightTabMainView)
@@ -120,8 +119,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 
             } else if indexPath.section == friendsSections.pending.rawValue {
                 cell.setBuddie(RequestedBuddy[indexPath.row])
-
-//                cell.textLabel?.text = self.RequestedBuddy[indexPath.row].UserRequestfirstName! + self.RequestedBuddy[indexPath.row].UserRequestlastName!
             }
             
             return cell
@@ -133,14 +130,15 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     override func actionsAfterLeftButtonPush() {
         self.navigationItem.rightBarButtonItem = nil
         self.tableView.reloadData()
-    }
     
+        
+    }
     override func actionsAfterRightButtonPush() {
         self.navigationItem.rightBarButtonItem = self.addBuddyButton
-        self.callAllBuddyList()
+        callAllBuddyList(self)
     }
     
-    func callAllBuddyList() {
+    func callAllBuddyList(sender:AnyObject) {
         
         Loader.Show()
         BuddyRequestManager.sharedInstance.getAllbuddies { (success, serverMessage, ServerCode, Buddies, buddies) in
@@ -170,6 +168,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     self.displayAlertMessage(serverMessage, alertDescription: "")
                 }
             }
+            self.refreshControl!.endRefreshing()
         }
     }
     

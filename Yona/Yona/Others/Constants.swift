@@ -79,6 +79,9 @@ struct YonaConstants {
         static let  yonaPinVerify = "yona:verifyPinReset"
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
+
+        static let  historyItem = "historyItem"
+
     }
 
     struct serverCodes{
@@ -115,6 +118,10 @@ struct YonaConstants {
         static let FailedToRetrievePassword = "Failed to get user password"
         static let FailedToRetrieveBuddyLink = "Failed to retrieve buddy link"
         static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
+        static let FailedToRetrieveProcessLink = "Failed to retrieve process link for friend request"
+        static let FailedToRetrieveAcceptLink = "Failed to retrieve accept link for friend request"
+        static let FailedToRetrieveRejectLink = "Failed to retrieve accept link for friend request"
+        static let FailedToRetrieveDeleteLink = "Failed to retrieve delete link for friend request"
         static let FailedToRetrieveGetUserDetails = "Failed to retrieve details for user"
         static let FailedToRetrieveUpdateUserDetails = "Failed to get the details to update the user"
         static let FailedToRetrieveUserDetailsForDeleteUser = "Failed to retrieve the details to delete the user"
