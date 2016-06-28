@@ -53,4 +53,27 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         return cell
     }
 
+
+    //MARK: - implementations metods
+    override func actionsAfterLeftButtonPush() {
+        loadActivitiesForDay()
+        // The subController must override this to have any action after the tabe selection
+    }
+    
+    override func actionsAfterRightButtonPush() {
+        // The subController must override this to have any action after the tabe selection
+    }
+
+    
+    
+    // MARK: - Data loaders
+    
+    func loadActivitiesForDay(page : Int = 0) {
+    
+        ActivitiesRequestManager.sharedInstance.getActivityPrDay(3, page:0, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+            }
+            )
+        
+    }
+    
 }

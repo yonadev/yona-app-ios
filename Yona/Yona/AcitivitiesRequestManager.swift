@@ -165,4 +165,41 @@ class ActivitiesRequestManager {
             }
         }
     }
+
+
+    /**
+     IMplements the Activtiy with ID API call, and returns overview of activities
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
+     */
+    func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+                if let path = user?.dailyActivityReportsLink {
+                    //if the newActivites object has been filled then we can get the link to display activity
+                    
+                    let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            print(json)
+                            self.newActivity = Activities.init(activityData: json)
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newActivity, error)
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    }
+                }
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+            }
+        }
+    }
+
 }
