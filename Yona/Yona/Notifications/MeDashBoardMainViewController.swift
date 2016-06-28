@@ -13,6 +13,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBOutlet var userDetailButton: UIBarButtonItem!
     @IBOutlet var notificationsButton: UIButton?
 
+    var leftTabData : [ActivitiesGoal] = []
+    var rightTabData : [ActivitiesGoal] = []
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +41,18 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     // MARK: - tableview Override
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        if selectedTab == .left {
+            return 1
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        if selectedTab == .left {
+            return leftTabData.count
+        }
+        return rightTabData.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,10 +67,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func actionsAfterLeftButtonPush() {
         loadActivitiesForDay()
         // The subController must override this to have any action after the tabe selection
+  
     }
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
+    
     }
 
     
@@ -70,9 +81,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     func loadActivitiesForDay(page : Int = 0) {
     
-        ActivitiesRequestManager.sharedInstance.getActivityPrDay(3, page:0, onCompletion: { (success, serverMessage, serverCode, activity, err) in
+        ActivitiesRequestManager.sharedInstance.getActivityPrDay(3, page:0, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+            if success {
+                
+                if let data = activitygoals {
+                    self.leftTabData = data
+                }
+                self.tableView.reloadData()
             }
-            )
+            })
         
     }
     

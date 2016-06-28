@@ -80,10 +80,15 @@ struct YonaConstants {
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
 
-        static let  yonadayDetails = "yona:dayDetails"
-        static let  yonadayActivityOverviews = "yona:dayActivityOverviews"
+        static let  dayActivities = "dayActivities"
+        static let  yonaDayActivityOverviews = "yona:dayActivityOverviews"
         static let  historyItem = "historyItem"
-
+        static let  totalActivityDurationMinutes = "totalActivityDurationMinutes"
+        static let  goalAccomplished = "goalAccomplished"
+        static let  totalMinutesBeyondGoal = "totalMinutesBeyondGoal"
+        static let  yonaDayDetails = "yona:dayDetails"
+        static let  date = "date"
+        static let  yonaGoal = "yona:goal"
     }
 
     struct serverCodes{

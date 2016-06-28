@@ -12,8 +12,7 @@
 
 import Foundation
 
-struct ActivitiesGoal {
-    var activityCategoryName: String?
+class ActivitiesGoal : NSObject{
     var activityID: String?
     var applicationsStore:[String] = []
     var dayDetailLinks: String?
@@ -21,36 +20,93 @@ struct ActivitiesGoal {
     var goalName: String?
     var goalType: String?
     var maxDurationMinutes: Int?
+    var date : NSDate  = NSDate()
+    var goalAccomplished : Bool = false
+    var totalActivityDurationMinutes : Int = 0
+    var totalMinutesBeyondGoal : Int = 0
+    /*
+     "date": "2016-06-28",
+     "timeZoneId": "Europe/Amsterdam",
+     "dayActivities": [{
+     "totalActivityDurationMinutes": 0,
+     "goalAccomplished": true,
+     "totalMinutesBeyondGoal": 0,
+     "_links": {
+					"yona:dayDetails": {
+     "href": "http://85.222.227.142/users/34039ef8-5394-464c-a062-1b23b5051769/activity/days/2016-06-28/details/7da0f5c7-2f7d-42b8-93f8-8e5fb98a714d"
+					},
+					"yona:goal": {
+     "href": "http://85.222.227.142/users/34039ef8-5394-464c-a062-1b23b5051769/goals/7da0f5c7-2f7d-42b8-93f8-8e5fb98a714d"
+					}
+     }
+
+     */
+    
     
     init(activityData: BodyDataDictionary) {
-        if let activityCategoryName = activityData[YonaConstants.jsonKeys.name] as? String {
-            self.activityCategoryName = activityCategoryName
-        }
-        if let applications = activityData[YonaConstants.jsonKeys.applications] as? NSArray {
-            for application in applications {
-                applicationsStore.append(application as! String)
-            }
-        }
         
-        if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
-            if let edit = links[YonaConstants.jsonKeys.yonaGoals] as? [String: AnyObject],
-                let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
-                self.goalLinks = editLink
+        
+        
+        if let activityDate = activityData[YonaConstants.jsonKeys.date] as? String {
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
+            if let aDate = dateFormatter.dateFromString(activityDate) {
+                date = aDate
             }
-            if let selfLink = links[YonaConstants.jsonKeys.yonadayDetails] as? [String: AnyObject],
-                let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
-                self.dayDetailLinks = href
-                if let lastPath = NSURL(string: href)?.lastPathComponent {
-                    self.activityID = lastPath
+         }
+        
+        
+        if let dayActivities = activityData[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
+        {
+            for aData in dayActivities  {
+                if let totalMinutesBeyondGoal = aData[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
+                    self.totalMinutesBeyondGoal = totalMinutesBeyondGoal
+                }
+                if let totalActivityDurationMinutes = aData[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
+                    self.totalActivityDurationMinutes = totalActivityDurationMinutes
+                }
+                if let goalAccomplished = aData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
+                    self.goalAccomplished = goalAccomplished
+                }
+                
+                
+                
+                if let links = aData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+                    if let edit = links[YonaConstants.jsonKeys.yonaGoal] as? [String: AnyObject],
+                        let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
+                        self.goalLinks = editLink
+                    }
+                    if let selfLink = links[YonaConstants.jsonKeys.yonaDayDetails] as? [String: AnyObject],
+                        let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
+                        self.dayDetailLinks = href
+                        if let lastPath = NSURL(string: href)?.lastPathComponent {
+                            self.activityID = lastPath
+                        }
+                    }
                 }
             }
         }
     }
-    func addGoalsData(aGoal : Goal){
-    
+    func addGoalsAndActivity(goals : [Goal],  activities : [Activities]){
+        for goal in goals {
+            if goalLinks == goal.selfLinks {
+                maxDurationMinutes = goal.maxDurationMinutes
+                goalName = goal.GoalName
+                goalType = goal.goalType
+                maxDurationMinutes = goal.maxDurationMinutes
+                for activity in activities {
+                    if activity.selfLinks == goal.activityCategoryLink {
+                        goalName = activity.activityCategoryName
+                        activityID = activity.activityID
+                    }
+                    
+                }
+
+            
+            }
+            
+        }
     }
-    func addActivityType( aActivity : [Activities]) {
-    
-    }
-    
+        
 }

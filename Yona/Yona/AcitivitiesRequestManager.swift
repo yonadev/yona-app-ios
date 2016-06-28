@@ -186,18 +186,29 @@ class ActivitiesRequestManager {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                 return
                             }
-                            print(json)
                             var newData : [ActivitiesGoal] = []
-                            if let embedded = json[YonaConstants.jsonKeys.embedded],
-                                let embeddedActivities = embedded[YonaConstants.jsonKeys.yonadayActivityOverviews] as? NSArray{
-                                for activity in embeddedActivities {
-                                    if let activity = activity as? BodyDataDictionary {
-                                        let aActivityGoal = ActivitiesGoal.init(activityData: activity)
-                                        newData.append(aActivityGoal)
+                            newData = self.getActivtyPrDayhandleActivieResponse( json)
+                            if newData.count > 0 {
+                            
+                                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                    
+                                    if activities?.count > 0 {
+                                    
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                            if let theGoals = goals {
+                                                for singleActivity in newData {
+                                                    singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                    
+                                                }
+                                            }
+                                            
+                                        
+                                        })
                                     }
-                                }
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                    })
                             }
+                           onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+
                         } else {
                             //response from request failed
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
@@ -209,6 +220,22 @@ class ActivitiesRequestManager {
                 onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
         }
+    }
+    
+    private func getActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [ActivitiesGoal] {
+        
+        var newData : [ActivitiesGoal] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray{
+            for activity in embeddedActivities {
+                if let activity = activity as? BodyDataDictionary {
+                    let aActivityGoal = ActivitiesGoal.init(activityData: activity)
+                    newData.append(aActivityGoal)
+                }
+            }
+        }
+
+        return newData
     }
 
 }
