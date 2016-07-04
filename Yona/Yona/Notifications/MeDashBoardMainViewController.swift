@@ -68,13 +68,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
         if selectedTab == .left {
 //todo: REPLACE THIS WITH THE CELLS FOR DAY VIEW
-            let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-            return cell
-//
-//            let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//            cell.setUpView(leftTabData[indexPath.row])
+//            let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
 //            return cell
-//
+////
+            let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+            cell.setUpView(leftTabData[indexPath.row])
+            return cell
+
         }
         
         
