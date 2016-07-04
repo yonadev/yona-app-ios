@@ -81,7 +81,13 @@ class TimeBucketControlCell : UITableViewCell {
         
         //set position of the zero point
         let zeroMinsFrametemp = self.endMinutes.frame
-        let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
+        
+        
+        // THE backgroundview holds both the neg view and the pos view, so
+        // use the backgroundviews indent (x) as base for the label 
+        let indent = backgroundMinsView.frame.origin.x
+        
+        let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute+indent, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
