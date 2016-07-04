@@ -23,14 +23,13 @@ class TimeBucketControlCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
-        
     }
     
+    func setUpView(activityGoal : ActivitiesGoal) {
     
-    func setUpView(neg: Int, positive: Int) {
-    
+        let neg = activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
+        
         let totalMinutes = neg + positive
         let pxPrMinute = backgroundMinsView.frame.size.width / CGFloat(totalMinutes)
         

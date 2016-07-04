@@ -45,8 +45,6 @@ class ActivitiesGoal : NSObject{
     
     init(activityData: BodyDataDictionary) {
         
-        
-        
         if let activityDate = activityData[YonaConstants.jsonKeys.date] as? String {
             
             let dateFormatter = NSDateFormatter()
@@ -55,7 +53,6 @@ class ActivitiesGoal : NSObject{
                 date = aDate
             }
          }
-        
         
         if let dayActivities = activityData[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
         {
@@ -88,6 +85,7 @@ class ActivitiesGoal : NSObject{
             }
         }
     }
+    
     func addGoalsAndActivity(goals : [Goal],  activities : [Activities]){
         for goal in goals {
             if goalLinks == goal.selfLinks {
@@ -103,7 +101,6 @@ class ActivitiesGoal : NSObject{
                     
                 }
 
-            
             }
             
         }

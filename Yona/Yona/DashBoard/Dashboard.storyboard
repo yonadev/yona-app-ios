@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IHY-FI-AIQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IHY-FI-AIQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -71,7 +71,6 @@
         <!--MeDashBoard-->
         <scene sceneID="68Z-Ed-c3i">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3i-cH-mV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="MeDashBoard" id="SGx-PY-cZf" userLabel="MeDashBoard" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icnMe" selectedImage="icnMeActive" id="7HF-lQ-fB8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="caN-yz-5ht" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
@@ -92,6 +91,7 @@
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3i-cH-mV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2776" y="461"/>
         </scene>

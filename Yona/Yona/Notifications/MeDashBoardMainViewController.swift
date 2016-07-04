@@ -26,20 +26,16 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func registreTableViewCells () {
-        var nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
+        var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        
+        nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
+        
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
         
     }
-
-    
-    func registreTableViewCells () {
-        let nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
-        
-    }
-
     
     // MARK: - private functions
     private func setupUI() {
@@ -74,7 +70,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 //todo: REPLACE THIS WITH THE CELLS FOR DAY VIEW
             let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
             return cell
-
+//
+//            let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+//            cell.setUpView(leftTabData[indexPath.row])
+//            return cell
 //
         }
         

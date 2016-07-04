@@ -190,13 +190,13 @@ class ActivitiesRequestManager {
                             newData = self.getActivtyPrDayhandleActivieResponse( json)
                             if newData.count > 0 {
                             
-                                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
                                     
                                     if activities?.count > 0 {
                                     
-                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, servermessage, servercode, nil, goals, error) in
                                             
-                                            if status  {
+                                            if success  {
                                                 if let theGoals = goals {
                                                     for singleActivity in newData {
                                                         singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
@@ -243,7 +243,7 @@ class ActivitiesRequestManager {
     }
 
     /**
-     Implements the Activtiy pr day, and combines data with goals and activitytype
+     Implements the Activity per week, and combines data with goals and activitytype
      - paramter size : The number of elements to be fetched
      - paramter page : The page to be fetched
      - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
@@ -292,6 +292,7 @@ class ActivitiesRequestManager {
             }
         }
     }
+    
     
     private func getActivtyPrWeekhandleActivieResponse(theJson : BodyDataDictionary, goals : [Goal]) -> [WeekActivityGoal] {
         

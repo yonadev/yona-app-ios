@@ -14,6 +14,8 @@
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -61,15 +63,39 @@
                             <constraint firstAttribute="height" constant="32" id="JZq-mW-5XW"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mj9-S4-ntV">
+                        <rect key="frame" x="318" y="114" width="25" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="35X-PT-ZwP"/>
+                            <constraint firstAttribute="height" constant="12" id="98I-5r-f0c"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                        <color key="textColor" red="0.18431372940540314" green="0.18431372940540314" blue="0.18431372940540314" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-pn-dhQ">
+                        <rect key="frame" x="32" y="114" width="25" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="JbT-vK-zUy"/>
+                            <constraint firstAttribute="width" constant="25" id="Jkr-5N-vlZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                        <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="sfL-pn-dhQ" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="bottom" constant="8" id="0FH-cW-GEG"/>
                     <constraint firstItem="drz-uD-GrX" firstAttribute="leading" secondItem="vIZ-pa-TJW" secondAttribute="trailing" constant="3" id="5c6-vz-uJe"/>
                     <constraint firstItem="rUf-Jw-v1k" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="21" id="8h8-7X-7ce"/>
                     <constraint firstAttribute="trailingMargin" secondItem="drz-uD-GrX" secondAttribute="trailing" constant="24" id="A70-7e-IFh"/>
+                    <constraint firstItem="mj9-S4-ntV" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="bottom" constant="8" id="Do6-vJ-aMp"/>
                     <constraint firstItem="mTL-Jd-BWR" firstAttribute="top" secondItem="vIZ-pa-TJW" secondAttribute="bottom" constant="16" id="J65-8v-TB2"/>
+                    <constraint firstItem="sfL-pn-dhQ" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="SG0-Lz-kc5"/>
                     <constraint firstItem="mTL-Jd-BWR" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="UWk-Ms-FC4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mTL-Jd-BWR" secondAttribute="trailing" constant="24" id="ei4-L3-8Ru"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="centerX" secondItem="zoS-j4-1EE" secondAttribute="centerX" id="fhU-AS-5pN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mj9-S4-ntV" secondAttribute="trailing" constant="24" id="kcJ-dt-qfL"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="leading" secondItem="rUf-Jw-v1k" secondAttribute="trailing" constant="-1" id="o8O-LH-oxN"/>
                     <constraint firstItem="rUf-Jw-v1k" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="ooY-Ea-aXR"/>
                     <constraint firstItem="drz-uD-GrX" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="24" id="pPe-zk-bu3"/>
@@ -77,10 +103,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="backgroundMinsView" destination="mTL-Jd-BWR" id="cwj-Of-2iF"/>
+                <outlet property="backgroundMinsView" destination="mTL-Jd-BWR" id="NdK-MB-rTK"/>
+                <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
                 <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
                 <outlet property="minutes" destination="vIZ-pa-TJW" id="IGx-a6-Gve"/>
+                <outlet property="startMinutes" destination="sfL-pn-dhQ" id="W2R-ah-8MC"/>
             </connections>
             <point key="canvasLocation" x="235.5" y="128.5"/>
         </tableViewCell>

@@ -29,7 +29,6 @@ class SingleDayActivityGoal : NSObject {
     
     init(data :  (String ,AnyObject) ) {
         
-        
         let key = data.0
         let value = data.1
             dayofweek = SingleDayActivityGoal.dayOfWeekFromString(key)
