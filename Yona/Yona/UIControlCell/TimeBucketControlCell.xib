@@ -73,7 +73,7 @@
                         <color key="textColor" red="0.18431372940540314" green="0.18431372940540314" blue="0.18431372940540314" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-pn-dhQ">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-pn-dhQ">
                         <rect key="frame" x="32" y="114" width="25" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="JbT-vK-zUy"/>
@@ -107,8 +107,8 @@
                 <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
                 <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
-                <outlet property="minutes" destination="vIZ-pa-TJW" id="IGx-a6-Gve"/>
-                <outlet property="startMinutes" destination="sfL-pn-dhQ" id="W2R-ah-8MC"/>
+                <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
+                <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
             </connections>
             <point key="canvasLocation" x="235.5" y="128.5"/>
         </tableViewCell>
