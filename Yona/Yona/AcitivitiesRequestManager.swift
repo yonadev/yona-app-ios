@@ -168,10 +168,10 @@ class ActivitiesRequestManager {
 
 
     /**
-     IMplements the Activtiy with ID API call, and returns overview of activities
+    Implements the Activtiy pr day, and combines data with goals and activitytype
      - paramter size : The number of elements to be fetched
      - paramter page : The page to be fetched
-     - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
      */
     func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityGoalResponse){
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
@@ -186,18 +186,33 @@ class ActivitiesRequestManager {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                 return
                             }
-                            print(json)
                             var newData : [ActivitiesGoal] = []
-                            if let embedded = json[YonaConstants.jsonKeys.embedded],
-                                let embeddedActivities = embedded[YonaConstants.jsonKeys.yonadayActivityOverviews] as? NSArray{
-                                for activity in embeddedActivities {
-                                    if let activity = activity as? BodyDataDictionary {
-                                        let aActivityGoal = ActivitiesGoal.init(activityData: activity)
-                                        newData.append(aActivityGoal)
+                            newData = self.getActivtyPrDayhandleActivieResponse( json)
+                            if newData.count > 0 {
+                            
+                                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                    
+                                    if activities?.count > 0 {
+                                    
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                            
+                                            if status  {
+                                                if let theGoals = goals {
+                                                    for singleActivity in newData {
+                                                        singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                    }
+                                                }
+                                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+
+                                            }
+                                        
+                                        })
+                                    } else {
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                     }
-                                }
-                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                    })
                             }
+ 
                         } else {
                             //response from request failed
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
@@ -209,6 +224,89 @@ class ActivitiesRequestManager {
                 onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
             }
         }
+    }
+    
+    private func getActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [ActivitiesGoal] {
+        
+        var newData : [ActivitiesGoal] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray{
+            for activity in embeddedActivities {
+                if let activity = activity as? BodyDataDictionary {
+                    let aActivityGoal = ActivitiesGoal.init(activityData: activity)
+                    newData.append(aActivityGoal)
+                }
+            }
+        }
+
+        return newData
+    }
+
+    /**
+     Implements the Activtiy pr day, and combines data with goals and activitytype
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getActivityPrWeek(size : Int, page : Int,onCompletion: APIActivityWeekResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+                if let path = user?.weeklyActivityReportsLink {
+                    //if the newActivites object has been filled then we can get the link to display activity
+                    
+                    let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            var newData : [WeekActivityGoal] = []
+                            
+                                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                    
+                                    if activities?.count > 0 {
+                                        
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                            
+                                            if status  {
+                                               newData = self.getActivtyPrWeekhandleActivieResponse(json, goals: goals!)
+                                            }
+                                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+
+                                        })
+                                    } else {
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                    }
+                                })
+                            
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    }
+                }
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+            }
+        }
+    }
+    
+    private func getActivtyPrWeekhandleActivieResponse(theJson : BodyDataDictionary, goals : [Goal]) -> [WeekActivityGoal] {
+        
+        var newData : [WeekActivityGoal] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.weekActivityOverviews] as? [BodyDataDictionary]{
+            for object in embeddedActivities  {
+                let week = WeekActivityGoal(data:object, allGoals: goals)
+                newData.append(week)
+                
+                
+            }
+        }
+        
+        return newData
     }
 
 }

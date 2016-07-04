@@ -80,12 +80,33 @@ struct YonaConstants {
         static let  yonaPinClear = "yona:clearPinReset"
         static let  hrefKey = "href"
 
-        static let  yonadayDetails = "yona:dayDetails"
-        static let  yonadayActivityOverviews = "yona:dayActivityOverviews"
+        static let  dayActivities = "dayActivities"
+        static let  yonaDayActivityOverviews = "yona:dayActivityOverviews"
         static let  historyItem = "historyItem"
-
+        static let  totalActivityDurationMinutes = "totalActivityDurationMinutes"
+        static let  goalAccomplished = "goalAccomplished"
+        static let  totalMinutesBeyondGoal = "totalMinutesBeyondGoal"
+        static let  yonaDayDetails = "yona:dayDetails"
+        static let  date = "date"
+        static let  yonaGoal = "yona:goal"
+        
+        static let  weekActivityOverviews = "yona:weekActivityOverviews"
+        static let  weekActivities = "weekActivities"
+        static let  yonaWeekDetails = "yona:weekDetails"
+        
     }
 
+    struct dayOfWeek {
+        static let sunday = "SUNDAY"
+        static let monday = "MONDAY"
+        static let tuesday = "TUESDAY"
+        static let wednesday = "WEDNESDAY"
+        static let thursday = "THURSDAY"
+        static let friday = "FRIDAYY"
+        static let saturday = "SATURDAY"
+    
+    }
+    
     struct serverCodes{
         static let userOverWriteConfirmCodeMismatch = "error.user.overwrite.confirmation.code.mismatch"
         static let mobileConfirmMismatch = "error.mobile.number.confirmation.code.mismatch"

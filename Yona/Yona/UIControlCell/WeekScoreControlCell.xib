@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Oswald-Light.ttf">
+            <string>Oswald-Light</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Bold.otf">
+            <string>SFUIDisplay-Bold</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekScoreControlCell" id="Mb0-8R-zPh" customClass="WeekScoreControlCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb0-8R-zPh" id="BVy-IL-WHi">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gug-Vp-0sx">
+                        <rect key="frame" x="166" y="12" width="43" height="47"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43" id="9dR-rB-qGp"/>
+                            <constraint firstAttribute="height" constant="47" id="jnH-5M-Os1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-vb-f3E" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="32" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRL-cl-bli">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="DEb-2f-sSw"/>
+                                    <constraint firstAttribute="width" constant="20" id="FxB-d0-A9x"/>
+                                </constraints>
+                                <string key="text">wo
+29</string>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="MRL-cl-bli" firstAttribute="centerY" secondItem="L2i-vb-f3E" secondAttribute="centerY" id="1D3-YF-H1P"/>
+                            <constraint firstAttribute="height" constant="35" id="1yF-lx-qtZ"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="Viu-EJ-yJD"/>
+                            <constraint firstItem="MRL-cl-bli" firstAttribute="centerX" secondItem="L2i-vb-f3E" secondAttribute="centerX" id="Wfx-Tj-i95"/>
+                            <constraint firstAttribute="width" constant="35" id="Zb5-jg-4Jx"/>
+                            <constraint firstItem="MRL-cl-bli" firstAttribute="centerY" secondItem="L2i-vb-f3E" secondAttribute="centerY" id="chm-Qj-azz"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="eMp-s6-8Am"/>
+                            <constraint firstItem="MRL-cl-bli" firstAttribute="centerX" secondItem="L2i-vb-f3E" secondAttribute="centerX" id="pyh-pd-N6f"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Viu-EJ-yJD"/>
+                                <exclude reference="eMp-s6-8Am"/>
+                                <exclude reference="1D3-YF-H1P"/>
+                                <exclude reference="pyh-pd-N6f"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="MRL-cl-bli" id="wi5-ts-VXJ"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="neI-tC-E3N" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="78" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa0-Ai-Mni">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="bZk-xC-Vn5"/>
+                                    <constraint firstAttribute="height" constant="22" id="eg1-tP-D42"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerX" secondItem="neI-tC-E3N" secondAttribute="centerX" id="MTB-sA-n4b"/>
+                            <constraint firstAttribute="width" constant="35" id="cIi-YD-2OE"/>
+                            <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerY" secondItem="neI-tC-E3N" secondAttribute="centerY" id="dcg-5k-UMk"/>
+                            <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerY" secondItem="neI-tC-E3N" secondAttribute="centerY" id="hXb-8X-mg8"/>
+                            <constraint firstAttribute="height" constant="35" id="s1M-EM-Pvp"/>
+                            <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerX" secondItem="neI-tC-E3N" secondAttribute="centerX" id="uU6-2v-z9N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uU6-2v-z9N"/>
+                                <exclude reference="hXb-8X-mg8"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="oa0-Ai-Mni" id="WZx-NP-HR6"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaA-Cs-Vgh" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="124" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXS-5j-ywJ">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="dRe-Ne-wgY"/>
+                                    <constraint firstAttribute="width" constant="20" id="yBm-3N-w0O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerY" secondItem="BaA-Cs-Vgh" secondAttribute="centerY" id="9SR-ZH-vSc"/>
+                            <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerX" secondItem="BaA-Cs-Vgh" secondAttribute="centerX" id="9gi-fU-0GE"/>
+                            <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerY" secondItem="BaA-Cs-Vgh" secondAttribute="centerY" id="PO5-oH-VDI"/>
+                            <constraint firstAttribute="height" constant="35" id="bFP-Jc-MCf"/>
+                            <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerX" secondItem="BaA-Cs-Vgh" secondAttribute="centerX" id="lgR-pn-mV0"/>
+                            <constraint firstAttribute="width" constant="35" id="qkx-Ce-5My"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lgR-pn-mV0"/>
+                                <exclude reference="PO5-oH-VDI"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="VXS-5j-ywJ" id="LVU-0p-Zj5"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbU-0Z-MEU" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="170" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-Zb-lm3">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Ayc-fj-QSZ"/>
+                                    <constraint firstAttribute="height" constant="22" id="QJF-BN-BDG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerY" secondItem="CbU-0Z-MEU" secondAttribute="centerY" id="5Gu-tx-T2A"/>
+                            <constraint firstAttribute="height" constant="35" id="EPq-Yj-FeH"/>
+                            <constraint firstAttribute="width" constant="35" id="ZyS-Bj-2F5"/>
+                            <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerX" secondItem="CbU-0Z-MEU" secondAttribute="centerX" id="eyl-17-TGi"/>
+                            <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerX" secondItem="CbU-0Z-MEU" secondAttribute="centerX" id="lBk-pw-Gat"/>
+                            <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerY" secondItem="CbU-0Z-MEU" secondAttribute="centerY" id="lfv-dw-mcF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eyl-17-TGi"/>
+                                <exclude reference="lfv-dw-mcF"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="twJ-Zb-lm3" id="iub-zj-nq9"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-Og-eQq" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="216" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTZ-MA-QUu">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="YtM-ce-bJ4"/>
+                                    <constraint firstAttribute="width" constant="20" id="gFd-Ya-SC2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="4Y9-tA-Tp4"/>
+                            <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerX" secondItem="EJ3-Og-eQq" secondAttribute="centerX" id="H8U-sn-myJ"/>
+                            <constraint firstAttribute="width" constant="35" id="MVf-Ro-OVa"/>
+                            <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerX" secondItem="EJ3-Og-eQq" secondAttribute="centerX" id="O1h-NN-xWL"/>
+                            <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerY" secondItem="EJ3-Og-eQq" secondAttribute="centerY" id="p3j-LD-Ahd"/>
+                            <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerY" secondItem="EJ3-Og-eQq" secondAttribute="centerY" id="sYw-zd-DE2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="H8U-sn-myJ"/>
+                                <exclude reference="p3j-LD-Ahd"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="wTZ-MA-QUu" id="YaE-HQ-jzL"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4D-2c-gUK" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="262" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLG-wS-iKt">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="6Xd-IJ-Qkm"/>
+                                    <constraint firstAttribute="height" constant="22" id="zqe-sZ-Qwq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="GLG-wS-iKt" firstAttribute="centerX" secondItem="Y4D-2c-gUK" secondAttribute="centerX" id="b0p-Xi-OM3"/>
+                            <constraint firstItem="GLG-wS-iKt" firstAttribute="centerY" secondItem="Y4D-2c-gUK" secondAttribute="centerY" id="h5a-2C-1aW"/>
+                            <constraint firstAttribute="height" constant="35" id="hMy-kM-uI3"/>
+                            <constraint firstAttribute="width" constant="35" id="iiK-KP-fl3"/>
+                            <constraint firstItem="GLG-wS-iKt" firstAttribute="centerX" secondItem="Y4D-2c-gUK" secondAttribute="centerX" id="mf1-4z-WBg"/>
+                            <constraint firstItem="GLG-wS-iKt" firstAttribute="centerY" secondItem="Y4D-2c-gUK" secondAttribute="centerY" id="pxK-kj-hHC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mf1-4z-WBg"/>
+                                <exclude reference="pxK-kj-hHC"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="GLG-wS-iKt" id="e05-oZ-Y8d"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Yi-py-dRO" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="308" y="68" width="35" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJj-QR-o7L">
+                                <rect key="frame" x="7.5" y="6.5" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="50N-Xx-88A"/>
+                                    <constraint firstAttribute="height" constant="22" id="cZL-Lf-pEZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="7Ba-5m-Smg"/>
+                            <constraint firstAttribute="height" constant="35" id="DvL-fY-bdQ"/>
+                            <constraint firstItem="eJj-QR-o7L" firstAttribute="centerX" secondItem="1Yi-py-dRO" secondAttribute="centerX" id="Eed-dh-qEw"/>
+                            <constraint firstItem="eJj-QR-o7L" firstAttribute="centerY" secondItem="1Yi-py-dRO" secondAttribute="centerY" id="H7J-pa-ww9"/>
+                            <constraint firstItem="eJj-QR-o7L" firstAttribute="centerY" secondItem="1Yi-py-dRO" secondAttribute="centerY" id="TR8-zU-7OL"/>
+                            <constraint firstItem="eJj-QR-o7L" firstAttribute="centerX" secondItem="1Yi-py-dRO" secondAttribute="centerX" id="Uer-8M-Bqe"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Eed-dh-qEw"/>
+                                <exclude reference="H7J-pa-ww9"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="dateText" destination="eJj-QR-o7L" id="Y78-et-TXr"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYI-aG-3FI">
+                        <rect key="frame" x="32" y="30" width="126" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="atg-kD-7K4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CbU-0Z-MEU" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="AYq-Va-Frv"/>
+                    <constraint firstItem="BaA-Cs-Vgh" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="DvH-Vc-FLo"/>
+                    <constraint firstItem="gug-Vp-0sx" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="G3V-o5-Ztq"/>
+                    <constraint firstItem="L2i-vb-f3E" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="Jbs-dQ-PMy"/>
+                    <constraint firstItem="gug-Vp-0sx" firstAttribute="leading" secondItem="pYI-aG-3FI" secondAttribute="trailing" constant="8" id="JtE-nA-exX"/>
+                    <constraint firstItem="1Yi-py-dRO" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="KRb-QN-TY3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1Yi-py-dRO" secondAttribute="trailing" constant="24" id="KtJ-KF-Vjo"/>
+                    <constraint firstItem="CbU-0Z-MEU" firstAttribute="top" secondItem="gug-Vp-0sx" secondAttribute="bottom" constant="9" id="OM9-TW-wL3"/>
+                    <constraint firstItem="EJ3-Og-eQq" firstAttribute="leading" secondItem="CbU-0Z-MEU" secondAttribute="trailing" constant="11" id="Qhn-Do-ZLu"/>
+                    <constraint firstItem="neI-tC-E3N" firstAttribute="leading" secondItem="L2i-vb-f3E" secondAttribute="trailing" constant="11" id="Zyn-x0-L2C"/>
+                    <constraint firstItem="gug-Vp-0sx" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="4" id="adM-pd-zLv"/>
+                    <constraint firstItem="L2i-vb-f3E" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leadingMargin" constant="24" id="bf6-4E-Y3V"/>
+                    <constraint firstItem="EJ3-Og-eQq" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="ck5-2I-0Zt"/>
+                    <constraint firstItem="pYI-aG-3FI" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leadingMargin" constant="24" id="dJu-sl-ccc"/>
+                    <constraint firstItem="neI-tC-E3N" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="fyd-Te-nln"/>
+                    <constraint firstItem="pYI-aG-3FI" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="22" id="i5j-ye-w5h"/>
+                    <constraint firstItem="Y4D-2c-gUK" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="oOj-j8-cAS"/>
+                    <constraint firstItem="BaA-Cs-Vgh" firstAttribute="leading" secondItem="neI-tC-E3N" secondAttribute="trailing" constant="11" id="rb9-iX-6U2"/>
+                    <constraint firstItem="1Yi-py-dRO" firstAttribute="leading" secondItem="Y4D-2c-gUK" secondAttribute="trailing" constant="11" id="sVt-Ld-pfq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="day1CircelView" destination="L2i-vb-f3E" id="umY-xG-Q6i"/>
+                <outlet property="day2CircelView" destination="neI-tC-E3N" id="EiF-6A-OL6"/>
+                <outlet property="day3CircelView" destination="BaA-Cs-Vgh" id="bwI-Xz-gbp"/>
+                <outlet property="day4CircelView" destination="CbU-0Z-MEU" id="fEO-nW-UxM"/>
+                <outlet property="day5CircelView" destination="EJ3-Og-eQq" id="E8U-pH-zj1"/>
+                <outlet property="day6CircelView" destination="Y4D-2c-gUK" id="JXc-Q1-syq"/>
+                <outlet property="day7CircelView" destination="1Yi-py-dRO" id="r7q-7w-Sgf"/>
+                <outlet property="goalTypeLabel" destination="pYI-aG-3FI" id="luY-bB-1iQ"/>
+                <outlet property="scoreLabel" destination="gug-Vp-0sx" id="kNf-om-ECS"/>
+            </connections>
+            <point key="canvasLocation" x="264.5" y="235"/>
+        </tableViewCell>
+    </objects>
+</document>
