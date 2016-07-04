@@ -11,12 +11,13 @@
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
 		165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887961D19E4D90021DFC4 /* GradientLargeView.swift */; };
-		165BB1E71D22829D0013A4EF /* ActivitieGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BB1E61D22829D0013A4EF /* ActivitieGoal.swift */; };
+		165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BB1E61D22829D0013A4EF /* ActivitiesGoal.swift */; };
 		165BB1EA1D228A010013A4EF /* TimeBucketControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BB1E91D228A010013A4EF /* TimeBucketControlCell.swift */; };
 		165BB1EC1D228A260013A4EF /* TimeBucketControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165BB1EB1D228A260013A4EF /* TimeBucketControlCell.xib */; };
 		166CB8421D24EEBC008B425D /* WeekScoreControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8411D24EEBC008B425D /* WeekScoreControlCell.swift */; };
 		166CB8441D24EEC9008B425D /* WeekScoreControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166CB8431D24EEC9008B425D /* WeekScoreControlCell.xib */; };
 		166CB8461D250BCE008B425D /* WeekCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8451D250BCE008B425D /* WeekCircleView.swift */; };
+		166CB8481D2B1524008B425D /* DayActivityOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8471D2B1524008B425D /* DayActivityOverview.swift */; };
 		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
 		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
 		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
@@ -289,12 +290,13 @@
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
 		165887961D19E4D90021DFC4 /* GradientLargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLargeView.swift; sourceTree = "<group>"; };
-		165BB1E61D22829D0013A4EF /* ActivitieGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivitieGoal.swift; path = DAOObjects/ActivitieGoal.swift; sourceTree = "<group>"; };
+		165BB1E61D22829D0013A4EF /* ActivitiesGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivitiesGoal.swift; path = DAOObjects/ActivitiesGoal.swift; sourceTree = "<group>"; };
 		165BB1E91D228A010013A4EF /* TimeBucketControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBucketControlCell.swift; sourceTree = "<group>"; };
 		165BB1EB1D228A260013A4EF /* TimeBucketControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeBucketControlCell.xib; sourceTree = "<group>"; };
 		166CB8411D24EEBC008B425D /* WeekScoreControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScoreControlCell.swift; sourceTree = "<group>"; };
 		166CB8431D24EEC9008B425D /* WeekScoreControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekScoreControlCell.xib; sourceTree = "<group>"; };
 		166CB8451D250BCE008B425D /* WeekCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCircleView.swift; sourceTree = "<group>"; };
+		166CB8471D2B1524008B425D /* DayActivityOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayActivityOverview.swift; sourceTree = "<group>"; };
 		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
 		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
 		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
@@ -854,7 +856,8 @@
 				907DA5271CBE5C5D0031850E /* Activities.swift */,
 				9054CC871CE384AB00F575E2 /* Buddies.swift */,
 				BE8254431CEA92F400F97045 /* Message.swift */,
-				165BB1E61D22829D0013A4EF /* ActivitieGoal.swift */,
+				165BB1E61D22829D0013A4EF /* ActivitiesGoal.swift */,
+				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */,
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
@@ -1736,7 +1739,7 @@
 				16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
-				165BB1E71D22829D0013A4EF /* ActivitieGoal.swift in Sources */,
+				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
 				9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */,
@@ -1748,6 +1751,7 @@
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
+				166CB8481D2B1524008B425D /* DayActivityOverview.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,

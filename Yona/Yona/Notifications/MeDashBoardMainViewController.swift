@@ -13,7 +13,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBOutlet var userDetailButton: UIBarButtonItem!
     @IBOutlet var notificationsButton: UIButton?
 
-    var leftTabData : [ActivitiesGoal] = []
+    var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
     
     // MARK: - View
@@ -51,7 +51,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if selectedTab == .left {
-            return 1
+            return leftTabData.count
         }
         return rightTabData.count
     }
@@ -59,7 +59,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if selectedTab == .left {
-            return leftTabData.count
+            if leftTabData.count == 0 {
+                return 0
+            }
+            return leftTabData[section].activites.count
         }
         return rightTabData[section].activity.count
     }
@@ -67,14 +70,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if selectedTab == .left {
-//todo: REPLACE THIS WITH THE CELLS FOR DAY VIEW
-//            let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-//            return cell
-////
-            let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-            cell.setUpView(leftTabData[indexPath.row])
-            return cell
-
+            return getCellForDayTableRow(indexPath)
         }
         
         
@@ -85,23 +81,36 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if selectedTab == .left {
+            return heigthForDayCell(indexPath)
+        }
         return 126
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if selectedTab == .left {
-            return 0
-        }
         return 44.0
     }
 
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if selectedTab == .left {
-            return nil
-        }
         
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
+        if selectedTab == .left {
+            
+            let dateTodate = NSDate()
+            let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
+            let dateFormatter : NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
+            
+            if leftTabData[section].date.isSameDayAs(dateTodate) {
+                cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
+            } else if leftTabData[section].date.isSameDayAs(yesterDate) {
+                cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+            } else {
+                cell.headerTextLabel.text =  dateFormatter.stringFromDate(leftTabData[section].date)
+            }
+            return cell
+       }
         
         let dateTodate = NSDate()
         let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
@@ -132,7 +141,58 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         loadActivitiesForWeek()
     }
 
+    //MARK:  ME DAY Cell methods
+    func heigthForDayCell (indexPath : NSIndexPath) -> CGFloat{
     
+        let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
+        if let goaltype = activityGoal.goalType {
+
+            if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
+                
+                return 165
+            } else if goaltype == "TimeZoneGoal" {
+                // Time Frame Control
+                // TODO:  Changes this once the cell has been created
+                return 165
+            } else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
+                // NoGo Control
+                // TODO:  Changes this once the cell has been created
+                return 0
+            }
+        }
+        return 0
+    }
+    
+    
+    func getCellForDayTableRow(indexPath : NSIndexPath) -> UITableViewCell {
+
+        let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
+        if let goaltype = activityGoal.goalType {
+            
+            // TIMEBUCKETCELL
+            if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                cell.setUpView(activityGoal)
+                return cell
+            }
+            // Time Frame Control
+                // TODO:  Changes this once the cell has been created
+            else if goaltype == "TimeZoneGoal" {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                cell.setUpView(activityGoal)
+                return cell
+            }
+            // NoGo Control
+            // TODO:  Changes this once the cell has been created
+            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                cell.setUpView(activityGoal)
+                return cell
+            }
+        }
+        // WE SHOULD NERVE END HERE ....
+        return UITableViewCell(frame: CGRectZero)
+    }
     
     // MARK: - Data loaders
     

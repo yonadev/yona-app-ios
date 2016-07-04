@@ -43,33 +43,31 @@ class ActivitiesGoal : NSObject{
      */
     
     
-    init(activityData: BodyDataDictionary) {
+    init(activityData: AnyObject, date theDate: NSDate) {
         
-        if let activityDate = activityData[YonaConstants.jsonKeys.date] as? String {
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
-            if let aDate = dateFormatter.dateFromString(activityDate) {
-                date = aDate
-            }
-         }
-        
-        if let dayActivities = activityData[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
-        {
-            for aData in dayActivities  {
-                if let totalMinutesBeyondGoal = aData[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
+        date = theDate
+//        if let activityDate = activityData[YonaConstants.jsonKeys.date] as? String {
+//            
+//            let dateFormatter = NSDateFormatter()
+//            dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
+//            if let aDate = dateFormatter.dateFromString(activityDate) {
+//                date = aDate
+//            }
+//         }
+//        
+                if let totalMinutesBeyondGoal = activityData[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
                     self.totalMinutesBeyondGoal = totalMinutesBeyondGoal
                 }
-                if let totalActivityDurationMinutes = aData[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
+                if let totalActivityDurationMinutes = activityData[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
                     self.totalActivityDurationMinutes = totalActivityDurationMinutes
                 }
-                if let goalAccomplished = aData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
+                if let goalAccomplished = activityData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
                     self.goalAccomplished = goalAccomplished
                 }
                 
                 
                 
-                if let links = aData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+                if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
                     if let edit = links[YonaConstants.jsonKeys.yonaGoal] as? [String: AnyObject],
                         let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
                         self.goalLinks = editLink
@@ -81,8 +79,8 @@ class ActivitiesGoal : NSObject{
                             self.activityID = lastPath
                         }
                     }
-                }
-            }
+//                }
+//            }
         }
     }
     

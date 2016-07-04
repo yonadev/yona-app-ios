@@ -186,7 +186,7 @@ class ActivitiesRequestManager {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                 return
                             }
-                            var newData : [ActivitiesGoal] = []
+                            var newData : [DayActivityOverview] = []
                             newData = self.getActivtyPrDayhandleActivieResponse( json)
                             if newData.count > 0 {
                             
@@ -198,8 +198,11 @@ class ActivitiesRequestManager {
                                             
                                             if success  {
                                                 if let theGoals = goals {
-                                                    for singleActivity in newData {
+                                                    for singleDayActivty in newData {
+                                                        for singleActivity in singleDayActivty.activites {
+                                                        
                                                         singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                        }
                                                     }
                                                 }
                                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
@@ -226,16 +229,38 @@ class ActivitiesRequestManager {
         }
     }
     
-    private func getActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [ActivitiesGoal] {
+    private func getActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [DayActivityOverview] {
         
-        var newData : [ActivitiesGoal] = []
+        var newData : [DayActivityOverview] = []
         if let embedded = theJson[YonaConstants.jsonKeys.embedded],
             let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray{
             for activity in embeddedActivities {
+                var dateActivity : [ActivitiesGoal] = []
+                var theDate : NSDate = NSDate()
                 if let activity = activity as? BodyDataDictionary {
-                    let aActivityGoal = ActivitiesGoal.init(activityData: activity)
-                    newData.append(aActivityGoal)
+                    
+                    
+                    if let activityDate = activity[YonaConstants.jsonKeys.date] as? String {
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
+                        if let aDate = dateFormatter.dateFromString(activityDate) {
+                            theDate = aDate
+                        }
+                    }
+                    if let dayActivities = activity[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
+                    {
+                        for aData in dayActivities {
+                            
+                            let aActivityGoal = ActivitiesGoal.init(activityData: aData, date: theDate)
+                            dateActivity.append(aActivityGoal)
+                        }
+                    }
+                    
                 }
+                let daysActivities = DayActivityOverview(Date: theDate, theActivities: dateActivity)
+                
+                newData.append(daysActivities)
             }
         }
 
