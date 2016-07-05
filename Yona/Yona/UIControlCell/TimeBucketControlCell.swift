@@ -17,19 +17,16 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var minsView: UIView!
     @IBOutlet weak var backgroundMinsView: UIView!
     
-    @IBOutlet weak var zeroMinutes: UILabel!
     @IBOutlet weak var minutesBeyondGoal: UILabel!
     @IBOutlet weak var endMinutes: UILabel!
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
-    var animate: Bool?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func setUpView(activityGoal : ActivitiesGoal) {
+    func setUpView(activityGoal : ActivitiesGoal, animated: Bool) {
 
         let neg = 10//activityGoal.totalMinutesBeyondGoal
         let positive = 30//activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
@@ -62,7 +59,7 @@ class TimeBucketControlCell : UITableViewCell {
         positiveView.alpha = 1
         negativeView.alpha = 1
         
-        if (animate == true) {
+        if (animated == false) {
             UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                     positiveView.frame = positiveFrame
                 }, completion: {finished in

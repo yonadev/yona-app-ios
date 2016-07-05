@@ -16,7 +16,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
     
-    var animatedCells : [Int] = []
+    var animatedCells : [NSIndexPath] = []
     
     // MARK: - View
     override func viewDidLoad() {
@@ -175,9 +175,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 
-                animateCell(cell, row: indexPath.row)
-                cell.setUpView(activityGoal)
-                animatedCells.append(indexPath.row)
+                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
+                animatedCells.append(indexPath)
                 return cell
             }
             // Time Frame Control
@@ -185,9 +184,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
 
-                animateCell(cell, row: indexPath.row)
-                cell.setUpView(activityGoal)
-                animatedCells.append(indexPath.row)
+                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
+                animatedCells.append(indexPath)
                 return cell
             }
             // NoGo Control
@@ -195,22 +193,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
 
-                animateCell(cell, row: indexPath.row)
-                cell.setUpView(activityGoal)
-                animatedCells.append(indexPath.row)
+                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
+                animatedCells.append(indexPath)
                 return cell
             }
         }
         // WE SHOULD NEVER END HERE ....
         return UITableViewCell(frame: CGRectZero)
-    }
-    
-    func animateCell(cell: TimeBucketControlCell, row:Int){
-        if animatedCells.contains(row) {
-            cell.animate = false
-        } else {
-            cell.animate = true
-        }
     }
     
     // MARK: - Data loaders
