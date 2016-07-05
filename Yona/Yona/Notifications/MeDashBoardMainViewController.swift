@@ -174,11 +174,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             // TIMEBUCKETCELL
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if animatedCells.contains(indexPath.row) {
-                    cell.animate = false
-                } else {
-                    cell.animate = true
-                }
+                
+                animateCell(cell, row: indexPath.row)
                 cell.setUpView(activityGoal)
                 animatedCells.append(indexPath.row)
                 return cell
@@ -187,11 +184,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if animatedCells.contains(indexPath.row) {
-                    cell.animate = false
-                } else {
-                    cell.animate = true
-                }
+
+                animateCell(cell, row: indexPath.row)
                 cell.setUpView(activityGoal)
                 animatedCells.append(indexPath.row)
                 return cell
@@ -200,11 +194,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             // TODO:  Changes this once the cell has been created
             else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if animatedCells.contains(indexPath.row) {
-                    cell.animate = false
-                } else {
-                    cell.animate = true
-                }
+
+                animateCell(cell, row: indexPath.row)
                 cell.setUpView(activityGoal)
                 animatedCells.append(indexPath.row)
                 return cell
@@ -212,6 +203,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
         // WE SHOULD NEVER END HERE ....
         return UITableViewCell(frame: CGRectZero)
+    }
+    
+    func animateCell(cell: TimeBucketControlCell, row:Int){
+        if animatedCells.contains(row) {
+            cell.animate = false
+        } else {
+            cell.animate = true
+        }
     }
     
     // MARK: - Data loaders
