@@ -39,11 +39,11 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         let negativeView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height))
-        negativeView.backgroundColor = UIColor.redColor()
+        negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
         negativeView.alpha = 0
         
         let positiveView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height))
-        positiveView.backgroundColor = UIColor.greenColor()
+        positiveView.backgroundColor = UIColor.yiPeaColor()
         positiveView.alpha = 0
         
         backgroundMinsView.addSubview(negativeView)
@@ -95,7 +95,9 @@ class TimeBucketControlCell : UITableViewCell {
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
         zeroMins.alpha = 0.5
-        self.addSubview(zeroMins)
+        if animated == false { //only draw this once when frame is animated
+            self.addSubview(zeroMins)
+        }
         
         //set minutes title
         if neg != 0 {
