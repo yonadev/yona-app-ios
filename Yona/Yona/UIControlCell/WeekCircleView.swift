@@ -27,6 +27,20 @@ enum circleViewStatus {
             return UIColor.yiGraphBarTwoColor()
         }
     }
+
+    func circleBorderColor() -> UIColor{
+        switch self {
+        case overGoal:
+            return UIColor.yiDarkishPinkBorderColor()
+        case .underGoal:
+            return UIColor.yiPeaColor()
+        case .review:
+            return UIColor.yiMangoColor()
+        case .noData:
+            return UIColor.yiGraphBarTwoColor()
+        }
+    }
+
 }
 
 class WeekCircleView: UIView {
@@ -40,6 +54,11 @@ class WeekCircleView: UIView {
         layer.backgroundColor = UIColor.yiGraphBarTwoColor().CGColor
         dateText.textColor = UIColor.yiWhiteColor()
         
+        layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.borderWidth = 1.0
+        
+        
+        
     }
     
     func configureUI(aDate : NSDate, status : circleViewStatus = .noData) {
@@ -48,7 +67,7 @@ class WeekCircleView: UIView {
         dateFormatter.dateFormat = "EE\nd"
         dateText.text = dateFormatter.stringFromDate(aDate)
         layer.backgroundColor = status.circleColor().CGColor
-        
+        layer.borderColor = status.circleBorderColor().CGColor
     }
     
 }

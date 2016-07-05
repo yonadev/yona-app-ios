@@ -29,13 +29,13 @@ class WeekScoreControlCell: UITableViewCell {
     
     func setSingleActivity(theActivityGoal : WeekSingleActivityGoal) {
        
-        let userCalendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierISO8601)
-        
+        let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
+        userCalendar?.firstWeekday = 1
         scoreLabel.text = "\(theActivityGoal.numberOfDaysGoalWasReached)"
         goalTypeLabel.text = theActivityGoal.goalName
         for index in 0...6 {
             let periodComponents = NSDateComponents()
-            periodComponents.weekday = index
+            periodComponents.weekday = index-1
             let aDate = userCalendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: theActivityGoal.date,
@@ -64,6 +64,7 @@ class WeekScoreControlCell: UITableViewCell {
     func getDayOfWeek(theDate:NSDate)->Int {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         myCalendar.firstWeekday = 1
+        
         let myComponents = myCalendar.components(.Weekday, fromDate: theDate)
         let weekDay = myComponents.weekday
         return weekDay
@@ -78,13 +79,13 @@ class WeekScoreControlCell: UITableViewCell {
 //        return weekOfYear
 //    }
     
-    func getStartDayOfWeek() {
-        let calendar = NSCalendar.currentCalendar()
-        var startOfTheWeek: NSDate?
-        var endOfWeek: NSDate!
-        var interval = NSTimeInterval(0)
-        
-        calendar.rangeOfUnit(.WeekOfMonth, startDate: &startOfTheWeek, interval: &interval, forDate: NSDate())
-        endOfWeek = startOfTheWeek!.dateByAddingTimeInterval(interval - 1)
-    }
+//    func getStartDayOfWeek() {
+//        let calendar = NSCalendar.currentCalendar()
+//        var startOfTheWeek: NSDate?
+//        var endOfWeek: NSDate!
+//        var interval = NSTimeInterval(0)
+//        
+//        calendar.rangeOfUnit(.WeekOfMonth, startDate: &startOfTheWeek, interval: &interval, forDate: NSDate())
+//        endOfWeek = startOfTheWeek!.dateByAddingTimeInterval(interval - 1)
+//    }
 }
