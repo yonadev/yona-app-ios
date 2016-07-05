@@ -9,6 +9,39 @@
 import Foundation
 
 extension NSDate {
+    private var calendar : NSCalendar {
+        return NSCalendar.currentCalendar()
+    }
+    
+    public var years: Int {
+        return self.calendar.components(.Year, fromDate: self).year
+    }
+    
+    public var months: Int {
+        return self.calendar.components(.Month, fromDate: self).month
+    }
+    
+    public var weeks: Int {
+        return self.calendar.components(.WeekOfYear, fromDate: self).weekOfYear
+    }
+    
+    public var days: Int {
+        return self.calendar.components(.Day, fromDate: self).day
+    }
+    
+    public var hours: Int {
+        return self.calendar.components(.Hour, fromDate: self).hour
+    }
+    
+    public var minutes: Int {
+        return self.calendar.components(.Minute, fromDate: self).minute
+    }
+    
+    public var seconds: Int {
+        return self.calendar.components(.Second, fromDate: self).second
+    }
+    
+    
     func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
         var isGreater = false
         if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {

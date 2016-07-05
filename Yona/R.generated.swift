@@ -364,6 +364,7 @@ struct R {
   struct nib {
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
+    static var yonaButtonsTableHeaderView: _R.nib._YonaButtonsTableHeaderView { return _R.nib._YonaButtonsTableHeaderView() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
     static var yonaDefaultTableHeaderView: _R.nib._YonaDefaultTableHeaderView { return _R.nib._YonaDefaultTableHeaderView() }
@@ -401,6 +402,10 @@ struct R {
     struct loginViewController {
       static var transToPasscode: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToPasscode") }
       static var transToPinResetValidation: StoryboardSegueIdentifier<UIStoryboardSegue, LoginViewController, PinResetValidationVC> { return StoryboardSegueIdentifier(identifier: "transToPinResetValidation") }
+    }
+    
+    struct meDashBoardMainViewController {
+      static var showWeekDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetail") }
     }
     
     struct notificationsViewController {
@@ -661,6 +666,19 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> WeekScoreControlCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? WeekScoreControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaButtonsTableHeaderView: NibResource {
+      var instance: UINib { return UINib.init(nibName: "YonaButtonsTableHeaderView", bundle: _R.hostingBundle) }
+      var name: String { return "YonaButtonsTableHeaderView" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaButtonsTableHeaderView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaButtonsTableHeaderView
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
