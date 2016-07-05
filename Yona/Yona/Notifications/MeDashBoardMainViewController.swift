@@ -165,7 +165,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     
     func getCellForDayTableRow(indexPath : NSIndexPath) -> UITableViewCell {
-
+        //
         let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
         if let goaltype = activityGoal.goalType {
             
@@ -184,13 +184,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             }
             // NoGo Control
             // TODO:  Changes this once the cell has been created
-            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
+            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 cell.setUpView(activityGoal)
                 return cell
             }
         }
-        // WE SHOULD NERVE END HERE ....
+        // WE SHOULD NEVER END HERE ....
         return UITableViewCell(frame: CGRectZero)
     }
     
