@@ -16,6 +16,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
     
+    var animatedCells : [Int] = []
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,27 +168,45 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     func getCellForDayTableRow(indexPath : NSIndexPath) -> UITableViewCell {
         //
+        
         let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
         if let goaltype = activityGoal.goalType {
-            
             // TIMEBUCKETCELL
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                if animatedCells.contains(indexPath.row) {
+                    cell.animate = false
+                } else {
+                    cell.animate = true
+                }
                 cell.setUpView(activityGoal)
+                animatedCells.append(indexPath.row)
                 return cell
             }
             // Time Frame Control
                 // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                if animatedCells.contains(indexPath.row) {
+                    cell.animate = false
+                } else {
+                    cell.animate = true
+                }
                 cell.setUpView(activityGoal)
+                animatedCells.append(indexPath.row)
                 return cell
             }
             // NoGo Control
             // TODO:  Changes this once the cell has been created
             else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                if animatedCells.contains(indexPath.row) {
+                    cell.animate = false
+                } else {
+                    cell.animate = true
+                }
                 cell.setUpView(activityGoal)
+                animatedCells.append(indexPath.row)
                 return cell
             }
         }

@@ -23,13 +23,15 @@ class TimeBucketControlCell : UITableViewCell {
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
+    var animate: Bool?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setUpView(activityGoal : ActivitiesGoal) {
 
-        let neg = 0//activityGoal.totalMinutesBeyondGoal
+        let neg = 10//activityGoal.totalMinutesBeyondGoal
         let positive = 30//activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
         
         let totalMinutes = neg + positive
@@ -60,13 +62,18 @@ class TimeBucketControlCell : UITableViewCell {
         positiveView.alpha = 1
         negativeView.alpha = 1
         
-        UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                positiveView.frame = positiveFrame
-            }, completion: {finished in
-                UIView.animateWithDuration(2, animations: {
-                    negativeView.frame = negFrame
-                })
-        })
+        if (animate == true) {
+            UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    positiveView.frame = positiveFrame
+                }, completion: {finished in
+                    UIView.animateWithDuration(2, animations: {
+                        negativeView.frame = negFrame
+                    })
+            })
+        } else {
+            positiveView.frame = positiveFrame
+            negativeView.frame = negFrame
+        }
         
         //set the end minutes
         if let maxMins = activityGoal.maxDurationMinutes {
@@ -77,7 +84,7 @@ class TimeBucketControlCell : UITableViewCell {
         if neg == 0 {
             self.minutesBeyondGoal.hidden = true
         }
-        self.minutesBeyondGoal.text = String(neg)
+        self.minutesBeyondGoal.text = "-\(neg)"
         
         //set position of the zero point
         let zeroMinsFrametemp = self.endMinutes.frame
@@ -86,7 +93,6 @@ class TimeBucketControlCell : UITableViewCell {
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
         let indent = backgroundMinsView.frame.origin.x
-        
         let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute+indent, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
@@ -105,7 +111,7 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         //set goal title
-        self.goalType.text = activityGoal.goalType
+        self.goalType.text = activityGoal.goalName
         
     }
 
