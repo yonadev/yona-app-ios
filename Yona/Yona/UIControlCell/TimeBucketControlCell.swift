@@ -28,8 +28,8 @@ class TimeBucketControlCell : UITableViewCell {
     
     func setUpView(activityGoal : ActivitiesGoal, animated: Bool) {
 
-        let neg = 10//activityGoal.totalMinutesBeyondGoal
-        let positive = 30//activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
+        let neg = activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
         
         let totalMinutes = neg + positive
         
