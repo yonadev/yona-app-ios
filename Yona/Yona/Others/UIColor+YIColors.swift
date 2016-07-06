@@ -15,7 +15,11 @@ extension UIColor {
     class func yiDarkishPinkColor() -> UIColor {
         return UIColor(red: 232.0 / 255.0, green: 48.0 / 255.0, blue: 138.0 / 255.0, alpha: 1.0)
     }
-    
+
+    class func yiDarkishPinkBorderColor() -> UIColor {
+        return UIColor(red: 232.0 / 255.0, green: 47.0 / 255.0, blue: 137.0 / 255.0, alpha: 0.15)
+    }
+
     class func yiMangoColor() -> UIColor {
         return UIColor(red: 249.0 / 255.0, green: 178.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)
     }

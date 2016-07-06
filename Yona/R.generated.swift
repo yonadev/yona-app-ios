@@ -362,6 +362,8 @@ struct R {
   }
   
   struct nib {
+    static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
+    static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
     static var yonaDefaultTableHeaderView: _R.nib._YonaDefaultTableHeaderView { return _R.nib._YonaDefaultTableHeaderView() }
@@ -372,7 +374,9 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
+    static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
     static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
     static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
     static var yonaTwoButtonTableViewCell: ReuseIdentifier<YonaTwoButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaTwoButtonTableViewCell") }
@@ -636,6 +640,34 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.xaton.yona") }
   
   struct nib {
+    struct _TimeBucketControlCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeBucketControlCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeBucketControlCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeBucketControlCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeBucketControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _WeekScoreControlCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "WeekScoreControlCell", bundle: _R.hostingBundle) }
+      var name: String { return "WeekScoreControlCell" }
+      var reuseIdentifier: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> WeekScoreControlCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? WeekScoreControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
     struct _YonaCustomDatePickerView: NibResource {
       var instance: UINib { return UINib.init(nibName: "YonaCustomDatePickerView", bundle: _R.hostingBundle) }
       var name: String { return "YonaCustomDatePickerView" }

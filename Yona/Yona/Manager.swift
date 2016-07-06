@@ -22,6 +22,9 @@ typealias APIUserResponse = (Bool, ServerMessage?, ServerCode?, Users?) -> Void
 typealias APIGoalResponse = (Bool, ServerMessage?, ServerCode?, Goal?, Array<Goal>?, NSError?) -> Void
 typealias APIActivitiesArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, NSError?) -> Void
 typealias APIActivityResponse = (Bool, ServerMessage?, ServerCode?, Activities?, NSError?) -> Void
+typealias APIActivityGoalResponse = (Bool, ServerMessage?, ServerCode?, [DayActivityOverview]?, NSError?) -> Void
+typealias APIActivityWeekResponse = (Bool, ServerMessage?, ServerCode?, [WeekActivityGoal]?, NSError?) -> Void
+
 typealias APIActivitiesGoalsArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, Array<Goal>?, NSError?) -> Void
 typealias APIMessageResponse = (Bool, ServerMessage?, ServerCode?, Message?, Array<Message>?) -> Void
 typealias APIBuddiesResponse = (Bool, ServerMessage?, ServerCode?, Buddies?, Array<Buddies>?) -> Void

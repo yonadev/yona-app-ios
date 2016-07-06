@@ -191,7 +191,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     @IBAction func maxTimebuttonTapped(sender: AnyObject) {
         picker.showHidePicker(isToShow: true)
         
-        if view.frame.size.height < 568 {
+        if view.frame.size.height < 570 {
             scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
         }
     }

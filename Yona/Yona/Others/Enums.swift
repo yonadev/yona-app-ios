@@ -168,6 +168,8 @@ enum getMessagesKeys : String {
     case number = "number"
 
     case dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSZZZ"
+    case dateFormatSimple = "YYYY-MM-dd"
+    case dateFormatWeek = "yyyy'-W'w"
 }
 
 enum addUserKeys : String {

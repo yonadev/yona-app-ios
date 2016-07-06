@@ -165,4 +165,174 @@ class ActivitiesRequestManager {
             }
         }
     }
+
+
+    /**
+    Implements the Activtiy pr day, and combines data with goals and activitytype
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityGoalResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+                if let path = user?.dailyActivityReportsLink {
+                    //if the newActivites object has been filled then we can get the link to display activity
+                    
+                    let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            var newData : [DayActivityOverview] = []
+                            newData = self.getActivtyPrDayhandleActivieResponse( json)
+                            if newData.count > 0 {
+                            
+                                self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
+                                    
+                                    if activities?.count > 0 {
+                                    
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, servermessage, servercode, nil, goals, error) in
+                                            
+                                            if success  {
+                                                if let theGoals = goals {
+                                                    for singleDayActivty in newData {
+                                                        for singleActivity in singleDayActivty.activites {
+                                                        
+                                                        singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                        }
+                                                    }
+                                                }
+                                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+
+                                            }
+                                        
+                                        })
+                                    } else {
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                    }
+                                    })
+                            }
+ 
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    }
+                }
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+            }
+        }
+    }
+    
+    private func getActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [DayActivityOverview] {
+        
+        var newData : [DayActivityOverview] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray{
+            for activity in embeddedActivities {
+                var dateActivity : [ActivitiesGoal] = []
+                var theDate : NSDate = NSDate()
+                if let activity = activity as? BodyDataDictionary {
+                    
+                    
+                    if let activityDate = activity[YonaConstants.jsonKeys.date] as? String {
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
+                        if let aDate = dateFormatter.dateFromString(activityDate) {
+                            theDate = aDate
+                        }
+                    }
+                    if let dayActivities = activity[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
+                    {
+                        for aData in dayActivities {
+                            
+                            let aActivityGoal = ActivitiesGoal.init(activityData: aData, date: theDate)
+                            dateActivity.append(aActivityGoal)
+                        }
+                    }
+                    
+                }
+                let daysActivities = DayActivityOverview(Date: theDate, theActivities: dateActivity)
+                
+                newData.append(daysActivities)
+            }
+        }
+
+        return newData
+    }
+
+    /**
+     Implements the Activity per week, and combines data with goals and activitytype
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getActivityPrWeek(size : Int, page : Int,onCompletion: APIActivityWeekResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+                if let path = user?.weeklyActivityReportsLink {
+                    //if the newActivites object has been filled then we can get the link to display activity
+                    
+                    let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            var newData : [WeekActivityGoal] = []
+                            
+                                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                    
+                                    if activities?.count > 0 {
+                                        
+                                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                            
+                                            if status  {
+                                               newData = self.getActivtyPrWeekhandleActivieResponse(json, goals: goals!)
+                                            }
+                                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+
+                                        })
+                                    } else {
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                    }
+                                })
+                            
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    }
+                }
+            } else {
+                //response from request failed
+                onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+            }
+        }
+    }
+    
+    
+    private func getActivtyPrWeekhandleActivieResponse(theJson : BodyDataDictionary, goals : [Goal]) -> [WeekActivityGoal] {
+        
+        var newData : [WeekActivityGoal] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.weekActivityOverviews] as? [BodyDataDictionary]{
+            for object in embeddedActivities  {
+                let week = WeekActivityGoal(data:object, allGoals: goals)
+                newData.append(week)
+                
+                
+            }
+        }
+        
+        return newData
+    }
+
 }

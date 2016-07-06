@@ -85,7 +85,10 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                 self.timeBucketData(.NoGoGoalString )
                 setSelectedCategory(self.nogoView)
             }
-        } 
+        } else {
+            self.timeBucketData(.NoGoGoalString )
+            setSelectedCategory(self.nogoView)
+        }
     }
     
     override func viewDidAppear(animated:Bool) {
