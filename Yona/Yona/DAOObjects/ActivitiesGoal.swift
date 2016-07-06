@@ -24,6 +24,8 @@ class ActivitiesGoal : NSObject{
     var goalAccomplished : Bool = false
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
+    var spread : [Int] = []
+    
     /*
      "date": "2016-06-28",
      "timeZoneId": "Europe/Amsterdam",
@@ -61,6 +63,11 @@ class ActivitiesGoal : NSObject{
                 if let totalActivityDurationMinutes = activityData[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
                     self.totalActivityDurationMinutes = totalActivityDurationMinutes
                 }
+
+        if let theSpread = activityData[YonaConstants.jsonKeys.spread] as? [Int] {
+            self.spread = theSpread
+        }
+
                 if let goalAccomplished = activityData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
                     self.goalAccomplished = goalAccomplished
                 }

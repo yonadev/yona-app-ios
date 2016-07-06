@@ -55,7 +55,7 @@ class TimeBucketControlCell : UITableViewCell {
     
         
         let neg = activityGoal.totalMinutesBeyondGoal
-        let positive = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
         
         let totalMinutes = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
        
