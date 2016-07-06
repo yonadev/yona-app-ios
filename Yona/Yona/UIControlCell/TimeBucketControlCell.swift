@@ -14,20 +14,41 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesTitle: UILabel!
     @IBOutlet weak var goalMessage: UILabel!
-    @IBOutlet weak var minsView: UIView!
+   // @IBOutlet weak var minsView: UIView!
+
+    @IBOutlet weak var positiveView: UIView!
+    @IBOutlet weak var negativeView: UIView!
+    @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
     
+    @IBOutlet weak var zeroMinsConstraint: NSLayoutConstraint!
     @IBOutlet weak var minutesBeyondGoal: UILabel!
     @IBOutlet weak var endMinutes: UILabel!
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
+        negativeView.backgroundColor = UIColor.redColor()
+        negativeView.alpha = 0
+        
+        positiveView.backgroundColor = UIColor.greenColor()
+        positiveView.alpha = 0
+        
+        zeroMins.text = "0"
+        zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        zeroMins.textColor = UIColor.yiBlackColor()
+        zeroMins.alpha = 0.5
+
     }
     
     func setUpView(activityGoal : ActivitiesGoal, animated: Bool) {
 
+        
+        
         let neg = 10//activityGoal.totalMinutesBeyondGoal
         let positive = 30//activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
         
@@ -38,16 +59,9 @@ class TimeBucketControlCell : UITableViewCell {
             pxPrMinute = backgroundMinsView.frame.size.width / CGFloat(totalMinutes)
         }
         
-        let negativeView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height))
-        negativeView.backgroundColor = UIColor.redColor()
-        negativeView.alpha = 0
+        negativeView.frame = CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height)
         
-        let positiveView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height))
-        positiveView.backgroundColor = UIColor.greenColor()
-        positiveView.alpha = 0
-        
-        backgroundMinsView.addSubview(negativeView)
-        backgroundMinsView.addSubview(positiveView)
+        positiveView.frame =  CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height)
         
         var positiveFrame : CGRect = positiveView.frame
         positiveFrame.size.width = 0
@@ -59,12 +73,12 @@ class TimeBucketControlCell : UITableViewCell {
         positiveView.alpha = 1
         negativeView.alpha = 1
         
-        if (animated == false) {
+        if (animated) {
             UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    positiveView.frame = positiveFrame
+                    self.positiveView.frame = positiveFrame
                 }, completion: {finished in
                     UIView.animateWithDuration(2, animations: {
-                        negativeView.frame = negFrame
+                        self.negativeView.frame = negFrame
                     })
             })
         } else {
@@ -90,12 +104,8 @@ class TimeBucketControlCell : UITableViewCell {
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
         let indent = backgroundMinsView.frame.origin.x
-        let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute+indent, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
-        zeroMins.text = "0"
-        zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
-        zeroMins.textColor = UIColor.yiBlackColor()
-        zeroMins.alpha = 0.5
-        self.addSubview(zeroMins)
+        zeroMinsConstraint.constant = CGFloat(neg) * pxPrMinute + zeroMins.frame.size.width
+        zeroMins.setNeedsLayout()
         
         //set minutes title
         if neg != 0 {
