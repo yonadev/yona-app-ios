@@ -17,7 +17,6 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var minsView: UIView!
     @IBOutlet weak var backgroundMinsView: UIView!
     
-    @IBOutlet weak var zeroMinutes: UILabel!
     @IBOutlet weak var minutesBeyondGoal: UILabel!
     @IBOutlet weak var endMinutes: UILabel!
     
@@ -27,10 +26,10 @@ class TimeBucketControlCell : UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setUpView(activityGoal : ActivitiesGoal) {
+    func setUpView(activityGoal : ActivitiesGoal, animated: Bool) {
 
-        let neg = 0//activityGoal.totalMinutesBeyondGoal
-        let positive = 30//activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
+        let neg = activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
         
         let totalMinutes = neg + positive
         
@@ -40,11 +39,11 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         let negativeView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height))
-        negativeView.backgroundColor = UIColor.redColor()
+        negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
         negativeView.alpha = 0
         
         let positiveView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height))
-        positiveView.backgroundColor = UIColor.greenColor()
+        positiveView.backgroundColor = UIColor.yiPeaColor()
         positiveView.alpha = 0
         
         backgroundMinsView.addSubview(negativeView)
@@ -60,13 +59,18 @@ class TimeBucketControlCell : UITableViewCell {
         positiveView.alpha = 1
         negativeView.alpha = 1
         
-        UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                positiveView.frame = positiveFrame
-            }, completion: {finished in
-                UIView.animateWithDuration(2, animations: {
-                    negativeView.frame = negFrame
-                })
-        })
+        if (animated == false) {
+            UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    positiveView.frame = positiveFrame
+                }, completion: {finished in
+                    UIView.animateWithDuration(2, animations: {
+                        negativeView.frame = negFrame
+                    })
+            })
+        } else {
+            positiveView.frame = positiveFrame
+            negativeView.frame = negFrame
+        }
         
         //set the end minutes
         if let maxMins = activityGoal.maxDurationMinutes {
@@ -77,7 +81,7 @@ class TimeBucketControlCell : UITableViewCell {
         if neg == 0 {
             self.minutesBeyondGoal.hidden = true
         }
-        self.minutesBeyondGoal.text = String(neg)
+        self.minutesBeyondGoal.text = "-\(neg)"
         
         //set position of the zero point
         let zeroMinsFrametemp = self.endMinutes.frame
@@ -86,13 +90,14 @@ class TimeBucketControlCell : UITableViewCell {
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
         let indent = backgroundMinsView.frame.origin.x
-        
         let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute+indent, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
         zeroMins.alpha = 0.5
-        self.addSubview(zeroMins)
+        if animated == false { //only draw this once when frame is animated
+            self.addSubview(zeroMins)
+        }
         
         //set minutes title
         if neg != 0 {
@@ -105,7 +110,7 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         //set goal title
-        self.goalType.text = activityGoal.goalType
+        self.goalType.text = activityGoal.goalName
         
     }
 
