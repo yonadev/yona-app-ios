@@ -59,29 +59,9 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTL-Jd-BWR">
                         <rect key="frame" x="32" y="74" width="311" height="32"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUB-XF-gFe">
-                                <rect key="frame" x="56" y="0.0" width="31" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="tSk-eG-fSS"/>
-                                    <constraint firstAttribute="height" constant="32" id="yiI-HE-28r"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g41-bf-UUh">
-                                <rect key="frame" x="87" y="0.0" width="224" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="224" id="CSM-3p-BcK"/>
-                                    <constraint firstAttribute="height" constant="32" id="mOG-Bj-gcE"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" red="0.90588235855102539" green="0.90588235855102539" blue="0.90588235855102539" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mUB-XF-gFe" firstAttribute="leading" secondItem="mTL-Jd-BWR" secondAttribute="leading" constant="56" id="Gnf-qg-1ce"/>
-                            <constraint firstItem="g41-bf-UUh" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="top" id="I0W-Bf-THg"/>
                             <constraint firstAttribute="height" constant="32" id="JZq-mW-5XW"/>
-                            <constraint firstItem="g41-bf-UUh" firstAttribute="leading" secondItem="mTL-Jd-BWR" secondAttribute="leading" constant="87" id="NBH-RK-kSB"/>
-                            <constraint firstItem="mUB-XF-gFe" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="top" id="nWK-DN-S24"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mj9-S4-ntV">
@@ -151,12 +131,6 @@
                 <outlet property="horizontalSpaceingConstraint" destination="03h-cC-cOk" id="DmC-je-ayw"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
-                <outlet property="negativeView" destination="mUB-XF-gFe" id="SVi-wb-HNY"/>
-                <outlet property="negativeViewWidthConstraint" destination="tSk-eG-fSS" id="k6Y-zO-Dxx"/>
-                <outlet property="negativeViewXConstraint" destination="Gnf-qg-1ce" id="sz2-er-QvL"/>
-                <outlet property="positiveView" destination="g41-bf-UUh" id="Hfg-wa-fax"/>
-                <outlet property="positiveViewWidthConstraint" destination="CSM-3p-BcK" id="65I-gC-LAv"/>
-                <outlet property="positiveViewXConstraint" destination="NBH-RK-kSB" id="ppr-7Y-IJG"/>
                 <outlet property="zeroMins" destination="Ss0-0r-zLz" id="EJ1-BM-BZ3"/>
                 <outlet property="zeroMinsConstraint" destination="03h-cC-cOk" id="oT3-Ut-lpj"/>
             </connections>

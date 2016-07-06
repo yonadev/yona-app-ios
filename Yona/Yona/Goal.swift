@@ -11,7 +11,7 @@ import Foundation
 struct Goal {
     var goalID: String?
     var GoalName: String?
-    var maxDurationMinutes: Int?
+    var maxDurationMinutes: Int!
     var selfLinks: String?
     var editLinks: String?
     var activityCategoryLink: String?
@@ -53,6 +53,8 @@ struct Goal {
             
             if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
                 self.maxDurationMinutes = maxDurationMinutes
+            } else {
+                self.maxDurationMinutes = 0
             }
             if let goalType = goalData[YonaConstants.jsonKeys.goalType] as? String {
                 self.goalType = goalType

@@ -19,7 +19,7 @@ class ActivitiesGoal : NSObject{
     var goalLinks: String?
     var goalName: String?
     var goalType: String?
-    var maxDurationMinutes: Int?
+    var maxDurationMinutes: Int = 0
     var date : NSDate  = NSDate()
     var goalAccomplished : Bool = false
     var totalActivityDurationMinutes : Int = 0
