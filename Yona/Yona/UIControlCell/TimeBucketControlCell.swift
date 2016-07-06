@@ -17,7 +17,15 @@ class TimeBucketControlCell : UITableViewCell {
    // @IBOutlet weak var minsView: UIView!
 
     @IBOutlet weak var positiveView: UIView!
+    @IBOutlet weak var positiveViewWidthConstraint : NSLayoutConstraint!
+    @IBOutlet weak var positiveViewXConstraint : NSLayoutConstraint!
+
+    
     @IBOutlet weak var negativeView: UIView!
+    @IBOutlet weak var negativeViewWidthConstraint : NSLayoutConstraint!
+    @IBOutlet weak var negativeViewXConstraint : NSLayoutConstraint!
+
+    
     @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
     
@@ -34,9 +42,15 @@ class TimeBucketControlCell : UITableViewCell {
         
         negativeView.backgroundColor = UIColor.redColor()
         negativeView.alpha = 0
+//        negativeViewWidthConstraint.constant = 0
+//        negativeViewXConstraint.constant = 0
+//        negativeView.setNeedsLayout()
         
         positiveView.backgroundColor = UIColor.greenColor()
         positiveView.alpha = 0
+//        positiveViewWidthConstraint.constant = 10
+//        positiveViewXConstraint.constant = 30        
+//        positiveView.setNeedsLayout()
         
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
@@ -59,9 +73,15 @@ class TimeBucketControlCell : UITableViewCell {
             pxPrMinute = backgroundMinsView.frame.size.width / CGFloat(totalMinutes)
         }
         
-        negativeView.frame = CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height)
+        negativeViewXConstraint.constant = CGFloat(neg) * pxPrMinute
+        negativeViewWidthConstraint.constant = 0
+        //negativeView.frame = CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height)
+        negativeView.setNeedsLayout()
         
-        positiveView.frame =  CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height)
+        //positiveView.frame =  CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height)
+        //positiveViewXConstraint.constant = CGFloat(neg) * pxPrMinute
+        //positiveViewWidthConstraint.constant = backgroundMinsView.frame.size.width - ( CGFloat(neg) * pxPrMinute)
+        positiveView.setNeedsLayout()
         
         var positiveFrame : CGRect = positiveView.frame
         positiveFrame.size.width = 0
@@ -75,10 +95,15 @@ class TimeBucketControlCell : UITableViewCell {
         
         if (animated) {
             UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    self.positiveView.frame = positiveFrame
+                
+                //self.positiveViewXConstraint.constant = CGFloat(positive) * pxPrMinute
+                self.positiveViewWidthConstraint.constant = 0
+                self.positiveView.layoutIfNeeded()
                 }, completion: {finished in
                     UIView.animateWithDuration(2, animations: {
-                        self.negativeView.frame = negFrame
+                        self.negativeViewWidthConstraint.constant = CGFloat(neg) * pxPrMinute
+                        self.negativeViewXConstraint.constant = 0
+                        self.negativeView.layoutIfNeeded()
                     })
             })
         } else {
