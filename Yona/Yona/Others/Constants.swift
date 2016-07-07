@@ -89,6 +89,7 @@ struct YonaConstants {
         static let  yonaDayDetails = "yona:dayDetails"
         static let  date = "date"
         static let  yonaGoal = "yona:goal"
+        static let  spread = "spread"
         
         static let  weekActivityOverviews = "yona:weekActivityOverviews"
         static let  weekActivities = "weekActivities"

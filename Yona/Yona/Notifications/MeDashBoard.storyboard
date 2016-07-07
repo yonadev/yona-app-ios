@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z05-OL-lvB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -163,6 +163,7 @@
                         <outlet property="rightTabMainView" destination="iJ8-SG-r8Z" id="XxN-WF-eCM"/>
                         <outlet property="rightTabSelectionsView" destination="MM7-EZ-kI4" id="nY8-Jo-8fn"/>
                         <outlet property="tableView" destination="wFB-LI-Dhz" id="YMf-4W-qOg"/>
+                        <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G8K-p6-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -177,7 +178,45 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="808" y="70"/>
+            <point key="canvasLocation" x="730" y="60"/>
+        </scene>
+        <!--MeWeekDetailWeekViewController-->
+        <scene sceneID="Zem-J9-IOm">
+            <objects>
+                <viewController id="UbE-Mh-h0r" userLabel="MeWeekDetailWeekViewController" customClass="MeWeekDetailWeekViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y7Y-2O-LBP"/>
+                        <viewControllerLayoutGuide type="bottom" id="z4e-qq-zf6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u93-o7-Obw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UbE-Mh-h0r" id="ROA-cf-jLI"/>
+                                    <outlet property="delegate" destination="UbE-Mh-h0r" id="cFW-RF-KfC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z4e-qq-zf6" firstAttribute="top" secondItem="yFv-JC-3KO" secondAttribute="bottom" id="QhM-1G-EyQ"/>
+                            <constraint firstItem="yFv-JC-3KO" firstAttribute="top" secondItem="u93-o7-Obw" secondAttribute="topMargin" id="Xbr-LN-FxA"/>
+                            <constraint firstItem="yFv-JC-3KO" firstAttribute="leading" secondItem="u93-o7-Obw" secondAttribute="leadingMargin" constant="-20" id="e50-9c-64r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yFv-JC-3KO" secondAttribute="trailing" constant="-20" id="qT2-Qj-a6h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="dg0-eE-dEG"/>
+                    <connections>
+                        <outlet property="tableView" destination="yFv-JC-3KO" id="d2Z-vL-heb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="py6-od-Skh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576" y="79"/>
         </scene>
         <!--Yona User Profile View Controller-->
         <scene sceneID="2eb-Pq-zZf">

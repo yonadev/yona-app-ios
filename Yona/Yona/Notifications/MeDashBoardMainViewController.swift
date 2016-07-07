@@ -16,7 +16,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
     
-    var animatedCells : [NSIndexPath] = []
+    var animatedCells : [String] = []
     
     // MARK: - View
     override func viewDidLoad() {
@@ -39,9 +39,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }
     
-    // MARK: - private functions
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if selectedTab == .left {
+            showLeftTab(leftTabMainView)
+        } else {
+            showRightTab(rightTabMainView)
+        }
+        
+    }    // MARK: - private functions
     private func setupUI() {
-        showLeftTab(leftTabMainView)
+        //showLeftTab(leftTabMainView)
         
     }
     
@@ -49,6 +59,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         print(segue.sourceViewController)
     }
     
+    
+    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+        let txt = "\(cell.section)-\(cell.row)"
+        
+        if animatedCells.indexOf(txt) == nil {
+            print("Animated \(txt)")
+            animatedCells.append(txt)
+            return true
+        }
+        print("NO animated \(txt)")
+        return false
+    
+    }
     // MARK: - tableview Override
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -66,7 +89,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             }
             return leftTabData[section].activites.count
         }
+        if rightTabData.count == 0 {
+            return 0
+        }
+
         return rightTabData[section].activity.count
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if cell is TimeBucketControlCell {
+            let aCell = cell as! TimeBucketControlCell
+            let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
+            aCell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -115,22 +150,36 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
        }
         
         let dateTodate = NSDate()
-        let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
-        let dateFormatter : NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
+        let todaysWeek = dateTodate.weeks
+        let todaysYear = dateTodate.years
         
-        if rightTabData[section].date.isSameDayAs(dateTodate) {
-            cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
-        } else if rightTabData[section].date.isSameDayAs(yesterDate) {
-            cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+        let otherWeek = rightTabData[section].date.weeks
+        let otherYear = rightTabData[section].date.years
+        let otherDateStart = rightTabData[section].date.dateByAddingTimeInterval(-60*60*24)
+        
+        
+        if todaysWeek == otherWeek && todaysYear == otherYear {
+            cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+        } else if todaysWeek == otherWeek+1 && todaysYear == otherYear {
+            cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
         } else {
-            cell.headerTextLabel.text =  dateFormatter.stringFromDate(rightTabData[section].date)
+            let dateFormatter : NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMM"
+            
+            
+            cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
         }
         return cell
         
     }
     
-
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+              performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+        }
+    }
+    
+    
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
         loadActivitiesForDay()
@@ -155,7 +204,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             } else if goaltype == "TimeZoneGoal" {
                 // Time Frame Control
                 // TODO:  Changes this once the cell has been created
-                return 165
+                return 0
             } else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
                 // NoGo Control
                 // TODO:  Changes this once the cell has been created
@@ -175,28 +224,27 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 
-                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
-                animatedCells.append(indexPath)
+                cell.setUpView(activityGoal)
                 return cell
             }
-            // Time Frame Control
-                // TODO:  Changes this once the cell has been created
-            else if goaltype == "TimeZoneGoal" {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-
-                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
-                animatedCells.append(indexPath)
-                return cell
-            }
-            // NoGo Control
-            // TODO:  Changes this once the cell has been created
-            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-
-                cell.setUpView(activityGoal, animated: animatedCells.contains(indexPath))
-                animatedCells.append(indexPath)
-                return cell
-            }
+//            // Time Frame Control
+//                // TODO:  Changes this once the cell has been created
+//            else if goaltype == "TimeZoneGoal" {
+//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+//
+//                cell.setUpView(activityGoal)
+//                
+//                return cell
+//            }
+//            // NoGo Control
+//            // TODO:  Changes this once the cell has been created
+//            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
+//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+//
+//                cell.setUpView(activityGoal)
+//                
+//                return cell
+//            }
         }
         // WE SHOULD NEVER END HERE ....
         return UITableViewCell(frame: CGRectZero)
@@ -205,15 +253,17 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     // MARK: - Data loaders
     
     func loadActivitiesForDay(page : Int = 0) {
+        print("Entering day loader")
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrDay(3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
                 
                 if let data = activitygoals {
+                    self.animatedCells.removeAll()
                     self.leftTabData = data
                 }
-                self.tableView.reloadData()
-                Loader.Hide()
+                    Loader.Hide()
+                    self.tableView.reloadData()
             } else {
                 Loader.Hide()
             }
@@ -228,8 +278,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 if let data = activitygoals {
                     self.rightTabData = data
                 }
-                self.tableView.reloadData()
-                Loader.Hide()
+           
+            Loader.Hide()
+            self.tableView.reloadData()
+                
             } else {
                 Loader.Hide()
             }
@@ -237,4 +289,16 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }
     
+    
+    // MARK: Action methods
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is MeWeekDetailWeekViewController {
+            let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
+            if let section : Int = tableView.indexPathForSelectedRow!.section {
+                controller.weeks = rightTabData[section].activity
+                controller.currentIndex = tableView.indexPathForSelectedRow!.row
+            }
+        }
+    }
 }

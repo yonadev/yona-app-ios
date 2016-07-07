@@ -14,68 +14,70 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesTitle: UILabel!
     @IBOutlet weak var goalMessage: UILabel!
-    @IBOutlet weak var minsView: UIView!
+   
+    weak var positiveView: UIView!
+    weak var negativeView: UIView!
+
+    
+    @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
     
+    @IBOutlet weak var zeroMinsConstraint: NSLayoutConstraint!
     @IBOutlet weak var minutesBeyondGoal: UILabel!
     @IBOutlet weak var endMinutes: UILabel!
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    func setUpView(activityGoal : ActivitiesGoal, animated: Bool) {
+        
+        
+        zeroMins.text = "0"
+        zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        zeroMins.textColor = UIColor.yiBlackColor()
+        zeroMins.alpha = 0.5
 
-        let neg = activityGoal.totalMinutesBeyondGoal
-        let positive = activityGoal.totalActivityDurationMinutes - activityGoal.totalMinutesBeyondGoal
         
-        let totalMinutes = neg + positive
-        
-        var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
-        if totalMinutes > 0 {
-            pxPrMinute = backgroundMinsView.frame.size.width / CGFloat(totalMinutes)
-        }
-        
-        let negativeView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, backgroundMinsView.frame.size.height))
-        negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
-        negativeView.alpha = 0
-        
-        let positiveView = UIView(frame: CGRectMake(CGFloat(neg) * pxPrMinute, 0, CGFloat(positive) * pxPrMinute, backgroundMinsView.frame.size.height))
-        positiveView.backgroundColor = UIColor.yiPeaColor()
-        positiveView.alpha = 0
-        
-        backgroundMinsView.addSubview(negativeView)
+        var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , 32))
+        positiveView = aView
         backgroundMinsView.addSubview(positiveView)
         
-        var positiveFrame : CGRect = positiveView.frame
-        positiveFrame.size.width = 0
         
-        var negFrame = negativeView.frame
-        negFrame.size.width = CGFloat(neg) * pxPrMinute
-        negFrame.origin.x = 0
+        aView  = UIView(frame:CGRectMake(10, 0, 0, 32))
+        negativeView = aView
+        backgroundMinsView.addSubview(negativeView)
+
+    }
+    
+    func setUpView(activityGoal : ActivitiesGoal) {
+
+    
+        
+        let neg = activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
+        
+        let totalMinutes = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+       
+        var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
+        if totalMinutes > 0 {
+            pxPrMinute = (backgroundMinsView.frame.size.width+8) / CGFloat(totalMinutes)
+        }
+        var aViewframe = CGRectMake( CGFloat(neg) * pxPrMinute, 0, (8 + backgroundMinsView.frame.size.width) - CGFloat(neg) * pxPrMinute , 32)
+        positiveView.frame = aViewframe
+        
+        aViewframe  = CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, 32)
+        negativeView.frame = aViewframe
+
+        negativeView.backgroundColor = UIColor.redColor()
+        
+        positiveView.backgroundColor = UIColor.greenColor()
         
         positiveView.alpha = 1
         negativeView.alpha = 1
-        
-        if (animated == false) {
-            UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    positiveView.frame = positiveFrame
-                }, completion: {finished in
-                    UIView.animateWithDuration(2, animations: {
-                        negativeView.frame = negFrame
-                    })
-            })
-        } else {
-            positiveView.frame = positiveFrame
-            negativeView.frame = negFrame
-        }
-        
         //set the end minutes
-        if let maxMins = activityGoal.maxDurationMinutes {
-            self.endMinutes.text = String(maxMins)
-        }
+
+        self.endMinutes.text = String(activityGoal.maxDurationMinutes)
         
         //set beyond goal label minutes
         if neg == 0 {
@@ -83,21 +85,12 @@ class TimeBucketControlCell : UITableViewCell {
         }
         self.minutesBeyondGoal.text = "-\(neg)"
         
-        //set position of the zero point
-        let zeroMinsFrametemp = self.endMinutes.frame
-        
         
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
-        let indent = backgroundMinsView.frame.origin.x
-        let zeroMins = UILabel(frame: CGRectMake(CGFloat(neg) * pxPrMinute+indent, zeroMinsFrametemp.origin.y, zeroMinsFrametemp.size.width, zeroMinsFrametemp.size.height))
-        zeroMins.text = "0"
-        zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
-        zeroMins.textColor = UIColor.yiBlackColor()
-        zeroMins.alpha = 0.5
-        if animated == false { //only draw this once when frame is animated
-            self.addSubview(zeroMins)
-        }
+     //   let indent = backgroundMinsView.frame.origin.x
+        zeroMinsConstraint.constant = CGFloat(neg) * pxPrMinute + zeroMins.frame.size.width
+        zeroMins.setNeedsLayout()
         
         //set minutes title
         if neg != 0 {
@@ -114,4 +107,39 @@ class TimeBucketControlCell : UITableViewCell {
         
     }
 
+    
+    func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
+        let negative = activityGoal.totalMinutesBeyondGoal
+        let total = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+        let positive = activityGoal.maxDurationMinutes -  activityGoal.totalActivityDurationMinutes
+        
+     
+        var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
+        if total > 0 {
+            pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(total)
+        }
+
+        var positiveFrame = positiveView.frame
+        positiveFrame.size.width = CGFloat(positive) * pxPrMinute
+
+        var negativeFrame = negativeView.frame
+        negativeFrame.origin.x = 0
+        negativeFrame.size.width = CGFloat(negative) * pxPrMinute
+        
+        if animated {
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut,
+                                       animations: {
+                                        self.positiveView.frame = positiveFrame
+                }, completion: {finished in
+                    UIView.animateWithDuration(0.3, animations: {
+                        self.negativeView.frame = negativeFrame
+                    })
+                    
+            } )
+        } else {
+            self.positiveView.frame = positiveFrame
+            self.negativeView.frame = negativeFrame
+        }
+    
+    }
 }

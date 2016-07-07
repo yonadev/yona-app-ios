@@ -14,6 +14,6 @@ class DayActivityOverview: NSObject {
     
     init(Date aDate: NSDate, theActivities: [ActivitiesGoal]) {
         date = aDate
-        activites = theActivities
+        activites = theActivities.sort({$0.dayDetailLinks > $1.dayDetailLinks}) //sort in alphabetical order
     }
 }
