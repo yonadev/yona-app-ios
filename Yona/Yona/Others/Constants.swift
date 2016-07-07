@@ -58,6 +58,7 @@ struct YonaConstants {
         static let  name = "name"
         static let  applications = "applications"
         static let  zones = "zones"
+        static let  spredCells = "spredCells"
         static let  pinResetDelay = "delay"
         static let  bodyCode = "code"
         static let  yonaActivityCategories = "yona:activityCategories"

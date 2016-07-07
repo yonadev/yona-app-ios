@@ -16,7 +16,8 @@ struct Goal {
     var editLinks: String?
     var activityCategoryLink: String?
     var goalType: String?
-    var zonesStore:[String] = []
+    var zones:[String] = []
+    var spreadCells : [Int] = []
     var isMandatory: Bool?
     var isHistoryItem : Bool!
     init(goalData: BodyDataDictionary, activities: [Activities]) {
@@ -47,10 +48,16 @@ struct Goal {
             
             if let zones = goalData[YonaConstants.jsonKeys.zones] as? NSArray {
                 for zone in zones {
-                    self.zonesStore.append(zone as! String)
+                    self.zones.append(zone as! String)
                 }
             }
-            
+
+            if let spreds = goalData[YonaConstants.jsonKeys.spredCells] as? NSArray {
+                for data in spreds {
+                    self.spreadCells.append(data as! Int)
+                }
+            }
+
             if let maxDurationMinutes = goalData[YonaConstants.jsonKeys.maxDuration] as? Int {
                 self.maxDurationMinutes = maxDurationMinutes
             } else {
