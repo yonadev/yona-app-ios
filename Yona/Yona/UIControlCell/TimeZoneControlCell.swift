@@ -12,8 +12,8 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesUsed: UILabel!
     @IBOutlet weak var message: UILabel!
-    
-    weak var timeZoneView: UIView!
+    @IBOutlet weak var backgroundMinsView: UIView!
+
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
 
@@ -21,13 +21,21 @@ class TimeZoneControlCell : UITableViewCell {
         super.awakeFromNib()
         
     }
+    
 
     func setUpView(activityGoal : ActivitiesGoal) {
         
+        let pxPerSpread = self.backgroundMinsView.frame.size.width / 96
+        let pxPerMinute = pxPerSpread / 15
+
+        var spreadValue = 0
         for currentSpread in activityGoal.spread {
-            //
-            print(currentSpread)
-            timeZoneView = CGRectMake(currentSpread * , <#T##y: CGFloat##CGFloat#>, <#T##width: CGFloat##CGFloat#>, <#T##height: CGFloat##CGFloat#>)
+            let spreadX = CGFloat(spreadValue) * pxPerSpread
+            let spreadWidth = CGFloat(currentSpread) * pxPerMinute
+            let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
+            timeZoneView.backgroundColor = UIColor.yiPeaColor()
+            backgroundMinsView.addSubview(timeZoneView)
+            spreadValue += 1
         }
         
         //set goal title

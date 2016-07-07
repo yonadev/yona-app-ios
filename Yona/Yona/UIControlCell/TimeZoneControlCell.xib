@@ -111,6 +111,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="backgroundMinsView" destination="ofH-LR-W23" id="KFl-jL-fgT"/>
                 <outlet property="goalType" destination="EPo-xQ-Nu1" id="1zg-XA-I6I"/>
                 <outlet property="message" destination="iHp-1u-TUE" id="mNr-7L-Ncz"/>
                 <outlet property="minutesUsed" destination="4Dm-Zy-EzF" id="vmw-Jk-z0o"/>
