@@ -24,9 +24,9 @@ class ActivitiesGoal : NSObject{
     var goalAccomplished : Bool = false
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
-    var spread : [Int] = []
-    var zones:[String] = []
-    var spreadCells : [Int] = []
+    var spread : [Int] = [] //where the user has used (either within, blue, or without, red, the set timezone)
+    var zones:[String] = [] //the string of time zones
+    var spreadCells : [Int] = [] //the timezone cells
     
     /*
      "date": "2016-06-28",
