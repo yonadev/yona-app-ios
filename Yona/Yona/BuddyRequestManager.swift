@@ -22,36 +22,41 @@ class BuddyRequestManager {
             switch httpMethod {
             case .get:
                 if let buddieLink = user?.buddiesLink {
-                    self.APIService.callRequestWithAPIServiceResponse(nil, path: buddieLink, httpMethod: httpMethod) { (success, json, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, serverCode, activities, error) in
                         if success {
-                            self.buddies.removeAll()
-                            if let json = json {
-                                if let embedded = json[postBuddyBodyKeys.embedded.rawValue],
-                                    let yonaBuddies = embedded[postBuddyBodyKeys.yonaBuddies.rawValue] as? NSArray{
-                                    //iterate messages
-                                    for buddy in yonaBuddies {
-                                        if let buddy = buddy as? BodyDataDictionary {
-                                            self.buddy = Buddies.init(buddyData: buddy)
-                                            
-                                            if let buddy = self.buddy {
-                                                if buddy.UserRequestmobileNumber.characters.count > 0 {
-                                                    self.buddies.append(buddy)
+                            self.APIService.callRequestWithAPIServiceResponse(nil, path: buddieLink, httpMethod: httpMethod) { (success, json, error) in
+                                if success {
+                                    self.buddies.removeAll()
+                                    if let json = json {
+                                        if let embedded = json[postBuddyBodyKeys.embedded.rawValue],
+                                            let yonaBuddies = embedded[postBuddyBodyKeys.yonaBuddies.rawValue] as? NSArray{
+                                            //iterate messages
+                                            for buddy in yonaBuddies {
+                                                if let buddy = buddy as? BodyDataDictionary {
+                                                    self.buddy = Buddies.init(buddyData: buddy, allActivity: activities!)
+                                                    
+                                                    if let buddy = self.buddy {
+                                                        if buddy.UserRequestmobileNumber.characters.count > 0 {
+                                                            self.buddies.append(buddy)
+                                                        }
+                                                    }
                                                 }
                                             }
+                                            onCompletion(success, serverMessage, serverCode, nil, self.buddies)
+                                        } else { //we just get a buddy response back
+                                            self.buddy = Buddies.init(buddyData: json, allActivity: activities!)
+                                            onCompletion(success, serverMessage, serverCode, self.buddy, nil)
                                         }
+                                    } else {
+                                        onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
                                     }
-                                    onCompletion(success, serverMessage, serverCode, nil, self.buddies)
-                                } else { //we just get a buddy response back
-                                    self.buddy = Buddies.init(buddyData: json)
-                                    onCompletion(success, serverMessage, serverCode, self.buddy, nil)
+                                } else {
+                                    onCompletion(success, serverMessage, serverCode, nil, nil)
                                 }
-                            } else {
-                                onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
                             }
-                        } else {
-                            onCompletion(success, serverMessage, serverCode, nil, nil)
                         }
                     }
+                        
                 } else {
                     onCompletion(false, YonaConstants.YonaErrorTypes.GetBuddyLinkFail.localizedDescription, self.APIService.determineErrorCode(YonaConstants.YonaErrorTypes.GetBuddyLinkFail), nil, nil)
                 }
@@ -61,7 +66,7 @@ class BuddyRequestManager {
                     self.APIService.callRequestWithAPIServiceResponse(buddyBody, path: buddieLink, httpMethod: httpMethod) { (success, json, error) in
                         if success {
                             if let json = json {
-                                self.buddy = Buddies.init(buddyData: json)
+                                self.buddy = Buddies.init(buddyData: json, allActivity: [])
                                 onCompletion(success, serverMessage, serverCode, self.buddy, nil) //failed to get user
                             } else {
                                 onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response

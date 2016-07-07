@@ -335,4 +335,101 @@ class ActivitiesRequestManager {
         return newData
     }
 
+    //MARK: - buddie pr day activitie
+    
+    /**
+     Implements the Activtiy pr day, and combines data with goals and activitytype
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getBuddieActivityPrDay(buddy: Buddies,size : Int, page : Int,onCompletion: APIActivityGoalResponse){
+        
+        if let path = buddy.dailyActivityReports {
+            let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+            self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                if let json = json {
+                    guard success == true else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        return
+                    }
+                    var newData : [DayActivityOverview] = []
+                    newData = self.getBuddieActivtyPrDayhandleActivieResponse( json)
+                    if newData.count > 0 {
+                        
+                        self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
+                            
+                            if activities?.count > 0 {
+                                
+                                GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(buddy, activities: activities!, onCompletion: { (success, servermessage, servercode, nil, goals, error) in
+                                    
+                                    if success  {
+                                        if let theGoals = goals {
+                                            for singleDayActivty in newData {
+                                                for singleActivity in singleDayActivty.activites {
+                                                    singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                }
+                                            }
+                                        }
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                        
+                                    }
+                                    
+                                })
+                            } else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                            }
+                        })
+                    }
+                    
+                } else {
+                    //response from request failed
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                }
+            }
+
+        }
+        
+    }
+    
+    private func getBuddieActivtyPrDayhandleActivieResponse(theJson : BodyDataDictionary) -> [DayActivityOverview] {
+        
+        var newData : [DayActivityOverview] = []
+        if let embedded = theJson[YonaConstants.jsonKeys.embedded],
+            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray{
+            for activity in embeddedActivities {
+                var dateActivity : [ActivitiesGoal] = []
+                var theDate : NSDate = NSDate()
+                if let activity = activity as? BodyDataDictionary {
+                    
+                    
+                    if let activityDate = activity[YonaConstants.jsonKeys.date] as? String {
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
+                        if let aDate = dateFormatter.dateFromString(activityDate) {
+                            theDate = aDate
+                        }
+                    }
+                    if let dayActivities = activity[YonaConstants.jsonKeys.dayActivities] as? [AnyObject]
+                    {
+                        for aData in dayActivities {
+                            
+                            let aActivityGoal = ActivitiesGoal.init(activityData: aData, date: theDate)
+                            dateActivity.append(aActivityGoal)
+                        }
+                    }
+                    
+                }
+                let daysActivities = DayActivityOverview(Date: theDate, theActivities: dateActivity)
+                
+                newData.append(daysActivities)
+            }
+        }
+        
+        return newData
+    }
+
+    
+    
 }

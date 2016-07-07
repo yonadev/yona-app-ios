@@ -147,9 +147,28 @@ class GoalsRequestManager {
         }
     }
     
+    func getAllTheBuddyGoals(buddy : Buddies, activities: [Activities], onCompletion: APIGoalResponse) {
+        if let buddypath = buddy.selfLink {
+            let path = "\(buddypath)/goals/"
+            
+            //success so get the user?
+            
+            self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: path) { (success, message, server, goal, goals, error) in
+                #if DEBUG
+                    print("Get all goals API call: " + String(success))
+                #endif
+                if success {
+                    onCompletion(true, message, server, nil, goals, error)
+                } else {
+                    onCompletion(false, message, server, nil, nil, error)
+                }
+            }
+        }
+    }
+
     /**
      Called to get all the users goals
-     
+ 
      - parameter activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */

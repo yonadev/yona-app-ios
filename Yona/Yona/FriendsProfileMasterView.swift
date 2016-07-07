@@ -125,6 +125,32 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+            performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is FriendsDayViewController {
+            
+            
+            let controller = segue.destinationViewController as! FriendsDayViewController
+            if let indexpath = tableView.indexPathForSelectedRow {
+                
+                if indexpath.section == friendsSections.connected.rawValue {
+                    controller.buddyToShow = AcceptedBuddy[indexpath.row]
+                    
+                } else if indexpath.section == friendsSections.pending.rawValue {
+                    controller.buddyToShow = AcceptedBuddy[indexpath.row]
+                }
+                tableView.deselectRowAtIndexPath(indexpath, animated: false)
+            }
+        }
+        
+    }
+    
+    
 // MARK: Touch Event of Custom Segment
 
     override func actionsAfterLeftButtonPush() {

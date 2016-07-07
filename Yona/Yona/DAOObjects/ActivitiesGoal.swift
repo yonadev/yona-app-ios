@@ -25,6 +25,8 @@ class ActivitiesGoal : NSObject{
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
     var spread : [Int] = []
+    var zones:[String] = []
+    var spreadCells : [Int] = []
     
     /*
      "date": "2016-06-28",
@@ -97,6 +99,8 @@ class ActivitiesGoal : NSObject{
                 maxDurationMinutes = goal.maxDurationMinutes
                 goalName = goal.GoalName
                 goalType = goal.goalType
+                spreadCells = goal.spreadCells
+                zones = goal.zones
                 maxDurationMinutes = goal.maxDurationMinutes
                 for activity in activities {
                     if activity.selfLinks == goal.activityCategoryLink {
