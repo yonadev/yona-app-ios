@@ -363,6 +363,7 @@ struct R {
   
   struct nib {
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
+    static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
     static var yonaButtonsTableHeaderView: _R.nib._YonaButtonsTableHeaderView { return _R.nib._YonaButtonsTableHeaderView() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
@@ -377,6 +378,7 @@ struct R {
   struct reuseIdentifier {
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
+    static var timeZoneControlCell: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
     static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
     static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
     static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
@@ -652,6 +654,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeBucketControlCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeBucketControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _TimeZoneControlCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeZoneControlCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeZoneControlCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeZoneControlCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeZoneControlCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

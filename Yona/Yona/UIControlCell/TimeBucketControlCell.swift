@@ -17,7 +17,6 @@ class TimeBucketControlCell : UITableViewCell {
    
     weak var positiveView: UIView!
     weak var negativeView: UIView!
-
     
     @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
