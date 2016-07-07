@@ -134,6 +134,8 @@ enum postBuddyBodyKeys : String {
     case message = "message"
     case yonaUser = "yona:user"
     case yonaBuddies = "yona:buddies"
+    case yonaDailyActivityReports = "yona:dailyActivityReports"
+    case yonaWeeklyActivityReports = "yona:weeklyActivityReports"
     case links = "_links"
     case selfKey = "self"
     case editKey = "edit"

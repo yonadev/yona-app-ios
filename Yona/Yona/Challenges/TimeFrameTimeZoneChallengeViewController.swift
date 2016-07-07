@@ -124,7 +124,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
                 self.timezoneChallengeDescription.text = String(format: localizedString, activityName)
             }
             
-            zonesArrayDate = (goalCreated?.zonesStore.converToDate())!
+            zonesArrayDate = (goalCreated?.zones.converToDate())!
             zonesArrayString = zonesArrayDate.convertToString()
             
         }
