@@ -105,21 +105,21 @@ struct Buddies{
             }
             
             // get the goals
-            if let moreembedded = embedded[YonaConstants.jsonKeys.yonaGoals] {
-                if let goalsdata = moreembedded![YonaConstants.jsonKeys.embedded],
-                    let embeddedGoals = goalsdata![YonaConstants.jsonKeys.yonaGoals] as? NSArray{
-                    //iterate embedded goals response
-                    for goal in embeddedGoals {
-                        if let goal = goal as? BodyDataDictionary {
-                            let newGoal = Goal.init(goalData: goal, activities: allActivity)
+            if let moreembedded = embedded[YonaConstants.jsonKeys.yonaGoals]  as? BodyDataDictionary{
+                if let goalsdata = moreembedded[YonaConstants.jsonKeys.embedded] as? BodyDataDictionary{
+                    if let theembeddedGoals = goalsdata[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                        //iterate embedded goals response
+                        for goal in theembeddedGoals {
+                            if let goal = goal as? BodyDataDictionary {
+                                let newGoal = Goal.init(goalData: goal, activities: allActivity)
                                 if !newGoal.isHistoryItem {
                                     self.buddyGoals.append(newGoal)
                                 }
+                            }
                         }
                     }
                 }
             }
-
             
         }
         

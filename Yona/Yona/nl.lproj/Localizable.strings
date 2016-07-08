@@ -163,6 +163,7 @@
 
 // String for Profile
 
+"profile.user.data.name" = "NAAM";
 "profile.user.data.firstname" = "VOORNAAM";
 "profile.user.data.lastname" = "ACHTERNAAM";
 "profile.user.data.nickname" = "NICKNAME";
@@ -182,3 +183,6 @@
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
+
+//Friends Profile Button text
+"friendprofile.button.title" = "VRIEND VERWIJDEREN";

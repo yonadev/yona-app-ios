@@ -95,6 +95,7 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
     }
 
     func actionsAfterRightButtonPush() {
+        
         // The subController must override this to have any action after the tabe selection
     }
 

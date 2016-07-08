@@ -576,7 +576,7 @@
                         <barButtonItem key="rightBarButtonItem" image="icnAvatar" id="Src-Yo-bvp">
                             <inset key="imageInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                             <connections>
-                                <action selector="didChooseUserProfile:" destination="30a-nZ-Iva" id="ddj-aP-Y3w"/>
+                                <action selector="didChooseUserProfile:" destination="30a-nZ-Iva" id="u8m-26-g7J"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -592,6 +592,7 @@
                         <outlet property="rightTabMainView" destination="GtH-UK-bBj" id="2gk-Ym-Sga"/>
                         <outlet property="rightTabSelectionsView" destination="PwE-Is-1df" id="frk-SM-ZmM"/>
                         <outlet property="tableView" destination="6uE-mm-cWb" id="hgp-UJ-PXT"/>
+                        <segue destination="1Xa-hD-zS7" kind="show" identifier="showFriendProfile" id="pyy-L8-aSA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ksr-qr-hec" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -607,6 +608,65 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1719" y="1088"/>
+        </scene>
+        <!--Friends Profile View Controller-->
+        <scene sceneID="4ew-W6-w3b">
+            <objects>
+                <viewController storyboardIdentifier="FriendsProfileViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Xa-hD-zS7" customClass="FriendsProfileViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="na6-xh-ePW"/>
+                        <viewControllerLayoutGuide type="bottom" id="2St-Ua-Gi3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X5Q-b1-oF7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2UA-cL-aCQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="1Xa-hD-zS7" id="OYv-d8-a9b"/>
+                                    <outlet property="delegate" destination="1Xa-hD-zS7" id="kYq-NA-cOa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2UA-cL-aCQ" firstAttribute="leading" secondItem="X5Q-b1-oF7" secondAttribute="leadingMargin" constant="-20" id="1vo-vU-Ovd"/>
+                            <constraint firstItem="2St-Ua-Gi3" firstAttribute="top" secondItem="2UA-cL-aCQ" secondAttribute="bottom" constant="-1" id="ANd-W5-yl0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2UA-cL-aCQ" secondAttribute="trailing" constant="-20" id="Akl-Qf-ufK"/>
+                            <constraint firstItem="2UA-cL-aCQ" firstAttribute="top" secondItem="na6-xh-ePW" secondAttribute="bottom" id="gr8-rW-UUe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QRT-Eh-cq9">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="VTN-zW-Xav">
+                            <connections>
+                                <segue destination="cKT-D0-chq" kind="unwind" unwindAction="unwindToProfileView:" id="HmH-Cf-4u0"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="backBarButtonItem" destination="VTN-zW-Xav" id="Dh5-F1-Hdl"/>
+                        </connections>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="2UA-cL-aCQ" id="dOp-qS-oj2"/>
+                    </connections>
+                </viewController>
+                <tapGestureRecognizer id="kAl-GT-CR8">
+                    <connections>
+                        <action selector="badgesTabAction:" destination="1Xa-hD-zS7" id="5mk-Q3-mCC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="gbk-BK-LWb">
+                    <connections>
+                        <action selector="profileTabAction:" destination="1Xa-hD-zS7" id="ap1-F4-Edw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1Z-HZ-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cKT-D0-chq" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2457" y="1099"/>
         </scene>
     </scenes>
     <resources>

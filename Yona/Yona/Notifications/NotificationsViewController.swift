@@ -26,11 +26,12 @@ class NotificationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
+        registreTableViewCells()
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.navigationController?.navigationBarHidden = false
-        registreTableViewCells()
     }
     
     func registreTableViewCells () {
@@ -43,7 +44,7 @@ class NotificationsViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        loadMessages(self)
+       loadMessages(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

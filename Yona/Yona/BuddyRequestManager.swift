@@ -104,7 +104,7 @@ class BuddyRequestManager {
     }
     
     func deleteBuddy(buddy: Buddies?, onCompletion: APIBuddiesResponse) {
-        self.genericBuddyRequest(httpMethods.get, buddyBody: nil, buddy: buddy, onCompletion: onCompletion)
+        self.genericBuddyRequest(httpMethods.delete, buddyBody: nil, buddy: buddy, onCompletion: onCompletion)
     }
 
 }

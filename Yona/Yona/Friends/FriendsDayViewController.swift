@@ -14,10 +14,22 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("", comment: "")
     }
 
 
+    override func viewWillAppear(animated: Bool) {
+        var tmpFirst = ""
+        var tmpLast = ""
+        if let txt = buddyToShow?.UserRequestfirstName {
+            tmpFirst = txt
+        }
+        if let txt = buddyToShow?.UserRequestlastName {
+            tmpLast = txt
+        }
 
+        navigationItem.title = NSLocalizedString("\(tmpFirst) \(tmpLast)", comment: "")
+    }
     
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
@@ -39,9 +51,15 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     @IBAction func didChooseUserProfile(sender : AnyObject) {
     
+        performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)
     
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is FriendsProfileViewController {}
+        let controller = segue.destinationViewController as! FriendsProfileViewController
+        controller.aUser = buddyToShow
+    }
     
     // MARK: - Data loaders
     

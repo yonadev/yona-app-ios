@@ -59,9 +59,19 @@ class YonaUserTableViewCell: UITableViewCell {
     func setMessage(aMessage : Message) {
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
-        
+     
+        var tmpFirst = ""
+        var tmpLast = ""
+        if aMessage.UserRequestfirstName.characters.count > 0 {
+            tmpFirst = aMessage.UserRequestfirstName
+        }
+        if aMessage.UserRequestlastName.characters.count > 0 {
+            tmpLast = aMessage.UserRequestlastName
+        }
+        if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-//        avatarNameLabel.text = "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
+            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!) \(tmpLast.capitalizedString.characters.first!)"
+        }
         
         
         statusImageView.image = aMessage.iconForStatus()
