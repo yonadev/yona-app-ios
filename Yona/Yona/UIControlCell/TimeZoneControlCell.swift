@@ -52,32 +52,44 @@ class TimeZoneControlCell : UITableViewCell {
     func setUpView(activityGoal : ActivitiesGoal) {
         
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
-        var spreadTest = [0,0,0,0,0,0,0,0,0,15,15,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0]
+        var spreadTest = [0,0,0,0,0,0,0,0,0,15,15,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,15,0,0,15,0,15,0,15,15,15,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0]
         
         var spreadCellsValue = 0
-//draw the spreadcells where the user has set timezones
+        //draw the spreadcells where the user has set timezones
         for currentSpread in activityGoal.spreadCells {
             let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int 
-            let spreadWidth = CGFloat(spreadCellsValue) * CGFloat(pxPerMinute)
+            let spreadWidth = CGFloat(currentSpread) * CGFloat(pxPerMinute)
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
             timeZoneView.backgroundColor = UIColor.yiPeaColor()
             backgroundMinsView.addSubview(timeZoneView)
             spreadCellsValue += 1
         }
     
-//draw the activity
+        //draw the activity
+        //blue cells
+        //red cells
         var spreadValue = 0
         for spread in spreadTest {
-            let spreadX = CGFloat(spreadValue) * pxPerSpread
+            //right align
+            if activityGoal.spreadCells.contains(spreadValue+1){
+                let spreadX = CGFloat(spreadValue) * pxPerSpread
+            } else {
+                let spreadX = CGFloat(spreadValue) * pxPerSpread
+            }
+            
             let spreadWidth = CGFloat(spread) * pxPerMinute
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
-            timeZoneView.backgroundColor = UIColor.yiMidBlueColor()
+            
+            if activityGoal.spreadCells.contains(spreadValue){
+                timeZoneView.backgroundColor = UIColor.yiMidBlueColor()
+            } else {
+                timeZoneView.backgroundColor = UIColor.yiDarkishPinkColor()
+            }
             backgroundMinsView.addSubview(timeZoneView)
             spreadValue += 1
 
         }
-        //blue cells
-        //red cells
+
         
         //set goal title
         self.goalType.text = activityGoal.goalName
