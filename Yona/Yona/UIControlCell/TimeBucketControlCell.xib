@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7U-i0-VWR" id="zoS-j4-1EE">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUf-Jw-v1k">
@@ -128,7 +128,6 @@
                 <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
                 <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
-                <outlet property="horizontalSpaceingConstraint" destination="03h-cC-cOk" id="DmC-je-ayw"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
                 <outlet property="zeroMins" destination="Ss0-0r-zLz" id="EJ1-BM-BZ3"/>

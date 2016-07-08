@@ -9,34 +9,75 @@
 import Foundation
 class TimeZoneControlCell : UITableViewCell {
     
+    //time labels
+    @IBOutlet weak var fourAm: UILabel!
+    @IBOutlet weak var eightAM: UILabel!
+    @IBOutlet weak var sixteenHundred: UILabel!
+    @IBOutlet weak var twentyHundred: UILabel!
+
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesUsed: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
 
+    @IBOutlet weak var twentyHundredConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sixteenHundredConstraint: NSLayoutConstraint!
+    @IBOutlet weak var eightAmConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-
+    
+    var pxPerSpread : CGFloat = 0
+    var pxPerMinute : CGFloat = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        //testSpread
+        pxPerSpread = self.backgroundMinsView.frame.size.width / 96
+        pxPerMinute = pxPerSpread / 15
         
+        fourleftConstraint.constant = 16 * pxPerSpread + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
+        self.fourAm.setNeedsLayout()
+        
+        eightAmConstraint.constant = 32 * pxPerSpread + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
+        self.eightAM.setNeedsLayout()
+        
+        sixteenHundredConstraint.constant = 64 * pxPerSpread + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
+        self.sixteenHundred.setNeedsLayout()
+        
+        twentyHundredConstraint.constant = 80 * pxPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
+        self.twentyHundred.setNeedsLayout()
     }
-    
 
     func setUpView(activityGoal : ActivitiesGoal) {
         
-        let pxPerSpread = self.backgroundMinsView.frame.size.width / 96
-        let pxPerMinute = pxPerSpread / 15
-
-        var spreadValue = 0
-        for currentSpread in activityGoal.spread {
-            let spreadX = CGFloat(spreadValue) * pxPerSpread
-            let spreadWidth = CGFloat(currentSpread) * pxPerMinute
+        //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
+        var spreadTest = [0,0,0,0,0,0,0,0,0,15,15,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0]
+        
+        var spreadCellsValue = 0
+//draw the spreadcells where the user has set timezones
+        for currentSpread in activityGoal.spreadCells {
+            let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int 
+            let spreadWidth = CGFloat(spreadCellsValue) * CGFloat(pxPerMinute)
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
             timeZoneView.backgroundColor = UIColor.yiPeaColor()
             backgroundMinsView.addSubview(timeZoneView)
-            spreadValue += 1
+            spreadCellsValue += 1
         }
+    
+//draw the activity
+        var spreadValue = 0
+        for spread in spreadTest {
+            let spreadX = CGFloat(spreadValue) * pxPerSpread
+            let spreadWidth = CGFloat(spread) * pxPerMinute
+            let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
+            timeZoneView.backgroundColor = UIColor.yiMidBlueColor()
+            backgroundMinsView.addSubview(timeZoneView)
+            spreadValue += 1
+
+        }
+        //blue cells
+        //red cells
         
         //set goal title
         self.goalType.text = activityGoal.goalName
