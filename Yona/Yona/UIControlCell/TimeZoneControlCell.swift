@@ -69,16 +69,18 @@ class TimeZoneControlCell : UITableViewCell {
         //blue cells
         //red cells
         var spreadValue = 0
+        var spreadX = CGFloat(spreadValue) * pxPerSpread
+
         for spread in spreadTest {
-            //right align
-            if activityGoal.spreadCells.contains(spreadValue+1){
-                let spreadX = CGFloat(spreadValue) * pxPerSpread
-            } else {
-                let spreadX = CGFloat(spreadValue) * pxPerSpread
-            }
+
             
             let spreadWidth = CGFloat(spread) * pxPerMinute
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
+            
+            //right align
+            if activityGoal.spreadCells.contains(spreadValue+1){
+                spreadX += pxPerSpread - spreadWidth
+            }
             
             if activityGoal.spreadCells.contains(spreadValue){
                 timeZoneView.backgroundColor = UIColor.yiMidBlueColor()
