@@ -51,22 +51,19 @@ class TimeBucketControlCell : UITableViewCell {
     }
     
     func setUpView(activityGoal : ActivitiesGoal) {
-
-    
-        
-        let neg = activityGoal.totalMinutesBeyondGoal
-        let positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
-        
-        let totalMinutes = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+        let negative = activityGoal.totalMinutesBeyondGoal
+        var positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
+        if positive < 0 { positive = 0}
+        let totalMinutes = activityGoal.totalActivityDurationMinutes
        
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
             pxPrMinute = (backgroundMinsView.frame.size.width+8) / CGFloat(totalMinutes)
         }
-        var aViewframe = CGRectMake( CGFloat(neg) * pxPrMinute, 0, (8 + backgroundMinsView.frame.size.width) - CGFloat(neg) * pxPrMinute , 32)
+        var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (8 + backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , 32)
         positiveView.frame = aViewframe
         
-        aViewframe  = CGRectMake(CGFloat(neg) * pxPrMinute, 0, 0, 32)
+        aViewframe  = CGRectMake(CGFloat(negative) * pxPrMinute, 0, 0, 32)
         negativeView.frame = aViewframe
 
         negativeView.backgroundColor = UIColor.redColor()
@@ -80,22 +77,22 @@ class TimeBucketControlCell : UITableViewCell {
         self.endMinutes.text = String(activityGoal.maxDurationMinutes)
         
         //set beyond goal label minutes
-        if neg == 0 {
+        if negative == 0 {
             self.minutesBeyondGoal.hidden = true
         }
-        self.minutesBeyondGoal.text = "-\(neg)"
+        self.minutesBeyondGoal.text = "-\(negative)"
         
         
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
      //   let indent = backgroundMinsView.frame.origin.x
-        zeroMinsConstraint.constant = CGFloat(neg) * pxPrMinute + zeroMins.frame.size.width
+        zeroMinsConstraint.constant = CGFloat(negative) * pxPrMinute + zeroMins.frame.size.width
         zeroMins.setNeedsLayout()
         
         //set minutes title
-        if neg != 0 {
+        if negative != 0 {
             self.minutesTitle.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesTitle.text = String(neg)
+            self.minutesTitle.text = String(negative)
             self.goalMessage.text = NSLocalizedString("meday.message.minutesover", comment: "")
         } else {
             self.minutesTitle.text = String(positive)
@@ -110,16 +107,25 @@ class TimeBucketControlCell : UITableViewCell {
     
     func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
         let negative = activityGoal.totalMinutesBeyondGoal
-        let total = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
-        let positive = activityGoal.maxDurationMinutes -  activityGoal.totalActivityDurationMinutes
+        var positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
+        if positive < 0 { positive = 0}
         
+        var totalMinutes = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+        if totalMinutes == 0 {
+            totalMinutes = activityGoal.maxDurationMinutes
+        }
+        
+        if positive < 0 {
+            positive = 0
+        }
      
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
-        if total > 0 {
-            pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(total)
+        if totalMinutes > 0 {
+            pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(totalMinutes)
         }
 
         var positiveFrame = positiveView.frame
+        positiveFrame.origin.x = CGFloat(negative) * pxPrMinute
         positiveFrame.size.width = CGFloat(positive) * pxPrMinute
 
         var negativeFrame = negativeView.frame

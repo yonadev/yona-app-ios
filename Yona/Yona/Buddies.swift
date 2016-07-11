@@ -10,6 +10,8 @@ import Foundation
 struct Buddies{
     var selfLink: String?
     var editLink: String?
+    var dailyActivityReports : String?
+    var weeklyActivityReports : String?
     var sendingStatus: buddyRequestStatus?
     var receivingStatus: buddyRequestStatus?
 
@@ -20,7 +22,8 @@ struct Buddies{
     var UserRequestSelfLink: String
     var buddyNickName : String
     
-    init(buddyData: BodyDataDictionary) {
+    var buddyGoals : [Goal] = []
+    init(buddyData: BodyDataDictionary, allActivity: [Activities]) {
         UserRequestfirstName = ""
         UserRequestlastName = ""
         UserRequestmobileNumber = ""
@@ -67,6 +70,14 @@ struct Buddies{
                 let editLinkHref = editLink[postBuddyBodyKeys.href.rawValue] as? String{
                 self.editLink = editLinkHref
             }
+            if let dayly = links[postBuddyBodyKeys.yonaDailyActivityReports.rawValue],
+                let editLinkHref = dayly[postBuddyBodyKeys.href.rawValue] as? String{
+                self.dailyActivityReports = editLinkHref
+            }
+            if let weekly = links[postBuddyBodyKeys.yonaWeeklyActivityReports.rawValue],
+                let editLinkHref = weekly[postBuddyBodyKeys.href.rawValue] as? String{
+                self.weeklyActivityReports = editLinkHref
+            }
         }
         //store nickname 
         if let txt = buddyData[getMessagesKeys.nickname.rawValue] as? String {
@@ -92,6 +103,26 @@ struct Buddies{
                 let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue] as? String {
                 self.UserRequestSelfLink = linksRequestSelfHref
             }
+            
+            // get the goals
+            if let moreembedded = embedded[YonaConstants.jsonKeys.yonaGoals]  as? BodyDataDictionary{
+                if let goalsdata = moreembedded[YonaConstants.jsonKeys.embedded] as? BodyDataDictionary{
+                    if let theembeddedGoals = goalsdata[YonaConstants.jsonKeys.yonaGoals] as? NSArray{
+                        //iterate embedded goals response
+                        for goal in theembeddedGoals {
+                            if let goal = goal as? BodyDataDictionary {
+                                let newGoal = Goal.init(goalData: goal, activities: allActivity)
+                                if !newGoal.isHistoryItem {
+                                    self.buddyGoals.append(newGoal)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
+        
+
     }
 }

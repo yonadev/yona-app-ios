@@ -38,15 +38,19 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        callAllBuddyList(self)
+        //callAllBuddyList(self)
         refreshControl = UIRefreshControl()
         refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl!.addTarget(self, action: #selector(callAllBuddyList(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
-        setupUI()
+        //setupUI()
         registreTableViewCells()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
     func setupUI() {
         showRightTab(rightTabMainView)
         
@@ -61,7 +65,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
     }
 
-
+    
     
     // MARK: - Table view data source
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -125,6 +129,37 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+            if indexPath.section == friendsSections.connected.rawValue {
+                performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
+            } else {
+                tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
+            
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is FriendsDayViewController {
+            
+            
+            let controller = segue.destinationViewController as! FriendsDayViewController
+            if let indexpath = tableView.indexPathForSelectedRow {
+                
+                if indexpath.section == friendsSections.connected.rawValue {
+                    controller.buddyToShow = AcceptedBuddy[indexpath.row]
+                    
+                } else if indexpath.section == friendsSections.pending.rawValue {
+                    controller.buddyToShow = AcceptedBuddy[indexpath.row]
+                }
+                tableView.deselectRowAtIndexPath(indexpath, animated: false)
+            }
+        }
+        
+    }
+    
+    
 // MARK: Touch Event of Custom Segment
 
     override func actionsAfterLeftButtonPush() {
@@ -162,6 +197,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     self.tableView.reloadData()
                 } else {
                     print("No buddies")
+                    self.tableView.reloadData()
                 }
             } else {
                 if let serverMessage = serverMessage {

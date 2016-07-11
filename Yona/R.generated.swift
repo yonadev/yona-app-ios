@@ -364,6 +364,7 @@ struct R {
   struct nib {
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
+    static var yonaButtonTableViewCell: _R.nib._YonaButtonTableViewCell { return _R.nib._YonaButtonTableViewCell() }
     static var yonaButtonsTableHeaderView: _R.nib._YonaButtonsTableHeaderView { return _R.nib._YonaButtonsTableHeaderView() }
     static var yonaCustomDatePickerView: _R.nib._YonaCustomDatePickerView { return _R.nib._YonaCustomDatePickerView() }
     static var yonaCustomPickerView: _R.nib._YonaCustomPickerView { return _R.nib._YonaCustomPickerView() }
@@ -378,6 +379,7 @@ struct R {
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
+    static var yonaButtonTableViewCell: ReuseIdentifier<YonaButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaButtonTableViewCell") }
     static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
     static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
     static var yonaTwoButtonTableViewCell: ReuseIdentifier<YonaTwoButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaTwoButtonTableViewCell") }
@@ -395,8 +397,13 @@ struct R {
       static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, ConfirmMobileValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
     }
     
+    struct friendsDayViewController {
+      static var showFriendProfile: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsProfileViewController> { return StoryboardSegueIdentifier(identifier: "showFriendProfile") }
+    }
+    
     struct friendsProfileMasterView {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
+      static var showFriendDetails: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, FriendsDayViewController> { return StoryboardSegueIdentifier(identifier: "showFriendDetails") }
     }
     
     struct loginViewController {
@@ -489,16 +496,21 @@ struct R {
     
     struct friends {
       static var addFriendsStoryboard: AddFriendsViewController? { return instance.instantiateViewControllerWithIdentifier("AddFriendsStoryboard") as? AddFriendsViewController }
+      static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
+      static var friendsProfileViewController: FriendsProfileViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as? FriendsProfileViewController }
       static var initialViewController: FriendsProfileMasterView? { return instance.instantiateInitialViewController() as? FriendsProfileMasterView }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        assert(UIImage(named: "icnAdd") != nil, "[R.swift] Image named 'icnAdd' is used in storyboard 'Friends', but couldn't be loaded.")
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Friends', but couldn't be loaded.")
+        assert(UIImage(named: "icnAdd") != nil, "[R.swift] Image named 'icnAdd' is used in storyboard 'Friends', but couldn't be loaded.")
+        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Friends', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(addFriendsStoryboard != nil, "[R.swift] ViewController with identifier 'addFriendsStoryboard' could not be loaded from storyboard 'Friends' as 'AddFriendsViewController'.")
+        assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'Friends' as 'FriendsDayViewController'.")
+        assert(friendsProfileViewController != nil, "[R.swift] ViewController with identifier 'friendsProfileViewController' could not be loaded from storyboard 'Friends' as 'FriendsProfileViewController'.")
       }
     }
     
@@ -666,6 +678,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> WeekScoreControlCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? WeekScoreControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _YonaButtonTableViewCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "YonaButtonTableViewCell", bundle: _R.hostingBundle) }
+      var name: String { return "YonaButtonTableViewCell" }
+      var reuseIdentifier: ReuseIdentifier<YonaButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaButtonTableViewCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> YonaButtonTableViewCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? YonaButtonTableViewCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

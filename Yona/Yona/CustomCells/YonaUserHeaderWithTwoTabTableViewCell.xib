@@ -119,6 +119,16 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGy-Mn-r9R">
+                        <rect key="frame" x="260" y="34" width="80" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="AZK-ju-OUF"/>
+                            <constraint firstAttribute="height" constant="30" id="NFm-qH-C86"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -128,8 +138,10 @@
                     <constraint firstItem="ehV-oV-g5b" firstAttribute="width" secondItem="9Ho-3J-yNH" secondAttribute="width" id="7bS-aL-bHY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3WI-l9-AD2" secondAttribute="trailing" constant="14" id="7eW-IX-F3X"/>
                     <constraint firstItem="62z-M1-1qt" firstAttribute="centerX" secondItem="BaQ-Uo-jjA" secondAttribute="centerX" id="DbY-L6-oLh"/>
+                    <constraint firstItem="HGy-Mn-r9R" firstAttribute="centerX" secondItem="BaQ-Uo-jjA" secondAttribute="centerX" id="INj-7L-1jx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ryB-Lf-FQa" secondAttribute="trailing" constant="24" id="JcX-0S-L0w"/>
                     <constraint firstItem="62z-M1-1qt" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="1" id="Jg7-j5-Epe"/>
+                    <constraint firstItem="HGy-Mn-r9R" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="26" id="O6l-be-YhP"/>
                     <constraint firstItem="9Ho-3J-yNH" firstAttribute="leading" secondItem="BaQ-Uo-jjA" secondAttribute="leadingMargin" constant="-8" id="OE0-FL-Rnu"/>
                     <constraint firstItem="9Ho-3J-yNH" firstAttribute="top" secondItem="62z-M1-1qt" secondAttribute="bottom" constant="84" id="WAG-zg-kEK"/>
                     <constraint firstItem="ryB-Lf-FQa" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="101" id="Zhw-o9-jHi"/>
@@ -148,6 +160,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="62z-M1-1qt" id="EAW-vE-a9r"/>
+                <outlet property="avatraInitialsLabel" destination="HGy-Mn-r9R" id="eNr-ph-mGZ"/>
                 <outlet property="badgesTabLabel" destination="j4i-iR-NaK" id="fvS-fr-wRx"/>
                 <outlet property="badgesTabMainView" destination="ehV-oV-g5b" id="hRK-dx-YzT"/>
                 <outlet property="badgesTabSelectionsView" destination="mrt-3W-OaL" id="ti5-ZX-Jzb"/>

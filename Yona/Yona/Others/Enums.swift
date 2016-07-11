@@ -134,6 +134,8 @@ enum postBuddyBodyKeys : String {
     case message = "message"
     case yonaUser = "yona:user"
     case yonaBuddies = "yona:buddies"
+    case yonaDailyActivityReports = "yona:dailyActivityReports"
+    case yonaWeeklyActivityReports = "yona:weeklyActivityReports"
     case links = "_links"
     case selfKey = "self"
     case editKey = "edit"
@@ -215,5 +217,37 @@ enum ProfileCategoryHeader : Int {
         }
     }
 
+}
+
+// Used in Profile
+enum FriendsProfileCategoryHeader : Int {
+    case Name = 0
+    case NickName
+    case CellNumber
+    
+    
+    func headerText() -> String{
+        switch self {
+        case FriendsProfileCategoryHeader.Name:
+            return  NSLocalizedString("profile.user.data.name", comment: "ProfileCell FirstName header")
+        case FriendsProfileCategoryHeader.NickName:
+            return  NSLocalizedString("profile.user.data.nickname", comment: "ProfileCell NickName header")
+        case FriendsProfileCategoryHeader.CellNumber:
+            return  NSLocalizedString("profile.user.data.mobilenumber", comment: "ProfileCell Mobile Phone header")
+        }
+    }
+    
+    func imageType() -> UIImage {
+        
+        switch self {
+        case FriendsProfileCategoryHeader.Name:
+            return  UIImage(named: "icnName")!
+        case FriendsProfileCategoryHeader.NickName:
+            return  UIImage(named: "icnNickname")!
+        case FriendsProfileCategoryHeader.CellNumber:
+            return  UIImage(named: "icnMobile")!
+        }
+    }
+    
 }
 

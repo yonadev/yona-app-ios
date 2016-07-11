@@ -29,6 +29,9 @@ static NSString * baseUrl;
         case DeploymentEnvironmentDev:
             baseUrl = @"http://85.222.227.142/";
             break;
+        case DeploymentEnvironmentQA:
+            baseUrl = @"http://85.222.227.142/";
+            break;
         default:
             baseUrl = @"http://85.222.227.84/";
             break;
