@@ -241,6 +241,7 @@
 
 // String for Profile
 
+"profile.user.data.name" = "NAME";
 "profile.user.data.firstname" = "FIRST NAME";
 "profile.user.data.lastname" = "LAST NAME";
 "profile.user.data.nickname" = "NICKNAME";
@@ -262,3 +263,7 @@
 //me day cells
 "meday.message.minutesover" = "minutes over limit";
 "meday.message.minutesleft" = "minutes left";
+
+//Friends Profile Button text
+
+"friendprofile.button.title" = "REMOVE FRIEND";

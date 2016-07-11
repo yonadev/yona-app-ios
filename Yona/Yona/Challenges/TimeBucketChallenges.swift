@@ -67,6 +67,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         self.callActivityCategory()
         setDeselectOtherCategory()
 
+        budgetGoalSelected = nil
+        
         if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
             switch tabName {
             case timeBucketTabNames.budget.rawValue:
