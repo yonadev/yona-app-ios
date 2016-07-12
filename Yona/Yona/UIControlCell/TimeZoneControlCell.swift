@@ -75,7 +75,7 @@ class TimeZoneControlCell : UITableViewCell {
         for spreadCell in spreadCells {
             //set frame of timezone
             
-            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(0, 0, 0, 32))
+            let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
             if activityGoal.spreadCells.contains(spreadValue){
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
             } else {

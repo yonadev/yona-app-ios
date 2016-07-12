@@ -10,7 +10,7 @@ import Foundation
 
 class TimeZoneCustomView: UIView {
     
-    var spreadX : CGFloat?
+    var spreadX : CGFloat = 0
     var spreadWidth : CGFloat?
     var spreadHeight : CGFloat = 32
     var timeZoneColour : UIColor?
@@ -49,5 +49,10 @@ class TimeZoneCustomView: UIView {
         } else {
             spreadX = CGFloat(spreadValue) * pxPerSpread
         }
+
+  // YOU must set the calculated frame and the backgroundcolor
+        frame = CGRectMake(spreadX, 0, spreadWidth!, spreadHeight)
+        backgroundColor = timeZoneColour
+        //print (self)
     }
 }
