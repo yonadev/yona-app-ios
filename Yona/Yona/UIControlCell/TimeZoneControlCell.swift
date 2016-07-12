@@ -52,15 +52,14 @@ class TimeZoneControlCell : UITableViewCell {
     func setUpView(activityGoal : ActivitiesGoal) {
         
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
-        var spreadTest = [15,15,4,15,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0] //activityGoal.spread//
         
         var spreadCellsValue = 0
         //draw the spreadcells where the user has set timezones
         for currentSpread in activityGoal.spreadCells {
-            let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int 
+            let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(currentSpread) * CGFloat(pxPerMinute)
-            let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
-            timeZoneView.backgroundColor = UIColor.yiPeaColor()
+            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(spreadX, 0, spreadWidth, 32), colour: UIColor.yiPeaColor())
             backgroundMinsView.addSubview(timeZoneView)
             spreadCellsValue += 1
         }
@@ -73,37 +72,40 @@ class TimeZoneControlCell : UITableViewCell {
 
         //change spreadTest to
         //activityGoal.spread
-        for spread in spreadTest {
-            //calculate width of timezone
-            let spreadWidth = CGFloat(spread) * pxPerMinute
-            
-            //right align
-            if (spreadValue + 1) < spreadTest.count && (spreadValue - 1) >= 0 { ///don't go out of bounds
-                if spreadTest[spreadValue + 1] == 15 //if next cell is full
-                    && spreadTest[spreadValue] < 15 //And current cell is less than 15
-                    && spreadTest[spreadValue] > 0 { //and great than 0
-                    spreadX = (CGFloat(spreadValue) * pxPerSpread) + (pxPerSpread - (CGFloat(spreadTest[spreadValue]) * pxPerMinute)) //then align to right
-//                } else if (spreadTest[spreadValue-1] < 15 && spreadTest[spreadValue-1] > 0) && //previous cell is between not full but no zero
-//                        (spreadTest[spreadValue + 1] < 15 && spreadTest[spreadValue + 1] > 0){ //and next cell is not full either
-//                    spreadX = (CGFloat(spreadValue) * pxPerSpread) + (pxPerSpread/2 - spreadWidth/2) //align in center
-                } else if spreadTest[spreadValue - 1] == 15 //if previous cell is full
-                    && spreadTest[spreadValue] < 15 //And current cell is less than 15
-                    && spreadTest[spreadValue] > 0 { //and great than 0
-                    spreadX = CGFloat(spreadValue) * pxPerSpread //align to left
-                } else { //else centre align
-                    spreadX = (CGFloat(spreadValue) * pxPerSpread) + (pxPerSpread/2 - spreadWidth/2) //align in center
-                }
-            } else {
-                spreadX = CGFloat(spreadValue) * pxPerSpread
-            }
-            
+        for spreadCell in spreadCells {
             //set frame of timezone
-            let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
+            
+            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(0, 0, 0, 32))
             if activityGoal.spreadCells.contains(spreadValue){
-                timeZoneView.backgroundColor = UIColor.yiMidBlueColor()
+                timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
             } else {
-                timeZoneView.backgroundColor = UIColor.yiDarkishPinkColor()
+                timeZoneView.timeZoneColour = UIColor.yiDarkishPinkColor()
             }
+            
+            //calculate width of timezone, get value in that cell times by pixels per min
+            timeZoneView.spreadWidth = CGFloat(spreadCell) * pxPerMinute
+            
+            timeZoneView.rightAlign(spreadValue, spreadCells: spreadCells, pxPerMinute: pxPerMinute, pxPerSpread: pxPerSpread)
+            
+//            //right align
+//            if (spreadValue + 1) < spreadCells.count && (spreadValue - 1) >= 0 { ///don't go out of bounds
+//                if spreadCells[spreadValue + 1] == 15 //if next cell is full
+//                    && spreadCells[spreadValue] < 15 //And current cell is less than 15
+//                    && spreadCells[spreadValue] > 0 { //and great than 0
+//                    spreadX = (CGFloat(spreadValue) * pxPerSpread) + (pxPerSpread - (CGFloat(spreadCells[spreadValue]) * pxPerMinute)) //then align to right
+//                } else if spreadCells[spreadValue - 1] == 15 //if previous cell is full
+//                    && spreadCells[spreadValue] < 15 //And current cell is less than 15
+//                    && spreadCells[spreadValue] > 0 { //and great than 0
+//                    spreadX = CGFloat(spreadValue) * pxPerSpread //align to left
+//                } else { //else centre align
+//                    spreadX = (CGFloat(spreadValue) * pxPerSpread) + (pxPerSpread/2 - spreadWidth/2) //align in center
+//                }
+//            } else {
+//                spreadX = CGFloat(spreadValue) * pxPerSpread
+//            }
+            
+
+
 
             backgroundMinsView.addSubview(timeZoneView)
             spreadValue += 1
