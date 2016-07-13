@@ -265,8 +265,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     self.animatedCells.removeAll()
                     self.leftTabData = data
                 }
-                    Loader.Hide()
-                    self.tableView.reloadData()
+                Loader.Hide()
+                self.tableView.reloadData()
             } else {
                 Loader.Hide()
             }
