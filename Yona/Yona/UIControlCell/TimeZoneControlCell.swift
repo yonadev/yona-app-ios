@@ -52,7 +52,8 @@ class TimeZoneControlCell : UITableViewCell {
     func setUpView(activityGoal : ActivitiesGoal) {
         
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
-        var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0] //activityGoal.spread//
+        //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
+        var spreadCells = activityGoal.spread
         
         var spreadCellsValue = 0
         //draw the spreadcells where the user has set timezones
@@ -70,7 +71,6 @@ class TimeZoneControlCell : UITableViewCell {
         //blue cells
         //red cells
         var spreadValue = 0
-        let spreadX = CGFloat(spreadValue) * pxPerSpread
 
         //change spreadTest to
         //activityGoal.spread
