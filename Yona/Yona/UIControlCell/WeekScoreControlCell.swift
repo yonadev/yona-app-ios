@@ -69,23 +69,4 @@ class WeekScoreControlCell: UITableViewCell {
         let weekDay = myComponents.weekday
         return weekDay
     }
-
-    
-//    func dateFromWeek() -> NSDate {
-//        let calendar = NSCalendar.currentCalendar()
-//        let components = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: self)
-//        let weekOfYear = components.weekOfYear
-//        
-//        return weekOfYear
-//    }
-    
-//    func getStartDayOfWeek() {
-//        let calendar = NSCalendar.currentCalendar()
-//        var startOfTheWeek: NSDate?
-//        var endOfWeek: NSDate!
-//        var interval = NSTimeInterval(0)
-//        
-//        calendar.rangeOfUnit(.WeekOfMonth, startDate: &startOfTheWeek, interval: &interval, forDate: NSDate())
-//        endOfWeek = startOfTheWeek!.dateByAddingTimeInterval(interval - 1)
-//    }
 }

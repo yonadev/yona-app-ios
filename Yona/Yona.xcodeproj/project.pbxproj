@@ -106,6 +106,8 @@
 		90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */; };
 		90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */; };
 		90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */; };
+		90F123E11D35431F00E2BBBA /* NoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123E01D35431F00E2BBBA /* NoGoCell.swift */; };
+		90F123E31D35432F00E2BBBA /* NoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123E21D35432F00E2BBBA /* NoGoCell.xib */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -404,6 +406,8 @@
 		90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeZoneControlCell.xib; sourceTree = "<group>"; };
 		90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneControlCell.swift; sourceTree = "<group>"; };
 		90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneCustomView.swift; sourceTree = "<group>"; };
+		90F123E01D35431F00E2BBBA /* NoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoGoCell.swift; sourceTree = "<group>"; };
+		90F123E21D35432F00E2BBBA /* NoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoCell.xib; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -683,6 +687,8 @@
 				90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */,
 				90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */,
 				90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */,
+				90F123E01D35431F00E2BBBA /* NoGoCell.swift */,
+				90F123E21D35432F00E2BBBA /* NoGoCell.xib */,
 			);
 			path = UIControlCell;
 			sourceTree = "<group>";
@@ -1598,6 +1604,7 @@
 				ADD108251CC78C3B0048852F /* Oswald-Heavy.ttf in Resources */,
 				16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */,
 				D98635601CABF44000A8535C /* SF-UI-Text-Light.otf in Resources */,
+				90F123E31D35432F00E2BBBA /* NoGoCell.xib in Resources */,
 				D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */,
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
@@ -1753,6 +1760,7 @@
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */,
+				90F123E11D35431F00E2BBBA /* NoGoCell.swift in Sources */,
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
 				16B1CD2E1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
