@@ -30,6 +30,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+       
+        nib = UINib(nibName: "NoGoCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
@@ -227,24 +230,24 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 cell.setUpView(activityGoal)
                 return cell
             }
-//            // Time Frame Control
-//                // TODO:  Changes this once the cell has been created
-//            else if goaltype == "TimeZoneGoal" {
-//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//
-//                cell.setUpView(activityGoal)
-//                
-//                return cell
-//            }
-//            // NoGo Control
-//            // TODO:  Changes this once the cell has been created
-//            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
-//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//
-//                cell.setUpView(activityGoal)
-//                
-//                return cell
-//            }
+            // Time Frame Control
+                // TODO:  Changes this once the cell has been created
+            else if goaltype == "TimeZoneGoal" {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+
+                cell.setUpView(activityGoal)
+                
+                return cell
+            }
+            // NoGo Control
+            // TODO:  Changes this once the cell has been created
+            else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
+                let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+
+                cell.setUpView(activityGoal)
+                
+                return cell
+            }
         }
         // WE SHOULD NEVER END HERE ....
         return UITableViewCell(frame: CGRectZero)

@@ -8,12 +8,16 @@
 
 import Foundation
 
-class NoGoView : UITableViewCell {
+class NoGoCell : UITableViewCell {
     
     @IBOutlet weak var nogoImage: UIImageView!
     @IBOutlet weak var nogoType: UILabel!
     @IBOutlet weak var nogoMessage: UILabel!
     
     override func awakeFromNib() {
+    }
+    
+    func setUpView(activityGoal : ActivitiesGoal) {
+        nogoType.text = activityGoal.goalName
     }
 }

@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pkj-rn-LNI" customClass="NoGoView" customModule="Yona" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoGoCell" id="Pkj-rn-LNI" customClass="NoGoCell" customModule="Yona" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pkj-rn-LNI" id="DxN-bN-UmD">
@@ -30,23 +30,35 @@
                             <constraint firstAttribute="height" constant="56" id="4F4-BF-zfn"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haM-Nc-zR4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haM-Nc-zR4">
                         <rect key="frame" x="34" y="32" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1xA-Fg-Wif"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="geen hits, hou vol" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-Bb-GTZ">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="geen hits, hou vol" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-Bb-GTZ">
                         <rect key="frame" x="223" y="36" width="125" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="O3X-gd-eK0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="haM-Nc-zR4" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="24" id="DaH-mN-RBZ"/>
+                    <constraint firstItem="ObH-Bb-GTZ" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="28" id="R5o-oq-y1I"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aWg-4v-NH6" secondAttribute="bottom" constant="7" id="d1Z-li-BCr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ObH-Bb-GTZ" secondAttribute="trailing" constant="19" id="ee7-QH-Nf8"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="7" id="j3o-HQ-iPm"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="centerX" secondItem="DxN-bN-UmD" secondAttribute="centerX" id="lZb-wq-iIZ"/>
+                    <constraint firstItem="haM-Nc-zR4" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="26" id="mEx-f4-6lP"/>
+                    <constraint firstItem="ObH-Bb-GTZ" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="8" id="oKF-3q-Rtg"/>
+                    <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="haM-Nc-zR4" secondAttribute="trailing" constant="83" id="x1m-Ia-BsP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

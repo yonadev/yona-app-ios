@@ -362,6 +362,7 @@ struct R {
   }
   
   struct nib {
+    static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
     static var yonaButtonTableViewCell: _R.nib._YonaButtonTableViewCell { return _R.nib._YonaButtonTableViewCell() }
@@ -376,6 +377,7 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var noGoCell: ReuseIdentifier<NoGoCell> { return ReuseIdentifier(identifier: "NoGoCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
@@ -657,6 +659,20 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
   
   struct nib {
+    struct _NoGoCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "NoGoCell", bundle: _R.hostingBundle) }
+      var name: String { return "NoGoCell" }
+      var reuseIdentifier: ReuseIdentifier<NoGoCell> { return ReuseIdentifier(identifier: "NoGoCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? NoGoCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
     struct _TimeBucketControlCell: NibResource, Reusable {
       var instance: UINib { return UINib.init(nibName: "TimeBucketControlCell", bundle: _R.hostingBundle) }
       var name: String { return "TimeBucketControlCell" }
