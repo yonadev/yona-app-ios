@@ -31,7 +31,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haM-Nc-zR4">
-                        <rect key="frame" x="34" y="32" width="42" height="21"/>
+                        <rect key="frame" x="34" y="32" width="117" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="1xA-Fg-Wif"/>
                         </constraints>
@@ -58,7 +58,7 @@
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="centerX" secondItem="DxN-bN-UmD" secondAttribute="centerX" id="lZb-wq-iIZ"/>
                     <constraint firstItem="haM-Nc-zR4" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="26" id="mEx-f4-6lP"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="8" id="oKF-3q-Rtg"/>
-                    <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="haM-Nc-zR4" secondAttribute="trailing" constant="83" id="x1m-Ia-BsP"/>
+                    <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="haM-Nc-zR4" secondAttribute="trailing" constant="8" id="x1m-Ia-BsP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

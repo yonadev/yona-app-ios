@@ -34,6 +34,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         nib = UINib(nibName: "NoGoCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
         
+        nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
+        
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
         
@@ -202,16 +205,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let goaltype = activityGoal.goalType {
 
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
-                
                 return 165
             } else if goaltype == "TimeZoneGoal" {
                 // Time Frame Control
                 // TODO:  Changes this once the cell has been created
-                return 0
-            } else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
+                return 165
+            } else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 // NoGo Control
                 // TODO:  Changes this once the cell has been created
-                return 0
+                return 86
             }
         }
         return 0
@@ -233,7 +235,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             // Time Frame Control
                 // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
 
                 cell.setUpView(activityGoal)
                 
@@ -265,8 +267,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     self.animatedCells.removeAll()
                     self.leftTabData = data
                 }
-                    Loader.Hide()
-                    self.tableView.reloadData()
+                Loader.Hide()
+                self.tableView.reloadData()
             } else {
                 Loader.Hide()
             }

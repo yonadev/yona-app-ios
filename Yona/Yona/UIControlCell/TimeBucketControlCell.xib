@@ -128,7 +128,6 @@
                 <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
                 <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
-                <outlet property="horizontalSpaceingConstraint" destination="03h-cC-cOk" id="DmC-je-ayw"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
                 <outlet property="zeroMins" destination="Ss0-0r-zLz" id="EJ1-BM-BZ3"/>

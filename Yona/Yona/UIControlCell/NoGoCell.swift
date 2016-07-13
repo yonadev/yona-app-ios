@@ -19,5 +19,14 @@ class NoGoCell : UITableViewCell {
     
     func setUpView(activityGoal : ActivitiesGoal) {
         nogoType.text = activityGoal.goalName
+        if activityGoal.maxDurationMinutes > 0 {
+            self.nogoImage = UIImageView(image: R.image.adultSad)
+            let zone = activityGoal.zones[0]
+                
+            self.nogoMessage.text = "Zones \(String(zone)) - \(String(activityGoal.maxDurationMinutes))"
+        } else {
+            self.nogoMessage.text = "geen hits, hou vol"
+            self.nogoImage = UIImageView(image: R.image.adultHappy)
+        }
     }
 }

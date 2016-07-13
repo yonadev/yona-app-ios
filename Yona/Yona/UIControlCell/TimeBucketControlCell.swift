@@ -17,7 +17,6 @@ class TimeBucketControlCell : UITableViewCell {
    
     weak var positiveView: UIView!
     weak var negativeView: UIView!
-
     
     @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
@@ -66,9 +65,9 @@ class TimeBucketControlCell : UITableViewCell {
         aViewframe  = CGRectMake(CGFloat(negative) * pxPrMinute, 0, 0, 32)
         negativeView.frame = aViewframe
 
-        negativeView.backgroundColor = UIColor.redColor()
+        negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
         
-        positiveView.backgroundColor = UIColor.greenColor()
+        positiveView.backgroundColor = UIColor.yiPeaColor()
         
         positiveView.alpha = 1
         negativeView.alpha = 1
