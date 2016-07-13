@@ -21,12 +21,10 @@ class NoGoCell : UITableViewCell {
         nogoType.text = activityGoal.goalName
         if activityGoal.maxDurationMinutes > 0 {
             self.nogoImage.image = R.image.adultSad
-            let zone = activityGoal.zones[0]
-            self.nogoMessage.text = "Zones \(String(zone)) - \(String(activityGoal.maxDurationMinutes))"
+            let zone = "18:00"
+            self.nogoMessage.text =  "\(String(zone)) - \(String(activityGoal.maxDurationMinutes))"
         } else {
             self.nogoMessage.text = "geen hits, hou vol"
-//            let zone = activityGoal.zones[0]
-//            self.nogoMessage.text = "Zones \(String(zone)) - \(String(activityGoal.maxDurationMinutes))"
             self.nogoImage.image = R.image.adultHappy
         }
     }
