@@ -31,6 +31,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
+        nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
+        
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
         
@@ -204,7 +207,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             } else if goaltype == "TimeZoneGoal" {
                 // Time Frame Control
                 // TODO:  Changes this once the cell has been created
-                return 0
+                return 165
             } else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0  {
                 // NoGo Control
                 // TODO:  Changes this once the cell has been created
@@ -227,15 +230,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 cell.setUpView(activityGoal)
                 return cell
             }
-//            // Time Frame Control
-//                // TODO:  Changes this once the cell has been created
-//            else if goaltype == "TimeZoneGoal" {
-//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//
-//                cell.setUpView(activityGoal)
-//                
-//                return cell
-//            }
+            // Time Frame Control
+                // TODO:  Changes this once the cell has been created
+            else if goaltype == "TimeZoneGoal" {
+                let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+
+                cell.setUpView(activityGoal)
+                
+                return cell
+            }
 //            // NoGo Control
 //            // TODO:  Changes this once the cell has been created
 //            else if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes == 0  {
@@ -262,8 +265,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     self.animatedCells.removeAll()
                     self.leftTabData = data
                 }
-                    Loader.Hide()
-                    self.tableView.reloadData()
+                Loader.Hide()
+                self.tableView.reloadData()
             } else {
                 Loader.Hide()
             }
