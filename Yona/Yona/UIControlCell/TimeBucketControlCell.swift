@@ -38,7 +38,18 @@ class TimeBucketControlCell : UITableViewCell {
         zeroMins.alpha = 0.5
 
         
+
+
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    func setUpView(activityGoal : ActivitiesGoal) {
+        
         var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , 32))
+        
         positiveView = aView
         backgroundMinsView.addSubview(positiveView)
         
@@ -46,10 +57,7 @@ class TimeBucketControlCell : UITableViewCell {
         aView  = UIView(frame:CGRectMake(10, 0, 0, 32))
         negativeView = aView
         backgroundMinsView.addSubview(negativeView)
-
-    }
-    
-    func setUpView(activityGoal : ActivitiesGoal) {
+        
         let negative = activityGoal.totalMinutesBeyondGoal
         var positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
         if positive < 0 { positive = 0}
@@ -146,5 +154,9 @@ class TimeBucketControlCell : UITableViewCell {
             self.negativeView.frame = negativeFrame
         }
     
+    }
+    
+    override func prepareForReuse() {
+        backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
     }
 }
