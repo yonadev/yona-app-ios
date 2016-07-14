@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPo-xQ-Nu1">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EPo-xQ-Nu1">
                         <rect key="frame" x="32" y="29" width="129" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="ZnX-jH-dhA"/>
@@ -53,8 +53,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-1u-TUE">
-                        <rect key="frame" x="218" y="32" width="125" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-1u-TUE">
+                        <rect key="frame" x="218" y="28" width="125" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="lmp-RP-5CH"/>
                         </constraints>
@@ -150,7 +150,7 @@
                     <constraint firstItem="x37-mI-luS" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="258" id="d40-wv-wVq"/>
                     <constraint firstItem="MTd-oi-Jlz" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="211" id="duZ-pk-lwF"/>
                     <constraint firstItem="MTd-oi-Jlz" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="fqD-cV-yEJ"/>
-                    <constraint firstItem="iHp-1u-TUE" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="24" id="gKe-50-Lk4"/>
+                    <constraint firstItem="iHp-1u-TUE" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="20" id="gKe-50-Lk4"/>
                     <constraint firstItem="sJn-uq-xvu" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="68" id="ga9-5M-gag"/>
                     <constraint firstItem="sJn-uq-xvu" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="jYG-3i-QO5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ofH-LR-W23" secondAttribute="trailing" constant="23" id="nDi-pa-FGT"/>

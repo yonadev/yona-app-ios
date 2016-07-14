@@ -106,9 +106,10 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             nicknameLabel.text = txt
         }
    
-        avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
-
-    
+        //will crash if empty
+        if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
+            avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
+        }
     }
 
     
