@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7U-i0-VWR" id="zoS-j4-1EE">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAa-lP-wXD" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
@@ -63,19 +63,9 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTL-Jd-BWR">
                         <rect key="frame" x="32" y="74" width="311" height="32"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZ8-fS-1Gc">
-                                <rect key="frame" x="0.0" y="0.0" width="311" height="32"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="0.90588235855102539" green="0.90588235855102539" blue="0.90588235855102539" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="JZq-mW-5XW"/>
-                            <constraint firstItem="dZ8-fS-1Gc" firstAttribute="leading" secondItem="mTL-Jd-BWR" secondAttribute="leading" id="cyP-lV-CYj"/>
-                            <constraint firstItem="dZ8-fS-1Gc" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="top" id="gT1-4e-mwg"/>
-                            <constraint firstAttribute="trailing" secondItem="dZ8-fS-1Gc" secondAttribute="trailing" id="st9-lU-dD9"/>
-                            <constraint firstAttribute="bottom" secondItem="dZ8-fS-1Gc" secondAttribute="bottom" id="zHl-8y-N7Q"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mj9-S4-ntV">
@@ -145,8 +135,6 @@
                 <outlet property="gradientView" destination="GAa-lP-wXD" id="Yyg-R3-710"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
-                <outlet property="positiveView" destination="dZ8-fS-1Gc" id="ky7-hx-9Xz"/>
-                <outlet property="trailingPositiveView" destination="st9-lU-dD9" id="ePP-EK-euw"/>
                 <outlet property="zeroMins" destination="Ss0-0r-zLz" id="EJ1-BM-BZ3"/>
                 <outlet property="zeroMinsConstraint" destination="03h-cC-cOk" id="oT3-Ut-lpj"/>
             </connections>
