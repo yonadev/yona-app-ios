@@ -35,6 +35,7 @@ class TimeBucketControlCell : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        setUpView()
         doInitialSetup()
         drawTheCell(shouldAnimate)
     }
@@ -47,11 +48,8 @@ class TimeBucketControlCell : UITableViewCell {
         zeroMins.alpha = 0.5
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
     
-    func setUpView(activityGoal : ActivitiesGoal) {
+    func setUpView() {
         
         var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , 32))
         
@@ -76,7 +74,7 @@ class TimeBucketControlCell : UITableViewCell {
         if positive < 0 { positive = 0}
         let totalMinutes = activityGoal!.totalActivityDurationMinutes
        
-        print("backgroundMinsView : \(backgroundMinsView)")
+  //      print("backgroundMinsView : \(backgroundMinsView)")
         
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
