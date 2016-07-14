@@ -25,20 +25,36 @@ class WeekScoreControlCell: UITableViewCell {
     @IBOutlet weak var day7CircelView: WeekCircleView!
 
     
+    @IBOutlet weak var firstLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var secondLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fourthLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lastLayoutConstraint: NSLayoutConstraint!
+    weak var aActivityGoal : WeekSingleActivityGoal!
     
+    
+    override func layoutSubviews() {
+        var width = frame.width
+        width -= day1CircelView.frame.size.width*7+(2*32)
+        let distanceBetweenEach = width / 7
+        firstLayoutConstraint.constant = distanceBetweenEach
+        secondLayoutConstraint.constant = distanceBetweenEach
+        fourthLayoutConstraint.constant = distanceBetweenEach
+        lastLayoutConstraint.constant = distanceBetweenEach
+        
+    }
     
     func setSingleActivity(theActivityGoal : WeekSingleActivityGoal) {
-       
+        aActivityGoal = theActivityGoal
         let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
         userCalendar?.firstWeekday = 1
-        scoreLabel.text = "\(theActivityGoal.numberOfDaysGoalWasReached)"
-        goalTypeLabel.text = theActivityGoal.goalName
+        scoreLabel.text = "\(aActivityGoal.numberOfDaysGoalWasReached)"
+        goalTypeLabel.text = aActivityGoal.goalName
         for index in 0...6 {
             let periodComponents = NSDateComponents()
             periodComponents.weekday = index-1
             let aDate = userCalendar!.dateByAddingComponents(
                 periodComponents,
-                toDate: theActivityGoal.date,
+                toDate: aActivityGoal.date,
                 options: [])!
 
             
@@ -46,7 +62,7 @@ class WeekScoreControlCell: UITableViewCell {
             //let aDate = theActivityGoal.date.dateByAddingTimeInterval(-Double(index)*60*60*24)
             let obje :  WeekCircleView = self.valueForKey("day\(index+1)CircelView") as! WeekCircleView
             var tempStatus : circleViewStatus = circleViewStatus.noData
-            for dayActivity in theActivityGoal.activity {
+            for dayActivity in aActivityGoal.activity {
                 if dayActivity.dayofweek.rawValue == getDayOfWeek(aDate) {
                     if dayActivity.goalAccomplished {
                         tempStatus = .underGoal
