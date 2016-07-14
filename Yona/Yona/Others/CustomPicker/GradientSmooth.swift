@@ -9,19 +9,24 @@
 import Foundation
 class GradientSmooth: GradientView {
 
-    override func getPath() -> CGPath {
-        let size = self.bounds.size
-        let path = CGPathCreateMutable()
+    func setGradientSmooth(color1: UIColor, color2: UIColor) {
         
-        CGPathMoveToPoint(path, nil, 0, 0)
-        //        CGPathAddLineToPoint(path, nil, (size.width/3)*2, 0)
-        //        CGPathAddLineToPoint(path, nil, 0, size.height-15)
-        CGPathAddLineToPoint(path, nil, size.width, 0)
-        CGPathAddLineToPoint(path, nil, 0, size.height)
-        CGPathAddLineToPoint(path, nil, 0, 0)
+        // 1
+        self.backgroundColor = UIColor.greenColor()
         
-        return path
+        // 2
+        gradientLayer.frame = self.bounds
+        
+        // 3
+        let color1 = color1.CGColor as CGColorRef
+        let color2 = color2.CGColor as CGColorRef
+        gradientLayer.colors = [color1, color2]
+        
+        // 4
+        gradientLayer.locations = [0.0, 0.5]
+        
+        // 5
+        self.layer.addSublayer(gradientLayer)
+        
     }
-    
-    
 }

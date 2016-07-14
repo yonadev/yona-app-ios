@@ -10,6 +10,13 @@ import UIKit
 
 class GradientView: UIView {
     var shapeLayer = CAShapeLayer()
+    let gradientLayer = CAGradientLayer()
+    
+    @IBInspectable var gradientColor: UIColor! {
+        didSet{
+            self.awakeFromNib()
+        }
+    }
     
     // Default Colors
     var colors:[UIColor] = [] {

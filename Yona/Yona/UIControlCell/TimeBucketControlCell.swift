@@ -14,7 +14,8 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesTitle: UILabel!
     @IBOutlet weak var goalMessage: UILabel!
-   
+    @IBOutlet weak var gradientView: GradientSmooth!
+
     weak var positiveView: UIView!
     weak var negativeView: UIView!
     
@@ -30,16 +31,11 @@ class TimeBucketControlCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
         zeroMins.alpha = 0.5
-
-        
-
-
     }
     
     override func layoutSubviews() {
@@ -65,7 +61,7 @@ class TimeBucketControlCell : UITableViewCell {
        
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
-            pxPrMinute = (backgroundMinsView.frame.size.width+8) / CGFloat(totalMinutes)
+            pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(totalMinutes)
         }
         var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (8 + backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , 32)
         positiveView.frame = aViewframe

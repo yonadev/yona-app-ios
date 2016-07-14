@@ -30,6 +30,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-Vr-RGw" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPo-xQ-Nu1">
                         <rect key="frame" x="32" y="29" width="129" height="18"/>
                         <constraints>
@@ -164,6 +168,7 @@
                 <outlet property="fourAm" destination="sJn-uq-xvu" id="QIS-ab-L0t"/>
                 <outlet property="fourleftConstraint" destination="ga9-5M-gag" id="ue4-B3-caX"/>
                 <outlet property="goalType" destination="EPo-xQ-Nu1" id="1zg-XA-I6I"/>
+                <outlet property="gradientView" destination="sbv-Vr-RGw" id="RnW-lG-gBP"/>
                 <outlet property="message" destination="iHp-1u-TUE" id="mNr-7L-Ncz"/>
                 <outlet property="minutesUsed" destination="4Dm-Zy-EzF" id="vmw-Jk-z0o"/>
                 <outlet property="sixteenHundred" destination="MTd-oi-Jlz" id="kUJ-em-NUg"/>
