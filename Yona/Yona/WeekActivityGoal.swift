@@ -34,6 +34,8 @@ class WeekActivityGoal: NSObject {
                 activity.append(singleWeekObj)
             }
         }
+        activity = activity.sort({$0.goalName > $1.goalName})
+
     }
     
 }
