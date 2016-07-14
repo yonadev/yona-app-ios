@@ -13,8 +13,11 @@ class NoGoCell : UITableViewCell {
     @IBOutlet weak var nogoImage: UIImageView!
     @IBOutlet weak var nogoType: UILabel!
     @IBOutlet weak var nogoMessage: UILabel!
+    @IBOutlet weak var gradientView: GradientSmooth!
     
     override func awakeFromNib() {
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+
     }
     
     func setUpView(activityGoal : ActivitiesGoal) {

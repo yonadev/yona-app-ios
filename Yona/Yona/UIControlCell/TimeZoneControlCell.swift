@@ -19,6 +19,7 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var minutesUsed: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
+    @IBOutlet weak var gradientView: GradientSmooth!
 
     @IBOutlet weak var twentyHundredConstraint: NSLayoutConstraint!
     @IBOutlet weak var sixteenHundredConstraint: NSLayoutConstraint!
@@ -32,6 +33,8 @@ class TimeZoneControlCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+
         //testSpread
         pxPerSpread = self.backgroundMinsView.frame.size.width / 96
         pxPerMinute = pxPerSpread / 15
@@ -52,8 +55,8 @@ class TimeZoneControlCell : UITableViewCell {
     func setUpView(activityGoal : ActivitiesGoal) {
         
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
-        var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
-        //var spreadCells = activityGoal.spread
+        //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
+        var spreadCells = activityGoal.spread
         
         var spreadCellsValue = 0
         //draw the spreadcells where the user has set timezones

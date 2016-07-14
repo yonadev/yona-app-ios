@@ -29,7 +29,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUf-Jw-v1k">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAa-lP-wXD" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rUf-Jw-v1k">
                         <rect key="frame" x="32" y="29" width="130" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="M2y-xI-xZT"/>
@@ -48,8 +52,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minuten tegoed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drz-uD-GrX">
-                        <rect key="frame" x="218" y="32" width="125" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minuten tegoed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="drz-uD-GrX">
+                        <rect key="frame" x="218" y="27" width="125" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="f03-yk-jyo"/>
                         </constraints>
@@ -119,7 +123,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="mj9-S4-ntV" secondAttribute="trailing" constant="24" id="kcJ-dt-qfL"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="leading" secondItem="rUf-Jw-v1k" secondAttribute="trailing" constant="-1" id="o8O-LH-oxN"/>
                     <constraint firstItem="rUf-Jw-v1k" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="ooY-Ea-aXR"/>
-                    <constraint firstItem="drz-uD-GrX" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="24" id="pPe-zk-bu3"/>
+                    <constraint firstItem="drz-uD-GrX" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="19" id="pPe-zk-bu3"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="3" id="pkd-cf-f0M"/>
                 </constraints>
             </tableViewCellContentView>
@@ -128,6 +132,7 @@
                 <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
                 <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
+                <outlet property="gradientView" destination="GAa-lP-wXD" id="Yyg-R3-710"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>
                 <outlet property="zeroMins" destination="Ss0-0r-zLz" id="EJ1-BM-BZ3"/>
