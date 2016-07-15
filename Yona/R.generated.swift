@@ -363,6 +363,7 @@ struct R {
   
   struct nib {
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
+    static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
@@ -378,7 +379,6 @@ struct R {
   }
   
   struct reuseIdentifier {
-    static var noGoCell: ReuseIdentifier<NoGoCell> { return ReuseIdentifier(identifier: "NoGoCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var timeZoneControlCell: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
@@ -664,6 +664,20 @@ struct _R {
     struct _NoGoCell: NibResource, Reusable {
       var instance: UINib { return UINib.init(nibName: "NoGoCell", bundle: _R.hostingBundle) }
       var name: String { return "NoGoCell" }
+      var reuseIdentifier: ReuseIdentifier<NoGoCell> { return ReuseIdentifier(identifier: "NoGoCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? NoGoCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _NoGoCellFriends: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "NoGoCellFriends", bundle: _R.hostingBundle) }
+      var name: String { return "NoGoCellFriends" }
       var reuseIdentifier: ReuseIdentifier<NoGoCell> { return ReuseIdentifier(identifier: "NoGoCell") }
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {

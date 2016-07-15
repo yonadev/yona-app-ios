@@ -53,7 +53,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         if indexPath.section == 0 {
         
         let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-            
             cell.setSingleActivity(weeks![currentIndex])
         return cell
         }
