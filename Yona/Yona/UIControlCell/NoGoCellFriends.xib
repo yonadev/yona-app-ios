@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Bold.otf">
+            <string>SFUIDisplay-Bold</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoGoCell" id="o3d-AW-xkB" customClass="NoGoCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o3d-AW-xkB" id="Y3R-UB-A4A">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pi-cf-VjH" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I6c-ir-yfc">
+                                <rect key="frame" x="16" y="40" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="Jmq-h6-yvp"/>
+                                    <constraint firstAttribute="width" constant="32" id="U8s-Lm-Kg7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lange Gerrit" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N4j-Ls-R5v">
+                                <rect key="frame" x="72" y="47" width="127" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="2lK-6f-ZAV"/>
+                                    <constraint firstAttribute="width" constant="127" id="86e-93-YRc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="geen hits, hou vol" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qdm-jI-Pui">
+                                <rect key="frame" x="223" y="47" width="125" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="PFa-6X-usj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qmf-Ul-TkG">
+                                <rect key="frame" x="72" y="8" width="38" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="7yR-E0-axB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qdm-jI-Pui" secondAttribute="trailing" constant="27" id="4kG-7n-v7p"/>
+                            <constraint firstItem="Qmf-Ul-TkG" firstAttribute="top" secondItem="6Pi-cf-VjH" secondAttribute="top" constant="8" id="97L-BX-FjV"/>
+                            <constraint firstItem="N4j-Ls-R5v" firstAttribute="top" secondItem="Qmf-Ul-TkG" secondAttribute="bottom" constant="21" id="BOZ-73-7IT"/>
+                            <constraint firstItem="Qdm-jI-Pui" firstAttribute="leading" secondItem="N4j-Ls-R5v" secondAttribute="trailing" constant="24" id="Big-W7-Yci"/>
+                            <constraint firstItem="Qdm-jI-Pui" firstAttribute="baseline" secondItem="N4j-Ls-R5v" secondAttribute="baseline" id="JEl-Og-fXO"/>
+                            <constraint firstItem="I6c-ir-yfc" firstAttribute="leading" secondItem="6Pi-cf-VjH" secondAttribute="leading" constant="16" id="MnE-Kn-lXg"/>
+                            <constraint firstItem="Qmf-Ul-TkG" firstAttribute="leading" secondItem="6Pi-cf-VjH" secondAttribute="leading" constant="72" id="OZb-hv-iFT"/>
+                            <constraint firstItem="N4j-Ls-R5v" firstAttribute="centerY" secondItem="I6c-ir-yfc" secondAttribute="centerY" id="QCU-6Y-8bk"/>
+                            <constraint firstItem="N4j-Ls-R5v" firstAttribute="leading" secondItem="I6c-ir-yfc" secondAttribute="trailing" constant="24" id="X3e-2l-BRw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6Pi-cf-VjH" firstAttribute="centerY" secondItem="Y3R-UB-A4A" secondAttribute="centerY" id="5la-Tm-wGK"/>
+                    <constraint firstAttribute="trailing" secondItem="6Pi-cf-VjH" secondAttribute="trailing" id="9QC-E4-FxN"/>
+                    <constraint firstItem="6Pi-cf-VjH" firstAttribute="top" secondItem="Y3R-UB-A4A" secondAttribute="top" id="CgM-cB-Wli"/>
+                    <constraint firstItem="6Pi-cf-VjH" firstAttribute="leading" secondItem="Y3R-UB-A4A" secondAttribute="leading" id="Unr-zF-VdT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="gradientView" destination="6Pi-cf-VjH" id="i54-4P-cTd"/>
+                <outlet property="nogoImage" destination="I6c-ir-yfc" id="oNS-nV-Mz9"/>
+                <outlet property="nogoMessage" destination="Qdm-jI-Pui" id="0yp-xy-n50"/>
+                <outlet property="nogoType" destination="Qmf-Ul-TkG" id="YtI-n7-s14"/>
+            </connections>
+            <point key="canvasLocation" x="411.5" y="322"/>
+        </tableViewCell>
+    </objects>
+</document>

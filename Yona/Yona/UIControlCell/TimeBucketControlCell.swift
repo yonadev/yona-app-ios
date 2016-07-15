@@ -14,9 +14,13 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var goalType: UILabel!
     @IBOutlet weak var minutesTitle: UILabel!
     @IBOutlet weak var goalMessage: UILabel!
-   
+    @IBOutlet weak var gradientView: GradientSmooth!
+
     weak var positiveView: UIView!
+    
     weak var negativeView: UIView!
+    weak var activityGoal : ActivitiesGoal!
+    var shouldAnimate : Bool = false
     
     @IBOutlet weak var zeroMins: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
@@ -27,18 +31,27 @@ class TimeBucketControlCell : UITableViewCell {
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setUpView()
+        doInitialSetup()
+        drawTheCell(shouldAnimate)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
         zeroMins.alpha = 0.5
-
+    }
+    
+    
+    func setUpView() {
         
         var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , 32))
+        
         positiveView = aView
         backgroundMinsView.addSubview(positiveView)
         
@@ -49,17 +62,22 @@ class TimeBucketControlCell : UITableViewCell {
 
     }
     
-    func setUpView(activityGoal : ActivitiesGoal) {
-        let negative = activityGoal.totalMinutesBeyondGoal
-        var positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
+    func doInitialSetup() {
+    
+        var fra = backgroundMinsView.frame
+        fra.size.width = frame.size.width-64
+        backgroundMinsView.frame = fra
+        
+        let negative = activityGoal!.totalMinutesBeyondGoal
+        var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
         if positive < 0 { positive = 0}
-        let totalMinutes = activityGoal.totalActivityDurationMinutes
-       
+        let totalMinutes = activityGoal!.totalActivityDurationMinutes
+        
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
-            pxPrMinute = (backgroundMinsView.frame.size.width+8) / CGFloat(totalMinutes)
+            pxPrMinute = (backgroundMinsView.frame.size.width) / CGFloat(totalMinutes)
         }
-        var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (8 + backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , 32)
+        var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , 32)
         positiveView.frame = aViewframe
         
         aViewframe  = CGRectMake(CGFloat(negative) * pxPrMinute, 0, 0, 32)
@@ -73,7 +91,7 @@ class TimeBucketControlCell : UITableViewCell {
         negativeView.alpha = 1
         //set the end minutes
 
-        self.endMinutes.text = String(activityGoal.maxDurationMinutes)
+        self.endMinutes.text = String(activityGoal!.maxDurationMinutes)
         
         //set beyond goal label minutes
         if negative == 0 {
@@ -84,7 +102,6 @@ class TimeBucketControlCell : UITableViewCell {
         
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
-     //   let indent = backgroundMinsView.frame.origin.x
         zeroMinsConstraint.constant = CGFloat(negative) * pxPrMinute + zeroMins.frame.size.width
         zeroMins.setNeedsLayout()
         
@@ -99,19 +116,23 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         //set goal title
-        self.goalType.text = activityGoal.goalName
+        self.goalType.text = activityGoal!.goalName
         
     }
-
     
     func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
-        let negative = activityGoal.totalMinutesBeyondGoal
-        var positive = activityGoal.maxDurationMinutes - activityGoal.totalActivityDurationMinutes
+        self.activityGoal = activityGoal
+        shouldAnimate = animated
+    }
+    
+    func drawTheCell (animated: Bool) {
+        let negative = activityGoal!.totalMinutesBeyondGoal
+        var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
         if positive < 0 { positive = 0}
         
-        var totalMinutes = activityGoal.maxDurationMinutes + activityGoal.totalMinutesBeyondGoal
+        var totalMinutes = activityGoal!.maxDurationMinutes + activityGoal!.totalMinutesBeyondGoal
         if totalMinutes == 0 {
-            totalMinutes = activityGoal.maxDurationMinutes
+            totalMinutes = activityGoal!.maxDurationMinutes
         }
         
         if positive < 0 {
@@ -120,7 +141,8 @@ class TimeBucketControlCell : UITableViewCell {
      
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
-            pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(totalMinutes)
+            //pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(totalMinutes)
+            pxPrMinute = (backgroundMinsView.frame.size.width) / CGFloat(totalMinutes)
         }
 
         var positiveFrame = positiveView.frame
@@ -146,5 +168,9 @@ class TimeBucketControlCell : UITableViewCell {
             self.negativeView.frame = negativeFrame
         }
     
+    }
+    
+    override func prepareForReuse() {
+        backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
     }
 }

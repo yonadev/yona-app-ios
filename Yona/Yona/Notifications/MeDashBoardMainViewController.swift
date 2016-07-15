@@ -102,13 +102,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         return rightTabData[section].activity.count
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if cell is TimeBucketControlCell {
-            let aCell = cell as! TimeBucketControlCell
-            let activityGoal = leftTabData[indexPath.section].activites[indexPath.row]
-            aCell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
-        }
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -228,8 +221,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             // TIMEBUCKETCELL
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                
-                cell.setUpView(activityGoal)
+                cell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
+               // cell.setUpView(activityGoal)
                 return cell
             }
             // Time Frame Control
@@ -237,7 +230,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
 
-                cell.setUpView(activityGoal)
+                cell.setDataForView(activityGoal)
                 
                 return cell
             }
@@ -246,7 +239,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
 
-                cell.setUpView(activityGoal)
+                cell.setDataForView(activityGoal)
                 
                 return cell
             }

@@ -19,6 +19,7 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var minutesUsed: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var backgroundMinsView: UIView!
+    @IBOutlet weak var gradientView: GradientSmooth!
 
     @IBOutlet weak var twentyHundredConstraint: NSLayoutConstraint!
     @IBOutlet weak var sixteenHundredConstraint: NSLayoutConstraint!
@@ -26,13 +27,28 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
+    weak var activityGoal : ActivitiesGoal!
     
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //testSpread
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        doInitialSetup()
+        drawTheCell()
+    }
+
+    func doInitialSetup() {
+        
+        var fra = backgroundMinsView.frame
+        fra.size.width = frame.size.width-64
+        backgroundMinsView.frame = fra
+        
         pxPerSpread = self.backgroundMinsView.frame.size.width / 96
         pxPerMinute = pxPerSpread / 15
         
@@ -48,23 +64,15 @@ class TimeZoneControlCell : UITableViewCell {
         twentyHundredConstraint.constant = 80 * pxPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
     }
-
-    func setUpView(activityGoal : ActivitiesGoal) {
-        
+    
+    func drawTheCell (){
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
-        var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
-        //var spreadCells = activityGoal.spread
-        
+        //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
+        var spreadCells = activityGoal.spread
         var spreadCellsValue = 0
+        
         //draw the spreadcells where the user has set timezones
         for currentSpread in activityGoal.spreadCells {
-//            let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
-//            let spreadWidth = CGFloat(currentSpread) * CGFloat(pxPerMinute)
-//            let timeZoneView = TimeZoneCustomView.init()
-//            timeZoneView.frame = CGRectMake(spreadX, 0, spreadWidth, 32)
-//            timeZoneView.backgroundColor = UIColor.yiPeaColor()
-//            backgroundMinsView.addSubview(timeZoneView)
-//            spreadCellsValue += 1
             let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
@@ -72,12 +80,12 @@ class TimeZoneControlCell : UITableViewCell {
             backgroundMinsView.addSubview(timeZoneView)
             spreadCellsValue += 1
         }
-    
+        
         //draw the activity
         //blue cells
         //red cells
         var spreadValue = 0
-
+        
         //change spreadTest to
         //activityGoal.spread
         for spreadCell in spreadCells {
@@ -94,12 +102,8 @@ class TimeZoneControlCell : UITableViewCell {
             timeZoneView.rightAlign(spreadValue, spreadCells: spreadCells, pxPerMinute: pxPerMinute, pxPerSpread: pxPerSpread)
             backgroundMinsView.addSubview(timeZoneView)
             spreadValue += 1
-
+            
         }
-
-        
-        let arr = backgroundMinsView.subviews
-        print("number of subviews :  \(arr.count)")
         
         //set goal title
         self.goalType.text = activityGoal.goalName
@@ -111,6 +115,10 @@ class TimeZoneControlCell : UITableViewCell {
         } else {
             self.minutesUsed.text = String(activityGoal.totalActivityDurationMinutes)
         }
+    }
+    
+    func setDataForView (activityGoal : ActivitiesGoal) {
+        self.activityGoal = activityGoal
     }
     
     override func prepareForReuse() {
