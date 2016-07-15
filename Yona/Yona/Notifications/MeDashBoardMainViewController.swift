@@ -230,7 +230,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
 
-                cell.setUpView(activityGoal)
+                cell.setDataForView(activityGoal)
                 
                 return cell
             }
@@ -239,7 +239,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
 
-                cell.setUpView(activityGoal)
+                cell.setDataForView(activityGoal)
                 
                 return cell
             }

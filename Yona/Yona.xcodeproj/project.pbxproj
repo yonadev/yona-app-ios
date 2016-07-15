@@ -109,6 +109,7 @@
 		90F123E11D35431F00E2BBBA /* NoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123E01D35431F00E2BBBA /* NoGoCell.swift */; };
 		90F123E31D35432F00E2BBBA /* NoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123E21D35432F00E2BBBA /* NoGoCell.xib */; };
 		90F123E51D3785F800E2BBBA /* GradientSmooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123E41D3785F800E2BBBA /* GradientSmooth.swift */; };
+		90F123E71D385B4F00E2BBBA /* NoGoCellFriends.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -410,6 +411,7 @@
 		90F123E01D35431F00E2BBBA /* NoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoGoCell.swift; sourceTree = "<group>"; };
 		90F123E21D35432F00E2BBBA /* NoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoCell.xib; sourceTree = "<group>"; };
 		90F123E41D3785F800E2BBBA /* GradientSmooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSmooth.swift; sourceTree = "<group>"; };
+		90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoCellFriends.xib; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */,
 				90F123E01D35431F00E2BBBA /* NoGoCell.swift */,
 				90F123E21D35432F00E2BBBA /* NoGoCell.xib */,
+				90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */,
 			);
 			path = UIControlCell;
 			sourceTree = "<group>";
@@ -1616,6 +1619,7 @@
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
 				166CB8441D24EEC9008B425D /* WeekScoreControlCell.xib in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
+				90F123E71D385B4F00E2BBBA /* NoGoCellFriends.xib in Resources */,
 				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */,

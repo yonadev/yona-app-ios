@@ -31,14 +31,13 @@ class TimeBucketControlCell : UITableViewCell {
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
     
-    
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpView()
         doInitialSetup()
         drawTheCell(shouldAnimate)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
@@ -73,8 +72,6 @@ class TimeBucketControlCell : UITableViewCell {
         var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
         if positive < 0 { positive = 0}
         let totalMinutes = activityGoal!.totalActivityDurationMinutes
-       
-  //      print("backgroundMinsView : \(backgroundMinsView)")
         
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
@@ -105,7 +102,6 @@ class TimeBucketControlCell : UITableViewCell {
         
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label 
-     //   let indent = backgroundMinsView.frame.origin.x
         zeroMinsConstraint.constant = CGFloat(negative) * pxPrMinute + zeroMins.frame.size.width
         zeroMins.setNeedsLayout()
         
@@ -123,12 +119,12 @@ class TimeBucketControlCell : UITableViewCell {
         self.goalType.text = activityGoal!.goalName
         
     }
-
     
     func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
         self.activityGoal = activityGoal
         shouldAnimate = animated
     }
+    
     func drawTheCell (animated: Bool) {
         let negative = activityGoal!.totalMinutesBeyondGoal
         var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
