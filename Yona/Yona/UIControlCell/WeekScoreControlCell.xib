@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -32,6 +32,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSt-0M-tVm" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gug-Vp-0sx">
                         <rect key="frame" x="166" y="12" width="43" height="47"/>
                         <constraints>
@@ -219,7 +228,7 @@
                             <outlet property="dateText" destination="eJj-QR-o7L" id="Y78-et-TXr"/>
                         </connections>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYI-aG-3FI">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pYI-aG-3FI">
                         <rect key="frame" x="32" y="30" width="126" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="atg-kD-7K4"/>
@@ -230,6 +239,8 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="DSt-0M-tVm" secondAttribute="trailing" id="0ad-Te-W6Q"/>
+                    <constraint firstItem="DSt-0M-tVm" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="top" id="8BL-wE-yTB"/>
                     <constraint firstItem="CbU-0Z-MEU" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="AYq-Va-Frv"/>
                     <constraint firstItem="BaA-Cs-Vgh" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="DvH-Vc-FLo"/>
                     <constraint firstItem="gug-Vp-0sx" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="G3V-o5-Ztq"/>
@@ -246,6 +257,8 @@
                     <constraint firstItem="pYI-aG-3FI" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leadingMargin" constant="24" id="dJu-sl-ccc"/>
                     <constraint firstItem="neI-tC-E3N" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="fyd-Te-nln"/>
                     <constraint firstItem="pYI-aG-3FI" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="22" id="i5j-ye-w5h"/>
+                    <constraint firstItem="DSt-0M-tVm" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leading" id="l2r-CU-sBC"/>
+                    <constraint firstAttribute="bottom" secondItem="DSt-0M-tVm" secondAttribute="bottom" id="mac-lW-97P"/>
                     <constraint firstItem="Y4D-2c-gUK" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="oOj-j8-cAS"/>
                     <constraint firstItem="BaA-Cs-Vgh" firstAttribute="leading" secondItem="neI-tC-E3N" secondAttribute="trailing" constant="11" id="rb9-iX-6U2"/>
                     <constraint firstItem="1Yi-py-dRO" firstAttribute="leading" secondItem="Y4D-2c-gUK" secondAttribute="trailing" constant="11" id="sVt-Ld-pfq"/>
@@ -262,6 +275,7 @@
                 <outlet property="firstLayoutConstraint" destination="Zyn-x0-L2C" id="JvV-Gf-XID"/>
                 <outlet property="fourthLayoutConstraint" destination="Qhn-Do-ZLu" id="liG-e5-Bh7"/>
                 <outlet property="goalTypeLabel" destination="pYI-aG-3FI" id="luY-bB-1iQ"/>
+                <outlet property="gradientView" destination="DSt-0M-tVm" id="Z8g-n0-zb1"/>
                 <outlet property="lastLayoutConstraint" destination="sVt-Ld-pfq" id="15b-24-LaN"/>
                 <outlet property="scoreLabel" destination="gug-Vp-0sx" id="kNf-om-ECS"/>
                 <outlet property="secondLayoutConstraint" destination="rb9-iX-6U2" id="T2h-ol-l5n"/>

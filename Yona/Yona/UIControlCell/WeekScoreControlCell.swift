@@ -13,8 +13,7 @@ class WeekScoreControlCell: UITableViewCell {
 
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var goalTypeLabel: UILabel!
-
-    
+    @IBOutlet weak var gradientView: GradientSmooth!
     
     @IBOutlet weak var day1CircelView: WeekCircleView!
     @IBOutlet weak var day2CircelView: WeekCircleView!
