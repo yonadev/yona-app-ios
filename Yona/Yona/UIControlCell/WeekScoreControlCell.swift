@@ -13,6 +13,7 @@ class WeekScoreControlCell: UITableViewCell {
 
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var goalTypeLabel: UILabel!
+    @IBOutlet weak var goalMessage: UILabel!
     @IBOutlet weak var gradientView: GradientSmooth!
     
     @IBOutlet weak var day1CircelView: WeekCircleView!
@@ -42,12 +43,18 @@ class WeekScoreControlCell: UITableViewCell {
         
     }
     
-    func setSingleActivity(theActivityGoal : WeekSingleActivityGoal) {
+    func setSingleActivity(theActivityGoal : WeekSingleActivityGoal, isScore :Bool = false) {
         aActivityGoal = theActivityGoal
+        self.goalMessage.text = NSLocalizedString("meweek.message.timescompleted", comment: "")
+        
         let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
         userCalendar?.firstWeekday = 1
         scoreLabel.text = "\(aActivityGoal.numberOfDaysGoalWasReached)"
-        goalTypeLabel.text = aActivityGoal.goalName
+        if !isScore {
+            goalTypeLabel.text = aActivityGoal.goalName
+        } else {
+            goalTypeLabel.text = NSLocalizedString("meweek.message.score", comment: "")
+        }
         for index in 0...6 {
             let periodComponents = NSDateComponents()
             periodComponents.weekday = index-1

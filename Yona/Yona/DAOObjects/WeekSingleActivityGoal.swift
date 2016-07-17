@@ -17,6 +17,7 @@ class WeekSingleActivityGoal: NSObject {
     var weekDetailLink : String?
     var numberOfDaysGoalWasReached : Int = 0
     
+    
     init(data : BodyDataDictionary , allGoals : [Goal]) {
         
         
@@ -41,7 +42,6 @@ class WeekSingleActivityGoal: NSObject {
                     goalLinks = goalLink
                 }
             }
-            
             for goal in allGoals {
                 if goalLinks == goal.selfLinks {
                     goalName = goal.GoalName
@@ -50,4 +50,5 @@ class WeekSingleActivityGoal: NSObject {
             }
         }
     }
+    
 }

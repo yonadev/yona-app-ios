@@ -50,15 +50,6 @@ class ActivitiesGoal : NSObject{
     init(activityData: AnyObject, date theDate: NSDate) {
         
         date = theDate
-//        if let activityDate = activityData[YonaConstants.jsonKeys.date] as? String {
-//            
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
-//            if let aDate = dateFormatter.dateFromString(activityDate) {
-//                date = aDate
-//            }
-//         }
-//        
                 if let totalMinutesBeyondGoal = activityData[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
                     self.totalMinutesBeyondGoal = totalMinutesBeyondGoal
                 }

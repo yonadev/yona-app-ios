@@ -26,6 +26,7 @@
 		166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8531D2FA200008B425D /* YonaButtonTableViewCell.swift */; };
 		166CB8561D2FA200008B425D /* YonaButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */; };
 		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
+		16939AD81D3A800F003DD3A3 /* WeekSingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */; };
 		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
 		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
 		16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */; };
@@ -319,6 +320,7 @@
 		166CB8531D2FA200008B425D /* YonaButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaButtonTableViewCell.swift; sourceTree = "<group>"; };
 		166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaButtonTableViewCell.xib; sourceTree = "<group>"; };
 		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
+		16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityDetail.swift; path = DAOObjects/WeekSingleActivityDetail.swift; sourceTree = "<group>"; };
 		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
 		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
 		16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserHeaderWithTwoTabTableViewCell.xib; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */,
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
+				16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
 			);
 			name = DAOObjects;
@@ -1763,6 +1766,7 @@
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
 				90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */,
 				BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */,
+				16939AD81D3A800F003DD3A3 /* WeekSingleActivityDetail.swift in Sources */,
 				165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */,
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,

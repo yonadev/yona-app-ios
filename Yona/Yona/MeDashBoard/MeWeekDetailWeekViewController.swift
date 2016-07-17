@@ -8,16 +8,22 @@
 
 import Foundation
 
+enum loadType {
+    case prev
+    case own
+    case next
+}
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
-    
-    var weeks : [WeekSingleActivityGoal]?
-    var currentIndex = 0
-    
+    var initialObject : WeekSingleActivityGoal?
+    var week : [String:WeekSingleActivityDetail] = [:]
+    var firstWeek :  NSDate = NSDate()
+    var currentWeek : NSDate = NSDate()
+    var correctToday = NSDate()
     @IBOutlet weak var tableView : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Social", comment: "")
+//        navigationItem.title = NSLocalizedString("Social", comment: "")
         registreTableViewCells()
             
     }
@@ -34,7 +40,20 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
     }
 
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
+
+        if let aWeek = initialObject {
+            if let txt = aWeek.goalName {
+                navigationItem.title = NSLocalizedString(txt, comment: "")
+            }
+            
+            loadData(.own)
+        }
+        
+    }
     
     // MARK: - tableview Override
     
@@ -53,7 +72,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         if indexPath.section == 0 {
         
         let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-            cell.setSingleActivity(weeks![currentIndex])
+            
+            if let data = week[currentWeek.yearWeek]  {
+                cell.setSingleActivity(data ,isScore: true)
+            }
         return cell
         }
         
@@ -65,16 +87,41 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         if section == 0 {
             let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
             cell.delegate = self
-            cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
-            if currentIndex == 0 && weeks?.count > 1{
-               cell.configureAsFirst()
-            } else if currentIndex == weeks?.count && weeks?.count > 1 {
-               cell.configureAsLast()
-            } else if weeks?.count == 1 {
-               cell.configureWithNone()
+            
+            let other = week[currentWeek.yearWeek]?.date.yearWeek
+            let otherDateStart = correctToday.dateByAddingTimeInterval(-60*60*24*7)
+            let otherDate = otherDateStart.yearWeek
+            
+            if correctToday.yearWeek == other {
+                cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+            } else if other == otherDate {
+                cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
             } else {
-                cell.configureWithBoth()
+                let dateFormatter : NSDateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd MMM"
+                
+                
+                cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
             }
+           if let data = week[currentWeek.yearWeek] {
+                var next = false
+                var prev = false
+                cell.configureWithNone()
+                if let _ = data.nextLink  {
+                    next = true
+                    cell.configureAsLast()
+                }
+                if let _ = data.prevLink  {
+                    prev = true
+                    cell.configureAsFirst()
+                }
+                if next && prev {
+                    cell.configureWithBoth()
+                }
+                
+            }
+            
+            
         return cell
         }
         return nil
@@ -94,13 +141,89 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     //MARK: Protocol implementation
     func leftButtonPushed(){
-        currentIndex += 1
-        tableView.reloadData()
+        //currentWeek = currentWeek.dateByAddingTimeInterval(-60*60*24*7)
+        //tableView.reloadData()
+        loadData(.prev)
     }
     func rightButtonPushed() {
-        currentIndex -= 1
-        tableView.reloadData()
-    
+        //currentWeek = currentWeek.dateByAddingTimeInterval(60*60*24*7)
+        //tableView.reloadData()
+        loadData(.next)
     }
 
+    
+    func loadData (typeToLoad : loadType = .own) {
+        // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
+        Loader.Show()
+        
+        if typeToLoad == .own {
+            if let data = initialObject  {
+                if let path = data.weekDetailLink {
+                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                        if success {
+                            
+                            if let data = activitygoals {
+                                self.currentWeek = data.date
+                                self.week[data.date.yearWeek] = data
+                                print (data.date.yearWeek)
+                            }
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
+                }
+            }
+        } else  if typeToLoad == .prev {
+            if let data = week[currentWeek.yearWeek]  {
+                if let path = data.prevLink {
+                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                        if success {
+                            
+                            if let data = activitygoals {
+                                self.currentWeek = data.date
+                                self.week[data.date.yearWeek] = data
+                                print (data.date.yearWeek)
+                            }
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
+                }
+            }
+        } else  if typeToLoad == .next {
+            if let data = week[currentWeek.yearWeek]  {
+                if let path = data.nextLink {
+                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                        if success {
+                            
+                            if let data = activitygoals {
+                                self.currentWeek = data.date
+                                self.week[data.date.yearWeek] = data
+                                print (data.date.yearWeek)
+                            }
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
+                }
+            }
+            
+            
+        }
+        Loader.Hide()
+        self.tableView.reloadData()
+            
+    }
 }

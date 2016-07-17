@@ -267,3 +267,7 @@
 //Friends Profile Button text
 
 "friendprofile.button.title" = "REMOVE FRIEND";
+
+// WeekScoreControl Cell
+"meweek.message.timescompleted" = "x goal achieved";
+"meweek.message.score" = "Score";

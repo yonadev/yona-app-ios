@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,6 +13,7 @@
             <string>SFUIDisplay-Bold</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
@@ -49,6 +50,15 @@
                         </constraints>
                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minuten tegoed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="awu-e5-7Cb">
+                        <rect key="frame" x="218" y="29" width="125" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ubB-9P-HHx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                        <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-vb-f3E" customClass="WeekCircleView" customModule="Yona" customModuleProvider="target">
@@ -249,7 +259,9 @@
                     <constraint firstItem="1Yi-py-dRO" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="KRb-QN-TY3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1Yi-py-dRO" secondAttribute="trailing" constant="24" id="KtJ-KF-Vjo"/>
                     <constraint firstItem="CbU-0Z-MEU" firstAttribute="top" secondItem="gug-Vp-0sx" secondAttribute="bottom" constant="9" id="OM9-TW-wL3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="awu-e5-7Cb" secondAttribute="trailing" constant="24" id="OSW-TM-VGe"/>
                     <constraint firstItem="EJ3-Og-eQq" firstAttribute="leading" secondItem="CbU-0Z-MEU" secondAttribute="trailing" constant="11" id="Qhn-Do-ZLu"/>
+                    <constraint firstItem="awu-e5-7Cb" firstAttribute="leading" secondItem="gug-Vp-0sx" secondAttribute="trailing" constant="9" id="W8b-Th-Hc3"/>
                     <constraint firstItem="neI-tC-E3N" firstAttribute="leading" secondItem="L2i-vb-f3E" secondAttribute="trailing" constant="11" id="Zyn-x0-L2C"/>
                     <constraint firstItem="gug-Vp-0sx" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="4" id="adM-pd-zLv"/>
                     <constraint firstItem="L2i-vb-f3E" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leadingMargin" constant="24" id="bf6-4E-Y3V"/>
@@ -262,6 +274,7 @@
                     <constraint firstItem="Y4D-2c-gUK" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="oOj-j8-cAS"/>
                     <constraint firstItem="BaA-Cs-Vgh" firstAttribute="leading" secondItem="neI-tC-E3N" secondAttribute="trailing" constant="11" id="rb9-iX-6U2"/>
                     <constraint firstItem="1Yi-py-dRO" firstAttribute="leading" secondItem="Y4D-2c-gUK" secondAttribute="trailing" constant="11" id="sVt-Ld-pfq"/>
+                    <constraint firstItem="awu-e5-7Cb" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="21" id="tPo-mG-LcJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -274,6 +287,7 @@
                 <outlet property="day7CircelView" destination="1Yi-py-dRO" id="r7q-7w-Sgf"/>
                 <outlet property="firstLayoutConstraint" destination="Zyn-x0-L2C" id="JvV-Gf-XID"/>
                 <outlet property="fourthLayoutConstraint" destination="Qhn-Do-ZLu" id="liG-e5-Bh7"/>
+                <outlet property="goalMessage" destination="awu-e5-7Cb" id="ion-Ns-xXl"/>
                 <outlet property="goalTypeLabel" destination="pYI-aG-3FI" id="luY-bB-1iQ"/>
                 <outlet property="gradientView" destination="DSt-0M-tVm" id="Z8g-n0-zb1"/>
                 <outlet property="lastLayoutConstraint" destination="sVt-Ld-pfq" id="15b-24-LaN"/>

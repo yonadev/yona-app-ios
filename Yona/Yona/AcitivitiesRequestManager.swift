@@ -431,5 +431,46 @@ class ActivitiesRequestManager {
     }
 
     
+    //MARK: - Week single day activity
     
+    /**
+     // Get day network and app activity for a specific goal on a specific week
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityWeekDetailResponse){
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
+                        if let json = json {
+                            guard success == true else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                return
+                            }
+                            var newData : WeekSingleActivityDetail?
+                            
+                            self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                
+                                if activities?.count > 0 {
+                                    
+                                    GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                        
+                                        if status  {
+                                            newData = WeekSingleActivityDetail(data: json, allGoals: goals!)
+                                        }
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                        
+                                    })
+                                } else {
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                }
+                            })
+                            
+                        } else {
+                            //response from request failed
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    }
+        
+    }
+ 
 }

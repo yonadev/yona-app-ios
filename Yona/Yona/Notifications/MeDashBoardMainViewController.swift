@@ -17,7 +17,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var rightTabData : [WeekActivityGoal] = []
     
     var animatedCells : [String] = []
-    
+    var corretcToday : NSDate = NSDate()
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         setupUI()
         self.navigationController?.navigationBarHidden = false
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
+        configureCorrectToday()
     }
     
     func registreTableViewCells () {
@@ -45,6 +46,21 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }
     
+    func configureCorrectToday() {
+        
+        let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
+        userCalendar?.minimumDaysInFirstWeek = 5
+        userCalendar?.firstWeekday = 6
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "YYYY-ww"
+        formatter.locale = NSLocale.currentLocale()
+        formatter.calendar = userCalendar;
+        let startdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24))
+        if let aDate = formatter.dateFromString(startdate)  {
+            corretcToday = aDate
+        }
+
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -147,19 +163,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             }
             return cell
        }
+        // NSDATE has monday as first da
+        let other = rightTabData[section].date.yearWeek
         
-        let dateTodate = NSDate()
-        let todaysWeek = dateTodate.weeks
-        let todaysYear = dateTodate.years
+        let otherDateStart = corretcToday.dateByAddingTimeInterval(-60*60*24*7)
+        let otherDate = otherDateStart.yearWeek
         
-        let otherWeek = rightTabData[section].date.weeks
-        let otherYear = rightTabData[section].date.years
-        let otherDateStart = rightTabData[section].date.dateByAddingTimeInterval(-60*60*24)
-        
-        
-        if todaysWeek == otherWeek && todaysYear == otherYear {
+        if corretcToday.yearWeek == other {
             cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
-        } else if todaysWeek == otherWeek+1 && todaysYear == otherYear {
+        } else if other == otherDate {
             cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
         } else {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
@@ -294,8 +306,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             if let section : Int = tableView.indexPathForSelectedRow!.section {
-                controller.weeks = rightTabData[section].activity
-                controller.currentIndex = tableView.indexPathForSelectedRow!.row
+                let data = rightTabData[section].activity[tableView.indexPathForSelectedRow!.row]
+                controller.initialObject = data
+                
             }
         }
     }

@@ -186,3 +186,7 @@
 
 //Friends Profile Button text
 "friendprofile.button.title" = "VRIEND VERWIJDEREN";
+
+// WeekScoreControl Cell
+"meweek.message.timescompleted" = "x doel gehaald";
+"meweek.message.score" = "aantal punten";

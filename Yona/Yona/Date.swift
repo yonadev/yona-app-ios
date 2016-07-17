@@ -76,7 +76,20 @@ extension NSDate {
             formatter.dateFormat = "yyyyMMdd"
             return formatter
         }()
+
+        static let formatterYYYYWW: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-'W'ww"
+            return formatter
+        }()
+
     }
+    
+    var yearWeek : String {
+        return Date.formatterYYYYWW.stringFromDate(self)
+        
+    }
+    
     var yearMonthDay: String {
         return Date.formatterYYYYMMDD.stringFromDate(self)
     }
