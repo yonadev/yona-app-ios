@@ -19,7 +19,14 @@ class TimeBucketControlCell : UITableViewCell {
     weak var positiveView: UIView!
     
     weak var negativeView: UIView!
-    weak var activityGoal : ActivitiesGoal!
+   
+    
+    var totalMinutesBeyondGoal = 0
+    var maxDurationMinutes = 0
+    var totalActivityDurationMinutes = 0
+    var goalName = ""
+
+    
     var shouldAnimate : Bool = false
     
     @IBOutlet weak var zeroMins: UILabel!
@@ -30,7 +37,8 @@ class TimeBucketControlCell : UITableViewCell {
     @IBOutlet weak var endMinutes: UILabel!
     
     @IBOutlet weak var horizontalSpaceingConstraint: NSLayoutConstraint!
-    
+  
+    //MARK: - override methods
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpView()
@@ -47,8 +55,17 @@ class TimeBucketControlCell : UITableViewCell {
         zeroMins.alpha = 0.5
     }
     
-    
-    func setUpView() {
+    override func prepareForReuse() {
+        backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
+        goalName = ""
+        totalMinutesBeyondGoal = 0
+        maxDurationMinutes = 0
+        totalActivityDurationMinutes = 0
+        
+    }
+
+    //MARK: - private methods
+    private func setUpView() {
         
         var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , 32))
         
@@ -62,16 +79,16 @@ class TimeBucketControlCell : UITableViewCell {
 
     }
     
-    func doInitialSetup() {
+    private func doInitialSetup() {
     
         var fra = backgroundMinsView.frame
         fra.size.width = frame.size.width-64
         backgroundMinsView.frame = fra
         
-        let negative = activityGoal!.totalMinutesBeyondGoal
-        var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
+        let negative = totalMinutesBeyondGoal
+        var positive = maxDurationMinutes - totalActivityDurationMinutes
         if positive < 0 { positive = 0}
-        let totalMinutes = activityGoal!.totalActivityDurationMinutes
+        let totalMinutes = totalActivityDurationMinutes
         
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
@@ -91,7 +108,7 @@ class TimeBucketControlCell : UITableViewCell {
         negativeView.alpha = 1
         //set the end minutes
 
-        self.endMinutes.text = String(activityGoal!.maxDurationMinutes)
+        self.endMinutes.text = String(maxDurationMinutes)
         
         //set beyond goal label minutes
         if negative == 0 {
@@ -116,23 +133,19 @@ class TimeBucketControlCell : UITableViewCell {
         }
         
         //set goal title
-        self.goalType.text = activityGoal!.goalName
+        self.goalType.text = goalName
         
     }
     
-    func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
-        self.activityGoal = activityGoal
-        shouldAnimate = animated
-    }
     
-    func drawTheCell (animated: Bool) {
-        let negative = activityGoal!.totalMinutesBeyondGoal
-        var positive = activityGoal!.maxDurationMinutes - activityGoal!.totalActivityDurationMinutes
+    private func drawTheCell (animated: Bool) {
+        let negative = totalMinutesBeyondGoal
+        var positive = maxDurationMinutes - totalActivityDurationMinutes
         if positive < 0 { positive = 0}
         
-        var totalMinutes = activityGoal!.maxDurationMinutes + activityGoal!.totalMinutesBeyondGoal
+        var totalMinutes = maxDurationMinutes + totalMinutesBeyondGoal
         if totalMinutes == 0 {
-            totalMinutes = activityGoal!.maxDurationMinutes
+            totalMinutes = maxDurationMinutes
         }
         
         if positive < 0 {
@@ -170,7 +183,28 @@ class TimeBucketControlCell : UITableViewCell {
     
     }
     
-    override func prepareForReuse() {
-        backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
+    
+//MARK: - cell setter methods
+    func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
+        totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
+        maxDurationMinutes = activityGoal.maxDurationMinutes
+        totalActivityDurationMinutes = activityGoal.totalActivityDurationMinutes
+        if let txt = activityGoal.goalName {
+            goalName = txt
+        }
+        
+        shouldAnimate = animated
     }
+
+    func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
+        totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
+        maxDurationMinutes = weekActivityDetail.maxDurationMinutes
+        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
+        
+        goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
+        
+        shouldAnimate = animated
+    }
+
+    
 }

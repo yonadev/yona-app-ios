@@ -13,6 +13,11 @@ enum loadType {
     case own
     case next
 }
+
+enum detailRows : Int  {
+    case weekoverview = 0
+    case acitivty
+}
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
     var week : [String:WeekSingleActivityDetail] = [:]
@@ -62,7 +67,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        return 2
         
     }
     
@@ -71,12 +77,24 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
         if indexPath.section == 0 {
         
-        let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+            if indexPath.row == detailRows.weekoverview.rawValue {
+                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+                
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setSingleActivity(data ,isScore: true)
+                }
+                return cell
             
-            if let data = week[currentWeek.yearWeek]  {
-                cell.setSingleActivity(data ,isScore: true)
             }
-        return cell
+            if indexPath.row == detailRows.acitivty.rawValue {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setWeekActivityDetailForView(data, animated: true)
+                }
+                // cell.setUpView(activityGoal)
+                return cell
+
+            }
         }
         
         return UITableViewCell(frame: CGRectZero)

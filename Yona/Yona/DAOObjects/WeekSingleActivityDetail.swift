@@ -15,9 +15,14 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
     var messageLink : String?
     var zones : [String] = []
     var spreadCells : [Int] = []
-    
+
+    var maxDurationMinutes: Int = 0
+    var totalActivityDurationMinutes : Int = 0
+    var totalMinutesBeyondGoal : Int = 0
+//    var goalAccomplished = false
     var nextLink : String?
     var prevLink : String?
+    
     
     override init(data : BodyDataDictionary , allGoals : [Goal]) {
         super.init(data: data, allGoals: allGoals)
@@ -33,8 +38,24 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
             if let startdate = formatter.dateFromString(adDate) {
                 date = startdate
             }
-            
-            
+        }
+                
+        if let total = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
+            totalActivityDurationMinutes = total
+        } else {
+            totalActivityDurationMinutes = 0
+        }
+        
+//        if let total = data[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
+//            goalAccomplished = total
+//        } else {
+//            goalAccomplished = false
+//        }
+        
+        if let total = data[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
+            totalMinutesBeyondGoal = total
+        } else {
+            totalMinutesBeyondGoal = 0
         }
 
         
@@ -68,6 +89,7 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
             if goalLinks == goal.selfLinks {
                 zones = goal.zones
                 spreadCells = goal.spreadCells
+                maxDurationMinutes = goal.maxDurationMinutes
             }
         }
 

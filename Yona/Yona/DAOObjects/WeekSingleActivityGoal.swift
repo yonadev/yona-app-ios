@@ -46,6 +46,7 @@ class WeekSingleActivityGoal: NSObject {
                 if goalLinks == goal.selfLinks {
                     goalName = goal.GoalName
                     goalType = goal.goalType
+                    
                 }
             }
         }
