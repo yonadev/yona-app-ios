@@ -337,9 +337,9 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="message-to-buddie" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ynk-t5-H0M">
-                                        <rect key="frame" x="32" y="347" width="536" height="88"/>
+                                        <rect key="frame" x="32" y="347" width="536" height="0.0"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="88" id="ttj-IC-5iF"/>
+                                            <constraint firstAttribute="height" id="ttj-IC-5iF"/>
                                         </constraints>
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
@@ -349,7 +349,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
-                                        <rect key="frame" x="30" y="438" width="540" height="50"/>
+                                        <rect key="frame" x="30" y="350" width="540" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="TJx-22-Und"/>
                                         </constraints>
@@ -366,6 +366,7 @@
                                     <constraint firstAttribute="trailing" secondItem="qBM-hQ-L7Q" secondAttribute="trailing" constant="32" id="1jf-iV-HCO"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="2G2-rf-tdy"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="4VL-jc-zsc"/>
+                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="Ynk-t5-H0M" secondAttribute="bottom" constant="3" id="5AH-57-Ifp"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="B8P-QJ-kOd"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="3" id="BIv-Oo-C2r"/>
                                     <constraint firstItem="Ynk-t5-H0M" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="87" id="BmW-ib-eyo"/>
@@ -391,6 +392,11 @@
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="wrK-AU-3Of"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="zT0-PF-BPY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rzr-bC-g0p"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

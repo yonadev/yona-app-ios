@@ -163,7 +163,8 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - server call
     
     func updateUser() {
-        UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
+        
+         UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
             //success so get the user?
                 if success {
                     self.aUser = user
@@ -174,6 +175,5 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 //response from request failed
                 }
             })
-    }
-    
+     }
 }

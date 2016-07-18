@@ -12,7 +12,7 @@ import UIKit
 enum acceptFriendRequest : Int {
     case profile
     case type
-    case message
+//    case message
     case number
     case buttons
 }
@@ -90,12 +90,12 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             cell.typeTextLable.text = NSLocalizedString("notifications.accept.type", comment: "")
             return cell
         
-        case acceptFriendRequest.message.rawValue:
-            let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
-            if let msg = aMessage {
-                cell.setMessageFromPoster( msg)
-            }
-            return cell
+//        case acceptFriendRequest.message.rawValue:
+//            let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
+//            if let msg = aMessage {
+//                cell.setMessageFromPoster( msg)
+//            }
+//            return cell
         case acceptFriendRequest.number.rawValue:
             let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
             if let msg = aMessage {
@@ -118,8 +118,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
             return 221
-        case acceptFriendRequest.message.rawValue:
-            return calculateHeightForCell(acceptFriendRequest.message)
+//        case acceptFriendRequest.message.rawValue:
+//            return calculateHeightForCell(acceptFriendRequest.message)
         case acceptFriendRequest.number.rawValue:
             return calculateHeightForCell(acceptFriendRequest.number)
         case acceptFriendRequest.buttons.rawValue:
@@ -138,10 +138,10 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         var text = ""
         if let msg = aMessage {
             switch row {
-            case acceptFriendRequest.message:
-                let num = msg.UserRequestmobileNumber
-                text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
-                
+//            case acceptFriendRequest.message:
+//                let num = msg.UserRequestmobileNumber
+//                text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
+//                
             case acceptFriendRequest.number:
                 text = msg.message
             default:

@@ -16,8 +16,8 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var theCellType : ProfileCategoryHeader?
     var buddyCellType : FriendsProfileCategoryHeader?
-    //var theUserModel :Users?
     
+    var previousRange: NSRange!
     var delegate : AnyObject?
     override func awakeFromNib() {
         theTitleLable.text = ""
@@ -103,6 +103,27 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+//        if (theCellType == .CellNumber) {
+//            if ((previousRange?.location >= range.location) ) {
+//                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
+//                    textField.text = String(textField.text!.characters.dropLast())
+//                }
+//            } else  {
+//                if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
+//                    let space = " "
+//                    
+//                    textField.text = "\(textField.text!) \(space)"
+//                }
+//            }
+//            previousRange = range
+//            
+//            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
+//        }
+//        return true
+//    }
+//    
     
     func updateUser(textToSet :String) {
         if delegate is FriendsProfileViewController {
