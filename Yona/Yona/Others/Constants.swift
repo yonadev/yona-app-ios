@@ -183,6 +183,9 @@ struct YonaConstants {
         static let mobileLastSpace = 13
     }
     
+    struct mobileDucthPrefix {
+        static let txt = "+31 (0)"
+    }
     struct testKeys{
         static let otpTestCode = "1234"
     }
