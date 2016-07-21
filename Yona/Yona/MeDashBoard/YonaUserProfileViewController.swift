@@ -174,10 +174,12 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 if success {
                     Loader.Hide()
                     self.aUser = user
-                    if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController {
-                        controller.isFromUserProfile = true
+                    if let _ = user?.confirmMobileLink {
+                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController {
+                            controller.isFromUserProfile = true
                         
-                        self.navigationController?.pushViewController(controller, animated: true)
+                            self.navigationController?.pushViewController(controller, animated: true)
+                        }
                     }
                     self.tableView.reloadData()
                 } else {

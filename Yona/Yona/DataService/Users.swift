@@ -192,14 +192,6 @@ struct Users{
     }
     
     private func formatMobileNumber() -> String {
-        
-//        let number1 = mobileNumber[mobileNumber.startIndex...mobileNumber.startIndex.advancedBy(2)]
-//        let number2 = mobileNumber[mobileNumber.startIndex.advancedBy(3)..<mobileNumber.startIndex.advancedBy(6)]
-//        let number3 = mobileNumber[mobileNumber.startIndex.advancedBy(6)..<mobileNumber.startIndex.advancedBy(9)]
-//        let number4 = mobileNumber[mobileNumber.startIndex.advancedBy(9)..<mobileNumber.endIndex]
-//        
-//        let formatNum = number1+" "+number2+" "+number3+" "+number4
-//        let num = formatNum.stringByReplacingOccurrencesOfString("+31", withString: "+310")
         let num = mobileNumber.stringByReplacingOccurrencesOfString("+31", withString: "+310")
         return num
     }

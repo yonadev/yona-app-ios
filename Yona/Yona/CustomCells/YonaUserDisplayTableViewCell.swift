@@ -50,7 +50,8 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             case FriendsProfileCategoryHeader.NickName:
                 theTextField.text = controller.aUser?.buddyNickName
             case FriendsProfileCategoryHeader.CellNumber:
-                theTextField.formatting = .PhoneNumber              
+                theTextField.formatting = .PhoneNumber
+                theTextField.text = ""
                 theTextField.text = controller.aUser?.formattetMobileNumber
                 theTextField.keyboardType = UIKeyboardType.PhonePad
             }
@@ -76,7 +77,8 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
                 theTextField.text = controller.aUser?.nickname
             case ProfileCategoryHeader.CellNumber:
                 theTextField.formatting = .PhoneNumber
-                 theTextField.text = controller.aUser?.formatetMobileNumber
+                theTextField.text = ""
+                theTextField.text = controller.aUser?.formatetMobileNumber
                 //theTextField.text = num?.stringByReplacingOccurrencesOfString("+31", withString: nederlandPhonePrefix)
                 theTextField.keyboardType = UIKeyboardType.PhonePad
             }
