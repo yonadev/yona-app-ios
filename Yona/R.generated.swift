@@ -364,6 +364,7 @@ struct R {
   struct nib {
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
+    static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
@@ -379,6 +380,7 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var timeZoneControlCell: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
@@ -416,6 +418,7 @@ struct R {
     }
     
     struct meDashBoardMainViewController {
+      static var showDayDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetail") }
       static var showWeekDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetail") }
     }
     
@@ -682,6 +685,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? NoGoCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _SpreadCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "SpreadCell", bundle: _R.hostingBundle) }
+      var name: String { return "SpreadCell" }
+      var reuseIdentifier: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SpreadCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SpreadCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

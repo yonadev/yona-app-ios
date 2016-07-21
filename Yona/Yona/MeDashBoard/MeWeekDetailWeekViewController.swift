@@ -16,7 +16,8 @@ enum loadType {
 
 enum detailRows : Int  {
     case weekoverview = 0
-    case acitivty
+    case activity
+    case spreadCell
 }
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
@@ -36,6 +37,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        
+//        nib = UINib(nibName: "SpreadCell", bundle: nil)
+//        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
@@ -86,7 +90,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 return cell
             
             }
-            if indexPath.row == detailRows.acitivty.rawValue {
+            if indexPath.row == detailRows.activity.rawValue {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setWeekActivityDetailForView(data, animated: true)
@@ -95,6 +99,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 return cell
 
             }
+            
         }
         
         return UITableViewCell(frame: CGRectZero)
@@ -117,8 +122,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             } else {
                 let dateFormatter : NSDateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd MMM"
-                
-                
                 cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
             }
            if let data = week[currentWeek.yearWeek] {

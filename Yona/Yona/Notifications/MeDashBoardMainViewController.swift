@@ -31,7 +31,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
-       
+        
         nib = UINib(nibName: "NoGoCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
         
@@ -187,6 +187,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if selectedTab == .right {
               performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+        }
+        
+        if selectedTab == .left {
+            performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
         }
     }
     

@@ -183,6 +183,8 @@
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
+"meday.spreadcontrol.title" = "Spreiding";
+"meday.spreadcontrol.minutestotal" = "Minuten Totaal";
 
 //Friends Profile Button text
 "friendprofile.button.title" = "VRIEND VERWIJDEREN";
