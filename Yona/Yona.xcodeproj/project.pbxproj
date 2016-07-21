@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571511D3EC51700E86CC2 /* VSTextField.swift */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
@@ -301,6 +302,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160571511D3EC51700E86CC2 /* VSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VSTextField.swift; path = Yona/CustomSubclasses/VSTextField.swift; sourceTree = SOURCE_ROOT; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				165887961D19E4D90021DFC4 /* GradientLargeView.swift */,
 				90F123E41D3785F800E2BBBA /* GradientSmooth.swift */,
 				904DD48B1CF35C3300E894A5 /* GradientNavBar.swift */,
+				160571511D3EC51700E86CC2 /* VSTextField.swift */,
 				904DD48D1CF36C9700E894A5 /* CustomPicker */,
 			);
 			name = CustomSubclasses;
@@ -1874,6 +1877,7 @@
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				166CB8461D250BCE008B425D /* WeekCircleView.swift in Sources */,
 				165BB1EA1D228A010013A4EF /* TimeBucketControlCell.swift in Sources */,
+				160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */,
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */,
