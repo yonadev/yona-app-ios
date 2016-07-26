@@ -14,7 +14,8 @@ class DaySingleActivityDetail: SingleDayActivityGoal {
     var dayActivity  : Int = 0
     var zones : [String] = []
     var spreadCells : [Int] = []
-    
+    var date : NSDate  = NSDate()
+
     var maxDurationMinutes: Int = 0
     var goalLinks : String?
     var nextLink : String?
@@ -42,12 +43,6 @@ class DaySingleActivityDetail: SingleDayActivityGoal {
         } else {
             totalActivityDurationMinutes = 0
         }
-        
-        //        if let total = data[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
-        //            goalAccomplished = total
-        //        } else {
-        //            goalAccomplished = false
-        //        }
         
         if let total = data[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
             totalMinutesBeyondGoal = total

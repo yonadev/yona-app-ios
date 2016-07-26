@@ -18,9 +18,9 @@ enum DayOfWeek : Int {
 }
 
 class SingleDayActivityGoal : NSObject {
-    let totalActivityDurationMinutes : Int
+    var totalActivityDurationMinutes : Int
     let goalAccomplished : Bool
-    let totalMinutesBeyondGoal : Int
+    var totalMinutesBeyondGoal : Int
     let dayofweek : DayOfWeek
     let yonadayDetails : String
     
