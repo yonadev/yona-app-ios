@@ -315,5 +315,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 
             }
         }
+        
+        if segue.destinationViewController is MeDayDetailViewController {
+            let controller = segue.destinationViewController as! MeDayDetailViewController
+            if let section : Int = tableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
+                controller.initialObject = data
+                
+            }
+        }
     }
 }

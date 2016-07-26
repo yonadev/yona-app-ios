@@ -115,6 +115,7 @@
 		90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */; };
 		90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */; };
 		90F123F71D3FCEE400E2BBBA /* MeDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */; };
+		90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -422,6 +423,7 @@
 		90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCell.swift; sourceTree = "<group>"; };
 		90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCellCustomView.swift; sourceTree = "<group>"; };
 		90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeDayDetailViewController.swift; sourceTree = "<group>"; };
+		90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySingleActivityDetail.swift; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -909,8 +911,9 @@
 				9054CC871CE384AB00F575E2 /* Buddies.swift */,
 				BE8254431CEA92F400F97045 /* Message.swift */,
 				165BB1E61D22829D0013A4EF /* ActivitiesGoal.swift */,
-				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */,
+				90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */,
+				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
 				16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
@@ -1876,6 +1879,7 @@
 				166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
+				90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
 				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,

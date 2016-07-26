@@ -27,7 +27,7 @@ class SpreadCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-    weak var weekActivity : WeekSingleActivityDetail!
+    weak var dayActivity : ActivitiesGoal!
     
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
@@ -68,13 +68,13 @@ class SpreadCell : UITableViewCell {
     func drawTheCell (){
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
         //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
-        var spreadCells = self.weekActivity.spreadCells
+        var spreadCells = self.dayActivity
         var spreadCellsValue = 0
         
         self.message.text = NSLocalizedString("meday.spreadcontrol.minutestotal", comment: "")
         
         //draw the spreadcells where the user has set timezones
-        for currentSpread in weekActivity.spreadCells {
+        for currentSpread in dayActivity.spreadCells {
             var spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
             let spreadCellView = SpreadCellCustomView.init(frame: CGRectMake(spreadX, 40, 10, spreadWidth), colour: UIColor.yiGraphBarOneColor())
@@ -112,11 +112,11 @@ class SpreadCell : UITableViewCell {
         self.goalType.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
         
         //set minutes title
-        if weekActivity.totalMinutesBeyondGoal != 0 {
+        if dayActivity.totalMinutesBeyondGoal != 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(weekActivity.totalMinutesBeyondGoal)
+            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
         } else {
-            self.minutesUsed.text = String(weekActivity.totalActivityDurationMinutes)
+            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
         }
     }
 
@@ -124,9 +124,18 @@ class SpreadCell : UITableViewCell {
         backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
     }
     
-    
     func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
-        self.weekActivity = weekActivityDetail
+//        totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
+//        maxDurationMinutes = weekActivityDetail.maxDurationMinutes
+//        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
+//        
+//        goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
+//        
+//        shouldAnimate = animated
+    }
+
+    func setDayActivityDetailForView (dayActivity: ActivitiesGoal,animated: Bool) {
+        self.dayActivity = dayActivity
 //        totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
 //        maxDurationMinutes = weekActivityDetail.maxDurationMinutes
 //        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes

@@ -26,6 +26,7 @@ typealias APIActivityGoalResponse = (Bool, ServerMessage?, ServerCode?, [DayActi
 typealias APIActivityWeekResponse = (Bool, ServerMessage?, ServerCode?, [WeekActivityGoal]?, NSError?) -> Void
 
 typealias APIActivityWeekDetailResponse = (Bool, ServerMessage?, ServerCode?, WeekSingleActivityDetail?, NSError?) -> Void
+typealias APIActivityDayDetailResponse = (Bool, ServerMessage?, ServerCode?, ActivitiesGoal?, NSError?) -> Void
 
 typealias APIActivitiesGoalsArrayResponse = (Bool, ServerMessage?, ServerCode?, Array<Activities>?, Array<Goal>?, NSError?) -> Void
 typealias APIMessageResponse = (Bool, ServerMessage?, ServerCode?, Message?, Array<Message>?) -> Void

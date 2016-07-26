@@ -61,7 +61,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
             loadData(.own)
         }
-        
     }
     
     // MARK: - tableview Override
@@ -98,6 +97,16 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 // cell.setUpView(activityGoal)
                 return cell
 
+            }
+            
+            if indexPath.row == detailRows.activity.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setWeekActivityDetailForView(data, animated: true)
+                }
+                // cell.setUpView(activityGoal)
+                return cell
+                
             }
             
         }
@@ -175,6 +184,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     func loadData (typeToLoad : loadType = .own) {
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
+        // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()
         
         if typeToLoad == .own {

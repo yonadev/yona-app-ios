@@ -9,16 +9,19 @@
 
 import Foundation
 
-
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol  {
  
     @IBOutlet weak var tableView : UITableView!
     var correctToday = NSDate()
-    var singleDayData : [String: SingleDayActivityGoal] = [:]
-
+    var singleDayData : [String: ActivitiesGoal] = [:]
+    var initialObject : ActivitiesGoal?
+    var currentDay : NSDate = NSDate()
+    var nextLink : String?
+    var prevLink : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        navigationItem.title = NSLocalizedString("Social", comment: "")
+//         navigationItem.title = NSLocalizedString("Social", comment: "")
         registreTableViewCells()
         
     }
@@ -46,14 +49,14 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         super.viewWillAppear(animated)
         
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
-//        
-//        if let aWeek = initialObject {
-//            if let txt = aWeek.goalName {
-//                navigationItem.title = NSLocalizedString(txt, comment: "")
-//            }
-//            
-//            loadData(.own)
-//        }
+        
+        if let aDay = initialObject {
+            if let txt = aDay.goalName {
+                navigationItem.title = NSLocalizedString(txt, comment: "")
+            }
+            
+            loadData(.own)
+        }
         
     }
     
@@ -75,14 +78,14 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         if typeToLoad == .own {
             if let data = initialObject  {
-                if let path = data.weekDetailLink {
-                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                if let path = data.dayDetailLinks {
+                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDay, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                         if success {
                             
                             if let data = activitygoals {
-                                self.currentWeek = data.date
-                                self.week[data.date.yearWeek] = data
-                                print (data.date.yearWeek)
+//                                self.currentDay = data.date
+//                                self.singleDayData[data.date.Day] = data
+//                                print (data.date.yearWeek)
                             }
                             
                             Loader.Hide()
@@ -94,50 +97,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     })
                 }
             }
-        } else  if typeToLoad == .prev {
-            if let data = week[currentWeek.yearWeek]  {
-                if let path = data.prevLink {
-                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                        if success {
-                            
-                            if let data = activitygoals {
-                                self.currentWeek = data.date
-                                self.week[data.date.yearWeek] = data
-                                print (data.date.yearWeek)
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
-                }
-            }
-        } else  if typeToLoad == .next {
-            if let data = week[currentWeek.yearWeek]  {
-                if let path = data.nextLink {
-                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                        if success {
-                            
-                            if let data = activitygoals {
-                                self.currentWeek = data.date
-                                self.week[data.date.yearWeek] = data
-                                print (data.date.yearWeek)
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
-                }
-            }
-            
-            
         }
         Loader.Hide()
         self.tableView.reloadData()
@@ -145,6 +104,17 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
 // MARK: - tableview Override
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 126
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 44.0
+        }
+        return 0.0
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -157,30 +127,38 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
-        if indexPath.section == 0 {
-            
-            if indexPath.row == detailRows.weekoverview.rawValue {
-                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-                
-                if let data = week[currentWeek.yearWeek]  {
-                    cell.setSingleActivity(data ,isScore: true)
-                }
-                return cell
-                
-            }
             if indexPath.row == detailRows.activity.rawValue {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = singleDayData[correctToday.Day]  {
+                    cell.setDayActivityDetailForView(data, animated: true)
                 }
                 // cell.setUpView(activityGoal)
                 return cell
                 
             }
-            
-        }
+        
+//        if indexPath.section == 0 {
+//            
+//            if indexPath.row == detailRows.weekoverview.rawValue {
+//                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+//                
+//                if let data = week[currentWeek.yearWeek]  {
+//                    cell.setSingleActivity(data ,isScore: true)
+//                }
+//                return cell
+//                
+//            }
+//            if indexPath.row == detailRows.activity.rawValue {
+//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+//                if let data = week[currentWeek.yearWeek]  {
+//                    cell.setWeekActivityDetailForView(data, animated: true)
+//                }
+//                // cell.setUpView(activityGoal)
+//                return cell
+//                
+//            }
+//            
+//        }
         
         return UITableViewCell(frame: CGRectZero)
         

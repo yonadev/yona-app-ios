@@ -15,10 +15,7 @@ enum DayOfWeek : Int {
     case Thursday
     case Friday
     case Saturday
-
-
 }
-
 
 class SingleDayActivityGoal : NSObject {
     let totalActivityDurationMinutes : Int
@@ -27,7 +24,7 @@ class SingleDayActivityGoal : NSObject {
     let dayofweek : DayOfWeek
     let yonadayDetails : String
     
-    init(data :  (String ,AnyObject) ) {
+    init(data : BodyDataDictionary , allGoals : [Goal]) {
         
         let key = data.0
         let value = data.1

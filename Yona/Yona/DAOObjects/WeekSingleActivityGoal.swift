@@ -25,7 +25,7 @@ class WeekSingleActivityGoal: NSObject {
             
             for eachDay : (String, AnyObject) in aSingleDay {
                 //print (eachDay)
-                let object = SingleDayActivityGoal.init(data:eachDay)
+                let object = SingleDayActivityGoal.init(data:eachDay, allGoals: allGoals)
                 activity.append(object)
                 if object.goalAccomplished {
                     numberOfDaysGoalWasReached += 1
