@@ -488,7 +488,7 @@ class ActivitiesRequestManager {
                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                     return
                 }
-                var newData : ActivitiesGoal?
+                var newData : DaySingleActivityDetail?
                 
                 self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
                     
@@ -497,7 +497,7 @@ class ActivitiesRequestManager {
                         GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
                             
                             if status  {
-                                newData = ActivitiesGoal(activityData: json, date: date)
+                                newData = DaySingleActivityDetail(data: json, allGoals: goals!)
                             }
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
                             

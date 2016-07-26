@@ -16,6 +16,7 @@ class DaySingleActivityDetail: SingleDayActivityGoal {
     var spreadCells : [Int] = []
     
     var maxDurationMinutes: Int = 0
+    var goalLinks : String?
     var nextLink : String?
     var prevLink : String?
     var messageLink : String?
@@ -56,11 +57,11 @@ class DaySingleActivityDetail: SingleDayActivityGoal {
         
         
         if let allSpread = data[YonaConstants.jsonKeys.spread] as? [Int] {
-            weekSpread = allSpread
+            daySpread = allSpread
         }
         
-        if let aWeekActivity = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
-            weekActivity = aWeekActivity
+        if let aDayActivity = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
+            dayActivity = aDayActivity
         }
         
         if let links = data[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{

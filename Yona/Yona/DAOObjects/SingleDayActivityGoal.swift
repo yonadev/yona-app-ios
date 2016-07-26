@@ -26,9 +26,10 @@ class SingleDayActivityGoal : NSObject {
     
     init(data : BodyDataDictionary , allGoals : [Goal]) {
         
-        let key = data.0
-        let value = data.1
-            dayofweek = SingleDayActivityGoal.dayOfWeekFromString(key)
+        var dayData = data as Dictionary<String, AnyObject>
+        let key = dayData.0
+        let value = dayData.1
+        dayofweek = SingleDayActivityGoal.dayOfWeekFromString(key)
         
         if let total = value[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
             totalActivityDurationMinutes = total
