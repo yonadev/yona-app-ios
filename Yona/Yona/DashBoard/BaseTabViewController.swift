@@ -29,6 +29,21 @@ class BaseTabViewController: UITabBarController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.presentView()
+        // if user && user is log in and vpn not completede
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
+            print("------------------")
+            print("PRESENT   VPN PART")
+            print("------------------")
+        
+            if let navController : UINavigationController = R.storyboard.vPNFlow.vpnNavigationController {
+                navController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(navController, animated: false, completion: nil)
+                
+                
+            }
+        }
+
     }
 
     func presentView(){
@@ -37,6 +52,7 @@ class BaseTabViewController: UITabBarController {
             
             //if the user is not logged in then show login window
             if !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+
                 self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
             }
         }

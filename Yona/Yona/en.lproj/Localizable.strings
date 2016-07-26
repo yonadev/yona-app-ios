@@ -272,3 +272,19 @@
 "meweek.message.timescompleted" = "x goal achieved";
 "meweek.message.score" = "Score";
 "meweek.message.minutesAverage" = "Average";
+
+// VPN setup text
+"vpnflowmainscreen.title.text" = "SIGN UP";
+
+"vpnflowmainscreen.appinstalled.progress.text" = "Thank you\nfor signing up!";
+"vpnflowmainscreen.appinstalled.info.text" = "Let's get Yona up and running";
+"vpnflowmainscreen.button.next" = "NEXT";
+
+"YonaVPNProgressView.yonaapp.text" = "Yona is installed on your phone...";
+"YonaVPNProgressView.openvpn.text" = "You need to make a safe\nconnection to your phone";
+"YonaVPNProgressView.profile.text" = "Download the Yona profile for the\nsafe connection";
+
+"vpnflowmainscreen.appinstalled.progress1.text" = "Setup a connection";
+"vpnflowmainscreen.appinstalled.info1.text" = "Next step...";
+"YonaVPNProgressView.openvpn1.text" = "Yona needs OpenVPN to run\nproperly";
+"vpnflowmainscreen.button1.next" = "INSTRUCTIONS";

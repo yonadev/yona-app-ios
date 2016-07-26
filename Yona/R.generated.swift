@@ -5,6 +5,8 @@ import UIKit
 
 struct R {
   static func validate() {
+    storyboard.launchScreen.validateImages()
+    storyboard.launchScreen.validateViewControllers()
     storyboard.main.validateImages()
     storyboard.main.validateViewControllers()
     storyboard.friends.validateImages()
@@ -23,8 +25,8 @@ struct R {
     storyboard.settings.validateViewControllers()
     storyboard.challenges.validateImages()
     storyboard.challenges.validateViewControllers()
-    storyboard.launchScreen.validateImages()
-    storyboard.launchScreen.validateViewControllers()
+    storyboard.vPNFlow.validateImages()
+    storyboard.vPNFlow.validateViewControllers()
   }
   
   struct file {
@@ -311,6 +313,8 @@ struct R {
     static var brandAssets: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "Brand Assets") } }
     static var confinesSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "confinesSlide") } }
     static var first: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "first") } }
+    static var greenNotSelected: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "greenNotSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "greenNotSelected") } }
+    static var greenSelected: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "greenSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "greenSelected") } }
     static var iQButtonBarArrowLeft: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowLeft", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowLeft") } }
     static var iQButtonBarArrowRight: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowRight") } }
     static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
@@ -340,13 +344,14 @@ struct R {
     static var icnNo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNo") } }
     static var icnNotifications: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNotifications") } }
     static var icnOk: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOk") } }
+    static var icnOpenVPN: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOpenVPN", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOpenVPN") } }
     static var icnReminder: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnReminder") } }
     static var icnSecure: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSecure") } }
-    static var icnSettings: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettings") } }
     static var icnSettingsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettingsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettingsActive") } }
     static var icnSun: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSun", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSun") } }
     static var icnTrash: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnTrash", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnTrash") } }
     static var icnY: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnY", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnY") } }
+    static var icnYona: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnYona", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnYona") } }
     static var iconMoon: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "iconMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "iconMoon") } }
     static var imgBorders: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgBorders", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgBorders") } }
     static var imgShare: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgShare", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgShare") } }
@@ -451,6 +456,10 @@ struct R {
     
     struct welcomeViewController {
       static var signUpFirstStepViewController: StoryboardSegueIdentifier<UIStoryboardSegue, WelcomeViewController, SignUpFirstStepViewController> { return StoryboardSegueIdentifier(identifier: "SignUpFirstStepViewController") }
+    }
+    
+    struct yonaVPNFlowMainViewController {
+      static var showVPNInstructions: StoryboardSegueIdentifier<UIStoryboardSegue, YonaVPNFlowMainViewController, YonaVPNFlowInstructionsVPNViewController> { return StoryboardSegueIdentifier(identifier: "showVPNInstructions") }
     }
   }
   
@@ -604,6 +613,21 @@ struct R {
       
       static func validateViewControllers() {
         
+      }
+    }
+    
+    struct vPNFlow {
+      static var instance: UIStoryboard { return UIStoryboard(name: "VPNFlow", bundle: _R.hostingBundle) }
+      static var vpnNavigationController: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("vpnNavigationController") as? UINavigationController }
+      static var yonaVPNFlowMainViewController: YonaVPNFlowMainViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowMainViewController") as? YonaVPNFlowMainViewController }
+      
+      static func validateImages() {
+        
+      }
+      
+      static func validateViewControllers() {
+        assert(vpnNavigationController != nil, "[R.swift] ViewController with identifier 'vpnNavigationController' could not be loaded from storyboard 'VPNFlow' as 'UINavigationController'.")
+        assert(yonaVPNFlowMainViewController != nil, "[R.swift] ViewController with identifier 'yonaVPNFlowMainViewController' could not be loaded from storyboard 'VPNFlow' as 'YonaVPNFlowMainViewController'.")
       }
     }
     

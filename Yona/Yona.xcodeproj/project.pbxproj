@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571511D3EC51700E86CC2 /* VSTextField.swift */; };
+		160571581D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */; };
+		1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160571591D460D5500E86CC2 /* VPNFlow.storyboard */; };
+		1605715C1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */; };
+		1605715E1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
@@ -303,6 +307,10 @@
 
 /* Begin PBXFileReference section */
 		160571511D3EC51700E86CC2 /* VSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VSTextField.swift; path = Yona/CustomSubclasses/VSTextField.swift; sourceTree = SOURCE_ROOT; };
+		160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowMainViewController.swift; sourceTree = "<group>"; };
+		160571591D460D5500E86CC2 /* VPNFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VPNFlow.storyboard; sourceTree = "<group>"; };
+		1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNProgressIconView.swift; sourceTree = "<group>"; };
+		1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsVPNViewController.swift; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -684,6 +692,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160571561D460C8900E86CC2 /* VPNFlow */ = {
+			isa = PBXGroup;
+			children = (
+				160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */,
+				1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */,
+				1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */,
+				160571591D460D5500E86CC2 /* VPNFlow.storyboard */,
+			);
+			path = VPNFlow;
+			sourceTree = "<group>";
+		};
 		165BB1E81D2289A20013A4EF /* UIControlCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1439,6 +1458,7 @@
 				D98635681CABF44400A8535C /* Fonts */,
 				D94A93C11CB27ACB00ABE0F8 /* Extensions */,
 				9042C7091CD7581E00100306 /* CustomSubclasses */,
+				160571561D460C8900E86CC2 /* VPNFlow */,
 				90FF6DFD1D00962B00A674C4 /* LoginSignUpFlow */,
 				D94A93B81CB26E2D00ABE0F8 /* DataService */,
 				AD291CE01CA90202008CAFB1 /* DashBoard */,
@@ -1661,6 +1681,7 @@
 				ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */,
 				906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
+				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
@@ -1841,6 +1862,7 @@
 				166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
 				16F951A41D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift in Sources */,
+				160571581D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,
 				D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */,
 				ADEF8EEE1CAD9C4E001D5EED /* SignUpSecondStepViewController.swift in Sources */,
@@ -1865,6 +1887,7 @@
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
 				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
+				1605715E1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift in Sources */,
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
@@ -1889,6 +1912,7 @@
 				6042829A1D0ADA4600F5543C /* SVProgressAnimatedView.m in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
+				1605715C1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift in Sources */,
 				90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */,
 				9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */,
 			);
