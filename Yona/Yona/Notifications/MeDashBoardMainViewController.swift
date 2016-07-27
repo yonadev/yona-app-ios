@@ -320,8 +320,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
             if let section : Int = tableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
-                controller.initialObject = data
-                
+                controller.initialObjectLink = data.dayDetailLinks
+                controller.currentDate = data.date
+
             }
         }
     }

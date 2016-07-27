@@ -27,7 +27,7 @@ class SpreadCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-    weak var dayActivity : ActivitiesGoal!
+    weak var dayActivity : DaySingleActivityDetail!
     
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
@@ -74,16 +74,16 @@ class SpreadCell : UITableViewCell {
         self.message.text = NSLocalizedString("meday.spreadcontrol.minutestotal", comment: "")
         
         //draw the spreadcells where the user has set timezones
-        for currentSpread in dayActivity.spreadCells {
-            var spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
-            let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
-            let spreadCellView = SpreadCellCustomView.init(frame: CGRectMake(spreadX, 40, 10, spreadWidth), colour: UIColor.yiGraphBarOneColor())
-//            spreadCellView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
-            spreadCellView.backgroundColor = UIColor.yiPeaColor()
-            backgroundMinsView.addSubview(spreadCellView)
-            spreadCellsValue += 1
-            spreadX += 5
-        }
+//        for currentSpread in dayActivity.spreadCells {
+//            var spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
+//            let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
+//            let spreadCellView = SpreadCellCustomView.init(frame: CGRectMake(spreadX, 40, 10, spreadWidth), colour: UIColor.yiGraphBarOneColor())
+////            spreadCellView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
+//            spreadCellView.backgroundColor = UIColor.yiPeaColor()
+//            backgroundMinsView.addSubview(spreadCellView)
+//            spreadCellsValue += 1
+//            spreadX += 5
+//        }
         
         //draw the activity
         //blue cells
@@ -112,12 +112,12 @@ class SpreadCell : UITableViewCell {
         self.goalType.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
         
         //set minutes title
-        if dayActivity.totalMinutesBeyondGoal != 0 {
-            self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
-        } else {
-            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
-        }
+//        if dayActivity.totalMinutesBeyondGoal != 0 {
+//            self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
+//            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
+//        } else {
+//            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
+//        }
     }
 
     override func prepareForReuse() {
@@ -134,14 +134,7 @@ class SpreadCell : UITableViewCell {
 //        shouldAnimate = animated
     }
 
-    func setDayActivityDetailForView (dayActivity: ActivitiesGoal,animated: Bool) {
+    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail,animated: Bool) {
         self.dayActivity = dayActivity
-//        totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
-//        maxDurationMinutes = weekActivityDetail.maxDurationMinutes
-//        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
-//        
-//        goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
-//        
-//        shouldAnimate = animated
     }
 }

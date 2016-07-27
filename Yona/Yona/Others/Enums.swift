@@ -8,6 +8,16 @@
 
 import Foundation
 
+enum DayOfWeek : Int {
+    case Sunday = 1
+    case Monday
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+}
+
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"

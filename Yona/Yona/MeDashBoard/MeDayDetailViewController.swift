@@ -13,17 +13,18 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
  
     @IBOutlet weak var tableView : UITableView!
     var correctToday = NSDate()
-    var singleDayData : [String: ActivitiesGoal] = [:]
-    var initialObject : ActivitiesGoal?
-    var currentDay : NSDate = NSDate()
+    var singleDayData : [String: DaySingleActivityDetail] = [:]
+    var dayData : DaySingleActivityDetail?
+    var initialObjectLink : String?
+    var initialObject : DaySingleActivityDetail?
+    var currentDate : NSDate = NSDate()
+    var currentDay : String?
     var nextLink : String?
     var prevLink : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//         navigationItem.title = NSLocalizedString("Social", comment: "")
         registreTableViewCells()
-        
     }
     
     func registreTableViewCells () {
@@ -50,14 +51,17 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
         
-        if let aDay = initialObject {
-            if let txt = aDay.goalName {
-                navigationItem.title = NSLocalizedString(txt, comment: "")
+        ActivitiesRequestManager.sharedInstance.getDayActivityDetails(self.initialObjectLink!, date: currentDate, onCompletion: { (success, serverMessage, serverCode, daySingleDetail, err) in
+            self.initialObject = daySingleDetail
+            if let aDay = self.initialObject {
+                if let txt = aDay.dayOfWeek
+                {
+                    self.navigationItem.title = NSLocalizedString(txt, comment: "")
+                }
+
+                self.loadData(.own)
             }
-            
-            loadData(.own)
-        }
-        
+        })
     }
     
     //MARK: Protocol implementation
@@ -78,14 +82,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         if typeToLoad == .own {
             if let data = initialObject  {
-                if let path = data.dayDetailLinks {
-                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDay, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                if let path = data.goalLinks {
+                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
                         if success {
                             
-                            if let data = activitygoals {
-//                                self.currentDay = data.date
-//                                self.singleDayData[data.date.Day] = data
-//                                print (data.date.yearWeek)
+                            if let data = dayActivity {
+                                self.currentDay = data.dayOfWeek
+                                self.dayData  = data
                             }
                             
                             Loader.Hide()
@@ -104,7 +107,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
 // MARK: - tableview Override
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 126
     }
@@ -148,16 +150,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 //                return cell
 //                
 //            }
-//            if indexPath.row == detailRows.activity.rawValue {
-//                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//                if let data = week[currentWeek.yearWeek]  {
-//                    cell.setWeekActivityDetailForView(data, animated: true)
-//                }
-//                // cell.setUpView(activityGoal)
-//                return cell
-//                
-//            }
-//            
+            if indexPath.row == detailRows.activity.rawValue {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                if let data = singleDayData[correctToday.Day]  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
+                // cell.setUpView(activityGoal)
+                return cell
+                
+            }
+//
 //        }
         
         return UITableViewCell(frame: CGRectZero)

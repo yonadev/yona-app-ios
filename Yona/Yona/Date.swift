@@ -116,6 +116,22 @@ extension NSDate {
     func isSameDayAs(date:NSDate) -> Bool {
         return yearMonthDay == date.yearMonthDay
     }
+    
+    func dayOfTheWeek() -> String? {
+        let weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Satudrday,"
+        ]
+        
+        let calendar: NSCalendar = NSCalendar.currentCalendar()
+        let components: NSDateComponents = calendar.components(.Weekday, fromDate: self)
+        return weekdays[components.weekday - 1]
+    }
 }
 // NSCalendar+Swift.swift
 // A set of Swift-idiomatic methods for NSCalendar
@@ -190,4 +206,5 @@ extension NSCalendar {
         
         return nil
     }
+    
 }

@@ -33,6 +33,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="S1p-g9-SMB" id="L3G-JI-h2W"/>
+                                    <outlet property="delegate" destination="S1p-g9-SMB" id="Okd-M5-hu8"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,7 +48,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="tUy-r1-XJQ" id="9n3-BC-1IM"/>
+                        <outlet property="tableView" destination="tUy-r1-XJQ" id="J3k-xz-rEY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qZ-Gd-xtF" userLabel="First Responder" sceneMemberID="firstResponder"/>

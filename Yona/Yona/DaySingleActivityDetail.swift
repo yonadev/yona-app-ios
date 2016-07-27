@@ -8,34 +8,46 @@
 
 import Foundation
 
-class DaySingleActivityDetail: SingleDayActivityGoal {
+class DaySingleActivityDetail: NSObject {
     
     var daySpread : [Int] = []
     var dayActivity  : Int = 0
     var zones : [String] = []
     var spreadCells : [Int] = []
-    var date : NSDate  = NSDate()
+    var date : NSDate?
+    var dayOfWeek : String?
 
-    var maxDurationMinutes: Int = 0
+    var selfLink : String?
     var goalLinks : String?
     var nextLink : String?
     var prevLink : String?
     var messageLink : String?
- 
-    override init(data : BodyDataDictionary, allGoals : [Goal]) {
-        super.init(data: data, allGoals : allGoals)
-        
+    
+    var totalActivityDurationMinutes : Int
+    var goalAccomplished : Bool
+    var totalMinutesBeyondGoal : Int
+    var maxDurationMinutes: Int = 0
+
+    init(data : BodyDataDictionary, allGoals : [Goal]) {
+        dayOfWeek = ""
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
             let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
             userCalendar?.firstWeekday = 1
             let formatter = NSDateFormatter()
-            formatter.dateFormat = "YYYY'-W'ww"
+            formatter.dateFormat = "yyyy-MM-dd"
             formatter.locale = NSLocale.currentLocale()
             formatter.calendar = userCalendar;
             
             if let startdate = formatter.dateFromString(adDate) {
                 date = startdate
+                dayOfWeek = date?.dayOfTheWeek()
             }
+        }
+        
+        if let total = data[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
+            goalAccomplished = total
+        } else {
+            goalAccomplished = false
         }
         
         if let total = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
@@ -60,6 +72,11 @@ class DaySingleActivityDetail: SingleDayActivityGoal {
         }
         
         if let links = data[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+            if let linksSelf = links[YonaConstants.jsonKeys.selfLinkKeys],
+                let linksSelfHref = linksSelf[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.selfLink = linksSelfHref
+            }
+            
             if let link = links[YonaConstants.jsonKeys.yonaMessages] as? [String: AnyObject],
                 let messagelink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 messageLink = messagelink

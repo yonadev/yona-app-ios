@@ -7,28 +7,18 @@
 //
 
 import Foundation
-enum DayOfWeek : Int {
-    case Sunday = 1
-    case Monday
-    case Tuesday
-    case Wednesday
-    case Thursday
-    case Friday
-    case Saturday
-}
 
 class SingleDayActivityGoal : NSObject {
     var totalActivityDurationMinutes : Int
-    let goalAccomplished : Bool
+    var goalAccomplished : Bool = false
     var totalMinutesBeyondGoal : Int
-    let dayofweek : DayOfWeek
-    let yonadayDetails : String
+    var dayofweek : DayOfWeek
+    var yonadayDetails : String
     
-    init(data : BodyDataDictionary , allGoals : [Goal]) {
+    init(data : (String, AnyObject) , allGoals : [Goal]) {
         
-        var dayData = data as Dictionary<String, AnyObject>
-        let key = dayData.0
-        let value = dayData.1
+        let key = data.0
+        let value = data.1
         dayofweek = SingleDayActivityGoal.dayOfWeekFromString(key)
         
         if let total = value[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
@@ -59,6 +49,7 @@ class SingleDayActivityGoal : NSObject {
         } else {
             yonadayDetails = ""
         }
+        
     }
     
         
