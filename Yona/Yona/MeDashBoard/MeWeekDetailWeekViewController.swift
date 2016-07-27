@@ -8,17 +8,12 @@
 
 import Foundation
 
-enum loadType {
-    case prev
-    case own
-    case next
-}
-
 enum detailRows : Int  {
     case weekoverview = 0
     case activity
     case spreadCell
 }
+
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
     var week : [String:WeekSingleActivityDetail] = [:]
@@ -38,8 +33,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
-//        nib = UINib(nibName: "SpreadCell", bundle: nil)
-//        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
+        nib = UINib(nibName: "SpreadCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
@@ -99,7 +94,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
 
             }
             
-            if indexPath.row == detailRows.activity.rawValue {
+            if indexPath.row == detailRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setWeekActivityDetailForView(data, animated: true)

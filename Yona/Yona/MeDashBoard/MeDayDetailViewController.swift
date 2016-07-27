@@ -9,6 +9,13 @@
 
 import Foundation
 
+
+enum detailWeekRows : Int  {
+    case activity = 0
+    case spreadCell
+
+}
+
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol  {
  
     @IBOutlet weak var tableView : UITableView!
@@ -16,7 +23,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var singleDayData : [String: DaySingleActivityDetail] = [:]
     var dayData : DaySingleActivityDetail?
     var initialObjectLink : String?
-    var initialObject : DaySingleActivityDetail?
     var currentDate : NSDate = NSDate()
     var currentDay : String?
     var nextLink : String?
@@ -50,18 +56,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         super.viewWillAppear(animated)
         
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
-        
-        ActivitiesRequestManager.sharedInstance.getDayActivityDetails(self.initialObjectLink!, date: currentDate, onCompletion: { (success, serverMessage, serverCode, daySingleDetail, err) in
-            self.initialObject = daySingleDetail
-            if let aDay = self.initialObject {
-                if let txt = aDay.dayOfWeek
-                {
-                    self.navigationItem.title = NSLocalizedString(txt, comment: "")
-                }
 
-                self.loadData(.own)
-            }
-        })
+        self.loadData(.own)
+        if let txt = dayData?.dayOfWeek
+        {
+            self.navigationItem.title = NSLocalizedString(txt, comment: "")
+        }
+
     }
     
     //MARK: Protocol implementation
@@ -81,24 +82,22 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         Loader.Show()
         
         if typeToLoad == .own {
-            if let data = initialObject  {
-                if let path = data.goalLinks {
-                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                        if success {
-                            
-                            if let data = dayActivity {
-                                self.currentDay = data.dayOfWeek
-                                self.dayData  = data
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
+            if let path = initialObjectLink {
+                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                    if success {
+                        
+                        if let data = dayActivity {
+                            self.currentDay = data.dayOfWeek
+                            self.dayData  = data
                         }
-                    })
-                }
+                        
+                        Loader.Hide()
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
             }
         }
         Loader.Hide()
@@ -108,7 +107,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
 // MARK: - tableview Override
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 126
+        return 165
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -123,15 +122,18 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 2
+        if dayData != nil {
+            return 2
+        } else {
+            return 0
+        }
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            if indexPath.row == detailRows.activity.rawValue {
+            if indexPath.row == detailWeekRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-                if let data = singleDayData[correctToday.Day]  {
+                if let data = dayData  {
                     cell.setDayActivityDetailForView(data, animated: true)
                 }
                 // cell.setUpView(activityGoal)
@@ -150,16 +152,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 //                return cell
 //                
 //            }
-            if indexPath.row == detailRows.activity.rawValue {
+            if indexPath.row == detailWeekRows.activity.rawValue {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if let data = singleDayData[correctToday.Day]  {
+                if let data = dayData  {
                     cell.setDayActivityDetailForView(data, animated: true)
                 }
                 // cell.setUpView(activityGoal)
                 return cell
                 
             }
-//
+
 //        }
         
         return UITableViewCell(frame: CGRectZero)

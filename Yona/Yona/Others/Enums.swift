@@ -18,6 +18,12 @@ enum DayOfWeek : Int {
     case Saturday
 }
 
+enum loadType {
+    case prev
+    case own
+    case next
+}
+
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"

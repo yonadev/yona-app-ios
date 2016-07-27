@@ -29,8 +29,9 @@ class SpreadCell : UITableViewCell {
     weak var insideTimeZoneView: UIView!
     weak var dayActivity : DaySingleActivityDetail!
     
-    var pxPerSpread : CGFloat = 0
+    var pxPerSpreadHeight : CGFloat = 2
     var pxPerMinute : CGFloat = 0
+    var pxWidthPerSpread : CGFloat = 2
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,19 +50,19 @@ class SpreadCell : UITableViewCell {
         fra.size.width = frame.size.width-64
         backgroundMinsView.frame = fra
         
-        pxPerSpread = self.backgroundMinsView.frame.size.width / 96
-        pxPerMinute = pxPerSpread / 15
+        pxWidthPerSpread = self.backgroundMinsView.frame.size.width / 192 //double spreadcells for gap 96x2
+        pxPerMinute = self.backgroundMinsView.frame.size.height / 15 //calculate pix per minute height wise
         
-        fourleftConstraint.constant = 16 * pxPerSpread + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
+        fourleftConstraint.constant = 32 * pxWidthPerSpread + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
         self.fourAm.setNeedsLayout()
         
-        eightAmConstraint.constant = 32 * pxPerSpread + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
+        eightAmConstraint.constant = 64 * pxWidthPerSpread + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
         self.eightAM.setNeedsLayout()
         
-        sixteenHundredConstraint.constant = 64 * pxPerSpread + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
+        sixteenHundredConstraint.constant = 128 * pxWidthPerSpread + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
         self.sixteenHundred.setNeedsLayout()
         
-        twentyHundredConstraint.constant = 80 * pxPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
+        twentyHundredConstraint.constant = 160 * pxWidthPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
     }
     
@@ -72,18 +73,27 @@ class SpreadCell : UITableViewCell {
         var spreadCellsValue = 0
         
         self.message.text = NSLocalizedString("meday.spreadcontrol.minutestotal", comment: "")
-        
+        let spreadY = self.backgroundMinsView.frame.size.height
+
         //draw the spreadcells where the user has set timezones
-//        for currentSpread in dayActivity.spreadCells {
-//            var spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
-//            let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
-//            let spreadCellView = SpreadCellCustomView.init(frame: CGRectMake(spreadX, 40, 10, spreadWidth), colour: UIColor.yiGraphBarOneColor())
-////            spreadCellView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
-//            spreadCellView.backgroundColor = UIColor.yiPeaColor()
-//            backgroundMinsView.addSubview(spreadCellView)
-//            spreadCellsValue += 1
-//            spreadX += 5
-//        }
+        for currentSpread in dayActivity.daySpread {
+            var spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread) //value int
+            var spreadCellheight = pxWidthPerSpread
+
+            let spreadCellView = SpreadCellCustomView.init(frame: CGRectZero, colour: UIColor.clearColor())
+            if currentSpread > 0 {
+                spreadCellheight = pxWidthPerSpread * CGFloat(currentSpread)
+                spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
+                spreadCellView.backgroundColor = UIColor.yiPeaColor()
+            } else {
+                spreadCellheight = pxWidthPerSpread
+                spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
+                spreadCellView.backgroundColor = UIColor.yiPeaColor()
+            }
+            backgroundMinsView.addSubview(spreadCellView)
+            spreadCellsValue += 2
+            spreadX += 5
+        }
         
         //draw the activity
         //blue cells
@@ -93,7 +103,7 @@ class SpreadCell : UITableViewCell {
         //activityGoal.spread
 //        for spreadCell in spreadCells {
 //            //set frame of timezone
-//            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(spreadValue * , <#T##y: CGFloat##CGFloat#>, <#T##width: CGFloat##CGFloat#>, <#T##height: CGFloat##CGFloat#>), colour: UIColor.yiGraphBarOneColor())
+//            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(spreadValue * , y: CGFloat, width: CGFloat, height: CGFloat), colour: UIColor.yiGraphBarOneColor())
 //            if activityGoal.spreadCells.contains(spreadValue){ //if activity goal spread cells contains
 //                timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
 //            } else {
@@ -125,13 +135,7 @@ class SpreadCell : UITableViewCell {
     }
     
     func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
-//        totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
-//        maxDurationMinutes = weekActivityDetail.maxDurationMinutes
-//        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
-//        
-//        goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
-//        
-//        shouldAnimate = animated
+
     }
 
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail,animated: Bool) {
