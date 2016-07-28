@@ -28,7 +28,8 @@ class TimeZoneControlCell : UITableViewCell {
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
     weak var activityGoal : ActivitiesGoal!
-    
+    weak var dayActivity : DaySingleActivityDetail!
+
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
     
@@ -117,8 +118,12 @@ class TimeZoneControlCell : UITableViewCell {
         }
     }
     
-    func setDataForView (activityGoal : ActivitiesGoal) {
+    func setDataForView (activityGoal : ActivitiesGoal, animated: Bool) {
         self.activityGoal = activityGoal
+    }
+    
+    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+        self.dayActivity = dayActivity
     }
     
     override func prepareForReuse() {

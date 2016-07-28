@@ -234,25 +234,20 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 cell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
-               // cell.setUpView(activityGoal)
                 return cell
             }
             // Time Frame Control
-                // TODO:  Changes this once the cell has been created
+            // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-
-                cell.setDataForView(activityGoal)
-                
+                cell.setDataForView(activityGoal, animated: true)
                 return cell
             }
             // NoGo Control
             // TODO:  Changes this once the cell has been created
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-
                 cell.setDataForView(activityGoal)
-                
                 return cell
             }
         }

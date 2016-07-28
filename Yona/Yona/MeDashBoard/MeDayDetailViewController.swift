@@ -73,13 +73,9 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     //MARK: Protocol implementation
     func leftButtonPushed(){
-        //currentWeek = currentWeek.dateByAddingTimeInterval(-60*60*24*7)
-        //tableView.reloadData()
         loadData(.prev)
     }
     func rightButtonPushed() {
-        //currentWeek = currentWeek.dateByAddingTimeInterval(60*60*24*7)
-        //tableView.reloadData()
         loadData(.next)
     }
     
@@ -156,7 +152,17 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
 // MARK: - tableview Override
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 165
+        var cellHeight = 165
+        if indexPath.row == detailWeekRows.activity.rawValue {
+            if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                cellHeight = 165
+            } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                cellHeight = 85
+            } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                cellHeight = 165
+            }
+        }
+        return CGFloat(cellHeight)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -190,12 +196,20 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 
             }
             if indexPath.row == detailWeekRows.activity.rawValue {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
+
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    cell.setDataForView(activityGoal!, animated: true)
+                    return cell
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    cell.setDataForView(activityGoal!, animated: true)
+                    return cell
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    cell.setDataForView(activityGoal!)
+                    return cell
                 }
-                // cell.setUpView(activityGoal)
-                return cell
                 
             }
 

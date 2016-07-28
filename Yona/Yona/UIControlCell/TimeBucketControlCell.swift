@@ -206,7 +206,7 @@ class TimeBucketControlCell : UITableViewCell {
         shouldAnimate = animated
     }
 
-    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail,animated: Bool) {
+    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
         self.dayActivity = dayActivity
         totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         maxDurationMinutes = dayActivity.maxDurationMinutes
