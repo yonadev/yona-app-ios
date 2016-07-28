@@ -11,9 +11,9 @@ import Foundation
 class DaySingleActivityDetail: NSObject {
     
     var daySpread : [Int] = []
+    var spreadCells : [Int] = []
     var dayActivity  : Int = 0
     var zones : [String] = []
-    var spreadCells : [Int] = []
     var date : NSDate?
     var dayOfWeek : String?
 
@@ -27,7 +27,7 @@ class DaySingleActivityDetail: NSObject {
     var goalAccomplished : Bool
     var totalMinutesBeyondGoal : Int
     var maxDurationMinutes: Int = 0
-
+    
     init(data : BodyDataDictionary, allGoals : [Goal]) {
         dayOfWeek = ""
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {

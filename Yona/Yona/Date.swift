@@ -119,13 +119,13 @@ extension NSDate {
     
     func dayOfTheWeek() -> String? {
         let weekdays = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Satudrday,"
+            NSLocalizedString("notifications.day.sunday", comment: ""),
+            NSLocalizedString("notifications.day.monday", comment: ""),
+            NSLocalizedString("notifications.day.tuesday", comment: ""),
+            NSLocalizedString("notifications.day.wednesday", comment: ""),
+            NSLocalizedString("notifications.day.thursday", comment: ""),
+            NSLocalizedString("notifications.day.friday", comment: ""),
+            NSLocalizedString("notifications.day.saturday", comment: "")
         ]
         
         let calendar: NSCalendar = NSCalendar.currentCalendar()

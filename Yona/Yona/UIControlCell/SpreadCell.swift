@@ -33,6 +33,8 @@ class SpreadCell : UITableViewCell {
     var pxPerMinute : CGFloat = 0
     var pxWidthPerSpread : CGFloat = 2
     
+//    weak var activityGoal : ActivitiesGoal!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
@@ -69,7 +71,6 @@ class SpreadCell : UITableViewCell {
     func drawTheCell (){
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
         //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
-        var spreadCells = self.dayActivity
         var spreadCellsValue = 0
         
         self.message.text = NSLocalizedString("meday.spreadcontrol.minutestotal", comment: "")
@@ -84,50 +85,32 @@ class SpreadCell : UITableViewCell {
             if currentSpread > 0 {
                 spreadCellheight = pxWidthPerSpread * CGFloat(currentSpread)
                 spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
-                spreadCellView.backgroundColor = UIColor.yiPeaColor()
+                if dayActivity.spreadCells.contains(spreadCellsValue) {
+                    spreadCellView.backgroundColor = UIColor.yiPeaColor()
+                } else {
+                    spreadCellView.backgroundColor = UIColor.yiDarkishPinkColor()
+                }
             } else {
                 spreadCellheight = pxWidthPerSpread
                 spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
-                spreadCellView.backgroundColor = UIColor.yiPeaColor()
+                spreadCellView.backgroundColor = UIColor.yiGraphBarOneColor()
             }
             backgroundMinsView.addSubview(spreadCellView)
             spreadCellsValue += 2
             spreadX += 5
         }
         
-        //draw the activity
-        //blue cells
-        //red cells
-//        var spreadValue = 0        
-        //change spreadTest to
-        //activityGoal.spread
-//        for spreadCell in spreadCells {
-//            //set frame of timezone
-//            let timeZoneView = TimeZoneCustomView.init(frame: CGRectMake(spreadValue * , y: CGFloat, width: CGFloat, height: CGFloat), colour: UIColor.yiGraphBarOneColor())
-//            if activityGoal.spreadCells.contains(spreadValue){ //if activity goal spread cells contains
-//                timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
-//            } else {
-//                timeZoneView.timeZoneColour = UIColor.yiDarkishPinkColor()
-//            }
-//            
-//            //calculate width of timezone, get value in that cell times by pixels per min
-//            timeZoneView.spreadWidth = CGFloat(spreadCell) * pxPerMinute
-//            timeZoneView.rightAlign(spreadValue, spreadCells: spreadCells, pxPerMinute: pxPerMinute, pxPerSpread: pxPerSpread)
-//            backgroundMinsView.addSubview(timeZoneView)
-//            spreadValue += 1
-//            
-//        }
         
         //set goal title
         self.goalType.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
         
         //set minutes title
-//        if dayActivity.totalMinutesBeyondGoal != 0 {
-//            self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-//            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
-//        } else {
-//            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
-//        }
+        if dayActivity.totalMinutesBeyondGoal >= 0 {
+            self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
+            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
+        } else {
+            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
+        }
     }
 
     override func prepareForReuse() {
@@ -138,7 +121,7 @@ class SpreadCell : UITableViewCell {
 
     }
 
-    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail,animated: Bool) {
+    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
         self.dayActivity = dayActivity
     }
 }

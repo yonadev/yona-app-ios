@@ -200,8 +200,7 @@ class ActivitiesRequestManager {
                                                 if let theGoals = goals {
                                                     for singleDayActivty in newData {
                                                         for singleActivity in singleDayActivty.activites {
-                                                        
-                                                        singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
+                                                            singleActivity.addGoalsAndActivity(theGoals, activities: self.activities)
                                                         }
                                                     }
                                                 }

@@ -320,17 +320,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
             if let section : Int = tableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
-                controller.initialObjectLink = data.dayDetailLinks
-                controller.currentDate = data.date
-
+                controller.activityGoal = data
             }
         }
-    }
-    
-    //MARK: Navigation, Segue
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        //return false so we can load our detail data before pushing segue
-        return false
     }
     
 }
