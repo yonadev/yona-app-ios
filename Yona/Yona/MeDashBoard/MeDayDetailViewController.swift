@@ -93,6 +93,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     if success {
                         
                         if let data = dayActivity {
+                            self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
                         }
@@ -106,44 +107,47 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 })
             }
         }
-//        else  if typeToLoad == .prev {
-//                if let path = dayData!.prevLink {
-//                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-//                        if success {
-//                            
-//                            if let data = dayActivity {
-//                                self.currentDay = data.dayOfWeek
-//                                self.dayData  = data
-//                            }
-//                            
-//                            Loader.Hide()
-//                            self.tableView.reloadData()
-//                            
-//                        } else {
-//                            Loader.Hide()
-//                        }
-//                    })
-//                }
-//            
-//        } else if typeToLoad == .next {
-//                if let path = dayData!.prevLink {
-//                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-//                        if success {
-//                            
-//                            if let data = dayActivity {
-//                                self.currentDay = data.dayOfWeek
-//                                self.dayData  = data
-//                            }
-//                            
-//                            Loader.Hide()
-//                            self.tableView.reloadData()
-//                            
-//                        } else {
-//                            Loader.Hide()
-//                        }
-//                    })
-//                }
-//        }
+        else if typeToLoad == .prev {
+                if let path = dayData!.prevLink {
+                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                        if success {
+                            
+                            if let data = dayActivity {
+                                self.currentDate = data.date!
+                                self.currentDay = data.dayOfWeek
+                                self.dayData  = data
+                            }
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
+                }
+            
+        }
+        else if typeToLoad == .next {
+                if let path = dayData!.prevLink {
+                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                        if success {
+                            
+                            if let data = dayActivity {
+                                self.currentDate = data.date!
+                                self.currentDay = data.dayOfWeek
+                                self.dayData  = data
+                            }
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
+                }
+        }
         
         Loader.Hide()
         self.tableView.reloadData()
@@ -163,7 +167,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -205,8 +209,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         if section == 0 {
             let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
             cell.delegate = self
-            cell.headerTextLabel.text = currentDay
 
+            if currentDate.isToday() {
+                cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
+            } else if currentDate.isYesterday() {
+                cell.headerTextLabel.text = NSLocalizedString("yesterday", comment: "")
+            } else {
+                cell.headerTextLabel.text = currentDate.dayMonthDateString()
+            }
+            
+            //if date prievious to that show
             if let data = dayData {
                 var next = false
                 var prev = false

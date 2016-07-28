@@ -13,6 +13,27 @@ extension NSDate {
         return NSCalendar.currentCalendar()
     }
     
+    func dayMonthDateString() -> String { //Woensday, 9 April
+        let dateFormatter : NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func isYesterday() -> Bool {
+        let today = NSDate()
+        let yesterday = today.dateByAddingTimeInterval(-86400.0)
+        return self.isSameDayAs(yesterday)
+    }
+    
+    func isToday() -> Bool {
+        let today = NSDate()
+        return self.isSameDayAs(today)
+    }
+    
+    func monthNameFromDate() -> String {
+        return NSDateFormatter().monthSymbols[self.months - 1]
+    }
+    
     public var years: Int {
         return self.calendar.components(.Year, fromDate: self).year
     }
@@ -41,13 +62,11 @@ extension NSDate {
         return self.calendar.components(.Second, fromDate: self).second
     }
     
-    
     func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
         var isGreater = false
         if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
             isGreater = true
         }
-        
         return isGreater
     }
     
@@ -107,7 +126,6 @@ extension NSDate {
     
     var yearWeek : String {
         return Date.formatterYYYYWW.stringFromDate(self)
-        
     }
     
     var yearMonthDay: String {
@@ -162,7 +180,7 @@ extension NSCalendar {
         return (era, yearForWeekOfYear, weekOfYear, weekday)
     }
     
-    /// Returns the start and length of the next weekend after the given date. Returns nil if the
+    /// Returns the5 start and length of the next weekend after the given date. Returns nil if the
     /// calendar or locale don't support weekends.
 //    func nextWeekendAfterDate(date: NSDate) -> (startDate: NSDate, interval: NSTimeInterval)? {
 //        var startDate: NSDate?

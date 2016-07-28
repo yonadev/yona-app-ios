@@ -105,7 +105,7 @@ class SpreadCell : UITableViewCell {
         self.goalType.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
         
         //set minutes title
-        if dayActivity.totalMinutesBeyondGoal >= 0 {
+        if dayActivity.totalMinutesBeyondGoal > 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
             self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
         } else {

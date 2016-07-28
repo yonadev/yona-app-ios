@@ -149,14 +149,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         if selectedTab == .left {
             
-            let dateTodate = NSDate()
-            let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
             
-            if leftTabData[section].date.isSameDayAs(dateTodate) {
+            if leftTabData[section].date.isToday() {
                 cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
-            } else if leftTabData[section].date.isSameDayAs(yesterDate) {
+            } else if leftTabData[section].date.isYesterday() {
                 cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
             } else {
                 cell.headerTextLabel.text =  dateFormatter.stringFromDate(leftTabData[section].date)
@@ -176,8 +174,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         } else {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM"
-            
-            
             cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
         }
         return cell
