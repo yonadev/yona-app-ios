@@ -129,7 +129,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             
         }
         else if typeToLoad == .next {
-                if let path = dayData!.prevLink {
+                if let path = dayData!.nextLink {
                     ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
                         if success {
                             
