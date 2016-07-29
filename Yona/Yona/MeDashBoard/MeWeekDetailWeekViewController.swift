@@ -61,12 +61,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     // MARK: - tableview Override
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return 3
         
     }
     
@@ -153,7 +153,19 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 126
+        var cellHeight = 165
+        if indexPath.row == detailRows.activity.rawValue {
+            if let initialObject = initialObject {
+                if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 165
+                } else if initialObject.goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if initialObject.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 165
+                }
+            }
+        }
+        return CGFloat(cellHeight)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

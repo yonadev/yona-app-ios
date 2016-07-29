@@ -53,7 +53,7 @@ class NoGoCell : UITableViewCell {
         }
     }
     
-    func setDataForDayDetailView(activityGoal : DaySingleActivityDetail) {
+    func setDayActivityDetailForView(activityGoal : DaySingleActivityDetail) {
         goalAccomplished = activityGoal.goalAccomplished
         if let goalDate = activityGoal.date {
             self.goalDate = goalDate

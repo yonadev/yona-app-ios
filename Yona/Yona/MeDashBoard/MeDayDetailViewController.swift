@@ -10,7 +10,7 @@
 import Foundation
 
 
-enum detailWeekRows : Int  {
+enum detailDayRows : Int  {
     case activity = 0
     case spreadCell
 
@@ -153,7 +153,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 // MARK: - tableview Override
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var cellHeight = 165
-        if indexPath.row == detailWeekRows.activity.rawValue {
+        if indexPath.row == detailDayRows.activity.rawValue {
             if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
                 cellHeight = 165
             } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
@@ -186,7 +186,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == detailWeekRows.spreadCell.rawValue {
+        if indexPath.row == detailDayRows.spreadCell.rawValue {
             let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
             if let data = dayData  {
                 cell.setDayActivityDetailForView(data, animated: true)
@@ -194,19 +194,25 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             return cell
             
         }
-        if indexPath.row == detailWeekRows.activity.rawValue {
+        if indexPath.row == detailDayRows.activity.rawValue {
 
             if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                cell.setDataForView(activityGoal!, animated: true)
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
                 return cell
             } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
                 let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-                cell.setDataForView(activityGoal!, animated: true)
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
                 return cell
             } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
                 let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-                cell.setDataForView(activityGoal!)
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data)
+                }
                 return cell
             }
             

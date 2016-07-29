@@ -183,6 +183,7 @@
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
+"meday.message.timezone" = "minuten buiten tijd";
 "meday.spreadcontrol.title" = "Spreiding";
 "meday.spreadcontrol.minutestotal" = "Minuten Totaal";
 "meday.nogo.message" = "geen hits, hou vol";

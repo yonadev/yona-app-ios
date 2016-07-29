@@ -28,11 +28,12 @@ class SpreadCell : UITableViewCell {
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
     
-    var pxPerSpreadHeight : CGFloat = 2
+    var pxSpreadHeight : CGFloat = 2
     var pxPerMinute : CGFloat = 0
     var pxWidthPerSpread : CGFloat = 2
     
     var spreadCells : [Int] = []
+    var activitySpread : [Int] = []
     var totalMinutesBeyondGoal = 0
     var totalActivityDurationMinutes = 0
     
@@ -80,20 +81,19 @@ class SpreadCell : UITableViewCell {
         //draw the spreadcells where the user has set timezones
         for currentSpread in spreadCells {
             var spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread) //value int
-            var spreadCellheight = pxWidthPerSpread
 
             let spreadCellView = SpreadCellCustomView.init(frame: CGRectZero, colour: UIColor.clearColor())
             if currentSpread > 0 {
-                spreadCellheight = pxWidthPerSpread * CGFloat(currentSpread)
-                spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
+                pxSpreadHeight = pxPerMinute * CGFloat(currentSpread)
+                spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
                 if spreadCells.contains(spreadCellsValue) {
                     spreadCellView.backgroundColor = UIColor.yiPeaColor()
                 } else {
                     spreadCellView.backgroundColor = UIColor.yiDarkishPinkColor()
                 }
             } else {
-                spreadCellheight = pxWidthPerSpread
-                spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
+                pxSpreadHeight = pxWidthPerSpread
+                spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
                 spreadCellView.backgroundColor = UIColor.yiGraphBarOneColor()
             }
             backgroundMinsView.addSubview(spreadCellView)
@@ -108,8 +108,9 @@ class SpreadCell : UITableViewCell {
         //set minutes title
         if totalMinutesBeyondGoal > 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(totalMinutesBeyondGoal)
+            self.minutesUsed.text = String(totalActivityDurationMinutes)
         } else {
+            self.minutesUsed.textColor = UIColor.yiBlackColor()
             self.minutesUsed.text = String(totalActivityDurationMinutes)
         }
     }
@@ -119,15 +120,16 @@ class SpreadCell : UITableViewCell {
     }
     
     func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
-        self.spreadCells = weekActivityDetail.spreadCells
         self.totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
         self.totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
+        self.spreadCells = weekActivityDetail.weekSpread
+        self.activitySpread = weekActivityDetail.spreadCells
     }
 
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
-        self.spreadCells = dayActivity.daySpread
         self.totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         self.totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
-        
+        self.spreadCells = dayActivity.daySpread
+        self.activitySpread = dayActivity.spreadCells
     }
 }

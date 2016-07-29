@@ -27,12 +27,12 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-    weak var dayActivity : DaySingleActivityDetail!
 
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
     
     var spreadCells : [Int] = []
+    var activitySpread : [Int] = []
     var totalMinutesBeyondGoal = 0
     var totalActivityDurationMinutes = 0
     override func awakeFromNib() {
@@ -74,9 +74,9 @@ class TimeZoneControlCell : UITableViewCell {
         
         //var spreadCells = activityGoal.spread
         var spreadCellsValue = 0
-        
+        self.message.text = NSLocalizedString("meday.message.timezone", comment: "")
         //draw the spreadcells where the user has set timezones
-        for currentSpread in spreadCells {
+        for currentSpread in activitySpread {
             let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
@@ -92,13 +92,18 @@ class TimeZoneControlCell : UITableViewCell {
         
         //change spreadTest to
         //activityGoal.spread
+        var timeWithinTimeZone = 0
+        var timeOutsideTimeZone = 0
+
         for spreadCell in spreadCells {
             //set frame of timezone
             let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
             if spreadCells.contains(spreadValue){ //if activity goal spread cells contains
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
+                timeWithinTimeZone += spreadCell
             } else {
                 timeZoneView.timeZoneColour = UIColor.yiDarkishPinkColor()
+                timeOutsideTimeZone += spreadCell
             }
             
             //calculate width of timezone, get value in that cell times by pixels per min
@@ -108,25 +113,27 @@ class TimeZoneControlCell : UITableViewCell {
             spreadValue += 1
             
         }
-        
+        self.minutesUsed.text = String(timeOutsideTimeZone)
+
         //set minutes title
         if totalMinutesBeyondGoal != 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(totalMinutesBeyondGoal)
         } else {
-            self.minutesUsed.text = String(totalActivityDurationMinutes)
+            self.minutesUsed.textColor = UIColor.yiBlackColor()
         }
     }
     
     func setDataForView (activityGoal : ActivitiesGoal, animated: Bool) {
         spreadCells = activityGoal.spread
+        activitySpread = activityGoal.spreadCells
         goalType.text = activityGoal.goalName
         totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
         totalActivityDurationMinutes = activityGoal.totalActivityDurationMinutes
     }
     
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
-        spreadCells = dayActivity.spreadCells
+        spreadCells = dayActivity.daySpread
+        activitySpread = dayActivity.spreadCells
         goalType.text = dayActivity.goalName
         totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
