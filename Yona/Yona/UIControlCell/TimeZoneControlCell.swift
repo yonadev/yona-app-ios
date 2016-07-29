@@ -27,12 +27,15 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-    weak var activityGoal : ActivitiesGoal!
+    //weak var activityGoal : ActivitiesGoal!
     weak var dayActivity : DaySingleActivityDetail!
 
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
     
+    var spreadCells : [Int] = []
+    var totalMinutesBeyondGoal = 0
+    var totalActivityDurationMinutes = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
@@ -69,11 +72,12 @@ class TimeZoneControlCell : UITableViewCell {
     func drawTheCell (){
         //test data, indicates where the activity is  how long it occurred for , if the spreadCells array has a value at cell colour blue, else colour red (outside)
         //var spreadCells = [15,15,15,15,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0]
-        var spreadCells = activityGoal.spread
+        
+        //var spreadCells = activityGoal.spread
         var spreadCellsValue = 0
         
         //draw the spreadcells where the user has set timezones
-        for currentSpread in activityGoal.spreadCells {
+        for currentSpread in spreadCells {
             let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
             let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, 32))
@@ -92,7 +96,7 @@ class TimeZoneControlCell : UITableViewCell {
         for spreadCell in spreadCells {
             //set frame of timezone
             let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
-            if activityGoal.spreadCells.contains(spreadValue){ //if activity goal spread cells contains
+            if spreadCells.contains(spreadValue){ //if activity goal spread cells contains
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
             } else {
                 timeZoneView.timeZoneColour = UIColor.yiDarkishPinkColor()
@@ -107,23 +111,33 @@ class TimeZoneControlCell : UITableViewCell {
         }
         
         //set goal title
-        self.goalType.text = activityGoal.goalName
+       // self.goalType.text = activityGoal.goalName
         
         //set minutes title
-        if activityGoal.totalMinutesBeyondGoal != 0 {
+        if totalMinutesBeyondGoal != 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(activityGoal.totalMinutesBeyondGoal)
+            self.minutesUsed.text = String(totalMinutesBeyondGoal)
         } else {
-            self.minutesUsed.text = String(activityGoal.totalActivityDurationMinutes)
+            self.minutesUsed.text = String(totalActivityDurationMinutes)
         }
     }
     
     func setDataForView (activityGoal : ActivitiesGoal, animated: Bool) {
-        self.activityGoal = activityGoal
+        spreadCells = activityGoal.spread
+        goalType.text = activityGoal.goalName
+        totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
+        totalActivityDurationMinutes = activityGoal.totalActivityDurationMinutes
+        
+        
     }
     
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
-        self.dayActivity = dayActivity
+        spreadCells = dayActivity.spreadCells
+        goalType.text = dayActivity.goalName
+        totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
+        totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
+
+        //self.dayActivity = dayActivity
     }
     
     override func prepareForReuse() {
