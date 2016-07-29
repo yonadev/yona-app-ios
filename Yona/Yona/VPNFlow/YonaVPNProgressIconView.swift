@@ -26,14 +26,14 @@ class YonaVPNProgressIconView: UIView {
         switch type {
         case .yonaApp:
             infoLabel.text = NSLocalizedString("YonaVPNProgressView.yonaapp.text", comment: "")
-            iconView.image = UIImage(named: "icnYona")
+            iconView.image = UIImage(named: "icn_vpn_Yona")
             
         case .openVPN:
             infoLabel.text = NSLocalizedString("YonaVPNProgressView.openvpn.text", comment: "")
-            iconView.image = UIImage(named: "icnOpenVPN")
+            iconView.image = UIImage(named: "icn_vpn_OpenVPN")
         case .profile:
             infoLabel.text = NSLocalizedString("YonaVPNProgressView.profile.text", comment: "")
-            iconView.image = UIImage(named: "icnSettings")
+            iconView.image = UIImage(named: "icn_vpn_Settings")
         }
         if completed {
             statusView.image = UIImage(named: "greenSelected")

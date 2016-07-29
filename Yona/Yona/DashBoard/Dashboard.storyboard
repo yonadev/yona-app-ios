@@ -129,7 +129,7 @@
         <image name="icnFriendsActive" width="30" height="23"/>
         <image name="icnMe" width="32" height="32"/>
         <image name="icnMeActive" width="32" height="32"/>
-        <image name="icnSettings" width="32" height="32"/>
+        <image name="icnSettings" width="92" height="92"/>
         <image name="icnSettingsActive" width="25" height="25"/>
     </resources>
 </document>

@@ -208,3 +208,26 @@
 "vpnflowmainscreen.appinstalled.info1.text" = "Next step...";
 "YonaVPNProgressView.openvpn1.text" = "Yona needs OpenVPN to run\nproperly";
 "vpnflowmainscreen.button1.next" = "INSTRUCTIONS";
+
+"vpnflowintro1.title1.text" = "First press 'download'";
+"vpnflowintro1.title2.text" = "Do not click 'open'";
+"vpnflowintro1.title3.text" = "Return to Yona";
+"vpnflowintro1.rerun.text" = "show instructions again";
+"vpnflowmainscreen.button2.text" = "DOWNLOAD OPENVPN";
+
+"vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nThe App is installed now";
+"vpnflowmainscreen.appinstalled.info2.text" = "Almost there ;)";
+
+"vpnflowmainscreen.appinstalled.progress3.text" = "One step to go...";
+"vpnflowmainscreen.appinstalled.info3.text" = "Install and accept Yona profile";
+"vpnflowmainscreen.button3.next" = "INSTALL AND ACCEPT PROFILE";
+
+"vpnflowmainscreen.finalInstructions.button" = "show instructions";
+
+
+"vpnflowintro2.title1.text" = "First you will be asked to\rinstall our profile";
+"vpnflowintro2.title2.text" = "Then Your PINcode is needed";
+"vpnflowintro2.title3.text" = "This warning will be shown.\r Click 'install'";
+"vpnflowintro2.title4.text" = "After 'OK' you are ready";
+"vpnflowintro2.rerun.text" = "show instructions again";
+"vpnflowintro2.button2.text" = "INSTALL AND ACCEPT PROFILE";

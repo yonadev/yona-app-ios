@@ -12,7 +12,16 @@
 		1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160571591D460D5500E86CC2 /* VPNFlow.storyboard */; };
 		1605715C1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */; };
 		1605715E1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */; };
+		160571601D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605715F1D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift */; };
+		160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */; };
+		160571641D479EFE00E86CC2 /* YonaInstructionPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */; };
+		160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
+		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
+		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
+		1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */; };
+		1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E91D4A79A500EB288D /* YonaInstructionMobilePage3.swift */; };
+		1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
 		165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887961D19E4D90021DFC4 /* GradientLargeView.swift */; };
@@ -311,7 +320,16 @@
 		160571591D460D5500E86CC2 /* VPNFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VPNFlow.storyboard; sourceTree = "<group>"; };
 		1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNProgressIconView.swift; sourceTree = "<group>"; };
 		1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsVPNViewController.swift; sourceTree = "<group>"; };
+		1605715F1D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNInstructionsViewController.swift; sourceTree = "<group>"; };
+		160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage1.swift; sourceTree = "<group>"; };
+		160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage2.swift; sourceTree = "<group>"; };
+		160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage3.swift; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
+		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
+		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
+		1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage2.swift; sourceTree = "<group>"; };
+		1656A3E91D4A79A500EB288D /* YonaInstructionMobilePage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage3.swift; sourceTree = "<group>"; };
+		1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage4.swift; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
 		165887961D19E4D90021DFC4 /* GradientLargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLargeView.swift; sourceTree = "<group>"; };
@@ -699,6 +717,15 @@
 				1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */,
 				1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */,
 				160571591D460D5500E86CC2 /* VPNFlow.storyboard */,
+				1605715F1D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift */,
+				160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */,
+				160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */,
+				160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */,
+				1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */,
+				1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */,
+				1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */,
+				1656A3E91D4A79A500EB288D /* YonaInstructionMobilePage3.swift */,
+				1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */,
 			);
 			path = VPNFlow;
 			sourceTree = "<group>";
@@ -1577,7 +1604,6 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = SFWNSYN8YK;
 					};
 					D9D54EDC1CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1801,20 +1827,25 @@
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
 				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
+				160571601D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
+				1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
+				160571641D479EFE00E86CC2 /* YonaInstructionPage2.swift in Sources */,
 				90351BF61D101FD90012E983 /* ValidationMasterView.swift in Sources */,
 				AD291DA81CAAA8CC008CAFB1 /* AVPageViewController.swift in Sources */,
 				900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */,
+				1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
 				165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */,
 				AD9E63C21CFC448D006CD6D6 /* CALayerExtensions.swift in Sources */,
 				90F123E51D3785F800E2BBBA /* GradientSmooth.swift in Sources */,
 				16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */,
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
+				1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
@@ -1827,6 +1858,7 @@
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
+				1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				166CB8481D2B1524008B425D /* DayActivityOverview.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
@@ -1838,6 +1870,7 @@
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
 				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
 				166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */,
+				1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
@@ -1856,8 +1889,10 @@
 				AD00DED31CD3648F006BBA7E /* IQUIView+Hierarchy.swift in Sources */,
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
+				160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */,
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,
+				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
@@ -2135,6 +2170,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Yona/Others",
+				);
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2156,6 +2195,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Yona/Others",
+				);
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -30,18 +30,14 @@ class BaseTabViewController: UITabBarController {
         super.viewDidAppear(animated)
         self.presentView()
         // if user && user is log in and vpn not completede
-        
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
-            print("------------------")
-            print("PRESENT   VPN PART")
-            print("------------------")
-        
+ //TODO: add again
+ //       if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
             if let navController : UINavigationController = R.storyboard.vPNFlow.vpnNavigationController {
                 navController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
                 self.presentViewController(navController, animated: false, completion: nil)
                 
                 
-            }
+  //          }
         }
 
     }

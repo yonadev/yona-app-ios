@@ -344,19 +344,28 @@ struct R {
     static var icnNo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNo") } }
     static var icnNotifications: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNotifications") } }
     static var icnOk: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOk") } }
-    static var icnOpenVPN: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOpenVPN", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOpenVPN") } }
     static var icnReminder: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnReminder") } }
     static var icnSecure: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSecure") } }
+    static var icnSettings: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettings") } }
     static var icnSettingsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettingsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettingsActive") } }
     static var icnSun: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSun", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSun") } }
     static var icnTrash: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnTrash", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnTrash") } }
     static var icnY: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnY", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnY") } }
-    static var icnYona: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnYona", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnYona") } }
+    static var icn_vpn_Alert: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Alert", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Alert") } }
+    static var icn_vpn_OpenVPN: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_OpenVPN", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_OpenVPN") } }
+    static var icn_vpn_Settings: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Settings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Settings") } }
+    static var icn_vpn_Yona: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Yona", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Yona") } }
     static var iconMoon: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "iconMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "iconMoon") } }
     static var imgBorders: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgBorders", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgBorders") } }
     static var imgShare: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgShare", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgShare") } }
     static var imgTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTime") } }
     static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
+    static var intro1_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro1_1") } }
+    static var intro1_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro1_2") } }
+    static var intro2_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_1") } }
+    static var intro2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_2") } }
+    static var intro3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_1") } }
+    static var intro3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_2") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
     static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
     static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
@@ -459,6 +468,7 @@ struct R {
     }
     
     struct yonaVPNFlowMainViewController {
+      static var mobileInstruction: StoryboardSegueIdentifier<UIStoryboardSegue, YonaVPNFlowMainViewController, YonaVPNFlowInstructionsMobileConfigViewController> { return StoryboardSegueIdentifier(identifier: "mobileInstruction") }
       static var showVPNInstructions: StoryboardSegueIdentifier<UIStoryboardSegue, YonaVPNFlowMainViewController, YonaVPNFlowInstructionsVPNViewController> { return StoryboardSegueIdentifier(identifier: "showVPNInstructions") }
     }
   }
@@ -619,15 +629,37 @@ struct R {
     struct vPNFlow {
       static var instance: UIStoryboard { return UIStoryboard(name: "VPNFlow", bundle: _R.hostingBundle) }
       static var vpnNavigationController: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("vpnNavigationController") as? UINavigationController }
+      static var yonaInstructionMobilePage1: YonaInstructionMobilePage1? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionMobilePage1") as? YonaInstructionMobilePage1 }
+      static var yonaInstructionMobilePage2: YonaInstructionMobilePage2? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionMobilePage2") as? YonaInstructionMobilePage2 }
+      static var yonaInstructionMobilePage3: YonaInstructionMobilePage3? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionMobilePage3") as? YonaInstructionMobilePage3 }
+      static var yonaInstructionMobilePage4: YonaInstructionMobilePage4? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionMobilePage4") as? YonaInstructionMobilePage4 }
+      static var yonaInstructionPage1: YonaInstructionPage1? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionPage1") as? YonaInstructionPage1 }
+      static var yonaInstructionPage2: YonaInstructionPage2? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionPage2") as? YonaInstructionPage2 }
+      static var yonaInstructionPage3: YonaInstructionPage3? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionPage3") as? YonaInstructionPage3 }
+      static var yonaVPNFlowInstructionsMobileConfigViewController: YonaVPNFlowInstructionsMobileConfigViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowInstructionsMobileConfigViewController") as? YonaVPNFlowInstructionsMobileConfigViewController }
       static var yonaVPNFlowMainViewController: YonaVPNFlowMainViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowMainViewController") as? YonaVPNFlowMainViewController }
       
       static func validateImages() {
-        
+        assert(UIImage(named: "intro1_2") != nil, "[R.swift] Image named 'intro1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro3_1") != nil, "[R.swift] Image named 'intro3_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro3_2") != nil, "[R.swift] Image named 'intro3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "icn_vpn_Alert") != nil, "[R.swift] Image named 'icn_vpn_Alert' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro2_1") != nil, "[R.swift] Image named 'intro2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro2_2") != nil, "[R.swift] Image named 'intro2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
         assert(vpnNavigationController != nil, "[R.swift] ViewController with identifier 'vpnNavigationController' could not be loaded from storyboard 'VPNFlow' as 'UINavigationController'.")
         assert(yonaVPNFlowMainViewController != nil, "[R.swift] ViewController with identifier 'yonaVPNFlowMainViewController' could not be loaded from storyboard 'VPNFlow' as 'YonaVPNFlowMainViewController'.")
+        assert(yonaInstructionPage1 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage1' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage1'.")
+        assert(yonaInstructionPage2 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage2' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage2'.")
+        assert(yonaInstructionPage3 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage3' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage3'.")
+        assert(yonaVPNFlowInstructionsMobileConfigViewController != nil, "[R.swift] ViewController with identifier 'yonaVPNFlowInstructionsMobileConfigViewController' could not be loaded from storyboard 'VPNFlow' as 'YonaVPNFlowInstructionsMobileConfigViewController'.")
+        assert(yonaInstructionMobilePage1 != nil, "[R.swift] ViewController with identifier 'yonaInstructionMobilePage1' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionMobilePage1'.")
+        assert(yonaInstructionMobilePage2 != nil, "[R.swift] ViewController with identifier 'yonaInstructionMobilePage2' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionMobilePage2'.")
+        assert(yonaInstructionMobilePage3 != nil, "[R.swift] ViewController with identifier 'yonaInstructionMobilePage3' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionMobilePage3'.")
+        assert(yonaInstructionMobilePage4 != nil, "[R.swift] ViewController with identifier 'yonaInstructionMobilePage4' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionMobilePage4'.")
       }
     }
     
