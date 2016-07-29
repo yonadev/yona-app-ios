@@ -186,35 +186,31 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            if indexPath.row == detailWeekRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
-                }
-                // cell.setUpView(activityGoal)
+        if indexPath.row == detailWeekRows.spreadCell.rawValue {
+            let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+            if let data = dayData  {
+                cell.setDayActivityDetailForView(data, animated: true)
+            }
+            return cell
+            
+        }
+        if indexPath.row == detailWeekRows.activity.rawValue {
+
+            if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                cell.setDataForView(activityGoal!, animated: true)
                 return cell
-                
+            } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                cell.setDataForView(activityGoal!, animated: true)
+                return cell
+            } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                cell.setDataForView(activityGoal!)
+                return cell
             }
-            if indexPath.row == detailWeekRows.activity.rawValue {
-
-                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
-                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                    cell.setDataForView(activityGoal!, animated: true)
-                    return cell
-                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
-                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-                    cell.setDataForView(activityGoal!, animated: true)
-                    return cell
-                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
-                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-                    cell.setDataForView(activityGoal!)
-                    return cell
-                }
-                
-            }
-
-//        }
-        
+            
+        }
         return UITableViewCell(frame: CGRectZero)
         
     }

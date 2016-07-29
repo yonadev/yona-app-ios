@@ -27,14 +27,15 @@ class SpreadCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
-    weak var dayActivity : DaySingleActivityDetail!
     
     var pxPerSpreadHeight : CGFloat = 2
     var pxPerMinute : CGFloat = 0
     var pxWidthPerSpread : CGFloat = 2
     
-//    weak var activityGoal : ActivitiesGoal!
-
+    var spreadCells : [Int] = []
+    var totalMinutesBeyondGoal = 0
+    var totalActivityDurationMinutes = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
@@ -77,7 +78,7 @@ class SpreadCell : UITableViewCell {
         let spreadY = self.backgroundMinsView.frame.size.height
 
         //draw the spreadcells where the user has set timezones
-        for currentSpread in dayActivity.daySpread {
+        for currentSpread in spreadCells {
             var spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread) //value int
             var spreadCellheight = pxWidthPerSpread
 
@@ -85,7 +86,7 @@ class SpreadCell : UITableViewCell {
             if currentSpread > 0 {
                 spreadCellheight = pxWidthPerSpread * CGFloat(currentSpread)
                 spreadCellView.frame = CGRectMake(spreadX, spreadY - spreadCellheight, pxWidthPerSpread, spreadCellheight)
-                if dayActivity.spreadCells.contains(spreadCellsValue) {
+                if spreadCells.contains(spreadCellsValue) {
                     spreadCellView.backgroundColor = UIColor.yiPeaColor()
                 } else {
                     spreadCellView.backgroundColor = UIColor.yiDarkishPinkColor()
@@ -105,11 +106,11 @@ class SpreadCell : UITableViewCell {
         self.goalType.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
         
         //set minutes title
-        if dayActivity.totalMinutesBeyondGoal > 0 {
+        if totalMinutesBeyondGoal > 0 {
             self.minutesUsed.textColor = UIColor.yiDarkishPinkColor()
-            self.minutesUsed.text = String(dayActivity.totalMinutesBeyondGoal)
+            self.minutesUsed.text = String(totalMinutesBeyondGoal)
         } else {
-            self.minutesUsed.text = String(dayActivity.totalActivityDurationMinutes)
+            self.minutesUsed.text = String(totalActivityDurationMinutes)
         }
     }
 
@@ -118,10 +119,15 @@ class SpreadCell : UITableViewCell {
     }
     
     func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
-
+        self.spreadCells = weekActivityDetail.spreadCells
+        self.totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
+        self.totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
     }
 
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
-        self.dayActivity = dayActivity
+        self.spreadCells = dayActivity.daySpread
+        self.totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
+        self.totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
+        
     }
 }

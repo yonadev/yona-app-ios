@@ -265,6 +265,8 @@
 "meday.message.minutesleft" = "minutes left";
 "meday.spreadcontrol.title" = "Spreading";
 "meday.spreadcontrol.minutestotal" = "Total Minutes";
+"meday.nogo.message" = "No usage, carry on!";
+"meday.nogo.minutes" = "minutes";
 
 //Friends Profile Button text
 

@@ -19,10 +19,8 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
     var maxDurationMinutes: Int = 0
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
-//    var goalAccomplished = false
     var nextLink : String?
     var prevLink : String?
-    
     
     override init(data : BodyDataDictionary , allGoals : [Goal]) {
         super.init(data: data, allGoals: allGoals)
