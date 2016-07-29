@@ -183,7 +183,8 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     // Mark: - buttons actions
     
     @IBAction func installMobilConfigFile(sender : UIButton) {
-        
+        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        navigationController?.popViewControllerAnimated(true)
         
         
     }

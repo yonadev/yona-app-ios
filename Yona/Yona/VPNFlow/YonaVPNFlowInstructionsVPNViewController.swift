@@ -20,20 +20,21 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor.yiGrapeColor()
+
         setupUI()
     }
     
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        navigationItem.setHidesBackButton(true, animated: false)
-    }
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         dispatch_async(dispatch_get_main_queue(), {
+//            self.setupUI()
             self.addScrollViews(1)
             
             
@@ -42,15 +43,13 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             self.page1?.startAnimation()
-//            self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
     
     
     func setupUI() {
-                
-        view.backgroundColor = UIColor.yiGrapeColor()
-        navigationItem.title = " "
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
         actionButton.setTitle(NSLocalizedString("vpnflowmainscreen.button2.text", comment: ""), forState: UIControlState.Normal)
         actionButton.backgroundColor = UIColor.yiDarkishPinkColor()
         actionButton.alpha = 0.0
@@ -180,7 +179,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
-        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
 
         dismissViewControllerAnimated(true, completion: {
             self.navigationController?.popViewControllerAnimated(true)

@@ -13,6 +13,7 @@ enum  settingsOptions : Int {
     case privacy
     case adddevice
     case unsubscribe
+    case configreste
     case lastrow
     
     func simpleDescription() -> String {
@@ -25,6 +26,8 @@ enum  settingsOptions : Int {
             return NSLocalizedString("add-device", comment: "")
         case .unsubscribe:
             return NSLocalizedString("delete-user", comment: "")
+        case .configreste:
+            return NSLocalizedString("RESET", comment: "")
         default:
             return NSLocalizedString("no option", comment: "")
         }
@@ -164,6 +167,12 @@ extension SettingsViewController:UITableViewDelegate {
                     //do nothing or send back to start of signup?
                     }
                 })
+            
+        case settingsOptions.configreste.rawValue:
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+               NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            
+            
         default:
             return
         }

@@ -231,3 +231,8 @@
 "vpnflowintro2.title4.text" = "After 'OK' you are ready";
 "vpnflowintro2.rerun.text" = "show instructions again";
 "vpnflowintro2.button2.text" = "INSTALL AND ACCEPT PROFILE";
+
+
+"vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\nYour ready to go!";
+"vpnflowmainscreen.appinstalled.info4.text" = "Congratulations. You made it. Now continue and set your first challenge.";
+"vpnflowmainscreen.button4.next" = "SET YOUR FIRST CHALLENGE";

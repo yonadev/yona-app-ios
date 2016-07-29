@@ -243,10 +243,10 @@
                                     <action selector="finalInstrucsionsButtonAction:" destination="eHq-Gr-hmE" eventType="touchUpInside" id="rZB-62-pRt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBP-Wd-8PI">
-                                <rect key="frame" x="30" y="224" width="540" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBP-Wd-8PI">
+                                <rect key="frame" x="30" y="224" width="540" height="39"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="eoG-Vk-o5T"/>
+                                    <constraint firstAttribute="height" constant="39" id="eoG-Vk-o5T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -277,7 +277,7 @@
                             <constraint firstItem="gOD-at-Ngf" firstAttribute="leading" secondItem="YhR-CF-CL2" secondAttribute="leadingMargin" constant="10" id="h39-cF-Yw8"/>
                             <constraint firstItem="vqh-pG-lqq" firstAttribute="top" secondItem="IAh-QN-chE" secondAttribute="bottom" constant="43" id="o8P-ub-por"/>
                             <constraint firstItem="yHt-LQ-b8h" firstAttribute="top" secondItem="9EE-aX-VgT" secondAttribute="bottom" constant="58" id="r5B-12-Za1"/>
-                            <constraint firstItem="gOD-at-Ngf" firstAttribute="top" secondItem="dBP-Wd-8PI" secondAttribute="bottom" constant="93" id="s7P-k3-gdf"/>
+                            <constraint firstItem="gOD-at-Ngf" firstAttribute="top" secondItem="dBP-Wd-8PI" secondAttribute="bottom" constant="75" id="s7P-k3-gdf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w5B-Ln-Lew" secondAttribute="trailing" constant="10" id="xSs-rw-gR0"/>
                         </constraints>
                     </view>
@@ -291,8 +291,8 @@
                         <outlet property="progressLabel" destination="vqh-pG-lqq" id="C8b-N9-FSm"/>
                         <outlet property="progressView" destination="w5B-Ln-Lew" id="iGO-wv-CRf"/>
                         <outlet property="yonaAppStatusView" destination="gOD-at-Ngf" id="TMK-Lu-Gjn"/>
-                        <segue destination="9OT-HG-CVu" kind="show" identifier="showVPNInstructions" id="cp1-6m-Wze"/>
                         <segue destination="Kb7-w1-EZT" kind="show" identifier="mobileInstruction" id="qn1-5L-LGK"/>
+                        <segue destination="9OT-HG-CVu" kind="show" identifier="showVPNInstructions" id="lDf-nt-hD3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaJ-ax-Ti9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,7 +302,7 @@
         <!--First Instrucktion-->
         <scene sceneID="4FW-1t-QPR">
             <objects>
-                <viewController id="9OT-HG-CVu" userLabel="First Instrucktion" customClass="YonaVPNFlowInstructionsVPNViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YonaVPNFlowInstructionsVPNViewController" id="9OT-HG-CVu" userLabel="First Instrucktion" customClass="YonaVPNFlowInstructionsVPNViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iob-yc-Zo2"/>
                         <viewControllerLayoutGuide type="bottom" id="4jN-Uo-pyD"/>
@@ -350,7 +350,7 @@
                             <constraint firstItem="4jN-Uo-pyD" firstAttribute="top" secondItem="pqr-L9-9AC" secondAttribute="bottom" id="zBR-j7-MxL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="l5i-7F-m5Y"/>
+                    <navigationItem key="navigationItem" id="l5i-7F-m5Y"/>
                     <connections>
                         <outlet property="actionButton" destination="pqr-L9-9AC" id="6VM-cq-DkH"/>
                         <outlet property="progressPageControl" destination="cZy-NQ-C6h" id="ozo-pW-ZTz"/>
@@ -1055,8 +1055,8 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="JQY-g5-JdH"/>
                                                 <exclude reference="1NY-uV-gyr"/>
+                                                <exclude reference="JQY-g5-JdH"/>
                                             </mask>
                                         </variation>
                                     </imageView>
@@ -1071,8 +1071,8 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="cNY-DE-suf"/>
                                                 <exclude reference="6My-bs-6UY"/>
+                                                <exclude reference="cNY-DE-suf"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -1209,8 +1209,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="fCr-72-Fzf"/>
                                         <exclude reference="Uis-Uk-jlD"/>
+                                        <exclude reference="fCr-72-Fzf"/>
                                     </mask>
                                 </variation>
                             </view>

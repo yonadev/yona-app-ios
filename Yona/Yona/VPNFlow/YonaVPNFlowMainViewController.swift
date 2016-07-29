@@ -72,14 +72,19 @@ class YonaVPNFlowMainViewController: UIViewController {
         progressView.alpha = 0.0
         
         finalShowInstructionsButton.alpha = 0.0
+        let  cur = NSUserDefaults.standardUserDefaults().integerForKey(YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        currentProgress = VPNSetupStatus(rawValue: cur)!
+
     }
     
     
     func removeScreen() {
         //TODO: NEXT 2 LINES TO BE REMOVED AFTER CODE COMPLETIONS
-        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-        currentProgress = .yonaAppInstalled
-
+        
+        if currentProgress != VPNSetupStatus.configurationInstalled {
+            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.yonaAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            currentProgress = .yonaAppInstalled
+        }
         dismissViewControllerAnimated(false, completion: {})
     }
     
@@ -106,9 +111,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBAction func finalInstrucsionsButtonAction (sender :UIButton) {
         
         dispatch_async(dispatch_get_main_queue(), {
-            self.navigationController?.navigationBarHidden = true
-        })
-        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationItem.hidesBackButton = true
             self.performSegueWithIdentifier(R.segue.yonaVPNFlowMainViewController.mobileInstruction, sender: self)
         })
 
@@ -118,39 +121,27 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBAction func buttonAction (sender :UIButton) {
         
         if currentProgress == .openVPNAppNotInstalledShow {
-//            dispatch_async(dispatch_get_main_queue(), {
-//                self.navigationController?.setNavigationBarHidden(true, animated: false)
-//                })
-//            dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue(), {
+                NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                self.currentProgress = .openVPNAppNotInstalledSetup
+            
                 self.navigationItem.hidesBackButton = true
                 self.performSegueWithIdentifier(R.segue.yonaVPNFlowMainViewController.showVPNInstructions, sender: self)
-//            })
-//            dispatch_async(dispatch_get_main_queue(), {
-//                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-//                dispatch_after(delayTime, dispatch_get_main_queue()){
-//
-//
-//                }
-//                })
+                })
             return
         }
         if currentProgress == .openVPNAppInstalledStep3 {
-            UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
-                if success {
-                    //THIS MUST BE CHANGED TO A CORRECT PROFILE, once imported from user profile
-                    if let url = NSURL(string: "http://www.simusoft.dk/test.mobileconfig") {
-                        UIApplication.sharedApplication().openURL(url)
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
-                        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-                        
-                    }
-                } else {
-                    // ALERT USER TRYAGAIN LATER
-                    
-                }
-            }
+            downloadFileFromServer()
+        
             return
         }
+        if currentProgress == .configurationInstalled {
+            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
+            self.dismissViewControllerAnimated(true, completion: {})
+            return
+        }
+
         dispatcher()
         
     }
@@ -165,9 +156,9 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     //MARK: - view displaymethods
     func dispatcher() {
-    
+        print ("DISPATHCER  BEFORE state : \(currentProgress)")
         testForOpenVPN()
-        
+        print ("DISPATHCER  AFTER  state : \(currentProgress)")
         
         switch currentProgress {
         case .yonaAppInstalled:
@@ -186,28 +177,39 @@ class YonaVPNFlowMainViewController: UIViewController {
             
         case .openVPNAppInstalledStep2:
             handleOpenVPNAppInstalledStep2()
+        case .configurationInstaling:
+            downloadFileFromServer()
+        
+        case .configurationInstalled:
+            handleConfigurationInstalled()
         default:
+            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            currentProgress = .yonaAppInstalled
+
+            resetAllViews()
             handleyonaAppInstalled()
         }
     }
   
     
     func testForOpenVPN() {
-        demoCounter += 1
+        
         
         let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
-        //let status = NSUserDefaults.standardUserDefaults().integerForKey(YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         
-        if demoCounter == 3 {
-            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-            
-            currentProgress = .openVPNAppInstalled
-            return
-        }
+//        if demoCounter == 3 {
+//            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+//            
+//            currentProgress = .openVPNAppInstalled
+//            NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+//            return
+//        }
         if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
             NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
 
             currentProgress = .openVPNAppInstalled
+            NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+
         }
         
         
@@ -339,6 +341,8 @@ class YonaVPNFlowMainViewController: UIViewController {
                                 completed   in
                                 self.nextButton.enabled = true
                                 self.currentProgress = .openVPNAppInstalledStep2
+                                NSUserDefaults.standardUserDefaults().setInteger(self.currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+
 
                         })
                 })
@@ -394,6 +398,37 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
 
     
+    func handleConfigurationInstalled() {
+        let viewWidth = self.progressView.frame.size.width
+        customView.frame =  CGRectMake(0, 0, viewWidth, 2)
+        progressView.alpha = 1.0
+
+        self.nextButton.enabled = false
+        self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress4.text", comment: "")
+        self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Normal)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Disabled)
+
+        yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
+        openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
+        profileStatusView.confugureView(progressIconEnum.profile, completed: true)
+
+        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
+            self.progressLabel.alpha = 1.0
+            self.infoLabel.alpha = 1.0
+            self.nextButton.alpha = 1.0
+            self.yonaAppStatusView.alpha = 1.0
+            self.openVPNStatusView.alpha = 1.0
+            self.profileStatusView.alpha = 1.0
+            self.finalShowInstructionsButton.alpha = 0.0
+            }, completion: {
+                completed in
+                self.nextButton.enabled = true
+        })
+   
+    }
+    
+    //MARK: - mobilconfigurationfile
     func serverSetup() {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 
@@ -418,6 +453,28 @@ class YonaVPNFlowMainViewController: UIViewController {
             _label.text = NSLocalizedString(@"GCDWebServer not running!", nil);
         }
 */
+    }
+    
+    
+    func downloadFileFromServer() {
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+                if let url = NSURL(string:"http://www.simusoft.dk/test.mobileconfig") {
+                    if let configfile = NSData(contentsOfURL: url) {
+                        let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+                        unlink(resourceDocPath)
+                        configfile.writeToFile(resourceDocPath, atomically: true)
+                        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                        self.currentProgress = VPNSetupStatus.configurationInstalled
+                        self.dispatcher()
+                    }
+                }
+                
+            } else {
+                // ALERT USER TRYAGAIN LATER
+                
+            }
+        }
     }
 }
 

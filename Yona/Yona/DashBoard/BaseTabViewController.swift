@@ -29,15 +29,14 @@ class BaseTabViewController: UITabBarController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.presentView()
-        // if user && user is log in and vpn not completede
- //TODO: add again
- //       if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
             if let navController : UINavigationController = R.storyboard.vPNFlow.vpnNavigationController {
                 navController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(navController, animated: false, completion: nil)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.presentViewController(navController, animated: false, completion: nil)
+                })
                 
-                
-  //          }
+            }
         }
 
     }

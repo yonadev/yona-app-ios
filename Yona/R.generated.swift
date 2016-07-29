@@ -637,6 +637,7 @@ struct R {
       static var yonaInstructionPage2: YonaInstructionPage2? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionPage2") as? YonaInstructionPage2 }
       static var yonaInstructionPage3: YonaInstructionPage3? { return instance.instantiateViewControllerWithIdentifier("YonaInstructionPage3") as? YonaInstructionPage3 }
       static var yonaVPNFlowInstructionsMobileConfigViewController: YonaVPNFlowInstructionsMobileConfigViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowInstructionsMobileConfigViewController") as? YonaVPNFlowInstructionsMobileConfigViewController }
+      static var yonaVPNFlowInstructionsVPNViewController: YonaVPNFlowInstructionsVPNViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowInstructionsVPNViewController") as? YonaVPNFlowInstructionsVPNViewController }
       static var yonaVPNFlowMainViewController: YonaVPNFlowMainViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowMainViewController") as? YonaVPNFlowMainViewController }
       
       static func validateImages() {
@@ -652,6 +653,7 @@ struct R {
       static func validateViewControllers() {
         assert(vpnNavigationController != nil, "[R.swift] ViewController with identifier 'vpnNavigationController' could not be loaded from storyboard 'VPNFlow' as 'UINavigationController'.")
         assert(yonaVPNFlowMainViewController != nil, "[R.swift] ViewController with identifier 'yonaVPNFlowMainViewController' could not be loaded from storyboard 'VPNFlow' as 'YonaVPNFlowMainViewController'.")
+        assert(yonaVPNFlowInstructionsVPNViewController != nil, "[R.swift] ViewController with identifier 'yonaVPNFlowInstructionsVPNViewController' could not be loaded from storyboard 'VPNFlow' as 'YonaVPNFlowInstructionsVPNViewController'.")
         assert(yonaInstructionPage1 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage1' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage1'.")
         assert(yonaInstructionPage2 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage2' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage2'.")
         assert(yonaInstructionPage3 != nil, "[R.swift] ViewController with identifier 'yonaInstructionPage3' could not be loaded from storyboard 'VPNFlow' as 'YonaInstructionPage3'.")
