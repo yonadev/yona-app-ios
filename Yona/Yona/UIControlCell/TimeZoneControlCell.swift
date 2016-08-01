@@ -98,7 +98,7 @@ class TimeZoneControlCell : UITableViewCell {
         for spreadCell in spreadCells {
             //set frame of timezone
             let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
-            if spreadCells.contains(spreadValue){ //if activity goal spread cells contains
+            if activitySpread.contains(spreadValue){ //if activity goal spread cells contains
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
                 timeWithinTimeZone += spreadCell
             } else {
