@@ -112,7 +112,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
         
         //Add textfields array to manage responder
-        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield,messageTextfield])
+//        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield,messageTextfield])
+        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
     }
     
     func createAddressBook(){
@@ -200,7 +201,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-last-name-validation", comment: ""))
             
-        } else if emailTextfield.text!.characters.count == 0 {
+        } else if !emailTextfield.text!.isValidEmail() {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enteremailvalidation", comment: ""))
             

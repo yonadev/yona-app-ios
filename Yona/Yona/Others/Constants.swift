@@ -91,6 +91,10 @@ struct YonaConstants {
         static let  date = "date"
         static let  yonaGoal = "yona:goal"
         static let  spread = "spread"
+
+        static let  nextLink = "next"
+        static let  prevLink = "prev"
+
         
         static let  weekActivityOverviews = "yona:weekActivityOverviews"
         static let  weekActivities = "weekActivities"
@@ -179,6 +183,9 @@ struct YonaConstants {
         static let mobileLastSpace = 13
     }
     
+    struct mobileDucthPrefix {
+        static let txt = "+31 (0)"
+    }
     struct testKeys{
         static let otpTestCode = "1234"
     }
@@ -193,5 +200,7 @@ struct YonaConstants {
         static let adminOverride = "adminOverride"
         static let userToOverride = "userToOverride"
         static let isGoalsAdded = "isGoalsAdded"
+        static let vpncompleted = "vpncompleted"
+        static let vpnSetupStatus = "vpnSetupStatus"
     }   
 }

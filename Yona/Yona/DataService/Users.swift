@@ -33,6 +33,7 @@ struct Users{
     var buddiesLink: String?
     var getAllGoalsLink: String?
 
+    var formatetMobileNumber : String!
     init(userData: BodyDataDictionary) {
         
         userID = "NOID"
@@ -40,7 +41,7 @@ struct Users{
         lastName = ""
         mobileNumber = ""
         nickname = ""
-
+        formatetMobileNumber = mobileNumber
         //used to set password on add new device, yonapassword indicates get new device request response
         if let yonapassword = userData[YonaConstants.jsonKeys.yonaPassword] as? String {
             KeychainManager.sharedInstance.setPassword(yonapassword)
@@ -69,6 +70,7 @@ struct Users{
             }
             if let mobileNumber = userData[addUserKeys.mobileNumberKeys.rawValue] as? String {
                 self.mobileNumber = mobileNumber
+                self.formatetMobileNumber = formatMobileNumber()
             }
             if let nickname = userData[addUserKeys.nicknameKeys.rawValue] as? String {
                 self.nickname = nickname
@@ -188,6 +190,12 @@ struct Users{
         */
         
     }
+    
+    private func formatMobileNumber() -> String {
+        let num = mobileNumber.stringByReplacingOccurrencesOfString("+31", withString: "+310")
+        return num
+    }
+    
     func userDataDictionaryForServer() -> BodyDataDictionary {
         var body = ["firstName": "",
                     "lastName": "",

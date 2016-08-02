@@ -20,6 +20,7 @@ struct Buddies{
     var UserRequestlastName: String
     var UserRequestmobileNumber: String
     var UserRequestSelfLink: String
+    var formattetMobileNumber : String
     var buddyNickName : String
     
     var buddyGoals : [Goal] = []
@@ -29,6 +30,7 @@ struct Buddies{
         UserRequestmobileNumber = ""
         UserRequestSelfLink = ""
         buddyNickName = ""
+        formattetMobileNumber = UserRequestmobileNumber
         if let sendingStatusFeed = buddyData[postBuddyBodyKeys.sendingStatus.rawValue] as? String{
             switch sendingStatusFeed {
             case buddyRequestStatus.ACCEPTED.rawValue:
@@ -96,6 +98,7 @@ struct Buddies{
             }
             if let mobileNumber = userDetails[getMessagesKeys.UserRequestmobileNumber.rawValue] as? String {
                 self.UserRequestmobileNumber = mobileNumber
+                formattetMobileNumber = formatMobileNumber()
             }
             
             if let linksRequest = userDetails[getMessagesKeys.links.rawValue] as? BodyDataDictionary,
@@ -125,4 +128,15 @@ struct Buddies{
         
 
     }
+    private func formatMobileNumber() -> String {
+        
+        let num = UserRequestmobileNumber.stringByReplacingOccurrencesOfString("+31", withString: YonaConstants.mobileDucthPrefix.txt)
+        let number1 = num[num.startIndex...num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace)]
+        let number2 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace+1)..<num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace)]
+        let number3 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace+1)..<num.endIndex]
+        
+        let formatNum = number1+" "+number2+" "+number3
+        return formatNum
+    }
+    
 }

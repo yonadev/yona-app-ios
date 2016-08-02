@@ -17,14 +17,15 @@ class WeekSingleActivityGoal: NSObject {
     var weekDetailLink : String?
     var numberOfDaysGoalWasReached : Int = 0
     
+    
     init(data : BodyDataDictionary , allGoals : [Goal]) {
         
         
         if let aSingleDay = data[YonaConstants.jsonKeys.dayActivities] as? BodyDataDictionary{
             
-            for eachDay : (String, AnyObject) in aSingleDay {
-                //print (eachDay)
-                let object = SingleDayActivityGoal.init(data:eachDay)
+            for eachDay in aSingleDay {
+                //print (eachDay
+                let object = SingleDayActivityGoal.init(data: eachDay , allGoals: allGoals)
                 activity.append(object)
                 if object.goalAccomplished {
                     numberOfDaysGoalWasReached += 1
@@ -41,13 +42,14 @@ class WeekSingleActivityGoal: NSObject {
                     goalLinks = goalLink
                 }
             }
-            
             for goal in allGoals {
                 if goalLinks == goal.selfLinks {
                     goalName = goal.GoalName
                     goalType = goal.goalType
+                    
                 }
             }
         }
     }
+    
 }

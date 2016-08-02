@@ -18,6 +18,43 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Me Day Detail View Controller-->
+        <scene sceneID="1Rv-E3-VhR">
+            <objects>
+                <viewController id="S1p-g9-SMB" customClass="MeDayDetailViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QQH-5i-JdE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fpm-v2-kz6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AMf-oz-gSu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="S1p-g9-SMB" id="L3G-JI-h2W"/>
+                                    <outlet property="delegate" destination="S1p-g9-SMB" id="Okd-M5-hu8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="tUy-r1-XJQ" secondAttribute="trailing" constant="-20" id="DVz-0t-wFx"/>
+                            <constraint firstItem="Fpm-v2-kz6" firstAttribute="top" secondItem="tUy-r1-XJQ" secondAttribute="bottom" id="e5H-Om-aXK"/>
+                            <constraint firstItem="tUy-r1-XJQ" firstAttribute="leading" secondItem="AMf-oz-gSu" secondAttribute="leadingMargin" constant="-20" id="t5p-AC-sEh"/>
+                            <constraint firstItem="tUy-r1-XJQ" firstAttribute="top" secondItem="AMf-oz-gSu" secondAttribute="topMargin" id="u50-47-SYM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="tUy-r1-XJQ" id="J3k-xz-rEY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qZ-Gd-xtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-293" y="827"/>
+        </scene>
         <!--Me Dash Board Main View Controller-->
         <scene sceneID="0BX-Y1-1ZG">
             <objects>
@@ -116,7 +153,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Z2p-TJ-zi0" secondAttribute="bottom" id="te3-kP-wU3"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wFB-LI-Dhz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wFB-LI-Dhz">
                                 <rect key="frame" x="0.0" y="48" width="600" height="552"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -164,6 +201,7 @@
                         <outlet property="rightTabSelectionsView" destination="MM7-EZ-kI4" id="nY8-Jo-8fn"/>
                         <outlet property="tableView" destination="wFB-LI-Dhz" id="YMf-4W-qOg"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
+                        <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetail" id="8eJ-V0-7GW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G8K-p6-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,7 +230,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -216,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="py6-od-Skh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1576" y="79"/>
+            <point key="canvasLocation" x="1544" y="43"/>
         </scene>
         <!--Yona User Profile View Controller-->
         <scene sceneID="2eb-Pq-zZf">

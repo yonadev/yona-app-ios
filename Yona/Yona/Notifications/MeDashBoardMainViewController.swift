@@ -17,7 +17,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var rightTabData : [WeekActivityGoal] = []
     
     var animatedCells : [String] = []
-    
+    var corretcToday : NSDate = NSDate()
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +25,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         setupUI()
         self.navigationController?.navigationBarHidden = false
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
+        configureCorrectToday()
     }
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
-       
+        
         nib = UINib(nibName: "NoGoCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
         
@@ -44,6 +45,23 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
         
     }
+    
+    func configureCorrectToday() {
+        
+        let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
+        userCalendar?.minimumDaysInFirstWeek = 5
+        userCalendar?.firstWeekday = 6
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "YYYY-ww"
+        formatter.locale = NSLocale.currentLocale()
+        formatter.calendar = userCalendar;
+        let startdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24))
+        if let aDate = formatter.dateFromString(startdate)  {
+            corretcToday = aDate
+        }
+
+    }
+    
     
     
     override func viewDidAppear(animated: Bool) {
@@ -133,39 +151,31 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         if selectedTab == .left {
             
-            let dateTodate = NSDate()
-            let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
             
-            if leftTabData[section].date.isSameDayAs(dateTodate) {
+            if leftTabData[section].date.isToday() {
                 cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
-            } else if leftTabData[section].date.isSameDayAs(yesterDate) {
+            } else if leftTabData[section].date.isYesterday() {
                 cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
             } else {
                 cell.headerTextLabel.text =  dateFormatter.stringFromDate(leftTabData[section].date)
             }
             return cell
        }
+        // NSDATE has monday as first da
+        let other = rightTabData[section].date.yearWeek
         
-        let dateTodate = NSDate()
-        let todaysWeek = dateTodate.weeks
-        let todaysYear = dateTodate.years
+        let otherDateStart = corretcToday.dateByAddingTimeInterval(-60*60*24*7)
+        let otherDate = otherDateStart.yearWeek
         
-        let otherWeek = rightTabData[section].date.weeks
-        let otherYear = rightTabData[section].date.years
-        let otherDateStart = rightTabData[section].date.dateByAddingTimeInterval(-60*60*24)
-        
-        
-        if todaysWeek == otherWeek && todaysYear == otherYear {
+        if corretcToday.yearWeek == other {
             cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
-        } else if todaysWeek == otherWeek+1 && todaysYear == otherYear {
+        } else if other == otherDate {
             cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
         } else {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM"
-            
-            
             cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
         }
         return cell
@@ -175,6 +185,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if selectedTab == .right {
               performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+        }
+        
+        if selectedTab == .left {
+            performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
         }
     }
     
@@ -222,25 +236,20 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 cell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
-               // cell.setUpView(activityGoal)
                 return cell
             }
             // Time Frame Control
-                // TODO:  Changes this once the cell has been created
+            // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-
-                cell.setDataForView(activityGoal)
-                
+                cell.setDataForView(activityGoal, animated: true)
                 return cell
             }
             // NoGo Control
             // TODO:  Changes this once the cell has been created
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-
                 cell.setDataForView(activityGoal)
-                
                 return cell
             }
         }
@@ -294,9 +303,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             if let section : Int = tableView.indexPathForSelectedRow!.section {
-                controller.weeks = rightTabData[section].activity
-                controller.currentIndex = tableView.indexPathForSelectedRow!.row
+                let data = rightTabData[section].activity[tableView.indexPathForSelectedRow!.row]
+                controller.initialObject = data
+                
+            }
+        }
+        
+        if segue.destinationViewController is MeDayDetailViewController {
+            let controller = segue.destinationViewController as! MeDayDetailViewController
+            if let section : Int = tableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
+                controller.activityGoal = data
             }
         }
     }
+    
 }
