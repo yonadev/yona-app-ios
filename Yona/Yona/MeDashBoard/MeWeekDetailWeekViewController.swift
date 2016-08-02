@@ -76,45 +76,35 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            if let data = week[currentWeek.yearWeek]  {
 
-                if indexPath.row == detailRows.weekoverview.rawValue {
-                    let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-                    
-                    if let data = week[currentWeek.yearWeek]  {
-                        cell.setSingleActivity(data ,isScore: true)
-                    }
-                    return cell
+            if indexPath.row == detailRows.weekoverview.rawValue {
+                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
                 
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setSingleActivity(data ,isScore: true)
                 }
-                if indexPath.row == detailRows.activity.rawValue {
-                    
-                    if data.goalType == GoalType.NoGoGoalString.rawValue {
-                        let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-                        cell.setDataForWeekDetailView(data)
-                        return cell
-                    } else {
+                return cell
+            
+            }
+        
+            if indexPath.row == detailRows.activity.rawValue {
+                if let data = week[currentWeek.yearWeek]  {
+                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
                         let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                         cell.setWeekActivityDetailForView(data, animated: true)
                         return cell
                     }
-
-
-                }
-                
-                if indexPath.row == detailRows.spreadCell.rawValue {
-                    let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-                    if let data = week[currentWeek.yearWeek]  {
-                        cell.setWeekActivityDetailForView(data, animated: true)
-                    }
-                    // cell.setUpView(activityGoal)
-                    return cell
-                    
                 }
             }
             
+            if indexPath.row == detailRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setWeekActivityDetailForView(data, animated: true)
+                }
+                return cell
+            }
         }
-        
         return UITableViewCell(frame: CGRectZero)
 
     }
@@ -168,9 +158,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
                     cellHeight = 165
                 } else if initialObject.goalType == GoalType.NoGoGoalString.rawValue {
-                    cellHeight = 85
+                    cellHeight = 0
                 } else if initialObject.goalType == GoalType.TimeZoneGoalString.rawValue {
-                    cellHeight = 165
+                    cellHeight = 0
                 }
             }
         }

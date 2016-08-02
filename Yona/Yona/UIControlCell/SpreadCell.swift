@@ -56,20 +56,20 @@ class SpreadCell : UITableViewCell {
         backgroundMinsView.frame = fra
         
         pxWidthPerSpread = self.backgroundMinsView.frame.size.width / 192 //double spreadcells for gap 96x2
-        //pxWidthPerSpread = pxWidthPerSpread.roundNearest(0.5)
+        pxWidthPerSpread = pxWidthPerSpread.roundNearest(1)
         pxPerMinute = self.backgroundMinsView.frame.size.height / 15 //calculate pix per minute height wise
-        pxGap = (self.backgroundMinsView.frame.size.width - pxWidthPerSpread * 92) / 92
+        pxGap = (self.backgroundMinsView.frame.size.width - pxWidthPerSpread * 96) / 95
         
-        fourleftConstraint.constant = 32 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
+        fourleftConstraint.constant = backgroundMinsView.frame.origin.x +  (16 * pxWidthPerSpread + 15 * pxGap) - fourAm.frame.size.width/2
         self.fourAm.setNeedsLayout()
         
-        eightAmConstraint.constant = 64 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
+        eightAmConstraint.constant = backgroundMinsView.frame.origin.x +  (32 * pxWidthPerSpread + 31 * pxGap) - eightAM.frame.size.width/2
         self.eightAM.setNeedsLayout()
         
-        sixteenHundredConstraint.constant = 128 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
+        sixteenHundredConstraint.constant = backgroundMinsView.frame.origin.x +  (64 * pxWidthPerSpread + 64 * pxGap) - sixteenHundred.frame.size.width/2
         self.sixteenHundred.setNeedsLayout()
         
-        twentyHundredConstraint.constant = 160 * (pxWidthPerSpread) + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
+        twentyHundredConstraint.constant = backgroundMinsView.frame.origin.x +  (80 * pxWidthPerSpread + 79 * pxGap) - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
     }
     
@@ -84,7 +84,7 @@ class SpreadCell : UITableViewCell {
         //draw the spreadcells where the user has set timezones
         for currentSpread in spreadCells {
             let spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
-
+            print("This is my x \(spreadX)")
             let spreadCellView = SpreadCellCustomView.init(frame: CGRectZero, colour: UIColor.clearColor())
             determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
 
