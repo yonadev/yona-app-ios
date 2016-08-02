@@ -322,7 +322,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonAction:" destination="eHq-Gr-hmE" eventType="touchUpInside" id="smj-xd-SUs"/>
-                                    <action selector="donloadOpenVPNAction:" destination="9OT-HG-CVu" eventType="touchUpInside" id="txl-vc-57F"/>
+                                    <action selector="downloadOpenVPNAction:" destination="9OT-HG-CVu" eventType="touchUpInside" id="J9S-lG-exe"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-ay-q54">
@@ -725,10 +725,10 @@
             </objects>
             <point key="canvasLocation" x="581" y="1560"/>
         </scene>
-        <!--First Instrucktion-->
+        <!--MobileConfig instruction-->
         <scene sceneID="Cvy-Hz-BY2">
             <objects>
-                <viewController storyboardIdentifier="YonaVPNFlowInstructionsMobileConfigViewController" id="Kb7-w1-EZT" userLabel="First Instrucktion" customClass="YonaVPNFlowInstructionsMobileConfigViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YonaVPNFlowInstructionsMobileConfigViewController" id="Kb7-w1-EZT" userLabel="MobileConfig instruction" customClass="YonaVPNFlowInstructionsMobileConfigViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="umg-Tz-29l"/>
                         <viewControllerLayoutGuide type="bottom" id="jJN-4N-D3X"/>
@@ -747,8 +747,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonAction:" destination="eHq-Gr-hmE" eventType="touchUpInside" id="pdk-cT-Sqz"/>
-                                    <action selector="donloadOpenVPNAction:" destination="Kb7-w1-EZT" eventType="touchUpInside" id="Wmb-WC-u9s"/>
+                                    <action selector="installMobilConfigFile:" destination="Kb7-w1-EZT" eventType="touchUpInside" id="rrp-41-2ZB"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-jF-Tgq">

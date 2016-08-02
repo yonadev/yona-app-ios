@@ -146,7 +146,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     
     // Mark: - buttons actions
     
-    @IBAction func donloadOpenVPNAction(sender : UIButton) {
+    @IBAction func downloadOpenVPNAction(sender : UIButton) {
         
         appStoreCall()
     
@@ -154,6 +154,21 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     
     func appStoreCall() {
         
+#if (arch(i386) || arch(x86_64))   // IN ORDER TO TEST ON SIMULATOR, THIS HAS TO BE DONE
+    NSUserDefaults.standardUserDefaults().setBool(true,   forKey: "SIMULATOR_OPENVPN")
+    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+    
+    UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                        NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
+    
+    dismissViewControllerAnimated(true, completion: {
+        self.navigationController?.popViewControllerAnimated(true)
+    })
+
+#endif
+    
         
         UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
         UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
@@ -179,7 +194,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
-        UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
         dismissViewControllerAnimated(true, completion: {
             self.navigationController?.popViewControllerAnimated(true)

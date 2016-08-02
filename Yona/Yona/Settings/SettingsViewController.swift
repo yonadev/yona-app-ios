@@ -131,7 +131,11 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingsOptions.lastrow.rawValue
+        #if DEBUG
+            return settingsOptions.lastrow.rawValue
+        #else            
+            return (settingsOptions.lastrow.rawValue - 1)
+        #endif
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -169,9 +173,9 @@ extension SettingsViewController:UITableViewDelegate {
                 })
             
         case settingsOptions.configreste.rawValue:
-                NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-               NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-            
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
             
         default:
             return

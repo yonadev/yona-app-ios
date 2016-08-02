@@ -47,7 +47,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
 
         if let aWeek = initialObject {

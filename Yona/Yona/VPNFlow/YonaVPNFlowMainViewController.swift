@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 enum VPNSetupStatus : Int {
     case yonaAppInstalled
     case openVPNAppNotInstalledSetup
@@ -34,10 +36,11 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     var demoCounter = 0
-    
+    var httpServer : RoutingHTTPServer?
+    var mobileconfigData : NSData?
     var currentProgress : VPNSetupStatus = .yonaAppInstalled
     var customView : UIView  = UIView(frame: CGRectZero)
-    
+    var firstTime = true
     //var webServer : GCDWebUploader?
     
     override func viewDidLoad() {
@@ -55,6 +58,12 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     func resetAllViews() {
         
+        
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
+
         progressLabel.text = ""
         infoLabel.text = ""
         
@@ -108,6 +117,14 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
 
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is YonaVPNFlowInstructionsMobileConfigViewController {
+            let controller = segue.destinationViewController as! YonaVPNFlowInstructionsMobileConfigViewController
+            controller.delegate = self
+        }
+    }
+    
+    
     @IBAction func finalInstrucsionsButtonAction (sender :UIButton) {
         
         dispatch_async(dispatch_get_main_queue(), {
@@ -136,7 +153,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             return
         }
         if currentProgress == .configurationInstalled {
-            
+            httpServer?.stop()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
             self.dismissViewControllerAnimated(true, completion: {})
             return
@@ -145,20 +162,10 @@ class YonaVPNFlowMainViewController: UIViewController {
         dispatcher()
         
     }
-
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.destinationViewController is YonaVPNFlowInstructionsVPNViewController {
-//            
-//            
-//        }
-//    }
-    
     
     //MARK: - view displaymethods
     func dispatcher() {
-        print ("DISPATHCER  BEFORE state : \(currentProgress)")
         testForOpenVPN()
-        print ("DISPATHCER  AFTER  state : \(currentProgress)")
         
         switch currentProgress {
         case .yonaAppInstalled:
@@ -194,16 +201,24 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     func testForOpenVPN() {
         
+        #if (arch(i386) || arch(x86_64))
+            if NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN"){
+                if currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
+                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    
+                    currentProgress = .openVPNAppInstalled
+                    NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    
+                }
+            }
+            return
+        #endif
+
+        
         
         let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
         
-//        if demoCounter == 3 {
-//            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//            
-//            currentProgress = .openVPNAppInstalled
-//            NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//            return
-//        }
+
         if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
             NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
 
@@ -430,43 +445,79 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     //MARK: - mobilconfigurationfile
     func serverSetup() {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        
+        httpServer = RoutingHTTPServer()
+        httpServer?.setPort(8000)
+        
+        httpServer?.handleMethod("GET", withPath: "/start", target: self, selector: #selector(handleMobileconfigRootRequest))
+        httpServer?.handleMethod("GET", withPath: "/load", target: self, selector: #selector(handleMobileconfigLoadRequest))
+        let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+        mobileconfigData = NSData(contentsOfFile: resourceDocPath)
 
         
-//        //NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//        webServer = GCDWebUploader(uploadDirectory:documentsPath)
-//        webServer?.delegate = self
-//        webServer?.allowHiddenItems
-//        if webServer!.start() {
-//            print( "GCDWebServer running locally on port \(webServer?.port)")
-//            
-//        } else {
-//            print( "GCDWebServer running locally on port \(webServer?.port)")
-//        
-//        }
-/*            [[GCDWebUploader alloc] initWithUploadDirectory:documentsPath];
-        _webServer.delegate = self;
-        _webServer.allowHiddenItems = YES;
-        if ([_webServer start]) {
-            _label.text = [NSString stringWithFormat:NSLocalizedString(@"GCDWebServer running locally on port %i", nil), (int)_webServer.port];
-        } else {
-            _label.text = NSLocalizedString(@"GCDWebServer not running!", nil);
+        
+        do {
+           try  self.httpServer?.start()
+            print("SERVER STARTET")
+        } catch {
+            return
         }
-*/
+    }
+    
+    func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
+        print("handleMobileconfigRootRequest");
+        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8000/load/'; }var int=self.setInterval(function(){load()},400);</script><BODY></BODY></HTML>"
+        response.respondWithString(txt)
+}
+
+    func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
+        if firstTime  {
+            print("handleMobileconfigLoadRequest, first time")
+            firstTime = false
+        
+            response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
+            response.respondWithData(mobileconfigData)
+        } else {
+            print("handleMobileconfigLoadRequest, NOT first time")
+            response.statusCode = 302
+            //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
+            response.setHeader("Location", value: "yonaApp://")
+            
+            currentProgress = .configurationInstalled
+            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+
+        }
     }
     
     
     func downloadFileFromServer() {
+        Loader.Show()
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
+                
+                #if (arch(i386) || arch(x86_64))
+                    self.currentProgress = .configurationInstalled
+                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Loader.Hide()
+                        self.dispatcher()
+                    })
+                    
+                    return
+                #endif
+                
                 if let url = NSURL(string:"http://www.simusoft.dk/test.mobileconfig") {
                     if let configfile = NSData(contentsOfURL: url) {
                         let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
                         unlink(resourceDocPath)
                         configfile.writeToFile(resourceDocPath, atomically: true)
-                        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-                        self.currentProgress = VPNSetupStatus.configurationInstalled
-                        self.dispatcher()
+                        
+                        self.serverSetup()
+                        Loader.Hide()
+                        if let url = NSURL(string:"http://localhost:8000/start/") {
+                            UIApplication.sharedApplication().openURL(url)
+                        }
                     }
                 }
                 
@@ -476,5 +527,13 @@ class YonaVPNFlowMainViewController: UIViewController {
             }
         }
     }
+
+
+    // called from instructions view
+    func installMobileProfile() {
+        navigationController?.popViewControllerAnimated(true)
+        downloadFileFromServer()
+    }
+
 }
 

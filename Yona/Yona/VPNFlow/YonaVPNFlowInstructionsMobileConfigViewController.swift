@@ -15,6 +15,8 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var actionButton : UIButton!
     
+    var delegate : YonaVPNFlowMainViewController?
+    
     var page1 :YonaInstructionMobilePage1?
     var page2 :YonaInstructionMobilePage2?
     var page3 :YonaInstructionMobilePage3?
@@ -184,9 +186,10 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     @IBAction func installMobilConfigFile(sender : UIButton) {
         NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-        navigationController?.popViewControllerAnimated(true)
+        delegate?.installMobileProfile()
         
         
     }
+    
     
 }

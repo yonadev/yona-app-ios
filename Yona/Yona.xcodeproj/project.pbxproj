@@ -22,6 +22,28 @@
 		1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */; };
 		1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E91D4A79A500EB288D /* YonaInstructionMobilePage3.swift */; };
 		1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */; };
+		1656A5A41D4BE6B300EB288D /* HTTPResponseProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5991D4BE6B300EB288D /* HTTPResponseProxy.m */; };
+		1656A5A51D4BE6B300EB288D /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A59B1D4BE6B300EB288D /* Route.m */; };
+		1656A5A61D4BE6B300EB288D /* RouteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A59D1D4BE6B300EB288D /* RouteRequest.m */; };
+		1656A5A71D4BE6B300EB288D /* RouteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A59F1D4BE6B300EB288D /* RouteResponse.m */; };
+		1656A5A81D4BE6B300EB288D /* RoutingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5A11D4BE6B300EB288D /* RoutingConnection.m */; };
+		1656A5A91D4BE6B300EB288D /* RoutingHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5A31D4BE6B300EB288D /* RoutingHTTPServer.m */; };
+		1656A5AD1D4BE8D700EB288D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1656A5AC1D4BE8D700EB288D /* libxml2.tbd */; };
+		1656A5CE1D4BEA0B00EB288D /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5AF1D4BEA0B00EB288D /* DDData.m */; };
+		1656A5CF1D4BEA0B00EB288D /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5B11D4BEA0B00EB288D /* DDLog.m */; };
+		1656A5D01D4BEA0B00EB288D /* DDNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5B31D4BEA0B00EB288D /* DDNumber.m */; };
+		1656A5D11D4BEA0B00EB288D /* DDRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5B51D4BEA0B00EB288D /* DDRange.m */; };
+		1656A5D21D4BEA0B00EB288D /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5B71D4BEA0B00EB288D /* GCDAsyncSocket.m */; };
+		1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5B91D4BEA0B00EB288D /* HTTPAsyncFileResponse.m */; };
+		1656A5D41D4BEA0B00EB288D /* HTTPAuthenticationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5BB1D4BEA0B00EB288D /* HTTPAuthenticationRequest.m */; };
+		1656A5D51D4BEA0B00EB288D /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5BD1D4BEA0B00EB288D /* HTTPConnection.m */; };
+		1656A5D61D4BEA0B00EB288D /* HTTPDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5BF1D4BEA0B00EB288D /* HTTPDataResponse.m */; };
+		1656A5D71D4BEA0B00EB288D /* HTTPDynamicFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C11D4BEA0B00EB288D /* HTTPDynamicFileResponse.m */; };
+		1656A5D81D4BEA0B00EB288D /* HTTPFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C31D4BEA0B00EB288D /* HTTPFileResponse.m */; };
+		1656A5D91D4BEA0B00EB288D /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C61D4BEA0B00EB288D /* HTTPMessage.m */; };
+		1656A5DA1D4BEA0B00EB288D /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C81D4BEA0B00EB288D /* HTTPRedirectResponse.m */; };
+		1656A5DB1D4BEA0B00EB288D /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */; };
+		1656A5DC1D4BEA0B00EB288D /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CD1D4BEA0B00EB288D /* WebSocket.m */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
 		165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887961D19E4D90021DFC4 /* GradientLargeView.swift */; };
@@ -330,6 +352,52 @@
 		1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage2.swift; sourceTree = "<group>"; };
 		1656A3E91D4A79A500EB288D /* YonaInstructionMobilePage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage3.swift; sourceTree = "<group>"; };
 		1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage4.swift; sourceTree = "<group>"; };
+		1656A5981D4BE6B300EB288D /* HTTPResponseProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponseProxy.h; sourceTree = "<group>"; };
+		1656A5991D4BE6B300EB288D /* HTTPResponseProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPResponseProxy.m; sourceTree = "<group>"; };
+		1656A59A1D4BE6B300EB288D /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		1656A59B1D4BE6B300EB288D /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		1656A59C1D4BE6B300EB288D /* RouteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteRequest.h; sourceTree = "<group>"; };
+		1656A59D1D4BE6B300EB288D /* RouteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteRequest.m; sourceTree = "<group>"; };
+		1656A59E1D4BE6B300EB288D /* RouteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteResponse.h; sourceTree = "<group>"; };
+		1656A59F1D4BE6B300EB288D /* RouteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteResponse.m; sourceTree = "<group>"; };
+		1656A5A01D4BE6B300EB288D /* RoutingConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutingConnection.h; sourceTree = "<group>"; };
+		1656A5A11D4BE6B300EB288D /* RoutingConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutingConnection.m; sourceTree = "<group>"; };
+		1656A5A21D4BE6B300EB288D /* RoutingHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutingHTTPServer.h; sourceTree = "<group>"; };
+		1656A5A31D4BE6B300EB288D /* RoutingHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutingHTTPServer.m; sourceTree = "<group>"; };
+		1656A5AA1D4BE8AF00EB288D /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		1656A5AC1D4BE8D700EB288D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		1656A5AE1D4BEA0B00EB288D /* DDData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDData.h; sourceTree = "<group>"; };
+		1656A5AF1D4BEA0B00EB288D /* DDData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDData.m; sourceTree = "<group>"; };
+		1656A5B01D4BEA0B00EB288D /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		1656A5B11D4BEA0B00EB288D /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		1656A5B21D4BEA0B00EB288D /* DDNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNumber.h; sourceTree = "<group>"; };
+		1656A5B31D4BEA0B00EB288D /* DDNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNumber.m; sourceTree = "<group>"; };
+		1656A5B41D4BEA0B00EB288D /* DDRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDRange.h; sourceTree = "<group>"; };
+		1656A5B51D4BEA0B00EB288D /* DDRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDRange.m; sourceTree = "<group>"; };
+		1656A5B61D4BEA0B00EB288D /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1656A5B71D4BEA0B00EB288D /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		1656A5B81D4BEA0B00EB288D /* HTTPAsyncFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAsyncFileResponse.h; sourceTree = "<group>"; };
+		1656A5B91D4BEA0B00EB288D /* HTTPAsyncFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPAsyncFileResponse.m; sourceTree = "<group>"; };
+		1656A5BA1D4BEA0B00EB288D /* HTTPAuthenticationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAuthenticationRequest.h; sourceTree = "<group>"; };
+		1656A5BB1D4BEA0B00EB288D /* HTTPAuthenticationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPAuthenticationRequest.m; sourceTree = "<group>"; };
+		1656A5BC1D4BEA0B00EB288D /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
+		1656A5BD1D4BEA0B00EB288D /* HTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPConnection.m; sourceTree = "<group>"; };
+		1656A5BE1D4BEA0B00EB288D /* HTTPDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDataResponse.h; sourceTree = "<group>"; };
+		1656A5BF1D4BEA0B00EB288D /* HTTPDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDataResponse.m; sourceTree = "<group>"; };
+		1656A5C01D4BEA0B00EB288D /* HTTPDynamicFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDynamicFileResponse.h; sourceTree = "<group>"; };
+		1656A5C11D4BEA0B00EB288D /* HTTPDynamicFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDynamicFileResponse.m; sourceTree = "<group>"; };
+		1656A5C21D4BEA0B00EB288D /* HTTPFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPFileResponse.h; sourceTree = "<group>"; };
+		1656A5C31D4BEA0B00EB288D /* HTTPFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPFileResponse.m; sourceTree = "<group>"; };
+		1656A5C41D4BEA0B00EB288D /* HTTPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPLogging.h; sourceTree = "<group>"; };
+		1656A5C51D4BEA0B00EB288D /* HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPMessage.h; sourceTree = "<group>"; };
+		1656A5C61D4BEA0B00EB288D /* HTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPMessage.m; sourceTree = "<group>"; };
+		1656A5C71D4BEA0B00EB288D /* HTTPRedirectResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRedirectResponse.h; sourceTree = "<group>"; };
+		1656A5C81D4BEA0B00EB288D /* HTTPRedirectResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRedirectResponse.m; sourceTree = "<group>"; };
+		1656A5C91D4BEA0B00EB288D /* HTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponse.h; sourceTree = "<group>"; };
+		1656A5CA1D4BEA0B00EB288D /* HTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
+		1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
+		1656A5CC1D4BEA0B00EB288D /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
+		1656A5CD1D4BEA0B00EB288D /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
 		165887961D19E4D90021DFC4 /* GradientLargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLargeView.swift; sourceTree = "<group>"; };
@@ -689,6 +757,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1656A5AD1D4BE8D700EB288D /* libxml2.tbd in Frameworks */,
 				485299538EF178971C053A0F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +797,64 @@
 				1656A3EA1D4A79A500EB288D /* YonaInstructionMobilePage4.swift */,
 			);
 			path = VPNFlow;
+			sourceTree = "<group>";
+		};
+		1656A3EF1D4BE63F00EB288D /* CocoaHTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+				1656A5AE1D4BEA0B00EB288D /* DDData.h */,
+				1656A5AF1D4BEA0B00EB288D /* DDData.m */,
+				1656A5B01D4BEA0B00EB288D /* DDLog.h */,
+				1656A5B11D4BEA0B00EB288D /* DDLog.m */,
+				1656A5B21D4BEA0B00EB288D /* DDNumber.h */,
+				1656A5B31D4BEA0B00EB288D /* DDNumber.m */,
+				1656A5B41D4BEA0B00EB288D /* DDRange.h */,
+				1656A5B51D4BEA0B00EB288D /* DDRange.m */,
+				1656A5B61D4BEA0B00EB288D /* GCDAsyncSocket.h */,
+				1656A5B71D4BEA0B00EB288D /* GCDAsyncSocket.m */,
+				1656A5B81D4BEA0B00EB288D /* HTTPAsyncFileResponse.h */,
+				1656A5B91D4BEA0B00EB288D /* HTTPAsyncFileResponse.m */,
+				1656A5BA1D4BEA0B00EB288D /* HTTPAuthenticationRequest.h */,
+				1656A5BB1D4BEA0B00EB288D /* HTTPAuthenticationRequest.m */,
+				1656A5BC1D4BEA0B00EB288D /* HTTPConnection.h */,
+				1656A5BD1D4BEA0B00EB288D /* HTTPConnection.m */,
+				1656A5BE1D4BEA0B00EB288D /* HTTPDataResponse.h */,
+				1656A5BF1D4BEA0B00EB288D /* HTTPDataResponse.m */,
+				1656A5C01D4BEA0B00EB288D /* HTTPDynamicFileResponse.h */,
+				1656A5C11D4BEA0B00EB288D /* HTTPDynamicFileResponse.m */,
+				1656A5C21D4BEA0B00EB288D /* HTTPFileResponse.h */,
+				1656A5C31D4BEA0B00EB288D /* HTTPFileResponse.m */,
+				1656A5C41D4BEA0B00EB288D /* HTTPLogging.h */,
+				1656A5C51D4BEA0B00EB288D /* HTTPMessage.h */,
+				1656A5C61D4BEA0B00EB288D /* HTTPMessage.m */,
+				1656A5C71D4BEA0B00EB288D /* HTTPRedirectResponse.h */,
+				1656A5C81D4BEA0B00EB288D /* HTTPRedirectResponse.m */,
+				1656A5C91D4BEA0B00EB288D /* HTTPResponse.h */,
+				1656A5CA1D4BEA0B00EB288D /* HTTPServer.h */,
+				1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */,
+				1656A5CC1D4BEA0B00EB288D /* WebSocket.h */,
+				1656A5CD1D4BEA0B00EB288D /* WebSocket.m */,
+			);
+			path = CocoaHTTPServer;
+			sourceTree = "<group>";
+		};
+		1656A5971D4BE6B300EB288D /* RoutingHTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+				1656A5981D4BE6B300EB288D /* HTTPResponseProxy.h */,
+				1656A5991D4BE6B300EB288D /* HTTPResponseProxy.m */,
+				1656A59A1D4BE6B300EB288D /* Route.h */,
+				1656A59B1D4BE6B300EB288D /* Route.m */,
+				1656A59C1D4BE6B300EB288D /* RouteRequest.h */,
+				1656A59D1D4BE6B300EB288D /* RouteRequest.m */,
+				1656A59E1D4BE6B300EB288D /* RouteResponse.h */,
+				1656A59F1D4BE6B300EB288D /* RouteResponse.m */,
+				1656A5A01D4BE6B300EB288D /* RoutingConnection.h */,
+				1656A5A11D4BE6B300EB288D /* RoutingConnection.m */,
+				1656A5A21D4BE6B300EB288D /* RoutingHTTPServer.h */,
+				1656A5A31D4BE6B300EB288D /* RoutingHTTPServer.m */,
+			);
+			path = RoutingHTTPServer;
 			sourceTree = "<group>";
 		};
 		165BB1E81D2289A20013A4EF /* UIControlCell */ = {
@@ -780,6 +907,8 @@
 		3B39B85C599061F064F0007D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1656A5AC1D4BE8D700EB288D /* libxml2.tbd */,
+				1656A5AA1D4BE8AF00EB288D /* libxml2.2.tbd */,
 				97F4E094BD09171901BB56B3 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -1132,6 +1261,8 @@
 		AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */ = {
 			isa = PBXGroup;
 			children = (
+				1656A5971D4BE6B300EB288D /* RoutingHTTPServer */,
+				1656A3EF1D4BE63F00EB288D /* CocoaHTTPServer */,
 				604282801D0AD9F200F5543C /* SVProgressHUD */,
 				603CDAA31CDC918C002A5C46 /* Environment Switching */,
 				603CDA9F1CDC9115002A5C46 /* XTSettings */,
@@ -1622,6 +1753,7 @@
 			knownRegions = (
 				en,
 				Base,
+				English,
 			);
 			mainGroup = D9D54EBE1CA28CD2007805F4;
 			productRefGroup = D9D54EC81CA28CD2007805F4 /* Products */;
@@ -1812,6 +1944,7 @@
 				9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */,
 				16F7A0E81D2453D800CBB0CB /* WeekSingleActivityGoal.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
+				1656A5D41D4BEA0B00EB288D /* HTTPAuthenticationRequest.m in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
 				90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */,
@@ -1826,6 +1959,7 @@
 				16B1CD2E1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift in Sources */,
 				AD291DA71CAAA8CC008CAFB1 /* AVPageContentViewController.swift in Sources */,
 				AD00DED01CD3648F006BBA7E /* IQNSArray+Sort.swift in Sources */,
+				1656A5DA1D4BEA0B00EB288D /* HTTPRedirectResponse.m in Sources */,
 				603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */,
 				160571601D479DC400E86CC2 /* YonaVPNInstructionsViewController.swift in Sources */,
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
@@ -1847,6 +1981,7 @@
 				ADAEAFE41CB40FA4005ED7B4 /* WelcomeViewController.swift in Sources */,
 				1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
+				1656A5D01D4BEA0B00EB288D /* DDNumber.m in Sources */,
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
@@ -1854,9 +1989,11 @@
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
 				166CB8421D24EEBC008B425D /* WeekScoreControlCell.swift in Sources */,
+				1656A5CE1D4BEA0B00EB288D /* DDData.m in Sources */,
 				604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */,
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
+				1656A5A61D4BE6B300EB288D /* RouteRequest.m in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
@@ -1866,13 +2003,16 @@
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
 				16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */,
 				60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */,
+				1656A5D71D4BEA0B00EB288D /* HTTPDynamicFileResponse.m in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
+				1656A5D61D4BEA0B00EB288D /* HTTPDataResponse.m in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
 				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
 				166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */,
 				1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
 				AD00DED51CD3648F006BBA7E /* IQUIWindow+Hierarchy.swift in Sources */,
+				1656A5CF1D4BEA0B00EB288D /* DDLog.m in Sources */,
 				9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */,
 				AD84B7321CDA27820085D5B7 /* Array.swift in Sources */,
 				ADD1082F1CC7B1B10048852F /* TimeZoneTableViewCell.swift in Sources */,
@@ -1889,10 +2029,12 @@
 				AD00DED31CD3648F006BBA7E /* IQUIView+Hierarchy.swift in Sources */,
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
+				1656A5A51D4BE6B300EB288D /* Route.m in Sources */,
 				160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */,
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,
 				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
+				1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
@@ -1910,10 +2052,14 @@
 				ADC6C88C1CC5661A00AAF29C /* TimeFrameTimeZoneChallengeViewController.swift in Sources */,
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
+				1656A5D81D4BEA0B00EB288D /* HTTPFileResponse.m in Sources */,
 				9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */,
 				AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */,
 				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
+				1656A5A91D4BE6B300EB288D /* RoutingHTTPServer.m in Sources */,
+				1656A5A81D4BE6B300EB288D /* RoutingConnection.m in Sources */,
 				90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */,
+				1656A5D21D4BEA0B00EB288D /* GCDAsyncSocket.m in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,
@@ -1926,16 +2072,20 @@
 				ADE0E0311CBCF89B009FEF31 /* UIViewExtensions.swift in Sources */,
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
+				1656A5D91D4BEA0B00EB288D /* HTTPMessage.m in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				16B1CD2D1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift in Sources */,
+				1656A5A71D4BE6B300EB288D /* RouteResponse.m in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
+				1656A5A41D4BE6B300EB288D /* HTTPResponseProxy.m in Sources */,
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				166CB8461D250BCE008B425D /* WeekCircleView.swift in Sources */,
 				165BB1EA1D228A010013A4EF /* TimeBucketControlCell.swift in Sources */,
 				160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */,
+				1656A5D51D4BEA0B00EB288D /* HTTPConnection.m in Sources */,
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */,
@@ -1947,9 +2097,12 @@
 				6042829A1D0ADA4600F5543C /* SVProgressAnimatedView.m in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
+				1656A5D11D4BEA0B00EB288D /* DDRange.m in Sources */,
 				1605715C1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift in Sources */,
 				90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */,
+				1656A5DB1D4BEA0B00EB288D /* HTTPServer.m in Sources */,
 				9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */,
+				1656A5DC1D4BEA0B00EB288D /* WebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@ protocol YonaInstructionsProtocol {
     func didFinishAnimations(sender : AnyObject)
     func didRequestReRun()
     
+    
 }
 
 class YonaVPNInstructionsViewController : UIViewController {
