@@ -17,6 +17,7 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
     var spreadCells : [Int] = []
 
     var maxDurationMinutes: Int = 0
+    var averageActivityDurationMinutes : Int = 0
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
     var nextLink : String?
@@ -40,8 +41,10 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
                 
         if let total = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
             totalActivityDurationMinutes = total
+            averageActivityDurationMinutes = total / 7
         } else {
             totalActivityDurationMinutes = 0
+            averageActivityDurationMinutes = 0
         }
         
 //        if let total = data[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
@@ -87,7 +90,7 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
             if goalLinks == goal.selfLinks {
                 zones = goal.zones
                 spreadCells = goal.spreadCells
-                maxDurationMinutes = goal.maxDurationMinutes
+                maxDurationMinutes = goal.maxDurationMinutes  // datat for a week
             }
         }
 

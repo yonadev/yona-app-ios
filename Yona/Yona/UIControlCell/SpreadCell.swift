@@ -56,20 +56,20 @@ class SpreadCell : UITableViewCell {
         backgroundMinsView.frame = fra
         
         pxWidthPerSpread = self.backgroundMinsView.frame.size.width / 192 //double spreadcells for gap 96x2
-        pxWidthPerSpread = pxWidthPerSpread.roundNearest(0.5)
+        //pxWidthPerSpread = pxWidthPerSpread.roundNearest(0.5)
         pxPerMinute = self.backgroundMinsView.frame.size.height / 15 //calculate pix per minute height wise
         pxGap = (self.backgroundMinsView.frame.size.width - pxWidthPerSpread * 92) / 92
         
-        fourleftConstraint.constant = 16 * (pxWidthPerSpread + pxGap) + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
+        fourleftConstraint.constant = 32 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
         self.fourAm.setNeedsLayout()
         
-        eightAmConstraint.constant = 32 * (pxWidthPerSpread + pxGap) + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
+        eightAmConstraint.constant = 64 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
         self.eightAM.setNeedsLayout()
         
-        sixteenHundredConstraint.constant = 64 * (pxWidthPerSpread + pxGap) + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
+        sixteenHundredConstraint.constant = 128 * (pxWidthPerSpread ) + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
         self.sixteenHundred.setNeedsLayout()
         
-        twentyHundredConstraint.constant = 128 * (pxWidthPerSpread + pxGap) + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
+        twentyHundredConstraint.constant = 160 * (pxWidthPerSpread) + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
     }
     
@@ -83,7 +83,7 @@ class SpreadCell : UITableViewCell {
 
         //draw the spreadcells where the user has set timezones
         for currentSpread in spreadCells {
-            var spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
+            let spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
 
             let spreadCellView = SpreadCellCustomView.init(frame: CGRectZero, colour: UIColor.clearColor())
             determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
@@ -97,7 +97,6 @@ class SpreadCell : UITableViewCell {
             }
             backgroundMinsView.addSubview(spreadCellView)
             spreadCellsValue += 1
-//            spreadX += (pxWidthPerSpread * 2)
         }
         
         

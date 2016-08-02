@@ -33,6 +33,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
+        nib = UINib(nibName: "NoGoCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
+        
         nib = UINib(nibName: "SpreadCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
         
@@ -72,36 +75,42 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
         if indexPath.section == 0 {
-        
-            if indexPath.row == detailRows.weekoverview.rawValue {
-                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
-                
-                if let data = week[currentWeek.yearWeek]  {
-                    cell.setSingleActivity(data ,isScore: true)
-                }
-                return cell
-            
-            }
-            if indexPath.row == detailRows.activity.rawValue {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
-                }
-                // cell.setUpView(activityGoal)
-                return cell
+            if let data = week[currentWeek.yearWeek]  {
 
-            }
-            
-            if indexPath.row == detailRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-                if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
-                }
-                // cell.setUpView(activityGoal)
-                return cell
+                if indexPath.row == detailRows.weekoverview.rawValue {
+                    let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+                    
+                    if let data = week[currentWeek.yearWeek]  {
+                        cell.setSingleActivity(data ,isScore: true)
+                    }
+                    return cell
                 
+                }
+                if indexPath.row == detailRows.activity.rawValue {
+                    
+                    if data.goalType == GoalType.NoGoGoalString.rawValue {
+                        let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                        cell.setDataForWeekDetailView(data)
+                        return cell
+                    } else {
+                        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                        cell.setWeekActivityDetailForView(data, animated: true)
+                        return cell
+                    }
+
+
+                }
+                
+                if indexPath.row == detailRows.spreadCell.rawValue {
+                    let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                    if let data = week[currentWeek.yearWeek]  {
+                        cell.setWeekActivityDetailForView(data, animated: true)
+                    }
+                    // cell.setUpView(activityGoal)
+                    return cell
+                    
+                }
             }
             
         }
@@ -153,7 +162,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var cellHeight = 165
+        var cellHeight = 126        
         if indexPath.row == detailRows.activity.rawValue {
             if let initialObject = initialObject {
                 if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
@@ -164,6 +173,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                     cellHeight = 165
                 }
             }
+        }
+        if indexPath.row == detailRows.spreadCell.rawValue {
+            cellHeight = 165
+            
         }
         return CGFloat(cellHeight)
     }
