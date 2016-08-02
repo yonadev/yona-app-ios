@@ -70,7 +70,7 @@ class WeekScoreControlCell: UITableViewCell {
             var tempStatus : circleViewStatus = circleViewStatus.noData
             for dayActivity in aActivityGoal.activity {
                 if dayActivity.dayofweek.rawValue == getDayOfWeek(aDate) {
-                    if dayActivity.goalAccomplished {
+                    if (dayActivity.goalAccomplished) {
                         tempStatus = .underGoal
                     } else if !dayActivity.goalAccomplished {
                         tempStatus =  .overGoal

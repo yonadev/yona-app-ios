@@ -8,16 +8,12 @@
 
 import Foundation
 
-enum loadType {
-    case prev
-    case own
-    case next
-}
-
 enum detailRows : Int  {
     case weekoverview = 0
-    case acitivty
+    case activity
+    case spreadCell
 }
+
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
     var week : [String:WeekSingleActivityDetail] = [:]
@@ -36,6 +32,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        
+        nib = UINib(nibName: "NoGoCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
+        
+        nib = UINib(nibName: "SpreadCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
@@ -57,26 +59,24 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
             loadData(.own)
         }
-        
     }
     
     // MARK: - tableview Override
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return 3
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
         if indexPath.section == 0 {
-        
+
             if indexPath.row == detailRows.weekoverview.rawValue {
                 let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
                 
@@ -86,17 +86,25 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 return cell
             
             }
-            if indexPath.row == detailRows.acitivty.rawValue {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+        
+            if indexPath.row == detailRows.activity.rawValue {
+                if let data = week[currentWeek.yearWeek]  {
+                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
+                        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                        cell.setWeekActivityDetailForView(data, animated: true)
+                        return cell
+                    }
+                }
+            }
+            
+            if indexPath.row == detailRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setWeekActivityDetailForView(data, animated: true)
                 }
-                // cell.setUpView(activityGoal)
                 return cell
-
             }
         }
-        
         return UITableViewCell(frame: CGRectZero)
 
     }
@@ -117,8 +125,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             } else {
                 let dateFormatter : NSDateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd MMM"
-                
-                
                 cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
             }
            if let data = week[currentWeek.yearWeek] {
@@ -146,7 +152,23 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 126
+        var cellHeight = 126        
+        if indexPath.row == detailRows.activity.rawValue {
+            if let initialObject = initialObject {
+                if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 165
+                } else if initialObject.goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 0
+                } else if initialObject.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 0
+                }
+            }
+        }
+        if indexPath.row == detailRows.spreadCell.rawValue {
+            cellHeight = 165
+            
+        }
+        return CGFloat(cellHeight)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -172,6 +194,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     func loadData (typeToLoad : loadType = .own) {
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
+        // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()
         
         if typeToLoad == .own {

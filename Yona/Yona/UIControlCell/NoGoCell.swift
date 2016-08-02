@@ -14,8 +14,11 @@ class NoGoCell : UITableViewCell {
     @IBOutlet weak var nogoType: UILabel!
     @IBOutlet weak var nogoMessage: UILabel!
     @IBOutlet weak var gradientView: GradientSmooth!
-    weak var activityGoal : ActivitiesGoal!
-
+    var goalAccomplished: Bool = false
+    var goalName: String = NSLocalizedString("meday.nogo.message", comment: "")
+    var goalDate: NSDate = NSDate()
+    var totalMinutesBeyondGoal: Int = 0
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         drawTheCell()
@@ -28,21 +31,46 @@ class NoGoCell : UITableViewCell {
     
     func drawTheCell (){
         
-        nogoType.text = activityGoal.goalName
-        if activityGoal.goalAccomplished {
-            self.nogoMessage.text = "geen hits, hou vol"
+        nogoType.text = goalName
+        if goalAccomplished {
+            self.nogoMessage.text = NSLocalizedString("meday.nogo.message", comment: "")
             self.nogoImage.image = R.image.adultHappy
         } else {
             self.nogoImage.image = R.image.adultSad
             let dateFromat = NSDateFormatter()
             dateFromat.dateFormat = "hh:mm a"
-            let date = dateFromat.stringFromDate(activityGoal.date)
-            self.nogoMessage.text =  "\(date) - \(String(activityGoal.totalMinutesBeyondGoal)) minuten"
+            let date = dateFromat.stringFromDate(goalDate)
+            self.nogoMessage.text =  "\(date) - \(String(totalMinutesBeyondGoal)) \(NSLocalizedString("meday.nogo.minutes", comment: ""))"
         }
     }
     
     func setDataForView(activityGoal : ActivitiesGoal) {
-        self.activityGoal = activityGoal
+        goalAccomplished = activityGoal.goalAccomplished
+        self.goalDate = activityGoal.date
+        self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
+        if let goalName = activityGoal.goalName{
+            self.goalName = goalName
+        }
     }
+    
+    func setDayActivityDetailForView(activityGoal : DaySingleActivityDetail) {
+        goalAccomplished = activityGoal.goalAccomplished
+        if let goalDate = activityGoal.date {
+            self.goalDate = goalDate
+        }
+        self.goalName = activityGoal.goalName
+        self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
+    }
+    
+    func setDataForWeekDetailView(activityGoal : WeekSingleActivityDetail) {
+        if activityGoal.totalMinutesBeyondGoal > 0 {
+            self.goalAccomplished = false
+        }
+        if let goalName = activityGoal.goalName {
+            self.goalName = goalName
+        }
+        self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
+    }
+    
     
 }

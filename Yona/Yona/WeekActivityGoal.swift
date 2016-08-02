@@ -30,8 +30,10 @@ class WeekActivityGoal: NSObject {
         if let singleWeek = data[YonaConstants.jsonKeys.weekActivities] as? [BodyDataDictionary] {
             for object in singleWeek  {
                 let singleWeekObj = WeekSingleActivityGoal(data: object, allGoals : allGoals)
-                singleWeekObj.date = self.date
-                activity.append(singleWeekObj)
+                if singleWeekObj.goalType != nil {
+                    singleWeekObj.date = self.date
+                    activity.append(singleWeekObj)
+                }
             }
         }
         activity = activity.sort({$0.goalName > $1.goalName})

@@ -13,6 +13,27 @@ extension NSDate {
         return NSCalendar.currentCalendar()
     }
     
+    func dayMonthDateString() -> String { //Woensday, 9 April
+        let dateFormatter : NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func isYesterday() -> Bool {
+        let today = NSDate()
+        let yesterday = today.dateByAddingTimeInterval(-86400.0)
+        return self.isSameDayAs(yesterday)
+    }
+    
+    func isToday() -> Bool {
+        let today = NSDate()
+        return self.isSameDayAs(today)
+    }
+    
+    func monthNameFromDate() -> String {
+        return NSDateFormatter().monthSymbols[self.months - 1]
+    }
+    
     public var years: Int {
         return self.calendar.components(.Year, fromDate: self).year
     }
@@ -41,13 +62,11 @@ extension NSDate {
         return self.calendar.components(.Second, fromDate: self).second
     }
     
-    
     func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
         var isGreater = false
         if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
             isGreater = true
         }
-        
         return isGreater
     }
     
@@ -82,12 +101,31 @@ extension NSDate {
             formatter.dateFormat = "yyyy-'W'ww"
             return formatter
         }()
+        
+        static let formatterMMDD: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "MMdd"
+            return formatter
+        }()
+        
+        static let formatterDD: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd"
+            return formatter
+        }()
 
+    }
+    
+    var MonthDay: String {
+        return Date.formatterMMDD.stringFromDate(self)
+    }
+    
+    var Day: String {
+        return Date.formatterDD.stringFromDate(self)
     }
     
     var yearWeek : String {
         return Date.formatterYYYYWW.stringFromDate(self)
-        
     }
     
     var yearMonthDay: String {
@@ -95,6 +133,22 @@ extension NSDate {
     }
     func isSameDayAs(date:NSDate) -> Bool {
         return yearMonthDay == date.yearMonthDay
+    }
+    
+    func dayOfTheWeek() -> String? {
+        let weekdays = [
+            NSLocalizedString("notifications.day.sunday", comment: ""),
+            NSLocalizedString("notifications.day.monday", comment: ""),
+            NSLocalizedString("notifications.day.tuesday", comment: ""),
+            NSLocalizedString("notifications.day.wednesday", comment: ""),
+            NSLocalizedString("notifications.day.thursday", comment: ""),
+            NSLocalizedString("notifications.day.friday", comment: ""),
+            NSLocalizedString("notifications.day.saturday", comment: "")
+        ]
+        
+        let calendar: NSCalendar = NSCalendar.currentCalendar()
+        let components: NSDateComponents = calendar.components(.Weekday, fromDate: self)
+        return weekdays[components.weekday - 1]
     }
 }
 // NSCalendar+Swift.swift
@@ -126,7 +180,7 @@ extension NSCalendar {
         return (era, yearForWeekOfYear, weekOfYear, weekday)
     }
     
-    /// Returns the start and length of the next weekend after the given date. Returns nil if the
+    /// Returns the5 start and length of the next weekend after the given date. Returns nil if the
     /// calendar or locale don't support weekends.
 //    func nextWeekendAfterDate(date: NSDate) -> (startDate: NSDate, interval: NSTimeInterval)? {
 //        var startDate: NSDate?
@@ -170,4 +224,5 @@ extension NSCalendar {
         
         return nil
     }
+    
 }

@@ -140,6 +140,7 @@
 		90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */; };
 		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
 		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
+		90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */; };
 		90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */; };
 		90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */; };
 		90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */; };
@@ -147,6 +148,11 @@
 		90F123E31D35432F00E2BBBA /* NoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123E21D35432F00E2BBBA /* NoGoCell.xib */; };
 		90F123E51D3785F800E2BBBA /* GradientSmooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123E41D3785F800E2BBBA /* GradientSmooth.swift */; };
 		90F123E71D385B4F00E2BBBA /* NoGoCellFriends.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */; };
+		90F123F11D3F6D7600E2BBBA /* SpreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */; };
+		90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */; };
+		90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */; };
+		90F123F71D3FCEE400E2BBBA /* MeDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */; };
+		90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -503,6 +509,7 @@
 		90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsRequestManager.swift; sourceTree = "<group>"; };
 		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
+		90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeZoneControlCell.xib; sourceTree = "<group>"; };
 		90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneControlCell.swift; sourceTree = "<group>"; };
 		90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneCustomView.swift; sourceTree = "<group>"; };
@@ -510,6 +517,11 @@
 		90F123E21D35432F00E2BBBA /* NoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoCell.xib; sourceTree = "<group>"; };
 		90F123E41D3785F800E2BBBA /* GradientSmooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSmooth.swift; sourceTree = "<group>"; };
 		90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoCellFriends.xib; sourceTree = "<group>"; };
+		90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpreadCell.xib; sourceTree = "<group>"; };
+		90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCell.swift; sourceTree = "<group>"; };
+		90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCellCustomView.swift; sourceTree = "<group>"; };
+		90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeDayDetailViewController.swift; sourceTree = "<group>"; };
+		90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySingleActivityDetail.swift; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -871,6 +883,9 @@
 				90F123E01D35431F00E2BBBA /* NoGoCell.swift */,
 				90F123E21D35432F00E2BBBA /* NoGoCell.xib */,
 				90F123E61D385B4F00E2BBBA /* NoGoCellFriends.xib */,
+				90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */,
+				90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */,
+				90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */,
 			);
 			path = UIControlCell;
 			sourceTree = "<group>";
@@ -1076,8 +1091,9 @@
 				9054CC871CE384AB00F575E2 /* Buddies.swift */,
 				BE8254431CEA92F400F97045 /* Message.swift */,
 				165BB1E61D22829D0013A4EF /* ActivitiesGoal.swift */,
-				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */,
+				90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */,
+				166CB8471D2B1524008B425D /* DayActivityOverview.swift */,
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
 				16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
@@ -1228,9 +1244,10 @@
 		AD291D261CA92808008CAFB1 /* MeDashBoard */ = {
 			isa = PBXGroup;
 			children = (
-				166CB8491D2C5688008B425D /* MeWeekDetailWeekViewController.swift */,
 				906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */,
 				906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */,
+				166CB8491D2C5688008B425D /* MeWeekDetailWeekViewController.swift */,
+				90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */,
 				AD291D701CA940B0008CAFB1 /* YonaUserProfileViewController.swift */,
 				906FED791CEDB1C700029845 /* Notifications */,
 			);
@@ -1371,6 +1388,7 @@
 				ADE0E0301CBCF89B009FEF31 /* UIViewExtensions.swift */,
 				D94A93C21CB27AE500ABE0F8 /* UIViewControllerExtensions.swift */,
 				D9C7902C1CC2E989007DDF46 /* Extensions.swift */,
+				90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1784,6 +1802,7 @@
 				ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */,
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
+				90F123F11D3F6D7600E2BBBA /* SpreadCell.xib in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
 				16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
@@ -1985,6 +2004,7 @@
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
+				90F123F71D3FCEE400E2BBBA /* MeDayDetailViewController.swift in Sources */,
 				9042C74E1CD898E300100306 /* UIButton+AGi18n.m in Sources */,
 				ADAEAFDB1CB2E32E005ED7B4 /* CodeInputView.swift in Sources */,
 				AD00DEDA1CD3648F006BBA7E /* IQTextView.swift in Sources */,
@@ -2006,6 +2026,7 @@
 				1656A5D71D4BEA0B00EB288D /* HTTPDynamicFileResponse.m in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				1656A5D61D4BEA0B00EB288D /* HTTPDataResponse.m in Sources */,
+				90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
 				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
 				166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */,
@@ -2021,6 +2042,7 @@
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */,
+				90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */,
 				ADD108331CC7D7580048852F /* TimeFrameNoGoChallengeViewController.swift in Sources */,
 				D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */,
@@ -2066,6 +2088,7 @@
 				166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
+				90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */,
 				90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */,
 				9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */,
 				1605715E1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift in Sources */,
@@ -2073,6 +2096,7 @@
 				D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */,
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
 				1656A5D91D4BEA0B00EB288D /* HTTPMessage.m in Sources */,
+				90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,

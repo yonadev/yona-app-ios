@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -131,7 +131,7 @@
                 <outlet property="backgroundMinsView" destination="mTL-Jd-BWR" id="NdK-MB-rTK"/>
                 <outlet property="endMinutes" destination="mj9-S4-ntV" id="4Qf-up-w5M"/>
                 <outlet property="goalMessage" destination="drz-uD-GrX" id="423-Sb-fJt"/>
-                <outlet property="goalType" destination="rUf-Jw-v1k" id="SWV-zV-Umo"/>
+                <outlet property="goalTypeTitle" destination="rUf-Jw-v1k" id="EMN-2s-rEQ"/>
                 <outlet property="gradientView" destination="GAa-lP-wXD" id="Yyg-R3-710"/>
                 <outlet property="minutesBeyondGoal" destination="sfL-pn-dhQ" id="1Gp-PX-Hvc"/>
                 <outlet property="minutesTitle" destination="vIZ-pa-TJW" id="LBc-IY-RYL"/>

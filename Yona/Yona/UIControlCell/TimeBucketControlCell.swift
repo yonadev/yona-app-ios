@@ -11,7 +11,7 @@ import UIKit
 
 class TimeBucketControlCell : UITableViewCell {
     
-    @IBOutlet weak var goalType: UILabel!
+    @IBOutlet weak var goalTypeTitle: UILabel!
     @IBOutlet weak var minutesTitle: UILabel!
     @IBOutlet weak var goalMessage: UILabel!
     @IBOutlet weak var gradientView: GradientSmooth!
@@ -19,14 +19,15 @@ class TimeBucketControlCell : UITableViewCell {
     weak var positiveView: UIView!
     
     weak var negativeView: UIView!
-   
+    
+    var isWeek : Bool = false
     
     var totalMinutesBeyondGoal = 0
     var maxDurationMinutes = 0
     var totalActivityDurationMinutes = 0
+    var averageActivityDurationMinutes = 0
     var goalName = ""
 
-    
     var shouldAnimate : Bool = false
     
     @IBOutlet weak var zeroMins: UILabel!
@@ -88,7 +89,13 @@ class TimeBucketControlCell : UITableViewCell {
         let negative = totalMinutesBeyondGoal
         var positive = maxDurationMinutes - totalActivityDurationMinutes
         if positive < 0 { positive = 0}
-        let totalMinutes = totalActivityDurationMinutes
+        var totalMinutes = totalActivityDurationMinutes
+
+        if isWeek {
+            positive = averageActivityDurationMinutes
+            totalMinutes = maxDurationMinutes
+        }
+
         
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
@@ -128,18 +135,20 @@ class TimeBucketControlCell : UITableViewCell {
             self.minutesTitle.text = String(negative)
             self.goalMessage.text = NSLocalizedString("meday.message.minutesover", comment: "")
         } else {
+            self.minutesTitle.textColor = UIColor.yiBlackColor()
             self.minutesTitle.text = String(positive)
             self.goalMessage.text = NSLocalizedString("meday.message.minutesleft", comment: "")
         }
         
         //set goal title
-        self.goalType.text = goalName
+        self.goalTypeTitle.text = goalName
         
     }
     
     
     private func drawTheCell (animated: Bool) {
         let negative = totalMinutesBeyondGoal
+        
         var positive = maxDurationMinutes - totalActivityDurationMinutes
         if positive < 0 { positive = 0}
         
@@ -151,7 +160,11 @@ class TimeBucketControlCell : UITableViewCell {
         if positive < 0 {
             positive = 0
         }
-     
+        if isWeek {
+            positive = averageActivityDurationMinutes
+        }
+
+        
         var pxPrMinute : CGFloat = 0.0 //number of pixels per minute
         if totalMinutes > 0 {
             //pxPrMinute = (backgroundMinsView.frame.size.width + 8) / CGFloat(totalMinutes)
@@ -199,12 +212,24 @@ class TimeBucketControlCell : UITableViewCell {
     func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
         totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
         maxDurationMinutes = weekActivityDetail.maxDurationMinutes
-        totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
+        averageActivityDurationMinutes = weekActivityDetail.averageActivityDurationMinutes
         
         goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
+        goalMessage.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
+
+        isWeek = true
         
         shouldAnimate = animated
     }
 
-    
+    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+        isWeek = false
+        totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
+        maxDurationMinutes = dayActivity.maxDurationMinutes
+        totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
+        
+        goalName = NSLocalizedString("meweek.message.score", comment: "")
+        
+        shouldAnimate = animated
+    }
 }

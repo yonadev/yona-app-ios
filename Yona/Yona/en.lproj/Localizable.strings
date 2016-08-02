@@ -263,6 +263,11 @@
 //me day cells
 "meday.message.minutesover" = "minutes over limit";
 "meday.message.minutesleft" = "minutes left";
+"meday.message.timezone" = "minutes outside zone";
+"meday.spreadcontrol.title" = "Spreading";
+"meday.spreadcontrol.minutestotal" = "Total Minutes";
+"meday.nogo.message" = "No usage, carry on!";
+"meday.nogo.minutes" = "minutes";
 
 //Friends Profile Button text
 
