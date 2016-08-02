@@ -191,3 +191,48 @@
 "meweek.message.timescompleted" = "x doel gehaald";
 "meweek.message.score" = "aantal punten";
 "meweek.message.minutesAverage" = "Gemiddeld";
+
+
+// VPN setup text
+"vpnflowmainscreen.title.text" = "SIGN UP";
+
+"vpnflowmainscreen.appinstalled.progress.text" = "Thank you\nfor signing up!";
+"vpnflowmainscreen.appinstalled.info.text" = "Let's get Yona up and running";
+"vpnflowmainscreen.button.next" = "NEXT";
+
+"YonaVPNProgressView.yonaapp.text" = "Yona is installed on your phone...";
+"YonaVPNProgressView.openvpn.text" = "You need to make a safe\nconnection to your phone";
+"YonaVPNProgressView.profile.text" = "Download the Yona profile for the\nsafe connection";
+
+"vpnflowmainscreen.appinstalled.progress1.text" = "Setup a connection";
+"vpnflowmainscreen.appinstalled.info1.text" = "Next step...";
+"YonaVPNProgressView.openvpn1.text" = "Yona needs OpenVPN to run\nproperly";
+"vpnflowmainscreen.button1.next" = "INSTRUCTIONS";
+
+"vpnflowintro1.title1.text" = "First press 'download'";
+"vpnflowintro1.title2.text" = "Do not click 'open'";
+"vpnflowintro1.title3.text" = "Return to Yona";
+"vpnflowintro1.rerun.text" = "show instructions again";
+"vpnflowmainscreen.button2.text" = "DOWNLOAD OPENVPN";
+
+"vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nThe App is installed now";
+"vpnflowmainscreen.appinstalled.info2.text" = "Almost there ;)";
+
+"vpnflowmainscreen.appinstalled.progress3.text" = "One step to go...";
+"vpnflowmainscreen.appinstalled.info3.text" = "Install and accept Yona profile";
+"vpnflowmainscreen.button3.next" = "INSTALL AND ACCEPT PROFILE";
+
+"vpnflowmainscreen.finalInstructions.button" = "show instructions";
+
+
+"vpnflowintro2.title1.text" = "First you will be asked to\rinstall our profile";
+"vpnflowintro2.title2.text" = "Then Your PINcode is needed";
+"vpnflowintro2.title3.text" = "This warning will be shown.\r Click 'install'";
+"vpnflowintro2.title4.text" = "After 'OK' you are ready";
+"vpnflowintro2.rerun.text" = "show instructions again";
+"vpnflowintro2.button2.text" = "INSTALL AND ACCEPT PROFILE";
+
+
+"vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\nYour ready to go!";
+"vpnflowmainscreen.appinstalled.info4.text" = "Congratulations. You made it. Now continue and set your first challenge.";
+"vpnflowmainscreen.button4.next" = "SET YOUR FIRST CHALLENGE";

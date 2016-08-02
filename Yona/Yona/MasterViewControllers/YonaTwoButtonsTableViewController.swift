@@ -40,6 +40,11 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
       print("ERROR 'numberOfSectionsInTableView' has not been overiden")
         return 1

@@ -200,5 +200,7 @@ struct YonaConstants {
         static let adminOverride = "adminOverride"
         static let userToOverride = "userToOverride"
         static let isGoalsAdded = "isGoalsAdded"
+        static let vpncompleted = "vpncompleted"
+        static let vpnSetupStatus = "vpnSetupStatus"
     }   
 }
