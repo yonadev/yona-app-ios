@@ -6,11 +6,17 @@
 //  Copyright © 2016 Yona. All rights reserved.
 //
 
+
+// THIS whole class system is becoming a mess
+// we should spend 1-2 days on cleaning it up
+// Anders Liebl
+
 import UIKit
 
 class ConfirmMobileValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPConfirmCodeButton: UIButton!
-
+    var isFromUserProfile : Bool = false
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setBackgroundColour()
@@ -59,9 +65,14 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
                 
-                setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                self.performSegueWithIdentifier(R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
-
+                if self.isFromUserProfile {
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                
+                } else {
+                
+                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    self.performSegueWithIdentifier(R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
+                }
                 self.codeInputView.clear()
                 
             } else {

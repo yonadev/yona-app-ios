@@ -6,6 +6,10 @@ import Foundation
 class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var cancelButtonTitle: UIBarButtonItem!
+    @IBOutlet weak var okButtonTitle: UIBarButtonItem!
+
+    
     typealias CancelListener = () -> ()
     typealias DoneListener = (String) -> ()
     var gCancelListener: CancelListener?
@@ -30,6 +34,7 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     
     func loadPickerView() -> UIView {
         var views = NSBundle.mainBundle().loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
+        
         return views[0] as! UIView
     }
     
@@ -44,6 +49,9 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     
     
     func showHidePicker(isToShow show: Bool) -> YonaCustomPickerView {
+        cancelButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
+        okButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
+
         UIView.animateWithDuration(0.3,
                                    animations: {
                                     if show {

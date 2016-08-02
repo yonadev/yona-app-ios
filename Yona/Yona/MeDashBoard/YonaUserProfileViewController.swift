@@ -14,7 +14,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var rightSideButton : UIBarButtonItem!
 
     var topCell : YonaUserHeaderWithTwoTabTableViewCell?
-    
+    private let nederlandPhonePrefix = "+31 (0) "
     var aUser : Users?
     var isShowingProfile = true
     var rightSideButtonItems : [UIBarButtonItem]?
@@ -164,16 +164,68 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     
     func updateUser() {
         
+        
+        if !isUserDataValid() {
+            return
+        }
+        Loader.Show()
          UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
             //success so get the user?
                 if success {
+                    Loader.Hide()
                     self.aUser = user
-                //success so get the user
-                //  self.setData()
+                    if let _ = user?.confirmMobileLink {
+                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController {
+                            controller.isFromUserProfile = true
+                        
+                            self.navigationController?.pushViewController(controller, animated: true)
+                        }
+                    }
                     self.tableView.reloadData()
                 } else {
-                //response from request failed
+                    Loader.Hide()
+                    if let alertMessage = message,
+                        let code = code {
+                        self.displayAlertMessage(code, alertDescription: alertMessage)
+                    }
                 }
             })
      }
+    
+    func isUserDataValid() -> Bool {
+        if aUser?.firstName.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                NSLocalizedString("enter-first-name-validation", comment: ""))
+            return false
+        }
+        else if aUser?.lastName.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                NSLocalizedString("enter-last-name-validation", comment: ""))
+            return false
+        } else if aUser?.mobileNumber.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                NSLocalizedString("enter-number-validation", comment: ""))
+            return false
+        } else {
+            var number = ""
+            if let mobilenum = aUser?.mobileNumber {
+                number =  mobilenum
+                
+                let trimmedWhiteSpaceString = number.removeWhitespace()
+                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
+                
+                if trimmedString.validateMobileNumber() == false {
+                    self.displayAlertMessage("", alertDescription:
+                        NSLocalizedString("enter-number-validation", comment: ""))
+                    return false
+                } else {
+                aUser?.mobileNumber = trimmedString.stringByReplacingOccurrencesOfString("310", withString: "+31")
+                }
+                
+            }
+        }
+
+    
+        return true
+    }
 }
