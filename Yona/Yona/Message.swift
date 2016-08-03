@@ -15,6 +15,7 @@ enum notificationType : String {
     case BuddyConnectResponseMessage = "BuddyConnectResponseMessage"
     case BuddyDisconnectMessage = "BuddyDisconnectMessage"
     case GoalConflictMessage = "GoalConflictMessage"
+    case ActivityCommentMessage = "ActivityCommentMessage"
     case NoValue = "Not found"
     
 }

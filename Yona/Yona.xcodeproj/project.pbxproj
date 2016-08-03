@@ -115,6 +115,8 @@
 		9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */; };
 		9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC871CE384AB00F575E2 /* Buddies.swift */; };
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
+		9054D5351D51EC930060D22E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5341D51EC930060D22E /* Comment.swift */; };
+		9054D5371D5203BD0060D22E /* CommentRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5361D5203BD0060D22E /* CommentRequestManager.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
@@ -491,6 +493,8 @@
 		9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyRequestManager.swift; sourceTree = "<group>"; };
 		9054CC871CE384AB00F575E2 /* Buddies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buddies.swift; sourceTree = "<group>"; };
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
+		9054D5341D51EC930060D22E /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		9054D5361D5203BD0060D22E /* CommentRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRequestManager.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
@@ -1097,6 +1101,7 @@
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
 				16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
+				9054D5341D51EC930060D22E /* Comment.swift */,
 			);
 			name = DAOObjects;
 			sourceTree = "<group>";
@@ -1114,6 +1119,7 @@
 				90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */,
 				BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */,
 				9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */,
+				9054D5361D5203BD0060D22E /* CommentRequestManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1984,6 +1990,7 @@
 				AD00DED11CD3648F006BBA7E /* IQUIScrollView+Additions.swift in Sources */,
 				907DA5241CBBD0400031850E /* Manager.swift in Sources */,
 				16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */,
+				9054D5371D5203BD0060D22E /* CommentRequestManager.swift in Sources */,
 				AD00DEDD1CD3648F006BBA7E /* IQTitleBarButtonItem.swift in Sources */,
 				1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */,
 				9042C7521CD898E300100306 /* UISegmentedControl+AGi18n.m in Sources */,
@@ -2103,6 +2110,7 @@
 				AD291D731CA940D0008CAFB1 /* SettingsViewController.swift in Sources */,
 				16B1CD2D1D15900E00A1ABA7 /* YonaUserDisplayTableViewCell.swift in Sources */,
 				1656A5A71D4BE6B300EB288D /* RouteResponse.m in Sources */,
+				9054D5351D51EC930060D22E /* Comment.swift in Sources */,
 				D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */,
 				1656A5A41D4BE6B300EB288D /* HTTPResponseProxy.m in Sources */,
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
