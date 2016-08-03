@@ -61,6 +61,17 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         controller.aUser = buddyToShow
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+            //performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+        }
+        
+        if selectedTab == .left {
+            //performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
+        }
+    }
+
+    
     // MARK: - Data loaders
     
     override func loadActivitiesForDay(page : Int = 0) {
