@@ -17,9 +17,18 @@ class CommentRequestManager {
     
     private init() {}
     
-    func postComment(postGoalMessageLink: String){
+    func postComment(postGoalMessageLink: String) {//, onCompletion: APIResponse){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: postGoalMessageLink, httpMethod: httpMethods.post) { (success, json, error) in
-            
+            if success {
+                if let json = json {
+                    self.comment = Comment.init(commentData: json)
+//                    onCompletion(success, serverMessage, serverCode, self.buddy, nil) //failed to get user
+                } else {
+//                    onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
+                }
+            } else {
+//                onCompletion(success, serverMessage, serverCode, nil, nil)
+            }
         }
     }
 }

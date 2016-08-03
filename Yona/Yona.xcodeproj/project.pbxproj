@@ -118,6 +118,8 @@
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
 		9054D5351D51EC930060D22E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5341D51EC930060D22E /* Comment.swift */; };
 		9054D5371D5203BD0060D22E /* CommentRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5361D5203BD0060D22E /* CommentRequestManager.swift */; };
+		9054D5391D52359B0060D22E /* CommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5381D52359B0060D22E /* CommentControl.swift */; };
+		9054D53B1D5235A90060D22E /* CommentControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D53A1D5235A90060D22E /* CommentControlCell.xib */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
@@ -497,6 +499,8 @@
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
 		9054D5341D51EC930060D22E /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		9054D5361D5203BD0060D22E /* CommentRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRequestManager.swift; sourceTree = "<group>"; };
+		9054D5381D52359B0060D22E /* CommentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentControl.swift; sourceTree = "<group>"; };
+		9054D53A1D5235A90060D22E /* CommentControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentControlCell.xib; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
@@ -892,6 +896,8 @@
 				90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */,
 				90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */,
 				90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */,
+				9054D5381D52359B0060D22E /* CommentControl.swift */,
+				9054D53A1D5235A90060D22E /* CommentControlCell.xib */,
 			);
 			path = UIControlCell;
 			sourceTree = "<group>";
@@ -1810,6 +1816,7 @@
 				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
 				ADD108291CC78C3B0048852F /* Oswald-Medium.ttf in Resources */,
 				D986355E1CABF44000A8535C /* SF-UI-Text-Heavy.otf in Resources */,
+				9054D53B1D5235A90060D22E /* CommentControlCell.xib in Resources */,
 				ADD1081F1CC78C3B0048852F /* Oswald-Bold.ttf in Resources */,
 				90F123F11D3F6D7600E2BBBA /* SpreadCell.xib in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
@@ -2029,6 +2036,7 @@
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				166CB8481D2B1524008B425D /* DayActivityOverview.swift in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
+				9054D5391D52359B0060D22E /* CommentControl.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
 				906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */,
 				16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */,
