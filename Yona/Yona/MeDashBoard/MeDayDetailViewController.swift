@@ -85,7 +85,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         if typeToLoad == .own {
             if let path = initialObjectLink {
-                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
                     if success {
                         
                         if let data = dayActivity {
