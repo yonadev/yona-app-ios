@@ -80,7 +80,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func loadData (typeToLoad : loadType = .own) {
-        // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
+        
         Loader.Show()
         
         if typeToLoad == .own {
@@ -145,7 +145,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 }
         }
         
-        Loader.Hide()
+        //Loader.Hide()
         self.tableView.reloadData()
         
     }

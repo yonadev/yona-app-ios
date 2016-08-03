@@ -556,7 +556,7 @@
                                     <constraint firstAttribute="height" constant="48" id="wrA-FX-a0j"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-mm-cWb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-mm-cWb">
                                 <rect key="frame" x="0.0" y="48" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -599,6 +599,7 @@
                         <outlet property="rightTabSelectionsView" destination="PwE-Is-1df" id="frk-SM-ZmM"/>
                         <outlet property="tableView" destination="6uE-mm-cWb" id="hgp-UJ-PXT"/>
                         <segue destination="1Xa-hD-zS7" kind="show" identifier="showFriendProfile" id="pyy-L8-aSA"/>
+                        <segue destination="WCB-5H-QxB" kind="show" identifier="showFriendsDetail" id="fkA-FJ-c4C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ksr-qr-hec" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -673,6 +674,43 @@
                 <exit id="cKT-D0-chq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2457" y="1099"/>
+        </scene>
+        <!--Friends Day Detail View Controller-->
+        <scene sceneID="EBs-hP-bnN">
+            <objects>
+                <viewController storyboardIdentifier="FriendsDayDetailViewController" id="WCB-5H-QxB" customClass="FriendsDayDetailViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VoO-I8-mfV"/>
+                        <viewControllerLayoutGuide type="bottom" id="vEf-fm-dft"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IKH-GV-2zB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-m3-iuu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="WCB-5H-QxB" id="eVm-kJ-31D"/>
+                                    <outlet property="delegate" destination="WCB-5H-QxB" id="hBn-a6-1Z1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kFV-m3-iuu" secondAttribute="trailing" constant="-20" id="2WO-WW-Yj8"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leadingMargin" constant="-20" id="9GJ-yY-tgE"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="topMargin" id="HtA-MY-EeN"/>
+                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="zqw-tV-OiY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k3l-n5-bME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276" y="1896"/>
         </scene>
     </scenes>
     <resources>

@@ -44,6 +44,7 @@
 		1656A5DA1D4BEA0B00EB288D /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C81D4BEA0B00EB288D /* HTTPRedirectResponse.m */; };
 		1656A5DB1D4BEA0B00EB288D /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */; };
 		1656A5DC1D4BEA0B00EB288D /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CD1D4BEA0B00EB288D /* WebSocket.m */; };
+		1656A5E11D520AC000EB288D /* FriendsDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
 		165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887961D19E4D90021DFC4 /* GradientLargeView.swift */; };
@@ -406,6 +407,7 @@
 		1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
 		1656A5CC1D4BEA0B00EB288D /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		1656A5CD1D4BEA0B00EB288D /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
+		1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDayDetailViewController.swift; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
 		165887961D19E4D90021DFC4 /* GradientLargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLargeView.swift; sourceTree = "<group>"; };
@@ -1243,6 +1245,7 @@
 				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
 				166CB84F1D2E640A008B425D /* FriendsDayViewController.swift */,
 				166CB8511D2F05C4008B425D /* FriendsProfileViewController.swift */,
+				1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -2089,6 +2092,7 @@
 				1656A5A81D4BE6B300EB288D /* RoutingConnection.m in Sources */,
 				90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */,
 				1656A5D21D4BEA0B00EB288D /* GCDAsyncSocket.m in Sources */,
+				1656A5E11D520AC000EB288D /* FriendsDayDetailViewController.swift in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,

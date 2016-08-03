@@ -56,10 +56,30 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is FriendsProfileViewController {}
-        let controller = segue.destinationViewController as! FriendsProfileViewController
-        controller.aUser = buddyToShow
+        if segue.destinationViewController is FriendsProfileViewController {
+            let controller = segue.destinationViewController as! FriendsProfileViewController
+            controller.aUser = buddyToShow
+        }
+        if segue.destinationViewController is FriendsDayDetailViewController {
+            let controller = segue.destinationViewController as! FriendsDayDetailViewController
+            if let section : Int = tableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
+                controller.activityGoal = data
+            }
+        }
+
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+           // performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetail, sender: self)
+        }
+        
+        if selectedTab == .left {
+            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetail, sender: self)
+        }
+    }
+
     
     // MARK: - Data loaders
     
