@@ -419,6 +419,7 @@ struct R {
     
     struct friendsDayViewController {
       static var showFriendProfile: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsProfileViewController> { return StoryboardSegueIdentifier(identifier: "showFriendProfile") }
+      static var showFriendsDetail: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetail") }
     }
     
     struct friendsProfileMasterView {
@@ -522,6 +523,7 @@ struct R {
     
     struct friends {
       static var addFriendsStoryboard: AddFriendsViewController? { return instance.instantiateViewControllerWithIdentifier("AddFriendsStoryboard") as? AddFriendsViewController }
+      static var friendsDayDetailViewController: FriendsDayDetailViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as? FriendsDayDetailViewController }
       static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
       static var friendsProfileViewController: FriendsProfileViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as? FriendsProfileViewController }
       static var initialViewController: FriendsProfileMasterView? { return instance.instantiateInitialViewController() as? FriendsProfileMasterView }
@@ -537,6 +539,7 @@ struct R {
         assert(addFriendsStoryboard != nil, "[R.swift] ViewController with identifier 'addFriendsStoryboard' could not be loaded from storyboard 'Friends' as 'AddFriendsViewController'.")
         assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'Friends' as 'FriendsDayViewController'.")
         assert(friendsProfileViewController != nil, "[R.swift] ViewController with identifier 'friendsProfileViewController' could not be loaded from storyboard 'Friends' as 'FriendsProfileViewController'.")
+        assert(friendsDayDetailViewController != nil, "[R.swift] ViewController with identifier 'friendsDayDetailViewController' could not be loaded from storyboard 'Friends' as 'FriendsDayDetailViewController'.")
       }
     }
     
