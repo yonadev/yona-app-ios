@@ -41,8 +41,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
         
-        // loadActivitiesForWeek()
-        tableView.reloadData()
+        loadActivitiesForWeek()
+        
     }
 
     
@@ -65,6 +65,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
             if let section : Int = tableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
+                controller.buddy = buddyToShow
             }
         }
 
@@ -98,6 +99,26 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                     self.tableView.reloadData()
                 } else {
                     self.leftTabData = []
+                    Loader.Hide()
+                }
+            })
+        }
+    }
+
+    override func loadActivitiesForWeek(page : Int = 0) {
+        Loader.Show()
+        if let buddy = buddyToShow  {
+            ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                if success {
+                    
+                    if let data = activitygoals {
+                        self.rightTabData = data
+                    }
+                    
+                    Loader.Hide()
+                    self.tableView.reloadData()
+                    
+                } else {
                     Loader.Hide()
                 }
             })
