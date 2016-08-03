@@ -35,6 +35,10 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBOutlet weak var finalShowInstructionsButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var topTitleConstarint: NSLayoutConstraint!
+    @IBOutlet weak var spacerView1HeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var spacerView1 : UIView!
+    @IBOutlet weak var spacerView2 : UIView!
     var demoCounter = 0
     var httpServer : RoutingHTTPServer?
     var mobileconfigData : NSData?
@@ -86,6 +90,10 @@ class YonaVPNFlowMainViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
     func removeScreen() {
         //TODO: NEXT 2 LINES TO BE REMOVED AFTER CODE COMPLETIONS
@@ -114,6 +122,23 @@ class YonaVPNFlowMainViewController: UIViewController {
         openVPNStatusView.hidden = true
         profileStatusView.hidden = true
         nextButton.alpha = 0.0
+    
+        if view.frame.size.height < 500 {
+            topTitleConstarint.constant = 0
+            spacerView1HeightConstraint.constant = 0
+//            var fr = spacerView1.frame
+//            fr.size.height = 0
+//            spacerView1.frame = fr
+//
+//            fr = spacerView2.frame
+//            fr.size.height = 0
+//            spacerView2.frame = fr
+            
+            spacerView1.layoutIfNeeded()
+            spacerView2
+                .layoutIfNeeded()
+        }
+        
     }
 
     
@@ -212,7 +237,7 @@ class YonaVPNFlowMainViewController: UIViewController {
                 }
             }
             return
-        #endif
+        #else
 
         
         
@@ -227,7 +252,7 @@ class YonaVPNFlowMainViewController: UIViewController {
 
         }
         
-        
+        #endif
 
         
     }
@@ -514,10 +539,10 @@ class YonaVPNFlowMainViewController: UIViewController {
                         configfile.writeToFile(resourceDocPath, atomically: true)
                         
                         self.serverSetup()
-                        Loader.Hide()
-                        if let url = NSURL(string:"http://localhost:8000/start/") {
-                            UIApplication.sharedApplication().openURL(url)
-                        }
+                        self.testForServerAndContinue()
+                        // MUST WAIT A FEW SECONDS FOR SERVER TO START
+
+                        
                     }
                 }
                 
@@ -528,6 +553,28 @@ class YonaVPNFlowMainViewController: UIViewController {
         }
     }
 
+
+    func testForServerAndContinue () {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 2))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            var running = false
+            running = (self.httpServer?.isRunning())!
+            if  running {
+                Loader.Hide()
+                print("SERVER IS STARTED : \(self.httpServer?.isRunning())")
+                if let url = NSURL(string:"http://localhost:8000/start/") {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            } else {
+                print("SERVER IS NOT STARTED : \(self.httpServer?.isRunning())")
+                print("re-trying")
+                self.testForServerAndContinue()
+            }
+            
+        }
+
+    
+    }
 
     // called from instructions view
     func installMobileProfile() {
