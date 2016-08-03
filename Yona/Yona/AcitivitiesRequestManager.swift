@@ -430,6 +430,57 @@ class ActivitiesRequestManager {
     }
 
     
+    
+    /**
+     Implements the Activity per week, and combines data with goals and activitytype
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getBuddieActivityPrWeek(buddy: Buddies,size : Int, page : Int,onCompletion: APIActivityWeekResponse){
+        if let path = buddy.weeklyActivityReports {
+            //if the newActivites object has been filled then we can get the link to display activity
+            
+            let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+            self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
+                if let json = json {
+                    guard success == true else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        return
+                    }
+                    var newData : [WeekActivityGoal] = []
+                    
+                    self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                        
+                        if activities?.count > 0 {
+                            
+                            GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(buddy,activities: activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                
+                                if status  {
+                                    newData = self.getActivtyPrWeekhandleActivieResponse(json, goals: goals!)
+                                }
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                
+                            })
+                        } else {
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                    })
+                    
+                } else {
+                    //response from request failed
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                }
+            }
+            
+        } else {
+                //response from request failed
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+        }
+    }
+
+    
+    
     //MARK: - Week single day activity
     
     /**
@@ -479,8 +530,84 @@ class ActivitiesRequestManager {
      - paramter size : The number of elements to be fetched
      - paramter page : The page to be fetched
      - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+    
+     
      */
-    func getDayActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse){
+    
+    func getDayActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse ){
+        self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    return
+                }
+                var newData : DaySingleActivityDetail?
+                
+                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                    
+                    if activities?.count > 0 {
+                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                            
+                            if status  {
+                                newData = DaySingleActivityDetail(data: json, allGoals: goals!)
+                            }
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                            
+                        })
+                        
+                    } else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    }
+                })
+                
+            } else {
+                //response from request failed
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+            }
+        }
+    }
+    
+    func getBuddyDayActivityDetails(activityLink : String,date :NSDate, buddy: Buddies ,onCompletion: APIActivityDayDetailResponse ){
+        self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    return
+                }
+                var newData : DaySingleActivityDetail?
+                
+                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                    
+                    if activities?.count > 0 {
+                        if let _ = buddy.selfLink {
+                            GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(buddy, activities: activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                                
+                                if status  {
+                                    newData = DaySingleActivityDetail(data: json, allGoals: goals!)
+                                }
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                                
+                            })
+
+                        }
+                    }
+                })
+            } else {
+                //response from request failed
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+            }
+        }
+        
+    }
+ 
+ 
+    /**
+     // Get day app activity for a specific goal on a specific day
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getWeekActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
                 guard success == true else {
@@ -513,5 +640,5 @@ class ActivitiesRequestManager {
         }
         
     }
- 
+
 }
