@@ -327,6 +327,7 @@ struct R {
     static var icnChallengeTimebucket: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimebucket", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimebucket") } }
     static var icnChallengeTimezone: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimezone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimezone") } }
     static var icnChallenges: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallenges", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallenges") } }
+    static var icnComment: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnComment", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnComment") } }
     static var icnCreate: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCreate") } }
     static var icnDateBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateBack") } }
     static var icnDateForward: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateForward") } }
@@ -376,6 +377,7 @@ struct R {
   }
   
   struct nib {
+    static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
@@ -725,6 +727,19 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
   
   struct nib {
+    struct _CommentTableHeader: NibResource {
+      var instance: UINib { return UINib.init(nibName: "CommentTableHeader", bundle: _R.hostingBundle) }
+      var name: String { return "CommentTableHeader" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentTableHeader? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentTableHeader
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
     struct _NoGoCell: NibResource, Reusable {
       var instance: UINib { return UINib.init(nibName: "NoGoCell", bundle: _R.hostingBundle) }
       var name: String { return "NoGoCell" }

@@ -18,6 +18,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     var animatedCells : [String] = []
     var corretcToday : NSDate = NSDate()
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +61,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             corretcToday = aDate
         }
 
-    }
-    
-    
+    }    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

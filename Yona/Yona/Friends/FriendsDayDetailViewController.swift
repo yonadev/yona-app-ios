@@ -8,9 +8,38 @@
 
 import Foundation
 
+enum DayDetailSecions : Int{
+    case activities = 0
+    case comments
+}
+
 class FriendsDayDetailViewController : MeDayDetailViewController {
 
     var buddy : Buddies?
+    
+    override func registreTableViewCells () {
+        super.registreTableViewCells()
+        var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        
+    }
+
+// MARK: - tableview Override
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        super.tableView(tableView, viewForHeaderInSection: section)
+        let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+        if section == 1 {
+            return cell
+        }
+        
+        return nil
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+// MARK: - Load data method
     override func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()

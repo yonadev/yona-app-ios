@@ -13,7 +13,6 @@ import Foundation
 enum detailDayRows : Int  {
     case activity = 0
     case spreadCell
-
 }
 
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol  {

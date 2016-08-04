@@ -7,6 +7,9 @@
 //
 
 import Foundation
-class CommentControl : UITableViewCell {
+class CommentTableHeader : UITableViewHeaderFooterView {
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }
