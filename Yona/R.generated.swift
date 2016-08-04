@@ -377,9 +377,11 @@ struct R {
   }
   
   struct nib {
+    static var commentControlCell: _R.nib._CommentControlCell { return _R.nib._CommentControlCell() }
     static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
+    static var sendCommentControl: _R.nib._SendCommentControl { return _R.nib._SendCommentControl() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
@@ -396,6 +398,8 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+    static var sendCommentControl: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
@@ -727,6 +731,20 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
   
   struct nib {
+    struct _CommentControlCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "CommentControlCell", bundle: _R.hostingBundle) }
+      var name: String { return "CommentControlCell" }
+      var reuseIdentifier: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentControlCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
     struct _CommentTableHeader: NibResource {
       var instance: UINib { return UINib.init(nibName: "CommentTableHeader", bundle: _R.hostingBundle) }
       var name: String { return "CommentTableHeader" }
@@ -761,6 +779,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? NoGoCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _SendCommentControl: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "SendCommentControl", bundle: _R.hostingBundle) }
+      var name: String { return "SendCommentControl" }
+      var reuseIdentifier: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControl? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControl
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

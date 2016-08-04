@@ -185,36 +185,38 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == detailDayRows.spreadCell.rawValue {
-            let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-            if let data = dayData  {
-                cell.setDayActivityDetailForView(data, animated: true)
+        if indexPath.section == 0 {
+            if indexPath.row == detailDayRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
+                return cell
+                
             }
-            return cell
-            
-        }
-        if indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
 
-            if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data)
+                    }
+                    return cell
                 }
-                return cell
-            } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
-                let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
-                }
-                return cell
-            } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
-                let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data)
-                }
-                return cell
+                
             }
-            
         }
         return UITableViewCell(frame: CGRectZero)
         

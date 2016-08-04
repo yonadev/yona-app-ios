@@ -95,8 +95,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         return false
     
     }
-    // MARK: - tableview Override
-
+    
+// MARK: - tableview Override
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if selectedTab == .left {
             return leftTabData.count

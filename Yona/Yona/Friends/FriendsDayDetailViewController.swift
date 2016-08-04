@@ -22,20 +22,49 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
         
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        
+        nib = UINib(nibName: "SendCommentControl", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
     }
 
 // MARK: - tableview Override
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         super.tableView(tableView, viewForHeaderInSection: section)
-        let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+        
         if section == 1 {
+            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
             return cell
         }
         
         return nil
     }
+
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+
+        if indexPath.section == 1 {
+            let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
+            return cell
+        } else if indexPath.section == 2 {
+            let cell: SendCommentControl = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as! SendCommentControl
+            return cell
+        }
+        return UITableViewCell(frame: CGRectZero)
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        super.numberOfSectionsInTableView(tableView)
+        return 3
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
