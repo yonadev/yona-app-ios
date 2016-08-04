@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SF-UI-Display-Regular.otf">
@@ -22,55 +21,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="379" height="187.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fG9-u0-Vbh">
-                        <rect key="frame" x="91" y="46" width="255" height="95"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="255" id="WaR-ye-2T0"/>
-                            <constraint firstAttribute="height" constant="95" id="vPC-WQ-g3T"/>
-                        </constraints>
-                        <string key="text">Dat ziet er niet best uit makker, het lijkt erop dat je je dates niet helemaal onder controle hebt...lijkt erop dat je je dates niet helemaal onder controle hebt...dates niet helemaal onder</string>
-                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Hl-5hm">
-                        <rect key="frame" x="47" y="149" width="171" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="171" id="jvd-Kd-GOa"/>
-                            <constraint firstAttribute="height" constant="20" id="lcc-uh-4cl"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                        <state key="normal" title="Beantwoorden">
-                            <color key="titleColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-eb-xaW">
-                        <rect key="frame" x="27" y="25" width="56" height="56"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="56" id="5IK-Xg-Dyj"/>
-                            <constraint firstAttribute="width" constant="56" id="nNd-H1-8LC"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-TF-T6M">
-                        <rect key="frame" x="96" y="25" width="250" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="TWT-OI-WQz"/>
-                            <constraint firstAttribute="width" constant="250" id="c74-nZ-5tx"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkN-LG-VnM">
+                        <rect key="frame" x="0.0" y="0.0" width="379" height="188"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Hl-5hm">
+                                <rect key="frame" x="50" y="154" width="171" height="20"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Beantwoorden">
+                                    <color key="titleColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-TF-T6M">
+                                <rect key="frame" x="98" y="24" width="250" height="21"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fG9-u0-Vbh">
+                                <rect key="frame" x="93" y="46" width="255" height="95"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Dat ziet er niet best uit makker, het lijkt erop dat je je dates niet helemaal onder controle hebt...lijkt erop dat je je dates niet helemaal onder controle hebt...dates niet helemaal onder</string>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-eb-xaW">
+                                <rect key="frame" x="24" y="29" width="56" height="56"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83529412746429443" green="0.83529412746429443" blue="0.83529412746429443" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="ci5-eb-xaW" firstAttribute="leading" secondItem="KPH-cg-99g" secondAttribute="leadingMargin" constant="19" id="Bxh-SZ-H88"/>
-                    <constraint firstItem="fG9-u0-Vbh" firstAttribute="top" secondItem="iAy-TF-T6M" secondAttribute="bottom" id="e2X-Yb-1AY"/>
-                    <constraint firstItem="ci5-eb-xaW" firstAttribute="top" secondItem="KPH-cg-99g" secondAttribute="topMargin" constant="17" id="f6U-M6-J9O"/>
-                    <constraint firstItem="hhc-Hl-5hm" firstAttribute="leading" secondItem="KPH-cg-99g" secondAttribute="leadingMargin" constant="39" id="f9y-3F-kXC"/>
-                    <constraint firstItem="fG9-u0-Vbh" firstAttribute="leading" secondItem="ci5-eb-xaW" secondAttribute="trailing" constant="8" id="hDs-Gk-Lsf"/>
-                    <constraint firstItem="iAy-TF-T6M" firstAttribute="leading" secondItem="ci5-eb-xaW" secondAttribute="trailing" constant="13" id="ja7-u0-OXn"/>
-                    <constraint firstItem="iAy-TF-T6M" firstAttribute="top" secondItem="KPH-cg-99g" secondAttribute="topMargin" constant="17" id="jdz-q7-UgS"/>
-                    <constraint firstItem="hhc-Hl-5hm" firstAttribute="top" secondItem="fG9-u0-Vbh" secondAttribute="bottom" constant="8" id="rkw-OE-xty"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentTextView" destination="fG9-u0-Vbh" id="h13-iF-v66"/>

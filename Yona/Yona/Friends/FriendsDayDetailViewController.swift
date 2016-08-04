@@ -38,7 +38,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             return cell
         }
         
-        return nil
+        return UITableViewCell(frame: CGRectZero)
     }
 
     
@@ -56,7 +56,12 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        super.tableView(tableView, heightForHeaderInSection: section)
+        var heightOfHeader : CGFloat = 0
+        if section == 1 {
+            heightOfHeader = 50
+        }
+        return heightOfHeader
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -65,7 +70,13 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        var numberOfSections = 2
+        if section == 1 {
+            numberOfSections = 2 // this changes to number of 
+        } else if section == 2 {
+            numberOfSections = 1
+        }
+        return numberOfSections
     }
     
 // MARK: - Load data method
