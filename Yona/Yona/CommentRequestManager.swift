@@ -17,17 +17,17 @@ class CommentRequestManager {
     
     private init() {}
     
-    func postComment(postGoalMessageLink: String) {//, onCompletion: APIResponse){
+    func postComment(postGoalMessageLink: String, onCompletion: APIResponse){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: postGoalMessageLink, httpMethod: httpMethods.post) { (success, json, error) in
             if success {
                 if let json = json {
                     self.comment = Comment.init(commentData: json)
-//                    onCompletion(success, serverMessage, serverCode, self.buddy, nil) //failed to get user
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //success
                 } else {
-//                    onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed json response
                 }
             } else {
-//                onCompletion(success, serverMessage, serverCode, nil, nil)
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
             }
         }
     }

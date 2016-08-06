@@ -70,6 +70,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        super.tableView(tableView, numberOfRowsInSection: section)
         var numberOfSections = 2
         if section == 1 {
             numberOfSections = 2 // this changes to number of 
@@ -77,6 +78,15 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             numberOfSections = 1
         }
         return numberOfSections
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        if indexPath.section == 1 || indexPath.section == 0{
+            return 165
+        } else {
+            return 50
+        }
     }
     
 // MARK: - Load data method
