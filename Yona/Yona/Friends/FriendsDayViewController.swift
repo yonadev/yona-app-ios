@@ -62,10 +62,19 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
         if segue.destinationViewController is FriendsDayDetailViewController {
             let controller = segue.destinationViewController as! FriendsDayDetailViewController
-            if let section : Int = tableView.indexPathForSelectedRow!.section {
-                let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
                 controller.buddy = buddyToShow
+            }
+        }
+        if segue.destinationViewController is FriendsWeekDetailWeekController {
+            let controller = segue.destinationViewController as! FriendsWeekDetailWeekController
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
+                controller.initialObject = data
+                controller.buddy = buddyToShow
+                
             }
         }
 
@@ -73,11 +82,11 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if selectedTab == .right {
-           // performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetail, sender: self)
+            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
         }
         
         if selectedTab == .left {
-            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetail, sender: self)
+            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
         }
     }
 
@@ -96,7 +105,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                         self.leftTabData = data
                     }
                     Loader.Hide()
-                    self.tableView.reloadData()
+                    self.theTableView.reloadData()
                 } else {
                     self.leftTabData = []
                     Loader.Hide()
@@ -116,7 +125,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                     }
                     
                     Loader.Hide()
-                    self.tableView.reloadData()
+                    self.theTableView.reloadData()
                     
                 } else {
                     Loader.Hide()

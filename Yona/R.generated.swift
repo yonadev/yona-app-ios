@@ -380,6 +380,9 @@ struct R {
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
+    static var timeLineHeaderCell: _R.nib._TimeLineHeaderCell { return _R.nib._TimeLineHeaderCell() }
+    static var timeLineTimeBucketCell: _R.nib._TimeLineTimeBucketCell { return _R.nib._TimeLineTimeBucketCell() }
+    static var timeLineTimeZoneCell: _R.nib._TimeLineTimeZoneCell { return _R.nib._TimeLineTimeZoneCell() }
     static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
     static var weekScoreControlCell: _R.nib._WeekScoreControlCell { return _R.nib._WeekScoreControlCell() }
     static var yonaButtonTableViewCell: _R.nib._YonaButtonTableViewCell { return _R.nib._YonaButtonTableViewCell() }
@@ -396,6 +399,9 @@ struct R {
   struct reuseIdentifier {
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
+    static var timeLineHeaderCell: ReuseIdentifier<TimeLineHeaderCell> { return ReuseIdentifier(identifier: "TimeLineHeaderCell") }
+    static var timeLineTimeBucketCell: ReuseIdentifier<TimeLineTimeBucketCell> { return ReuseIdentifier(identifier: "TimeLineTimeBucketCell") }
+    static var timeLineTimeZoneCell: ReuseIdentifier<TimeLineTimeZoneCell> { return ReuseIdentifier(identifier: "TimeLineTimeZoneCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
     static var timeZoneControlCell: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
     static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
@@ -419,12 +425,14 @@ struct R {
     
     struct friendsDayViewController {
       static var showFriendProfile: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsProfileViewController> { return StoryboardSegueIdentifier(identifier: "showFriendProfile") }
-      static var showFriendsDetail: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetail") }
+      static var showFriendsDetailDay: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetailDay") }
+      static var showFriendsDetailWeek: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsWeekDetailWeekController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetailWeek") }
     }
     
     struct friendsProfileMasterView {
       static var addFriendsSegue: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, AddFriendsViewController> { return StoryboardSegueIdentifier(identifier: "addFriendsSegue") }
       static var showFriendDetails: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, FriendsDayViewController> { return StoryboardSegueIdentifier(identifier: "showFriendDetails") }
+      static var showFriendsDetailDay: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsProfileMasterView, FriendsDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetailDay") }
     }
     
     struct loginViewController {
@@ -526,6 +534,7 @@ struct R {
       static var friendsDayDetailViewController: FriendsDayDetailViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as? FriendsDayDetailViewController }
       static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
       static var friendsProfileViewController: FriendsProfileViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as? FriendsProfileViewController }
+      static var friendsWeekDetailWeekController: FriendsWeekDetailWeekController? { return instance.instantiateViewControllerWithIdentifier("FriendsWeekDetailWeekController") as? FriendsWeekDetailWeekController }
       static var initialViewController: FriendsProfileMasterView? { return instance.instantiateInitialViewController() as? FriendsProfileMasterView }
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
@@ -540,6 +549,7 @@ struct R {
         assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'Friends' as 'FriendsDayViewController'.")
         assert(friendsProfileViewController != nil, "[R.swift] ViewController with identifier 'friendsProfileViewController' could not be loaded from storyboard 'Friends' as 'FriendsProfileViewController'.")
         assert(friendsDayDetailViewController != nil, "[R.swift] ViewController with identifier 'friendsDayDetailViewController' could not be loaded from storyboard 'Friends' as 'FriendsDayDetailViewController'.")
+        assert(friendsWeekDetailWeekController != nil, "[R.swift] ViewController with identifier 'friendsWeekDetailWeekController' could not be loaded from storyboard 'Friends' as 'FriendsWeekDetailWeekController'.")
       }
     }
     
@@ -774,6 +784,48 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeBucketControlCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeBucketControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _TimeLineHeaderCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeLineHeaderCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeLineHeaderCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeLineHeaderCell> { return ReuseIdentifier(identifier: "TimeLineHeaderCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeLineHeaderCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeLineHeaderCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _TimeLineTimeBucketCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeLineTimeBucketCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeLineTimeBucketCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeLineTimeBucketCell> { return ReuseIdentifier(identifier: "TimeLineTimeBucketCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeLineTimeBucketCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeLineTimeBucketCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _TimeLineTimeZoneCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeLineTimeZoneCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeLineTimeZoneCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeLineTimeZoneCell> { return ReuseIdentifier(identifier: "TimeLineTimeZoneCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeLineTimeZoneCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeLineTimeZoneCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

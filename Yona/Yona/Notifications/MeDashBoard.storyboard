@@ -199,7 +199,7 @@
                         <outlet property="rightTabLabel" destination="PQF-Am-sht" id="4bV-Em-tG5"/>
                         <outlet property="rightTabMainView" destination="iJ8-SG-r8Z" id="XxN-WF-eCM"/>
                         <outlet property="rightTabSelectionsView" destination="MM7-EZ-kI4" id="nY8-Jo-8fn"/>
-                        <outlet property="tableView" destination="wFB-LI-Dhz" id="YMf-4W-qOg"/>
+                        <outlet property="theTableView" destination="wFB-LI-Dhz" id="QtI-B7-Chp"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
                         <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetail" id="8eJ-V0-7GW"/>
                     </connections>

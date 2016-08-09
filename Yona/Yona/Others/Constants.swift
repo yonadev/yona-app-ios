@@ -48,6 +48,7 @@ struct YonaConstants {
     }
     
     struct jsonKeys{
+        static let  timeZone = "timeZoneId"
         static let  yonaPassword = "yonaPassword"
         static let  goalType = "@type"
         static let  maxDuration = "maxDurationMinutes"
@@ -55,6 +56,8 @@ struct YonaConstants {
         static let  embedded = "_embedded"
         static let  yonaGoals = "yona:goals"
         static let  yonaBuddies = "yona:buddies"
+        static let  yonaBuddy = "yona:buddy"
+
         static let  name = "name"
         static let  applications = "applications"
         static let  zones = "zones"
@@ -79,9 +82,11 @@ struct YonaConstants {
         static let  yonaResendPinResetRequest = "yona:resendPinResetConfirmationCode"
         static let  yonaPinVerify = "yona:verifyPinReset"
         static let  yonaPinClear = "yona:clearPinReset"
+        static let  yonaDailyActivityReportsWithBuddies = "yona:dailyActivityReportsWithBuddies"
         static let  hrefKey = "href"
 
         static let  dayActivities = "dayActivities"
+        static let  dayActivitiesForUsers = "dayActivitiesForUsers"
         static let  yonaDayActivityOverviews = "yona:dayActivityOverviews"
         static let  historyItem = "historyItem"
         static let  totalActivityDurationMinutes = "totalActivityDurationMinutes"
@@ -99,6 +104,9 @@ struct YonaConstants {
         static let  weekActivityOverviews = "yona:weekActivityOverviews"
         static let  weekActivities = "weekActivities"
         static let  yonaWeekDetails = "yona:weekDetails"
+        
+        
+
         
     }
 

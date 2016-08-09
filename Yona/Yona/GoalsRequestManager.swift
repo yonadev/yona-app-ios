@@ -147,6 +147,22 @@ class GoalsRequestManager {
         }
     }
     
+    
+    
+    func getAllTheBuddyGoals(path : String, onCompletion: APIGoalResponse) {
+        
+        
+        self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: path) { (success, message, server, goal, goals, error) in
+            if success {                
+                onCompletion(true, message, server, goal, goals, error)
+            } else {
+                onCompletion(false, message, server, nil, nil, error)
+            }
+        }    
+    }
+
+    
+    
     func getAllTheBuddyGoals(buddy : Buddies, activities: [Activities], onCompletion: APIGoalResponse) {
         if let buddypath = buddy.selfLink {
             let path = "\(buddypath)/goals/"

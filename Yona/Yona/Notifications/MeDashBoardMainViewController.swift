@@ -30,19 +30,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
         nib = UINib(nibName: "NoGoCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
+        theTableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
         
         nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
+        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
+        theTableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
         
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
+        theTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
         
     }
     
@@ -234,21 +234,21 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let goaltype = activityGoal.goalType {
             // TIMEBUCKETCELL
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
-                let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                let cell: TimeBucketControlCell = theTableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                 cell.setDataForView(activityGoal, animated: shouldAnimate(indexPath))
                 return cell
             }
             // Time Frame Control
             // TODO:  Changes this once the cell has been created
             else if goaltype == "TimeZoneGoal" {
-                let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                let cell: TimeZoneControlCell = theTableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
                 cell.setDataForView(activityGoal, animated: true)
                 return cell
             }
             // NoGo Control
             // TODO:  Changes this once the cell has been created
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
-                let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                let cell: NoGoCell = theTableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
                 cell.setDataForView(activityGoal)
                 return cell
             }
@@ -270,7 +270,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     self.leftTabData = data
                 }
                 Loader.Hide()
-                self.tableView.reloadData()
+                self.theTableView.reloadData()
             } else {
                 Loader.Hide()
             }
@@ -287,7 +287,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 }
            
             Loader.Hide()
-            self.tableView.reloadData()
+            self.theTableView.reloadData()
                 
             } else {
                 Loader.Hide()
@@ -302,8 +302,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
-            if let section : Int = tableView.indexPathForSelectedRow!.section {
-                let data = rightTabData[section].activity[tableView.indexPathForSelectedRow!.row]
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
                 controller.initialObject = data
                 
             }
@@ -311,8 +311,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
         if segue.destinationViewController is MeDayDetailViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
-            if let section : Int = tableView.indexPathForSelectedRow!.section {
-                let data = leftTabData[section].activites[tableView.indexPathForSelectedRow!.row]
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
             }
         }
