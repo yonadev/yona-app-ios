@@ -13,7 +13,7 @@ enum DayDetailSecions : Int{
     case comments
 }
 
-class FriendsDayDetailViewController : MeDayDetailViewController {
+class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentControlProtocol {
 
     var buddy : Buddies?
     
@@ -44,12 +44,14 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-
-        if indexPath.section == 1 && self.dayData?.messageLink != nil {
+        
+        if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
+            cell.getMessageData(dayData?.messageLink)
             return cell
         } else if indexPath.section == 2 {
             let cell: SendCommentControl = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as! SendCommentControl
+            cell.delegate = self
             cell.postGoalLink = self.dayData?.commentLink
             return cell
         }
@@ -83,11 +85,26 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-        if indexPath.section == 1 || indexPath.section == 0{
-            return 165
-        } else {
-            return 50
+        var cellHeight = 165
+        if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 165
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 165
+                }
+            }
+            
+            if indexPath.row == detailDayRows.spreadCell.rawValue{
+                cellHeight = 165
+            }
+        } else if indexPath.section == detailDaySections.comment.rawValue {
+            cellHeight = 165
         }
+        
+        return CGFloat(cellHeight)
     }
     
 // MARK: - Load data method
@@ -165,6 +182,19 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         
         //Loader.Hide()
         self.tableView.reloadData()
+    }
+    // MARK: - SendCommentControlProtocol
+    
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
+        if textField == commentTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
+    func textFieldEndEdit(commentTextField: UITextField){
+        commentTextField.resignFirstResponder()
     }
 
 }

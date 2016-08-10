@@ -15,6 +15,16 @@ enum detailDayRows : Int  {
     case spreadCell
 }
 
+enum detailDayCommentRows : Int  {
+    case comment = 0
+    case sendComment
+}
+
+enum detailDaySections : Int  {
+    case activity = 0
+    case comment
+}
+
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol  {
  
     @IBOutlet weak var tableView : UITableView!

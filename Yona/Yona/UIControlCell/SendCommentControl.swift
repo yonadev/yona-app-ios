@@ -8,10 +8,17 @@
 
 import Foundation
 
+protocol SendCommentControlProtocol {
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
+    func textFieldEndEdit(commentTextField: UITextField)
+}
+
 class SendCommentControl : UITableViewCell {
     
     var postGoalLink : String?
     
+    var delegate : SendCommentControlProtocol?
+
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
     
@@ -20,11 +27,12 @@ class SendCommentControl : UITableViewCell {
     }
     
     @IBAction func sendComment(sender: UIButton) {
-        if let postGoalLink = postGoalLink {
+        if let postGoalLink = postGoalLink ,
+         let comment = self.commentTextField.text{
             let messageBody: [String:AnyObject] = [
-                "message": "test"
+                "message": comment
             ]
-            CommentRequestManager.sharedInstance.postComment(postGoalLink, messageBody: messageBody) { (success, comment, message, code) in
+            CommentRequestManager.sharedInstance.postComment(postGoalLink, messageBody: messageBody) { (success, comment, nil, message, code) in
                 print(comment)
             }
         }
@@ -34,11 +42,7 @@ class SendCommentControl : UITableViewCell {
 extension SendCommentControl: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if textField == commentTextField {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = true
-        } else {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        }
+        delegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -52,6 +56,6 @@ extension SendCommentControl: UITextFieldDelegate {
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
-        commentTextField.endEditing(true)
+        delegate?.textFieldEndEdit(commentTextField)
     }
 }

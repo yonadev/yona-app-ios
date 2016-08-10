@@ -81,25 +81,6 @@ class SpreadCell : UITableViewCell {
         
         self.message.text = NSLocalizedString("meday.spreadcontrol.minutestotal", comment: "")
         let spreadY = self.backgroundMinsView.frame.size.height
-
-        //draw the spreadcells where the user has set timezones
-        //draw the spreadcells where the user has set timezones
-//        for currentSpread in spreadCells {
-//            let spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
-//            print("This is my x \(spreadX)")
-//            let spreadCellView = SpreadCellCustomView.init(frame: CGRectZero, colour: UIColor.redColor())
-////            determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
-//            
-//            if currentSpread > 0 {
-//                pxSpreadHeight = pxPerMinute * CGFloat(currentSpread)
-//                spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
-//            } else {
-//                pxSpreadHeight = pxWidthPerSpread
-//                spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
-//            }
-//            backgroundMinsView.addSubview(spreadCellView)
-//            spreadCellsValue += 1
-//        }
         
         for currentSpread in spreadCells {
             let spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
