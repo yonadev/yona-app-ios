@@ -41,8 +41,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
         
-        // loadActivitiesForWeek()
-        tableView.reloadData()
+        loadActivitiesForWeek()
+        
     }
 
     
@@ -56,10 +56,40 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is FriendsProfileViewController {}
-        let controller = segue.destinationViewController as! FriendsProfileViewController
-        controller.aUser = buddyToShow
+        if segue.destinationViewController is FriendsProfileViewController {
+            let controller = segue.destinationViewController as! FriendsProfileViewController
+            controller.aUser = buddyToShow
+        }
+        if segue.destinationViewController is FriendsDayDetailViewController {
+            let controller = segue.destinationViewController as! FriendsDayDetailViewController
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
+                controller.activityGoal = data
+                controller.buddy = buddyToShow
+            }
+        }
+        if segue.destinationViewController is FriendsWeekDetailWeekController {
+            let controller = segue.destinationViewController as! FriendsWeekDetailWeekController
+            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+                let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
+                controller.initialObject = data
+                controller.buddy = buddyToShow
+                
+            }
+        }
+
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if selectedTab == .right {
+            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
+        }
+        
+        if selectedTab == .left {
+            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+        }
+    }
+
     
     // MARK: - Data loaders
     
@@ -75,9 +105,29 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                         self.leftTabData = data
                     }
                     Loader.Hide()
-                    self.tableView.reloadData()
+                    self.theTableView.reloadData()
                 } else {
                     self.leftTabData = []
+                    Loader.Hide()
+                }
+            })
+        }
+    }
+
+    override func loadActivitiesForWeek(page : Int = 0) {
+        Loader.Show()
+        if let buddy = buddyToShow  {
+            ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                if success {
+                    
+                    if let data = activitygoals {
+                        self.rightTabData = data
+                    }
+                    
+                    Loader.Hide()
+                    self.theTableView.reloadData()
+                    
+                } else {
                     Loader.Hide()
                 }
             })

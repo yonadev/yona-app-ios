@@ -55,8 +55,8 @@ class YonaCustomDatePickerView: UIView {
     }
     
     func hideShowDatePickerView(isToShow show: Bool) -> YonaCustomDatePickerView {
-        cancelButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiWhiteColor()], forState: UIControlState.Normal)
-        okButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiWhiteColor()], forState: UIControlState.Normal)
+        cancelButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
+        okButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
         UIView.animateWithDuration(0.3,
                                    animations: {
                                     if show {

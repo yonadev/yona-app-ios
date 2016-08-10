@@ -80,12 +80,12 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func loadData (typeToLoad : loadType = .own) {
-        // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
+        
         Loader.Show()
         
         if typeToLoad == .own {
             if let path = initialObjectLink {
-                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
                     if success {
                         
                         if let data = dayActivity {
@@ -145,7 +145,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 }
         }
         
-        Loader.Hide()
+        //Loader.Hide()
         self.tableView.reloadData()
         
     }

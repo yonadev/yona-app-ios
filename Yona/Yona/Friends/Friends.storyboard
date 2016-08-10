@@ -120,7 +120,7 @@
                                     <constraint firstItem="ZEX-Z3-5pU" firstAttribute="height" secondItem="Qp7-5Y-17s" secondAttribute="height" id="vOg-Mb-b4d"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="53" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D0p-La-oo7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="53" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D0p-La-oo7">
                                 <rect key="frame" x="0.0" y="110" width="600" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -163,8 +163,9 @@
                         <outlet property="rightTabLabel" destination="Kev-u7-66M" id="zij-LG-6AF"/>
                         <outlet property="rightTabMainView" destination="ZEX-Z3-5pU" id="QVM-F7-ddv"/>
                         <outlet property="rightTabSelectionsView" destination="lMq-2v-O1f" id="P4r-KA-0EZ"/>
-                        <outlet property="tableView" destination="D0p-La-oo7" id="hr9-uw-euW"/>
+                        <outlet property="theTableView" destination="D0p-La-oo7" id="Szz-Kc-QJ5"/>
                         <segue destination="30a-nZ-Iva" kind="show" identifier="showFriendDetails" id="l65-Wc-oV3"/>
+                        <segue destination="WCB-5H-QxB" kind="show" identifier="showFriendsDetailDay" id="qBF-uj-5D3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyg-hw-Exf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -556,7 +557,7 @@
                                     <constraint firstAttribute="height" constant="48" id="wrA-FX-a0j"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-mm-cWb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-mm-cWb">
                                 <rect key="frame" x="0.0" y="48" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -597,8 +598,10 @@
                         <outlet property="rightTabLabel" destination="8Sn-pD-XDE" id="ebj-Oh-ha8"/>
                         <outlet property="rightTabMainView" destination="GtH-UK-bBj" id="2gk-Ym-Sga"/>
                         <outlet property="rightTabSelectionsView" destination="PwE-Is-1df" id="frk-SM-ZmM"/>
-                        <outlet property="tableView" destination="6uE-mm-cWb" id="hgp-UJ-PXT"/>
+                        <outlet property="theTableView" destination="6uE-mm-cWb" id="bg0-2p-2Kw"/>
                         <segue destination="1Xa-hD-zS7" kind="show" identifier="showFriendProfile" id="pyy-L8-aSA"/>
+                        <segue destination="WCB-5H-QxB" kind="show" identifier="showFriendsDetailDay" id="fkA-FJ-c4C"/>
+                        <segue destination="lqa-d1-gYJ" kind="show" identifier="showFriendsDetailWeek" id="WnF-MM-M5C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ksr-qr-hec" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -674,10 +677,88 @@
             </objects>
             <point key="canvasLocation" x="2457" y="1099"/>
         </scene>
+        <!--Friends Day Detail View Controller-->
+        <scene sceneID="EBs-hP-bnN">
+            <objects>
+                <viewController storyboardIdentifier="FriendsDayDetailViewController" id="WCB-5H-QxB" customClass="FriendsDayDetailViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VoO-I8-mfV"/>
+                        <viewControllerLayoutGuide type="bottom" id="vEf-fm-dft"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IKH-GV-2zB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-m3-iuu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="WCB-5H-QxB" id="eVm-kJ-31D"/>
+                                    <outlet property="delegate" destination="WCB-5H-QxB" id="hBn-a6-1Z1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kFV-m3-iuu" secondAttribute="trailing" constant="-20" id="2WO-WW-Yj8"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leadingMargin" constant="-20" id="9GJ-yY-tgE"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="topMargin" id="HtA-MY-EeN"/>
+                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="zqw-tV-OiY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k3l-n5-bME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276" y="1896"/>
+        </scene>
+        <!--MeWeekDetailWeekViewController-->
+        <scene sceneID="jtD-KT-XRP">
+            <objects>
+                <viewController storyboardIdentifier="FriendsWeekDetailWeekController" id="lqa-d1-gYJ" userLabel="MeWeekDetailWeekViewController" customClass="FriendsWeekDetailWeekController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="013-5Q-t4F"/>
+                        <viewControllerLayoutGuide type="bottom" id="9yG-JP-Y8i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5K8-7N-nN1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hpX-Jy-atY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lqa-d1-gYJ" id="YHd-fl-IKg"/>
+                                    <outlet property="delegate" destination="lqa-d1-gYJ" id="sIO-6r-lSh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9yG-JP-Y8i" firstAttribute="top" secondItem="hpX-Jy-atY" secondAttribute="bottom" id="HPf-3z-9HP"/>
+                            <constraint firstItem="hpX-Jy-atY" firstAttribute="top" secondItem="5K8-7N-nN1" secondAttribute="topMargin" id="i8v-UP-xVa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hpX-Jy-atY" secondAttribute="trailing" constant="-20" id="xJf-AH-9sg"/>
+                            <constraint firstItem="hpX-Jy-atY" firstAttribute="leading" secondItem="5K8-7N-nN1" secondAttribute="leadingMargin" constant="-20" id="zYc-v9-LTt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
+                    <connections>
+                        <outlet property="tableView" destination="hpX-Jy-atY" id="vie-LS-wFL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9O-yf-jPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1997" y="1896"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icnAdd" width="24" height="24"/>
         <image name="icnAvatar" width="44" height="45"/>
         <image name="icnBack" width="13" height="21"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qBF-uj-5D3"/>
+    </inferredMetricsTieBreakers>
 </document>
