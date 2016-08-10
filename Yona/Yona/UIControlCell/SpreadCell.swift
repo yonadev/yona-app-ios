@@ -108,11 +108,11 @@ class SpreadCell : UITableViewCell {
             determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
 
             if isAnimated {
-                UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseOut,
+                UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut,
                                            animations: {
                                             spreadCellView.frame = spreadCellView.frame
                     }, completion: {finished in
-                        UIView.animateWithDuration(0.3, animations: {
+                        UIView.animateWithDuration(0.9, animations: {
                             if currentSpread > 0 {
                                 self.pxSpreadHeight = self.pxPerMinute * CGFloat(currentSpread)
                                 spreadCellView.frame = CGRectMake(spreadX, spreadY - self.pxSpreadHeight, self.pxWidthPerSpread, self.pxSpreadHeight)

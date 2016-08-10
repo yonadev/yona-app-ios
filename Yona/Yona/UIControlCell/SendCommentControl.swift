@@ -21,11 +21,37 @@ class SendCommentControl : UITableViewCell {
     
     @IBAction func sendComment(sender: UIButton) {
         if let postGoalLink = postGoalLink {
-            CommentRequestManager.sharedInstance.postComment(postGoalLink) { (success, message, code) in
-                print(message)
+            let messageBody: [String:AnyObject] = [
+                "message": "test"
+            ]
+            CommentRequestManager.sharedInstance.postComment(postGoalLink, messageBody: messageBody) { (success, comment, message, code) in
+                print(comment)
             }
         }
     }
-    
+}
 
+extension SendCommentControl: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == commentTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField == commentTextField) {
+            commentTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard(){
+        commentTextField.endEditing(true)
+    }
 }

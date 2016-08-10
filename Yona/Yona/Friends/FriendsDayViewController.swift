@@ -44,11 +44,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         loadActivitiesForWeek()
         
     }
-
     
-    
-    // MARK: - ACTIONS
-    
+    // MARK: - ACTION
     @IBAction func didChooseUserProfile(sender : AnyObject) {
     
         performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)

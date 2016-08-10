@@ -95,7 +95,7 @@ struct YonaConstants {
         static let  nextLink = "next"
         static let  prevLink = "prev"
 
-        
+        static let commentLink = "yona:addComment"
         static let  weekActivityOverviews = "yona:weekActivityOverviews"
         static let  weekActivities = "weekActivities"
         static let  yonaWeekDetails = "yona:weekDetails"
@@ -138,7 +138,7 @@ struct YonaConstants {
     
     struct serverMessages{
         static let timeoutRequest = "The request timed out, server problem"
-        static let OK = "Everything is OK"
+        static let OK = "Somthing is not quite right"
         static let networkConnectionProblem = "Network connection problem"
         static let serverProblem = "Server problem"
 

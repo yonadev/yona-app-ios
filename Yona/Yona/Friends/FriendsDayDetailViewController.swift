@@ -45,11 +45,12 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         super.tableView(tableView, cellForRowAtIndexPath: indexPath)
 
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && self.dayData?.messageLink != nil {
             let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
             return cell
         } else if indexPath.section == 2 {
             let cell: SendCommentControl = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as! SendCommentControl
+            cell.postGoalLink = self.dayData?.commentLink
             return cell
         }
         return UITableViewCell(frame: CGRectZero)
