@@ -381,6 +381,7 @@ struct R {
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeLineHeaderCell: _R.nib._TimeLineHeaderCell { return _R.nib._TimeLineHeaderCell() }
+    static var timeLineNoGoCell: _R.nib._TimeLineNoGoCell { return _R.nib._TimeLineNoGoCell() }
     static var timeLineTimeBucketCell: _R.nib._TimeLineTimeBucketCell { return _R.nib._TimeLineTimeBucketCell() }
     static var timeLineTimeZoneCell: _R.nib._TimeLineTimeZoneCell { return _R.nib._TimeLineTimeZoneCell() }
     static var timeZoneControlCell: _R.nib._TimeZoneControlCell { return _R.nib._TimeZoneControlCell() }
@@ -400,6 +401,7 @@ struct R {
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeLineHeaderCell: ReuseIdentifier<TimeLineHeaderCell> { return ReuseIdentifier(identifier: "TimeLineHeaderCell") }
+    static var timeLineNoGoCell: ReuseIdentifier<TimeLineNoGoCell> { return ReuseIdentifier(identifier: "TimeLineNoGoCell") }
     static var timeLineTimeBucketCell: ReuseIdentifier<TimeLineTimeBucketCell> { return ReuseIdentifier(identifier: "TimeLineTimeBucketCell") }
     static var timeLineTimeZoneCell: ReuseIdentifier<TimeLineTimeZoneCell> { return ReuseIdentifier(identifier: "TimeLineTimeZoneCell") }
     static var timeZoneCell: ReuseIdentifier<TimeZoneTableViewCell> { return ReuseIdentifier(identifier: "timeZoneCell") }
@@ -442,6 +444,7 @@ struct R {
     
     struct meDashBoardMainViewController {
       static var showDayDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetail") }
+      static var showProfile: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, YonaUserProfileViewController> { return StoryboardSegueIdentifier(identifier: "showProfile") }
       static var showWeekDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetail") }
     }
     
@@ -798,6 +801,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeLineHeaderCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeLineHeaderCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _TimeLineNoGoCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "TimeLineNoGoCell", bundle: _R.hostingBundle) }
+      var name: String { return "TimeLineNoGoCell" }
+      var reuseIdentifier: ReuseIdentifier<TimeLineNoGoCell> { return ReuseIdentifier(identifier: "TimeLineNoGoCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> TimeLineNoGoCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? TimeLineNoGoCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

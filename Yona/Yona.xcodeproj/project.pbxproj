@@ -16,6 +16,8 @@
 		160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */; };
 		160571641D479EFE00E86CC2 /* YonaInstructionPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */; };
 		160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */; };
+		160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */; };
+		160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
 		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
 		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
@@ -363,6 +365,8 @@
 		160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage1.swift; sourceTree = "<group>"; };
 		160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage2.swift; sourceTree = "<group>"; };
 		160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage3.swift; sourceTree = "<group>"; };
+		160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineNoGoCell.swift; sourceTree = "<group>"; };
+		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
@@ -944,6 +948,8 @@
 		16FDABE11D55C11C00B847DB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */,
+				160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */,
 				16FDABE21D55C13000B847DB /* TimeLineHeaderCell.swift */,
 				16FDABE41D55C13D00B847DB /* TimeLineHeaderCell.xib */,
 				16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */,
@@ -1904,6 +1910,7 @@
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */,
+				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
@@ -2047,6 +2054,7 @@
 				1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				1656A5D01D4BEA0B00EB288D /* DDNumber.m in Sources */,
+				160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */,
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,

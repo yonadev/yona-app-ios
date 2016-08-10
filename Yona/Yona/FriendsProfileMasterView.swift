@@ -75,6 +75,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineTimeBucketCell")
         nib = UINib(nibName: "TimeLineTimeZoneCell", bundle: nil)
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineTimeZoneCell")
+        nib = UINib(nibName: "TimeLineNoGoCell", bundle: nil)
+        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineNoGoCell")
     
     
     }
@@ -362,7 +364,13 @@ TimeLinedayActivitiesForUsers
                 cell.setTimeLineData(theObj, animated: shouldAnimate(indexPath))
                 return cell
             }
-        
+            if theObj.goalType == "NoGoGoal" {
+                let cell: TimeLineNoGoCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineNoGoCell", forIndexPath: indexPath) as! TimeLineNoGoCell
+                
+                cell.setData(theObj)
+                return cell
+            }
+      
         
         }
     

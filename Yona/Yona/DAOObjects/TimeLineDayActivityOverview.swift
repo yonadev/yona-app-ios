@@ -52,15 +52,31 @@ class TimeLineDayActivityOverview: NSObject {
         tableViewCells = []
         for obj in activites{
             var cat = ""
+
             if let txt = obj.activityCategoryName {
-                tableViewCells.append(txt)
                 cat = txt
-            }            
+            }
             for row in obj.userData {
                 row.setBuddyOrUser(allBuddies, aUser: aUser)
                 row.goalName = cat
                 
-                tableViewCells.append(row)
+            }
+            var validData = false
+            for row in obj.userData {
+                if row.goalType == "NoGoGoal" && !row.goalAccomplished {
+                    validData = true
+                } else if row.goalType != "NoGoGoal" {
+                    validData = true
+                }
+            }
+
+            if validData {
+                if let txt = obj.activityCategoryName {
+                    tableViewCells.append(txt)
+                }
+                for row in obj.userData {
+                    tableViewCells.append(row)
+                }
             }
         }
     }
