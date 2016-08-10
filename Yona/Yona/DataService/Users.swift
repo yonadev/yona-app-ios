@@ -15,6 +15,8 @@ struct Users{
     var mobileNumber: String!
     var nickname: String!
     
+    var buddies : [Buddies] = []
+    var userGoals : [Goal] = []
     //links
     var editLink: String?
     var confirmMobileLink: String?
@@ -32,6 +34,7 @@ struct Users{
     var resendRequestPinResetLinks: String?
     var buddiesLink: String?
     var getAllGoalsLink: String?
+    var timeLineLink : String?
 
     var formatetMobileNumber : String!
     init(userData: BodyDataDictionary) {
@@ -154,6 +157,11 @@ struct Users{
                     let hrefrequestPinClearLinks = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                     self.requestPinClearLink = hrefrequestPinClearLinks
                 }
+                if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaDailyActivityReportsWithBuddies],
+                    let timeline  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    timeLineLink = timeline
+                }
+                
             }
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
@@ -177,6 +185,30 @@ struct Users{
                     let buddiesLinksSelfHref = buddiesLinksSelf?[YonaConstants.jsonKeys.hrefKey] as? String{
                         self.buddiesLink = buddiesLinksSelfHref
                 }
+            }
+            
+            
+            if let embedded = userData[YonaConstants.jsonKeys.embedded],
+                let yonabuddies = embedded[YonaConstants.jsonKeys.yonaGoals],
+                let embeddedNext = yonabuddies?[YonaConstants.jsonKeys.embedded] {
+                if let goalJSON  = embeddedNext?[YonaConstants.jsonKeys.yonaGoals] as? [BodyDataDictionary] {
+                    for each in goalJSON {
+                        let aGoal = Goal(goalData : each, activities: [])
+                        userGoals.append(aGoal)
+                    }
+                }
+            }
+            
+            
+            if let embedded = userData[YonaConstants.jsonKeys.embedded],
+                let yonabuddies = embedded[YonaConstants.jsonKeys.yonaBuddies],
+                let embeddedNext = yonabuddies?[YonaConstants.jsonKeys.embedded] {
+                    if let buddiesJSON  = embeddedNext?[YonaConstants.jsonKeys.yonaBuddies] as? [BodyDataDictionary] {
+                            for each in buddiesJSON {
+                                let aBuddie = Buddies(buddyData: each, allActivity: [])
+                                buddies.append(aBuddie)
+                            }
+                        }
             }
         }
         /*
@@ -208,5 +240,8 @@ struct Users{
             body["nickname"] = nickname
         return body
     }
+    
+    
+    
 
 }

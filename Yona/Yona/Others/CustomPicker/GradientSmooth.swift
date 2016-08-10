@@ -12,7 +12,7 @@ class GradientSmooth: GradientView {
     func setGradientSmooth(color1: UIColor, color2: UIColor) {
         
         // 1
-        self.backgroundColor = UIColor.greenColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         // 2
         gradientLayer.frame = self.bounds

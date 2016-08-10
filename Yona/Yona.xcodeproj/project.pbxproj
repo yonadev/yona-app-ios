@@ -16,6 +16,8 @@
 		160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */; };
 		160571641D479EFE00E86CC2 /* YonaInstructionPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */; };
 		160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */; };
+		160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */; };
+		160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
 		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
 		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
@@ -44,6 +46,8 @@
 		1656A5DA1D4BEA0B00EB288D /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5C81D4BEA0B00EB288D /* HTTPRedirectResponse.m */; };
 		1656A5DB1D4BEA0B00EB288D /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */; };
 		1656A5DC1D4BEA0B00EB288D /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5CD1D4BEA0B00EB288D /* WebSocket.m */; };
+		1656A5E11D520AC000EB288D /* FriendsDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */; };
+		1656A5E31D522ACE00EB288D /* FriendsWeekDetailWeekController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A5E21D522ACE00EB288D /* FriendsWeekDetailWeekController.swift */; };
 		165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */; };
 		165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */; };
 		165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165887961D19E4D90021DFC4 /* GradientLargeView.swift */; };
@@ -77,6 +81,15 @@
 		16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */; };
 		16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */; };
 		16F951A41D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */; };
+		16FDABDC1D53D2A000B847DB /* TimeLineDayActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABDB1D53D2A000B847DB /* TimeLineDayActivities.swift */; };
+		16FDABDE1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABDD1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift */; };
+		16FDABE01D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABDF1D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift */; };
+		16FDABE31D55C13000B847DB /* TimeLineHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABE21D55C13000B847DB /* TimeLineHeaderCell.swift */; };
+		16FDABE51D55C13D00B847DB /* TimeLineHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABE41D55C13D00B847DB /* TimeLineHeaderCell.xib */; };
+		16FDABE71D55FCA600B847DB /* TimeLineTimeBucketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABE61D55FCA600B847DB /* TimeLineTimeBucketCell.xib */; };
+		16FDABE91D55FCB700B847DB /* TimeLineTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */; };
+		16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */; };
+		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
@@ -353,6 +366,8 @@
 		160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage1.swift; sourceTree = "<group>"; };
 		160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage2.swift; sourceTree = "<group>"; };
 		160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage3.swift; sourceTree = "<group>"; };
+		160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineNoGoCell.swift; sourceTree = "<group>"; };
+		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
@@ -405,6 +420,8 @@
 		1656A5CB1D4BEA0B00EB288D /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
 		1656A5CC1D4BEA0B00EB288D /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		1656A5CD1D4BEA0B00EB288D /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
+		1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDayDetailViewController.swift; sourceTree = "<group>"; };
+		1656A5E21D522ACE00EB288D /* FriendsWeekDetailWeekController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsWeekDetailWeekController.swift; sourceTree = "<group>"; };
 		165887921D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		165887941D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaTwoButtonTableViewCell.xib; sourceTree = "<group>"; };
 		165887961D19E4D90021DFC4 /* GradientLargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLargeView.swift; sourceTree = "<group>"; };
@@ -438,6 +455,15 @@
 		16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationAcceptFriendRequestViewController.swift; sourceTree = "<group>"; };
 		16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationsAccessTypeTableViewCell.swift; sourceTree = "<group>"; };
 		16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationsAccessTextTableViewCell.swift; sourceTree = "<group>"; };
+		16FDABDB1D53D2A000B847DB /* TimeLineDayActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineDayActivities.swift; path = DAOObjects/TimeLineDayActivities.swift; sourceTree = "<group>"; };
+		16FDABDD1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineDayActivityOverview.swift; path = DAOObjects/TimeLineDayActivityOverview.swift; sourceTree = "<group>"; };
+		16FDABDF1D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineDayActivitiesForUsers.swift; sourceTree = "<group>"; };
+		16FDABE21D55C13000B847DB /* TimeLineHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderCell.swift; sourceTree = "<group>"; };
+		16FDABE41D55C13D00B847DB /* TimeLineHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineHeaderCell.xib; sourceTree = "<group>"; };
+		16FDABE61D55FCA600B847DB /* TimeLineTimeBucketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeBucketCell.xib; sourceTree = "<group>"; };
+		16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeBucketCell.swift; sourceTree = "<group>"; };
+		16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeZoneCell.swift; sourceTree = "<group>"; };
+		16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeZoneCell.xib; sourceTree = "<group>"; };
 		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
@@ -922,6 +948,21 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		16FDABE11D55C11C00B847DB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */,
+				160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */,
+				16FDABE21D55C13000B847DB /* TimeLineHeaderCell.swift */,
+				16FDABE41D55C13D00B847DB /* TimeLineHeaderCell.xib */,
+				16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */,
+				16FDABE61D55FCA600B847DB /* TimeLineTimeBucketCell.xib */,
+				16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */,
+				16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3B39B85C599061F064F0007D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1100,6 +1141,9 @@
 				16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */,
 				16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */,
 				16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */,
+				16FDABDD1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift */,
+				16FDABDB1D53D2A000B847DB /* TimeLineDayActivities.swift */,
+				16FDABDF1D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift */,
 			);
 			name = DAOObjects;
 			sourceTree = "<group>";
@@ -1235,11 +1279,14 @@
 		AD291D251CA92808008CAFB1 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				16FDABE11D55C11C00B847DB /* Cells */,
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
 				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
 				166CB84F1D2E640A008B425D /* FriendsDayViewController.swift */,
 				166CB8511D2F05C4008B425D /* FriendsProfileViewController.swift */,
+				1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */,
+				1656A5E21D522ACE00EB288D /* FriendsWeekDetailWeekController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1801,6 +1848,7 @@
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
 				D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */,
 				6042829B1D0ADA4600F5543C /* SVProgressHUD.bundle in Resources */,
+				16FDABE71D55FCA600B847DB /* TimeLineTimeBucketCell.xib in Resources */,
 				ADD1082C1CC78C3B0048852F /* Oswald-RegularItalic.ttf in Resources */,
 				ADD108261CC78C3B0048852F /* Oswald-HeavyItalic.ttf in Resources */,
 				D98635581CABF44000A8535C /* SF-UI-Display-Regular.otf in Resources */,
@@ -1861,11 +1909,13 @@
 				ADEF8F0A1CADFD0C001D5EED /* Roboto-Medium.ttf in Resources */,
 				ADEF8F031CADFD0C001D5EED /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				ADD1082D1CC78C3B0048852F /* Oswald-Stencil.ttf in Resources */,
+				16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */,
 				906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */,
+				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
@@ -1879,6 +1929,7 @@
 				ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */,
 				D98635631CABF44000A8535C /* SF-UI-Text-MediumItalic.otf in Resources */,
 				906FED971CEE23E200029845 /* WalkThrough.storyboard in Resources */,
+				16FDABE51D55C13D00B847DB /* TimeLineHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1992,6 +2043,7 @@
 				165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */,
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				1656A5E31D522ACE00EB288D /* FriendsWeekDetailWeekController.swift in Sources */,
 				9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */,
 				90F123E11D35431F00E2BBBA /* NoGoCell.swift in Sources */,
 				D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */,
@@ -2014,6 +2066,7 @@
 				1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */,
 				903D7C8C1CDAC3DD0086803C /* HTTPStatusCodes.swift in Sources */,
 				165887971D19E4D90021DFC4 /* GradientLargeView.swift in Sources */,
+				16FDABE91D55FCB700B847DB /* TimeLineTimeBucketCell.swift in Sources */,
 				AD9E63C21CFC448D006CD6D6 /* CALayerExtensions.swift in Sources */,
 				90F123E51D3785F800E2BBBA /* GradientSmooth.swift in Sources */,
 				16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */,
@@ -2021,6 +2074,7 @@
 				1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				1656A5D01D4BEA0B00EB288D /* DDNumber.m in Sources */,
+				160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */,
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
 				90FF6E011D01D73100A674C4 /* BaseViewController.swift in Sources */,
@@ -2047,6 +2101,7 @@
 				1656A5D71D4BEA0B00EB288D /* HTTPDynamicFileResponse.m in Sources */,
 				90DE879C1CD238B400C1E706 /* GoalsRequestManager.swift in Sources */,
 				1656A5D61D4BEA0B00EB288D /* HTTPDataResponse.m in Sources */,
+				16FDABE31D55C13000B847DB /* TimeLineHeaderCell.swift in Sources */,
 				90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
 				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
@@ -2061,6 +2116,7 @@
 				908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */,
 				AD00DED41CD3648F006BBA7E /* IQUIViewController+Additions.swift in Sources */,
 				6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */,
+				16FDABE01D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift in Sources */,
 				D94A93C01CB26E3A00ABE0F8 /* Users.swift in Sources */,
 				BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */,
 				90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */,
@@ -2078,6 +2134,7 @@
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,
 				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
 				1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */,
+				16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
@@ -2103,10 +2160,12 @@
 				1656A5A81D4BE6B300EB288D /* RoutingConnection.m in Sources */,
 				90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */,
 				1656A5D21D4BEA0B00EB288D /* GCDAsyncSocket.m in Sources */,
+				1656A5E11D520AC000EB288D /* FriendsDayDetailViewController.swift in Sources */,
 				AD00DEDB1CD3648F006BBA7E /* IQBarButtonItem.swift in Sources */,
 				9042C70E1CD7581E00100306 /* YonaCustomDatePickerView.swift in Sources */,
 				906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */,
 				166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */,
+				16FDABDC1D53D2A000B847DB /* TimeLineDayActivities.swift in Sources */,
 				AD291D331CA92975008CAFB1 /* WalkThroughViewController.swift in Sources */,
 				D94A93C31CB27AE500ABE0F8 /* UIViewControllerExtensions.swift in Sources */,
 				90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */,
@@ -2131,6 +2190,7 @@
 				165BB1EA1D228A010013A4EF /* TimeBucketControlCell.swift in Sources */,
 				160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */,
 				1656A5D51D4BEA0B00EB288D /* HTTPConnection.m in Sources */,
+				16FDABDE1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift in Sources */,
 				904DD48C1CF35C3300E894A5 /* GradientNavBar.swift in Sources */,
 				AD00DED81CD3648F006BBA7E /* IQKeyboardManager.swift in Sources */,
 				16F951A21D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift in Sources */,
