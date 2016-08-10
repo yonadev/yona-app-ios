@@ -235,6 +235,8 @@ class ActivitiesRequestManager {
                                                 }
                                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
 
+                                            } else {
+                                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
                                             }
                                         
                                         })

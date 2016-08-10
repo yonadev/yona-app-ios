@@ -18,6 +18,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     var animatedCells : [String] = []
     var corretcToday : NSDate = NSDate()
+    var page : Int = 0
+    var size : Int = 3
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -229,17 +231,29 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == size { //max number of pages
+//            if selectedTab == .right {
+//                loadActivitiesForWeek(page)
+//            }
+//            
+//            if selectedTab == .left {
+//                loadActivitiesForDay(0)
+//            }
+        }
+
+    }
     
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
-        loadActivitiesForDay()
+        loadActivitiesForDay(page)
         // The subController must override this to have any action after the tabe selection
   
     }
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        loadActivitiesForWeek()
+        loadActivitiesForWeek(page)
     }
 
     func showUserProfile() {
@@ -304,7 +318,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func loadActivitiesForDay(page : Int = 0) {
         print("Entering day loader")
         Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getActivityPrDay(3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+        ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
                 
                 if let data = activitygoals {
@@ -321,7 +335,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     func loadActivitiesForWeek(page : Int = 0) {
         Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getActivityPrWeek(0, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+        ActivitiesRequestManager.sharedInstance.getActivityPrWeek(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
                 
                 if let data = activitygoals {
