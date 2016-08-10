@@ -178,7 +178,7 @@
                     <navigationItem key="navigationItem" id="TSV-ok-ptH">
                         <barButtonItem key="leftBarButtonItem" image="icnMe" id="ICv-k3-0Sf">
                             <connections>
-                                <segue destination="xCU-fF-PB5" kind="show" id="0zA-0m-K30"/>
+                                <segue destination="xCU-fF-PB5" kind="show" identifier="showProfile" id="0zA-0m-K30"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icnReminder" id="fCv-V5-hWc">
@@ -199,7 +199,7 @@
                         <outlet property="rightTabLabel" destination="PQF-Am-sht" id="4bV-Em-tG5"/>
                         <outlet property="rightTabMainView" destination="iJ8-SG-r8Z" id="XxN-WF-eCM"/>
                         <outlet property="rightTabSelectionsView" destination="MM7-EZ-kI4" id="nY8-Jo-8fn"/>
-                        <outlet property="tableView" destination="wFB-LI-Dhz" id="YMf-4W-qOg"/>
+                        <outlet property="theTableView" destination="wFB-LI-Dhz" id="QtI-B7-Chp"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
                         <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetail" id="8eJ-V0-7GW"/>
                     </connections>
@@ -325,7 +325,7 @@
         <scene sceneID="2b2-Hb-0BV">
             <objects>
                 <tableViewController autoresizesArchivedViewToFullSize="NO" id="vEb-Ig-NeG" customClass="NotificationsViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" id="JiQ-iU-Aml">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" id="JiQ-iU-Aml">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

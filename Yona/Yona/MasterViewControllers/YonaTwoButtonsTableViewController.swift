@@ -15,7 +15,7 @@ enum currentSelectedTab {
     case right
 }
 class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var theTableView: UITableView!
     
     
     @IBOutlet weak var leftTabMainView: UIView!
@@ -64,12 +64,6 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
         
     }
 
-    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //
-    //    }
-
-    //    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-    //    }
     
     
 // MARK: TabButtons Actions

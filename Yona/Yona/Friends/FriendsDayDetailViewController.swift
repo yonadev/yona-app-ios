@@ -15,6 +15,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         
         Loader.Show()
         
+        if let _ = buddy {
+        
         if typeToLoad == .own {
             if let path = initialObjectLink {
                 if let bud = buddy {
@@ -82,7 +84,10 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                 }
             }
         }
+        } else {
+            super.loadData()
         
+        }
         //Loader.Hide()
         self.tableView.reloadData()
     }
