@@ -42,7 +42,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.lightGrayColor()
-        viewCall.frame = CGRectMake(0, 0,CGRectGetHeight(self.frame),CGRectGetHeight(self.frame))
+        viewCall.frame = CGRectMake(0,0, 100,100)
         //Add a button to perform the action when user will tap on call and add a image to display
         let btnCall = UIButton(type: UIButtonType.Custom)
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
