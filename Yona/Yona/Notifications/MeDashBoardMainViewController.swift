@@ -83,8 +83,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func configureCorrectToday() {
-
-        
         let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
         userCalendar?.minimumDaysInFirstWeek = 5
         userCalendar?.firstWeekday = 6
@@ -96,11 +94,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let aDate = formatter.dateFromString(startdate)  {
             corretcToday = aDate
         }
-        
-
     }
-    
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -165,7 +159,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if selectedTab == .left {
             return getCellForDayTableRow(indexPath)
         }
-        
         
         let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
         cell.setSingleActivity(rightTabData[indexPath.section].activity[indexPath.row])

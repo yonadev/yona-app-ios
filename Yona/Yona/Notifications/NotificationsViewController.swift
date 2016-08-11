@@ -60,6 +60,17 @@ class NotificationsViewController: UITableViewController {
         return messages.count
     }
     
+    @available(iOS 8.0, *)
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "") { (action , indexPath) -> Void in
+            self.editing = false
+            print("Delete button pressed")
+        }
+        deleteAction.backgroundColor = UIColor(patternImage: UIImage(named: "icnDelete")!)
+        return [deleteAction]
+
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages.count == 0 {
             return 0
