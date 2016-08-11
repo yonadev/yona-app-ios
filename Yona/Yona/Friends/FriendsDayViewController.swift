@@ -12,6 +12,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     var buddyToShow :Buddies! = nil
     
+    @IBOutlet weak var rightNavBarItem : UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("", comment: "")
@@ -29,8 +30,13 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
 
         navigationItem.title = NSLocalizedString("\(tmpFirst) \(tmpLast)", comment: "")
+        
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.rightNavBarItem.addCircle()
+    }
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
         loadActivitiesForDay()
@@ -43,6 +49,15 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         
         loadActivitiesForWeek()
         
+    }
+
+    override func configurProfileBarItem () {
+            if let name = buddyToShow?.UserRequestfirstName {
+                if name.characters.count > 0 {//&& user?.characters.count > 0{
+                    self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
+                    self.rightNavBarItem.addCircle()
+                }
+            }
     }
 
     
