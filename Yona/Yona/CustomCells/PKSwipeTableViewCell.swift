@@ -11,13 +11,19 @@ protocol PKSwipeCellDelegateProtocol {
     func swipeDoneOnPreviousCell()->PKSwipeTableViewCell?
 }
 
+protocol YonaUserCellDelegate {
+    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
+}
+
 import UIKit
 
 class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     
     //MARK: Variables
     //Set the delegate object
-    internal var delegate:AnyObject?
+    internal var delegate:YonaUserCellDelegate?
+    internal var pkdelegate:PKSwipeTableViewCell?
+
     //set the view of right Side
     internal var isPanEnabled = true
     private var viewRightAccessory = UIView()
@@ -110,14 +116,14 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         if isPanEnabled == false{
             return
         }
-        if  ((self.delegate?.respondsToSelector(Selector.init(stringLiteral: "swipeDoneOnPreviousCell"))) != nil) {
-            let cell = self.delegate?.swipeDoneOnPreviousCell()
+        if  ((self.pkdelegate?.respondsToSelector(Selector.init(stringLiteral: "swipeDoneOnPreviousCell"))) != nil) {
+            let cell = self.pkdelegate?.swipeDoneOnPreviousCell()
             if cell != self && cell != nil {
                 cell?.resetCellState()
             }
         }
-        if  ((self.delegate?.respondsToSelector(Selector.init(stringLiteral: "swipeBeginInCell"))) != nil) {
-            self.delegate?.swipeBeginInCell(self)
+        if  ((self.pkdelegate?.respondsToSelector(Selector.init(stringLiteral: "swipeBeginInCell"))) != nil) {
+            self.pkdelegate?.swipeBeginInCell(self)
         }
         let translation =  panGestureRecognizer.translationInView(panGestureRecognizer.view)
         let velocity = panGestureRecognizer .velocityInView(panGestureRecognizer.view)
@@ -212,7 +218,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         viewRightAccessory.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
         self.backview.addSubview(viewRightAccessory)
     }
-    
+
     /**
     This function is used to reset the cell state back to original position to hide the right view options.
     */

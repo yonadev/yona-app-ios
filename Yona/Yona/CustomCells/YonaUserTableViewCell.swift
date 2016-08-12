@@ -19,7 +19,9 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     @IBOutlet weak var normalLineLabel: UILabel!
 
     @IBOutlet weak var statusImageConstraint: NSLayoutConstraint!
-
+    
+    var aMessage : Message?
+    
     override func awakeFromNib() {
         
         boldLineLabel.text = ""
@@ -41,13 +43,13 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
-        viewCall.backgroundColor = UIColor.lightGrayColor()
+        viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
         viewCall.frame = CGRectMake(0,0, 100,100)
         //Add a button to perform the action when user will tap on call and add a image to display
         let btnCall = UIButton(type: UIButtonType.Custom)
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "callButtonClicked"), forState: UIControlState.Normal)
-//        btnCall.addTarget(self, action: "callButtonClicked", forControlEvents: UIControlEvents.TouchUpInside)
+        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
+        btnCall.addTarget(self, action: "callButtonClicked", forControlEvents: UIControlEvents.TouchUpInside)
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
@@ -57,6 +59,13 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     func callButtonClicked(){
         //Reset the cell state and close the swipe action
         self.resetCellState()
+    }
+    
+    func messageCall(){
+        if let delegate = delegate,
+            let aMessage = aMessage{
+            delegate.messageNeedToBeDeleted(self, message: aMessage)
+        }
     }
     
     func setBuddie(aBuddie : Buddies) {
@@ -75,6 +84,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     // MARK: using cell as Message
     
     func setMessage(aMessage : Message) {
+        self.aMessage = aMessage
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
      

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationsViewController: UITableViewController {
+class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
@@ -81,6 +81,7 @@ class NotificationsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
+        cell.delegate = self
         return cell
     }
 
@@ -135,6 +136,17 @@ class NotificationsViewController: UITableViewController {
 
     }
     
+    // MARK: - YonaUserCellDelegate
+    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message) {
+        let aMessage = message as Message
+        MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+            if success {
+                self.loadMessages(self)
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
+    }
     // MARK: - server methods
     
     func loadMessages(sender:AnyObject) {
