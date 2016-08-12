@@ -46,7 +46,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         //Add a button to perform the action when user will tap on call and add a image to display
         let btnCall = UIButton(type: UIButtonType.Custom)
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
+        btnCall.setImage(UIImage(named: "callButtonClicked"), forState: UIControlState.Normal)
 //        btnCall.addTarget(self, action: "callButtonClicked", forControlEvents: UIControlEvents.TouchUpInside)
         
         viewCall.addSubview(btnCall)
@@ -54,6 +54,10 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         super.addRightOptionsView(viewCall)
     }
 
+    func callButtonClicked(){
+        //Reset the cell state and close the swipe action
+        self.resetCellState()
+    }
     
     func setBuddie(aBuddie : Buddies) {
         
@@ -66,9 +70,6 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
 
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
         avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!) \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
-        
-        
-        
     }
     
     // MARK: using cell as Message
