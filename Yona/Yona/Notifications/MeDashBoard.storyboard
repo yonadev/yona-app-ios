@@ -176,9 +176,9 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TSV-ok-ptH">
-                        <barButtonItem key="leftBarButtonItem" image="icnMe" id="ICv-k3-0Sf">
+                        <barButtonItem key="leftBarButtonItem" title="Yona" style="plain" id="fmy-Mm-EgE">
                             <connections>
-                                <segue destination="xCU-fF-PB5" kind="show" identifier="showProfile" id="0zA-0m-K30"/>
+                                <action selector="showUserProfile:" destination="Z05-OL-lvB" id="WYr-Gr-HrF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icnReminder" id="fCv-V5-hWc">
@@ -187,12 +187,12 @@
                             </connections>
                         </barButtonItem>
                         <connections>
-                            <outlet property="leftBarButtonItem" destination="ICv-k3-0Sf" id="RZq-hQ-Zxy"/>
                             <outlet property="rightBarButtonItem" destination="fCv-V5-hWc" id="49v-6h-Vy5"/>
                         </connections>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="leftBarItem" destination="fmy-Mm-EgE" id="257-uY-SG6"/>
                         <outlet property="leftTabLabel" destination="ATP-Ot-zjW" id="c7f-fw-iFk"/>
                         <outlet property="leftTabMainView" destination="Z2p-TJ-zi0" id="oGt-Wz-SxK"/>
                         <outlet property="leftTabSelcetionView" destination="eOu-0p-cGI" id="Z9E-OZ-zUc"/>
@@ -202,6 +202,7 @@
                         <outlet property="theTableView" destination="wFB-LI-Dhz" id="QtI-B7-Chp"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
                         <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetail" id="8eJ-V0-7GW"/>
+                        <segue destination="xCU-fF-PB5" kind="show" identifier="showProfile" id="FrQ-ud-i11"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G8K-p6-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,7 +461,6 @@
     <resources>
         <image name="icnBack" width="13" height="21"/>
         <image name="icnEdit" width="24" height="24"/>
-        <image name="icnMe" width="32" height="32"/>
         <image name="icnReminder" width="24" height="24"/>
     </resources>
 </document>

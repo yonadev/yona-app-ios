@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -580,21 +580,19 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oxJ-mE-kxE">
-                        <barButtonItem key="rightBarButtonItem" image="icnAvatar" id="Src-Yo-bvp">
+                        <barButtonItem key="rightBarButtonItem" title="Yona" style="plain" id="Src-Yo-bvp">
                             <inset key="imageInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                             <connections>
                                 <action selector="didChooseUserProfile:" destination="30a-nZ-Iva" id="u8m-26-g7J"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="rightBarButtonItem" destination="Src-Yo-bvp" id="oPP-fP-Wm9"/>
-                        </connections>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="leftTabLabel" destination="HxJ-GK-aOm" id="EHm-yO-zVk"/>
                         <outlet property="leftTabMainView" destination="Y2X-SU-YBm" id="WFF-aQ-GR7"/>
                         <outlet property="leftTabSelcetionView" destination="POT-J8-1Xd" id="Jly-CO-JDL"/>
+                        <outlet property="rightNavBarItem" destination="Src-Yo-bvp" id="6tZ-7o-JWB"/>
                         <outlet property="rightTabLabel" destination="8Sn-pD-XDE" id="ebj-Oh-ha8"/>
                         <outlet property="rightTabMainView" destination="GtH-UK-bBj" id="2gk-Ym-Sga"/>
                         <outlet property="rightTabSelectionsView" destination="PwE-Is-1df" id="frk-SM-ZmM"/>
@@ -755,10 +753,9 @@
     </scenes>
     <resources>
         <image name="icnAdd" width="24" height="24"/>
-        <image name="icnAvatar" width="44" height="45"/>
         <image name="icnBack" width="13" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qBF-uj-5D3"/>
+        <segue reference="fkA-FJ-c4C"/>
     </inferredMetricsTieBreakers>
 </document>
