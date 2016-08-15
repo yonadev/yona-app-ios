@@ -15,14 +15,19 @@ protocol YonaUserCellDelegate {
     func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
 }
 
+protocol DeleteTimezoneCellDelegateProtocol {
+    func deleteTimezone(cell: TimeZoneTableViewCell);
+}
+
 import UIKit
 
 class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     
     //MARK: Variables
     //Set the delegate object
-    internal var delegate:YonaUserCellDelegate?
+    internal var yonaUserDelegate:YonaUserCellDelegate?
     internal var pkdelegate:PKSwipeTableViewCell?
+    internal var timezoneCellDelegate:DeleteTimezoneCellDelegateProtocol?
 
     //set the view of right Side
     internal var isPanEnabled = true

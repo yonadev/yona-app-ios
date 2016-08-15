@@ -29,9 +29,9 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
+//        self.refreshControl = UIRefreshControl()
+//        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func registreTableViewCells () {
@@ -81,7 +81,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
-        cell.delegate = self
+        cell.yonaUserDelegate = self
         return cell
     }
 
@@ -147,8 +147,8 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             }
         })
     }
-    // MARK: - server methods
     
+    // MARK: - server methods
     func loadMessages(sender:AnyObject) {
         Loader.Show()
         MessageRequestManager.sharedInstance.getMessages(10, page: 0, onCompletion: {
@@ -191,7 +191,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             } else {
                 //response from request failed
             }
-            self.refreshControl!.endRefreshing()
+//            self.refreshControl!.endRefreshing()
             Loader.Hide()
         })
         

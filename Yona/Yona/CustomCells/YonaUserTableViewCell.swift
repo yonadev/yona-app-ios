@@ -44,27 +44,23 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
-        viewCall.frame = CGRectMake(0,0, 100,100)
+        viewCall.frame = CGRectMake(0,0, self.frame.size.height,self.frame.size.height)
         //Add a button to perform the action when user will tap on call and add a image to display
         let btnCall = UIButton(type: UIButtonType.Custom)
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
         btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
-        btnCall.addTarget(self, action: "callButtonClicked", forControlEvents: UIControlEvents.TouchUpInside)
+        btnCall.addTarget(self, action: "deleteMessage", forControlEvents: UIControlEvents.TouchUpInside)
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
         super.addRightOptionsView(viewCall)
     }
 
-    func callButtonClicked(){
-        //Reset the cell state and close the swipe action
-        self.resetCellState()
-    }
     
-    func messageCall(){
-        if let delegate = delegate,
+    func deleteMessage(){
+        if let yonaUserDelegate = yonaUserDelegate,
             let aMessage = aMessage{
-            delegate.messageNeedToBeDeleted(self, message: aMessage)
+            yonaUserDelegate.messageNeedToBeDeleted(self, message: aMessage)
         }
     }
     
@@ -85,6 +81,14 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     
     func setMessage(aMessage : Message) {
         self.aMessage = aMessage
+        
+        //if the messsage has been accepted can we delete so disable pan
+        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+            self.isPanEnabled = true
+        } else {
+            self.isPanEnabled = false
+        }
+        
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
      
