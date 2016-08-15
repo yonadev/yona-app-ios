@@ -35,19 +35,18 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         nib = UINib(nibName: "YonaTwoButtonTableViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaTwoButtonTableViewCell")
     
-    
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
-// MARK: - Actions
+    // MARK: - Actions
     @IBAction func backAction (sender : AnyObject) {
         navigationController?.popViewControllerAnimated(true)
         
     }
     
-    //MARK: - tableview methods
+    // MARK: - tableview methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -89,13 +88,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             let cell: YonaNotificationsAccessTypeTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTypeTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTypeTableViewCell
             cell.typeTextLable.text = NSLocalizedString("notifications.accept.type", comment: "")
             return cell
-        
-//        case acceptFriendRequest.message.rawValue:
-//            let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
-//            if let msg = aMessage {
-//                cell.setMessageFromPoster( msg)
-//            }
-//            return cell
         case acceptFriendRequest.number.rawValue:
             let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
             if let msg = aMessage {

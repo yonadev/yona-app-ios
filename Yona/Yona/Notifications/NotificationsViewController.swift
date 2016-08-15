@@ -49,9 +49,21 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
-            let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
-            controller.aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!]
-            selectedIndex = nil
+            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+            BuddyRequestManager.sharedInstance.getBuddy(aMessage.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+                //success so get the user?
+                if success {
+                    //success so get the user
+                    let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
+                    controller.aMessage = self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
+                    self.selectedIndex = nil
+                    self.tableView.reloadData()
+                } else {
+                    //response from request failed
+                    
+                }
+            })
+
         }
     }
     
@@ -71,6 +83,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        
         if aMessage.status == buddyRequestStatus.REQUESTED {
             performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
         }
