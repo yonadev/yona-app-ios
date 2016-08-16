@@ -129,6 +129,7 @@
 		9054CC861CE384A100F575E2 /* BuddyRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */; };
 		9054CC881CE384AB00F575E2 /* Buddies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC871CE384AB00F575E2 /* Buddies.swift */; };
 		9054CC8C1CE3882600F575E2 /* BuddyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */; };
+		9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
@@ -519,6 +520,7 @@
 		9054CC851CE384A100F575E2 /* BuddyRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyRequestManager.swift; sourceTree = "<group>"; };
 		9054CC871CE384AB00F575E2 /* Buddies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buddies.swift; sourceTree = "<group>"; };
 		9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyAPITests.swift; sourceTree = "<group>"; };
+		9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
@@ -929,8 +931,9 @@
 		16B1CD221D15730F00A1ABA7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
+				9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */,
 				166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */,
+				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
 				16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */,
 				16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */,
 				16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */,
@@ -2115,6 +2118,7 @@
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,
 				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
+				9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */,
 				1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */,
 				16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,

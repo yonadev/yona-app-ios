@@ -106,5 +106,32 @@ class BuddyRequestManager {
     func deleteBuddy(buddy: Buddies?, onCompletion: APIBuddiesResponse) {
         self.genericBuddyRequest(httpMethods.delete, buddyBody: nil, buddy: buddy, onCompletion: onCompletion)
     }
+    
+    
+    func getBuddy(buddiesLink: String?, onCompletion: APIBuddiesResponse) {
+        if let buddieLink = buddiesLink {
+            ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, serverCode, activities, error) in
+                if success {
+                    self.APIService.callRequestWithAPIServiceResponse(nil, path: buddieLink, httpMethod: httpMethods.get) { (success, json, error ) in
+                        if success {
+                            self.buddies.removeAll()
+                            if let json = json {
+                                //we just get a buddy response back
+                                self.buddy = Buddies.init(buddyData: json, allActivity: activities!)
+                                onCompletion(success,error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.buddy, nil)
+                            } else {
+                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil) //failed json response
+                            }
+                        } else {
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, nil)
+                        }
+                    }
+                }
+            }
+            
+        } else {
+            onCompletion(false, YonaConstants.YonaErrorTypes.GetBuddyLinkFail.localizedDescription, self.APIService.determineErrorCode(YonaConstants.YonaErrorTypes.GetBuddyLinkFail), nil, nil)
+        }
+    }
 
 }

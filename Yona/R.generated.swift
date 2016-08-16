@@ -330,6 +330,7 @@ struct R {
     static var icnCreate: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCreate") } }
     static var icnDateBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateBack") } }
     static var icnDateForward: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateForward") } }
+    static var icnDelete: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDelete", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDelete") } }
     static var icnEdit: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnEdit") } }
     static var icnFriends: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriends") } }
     static var icnFriendsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriendsActive") } }
