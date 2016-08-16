@@ -29,9 +29,9 @@ class SendCommentControl : UITableViewCell {
     
     @IBAction func sendComment(sender: UIButton) {
         if let postGoalLink = postGoalLink ,
-         let comment = self.commentTextField.text{
+         let commentText = self.commentTextField.text{
             let messageBody: [String:AnyObject] = [
-                "message": comment
+                "message": commentText
             ]
             CommentRequestManager.sharedInstance.postComment(postGoalLink, messageBody: messageBody) { (success, comment, nil, message, code) in
                 print(comment)

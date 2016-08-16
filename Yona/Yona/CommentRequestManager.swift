@@ -39,6 +39,7 @@ class CommentRequestManager {
                 if let embedded = json[getMessagesKeys.embedded.rawValue],
                     let yonaComments = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray{
                     //iterate messages
+                    self.comments = []
                     for comment in yonaComments {
                         if let comment = comment as? BodyDataDictionary {
                             let comment = Comment.init(commentData: comment)
@@ -54,6 +55,17 @@ class CommentRequestManager {
             } else {
                 onCompletion(success, nil, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
             }
+        }
+    }
+    
+    func deleteComment(aComment : Comment, onCompletion: APIResponse ){
+        if let deleteLink = aComment.editLink {
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
+                onCompletion(success , error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveDeleteLink, String(responseCodes.internalErrorCode))
         }
     }
 }

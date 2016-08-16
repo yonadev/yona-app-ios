@@ -137,6 +137,7 @@
 		9054D53F1D535E430060D22E /* SendCommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D53E1D535E430060D22E /* SendCommentControl.swift */; };
 		9054D5411D5361310060D22E /* CommentControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5401D5361310060D22E /* CommentControlCell.swift */; };
 		9054D5431D5361460060D22E /* CommentControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D5421D5361460060D22E /* CommentControlCell.xib */; };
+		9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
@@ -535,6 +536,7 @@
 		9054D53E1D535E430060D22E /* SendCommentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCommentControl.swift; sourceTree = "<group>"; };
 		9054D5401D5361310060D22E /* CommentControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentControlCell.swift; sourceTree = "<group>"; };
 		9054D5421D5361460060D22E /* CommentControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentControlCell.xib; sourceTree = "<group>"; };
+		9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
@@ -949,10 +951,11 @@
 		16B1CD221D15730F00A1ABA7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */,
+				166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */,
 				9054D5381D52359B0060D22E /* CommentTableHeader.swift */,
 				9054D53A1D5235A90060D22E /* CommentTableHeader.xib */,
 				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
-				166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */,
 				16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */,
 				16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */,
 				16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */,
@@ -2146,6 +2149,7 @@
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,
 				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
+				9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */,
 				1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */,
 				16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,

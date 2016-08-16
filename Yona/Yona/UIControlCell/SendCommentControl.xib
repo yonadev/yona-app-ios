@@ -36,9 +36,9 @@
                         </connections>
                     </button>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VG6-lx-Zr1">
-                        <rect key="frame" x="0.0" y="1" width="265" height="49"/>
+                        <rect key="frame" x="8" y="1" width="257" height="49"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="265" id="Wqp-bM-TeV"/>
+                            <constraint firstAttribute="width" constant="257" id="Wqp-bM-TeV"/>
                             <constraint firstAttribute="height" constant="49" id="lKH-KA-Dgh"/>
                         </constraints>
                         <color key="textColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="VG6-lx-Zr1" firstAttribute="leading" secondItem="hYc-XJ-Riq" secondAttribute="leading" id="4oz-PW-JlP"/>
+                    <constraint firstItem="VG6-lx-Zr1" firstAttribute="leading" secondItem="hYc-XJ-Riq" secondAttribute="leading" constant="8" id="4oz-PW-JlP"/>
                     <constraint firstAttribute="trailing" secondItem="DKB-dA-YTh" secondAttribute="trailing" id="Ca7-Tk-NCS"/>
                     <constraint firstItem="DKB-dA-YTh" firstAttribute="top" secondItem="hYc-XJ-Riq" secondAttribute="top" id="ig4-wL-t0P"/>
                     <constraint firstItem="VG6-lx-Zr1" firstAttribute="top" secondItem="hYc-XJ-Riq" secondAttribute="top" constant="1" id="w8p-Gy-Fug"/>

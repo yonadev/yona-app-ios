@@ -18,6 +18,7 @@ class YonaButtonsTableHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         headerTextLabel.backgroundColor = UIColor.yiTableBGGreyColor()
+        
     }
     
     var delegate : YonaButtonsTableHeaderViewProtocol?

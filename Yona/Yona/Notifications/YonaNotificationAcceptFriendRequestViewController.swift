@@ -22,10 +22,12 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var aMessage : Message?
+    var aBuddy : Buddies?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("notifications.accept.title", comment: "") 
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiMidBlueColor()
+        navigationItem.title = NSLocalizedString("notifications.accept.title", comment: "")
         registreTableViewCells()
     }
     
@@ -35,19 +37,18 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         nib = UINib(nibName: "YonaTwoButtonTableViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaTwoButtonTableViewCell")
     
-    
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
-// MARK: - Actions
+    // MARK: - Actions
     @IBAction func backAction (sender : AnyObject) {
         navigationController?.popViewControllerAnimated(true)
         
     }
     
-    //MARK: - tableview methods
+    // MARK: - tableview methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -79,29 +80,22 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
 
             let cell: YonaUserHeaderWithTwoTabTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserHeaderWithTwoTabTableViewCell", forIndexPath: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell
             cell.setAcceptFriendsMode()
+            if let aBuddy = aBuddy {
+                cell.setBuddy(aBuddy)
+            }
             if let msg = aMessage {
                 cell.setMessage(msg)
             }
             return cell
-        
-        
         case acceptFriendRequest.type.rawValue:
             let cell: YonaNotificationsAccessTypeTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTypeTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTypeTableViewCell
             cell.typeTextLable.text = NSLocalizedString("notifications.accept.type", comment: "")
             return cell
-        
-//        case acceptFriendRequest.message.rawValue:
-//            let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
-//            if let msg = aMessage {
-//                cell.setMessageFromPoster( msg)
-//            }
-//            return cell
         case acceptFriendRequest.number.rawValue:
             let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
             if let msg = aMessage {
                 cell.setPhoneNumber(msg)
             }
-
             return cell
         case acceptFriendRequest.buttons.rawValue:
             let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
@@ -138,10 +132,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         var text = ""
         if let msg = aMessage {
             switch row {
-//            case acceptFriendRequest.message:
-//                let num = msg.UserRequestmobileNumber
-//                text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
-//                
             case acceptFriendRequest.number:
                 text = msg.message
             default:

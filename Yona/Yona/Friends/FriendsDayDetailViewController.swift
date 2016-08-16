@@ -13,10 +13,17 @@ enum DayDetailSecions : Int{
     case comments
 }
 
-class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentControlProtocol {
+class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentControlProtocol, CommentCellDelegate {
 
     var buddy : Buddies?
-    var comments: [Comment] = []
+    var comments = [Comment]() {
+        didSet{
+            //everytime savedarticles is added to or deleted from table is refreshed
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func registreTableViewCells () {
         super.registreTableViewCells()
@@ -49,6 +56,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
             cell.setData(self.comments[indexPath.row])
+            cell.indexPath = indexPath
+            cell.commentDelegate = self
             return cell
         } else if indexPath.section == 2 {
             let cell: SendCommentControl = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as! SendCommentControl
@@ -204,16 +213,32 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         self.tableView.reloadData()
     }
     
-    // MARK: - SendCommentControlProtocol
+    // MARK: - get comment data
     func getMessageData(commentLink: String?) {
-        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 10, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
             if success {
+                self.comments = []
                 if let comments = comments {
                     self.comments = comments
-                    self.tableView.reloadData()
                 }
             }
         }
+    }
+    
+    // MARK: - CommentCellDelegate
+    func deleteComment(cell: CommentControlCell, comment: Comment){
+        let aComment = comment as Comment
+        CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
+            if success {
+                self.comments.removeAtIndex((cell.indexPath?.row)!)
+
+                if let messageLink = self.dayData?.messageLink {
+                    self.getMessageData(messageLink)
+                }
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
     }
     
     // MARK: - SendCommentControlProtocol

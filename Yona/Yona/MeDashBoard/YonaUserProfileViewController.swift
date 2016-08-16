@@ -18,6 +18,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     var aUser : Users?
     var isShowingProfile = true
     var rightSideButtonItems : [UIBarButtonItem]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
