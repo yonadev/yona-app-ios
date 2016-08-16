@@ -35,6 +35,10 @@ typealias APIBuddiesResponse = (Bool, ServerMessage?, ServerCode?, Buddies?, Arr
 typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
 typealias SortedGoals = (Bool, budgetGoals , timezoneGoals, nogoGoals) -> Void
 
+typealias APIActivityTimeLineResponse = (Bool, ServerMessage?, ServerCode?, [TimeLineDayActivityOverview]?, NSError?) -> Void
+
+typealias APITimeLineUserGoalsRespons = (Bool) -> Void
+
 class Manager: NSObject {
 
     static let sharedInstance = Manager()

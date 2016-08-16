@@ -93,7 +93,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QvK-PL-PO9">
                                 <rect key="frame" x="167" y="265" width="265" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="265" id="6jP-4w-G2a"/>
                                     <constraint firstAttribute="height" constant="20" id="OpA-BV-fJ2"/>
@@ -262,7 +262,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5y-br-B9l">
                                 <rect key="frame" x="172" y="478" width="255" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="255" id="RFD-uN-iGu"/>
                                 </constraints>

@@ -24,6 +24,7 @@ class SendCommentControl : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        sendCommentButton.titleLabel!.text = NSLocalizedString("commenting.sendComment", comment: "")
     }
     
     @IBAction func sendComment(sender: UIButton) {

@@ -101,8 +101,23 @@ class DaySingleActivityDetail: NSObject {
             }
             
         }
+        
+        let range1 =  goalLinks?.rangeOfString("goals/")?.startIndex
+        var goal1ID = ""
+        if let txt = goalLinks?.substringFromIndex(range1!) {
+            goal1ID = txt
+        }
         for goal in allGoals {
-            if goalLinks == goal.selfLinks {
+            let range1 =  goal.selfLinks?.rangeOfString("goals/")?.startIndex
+            var goal2ID = ""
+            if let txt = goal.selfLinks?.substringFromIndex(range1!) {
+                goal2ID = txt
+            }
+            if goal1ID == goal2ID {
+                
+        
+//        for goal in allGoals {
+//            if goalLinks == goal.selfLinks {
                 zones = goal.zones
                 spreadCells = goal.spreadCells
                 maxDurationMinutes = goal.maxDurationMinutes

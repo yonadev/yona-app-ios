@@ -45,7 +45,22 @@ class ActivitiesGoal : NSObject{
      }
 
      */
-    
+    init(timeLinedayActivitiesForUsers: TimeLinedayActivitiesForUsers) {
+    date = NSDate()
+        goalLinks = timeLinedayActivitiesForUsers.goalLink
+        goalName = timeLinedayActivitiesForUsers.goalName
+        goalType = timeLinedayActivitiesForUsers.goalType
+        maxDurationMinutes = timeLinedayActivitiesForUsers.maxDurationMinutes
+        
+        goalAccomplished = timeLinedayActivitiesForUsers.goalAccomplished
+        totalActivityDurationMinutes = timeLinedayActivitiesForUsers.totalActivityDurationMinutes
+        totalMinutesBeyondGoal = timeLinedayActivitiesForUsers.totalMinutesBeyondGoal
+        spread = timeLinedayActivitiesForUsers.spread
+        zones = timeLinedayActivitiesForUsers.zones
+        spreadCells = timeLinedayActivitiesForUsers.spreadCells
+        
+        dayDetailLinks = timeLinedayActivitiesForUsers.dayDetailLink
+    }
     
     init(activityData: AnyObject, date theDate: NSDate) {
         

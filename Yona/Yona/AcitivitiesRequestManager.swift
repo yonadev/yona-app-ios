@@ -21,6 +21,10 @@ class ActivitiesRequestManager {
     private var activitiesNotGoals: [Activities] = []
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
     
+    private var timeLineAcitivityCompletion : APITimeLineUserGoalsRespons?
+    private var timeLineUserCompletion : APITimeLineUserGoalsRespons?
+    private var timeLineGoals : [String:[Goal]] = [:]
+    
     private init() {}
 
     /** Call getActivitiesNotAddedWithTheUsersGoals to return to your UI the activties not yet added to display in a the challenges table. Also it will return the users goals in the APIActivitiesGoalsArrayResponse completion block, because to get activities not added you also need to get the goals so we may as well return the goals as well so that your UI does have to call get goals too
@@ -166,6 +170,31 @@ class ActivitiesRequestManager {
         }
     }
 
+    /**
+     IMplements the Activtiy with ID API call, and returns a specific activity identified by its ID
+     
+     - parameter activityID: String, activity ID
+     - parameter onCompletion: APIActivityResponse, returns the activity requested as an Activities object
+     */
+    func getActivityCategoryWithLink(link: String, onCompletion: APIActivityResponse){
+
+            //if the newActivites object has been filled then we can get the link to display activity
+        self.APIService.callRequestWithAPIServiceResponse(nil, path: link, httpMethod: httpMethods.get) { success, json, error in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    return
+                }
+                print(json)
+                self.newActivity = Activities.init(activityData: json)
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newActivity, error)
+            } else {
+                //response from request failed
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+            }
+        }
+        
+    }
 
     /**
     Implements the Activtiy pr day, and combines data with goals and activitytype
@@ -206,6 +235,8 @@ class ActivitiesRequestManager {
                                                 }
                                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
 
+                                            } else {
+                                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
                                             }
                                         
                                         })
@@ -489,6 +520,43 @@ class ActivitiesRequestManager {
      - paramter page : The page to be fetched
      - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
      */
+    
+    func getActivityDetails(buddy: Buddies, activityLink : String,date :NSDate ,onCompletion: APIActivityWeekDetailResponse){
+        self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    return
+                }
+                var newData : WeekSingleActivityDetail?
+                
+                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                    
+                    if activities?.count > 0 {
+                        
+                        GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(buddy, activities: activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                            
+                            if status  {
+                                newData = WeekSingleActivityDetail(data: json, allGoals: goals!)
+                            }
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                            
+                        })
+                    } else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    }
+                })
+                
+            } else {
+                //response from request failed
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+            }
+        }
+        
+    }
+
+    
+    
     func getActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityWeekDetailResponse){
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
                         if let json = json {
@@ -641,4 +709,167 @@ class ActivitiesRequestManager {
         
     }
 
+    
+    func getTimeLineActivity(onCompletion: APIActivityTimeLineResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            if success {
+  //              BuddyRequestManager.sharedInstance.getAllbuddies({(succes, serverMessage, serverCode, buddies, allBuddies) in
+   //                 if succes && allBuddies != nil{
+                        
+                        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+                            if success && user?.timeLineLink != nil {
+                                var data : [TimeLineDayActivityOverview] = []
+                                self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
+                                    if let json = json {
+                                        guard success == true else {
+                                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                            return
+                                        }
+                                        if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray {
+                                            
+                                            self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                                if activities?.count > 0 {
+                                                    for activity in embeddedActivities {
+                                                        let obj = TimeLineDayActivityOverview(jsonData : activity as! BodyDataDictionary, activities : activities!)
+                                                        data.append(obj)
+                                                        
+                                                    }
+                                                    // NOW All data load  - Fill out the blanks :-|
+                                                    self.loadAllGoals(data , completion : {(succes) in
+                                                        for obj in data {
+                                                            if let theBuddies = user?.buddies {
+                                                                obj.configureForTableView(theBuddies,aUser:user!)
+                                                            }
+                                                        }
+                                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), data, error)
+                                                        
+                                                    })
+                                                        }
+                                                
+                                                })
+
+                                            
+                                        }
+                        }
+                    }
+                            }
+                
+                    else {
+                        
+                    }
+                }//)
+               
+                
+            }
+        }
+    }
+    
+    
+    func loadAllGoals(data : [TimeLineDayActivityOverview], completion : APITimeLineUserGoalsRespons) {
+    
+  /*      var userdataArr : [TimeLinedayActivitiesForUsers] = []
+        var activityArr : [TimeLineDayActivities] = []
+        for each in data {
+            for activiti in each.activites {
+                activityArr.append(activiti)
+                for aUser in activiti.userData {
+                    userdataArr.append(aUser)
+                }
+
+            }
+        }*/
+        loadActivities (data ,section : 0 ,row : 0,completion : {(success) in
+            //self.loadGoals (data,section : 0, row : 0, user : 0 ,completion : {(success) in
+                completion(true)
+            //})
+            
+        })
+        
+    }
+
+    
+    func loadActivities( userData : [TimeLineDayActivityOverview], section: Int, row : Int, completion :APITimeLineUserGoalsRespons?){
+        if completion != nil {
+            timeLineAcitivityCompletion = completion
+        }
+        if section >= userData.count {
+            timeLineAcitivityCompletion!(true)
+            return
+        }
+        
+        if row >= userData[section].activites.count {
+            self.loadActivities(userData, section: section + 1, row:  0, completion:  nil)
+            return
+        }
+        if let link = userData[section].activites[row].activityCategoryLink {
+            ActivitiesRequestManager.sharedInstance.getActivityCategoryWithLink(link, onCompletion: {(success, serverMessage, serverCode, activities, error) in
+                if success  {
+                    if activities != nil {
+                        
+                        userData[section].activites[row].setActivity(activities!)
+                    }
+                    var newRow = row
+                    var newSection = section
+                    if newRow >= userData[section].activites.count {
+                        newRow = 0
+                        newSection += 1
+                    } else {
+                        newRow += 1
+                    }
+                    
+                    self.loadActivities(userData, section: newSection, row:  newRow, completion:  nil)
+                }
+
+            })
+        }
+    }
+    
+
+    func loadGoals( userData : [TimeLineDayActivityOverview], section : Int, row : Int, user :Int, completion :APITimeLineUserGoalsRespons?){
+        if completion != nil {
+            timeLineUserCompletion = completion
+        }
+        if section >= userData.count {
+            timeLineUserCompletion!(true)
+            return
+        }
+        if row >= userData[section].activites.count {
+            self.loadGoals(userData, section: section + 1, row : 0 ,user: 0, completion:  nil)
+            return
+        }
+        if user >= userData[section].activites[row].userData.count {
+            self.loadGoals(userData, section: section, row : (row + 1) ,user: 0, completion:  nil)
+            return
+        }
+        
+        if let _ = userData[section].activites[row].userData[user].buddyLink {
+            if let link = userData[section].activites[row].userData[user].goalLink {
+                if let goals = timeLineGoals[link]  {
+                    userData[section].activites[row].userData[user].setGoalData(goals)
+                    self.loadGoals(userData, section: section, row : row ,user: (user + 1 ), completion:  nil)
+                } else {                
+                    GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(link, onCompletion: {(succes, serverMessage, serverCode, goal, goals, error)
+                        in
+                        if succes {
+                            if goal != nil {
+                                self.timeLineGoals[link] = [goal!]
+                                userData[section].activites[row].userData[user].setGoalData([goal!])
+                            }
+                            self.loadGoals(userData, section: section, row : row ,user: (user + 1 ), completion:  nil)
+                        }
+                    })
+                }
+            }
+        } else if let _ = userData[section].activites[row].userData[user].userLink {
+            GoalsRequestManager.sharedInstance.getAllTheGoals([], onCompletion: {(succes, serverMessage, serverCode, goal, goals, error)
+                in
+                if succes {
+                    userData[section].activites[row].userData[user].setGoalData(goals!)
+                    self.loadGoals(userData, section: section, row : row ,user: (user + 1 ), completion:  nil)
+                }
+            })
+
+        }
+    }
 }

@@ -16,6 +16,7 @@ enum DayDetailSecions : Int{
 class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentControlProtocol {
 
     var buddy : Buddies?
+    var comments: [Comment] = []
     
     override func registreTableViewCells () {
         super.registreTableViewCells()
@@ -47,7 +48,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         
         if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-            cell.getMessageData(dayData?.messageLink)
+            cell.setData(self.comments[indexPath.row])
             return cell
         } else if indexPath.section == 2 {
             let cell: SendCommentControl = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as! SendCommentControl
@@ -76,7 +77,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         super.tableView(tableView, numberOfRowsInSection: section)
         var numberOfSections = 2
         if section == 1 {
-            numberOfSections = 2 // this changes to number of 
+            numberOfSections = self.comments.count // number of comments
         } else if section == 2 {
             numberOfSections = 1
         }
@@ -112,6 +113,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         
         Loader.Show()
         
+        if let _ = buddy {
+        
         if typeToLoad == .own {
             if let path = initialObjectLink {
                 if let bud = buddy {
@@ -122,6 +125,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
+                            if let messageLink = data.messageLink {
+                                self.getMessageData(messageLink)
+                            }
                         }
                         
                         Loader.Hide()
@@ -133,6 +139,10 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                 })
                 }
             }
+            if let messageLink = dayData?.messageLink {
+                getMessageData(messageLink)
+            }
+
         }
         else if typeToLoad == .prev {
             if let path = dayData!.prevLink {
@@ -144,6 +154,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
+                            if let messageLink = data.messageLink {
+                                self.getMessageData(messageLink)
+                            }
                         }
                         
                         Loader.Hide()
@@ -155,6 +168,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                 })
                 }
             }
+
             
         }
         else if typeToLoad == .next {
@@ -167,6 +181,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                                 self.currentDate = data.date!
                                 self.currentDay = data.dayOfWeek
                                 self.dayData  = data
+                                if let messageLink = data.messageLink {
+                                    self.getMessageData(messageLink)
+                                }
                             }
                             
                             Loader.Hide()
@@ -179,12 +196,27 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                 }
             }
         }
+        } else {
+            super.loadData()
         
+        }
         //Loader.Hide()
         self.tableView.reloadData()
     }
-    // MARK: - SendCommentControlProtocol
     
+    // MARK: - SendCommentControlProtocol
+    func getMessageData(commentLink: String?) {
+        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 10, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                if let comments = comments {
+                    self.comments = comments
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    // MARK: - SendCommentControlProtocol
     func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
         if textField == commentTextField {
             IQKeyboardManager.sharedManager().enableAutoToolbar = true
