@@ -22,6 +22,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var aMessage : Message?
+    var aBuddy : Buddies?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,9 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
 
             let cell: YonaUserHeaderWithTwoTabTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserHeaderWithTwoTabTableViewCell", forIndexPath: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell
             cell.setAcceptFriendsMode()
+            if let aBuddy = aBuddy {
+                cell.setBuddy(aBuddy)
+            }
             if let msg = aMessage {
                 cell.setMessage(msg)
             }

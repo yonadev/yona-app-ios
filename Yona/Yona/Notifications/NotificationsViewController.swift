@@ -12,7 +12,8 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
-    
+//    var buddyData : Buddies?
+
     //MARK: searchResultMovies hold the movie search results
     var messages = [[Message]]() {
         didSet{
@@ -47,24 +48,31 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
        loadMessages(self)
     }
     
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return false
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
+        if (segue.identifier == "showAcceptFriend") {
             let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
             BuddyRequestManager.sharedInstance.getBuddy(aMessage.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
                 //success so get the user?
                 if success {
                     //success so get the user
+                    //                    self.buddyData = buddy
                     let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
                     controller.aMessage = self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
+                    controller.aBuddy = buddy
                     self.selectedIndex = nil
                     self.tableView.reloadData()
                 } else {
                     //response from request failed
-                    
                 }
             })
-
         }
+//        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
+//        }
     }
     
     //MARK: - tableview methods
