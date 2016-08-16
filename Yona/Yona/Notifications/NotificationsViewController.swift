@@ -12,7 +12,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
-//    var buddyData : Buddies?
+    var buddyData : Buddies?
 
     //MARK: searchResultMovies hold the movie search results
     var messages = [[Message]]() {
@@ -29,10 +29,6 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
-        
-//        self.refreshControl = UIRefreshControl()
-//        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func registreTableViewCells () {
@@ -48,31 +44,16 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
        loadMessages(self)
     }
     
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        return false
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showAcceptFriend") {
-            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-            BuddyRequestManager.sharedInstance.getBuddy(aMessage.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
-                //success so get the user?
-                if success {
-                    //success so get the user
-                    //                    self.buddyData = buddy
-                    let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
-                    controller.aMessage = self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
-                    controller.aBuddy = buddy
-                    self.selectedIndex = nil
-                    self.tableView.reloadData()
-                } else {
-                    //response from request failed
-                }
-            })
+
+        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
+            let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
+            controller.aMessage = self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
+            controller.aBuddy = self.buddyData
+            self.selectedIndex = nil
+            self.tableView.reloadData()
         }
-//        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
-//        }
+        
     }
     
     //MARK: - tableview methods
@@ -91,13 +72,24 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        
-        if aMessage.status == buddyRequestStatus.REQUESTED {
-            performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
+        Loader.Show()
+        BuddyRequestManager.sharedInstance.getBuddy(aMessage.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+            //success so get the user?
+            if success {
+                Loader.Hide()
+                self.buddyData = buddy
+                if aMessage.status == buddyRequestStatus.REQUESTED {
+                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                }
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            } else {
+                //response from request failed
+                Loader.Hide()
+            }
+        })
 
+    }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell

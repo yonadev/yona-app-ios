@@ -26,7 +26,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("notifications.accept.title", comment: "") 
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiMidBlueColor()
+        navigationItem.title = NSLocalizedString("notifications.accept.title", comment: "")
         registreTableViewCells()
     }
     
@@ -86,8 +87,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                 cell.setMessage(msg)
             }
             return cell
-        
-        
         case acceptFriendRequest.type.rawValue:
             let cell: YonaNotificationsAccessTypeTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTypeTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTypeTableViewCell
             cell.typeTextLable.text = NSLocalizedString("notifications.accept.type", comment: "")
@@ -97,7 +96,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             if let msg = aMessage {
                 cell.setPhoneNumber(msg)
             }
-
             return cell
         case acceptFriendRequest.buttons.rawValue:
             let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
@@ -134,10 +132,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         var text = ""
         if let msg = aMessage {
             switch row {
-//            case acceptFriendRequest.message:
-//                let num = msg.UserRequestmobileNumber
-//                text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
-//                
             case acceptFriendRequest.number:
                 text = msg.message
             default:

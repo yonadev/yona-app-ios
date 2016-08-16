@@ -12,4 +12,7 @@ import Foundation
 class YonaNotificationsAccessTypeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var typeTextLable : UILabel!
+    override func awakeFromNib() {
+        typeTextLable.numberOfLines = 5
+    }
 }
