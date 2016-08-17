@@ -62,9 +62,13 @@ class CommentControlCell: PKSwipeTableViewCell {
         
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
         if let nickname = comment.nickname {
-            avatarNameLabel.text = "\(nickname.capitalizedString.characters.first)"
+            avatarNameLabel.text = "\(nickname.capitalizedString.characters.first!)"
         }
         
+    }
+    
+    @IBAction func replyToCommentButton(sender: UIButton) {
+        commentDelegate?.showSendComment()
     }
 
 }

@@ -11,31 +11,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygq-Ms-5Nh">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygq-Ms-5Nh">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnComment" translatesAutoresizingMaskIntoConstraints="NO" id="JNL-1b-WEj">
-                            <rect key="frame" x="20" y="14" width="17" height="18"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="18" id="248-jN-1II"/>
-                                <constraint firstAttribute="width" constant="17" id="SRs-rY-5eX"/>
-                            </constraints>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icnCommentBar" translatesAutoresizingMaskIntoConstraints="NO" id="FsP-pT-KwV">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="JNL-1b-WEj" firstAttribute="leading" secondItem="ygq-Ms-5Nh" secondAttribute="leading" constant="20" id="CBq-fh-gaX"/>
-                        <constraint firstItem="JNL-1b-WEj" firstAttribute="centerY" secondItem="ygq-Ms-5Nh" secondAttribute="centerY" id="UAm-PV-8Tb"/>
-                    </constraints>
+                    <color key="backgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="ygq-Ms-5Nh" firstAttribute="leading" secondItem="44o-kk-hLG" secondAttribute="leading" id="0Qe-KT-njm"/>
-                <constraint firstAttribute="trailing" secondItem="ygq-Ms-5Nh" secondAttribute="trailing" id="2Fc-cz-v1T"/>
-                <constraint firstAttribute="bottom" secondItem="ygq-Ms-5Nh" secondAttribute="bottom" id="gyK-oW-fjG"/>
-                <constraint firstItem="ygq-Ms-5Nh" firstAttribute="top" secondItem="44o-kk-hLG" secondAttribute="top" id="ppz-fW-34J"/>
-            </constraints>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -43,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icnComment" width="18" height="15"/>
+        <image name="icnCommentBar" width="375" height="45"/>
     </resources>
 </document>

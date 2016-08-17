@@ -1,4 +1,12 @@
 //
+//  SendCommentControlFooter.swift
+//  Yona
+//
+//  Created by Ben Smith on 17/08/16.
+//  Copyright © 2016 Yona. All rights reserved.
+//
+
+//
 //  SendCommentControl.swift
 //  Yona
 //
@@ -8,17 +16,12 @@
 
 import Foundation
 
-protocol SendCommentControlProtocol {
-    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
-    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
-}
-
-class SendCommentControl : UITableViewHeaderFooterView {
+class SendCommentControlFooter : UITableViewHeaderFooterView {
     
     var postGoalLink : String?
     
     var delegate : SendCommentControlProtocol?
-
+    
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
     
@@ -29,7 +32,7 @@ class SendCommentControl : UITableViewHeaderFooterView {
     
     @IBAction func sendComment(sender: UIButton) {
         if let postGoalLink = postGoalLink ,
-         let commentText = self.commentTextField.text{
+            let commentText = self.commentTextField.text{
             let messageBody: [String:AnyObject] = [
                 "message": commentText
             ]
@@ -43,7 +46,7 @@ class SendCommentControl : UITableViewHeaderFooterView {
     }
 }
 
-extension SendCommentControl: UITextFieldDelegate {
+extension SendCommentControlFooter: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         delegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)

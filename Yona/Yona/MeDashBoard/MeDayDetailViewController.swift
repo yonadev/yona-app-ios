@@ -25,7 +25,7 @@ enum detailDaySections : Int  {
     case comment
 }
 
-class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol  {
+class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate  {
  
     @IBOutlet weak var tableView : UITableView!
     var correctToday = NSDate()
@@ -38,6 +38,18 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var currentDay : String?
     var nextLink : String?
     var prevLink : String?
+    
+    @IBOutlet weak var commentView: UIView!
+    var sendCommentFooter : SendCommentControlFooter?
+
+    var comments = [Comment]() {
+        didSet{
+            //everytime savedarticles is added to or deleted from table is refreshed
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +79,15 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
         
+        nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        
+        nib = UINib(nibName: "SendCommentControlFooter", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,8 +97,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 
         self.loadData(.own)
         self.navigationItem.title = goalName
-
-
+        
+        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
+        sendCommentFooter!.delegate = self
+        self.commentView.addSubview(sendCommentFooter!)
+        self.commentView.hidden = true
     }
     
     //MARK: Protocol implementation
@@ -101,6 +125,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+
                         }
                         
                         Loader.Hide()
@@ -121,6 +150,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 self.currentDate = data.date!
                                 self.currentDay = data.dayOfWeek
                                 self.dayData  = data
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
+                                }
+                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+
                             }
                             
                             Loader.Hide()
@@ -142,7 +176,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 self.currentDate = data.date!
                                 self.currentDay = data.dayOfWeek
                                 self.dayData  = data
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
+                                }
+                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+
                             }
+
                             
                             Loader.Hide()
                             self.tableView.reloadData()
@@ -162,35 +202,48 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 // MARK: - tableview Override
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var cellHeight = 165
-        if indexPath.row == detailDayRows.activity.rawValue {
-            if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
-                cellHeight = 165
-            } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
-                cellHeight = 85
-            } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+        if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 165
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 165
+                }
+            }
+            
+            if indexPath.row == detailDayRows.spreadCell.rawValue{
                 cellHeight = 165
             }
+        } else if indexPath.section == detailDaySections.comment.rawValue {
+            cellHeight = 165
         }
+        
         return CGFloat(cellHeight)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 44.0
+        } else if section == 1 && self.comments.count > 0{
+            return 45
         }
         return 0.0
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dayData != nil {
-            return 2
-        } else {
-            return 0
+        var numberOfSections = 2
+        if section == 1 {
+            numberOfSections = self.comments.count // number of comments
+        } else if section == 2 {
+            numberOfSections = 1
         }
+        return numberOfSections
         
     }
     
@@ -227,6 +280,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 }
                 
             }
+        } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
+            let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
+            cell.setBuddyCommentData(self.comments[indexPath.row])
+            cell.indexPath = indexPath
+            cell.commentDelegate = self
+            cell.replyToComment.hidden = false
+            return cell
         }
         return UITableViewCell(frame: CGRectZero)
         
@@ -265,8 +325,65 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
             
             return cell
+        } else if section == 1 && self.comments.count > 0{
+            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+            return cell
         }
+//        else if section == 2 && self.dayData?.commentLink != nil{
+//            let cell: SendCommentControl = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControl") as! SendCommentControl
+//            cell.delegate = self
+//            cell.postGoalLink = self.dayData?.commentLink
+//            return cell
+//        }
         return nil
+    }
+    
+    // MARK: - CommentCellDelegate
+    func deleteComment(cell: CommentControlCell, comment: Comment){
+        let aComment = comment as Comment
+        CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
+            if success {
+                self.comments.removeAtIndex((cell.indexPath?.row)!)
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
+    }
+    
+    func showSendComment() {
+        UIView.animateWithDuration(1.5, animations: {
+            self.commentView.hidden = false
+        })
+    }
+    
+    // MARK: - SendCommentControlProtocol
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
+        if textField == commentTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+        commentTextField.resignFirstResponder()
+        //reload the data
+        if let comment = comment {
+            self.comments.append(comment)
+        }
+        
+    }
+    
+    // MARK: - get comment data
+    func getComments(commentLink: String?) {
+        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                self.comments = []
+                if let comments = comments {
+                    self.comments = comments
+                }
+            }
+        }
     }
 
 }

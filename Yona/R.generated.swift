@@ -328,6 +328,7 @@ struct R {
     static var icnChallengeTimezone: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimezone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimezone") } }
     static var icnChallenges: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallenges", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallenges") } }
     static var icnComment: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnComment", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnComment") } }
+    static var icnCommentBar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCommentBar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCommentBar") } }
     static var icnCreate: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCreate") } }
     static var icnDateBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateBack") } }
     static var icnDateForward: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateForward") } }
@@ -383,6 +384,7 @@ struct R {
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var sendCommentControl: _R.nib._SendCommentControl { return _R.nib._SendCommentControl() }
+    static var sendCommentControlFooter: _R.nib._SendCommentControlFooter { return _R.nib._SendCommentControlFooter() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeLineHeaderCell: _R.nib._TimeLineHeaderCell { return _R.nib._TimeLineHeaderCell() }
@@ -805,6 +807,19 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControl? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControl
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _SendCommentControlFooter: NibResource {
+      var instance: UINib { return UINib.init(nibName: "SendCommentControlFooter", bundle: _R.hostingBundle) }
+      var name: String { return "SendCommentControlFooter" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControlFooter? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControlFooter
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

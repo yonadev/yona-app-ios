@@ -22,6 +22,7 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
     var totalMinutesBeyondGoal : Int = 0
     var nextLink : String?
     var prevLink : String?
+    var commentLink : String?
     
     override init(data : BodyDataDictionary , allGoals : [Goal]) {
         super.init(data: data, allGoals: allGoals)
@@ -84,6 +85,10 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
             if let link = links[YonaConstants.jsonKeys.nextLink] as? [String: AnyObject],
                 let aNextLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 nextLink = aNextLink
+            }
+            if let link = links[YonaConstants.jsonKeys.commentLink] as? [String: AnyObject],
+                let aCommentLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
+                commentLink = aCommentLink
             }
         }
         for goal in allGoals {

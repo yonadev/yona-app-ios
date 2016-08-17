@@ -14,7 +14,7 @@ enum detailRows : Int  {
     case spreadCell
 }
 
-class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
+class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
     var initialObject : WeekSingleActivityGoal?
     var week : [String:WeekSingleActivityDetail] = [:]
     var firstWeek :  NSDate = NSDate()
@@ -22,11 +22,25 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var correctToday = NSDate()
     @IBOutlet weak var tableView : UITableView!
     
+    @IBOutlet weak var commentView: UIView!
+    var sendCommentFooter : SendCommentControlFooter?
+    
+    var comments = [Comment]() {
+        didSet{
+            //everytime add comments refresh table
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = NSLocalizedString("Social", comment: "")
         registreTableViewCells()
-            
+        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
+        sendCommentFooter!.delegate = self
+        self.commentView.addSubview(sendCommentFooter!)
+        self.commentView.hidden = true
     }
 
     func registreTableViewCells () {
@@ -44,6 +58,15 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
         nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
+        
+        nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        
+        nib = UINib(nibName: "SendCommentControlFooter", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
         
     }
 
@@ -64,15 +87,20 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     // MARK: - tableview Override
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        var numberOfSections = 0
         if let _ = week[currentWeek.yearWeek]  {
-            return 3
+            numberOfSections = 3
         }
-        return 0
+        if section == 1 {
+            numberOfSections = self.comments.count // number of comments
+        } else if section == 2 {
+            numberOfSections = 1
+        }
+        return numberOfSections
         
     }
     
@@ -108,29 +136,39 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 return cell
             }
         }
+        if let data = week[currentWeek.yearWeek]  {
+            if data.messageLink != nil && indexPath.section == 1 {
+                let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
+                cell.setBuddyCommentData(self.comments[indexPath.row])
+                cell.indexPath = indexPath
+                cell.commentDelegate = self
+                cell.replyToComment.hidden = false
+                return cell
+            }
+        }
         return UITableViewCell(frame: CGRectZero)
 
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
-            cell.delegate = self
-            
-            let other = week[currentWeek.yearWeek]?.date.yearWeek
-            let otherDateStart = correctToday.dateByAddingTimeInterval(-60*60*24*7)
-            let otherDate = otherDateStart.yearWeek
-            
-            if correctToday.yearWeek == other {
-                cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
-            } else if other == otherDate {
-                cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
-            } else {
-                let dateFormatter : NSDateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd MMM"
-                cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
-            }
-           if let data = week[currentWeek.yearWeek] {
+        if let data = week[currentWeek.yearWeek] {
+            if section == 0 {
+                let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
+                cell.delegate = self
+                
+                let other = week[currentWeek.yearWeek]?.date.yearWeek
+                let otherDateStart = correctToday.dateByAddingTimeInterval(-60*60*24*7)
+                let otherDate = otherDateStart.yearWeek
+                
+                if correctToday.yearWeek == other {
+                    cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+                } else if other == otherDate {
+                    cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
+                } else {
+                    let dateFormatter : NSDateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd MMM"
+                    cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
+                }
                 var next = false
                 var prev = false
                 cell.configureWithNone()
@@ -145,11 +183,16 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 if next && prev {
                     cell.configureWithBoth()
                 }
-                
+                return cell
+            } else if section == 1 && self.comments.count > 0{
+                let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+                return cell
+            } else if section == 2 && data.commentLink != nil{
+                let cell: SendCommentControl = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControl") as! SendCommentControl
+                cell.delegate = self
+                cell.postGoalLink = data.commentLink
+                return cell
             }
-            
-            
-        return cell
         }
         return nil
     }
@@ -172,11 +215,14 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
         }
         return CGFloat(cellHeight)
+        
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 44.0
+        } else if section == 1 && self.comments.count > 0{
+            return 45
         }
         return 0.0
     }
@@ -210,6 +256,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 self.currentWeek = data.date
                                 self.week[data.date.yearWeek] = data
                                 print (data.date.yearWeek)
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
+                                }
+                                self.sendCommentFooter!.postGoalLink = data.commentLink
+
                             }
                             
                             Loader.Hide()
@@ -231,6 +282,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 self.currentWeek = data.date
                                 self.week[data.date.yearWeek] = data
                                 print (data.date.yearWeek)
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
+                                }
+                                self.sendCommentFooter!.postGoalLink = data.commentLink
+
                             }
                             
                             Loader.Hide()
@@ -252,6 +308,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 self.currentWeek = data.date
                                 self.week[data.date.yearWeek] = data
                                 print (data.date.yearWeek)
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
+                                }
+                                self.sendCommentFooter!.postGoalLink = data.commentLink
+
                             }
                             
                             Loader.Hide()
@@ -269,5 +330,53 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         Loader.Hide()
         self.tableView.reloadData()
             
+    }
+    
+    // MARK: - CommentCellDelegate
+    func deleteComment(cell: CommentControlCell, comment: Comment){
+        let aComment = comment as Comment
+        CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
+            if success {
+                self.comments.removeAtIndex((cell.indexPath?.row)!)
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
+    }
+    
+    func showSendComment() {
+        UIView.animateWithDuration(1.5, animations: {
+            self.commentView.hidden = false
+        })
+    }
+    
+    // MARK: - SendCommentControlProtocol
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
+        if textField == commentTextField {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        }
+    }
+    
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+        commentTextField.resignFirstResponder()
+        //reload the data
+        if let comment = comment {
+            self.comments.append(comment)
+        }
+        
+    }
+    
+    // MARK: - get comment data
+    func getComments(commentLink: String?) {
+        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                self.comments = []
+                if let comments = comments {
+                    self.comments = comments
+                }
+            }
+        }
     }
 }
