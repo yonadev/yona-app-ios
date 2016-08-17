@@ -16,6 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JUG-en-BZG">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r87-bW-Thq">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
@@ -26,9 +30,13 @@
             <color key="backgroundColor" white="0.90588235859999999" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="r87-bW-Thq" secondAttribute="trailing" id="JZY-2g-UJv"/>
+                <constraint firstAttribute="trailing" secondItem="JUG-en-BZG" secondAttribute="trailing" id="QEa-Fn-py7"/>
                 <constraint firstItem="r87-bW-Thq" firstAttribute="leading" secondItem="qv2-3B-bzF" secondAttribute="leading" id="Ty0-Xc-a58"/>
                 <constraint firstItem="r87-bW-Thq" firstAttribute="top" secondItem="qv2-3B-bzF" secondAttribute="top" id="U5h-la-zN5"/>
+                <constraint firstAttribute="bottom" secondItem="JUG-en-BZG" secondAttribute="bottom" id="Wj4-LU-oSQ"/>
+                <constraint firstItem="JUG-en-BZG" firstAttribute="top" secondItem="qv2-3B-bzF" secondAttribute="top" id="YkH-jD-1O4"/>
                 <constraint firstAttribute="bottom" secondItem="r87-bW-Thq" secondAttribute="bottom" id="hb2-Ly-CZh"/>
+                <constraint firstItem="JUG-en-BZG" firstAttribute="leading" secondItem="qv2-3B-bzF" secondAttribute="leading" id="pSM-Mm-5Z5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

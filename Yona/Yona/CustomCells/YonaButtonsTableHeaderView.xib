@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="qv2-3B-bzF" customClass="YonaButtonsTableHeaderView" customModule="Yona" customModuleProvider="target">
+        <view opaque="NO" contentMode="scaleToFill" id="qv2-3B-bzF" customClass="YonaButtonsTableHeaderView" customModule="Yona" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
