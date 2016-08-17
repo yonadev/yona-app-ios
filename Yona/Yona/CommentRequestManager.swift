@@ -48,9 +48,7 @@ class CommentRequestManager {
                     }
                     onCompletion(success, nil, self.comments, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
                 } else {
-                    self.comment = Comment.init(commentData: json)
-                    self.comments.append(self.comment!)
-                    onCompletion(success, nil, self.comments, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
+                    onCompletion(false, nil, self.comments, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
                 }
             } else {
                 onCompletion(success, nil, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user

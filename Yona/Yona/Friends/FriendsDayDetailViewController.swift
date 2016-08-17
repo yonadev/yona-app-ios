@@ -55,7 +55,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         
         if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-            cell.setData(self.comments[indexPath.row])
+            cell.setBuddyCommentData(self.comments[indexPath.row])
             cell.indexPath = indexPath
             cell.commentDelegate = self
             return cell
@@ -134,8 +134,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
-                            if let messageLink = data.messageLink {
-                                self.getMessageData(messageLink)
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
                             }
                         }
                         
@@ -147,9 +147,6 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                     }
                 })
                 }
-            }
-            if let messageLink = dayData?.messageLink {
-                getMessageData(messageLink)
             }
 
         }
@@ -163,8 +160,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
-                            if let messageLink = data.messageLink {
-                                self.getMessageData(messageLink)
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
                             }
                         }
                         
@@ -190,8 +187,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
                                 self.currentDate = data.date!
                                 self.currentDay = data.dayOfWeek
                                 self.dayData  = data
-                                if let messageLink = data.messageLink {
-                                    self.getMessageData(messageLink)
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
                                 }
                             }
                             
@@ -214,7 +211,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
     }
     
     // MARK: - get comment data
-    func getMessageData(commentLink: String?) {
+    func getComments(commentLink: String?) {
         CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []
@@ -231,10 +228,6 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
             if success {
                 self.comments.removeAtIndex((cell.indexPath?.row)!)
-
-                if let messageLink = self.dayData?.messageLink {
-                    self.getMessageData(messageLink)
-                }
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
             }
@@ -250,8 +243,13 @@ class FriendsDayDetailViewController : MeDayDetailViewController, SendCommentCon
         }
     }
     
-    func textFieldEndEdit(commentTextField: UITextField){
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
+        //reload the data
+        if let comment = comment {
+            self.comments.append(comment)
+        }
+
     }
 
 }

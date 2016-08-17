@@ -57,14 +57,14 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
         twentyHundredConstraint.constant = twentyLeftIndent * pxPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
    
-    userInitial.text = ""
-    userInitial.textColor = UIColor.yiWhiteColor()
-    
-    
-    userIcon.layer.borderWidth = 0.0
-    userIcon.layer.masksToBounds = true
-    userIcon.layer.cornerRadius = userIcon.frame.size.width/2
-    userIcon.backgroundColor = UIColor.yiGrapeColor()
+        userInitial.text = ""
+        userInitial.textColor = UIColor.yiWhiteColor()
+        
+        
+        userIcon.layer.borderWidth = 0.0
+        userIcon.layer.masksToBounds = true
+        userIcon.layer.cornerRadius = userIcon.frame.size.width/2
+        userIcon.backgroundColor = UIColor.yiGrapeColor()
 
     }
 

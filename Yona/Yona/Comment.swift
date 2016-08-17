@@ -65,8 +65,8 @@ struct Comment{
         if let isRead = commentData[commentKeys.isRead.rawValue] as? Bool{
             self.isRead = isRead
         }
-        if let yona_threadHeadLink = commentData[commentKeys.yona_threadHead.rawValue] as? String{
-            self.markReadLink = yona_threadHeadLink
+        if let threadHeadMessageID = commentData[commentKeys.threadHeadMessageID.rawValue] as? String{
+            self.threadHeadMessageID = threadHeadMessageID
         }
         
         //get the links

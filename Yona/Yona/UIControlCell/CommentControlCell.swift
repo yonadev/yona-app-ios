@@ -12,13 +12,20 @@ class CommentControlCell: PKSwipeTableViewCell {
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var replyToComment: UIButton!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
+
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarNameLabel: UILabel!
+    
     var comment: Comment?
     var indexPath: NSIndexPath?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         replyToComment.titleLabel?.text = NSLocalizedString("commenting.replyToComment", comment: "")
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height/2
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.backgroundColor = UIColor.yiGrapeColor()
+
         addRightViewInCell()
         
     }
@@ -48,10 +55,16 @@ class CommentControlCell: PKSwipeTableViewCell {
         }
     }
     
-    func setData(comment: Comment) {
+    func setBuddyCommentData(comment: Comment) {
         self.comment = comment
         self.commentTextView.text = comment.message
         self.name.text = comment.nickname
+        
+        // AVATAR NOT Implemented - must check for avatar image when implemented on server
+        if let nickname = comment.nickname {
+            avatarNameLabel.text = "\(nickname.capitalizedString.characters.first)"
+        }
+        
     }
 
 }

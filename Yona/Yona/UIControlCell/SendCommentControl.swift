@@ -10,7 +10,7 @@ import Foundation
 
 protocol SendCommentControlProtocol {
     func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
-    func textFieldEndEdit(commentTextField: UITextField)
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
 }
 
 class SendCommentControl : UITableViewCell {
@@ -34,6 +34,9 @@ class SendCommentControl : UITableViewCell {
                 "message": commentText
             ]
             CommentRequestManager.sharedInstance.postComment(postGoalLink, messageBody: messageBody) { (success, comment, nil, message, code) in
+                if success {
+                    self.delegate?.textFieldEndEdit(self.commentTextField, comment: comment)
+                }
                 print(comment)
             }
         }
@@ -57,6 +60,6 @@ extension SendCommentControl: UITextFieldDelegate {
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
-        delegate?.textFieldEndEdit(commentTextField)
+        delegate?.textFieldEndEdit(commentTextField, comment: nil)
     }
 }
