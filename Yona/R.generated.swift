@@ -676,6 +676,7 @@ struct R {
         assert(UIImage(named: "icn_vpn_Alert") != nil, "[R.swift] Image named 'icn_vpn_Alert' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro2_2") != nil, "[R.swift] Image named 'intro2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro_setting_1_2") != nil, "[R.swift] Image named 'intro_setting_1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_3_2") != nil, "[R.swift] Image named 'intro_setting_3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro_setting_4_2") != nil, "[R.swift] Image named 'intro_setting_4_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro_setting_1_1") != nil, "[R.swift] Image named 'intro_setting_1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")

@@ -1134,7 +1134,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-gF-2ka">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_3_2" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-gF-2ka">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1349,6 +1349,7 @@
         <image name="intro_setting_2_1" width="160" height="322"/>
         <image name="intro_setting_2_2" width="160" height="322"/>
         <image name="intro_setting_3_1" width="160" height="322"/>
+        <image name="intro_setting_3_2" width="160" height="322"/>
         <image name="intro_setting_4_1" width="160" height="322"/>
         <image name="intro_setting_4_2" width="160" height="322"/>
     </resources>
