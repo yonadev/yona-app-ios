@@ -1,12 +1,4 @@
 //
-//  SendCommentControlFooter.swift
-//  Yona
-//
-//  Created by Ben Smith on 17/08/16.
-//  Copyright © 2016 Yona. All rights reserved.
-//
-
-//
 //  SendCommentControl.swift
 //  Yona
 //
@@ -16,18 +8,18 @@
 
 import Foundation
 
-//protocol SendCommentControlProtocol {
-//    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
-//    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
-//}
+protocol SendCommentControlProtocol {
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
+}
 
-class SendCommentControlFooter : UITableViewHeaderFooterView {
+class SendCommentControl : UITableViewCell {
     
     var postCommentLink : String?
     var postReplyLink : String?
-
-    var delegate : SendCommentControlProtocol?
     
+    var delegate : SendCommentControlProtocol?
+
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
     
@@ -37,7 +29,7 @@ class SendCommentControlFooter : UITableViewHeaderFooterView {
     }
     
     @IBAction func sendComment(sender: UIButton) {
-
+        
         if let commentText = self.commentTextField.text{
             var messageBody: [String:AnyObject]
             if let postCommentLink = postCommentLink {
@@ -52,10 +44,10 @@ class SendCommentControlFooter : UITableViewHeaderFooterView {
                 }
             } else if let postReplyLink = postReplyLink{
                 messageBody = ["properties":
-                                    [
-                                    "message" : commentText
-                                    ]
-                                ]
+                    [
+                        "message" : commentText
+                    ]
+                ]
                 CommentRequestManager.sharedInstance.postReply(postReplyLink, messageBody: messageBody) { (success, comment, comments, message, code) in
                     if success {
                         self.delegate?.textFieldEndEdit(self.commentTextField, comment: comment)
@@ -63,14 +55,11 @@ class SendCommentControlFooter : UITableViewHeaderFooterView {
                     print(comment)
                 }
             }
-            
-            
-
         }
     }
 }
 
-extension SendCommentControlFooter: UITextFieldDelegate {
+extension SendCommentControl: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         delegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)

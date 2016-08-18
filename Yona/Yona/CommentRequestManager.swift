@@ -13,6 +13,9 @@ class CommentRequestManager {
     var comment: Comment?
     var comments: [Comment] = []
     
+    var reply: Comment?
+    var replies: [Comment] = []
+
     static let sharedInstance = CommentRequestManager()
     
     private init() {}
@@ -31,6 +34,32 @@ class CommentRequestManager {
             }
         }
     }
+    
+    func postReply(postReplyLink: String, messageBody: BodyDataDictionary, onCompletion: APICommentResponse){
+        self.APIService.callRequestWithAPIServiceResponse(messageBody, path: postReplyLink, httpMethod: httpMethods.post) { (success, json, error) in
+            if success {
+                if let json = json {
+                    if let embedded = json[commentKeys.embedded.rawValue],
+                        let replies = embedded[commentKeys.yonaAffectedMessage.rawValue] as? NSArray{
+                            self.replies = []
+
+                            for reply in replies {
+                                if let reply = reply as? BodyDataDictionary{
+                                    let reply = Comment.init(commentData: reply)
+                                    self.replies.append(reply)
+                                }
+                            }
+                            onCompletion(success, nil, self.replies, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //success
+                    } else {
+                        onCompletion(false, nil, self.comments, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
+                    }
+                } else {
+                    onCompletion(success, nil, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed json response
+                }
+            }
+        }
+    }
+    
     
     func getComments(getCommentsLink: String, size: Int, page: Int, onCompletion: APICommentResponse){
         let path = getCommentsLink + "?size=" + String(size) + "&page=" + String(page)

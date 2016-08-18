@@ -41,7 +41,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var hideReplyButton : Bool = false
     
     @IBOutlet weak var commentView: UIView!
-    var sendCommentFooter : SendCommentControlFooter?
+    var sendCommentFooter : SendCommentControl?
 
     var comments = [Comment]() {
         didSet{
@@ -61,6 +61,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             goalName = activityGoal.goalName
         }
         registreTableViewCells()
+        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
+        sendCommentFooter!.delegate = self
+        self.commentView.addSubview(sendCommentFooter!)
+        self.commentView.alpha = 0
     }
     
     func registreTableViewCells () {
@@ -86,8 +90,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
         
-        nib = UINib(nibName: "SendCommentControlFooter", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
+        nib = UINib(nibName: "SendCommentControl", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
         
     }
     
@@ -98,11 +102,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 
         self.loadData(.own)
         self.navigationItem.title = goalName
-        
-        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
-        sendCommentFooter!.delegate = self
-        self.commentView.addSubview(sendCommentFooter!)
-        self.commentView.hidden = true
+
     }
     
     //MARK: Protocol implementation
@@ -131,11 +131,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }
-                            if self.dayData?.commentLink != nil {
-                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
-                            } else {
-                                self.hideReplyButton = true
-                            }
 
                         }
                         
@@ -160,11 +155,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                if self.dayData?.commentLink != nil {
-                                    self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
-                                } else {
-                                    self.hideReplyButton = true
-                                }
                             }
                             
                             Loader.Hide()
@@ -188,11 +178,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 self.dayData  = data
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
-                                }
-                                if self.dayData?.commentLink != nil {
-                                    self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
-                                } else {
-                                    self.hideReplyButton = true
                                 }
                             }
 
@@ -295,10 +280,20 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let cell : CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-            cell.setBuddyCommentData(self.comments[indexPath.row])
+            let comment = self.comments[indexPath.row]
+            cell.setBuddyCommentData(comment)
             cell.indexPath = indexPath
             cell.commentDelegate = self
-            cell.replyToComment.hidden = self.hideReplyButton
+
+            if self.dayData?.commentLink != nil {
+                self.commentView.hidden = false
+                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+            } else if comment.replyLink != nil {
+                hideReplyButton = false
+                cell.replyToComment.hidden = hideReplyButton
+                self.sendCommentFooter!.postReplyLink = comment.replyLink
+            }
+
             return cell
         }
         return UITableViewCell(frame: CGRectZero)
@@ -364,8 +359,9 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func showSendComment() {
+
         UIView.animateWithDuration(1.5, animations: {
-            self.commentView.hidden = false
+            self.commentView.alpha = 1
         })
     }
     

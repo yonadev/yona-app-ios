@@ -25,8 +25,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
         
-        nib = UINib(nibName: "SendCommentControlFooter", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
+        nib = UINib(nibName: "SendCommentControl", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
 
     }
     override func viewDidLoad() {
@@ -37,10 +37,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
+        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
         sendCommentFooter!.delegate = self
         self.commentView.addSubview(sendCommentFooter!)
-        self.commentView.hidden = false
     }
 
 // MARK: - tableview Override

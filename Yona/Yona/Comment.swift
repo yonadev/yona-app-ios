@@ -9,6 +9,7 @@
 import Foundation
 
 enum commentKeys : String {
+    case embedded = "_embedded"
     case creationTime = "creationTime"
     case message = "message"
     case threadHeadMessageID = "threadHeadMessageID"
@@ -19,8 +20,11 @@ enum commentKeys : String {
     case yona_markRead = "yona:markRead"
     case edit = "edit"
     case yona_user = "yona:user"
+    case yonaReply = "yona:reply"
+    case yonaBuddy = "yona:buddy"
     case yona_dayDetails = "yona:dayDetails"
     case yona_threadHead = "yona:threadHead"
+    case yonaAffectedMessage = "yona:affectedMessages"
     case commentType = "@type"
     case isRead = "isRead"
 }
@@ -37,6 +41,8 @@ struct Comment{
     var selfLink: String?
     var markReadLink: String?
     var editLink: String?
+    var buddyLink: String?
+    var replyLink: String?
     var dayDetailsLink: String?
     var threadHeadLink: String?
     var yonaUser : String?
@@ -99,6 +105,15 @@ struct Comment{
             if let yonaUser = links[commentKeys.yona_user.rawValue],
                 let yonaUserHref = yonaUser[commentKeys.href.rawValue] as? String{
                 self.yonaUser = yonaUserHref
+            }
+            
+            if let replyLink = links[commentKeys.yonaReply.rawValue],
+                let replyLinkHref = replyLink[commentKeys.href.rawValue] as? String{
+                self.replyLink = replyLinkHref
+            }
+            if let buddyLink = links[commentKeys.yonaBuddy.rawValue],
+                let buddyLinkHref = buddyLink[commentKeys.href.rawValue] as? String{
+                self.buddyLink = buddyLinkHref
             }
         }
         

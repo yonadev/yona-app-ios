@@ -23,7 +23,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBOutlet weak var tableView : UITableView!
     
     @IBOutlet weak var commentView: UIView!
-    var sendCommentFooter : SendCommentControlFooter?
+    var sendCommentFooter : SendCommentControl?
     
     var comments = [Comment]() {
         didSet{
@@ -37,7 +37,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     override func viewDidLoad() {
         super.viewDidLoad()
         registreTableViewCells()
-        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
+        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
         sendCommentFooter!.delegate = self
         self.commentView.addSubview(sendCommentFooter!)
         self.commentView.hidden = true
@@ -65,8 +65,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
         
-        nib = UINib(nibName: "SendCommentControlFooter", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
+        nib = UINib(nibName: "SendCommentControl", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
         
     }
 
@@ -139,10 +139,19 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         if let data = week[currentWeek.yearWeek]  {
             if data.messageLink != nil && indexPath.section == 1 {
                 let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-                cell.setBuddyCommentData(self.comments[indexPath.row])
+                let comment = self.comments[indexPath.row]
+                cell.setBuddyCommentData(comment)
                 cell.indexPath = indexPath
                 cell.commentDelegate = self
                 cell.replyToComment.hidden = false
+                if data.commentLink != nil {
+                    self.commentView.hidden = false
+                    self.sendCommentFooter!.postCommentLink = data.commentLink
+                } else if comment.replyLink != nil {
+                    self.commentView.hidden = true
+                    cell.replyToComment.hidden = false
+                    self.sendCommentFooter!.postReplyLink = comment.replyLink
+                }
                 return cell
             }
         }
@@ -252,7 +261,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                self.sendCommentFooter!.postGoalLink = data.commentLink
 
                             }
                             
@@ -278,7 +286,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                self.sendCommentFooter!.postGoalLink = data.commentLink
 
                             }
                             
@@ -304,7 +311,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                self.sendCommentFooter!.postGoalLink = data.commentLink
 
                             }
                             

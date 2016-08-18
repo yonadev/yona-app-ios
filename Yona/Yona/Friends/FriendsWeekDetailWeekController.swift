@@ -33,7 +33,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
-                                    self.sendCommentFooter!.postGoalLink = data.commentLink
                                 }
                                 
                                 Loader.Hide()
@@ -55,7 +54,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
-                                    self.sendCommentFooter!.postGoalLink = data.commentLink
                                 }
                                 
                                 Loader.Hide()
@@ -77,7 +75,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
-                                    self.sendCommentFooter!.postGoalLink = data.commentLink
                                 }
                                 
                                 Loader.Hide()
