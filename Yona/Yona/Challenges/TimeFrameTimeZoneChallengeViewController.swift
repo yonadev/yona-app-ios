@@ -23,7 +23,7 @@ protocol TimeZoneChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameTimeZoneChallengeViewController: BaseViewController {
+class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezoneCellDelegateProtocol {
     
     weak var delegate: TimeZoneChallengeDelegate?
     
@@ -194,10 +194,30 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController {
     func tableReload(){
         tableView.reloadData()
     }
-}
+    
+    // MARK: - DeleteCellDelegate
+    
+    func deleteTimezone(cell: TimeZoneTableViewCell) {
+        if let indexPath = cell.indexPath {
+            self.tableView.beginUpdates()
+            self.zonesArrayString.removeAtIndex(indexPath.row)
+            self.zonesArrayDate.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if self.zonesArrayDate.count == 0 {
+                picker?.hideShowDatePickerView(isToShow: false)
+                self.setChallengeButton.enabled = false
+                self.setChallengeButton.alpha = 0.5
+            }
+            self.tableView.endUpdates()
+            activeIndexPath = nil
+            self.delegate?.callGoalsMethod()
+            updateTimezone()
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
+        }
+    }
+    
+    // MARK: - TableViewDelegate
 
-// MARK: - Table view data source
-extension TimeFrameTimeZoneChallengeViewController {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -209,6 +229,8 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
+        cell.timezoneCellDelegate = self
+        cell.indexPath = indexPath
         let s: String = zonesArrayString[indexPath.row]
         cell.configureWithFromTime(s.dashRemoval()[0], toTime: s.dashRemoval()[1], fromButtonListener: { (cell) in
             
@@ -267,57 +289,9 @@ extension TimeFrameTimeZoneChallengeViewController {
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
         self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
         if isFromActivity == true {
-            
-            if let activityCategoryLink = activitiyToPost?.selfLinks {
-                
-                let bodyTimeZoneSocialGoal = [ "@type": "TimeZoneGoal", YonaConstants.jsonKeys.linksKeys: [
-                    YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
-                    ],
-                                               YonaConstants.jsonKeys.zones: zonesArrayString
-                ];
-                Loader.Show()
-                GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
-                    (success, serverMessage, serverCode, goal, goals, err) in
-                    Loader.Hide()
-                    if success {
-                        self.delegate?.callGoalsMethod()
-                        if let goalUnwrap = goal {
-                            self.goalCreated = goalUnwrap
-                        }
-                        self.navigationController?.popViewControllerAnimated(true)
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
-                        NSUserDefaults.standardUserDefaults().synchronize()
-                    } else {
-                        if let message = serverMessage {
-                            self.displayAlertMessage(message, alertDescription: "")
-                        }
-                    }
-                })
-            }
+            addANewTimeZone()
         } else {
-            //Integrate Edit
-            if let activityCategoryLink = goalCreated?.activityCategoryLink {
-                let updatedBodyTimeZoneSocialGoal = [
-                    "@type": "TimeZoneGoal",
-                    YonaConstants.jsonKeys.linksKeys: [
-                        YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
-                    ],
-                    YonaConstants.jsonKeys.zones: zonesArrayString
-                ];
-                Loader.Show()
-                
-                GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
-                    Loader.Hide()
-                    if success {
-                        self.delegate?.callGoalsMethod()
-                        if let goalUnwrap = goal {
-                            self.goalCreated = goalUnwrap
-                        }
-                        self.navigationController?.popViewControllerAnimated(true)
-                        
-                    }
-                })
-            }
+            updateTimezone()
         }
     }
     
@@ -333,7 +307,66 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
-        
+        deleteTimezone()
+    }
+    
+    func addANewTimeZone(){
+        if let activityCategoryLink = activitiyToPost?.selfLinks {
+            
+            let bodyTimeZoneSocialGoal = [ "@type": "TimeZoneGoal", YonaConstants.jsonKeys.linksKeys: [
+                YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
+                ],
+                                           YonaConstants.jsonKeys.zones: zonesArrayString
+            ];
+            Loader.Show()
+            GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: {
+                (success, serverMessage, serverCode, goal, goals, err) in
+                Loader.Hide()
+                if success {
+                    self.delegate?.callGoalsMethod()
+                    if let goalUnwrap = goal {
+                        self.goalCreated = goalUnwrap
+                    }
+                    self.navigationController?.popViewControllerAnimated(true)
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                } else {
+                    if let message = serverMessage {
+                        self.displayAlertMessage(message, alertDescription: "")
+                    }
+                }
+            })
+        }
+    }
+    
+    func updateTimezone() {
+        //Integrate Edit
+        if let activityCategoryLink = goalCreated?.activityCategoryLink {
+            let updatedBodyTimeZoneSocialGoal = [
+                "@type": "TimeZoneGoal",
+                YonaConstants.jsonKeys.linksKeys: [
+                    YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
+                ],
+                YonaConstants.jsonKeys.zones: zonesArrayString
+            ];
+            Loader.Show()
+            
+            GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
+                Loader.Hide()
+                if success {
+                    self.delegate?.callGoalsMethod()
+                    if let goalUnwrap = goal {
+                        self.goalCreated = goalUnwrap
+                    }
+                    
+                } else { //only one timezone delete the goal
+                    self.deleteTimezone()
+                }
+            })
+        }
+    }
+    
+    func deleteTimezone() {
         //then once it is posted we can delete it
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {

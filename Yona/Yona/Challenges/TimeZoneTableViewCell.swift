@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeZoneTableViewCell: UITableViewCell {
+class TimeZoneTableViewCell: PKSwipeTableViewCell {
     private var values = (from: "", to: "")
     let pickerData = ["11", "12", "13"]
     @IBOutlet var fromButton:UIButton!
@@ -19,8 +19,36 @@ class TimeZoneTableViewCell: UITableViewCell {
     
     var gFrombuttonClicked: fromButtonClicked?
     var gTobuttonClicked: toButtonClicked?
+    var indexPath: NSIndexPath?
+    
+    override func awakeFromNib() {
+        addRightViewInCell()
+    }
+    
+    func addRightViewInCell() {
+        
+        //Create a view that will display when user swipe the cell in right
+        let viewCall = UIView()
+        viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
+        viewCall.frame = CGRectMake(0,0, self.frame.size.height, self.frame.size.height)
+        //Add a button to perform the action when user will tap on call and add a image to display
+        let btnCall = UIButton(type: UIButtonType.Custom)
+        btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
+        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
+        btnCall.addTarget(self, action: "deleteCell", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        viewCall.addSubview(btnCall)
+        //Call the super addRightOptions to set the view that will display while swiping
+        super.addRightOptionsView(viewCall)
+    }
     
     
+    func deleteCell(){
+        if let timezoneCellDelegate = timezoneCellDelegate{
+            
+            timezoneCellDelegate.deleteTimezone(self)
+        }
+    }
     
     func configureWithFromTime(from: String, toTime to: String, fromButtonListener: fromButtonClicked, toButtonListener: toButtonClicked) {
         fromButton.setTitle(from, forState: .Normal)
