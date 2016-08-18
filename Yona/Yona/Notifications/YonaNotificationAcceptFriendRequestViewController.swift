@@ -23,12 +23,28 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     
     var aMessage : Message?
     var aBuddy : Buddies?
-
+    var navbarColor1 : UIColor?
+    var navbarColor : UIColor?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.backgroundColor = UIColor.yiMidBlueColor()
+        
         navigationItem.title = NSLocalizedString("notifications.accept.title", comment: "")
         registreTableViewCells()
+        
+        navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiMidBlueColor()
+        let navbar = navigationController?.navigationBar as! GradientNavBar
+        
+        navbarColor = navbar.gradientColor
+        navbar.gradientColor = UIColor.yiWindowsBlueColor()
+        
+        self.title = ""
+    }
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.backgroundColor = navbarColor1
+        let navbar = navigationController?.navigationBar as! GradientNavBar
+        navbar.gradientColor = navbarColor
+        
     }
     
     func registreTableViewCells () {
@@ -129,6 +145,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     // MARK : Utility methods
     
     func calculateHeightForCell(row :acceptFriendRequest) -> CGFloat{
+       return 80
+        
         var text = ""
         if let msg = aMessage {
             switch row {

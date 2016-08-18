@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Intro2_2.png",
+      "filename" : "appstore2B.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "appstore2B@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "appstore2B@3x.png",
       "scale" : "3x"
     }
   ],

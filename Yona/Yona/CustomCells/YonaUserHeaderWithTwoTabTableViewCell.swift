@@ -70,8 +70,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     
     func configureColors(isBuddy isBuddy: Bool = false) {
         if isBuddy {
-            avatarImageView.layer.borderColor = UIColor.yiMidBlueColor().CGColor
-            contentView.backgroundColor = UIColor.yiWindowsBlueColor()
+            avatarImageView.layer.borderColor = UIColor.yiWindowsBlueColor().CGColor
+            contentView.backgroundColor = UIColor.yiMidBlueColor()
             profileTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
             badgesTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
         } else {
