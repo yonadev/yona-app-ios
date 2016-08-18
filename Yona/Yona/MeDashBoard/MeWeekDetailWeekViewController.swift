@@ -24,7 +24,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     @IBOutlet weak var commentView: UIView!
     var sendCommentFooter : SendCommentControl?
-    
+    var previousThreadID : String = ""
+
     var comments = [Comment]() {
         didSet{
             //everytime add comments refresh table
@@ -68,6 +69,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         nib = UINib(nibName: "SendCommentControl", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
         
+        nib = UINib(nibName: "ReplyToComment", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -105,7 +108,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         if indexPath.section == 0 {
 
             if indexPath.row == detailRows.weekoverview.rawValue {
@@ -138,21 +141,45 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         }
         if let data = week[currentWeek.yearWeek]  {
             if data.messageLink != nil && indexPath.section == 1 {
-                let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
                 let comment = self.comments[indexPath.row]
-                cell.setBuddyCommentData(comment)
-                cell.indexPath = indexPath
-                cell.commentDelegate = self
-                cell.replyToComment.hidden = false
-                if data.commentLink != nil {
-                    self.commentView.hidden = false
-                    self.sendCommentFooter!.postCommentLink = data.commentLink
-                } else if comment.replyLink != nil {
-                    self.commentView.hidden = true
-                    cell.replyToComment.hidden = false
-                    self.sendCommentFooter!.postReplyLink = comment.replyLink
+                if comment.threadHeadMessageID != previousThreadID {
+                    if let previousThreadID = comment.threadHeadMessageID {
+                        self.previousThreadID = previousThreadID
+                        if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                            cell.setBuddyCommentData(comment)
+                            cell.indexPath = indexPath
+                            cell.commentDelegate = self
+                            if data.commentLink != nil {
+                                self.commentView.hidden = false
+                                cell.replyToComment.hidden = true
+                                self.sendCommentFooter!.postCommentLink = data.commentLink
+                            } else if comment.replyLink != nil {
+                                cell.replyToComment.hidden = false
+                                self.sendCommentFooter!.postReplyLink = comment.replyLink
+                            }
+                            return cell
+                        }
+                    }
+                } else {
+                    if let previousThreadID = comment.threadHeadMessageID {
+                        self.previousThreadID = previousThreadID
+                        if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                            cell.setBuddyCommentData(comment)
+                            cell.indexPath = indexPath
+                            cell.commentDelegate = self
+                            if data.commentLink != nil {
+                                self.commentView.hidden = false
+                                cell.replyToComment.hidden = true
+                                self.sendCommentFooter!.postCommentLink = data.commentLink
+                            } else if comment.replyLink != nil {
+                                cell.replyToComment.hidden = false
+                                self.sendCommentFooter!.postReplyLink = comment.replyLink
+                            }
+                            return cell
+                        }
+                    }
                 }
-                return cell
+
             }
         }
         return UITableViewCell(frame: CGRectZero)
@@ -261,7 +288,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-
+                                if data.commentLink != nil {
+                                    self.commentView.hidden = false
+                                    self.sendCommentFooter!.postCommentLink = data.commentLink
+                                }
                             }
                             
                             Loader.Hide()
@@ -286,7 +316,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-
+                                if data.commentLink != nil {
+                                    self.commentView.hidden = false
+                                    self.sendCommentFooter!.postCommentLink = data.commentLink
+                                }
                             }
                             
                             Loader.Hide()
@@ -311,7 +344,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-
+                                if data.commentLink != nil {
+                                    self.commentView.hidden = false
+                                    self.sendCommentFooter!.postCommentLink = data.commentLink
+                                }
                             }
                             
                             Loader.Hide()

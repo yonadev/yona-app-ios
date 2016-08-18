@@ -45,11 +45,11 @@ class CommentRequestManager {
 
                             for reply in replies {
                                 if let reply = reply as? BodyDataDictionary{
-                                    let reply = Comment.init(commentData: reply)
-                                    self.replies.append(reply)
+                                    self.reply = Comment.init(commentData: reply)
+                                    self.replies.append(self.reply!)
                                 }
                             }
-                            onCompletion(success, nil, self.replies, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //success
+                            onCompletion(success, self.reply, self.replies, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //success
                     } else {
                         onCompletion(false, nil, self.comments, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error)) //failed to get user
                     }

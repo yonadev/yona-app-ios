@@ -28,6 +28,14 @@ class SendCommentControl : UITableViewCell {
         sendCommentButton.titleLabel!.text = NSLocalizedString("commenting.sendComment", comment: "")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.setNeedsLayout()
+        var fra = self.contentView.frame
+        fra.size.width = frame.size.width - 50
+        self.contentView.frame = fra
+    }
+    
     @IBAction func sendComment(sender: UIButton) {
         
         if let commentText = self.commentTextField.text{

@@ -383,8 +383,8 @@ struct R {
     static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
+    static var replyToComment: _R.nib._ReplyToComment { return _R.nib._ReplyToComment() }
     static var sendCommentControl: _R.nib._SendCommentControl { return _R.nib._SendCommentControl() }
-    static var sendCommentControlFooter: _R.nib._SendCommentControlFooter { return _R.nib._SendCommentControlFooter() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeLineHeaderCell: _R.nib._TimeLineHeaderCell { return _R.nib._TimeLineHeaderCell() }
@@ -406,6 +406,7 @@ struct R {
   
   struct reuseIdentifier {
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+    static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var sendCommentControl: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
@@ -800,13 +801,13 @@ struct _R {
       }
     }
     
-    struct _SendCommentControl: NibResource, Reusable {
-      var instance: UINib { return UINib.init(nibName: "SendCommentControl", bundle: _R.hostingBundle) }
-      var name: String { return "SendCommentControl" }
-      var reuseIdentifier: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
+    struct _ReplyToComment: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "ReplyToComment", bundle: _R.hostingBundle) }
+      var name: String { return "ReplyToComment" }
+      var reuseIdentifier: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
       
-      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControl? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControl
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> ReplyToComment? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? ReplyToComment
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
@@ -814,12 +815,13 @@ struct _R {
       }
     }
     
-    struct _SendCommentControlFooter: NibResource {
-      var instance: UINib { return UINib.init(nibName: "SendCommentControlFooter", bundle: _R.hostingBundle) }
-      var name: String { return "SendCommentControlFooter" }
+    struct _SendCommentControl: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "SendCommentControl", bundle: _R.hostingBundle) }
+      var name: String { return "SendCommentControl" }
+      var reuseIdentifier: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
       
-      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControlFooter? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControlFooter
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControl? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControl
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
