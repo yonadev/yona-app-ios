@@ -13,5 +13,6 @@ class ReplyToComment: CommentControlCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isPanEnabled = false //turn off delete function
     }
 }

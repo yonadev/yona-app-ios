@@ -25,7 +25,7 @@ class CommentControlCell: PKSwipeTableViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height/2
         avatarImageView.layer.masksToBounds = true
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
-
+        self.isPanEnabled = false //turn off delete function
         addRightViewInCell()
         
     }
