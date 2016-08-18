@@ -70,8 +70,9 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     
     func configureColors(isBuddy isBuddy: Bool = false) {
         if isBuddy {
-            avatarImageView.layer.borderColor = UIColor.yiWindowsBlueColor().CGColor
-            contentView.backgroundColor = UIColor.yiMidBlueColor()
+            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().CGColor
+            self.avatarImageView.layer.borderWidth = 1.0
+            contentView.backgroundColor = UIColor.yiWindowsBlueColor()
             profileTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
             badgesTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
         } else {
@@ -79,6 +80,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             contentView.backgroundColor = UIColor.yiGrapeColor()
             profileTabMainView.backgroundColor = UIColor.yiGrapeColor()
             badgesTabMainView.backgroundColor = UIColor.yiGrapeColor()
+            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().CGColor
+            self.avatarImageView.layer.borderWidth = 1.0
         }
     
     }
