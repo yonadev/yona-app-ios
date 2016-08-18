@@ -136,6 +136,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }
+                            //make sure the commentview has the right link to post comments to
                             if self.dayData?.commentLink != nil {
                                 self.commentView.hidden = false
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
@@ -163,6 +164,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
+                                //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
                                     self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
@@ -191,6 +193,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
+                                //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
                                     self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
@@ -398,8 +401,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         })
     }
     
-    func showSendComment() {
-
+    func showSendComment(comment: Comment?) {
+        self.getComments(comment?.threadHeadLink)
         UIView.animateWithDuration(0.5, animations: {
             self.commentView.alpha = 1
         })
@@ -416,11 +419,14 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
+        commentTextField.text = ""
         //reload the data
-        if let comment = comment {
-            self.comments.append(comment)
+//        if let comment = comment {
+//            self.comments.append(comment)
+//        }
+        if let commentsLink = self.dayData?.messageLink {
+            self.getComments(commentsLink)
         }
-        
     }
     
     // MARK: - get comment data

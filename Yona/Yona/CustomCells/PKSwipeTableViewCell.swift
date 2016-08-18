@@ -17,7 +17,7 @@ protocol YonaUserCellDelegate {
 
 protocol CommentCellDelegate {
     func deleteComment(cell: CommentControlCell, comment: Comment);
-    func showSendComment();
+    func showSendComment(comment: Comment?);
 }
 
 protocol DeleteTimezoneCellDelegateProtocol {

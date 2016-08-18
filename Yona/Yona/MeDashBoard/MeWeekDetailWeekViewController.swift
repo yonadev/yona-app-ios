@@ -379,7 +379,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         })
     }
     
-    func showSendComment() {
+    func showSendComment(comment: Comment?){
         UIView.animateWithDuration(1.5, animations: {
             self.commentView.hidden = false
         })

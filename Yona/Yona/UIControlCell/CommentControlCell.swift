@@ -68,7 +68,7 @@ class CommentControlCell: PKSwipeTableViewCell {
     }
     
     @IBAction func replyToCommentButton(sender: UIButton) {
-        commentDelegate?.showSendComment()
+        commentDelegate?.showSendComment(comment)
     }
 
 }
