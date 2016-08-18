@@ -16,6 +16,11 @@
 
 import Foundation
 
+protocol SendCommentControlProtocol {
+    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
+    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
+}
+
 class SendCommentControlFooter : UITableViewHeaderFooterView {
     
     var postGoalLink : String?

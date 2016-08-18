@@ -133,8 +133,6 @@
 		9054D5371D5203BD0060D22E /* CommentRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5361D5203BD0060D22E /* CommentRequestManager.swift */; };
 		9054D5391D52359B0060D22E /* CommentTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5381D52359B0060D22E /* CommentTableHeader.swift */; };
 		9054D53B1D5235A90060D22E /* CommentTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D53A1D5235A90060D22E /* CommentTableHeader.xib */; };
-		9054D53D1D535A830060D22E /* SendCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D53C1D535A830060D22E /* SendCommentControl.xib */; };
-		9054D53F1D535E430060D22E /* SendCommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D53E1D535E430060D22E /* SendCommentControl.swift */; };
 		9054D5411D5361310060D22E /* CommentControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5401D5361310060D22E /* CommentControlCell.swift */; };
 		9054D5431D5361460060D22E /* CommentControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D5421D5361460060D22E /* CommentControlCell.xib */; };
 		9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */; };
@@ -534,8 +532,6 @@
 		9054D5361D5203BD0060D22E /* CommentRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRequestManager.swift; sourceTree = "<group>"; };
 		9054D5381D52359B0060D22E /* CommentTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentTableHeader.swift; path = ../UIControlCell/CommentTableHeader.swift; sourceTree = "<group>"; };
 		9054D53A1D5235A90060D22E /* CommentTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentTableHeader.xib; path = ../UIControlCell/CommentTableHeader.xib; sourceTree = "<group>"; };
-		9054D53C1D535A830060D22E /* SendCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCommentControl.xib; sourceTree = "<group>"; };
-		9054D53E1D535E430060D22E /* SendCommentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCommentControl.swift; sourceTree = "<group>"; };
 		9054D5401D5361310060D22E /* CommentControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentControlCell.swift; sourceTree = "<group>"; };
 		9054D5421D5361460060D22E /* CommentControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentControlCell.xib; sourceTree = "<group>"; };
 		9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKSwipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -936,8 +932,6 @@
 				90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */,
 				90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */,
 				90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */,
-				9054D53E1D535E430060D22E /* SendCommentControl.swift */,
-				9054D53C1D535A830060D22E /* SendCommentControl.xib */,
 				BE0FE6961D64E9B400AE6B5A /* SendCommentControlFooter.swift */,
 				BE0FE6941D64E99600AE6B5A /* SendCommentControlFooter.xib */,
 				9054D5401D5361310060D22E /* CommentControlCell.swift */,
@@ -1954,7 +1948,6 @@
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
-				9054D53D1D535A830060D22E /* SendCommentControl.xib in Resources */,
 				16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
@@ -2152,7 +2145,6 @@
 				AD00DEDC1CD3648F006BBA7E /* IQPreviousNextView.swift in Sources */,
 				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
 				1656A5A51D4BE6B300EB288D /* Route.m in Sources */,
-				9054D53F1D535E430060D22E /* SendCommentControl.swift in Sources */,
 				160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */,
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
 				16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */,

@@ -29,9 +29,18 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "SendCommentControlFooter")
 
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        sendCommentFooter = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControlFooter") as? SendCommentControlFooter
+        sendCommentFooter!.delegate = self
+        self.commentView.addSubview(sendCommentFooter!)
+        self.commentView.hidden = false
     }
 
 // MARK: - tableview Override

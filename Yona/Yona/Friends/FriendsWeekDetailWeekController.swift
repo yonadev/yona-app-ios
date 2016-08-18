@@ -12,6 +12,12 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
   
     var buddy : Buddies?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.commentView.hidden = false
+        
+    }
+    
     override func loadData (typeToLoad : loadType = .own) {
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
         // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK

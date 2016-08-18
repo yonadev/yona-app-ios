@@ -38,6 +38,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var currentDay : String?
     var nextLink : String?
     var prevLink : String?
+    var hideReplyButton : Bool = false
     
     @IBOutlet weak var commentView: UIView!
     var sendCommentFooter : SendCommentControlFooter?
@@ -106,9 +107,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     //MARK: Protocol implementation
     func leftButtonPushed(){
+        self.comments = []
         loadData(.prev)
     }
     func rightButtonPushed() {
+        self.comments = []
         loadData(.next)
     }
     
@@ -128,7 +131,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }
-                            self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+                            if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+                            } else {
+                                self.hideReplyButton = true
+                            }
 
                         }
                         
@@ -153,8 +160,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
-
+                                if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+                                } else {
+                                    self.hideReplyButton = true
+                                }
                             }
                             
                             Loader.Hide()
@@ -179,8 +189,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 if let commentsLink = data.messageLink {
                                     self.getComments(commentsLink)
                                 }
-                                self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
-
+                                if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.postGoalLink = self.dayData?.commentLink
+                                } else {
+                                    self.hideReplyButton = true
+                                }
                             }
 
                             
@@ -233,7 +246,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -281,11 +294,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
-            let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
+            let cell : CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
             cell.setBuddyCommentData(self.comments[indexPath.row])
             cell.indexPath = indexPath
             cell.commentDelegate = self
-            cell.replyToComment.hidden = false
+            cell.replyToComment.hidden = self.hideReplyButton
             return cell
         }
         return UITableViewCell(frame: CGRectZero)

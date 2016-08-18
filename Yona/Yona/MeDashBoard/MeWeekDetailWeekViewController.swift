@@ -187,11 +187,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             } else if section == 1 && self.comments.count > 0{
                 let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
                 return cell
-            } else if section == 2 && data.commentLink != nil{
-                let cell: SendCommentControl = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControl") as! SendCommentControl
-                cell.delegate = self
-                cell.postGoalLink = data.commentLink
-                return cell
             }
         }
         return nil
@@ -230,13 +225,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     //MARK: Protocol implementation
     func leftButtonPushed(){
-        //currentWeek = currentWeek.dateByAddingTimeInterval(-60*60*24*7)
-        //tableView.reloadData()
+        self.comments = []
         loadData(.prev)
     }
     func rightButtonPushed() {
-        //currentWeek = currentWeek.dateByAddingTimeInterval(60*60*24*7)
-        //tableView.reloadData()
+        self.comments = []
         loadData(.next)
     }
 
