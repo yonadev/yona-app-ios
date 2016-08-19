@@ -387,13 +387,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if self.comments.count > 0{
-            let comment = self.comments[indexPath.row]
             var rowNumber = indexPath.row
             for i in 0..<indexPath.section {
-                rowNumber += self.tableView.numberOfRowsInSection(1)
                 if indexPath.section == 1 {
-                    print(indexPath.row)
-                    if indexPath.row == (comment.currentPage! + 1) * size {
+                    rowNumber += self.tableView.numberOfRowsInSection(1)
+                    let comment = self.comments[rowNumber-1]
+                    print(rowNumber)
+                    if rowNumber == (comment.currentPage! + 1) * size {
                         if page < comment.totalPages {
                             page = page + 1
                         }

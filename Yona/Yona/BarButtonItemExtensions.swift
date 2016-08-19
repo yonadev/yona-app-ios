@@ -35,7 +35,7 @@ extension UIBarButtonItem {
         // Initialize Badge
         let badge = CAShapeLayer()
         let radius = view.frame.size.width/2
-        let location = CGPoint(x: view.frame.width - radius, y: radius )
+        let location = CGPoint(x: view.frame.width - radius, y: radius+2 )
         badge.drawCircleAtLocation(location, withRadius: radius, andColor: UIColor.whiteColor(), filled: false)
         view.layer.addSublayer(badge)
     }

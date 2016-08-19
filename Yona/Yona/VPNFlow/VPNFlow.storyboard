@@ -466,7 +466,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="dvh-f0-bae">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="dvh-f0-bae">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="Bn5-Wh-zyH"/>
@@ -481,7 +481,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-Vc-5nK">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-Vc-5nK">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -580,7 +580,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro2_1" translatesAutoresizingMaskIntoConstraints="NO" id="mI4-9m-ldA">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro2_1" translatesAutoresizingMaskIntoConstraints="NO" id="mI4-9m-ldA">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="3v0-rM-Gfx"/>
@@ -595,7 +595,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro2_2" translatesAutoresizingMaskIntoConstraints="NO" id="XFU-Sl-IUl">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro2_2" translatesAutoresizingMaskIntoConstraints="NO" id="XFU-Sl-IUl">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -703,7 +703,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro3_1" translatesAutoresizingMaskIntoConstraints="NO" id="UUQ-oC-R87">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro3_1" translatesAutoresizingMaskIntoConstraints="NO" id="UUQ-oC-R87">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="383" id="Is8-lq-nYJ"/>
@@ -718,7 +718,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro3_2" translatesAutoresizingMaskIntoConstraints="NO" id="yZD-z9-wcX">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro3_2" translatesAutoresizingMaskIntoConstraints="NO" id="yZD-z9-wcX">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -891,7 +891,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="AXP-p5-alq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_1_1" translatesAutoresizingMaskIntoConstraints="NO" id="AXP-p5-alq">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="Jyg-DH-ypd"/>
@@ -906,7 +906,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="x0X-sC-qOf">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_1_2" translatesAutoresizingMaskIntoConstraints="NO" id="x0X-sC-qOf">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1005,7 +1005,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="PHn-c2-UcZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_2_1" translatesAutoresizingMaskIntoConstraints="NO" id="PHn-c2-UcZ">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="383" id="7GV-iX-E9F"/>
@@ -1020,7 +1020,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="Bwu-ss-FaN">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_2_2" translatesAutoresizingMaskIntoConstraints="NO" id="Bwu-ss-FaN">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1119,7 +1119,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="cNO-lm-NMI">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_3_1" translatesAutoresizingMaskIntoConstraints="NO" id="cNO-lm-NMI">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="1NY-uV-gyr"/>
@@ -1134,7 +1134,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-gF-2ka">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_3_2" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-gF-2ka">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1233,7 +1233,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_1" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-at-Jkx">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_4_1" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-at-Jkx">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="3xj-sQ-uoV"/>
@@ -1248,7 +1248,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1_2" translatesAutoresizingMaskIntoConstraints="NO" id="D5j-be-qh7">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_setting_4_2" translatesAutoresizingMaskIntoConstraints="NO" id="D5j-be-qh7">
                                         <rect key="frame" x="180" y="49" width="200" height="300"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1337,12 +1337,20 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icn_vpn_Alert" width="84" height="82"/>
-        <image name="intro1_1" width="248" height="496"/>
-        <image name="intro1_2" width="250" height="502"/>
-        <image name="intro2_1" width="254" height="502"/>
-        <image name="intro2_2" width="254" height="504"/>
-        <image name="intro3_1" width="260" height="502"/>
-        <image name="intro3_2" width="250" height="502"/>
+        <image name="icn_vpn_Alert" width="32" height="32"/>
+        <image name="intro1_1" width="160" height="322"/>
+        <image name="intro1_2" width="160" height="322"/>
+        <image name="intro2_1" width="160" height="322"/>
+        <image name="intro2_2" width="160" height="322"/>
+        <image name="intro3_1" width="160" height="322"/>
+        <image name="intro3_2" width="160" height="322"/>
+        <image name="intro_setting_1_1" width="160" height="322"/>
+        <image name="intro_setting_1_2" width="160" height="322"/>
+        <image name="intro_setting_2_1" width="160" height="322"/>
+        <image name="intro_setting_2_2" width="160" height="322"/>
+        <image name="intro_setting_3_1" width="160" height="322"/>
+        <image name="intro_setting_3_2" width="160" height="322"/>
+        <image name="intro_setting_4_1" width="160" height="322"/>
+        <image name="intro_setting_4_2" width="160" height="322"/>
     </resources>
 </document>

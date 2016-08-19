@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,12 +19,16 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeLineHeaderCell" id="nci-hj-QcF" customClass="TimeLineHeaderCell" customModule="Yona" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nci-hj-QcF" id="AlW-pm-xtg">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nci-hj-QcF" id="AlW-pm-xtg">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8a3-o4-KLe" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="plO-gp-GQC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a3-o4-KLe" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gho-xI-gQ5">
@@ -46,17 +50,22 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="plO-gp-GQC" firstAttribute="leading" secondItem="AlW-pm-xtg" secondAttribute="leadingMargin" constant="-8" id="0cy-nc-bHP"/>
                     <constraint firstItem="gho-xI-gQ5" firstAttribute="leading" secondItem="AlW-pm-xtg" secondAttribute="leadingMargin" constant="24" id="1w4-J4-w9A"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="plO-gp-GQC" secondAttribute="bottom" constant="-8.5" id="D4i-w7-It9"/>
                     <constraint firstItem="8a3-o4-KLe" firstAttribute="top" secondItem="AlW-pm-xtg" secondAttribute="topMargin" constant="-8" id="EFO-fw-6Rn"/>
                     <constraint firstItem="faG-Dd-KDS" firstAttribute="centerY" secondItem="AlW-pm-xtg" secondAttribute="centerY" id="EaM-51-EBv"/>
                     <constraint firstItem="8a3-o4-KLe" firstAttribute="leading" secondItem="AlW-pm-xtg" secondAttribute="leadingMargin" constant="-8" id="Ear-tX-jUP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="8a3-o4-KLe" secondAttribute="trailing" constant="-88" id="J8U-2i-fir"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="plO-gp-GQC" secondAttribute="trailing" constant="-8" id="OIK-kh-Cxo"/>
                     <constraint firstItem="faG-Dd-KDS" firstAttribute="leading" secondItem="gho-xI-gQ5" secondAttribute="trailing" constant="2" id="RvY-CB-WqS"/>
                     <constraint firstItem="faG-Dd-KDS" firstAttribute="trailing" secondItem="AlW-pm-xtg" secondAttribute="trailingMargin" constant="-12" id="SUb-jC-2fX"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8a3-o4-KLe" secondAttribute="bottom" constant="-8" id="TaT-gV-4on"/>
                     <constraint firstItem="gho-xI-gQ5" firstAttribute="centerY" secondItem="AlW-pm-xtg" secondAttribute="centerY" id="eb4-6U-Xye"/>
                     <constraint firstItem="gho-xI-gQ5" firstAttribute="width" secondItem="faG-Dd-KDS" secondAttribute="width" id="uDH-pO-Dlq"/>
+                    <constraint firstItem="plO-gp-GQC" firstAttribute="top" secondItem="AlW-pm-xtg" secondAttribute="topMargin" constant="-8" id="wcs-3w-Cqc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

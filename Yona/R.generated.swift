@@ -369,6 +369,14 @@ struct R {
     static var intro2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_2") } }
     static var intro3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_1") } }
     static var intro3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_2") } }
+    static var intro_setting_1_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_1") } }
+    static var intro_setting_1_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_2") } }
+    static var intro_setting_2_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_1") } }
+    static var intro_setting_2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_2") } }
+    static var intro_setting_3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_1") } }
+    static var intro_setting_3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_2") } }
+    static var intro_setting_4_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_1") } }
+    static var intro_setting_4_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_2") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
     static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
     static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
@@ -668,13 +676,21 @@ struct R {
       static var yonaVPNFlowMainViewController: YonaVPNFlowMainViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowMainViewController") as? YonaVPNFlowMainViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "intro_setting_3_1") != nil, "[R.swift] Image named 'intro_setting_3_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro1_2") != nil, "[R.swift] Image named 'intro1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
-        assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro3_1") != nil, "[R.swift] Image named 'intro3_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro3_2") != nil, "[R.swift] Image named 'intro3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_2_2") != nil, "[R.swift] Image named 'intro_setting_2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_2_1") != nil, "[R.swift] Image named 'intro_setting_2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "icn_vpn_Alert") != nil, "[R.swift] Image named 'icn_vpn_Alert' is used in storyboard 'VPNFlow', but couldn't be loaded.")
-        assert(UIImage(named: "intro2_1") != nil, "[R.swift] Image named 'intro2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro2_2") != nil, "[R.swift] Image named 'intro2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_1_2") != nil, "[R.swift] Image named 'intro_setting_1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_3_2") != nil, "[R.swift] Image named 'intro_setting_3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_4_2") != nil, "[R.swift] Image named 'intro_setting_4_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_1_1") != nil, "[R.swift] Image named 'intro_setting_1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro2_1") != nil, "[R.swift] Image named 'intro2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_4_1") != nil, "[R.swift] Image named 'intro_setting_4_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {

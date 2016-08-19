@@ -330,7 +330,7 @@ TimeLinedayActivitiesForUsers
                 return 70
             }
             if obj.goalType == "TimeZoneGoal" {
-                return 73
+                return 80
                 
             }
             return 30
