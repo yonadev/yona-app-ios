@@ -688,7 +688,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-m3-iuu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="555"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <connections>
@@ -696,7 +696,7 @@
                                     <outlet property="delegate" destination="WCB-5H-QxB" id="hBn-a6-1Z1"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHT-DJ-rWP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHT-DJ-rWP" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="555" width="600" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -711,13 +711,13 @@
                             <constraint firstItem="kHT-DJ-rWP" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="4t9-Ag-RAM"/>
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leadingMargin" constant="-20" id="9GJ-yY-tgE"/>
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="topMargin" id="HtA-MY-EeN"/>
-                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" constant="-45" id="aOC-eG-oLa"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="kHT-DJ-rWP" secondAttribute="bottom" id="Ptk-n6-1qQ"/>
+                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="mno-Sy-vto"/>
                             <constraint firstAttribute="trailing" secondItem="kHT-DJ-rWP" secondAttribute="trailing" id="uMc-2W-bkg"/>
-                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="zqw-tV-OiY"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commentView" destination="kHT-DJ-rWP" id="B6b-4h-nap"/>
+                        <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="ZY1-H1-sZ7"/>
                         <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
                     </connections>
                 </viewController>
@@ -745,7 +745,7 @@
                                     <outlet property="delegate" destination="lqa-d1-gYJ" id="sIO-6r-lSh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="554" width="600" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -766,7 +766,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
                     <connections>
-                        <outlet property="commentView" destination="itp-Nv-Czt" id="29B-Wl-RHS"/>
+                        <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="Abq-7E-e8N"/>
                         <outlet property="tableView" destination="hpX-Jy-atY" id="vie-LS-wFL"/>
                     </connections>
                 </viewController>

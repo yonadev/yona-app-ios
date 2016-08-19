@@ -47,8 +47,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var totalSize: Int = 0
     var totalPages : Int = 0
     
-    @IBOutlet weak var commentView: UIView!
-    var sendCommentFooter : SendCommentControl?
+    @IBOutlet weak var sendCommentFooter : SendCommentControl?
 
     var comments = [Comment]() {
         didSet{
@@ -69,10 +68,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             goalName = activityGoal.goalName
         }
         registreTableViewCells()
-        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-        sendCommentFooter!.delegate = self
-        self.commentView.addSubview(sendCommentFooter!)
-        self.commentView.alpha = 0
+//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
+//        sendCommentFooter!.delegate = self
+//        self.commentView.addSubview(sendCommentFooter!)
+        self.sendCommentFooter!.alpha = 0
     }
     
     func registreTableViewCells () {
@@ -144,7 +143,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             }
                             //make sure the commentview has the right link to post comments to
                             if self.dayData?.commentLink != nil {
-                                self.commentView.hidden = false
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                             }
                         }
@@ -172,7 +170,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
-                                    self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }
@@ -201,7 +198,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
-                                    self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }
@@ -313,7 +309,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
                             if self.dayData?.commentLink != nil {
-                                self.commentView.hidden = false
                                 cell.replyToComment.hidden = true
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                             } else if comment.replyLink != nil {
@@ -331,7 +326,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
                             if self.dayData?.commentLink != nil {
-                                self.commentView.hidden = false
                                 cell.replyToComment.hidden = true
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                             } else if comment.replyLink != nil {
@@ -433,7 +427,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             self.comments.append(comment)
         }
         UIView.animateWithDuration(0.5, animations: {
-            self.commentView.alpha = 1
+            self.sendCommentFooter!.alpha = 1
         })
 
     }
@@ -463,7 +457,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 if let comments = comments {
                     self.comments = comments
                     self.totalPages = comments[0].totalPages!
-                    
                 }
             }
         }

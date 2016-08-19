@@ -31,10 +31,10 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.commentView.alpha = 1
-        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-        sendCommentFooter!.delegate = self
-        self.commentView.addSubview(sendCommentFooter!)
+        self.sendCommentFooter!.alpha = 1
+//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
+//        sendCommentFooter!.delegate = self
+//        self.commentView.addSubview(sendCommentFooter!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -113,7 +113,6 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                     cell.indexPath = indexPath
                     cell.commentDelegate = self
                     if self.dayData?.commentLink != nil {
-                        self.commentView.hidden = false
                         cell.replyToComment.hidden = true
                         self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                     } else if comment.replyLink != nil {

@@ -14,7 +14,63 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.commentView.hidden = false
+//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
+//        sendCommentFooter!.delegate = self
+//        self.commentView.addSubview(sendCommentFooter!)
+        self.sendCommentFooter!.alpha = 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            
+            if indexPath.row == detailRows.weekoverview.rawValue {
+                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+                
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setSingleActivity(data ,isScore: true)
+                }
+                return cell
+                
+            }
+            
+            if indexPath.row == detailRows.activity.rawValue {
+                if let data = week[currentWeek.yearWeek]  {
+                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
+                        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                        cell.setWeekActivityDetailForView(data, animated: true)
+                        return cell
+                    }
+                }
+            }
+            
+            if indexPath.row == detailRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = week[currentWeek.yearWeek]  {
+                    cell.setWeekActivityDetailForView(data, animated: true)
+                }
+                return cell
+            }
+        }
+        if let data = week[currentWeek.yearWeek]  {
+            if data.messageLink != nil && indexPath.section == 1 {
+                let comment = self.comments[indexPath.row]
+                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                    cell.setBuddyCommentData(comment)
+                    cell.indexPath = indexPath
+                    cell.commentDelegate = self
+                    if data.commentLink != nil {
+                        cell.replyToComment.hidden = true
+                        self.sendCommentFooter!.postCommentLink = data.commentLink
+                    } else if comment.replyLink != nil {
+                        cell.replyToComment.hidden = false
+                        self.sendCommentFooter!.postReplyLink = comment.replyLink
+                    }
+                    return cell
+                }
+            }
+        }
+        return UITableViewCell(frame: CGRectZero)
         
     }
     
@@ -37,7 +93,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                         self.getComments(commentsLink)
                                     }
                                     if data.commentLink != nil {
-                                        self.commentView.hidden = false
                                         self.sendCommentFooter!.postCommentLink = data.commentLink
                                     }
                                 }
@@ -66,7 +121,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                         self.getComments(commentsLink)
                                     }
                                     if data.commentLink != nil {
-                                        self.commentView.hidden = false
                                         self.sendCommentFooter!.postCommentLink = data.commentLink
                                     }
                                 }
@@ -94,7 +148,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                         self.getComments(commentsLink)
                                     }
                                     if data.commentLink != nil {
-                                        self.commentView.hidden = false
                                         self.sendCommentFooter!.postCommentLink = data.commentLink
                                     }
                                 }

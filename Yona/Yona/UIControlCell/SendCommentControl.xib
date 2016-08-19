@@ -65,8 +65,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="commentTextField" destination="VG6-lx-Zr1" id="8Td-43-Yhk"/>
-                <outlet property="sendCommentButton" destination="DKB-dA-YTh" id="FNT-Dx-xcy"/>
+                <outlet property="commentTextField" destination="VG6-lx-Zr1" id="mCj-MO-wQ1"/>
+                <outlet property="sendCommentButton" destination="DKB-dA-YTh" id="HZn-i7-WXe"/>
             </connections>
         </tableViewCell>
     </objects>

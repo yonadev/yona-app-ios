@@ -21,9 +21,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var currentWeek : NSDate = NSDate()
     var correctToday = NSDate()
     @IBOutlet weak var tableView : UITableView!
-    
-    @IBOutlet weak var commentView: UIView!
-    var sendCommentFooter : SendCommentControl?
+    @IBOutlet weak var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
     
     var page : Int = 1
@@ -37,6 +35,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         didSet{
             //everytime add comments refresh table
             dispatch_async(dispatch_get_main_queue()) {
+                self.previousThreadID = ""
                 self.tableView.reloadData()
             }
         }
@@ -45,10 +44,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     override func viewDidLoad() {
         super.viewDidLoad()
         registreTableViewCells()
-        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-        sendCommentFooter!.delegate = self
-        self.commentView.addSubview(sendCommentFooter!)
-        self.commentView.alpha = 0
+//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
+//        sendCommentFooter!.delegate = self
+//        self.commentView.addSubview(sendCommentFooter!)
+        self.sendCommentFooter!.alpha = 0
     }
 
     func registreTableViewCells () {
@@ -157,7 +156,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
                             if data.commentLink != nil {
-                                self.commentView.hidden = false
                                 cell.replyToComment.hidden = true
                                 self.sendCommentFooter!.postCommentLink = data.commentLink
                             } else if comment.replyLink != nil {
@@ -175,7 +173,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
                             if data.commentLink != nil {
-                                self.commentView.hidden = false
                                 cell.replyToComment.hidden = true
                                 self.sendCommentFooter!.postCommentLink = data.commentLink
                             } else if comment.replyLink != nil {
@@ -236,7 +233,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var cellHeight = 126        
+        var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
             if let initialObject = initialObject {
                 if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
@@ -320,7 +317,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.getComments(commentsLink)
                                 }
                                 if data.commentLink != nil {
-                                    self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
@@ -348,7 +344,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.getComments(commentsLink)
                                 }
                                 if data.commentLink != nil {
-                                    self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
@@ -376,7 +371,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.getComments(commentsLink)
                                 }
                                 if data.commentLink != nil {
-                                    self.commentView.hidden = false
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
@@ -416,7 +410,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             self.comments.append(comment)
         }
         UIView.animateWithDuration(0.5, animations: {
-            self.commentView.alpha = 1
+            self.sendCommentFooter!.alpha = 1
         })
     }
     
@@ -432,8 +426,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
-        if let commentsLink = week[currentWeek.yearWeek]?.commentLink  {
-            self.getComments(commentsLink)
+        if let data = week[currentWeek.yearWeek],
+            let commentsLink = data.messageLink {
+                self.getComments(commentsLink)
         }
     }
     
