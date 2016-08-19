@@ -40,6 +40,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var prevLink : String?
     var hideReplyButton : Bool = false
     var previousThreadID : String = ""
+    var page : Int = 4
+    var size : Int = 4
 
     @IBOutlet weak var commentView: UIView!
     var sendCommentFooter : SendCommentControl?
@@ -380,14 +382,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
             return cell
         }
-//        else if section == 2 && self.dayData?.commentLink != nil{
-//            let cell: SendCommentControl = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SendCommentControl") as! SendCommentControl
-//            cell.delegate = self
-//            cell.postGoalLink = self.dayData?.commentLink
-//            return cell
-//        }
         return nil
     }
+    
+    table
     
     // MARK: - CommentCellDelegate
     func deleteComment(cell: CommentControlCell, comment: Comment){
@@ -402,10 +400,14 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func showSendComment(comment: Comment?) {
-        self.getComments(comment?.threadHeadLink)
+        self.comments = []
+        if let comment = comment {
+            self.comments.append(comment)
+        }
         UIView.animateWithDuration(0.5, animations: {
             self.commentView.alpha = 1
         })
+
     }
     
     // MARK: - SendCommentControlProtocol
@@ -420,22 +422,19 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
-        //reload the data
-//        if let comment = comment {
-//            self.comments.append(comment)
-//        }
         if let commentsLink = self.dayData?.messageLink {
             self.getComments(commentsLink)
         }
     }
     
     // MARK: - get comment data
-    func getComments(commentLink: String?) {
-        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+    func getComments(commentLink: String) {
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []
                 if let comments = comments {
                     self.comments = comments
+                    
                 }
             }
         }

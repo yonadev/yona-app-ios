@@ -95,4 +95,18 @@ class CommentRequestManager {
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveDeleteLink, String(responseCodes.internalErrorCode))
         }
     }
+    
+    // MARK: - get replies data and filter
+    func getRepliesToThreadID(commentLink: String?, threadID: String?, size: Int, page: Int, onCompletion: APICommentResponse) {
+        CommentRequestManager.sharedInstance.getComments(commentLink!, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                if let comments = comments {
+                    self.comments = comments.filter() { $0.threadHeadMessageID == threadID }
+                }
+                onCompletion(success, nil, self.comments, serverMessage, serverCode) //failed to get user
+            } else {
+                onCompletion(false, nil, nil, serverMessage, serverCode) //failed to get user
+            }
+        }
+    }
 }

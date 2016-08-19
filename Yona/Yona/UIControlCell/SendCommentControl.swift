@@ -30,10 +30,13 @@ class SendCommentControl : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.setNeedsLayout()
         var fra = self.contentView.frame
-        fra.size.width = frame.size.width - 50
+        fra.size.width = frame.size.width
         self.contentView.frame = fra
+        self.contentView.setNeedsLayout()
+        
+        self.sendCommentButton.setNeedsLayout()
+        self.commentTextField.setNeedsLayout()
     }
     
     @IBAction func sendComment(sender: UIButton) {

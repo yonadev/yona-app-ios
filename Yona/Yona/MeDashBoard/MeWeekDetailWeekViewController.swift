@@ -379,9 +379,13 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         })
     }
     
-    func showSendComment(comment: Comment?){
-        UIView.animateWithDuration(1.5, animations: {
-            self.commentView.hidden = false
+    func showSendComment(comment: Comment?) {
+        self.comments = []
+        if let comment = comment {
+            self.comments.append(comment)
+        }
+        UIView.animateWithDuration(0.5, animations: {
+            self.commentView.alpha = 1
         })
     }
     
@@ -396,20 +400,20 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
-        //reload the data
-        if let comment = comment {
-            self.comments.append(comment)
+        commentTextField.text = ""
+        if let commentsLink = week[currentWeek.yearWeek]?.commentLink  {
+            self.getComments(commentsLink)
         }
-        
     }
     
     // MARK: - get comment data
-    func getComments(commentLink: String?) {
-        CommentRequestManager.sharedInstance.getComments(commentLink!, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+    func getComments(commentLink: String) {
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []
                 if let comments = comments {
                     self.comments = comments
+                    
                 }
             }
         }
