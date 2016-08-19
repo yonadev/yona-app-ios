@@ -27,6 +27,12 @@ enum commentKeys : String {
     case yonaAffectedMessage = "yona:affectedMessages"
     case commentType = "@type"
     case isRead = "isRead"
+    //paging
+    case page = "page"
+    case size = "size"
+    case totalElements = "totalElements"
+    case totalPages = "totalPages"
+    case number = "number"
 }
 
 struct Comment{
@@ -46,6 +52,12 @@ struct Comment{
     var dayDetailsLink: String?
     var threadHeadLink: String?
     var yonaUser : String?
+    
+    //paging
+    var currentSize: Int?
+    var currentPage : Int?
+    var totalSize: Int?
+    var totalPages : Int?
     
     init(commentData: BodyDataDictionary) {
         

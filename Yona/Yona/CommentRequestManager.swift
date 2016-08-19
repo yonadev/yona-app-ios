@@ -71,7 +71,21 @@ class CommentRequestManager {
                     self.comments = []
                     for comment in yonaComments {
                         if let comment = comment as? BodyDataDictionary {
-                            let comment = Comment.init(commentData: comment)
+                            var comment = Comment.init(commentData: comment)
+                            if let data = json[commentKeys.page.rawValue] {
+                                if let size = data[commentKeys.size.rawValue] as? Int{
+                                    comment.currentSize = size
+                                }
+                                if let totalSize = data[commentKeys.totalElements.rawValue] as? Int{
+                                    comment.totalSize = totalSize
+                                }
+                                if let totalPages = data[commentKeys.totalPages.rawValue] as? Int{
+                                    comment.totalPages = totalPages
+                                }
+                                if let currentPage = data[commentKeys.number.rawValue] as? Int{
+                                    comment.currentPage = currentPage
+                                }
+                            }
                             self.comments.append(comment)
                         }
                     }

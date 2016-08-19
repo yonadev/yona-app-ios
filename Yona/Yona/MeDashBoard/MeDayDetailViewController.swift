@@ -40,7 +40,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var prevLink : String?
     var hideReplyButton : Bool = false
     var previousThreadID : String = ""
-    var page : Int = 4
+    var page : Int = 0
     var size : Int = 4
 
     @IBOutlet weak var commentView: UIView!
@@ -385,7 +385,36 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return nil
     }
     
-    table
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if self.comments.count > 0{
+            let comment = self.comments[indexPath.row]
+            var rowNumber = indexPath.row
+            for i in 0..<indexPath.section {
+                rowNumber += self.tableView.numberOfRowsInSection(1)
+                if indexPath.section == 1 {
+                    print(indexPath.row)
+                    if indexPath.row == (comment.currentPage! + 1) * size {
+                        if page < comment.totalPages {
+                            page = page + 1
+                        }
+                        if let commentsLink = self.dayData?.messageLink {
+                            
+                            CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+                                if success {
+                                    if let comments = comments {
+                                        for comment in comments {
+                                            self.comments.append(comment)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
     
     // MARK: - CommentCellDelegate
     func deleteComment(cell: CommentControlCell, comment: Comment){
