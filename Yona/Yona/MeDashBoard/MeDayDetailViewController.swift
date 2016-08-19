@@ -40,9 +40,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var prevLink : String?
     var hideReplyButton : Bool = false
     var previousThreadID : String = ""
-    var page : Int = 0
+    var page : Int = 1
     var size : Int = 4
 
+    //paging
+    var totalSize: Int = 0
+    var totalPages : Int = 0
+    
     @IBOutlet weak var commentView: UIView!
     var sendCommentFooter : SendCommentControl?
 
@@ -301,7 +305,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
             if self.dayData?.messageLink != nil && indexPath.section == 1 {
-
                 if comment.threadHeadMessageID != previousThreadID {
                     if let previousThreadID = comment.threadHeadMessageID {
                         self.previousThreadID = previousThreadID
@@ -387,24 +390,19 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if self.comments.count > 0{
-            var rowNumber = indexPath.row
-            for i in 0..<indexPath.section {
-                if indexPath.section == 1 {
-                    rowNumber += self.tableView.numberOfRowsInSection(1)
-                    let comment = self.comments[rowNumber-1]
-                    print(rowNumber)
-                    if rowNumber == (comment.currentPage! + 1) * size {
-                        if page < comment.totalPages {
-                            page = page + 1
-                        }
-                        if let commentsLink = self.dayData?.messageLink {
-                            
-                            CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
-                                if success {
-                                    if let comments = comments {
-                                        for comment in comments {
-                                            self.comments.append(comment)
-                                        }
+            if indexPath.section == 1 {
+                print(indexPath.row)
+                if indexPath.row == page * size - 1 && page < self.totalPages {
+                    page = page + 1
+                    
+                    if let commentsLink = self.dayData?.messageLink {
+                        Loader.Show()
+                        CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+                            Loader.Hide()
+                            if success {
+                                if let comments = comments {
+                                    for comment in comments {
+                                        self.comments.append(comment)
                                     }
                                 }
                             }
@@ -412,6 +410,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     }
                 }
             }
+            
 
         }
     }
@@ -463,6 +462,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 self.comments = []
                 if let comments = comments {
                     self.comments = comments
+                    self.totalPages = comments[0].totalPages!
                     
                 }
             }

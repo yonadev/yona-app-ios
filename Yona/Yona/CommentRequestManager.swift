@@ -62,7 +62,7 @@ class CommentRequestManager {
     
     
     func getComments(getCommentsLink: String, size: Int, page: Int, onCompletion: APICommentResponse){
-        let path = getCommentsLink + "?size=" + String(size) + "&page=" + String(page)
+        let path = getCommentsLink + "?size=" + String(size) + "&page=" + String(page-1)
         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
                 if let embedded = json[getMessagesKeys.embedded.rawValue],

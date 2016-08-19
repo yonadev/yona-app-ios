@@ -25,7 +25,14 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBOutlet weak var commentView: UIView!
     var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
-
+    
+    var page : Int = 1
+    var size : Int = 4
+    
+    //paging
+    var totalSize: Int = 0
+    var totalPages : Int = 0
+    
     var comments = [Comment]() {
         didSet{
             //everytime add comments refresh table
@@ -41,7 +48,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
         sendCommentFooter!.delegate = self
         self.commentView.addSubview(sendCommentFooter!)
-        self.commentView.hidden = true
+        self.commentView.alpha = 0
     }
 
     func registreTableViewCells () {
@@ -258,6 +265,30 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         return 0.0
     }
 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if self.comments.count > 0{
+            if indexPath.section == 1 {
+                print(indexPath.row)
+                if indexPath.row == page * size - 1 && page < self.totalPages {
+                    page = page + 1
+                    if let data = week[currentWeek.yearWeek],
+                        let commentsLink = data.messageLink {
+                        Loader.Show()
+                        CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+                            Loader.Hide()
+                            if success {
+                                if let comments = comments {
+                                    for comment in comments {
+                                        self.comments.append(comment)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     //MARK: Protocol implementation
     func leftButtonPushed(){
@@ -413,7 +444,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 self.comments = []
                 if let comments = comments {
                     self.comments = comments
-                    
+                    self.totalPages = comments[0].totalPages!
                 }
             }
         }

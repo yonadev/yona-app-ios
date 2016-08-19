@@ -71,68 +71,61 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        if self.dayData?.messageLink != nil && indexPath.section == 1 {
-            let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-            cell.setBuddyCommentData(self.comments[indexPath.row])
-            cell.indexPath = indexPath
-            cell.commentDelegate = self
-            let comment = self.comments[indexPath.row]
-
-            if self.dayData?.commentLink != nil {
-                self.commentView.hidden = false
-                cell.replyToComment.hidden = true
-                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-            } else if comment.replyLink != nil {
-                cell.replyToComment.hidden = false
-                self.sendCommentFooter!.postReplyLink = comment.replyLink
+//        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        
+        if indexPath.section == 0 {
+            if indexPath.row == detailDayRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
+                return cell
+                
             }
-            return cell
+            if indexPath.row == detailDayRows.activity.rawValue {
+                
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data)
+                    }
+                    return cell
+                }
+                
+            }
+        } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
+            let comment = self.comments[indexPath.row]
+            if self.dayData?.messageLink != nil && indexPath.section == 1 {
+                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                    cell.setBuddyCommentData(comment)
+                    cell.indexPath = indexPath
+                    cell.commentDelegate = self
+                    if self.dayData?.commentLink != nil {
+                        self.commentView.hidden = false
+                        cell.replyToComment.hidden = true
+                        self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                    } else if comment.replyLink != nil {
+                        cell.replyToComment.hidden = false
+                        self.sendCommentFooter!.postReplyLink = comment.replyLink
+                    }
+                    return cell
+                }
+            }
+        
         }
         return UITableViewCell(frame: CGRectZero)
     }
-//        if indexPath.section == 0 {
-//            if indexPath.row == detailDayRows.spreadCell.rawValue {
-//                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-//                if let data = dayData  {
-//                    cell.setDayActivityDetailForView(data, animated: true)
-//                }
-//                return cell
-//                
-//            }
-//            if indexPath.row == detailDayRows.activity.rawValue {
-//                
-//                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
-//                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-//                    if let data = dayData  {
-//                        cell.setDayActivityDetailForView(data, animated: true)
-//                    }
-//                    return cell
-//                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
-//                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-//                    if let data = dayData  {
-//                        cell.setDayActivityDetailForView(data, animated: true)
-//                    }
-//                    return cell
-//                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
-//                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-//                    if let data = dayData  {
-//                        cell.setDayActivityDetailForView(data)
-//                    }
-//                    return cell
-//                }
-//                
-//            }
-//        }
-//        else if self.dayData?.messageLink != nil && indexPath.section == 1 {
-//            let cell: CommentControlCell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as! CommentControlCell
-//            cell.setBuddyCommentData(self.comments[indexPath.row])
-//            cell.indexPath = indexPath
-//            cell.commentDelegate = self
-//            cell.replyToComment.hidden = true
-//            return cell
-//        }
-//        return UITableViewCell(frame: CGRectZero)
-//    }
     
 }

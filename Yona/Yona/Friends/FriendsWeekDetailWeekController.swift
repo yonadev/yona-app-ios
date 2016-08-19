@@ -33,7 +33,15 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
+                                    if let commentsLink = data.messageLink {
+                                        self.getComments(commentsLink)
+                                    }
+                                    if data.commentLink != nil {
+                                        self.commentView.hidden = false
+                                        self.sendCommentFooter!.postCommentLink = data.commentLink
+                                    }
                                 }
+                                
                                 
                                 Loader.Hide()
                                 self.tableView.reloadData()
@@ -54,6 +62,13 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
+                                    if let commentsLink = data.messageLink {
+                                        self.getComments(commentsLink)
+                                    }
+                                    if data.commentLink != nil {
+                                        self.commentView.hidden = false
+                                        self.sendCommentFooter!.postCommentLink = data.commentLink
+                                    }
                                 }
                                 
                                 Loader.Hide()
@@ -75,6 +90,13 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                                     self.currentWeek = data.date
                                     self.week[data.date.yearWeek] = data
                                     print (data.date.yearWeek)
+                                    if let commentsLink = data.messageLink {
+                                        self.getComments(commentsLink)
+                                    }
+                                    if data.commentLink != nil {
+                                        self.commentView.hidden = false
+                                        self.sendCommentFooter!.postCommentLink = data.commentLink
+                                    }
                                 }
                                 
                                 Loader.Hide()
