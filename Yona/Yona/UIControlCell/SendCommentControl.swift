@@ -13,7 +13,7 @@ protocol SendCommentControlProtocol {
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
 }
 
-class SendCommentControl : UITableViewCell {
+class SendCommentControl : UIView {
     
     var postCommentLink : String?
     var postReplyLink : String?
@@ -25,8 +25,36 @@ class SendCommentControl : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        sendCommentButton.titleLabel!.text = NSLocalizedString("commenting.sendComment", comment: "")
+        if let title = sendCommentButton.titleLabel {
+            title.text = NSLocalizedString("commenting.sendComment", comment: "")
+        }
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+//    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        
+//        var fra = self.contentView.frame
+//        fra.size.width = frame.size.width
+//        self.contentView.frame = fra
+//        
+//        var buttonFrame = self.sendCommentButton.frame
+//        buttonFrame.origin.x = fra.size.width - buttonFrame.size.width
+//        self.sendCommentButton.frame = buttonFrame
+//        
+//        self.contentView.setNeedsLayout()
+//        
+//        self.sendCommentButton.setNeedsLayout()
+//        self.commentTextField.setNeedsLayout()
+//    }
+    
     
     @IBAction func sendComment(sender: UIButton) {
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -701,7 +701,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cQ5-9r-7aj"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="jDP-vJ-73M"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -717,7 +716,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="ZY1-H1-sZ7"/>
+                        <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="iRa-lx-cHW"/>
                         <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
                     </connections>
                 </viewController>
@@ -745,7 +744,7 @@
                                     <outlet property="delegate" destination="lqa-d1-gYJ" id="sIO-6r-lSh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt">
                                 <rect key="frame" x="0.0" y="554" width="600" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -766,7 +765,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
                     <connections>
-                        <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="Abq-7E-e8N"/>
+                        <outlet property="commentView" destination="itp-Nv-Czt" id="l2Y-dR-4Cr"/>
                         <outlet property="tableView" destination="hpX-Jy-atY" id="vie-LS-wFL"/>
                     </connections>
                 </viewController>

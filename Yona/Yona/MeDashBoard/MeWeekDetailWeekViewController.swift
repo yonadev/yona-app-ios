@@ -21,7 +21,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var currentWeek : NSDate = NSDate()
     var correctToday = NSDate()
     @IBOutlet weak var tableView : UITableView!
-    @IBOutlet weak var sendCommentFooter : SendCommentControl?
+    @IBOutlet weak var commentView : UIView?
+    var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
     
     var page : Int = 1

@@ -47,7 +47,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var totalSize: Int = 0
     var totalPages : Int = 0
     
-    @IBOutlet weak var sendCommentFooter : SendCommentControl?
+    @IBOutlet weak var sendCommentFooter : SendCommentControl? = SendCommentControl()
+    @IBOutlet weak var commentView : UIView?
 
     var comments = [Comment]() {
         didSet{
@@ -70,7 +71,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         registreTableViewCells()
 //        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
 //        sendCommentFooter!.delegate = self
-//        self.commentView.addSubview(sendCommentFooter!)
+//        self.commentView!.addSubview(sendCommentFooter!)
         self.sendCommentFooter!.alpha = 0
     }
     
@@ -97,8 +98,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
         
-        nib = UINib(nibName: "SendCommentControl", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
+//        nib = UINib(nibName: "SendCommentControl", bundle: nil)
+//        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
         
         nib = UINib(nibName: "ReplyToComment", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
