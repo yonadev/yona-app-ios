@@ -304,6 +304,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
 
             if indexPath.row + 1 < self.comments.count {
                  nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+            } else {
+                nextThreadID = ""
             }
             //check for a previous row
             if indexPath.row != 0{
@@ -318,7 +320,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
-                        cell.hideShowReplyButton(self.dayData?.commentLink != nil)
+                        cell.hideShowReplyButton(self.dayData?.commentLink == nil)
 
                         self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
 
@@ -333,7 +335,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.hideShowReplyButton(nextThreadID == currentThreadID)
                         
                         self.sendCommentFooter?.alpha = 0
-                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
+//                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
 
                         return cell
                     }
