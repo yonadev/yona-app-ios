@@ -44,6 +44,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.comments = []
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self

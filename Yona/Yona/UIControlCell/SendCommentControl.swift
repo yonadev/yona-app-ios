@@ -66,11 +66,11 @@ class SendCommentControl : UIView {
         postReplyLink = replyLink
         postCommentLink = commentLink
         
-        if postCommentLink != nil {
-            self.alpha = 1
-        } else {
-            self.alpha = 0
-        }
+//        if postCommentLink != nil {
+//            self.alpha = 1
+//        } else {
+//            self.alpha = 0
+//        }
     }
     
     @IBAction func sendComment(sender: UIButton) {

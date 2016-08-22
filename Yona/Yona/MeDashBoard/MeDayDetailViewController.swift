@@ -61,7 +61,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.comments = []
         if let activityGoal = activityGoal {
             initialObjectLink = activityGoal.dayDetailLinks
             currentDate = activityGoal.date
