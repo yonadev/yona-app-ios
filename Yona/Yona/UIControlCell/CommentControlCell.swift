@@ -15,7 +15,7 @@ class CommentControlCell: PKSwipeTableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var avatarNameLabel: UILabel!
-    
+    @IBOutlet weak var separator: UIView!
     var comment: Comment?
     var indexPath: NSIndexPath?
 
@@ -69,6 +69,7 @@ class CommentControlCell: PKSwipeTableViewCell {
 
     func hideShowReplyButton(hide: Bool) {
         self.replyToComment.hidden = hide
+        self.separator.hidden = hide
     }
     
     @IBAction func replyToCommentButton(sender: UIButton) {

@@ -23,8 +23,6 @@ class SendCommentControl : UIView {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
     
-    
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         nibSetup()
@@ -63,14 +61,10 @@ class SendCommentControl : UIView {
     }
     
     func setLinks(replyLink: String?, commentLink: String?) {
-        postReplyLink = replyLink
+        if replyLink != nil {
+            postReplyLink = replyLink
+        }
         postCommentLink = commentLink
-        
-//        if postCommentLink != nil {
-//            self.alpha = 1
-//        } else {
-//            self.alpha = 0
-//        }
     }
     
     @IBAction func sendComment(sender: UIButton) {
