@@ -10,7 +10,7 @@ import Foundation
 
 class FriendsDayViewController: MeDashBoardMainViewController {
     
-    var buddyToShow :Buddies! = nil
+    var buddyToShow :Buddies?
     
     @IBOutlet weak var rightNavBarItem : UIBarButtonItem!
     override func viewDidLoad() {
@@ -61,9 +61,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     
-    
-    // MARK: - ACTIONS
-    
+    // MARK: - ACTION
     @IBAction func didChooseUserProfile(sender : AnyObject) {
     
         performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)

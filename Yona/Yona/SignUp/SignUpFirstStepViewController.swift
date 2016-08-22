@@ -60,10 +60,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
         }
-        
-        
-        
     }
+    
     func keyboardWillHiden(notification: NSNotification)
     {
         self.topViewHeightConstraint.constant = 210;

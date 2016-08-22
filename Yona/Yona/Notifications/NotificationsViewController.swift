@@ -36,7 +36,6 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-
     }
 
     override func viewWillAppear(animated: Bool) {

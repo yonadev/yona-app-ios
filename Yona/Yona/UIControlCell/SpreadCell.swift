@@ -28,6 +28,7 @@ class SpreadCell : UITableViewCell {
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
     
+    var isAnimated: Bool = true
     var pxSpreadHeight : CGFloat = 2
     var pxPerMinute : CGFloat = 0
     var pxWidthPerSpread : CGFloat = 4
@@ -37,9 +38,7 @@ class SpreadCell : UITableViewCell {
     var activitySpread : [Int] = []
     var totalMinutesBeyondGoal = 0
     var totalActivityDurationMinutes = 0
-    
-    var isAnimated : Bool = false
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())

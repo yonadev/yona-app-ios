@@ -15,6 +15,11 @@ protocol YonaUserCellDelegate {
     func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
 }
 
+protocol CommentCellDelegate {
+    func deleteComment(cell: CommentControlCell, comment: Comment);
+    func showSendComment(comment: Comment?);
+}
+
 protocol DeleteTimezoneCellDelegateProtocol {
     func deleteTimezone(cell: TimeZoneTableViewCell);
 }
@@ -25,6 +30,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     
     //MARK: Variables
     //Set the delegate object
+    internal var commentDelegate:CommentCellDelegate?
     internal var yonaUserDelegate:YonaUserCellDelegate?
     internal var pkdelegate:PKSwipeTableViewCell?
     internal var timezoneCellDelegate:DeleteTimezoneCellDelegateProtocol?

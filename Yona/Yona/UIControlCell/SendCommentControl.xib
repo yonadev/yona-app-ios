@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+            <connections>
+                <outlet property="commentTextField" destination="VG6-lx-Zr1" id="7j1-dv-tdt"/>
+                <outlet property="sendCommentButton" destination="DKB-dA-YTh" id="LjY-yN-WsX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NAz-Qs-4B9">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzW-v7-FGx" userLabel="Top line">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="HND-B6-VWd"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GES-7t-4IF" userLabel="Bottom line">
+                    <rect key="frame" x="0.0" y="44" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.83529412746429443" green="0.83529412746429443" blue="0.83529412746429443" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="DYf-CH-T7d"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKB-dA-YTh">
+                    <rect key="frame" x="266" y="1" width="109" height="44"/>
+                    <color key="backgroundColor" red="0.11372549086809158" green="0.44313725829124451" blue="0.72156864404678345" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="109" id="v3j-SK-mPu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                    <state key="normal" title="VERSTUREN">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="sendComment:" destination="-1" eventType="touchUpInside" id="tJp-QY-PQM"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VG6-lx-Zr1">
+                    <rect key="frame" x="10" y="1" width="256" height="44"/>
+                    <color key="textColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="VG6-lx-Zr1" firstAttribute="leading" secondItem="NAz-Qs-4B9" secondAttribute="leading" constant="10" id="7AX-TF-fK7"/>
+                <constraint firstItem="VG6-lx-Zr1" firstAttribute="top" secondItem="ZzW-v7-FGx" secondAttribute="bottom" id="BKv-Rw-Rb6"/>
+                <constraint firstItem="ZzW-v7-FGx" firstAttribute="leading" secondItem="NAz-Qs-4B9" secondAttribute="leading" id="BlK-cO-dio"/>
+                <constraint firstItem="DKB-dA-YTh" firstAttribute="top" secondItem="ZzW-v7-FGx" secondAttribute="bottom" id="D07-bc-LZd"/>
+                <constraint firstItem="ZzW-v7-FGx" firstAttribute="top" secondItem="NAz-Qs-4B9" secondAttribute="top" id="FQe-jI-weB"/>
+                <constraint firstAttribute="bottom" secondItem="DKB-dA-YTh" secondAttribute="bottom" id="HJp-GI-Ya1"/>
+                <constraint firstItem="GES-7t-4IF" firstAttribute="leading" secondItem="NAz-Qs-4B9" secondAttribute="leading" id="IDv-yo-9Ef"/>
+                <constraint firstAttribute="trailing" secondItem="DKB-dA-YTh" secondAttribute="trailing" id="KKv-wY-IOL"/>
+                <constraint firstAttribute="trailing" secondItem="ZzW-v7-FGx" secondAttribute="trailing" id="THs-wY-LnP"/>
+                <constraint firstItem="GES-7t-4IF" firstAttribute="top" secondItem="VG6-lx-Zr1" secondAttribute="bottom" constant="4" id="aex-aC-vT2"/>
+                <constraint firstAttribute="bottom" secondItem="GES-7t-4IF" secondAttribute="bottom" constant="-5" id="gld-aa-yek"/>
+                <constraint firstItem="DKB-dA-YTh" firstAttribute="leading" secondItem="VG6-lx-Zr1" secondAttribute="trailing" id="iOh-ec-kuF"/>
+                <constraint firstAttribute="trailing" secondItem="GES-7t-4IF" secondAttribute="trailing" id="jhM-je-lKU"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-492.5" y="437.5"/>
+        </view>
+    </objects>
+</document>

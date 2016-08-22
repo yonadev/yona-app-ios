@@ -8,88 +8,98 @@
 
 import Foundation
 
+enum DayDetailSecions : Int{
+    case activities = 0
+    case comments
+}
+
 class FriendsDayDetailViewController : MeDayDetailViewController {
 
     var buddy : Buddies?
-    override func loadData (typeToLoad : loadType = .own) {
+
+    override func registreTableViewCells () {
+        super.registreTableViewCells()
+        var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
         
-        Loader.Show()
-        
-        if let _ = buddy {
-        
-        if typeToLoad == .own {
-            if let path = initialObjectLink {
-                if let bud = buddy {
-                ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: bud,onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                    if success {
-                        
-                        if let data = dayActivity {
-                            self.currentDate = data.date!
-                            self.currentDay = data.dayOfWeek
-                            self.dayData  = data
-                        }
-                        
-                        Loader.Hide()
-                        self.tableView.reloadData()
-                        
-                    } else {
-                        Loader.Hide()
-                    }
-                })
-                }
-            }
-        }
-        else if typeToLoad == .prev {
-            if let path = dayData!.prevLink {
-                if let bud = buddy {
-                ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: bud,onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                    if success {
-                        
-                        if let data = dayActivity {
-                            self.currentDate = data.date!
-                            self.currentDay = data.dayOfWeek
-                            self.dayData  = data
-                        }
-                        
-                        Loader.Hide()
-                        self.tableView.reloadData()
-                        
-                    } else {
-                        Loader.Hide()
-                    }
-                })
-                }
-            }
-            
-        }
-        else if typeToLoad == .next {
-            if let path = dayData!.nextLink {
-                if let bud = buddy {
-                    ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: bud ,onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                        if success {
-                            
-                            if let data = dayActivity {
-                                self.currentDate = data.date!
-                                self.currentDay = data.dayOfWeek
-                                self.dayData  = data
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
-                }
-            }
-        }
-        } else {
-            super.loadData()
-        
-        }
-        //Loader.Hide()
-        self.tableView.reloadData()
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.sendCommentFooter!.alpha = 1
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
 
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        super.tableView(tableView, heightForHeaderInSection: section)
+        var heightOfHeader : CGFloat = 45
+        if section == 1 && self.comments.count > 0{
+            heightOfHeader = 45
+        }
+        return heightOfHeader
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        
+        if indexPath.section == 0 {
+            if indexPath.row == detailDayRows.spreadCell.rawValue {
+                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                if let data = dayData  {
+                    cell.setDayActivityDetailForView(data, animated: true)
+                }
+                return cell
+                
+            }
+            if indexPath.row == detailDayRows.activity.rawValue {
+                
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data, animated: true)
+                    }
+                    return cell
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    if let data = dayData  {
+                        cell.setDayActivityDetailForView(data)
+                    }
+                    return cell
+                }
+                
+            }
+        } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
+            let comment = self.comments[indexPath.row]
+            if self.dayData?.messageLink != nil && indexPath.section == 1 {
+                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                    cell.setBuddyCommentData(comment)
+                    cell.indexPath = indexPath
+                    cell.commentDelegate = self
+                    if self.dayData?.commentLink != nil {
+                        cell.replyToComment.hidden = true
+                        self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                    } else if comment.replyLink != nil {
+                        cell.replyToComment.hidden = false
+                        self.sendCommentFooter!.postReplyLink = comment.replyLink
+                    }
+                    return cell
+                }
+            }
+        
+        }
+        return UITableViewCell(frame: CGRectZero)
+    }
+    
 }
