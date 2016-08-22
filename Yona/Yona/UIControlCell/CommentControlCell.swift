@@ -66,6 +66,10 @@ class CommentControlCell: PKSwipeTableViewCell {
         }
         
     }
+
+    func hideShowReplyButton(hide: Bool) {
+        self.replyToComment.hidden = hide
+    }
     
     @IBAction func replyToCommentButton(sender: UIButton) {
         commentDelegate?.showSendComment(comment)

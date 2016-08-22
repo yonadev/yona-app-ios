@@ -24,17 +24,11 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
-        
-        nib = UINib(nibName: "SendCommentControl", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sendCommentFooter!.alpha = 1
-//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-//        sendCommentFooter!.delegate = self
-//        self.commentView.addSubview(sendCommentFooter!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,32 +36,13 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
 
     }
 
-// MARK: - tableview Override
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        super.tableView(tableView, viewForHeaderInSection: section)
-        
-        if section == 1 && self.comments.count > 0{
-            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
-            return cell
-        }
-        
-        return nil
-    }
-    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         super.tableView(tableView, heightForHeaderInSection: section)
-        var heightOfHeader : CGFloat = 0
+        var heightOfHeader : CGFloat = 45
         if section == 1 && self.comments.count > 0{
             heightOfHeader = 45
         }
         return heightOfHeader
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1 && self.dayData?.commentLink != nil{
-//            return 45.0
-        }
-        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

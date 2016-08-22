@@ -22,7 +22,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var correctToday = NSDate()
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var commentView : UIView?
-    var sendCommentFooter : SendCommentControl?
+    @IBOutlet weak var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
     
     var page : Int = 1
@@ -45,10 +45,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     override func viewDidLoad() {
         super.viewDidLoad()
         registreTableViewCells()
-//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-//        sendCommentFooter!.delegate = self
-//        self.commentView.addSubview(sendCommentFooter!)
         self.sendCommentFooter!.alpha = 0
+        self.sendCommentFooter?.delegate = self
     }
 
     func registreTableViewCells () {
@@ -149,37 +147,43 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         if let data = week[currentWeek.yearWeek]  {
             if data.messageLink != nil && indexPath.section == 1 {
                 let comment = self.comments[indexPath.row]
-                if comment.threadHeadMessageID != previousThreadID {
-                    if let previousThreadID = comment.threadHeadMessageID {
-                        self.previousThreadID = previousThreadID
+                let currentThreadID = comment.threadHeadMessageID
+                var previousThreadID = ""
+                var nextThreadID = ""
+                
+                if indexPath.row + 1 < self.comments.count {
+                    nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+                }
+                //check for a previous row
+                if indexPath.row != 0{
+                    // then get the thread id of this row
+                    previousThreadID = self.comments[indexPath.row - 1].threadHeadMessageID!
+                }
+                
+                if data.messageLink != nil && indexPath.section == 1 {
+                    //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
+                    if currentThreadID != previousThreadID {
                         if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            if data.commentLink != nil {
-                                cell.replyToComment.hidden = true
-                                self.sendCommentFooter!.postCommentLink = data.commentLink
-                            } else if comment.replyLink != nil {
-                                cell.replyToComment.hidden = false
-                                self.sendCommentFooter!.postReplyLink = comment.replyLink
-                            }
+                            cell.hideShowReplyButton(data.commentLink != nil)
+                            
+                            self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
+                            
                             return cell
                         }
-                    }
-                } else {
-                    if let previousThreadID = comment.threadHeadMessageID {
-                        self.previousThreadID = previousThreadID
+                    } else {
+                        // if the thread id is the same then show the reply to comment cell
                         if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            if data.commentLink != nil {
-                                cell.replyToComment.hidden = true
-                                self.sendCommentFooter!.postCommentLink = data.commentLink
-                            } else if comment.replyLink != nil {
-                                cell.replyToComment.hidden = false
-                                self.sendCommentFooter!.postReplyLink = comment.replyLink
-                            }
+                            cell.hideShowReplyButton(nextThreadID == currentThreadID)
+                            
+                            self.sendCommentFooter?.alpha = 0
+                            self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
+                            
                             return cell
                         }
                     }
@@ -429,13 +433,15 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         commentTextField.text = ""
         if let data = week[currentWeek.yearWeek],
             let commentsLink = data.messageLink {
+                size = 4
+                page = 1
                 self.getComments(commentsLink)
         }
     }
     
     // MARK: - get comment data
     func getComments(commentLink: String) {
-        CommentRequestManager.sharedInstance.getComments(commentLink, size: 11, page: 0) { (success, comment, comments, serverMessage, serverCode) in
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []
                 if let comments = comments {

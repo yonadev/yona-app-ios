@@ -23,8 +23,11 @@ class SendCommentControl : UIView {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        nibSetup()
         if let title = sendCommentButton.titleLabel {
             title.text = NSLocalizedString("commenting.sendComment", comment: "")
         }
@@ -32,29 +35,43 @@ class SendCommentControl : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        nibSetup()
+        
+        if let title = sendCommentButton.titleLabel {
+            title.text = NSLocalizedString("commenting.sendComment", comment: "")
+        }
+    }
+
+    private func nibSetup() {
+        backgroundColor = .clearColor()
+        
+        let view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.translatesAutoresizingMaskIntoConstraints = true
+        
+        addSubview(view)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        
-//        var fra = self.contentView.frame
-//        fra.size.width = frame.size.width
-//        self.contentView.frame = fra
-//        
-//        var buttonFrame = self.sendCommentButton.frame
-//        buttonFrame.origin.x = fra.size.width - buttonFrame.size.width
-//        self.sendCommentButton.frame = buttonFrame
-//        
-//        self.contentView.setNeedsLayout()
-//        
-//        self.sendCommentButton.setNeedsLayout()
-//        self.commentTextField.setNeedsLayout()
-//    }
     
+    private func loadViewFromNib() -> UIView {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
+        let nibView = nib.instantiateWithOwner(self, options: nil).first as! UIView
+        
+        return nibView
+    }
+    
+    func setLinks(replyLink: String?, commentLink: String?) {
+        postReplyLink = replyLink
+        postCommentLink = commentLink
+        
+        if postCommentLink != nil {
+            self.alpha = 1
+        } else {
+            self.alpha = 0
+        }
+    }
     
     @IBAction func sendComment(sender: UIButton) {
         

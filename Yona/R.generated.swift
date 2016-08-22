@@ -415,7 +415,6 @@ struct R {
   struct reuseIdentifier {
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
-    static var sendCommentControl: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeLineHeaderCell: ReuseIdentifier<TimeLineHeaderCell> { return ReuseIdentifier(identifier: "TimeLineHeaderCell") }
@@ -831,13 +830,12 @@ struct _R {
       }
     }
     
-    struct _SendCommentControl: NibResource, Reusable {
+    struct _SendCommentControl: NibResource {
       var instance: UINib { return UINib.init(nibName: "SendCommentControl", bundle: _R.hostingBundle) }
       var name: String { return "SendCommentControl" }
-      var reuseIdentifier: ReuseIdentifier<SendCommentControl> { return ReuseIdentifier(identifier: "SendCommentControl") }
       
-      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> SendCommentControl? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? SendCommentControl
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? UIView
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

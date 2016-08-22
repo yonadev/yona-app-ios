@@ -47,8 +47,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var totalSize: Int = 0
     var totalPages : Int = 0
     
-    @IBOutlet weak var sendCommentFooter : SendCommentControl? = SendCommentControl()
-    @IBOutlet weak var commentView : UIView?
+    @IBOutlet weak var sendCommentFooter : SendCommentControl?
 
     var comments = [Comment]() {
         didSet{
@@ -69,10 +68,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             goalName = activityGoal.goalName
         }
         registreTableViewCells()
-//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-//        sendCommentFooter!.delegate = self
-//        self.commentView!.addSubview(sendCommentFooter!)
-        self.sendCommentFooter!.alpha = 0
+        self.sendCommentFooter?.delegate = self
+        self.sendCommentFooter?.alpha = 0
     }
     
     func registreTableViewCells () {
@@ -301,43 +298,48 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
+            let currentThreadID = comment.threadHeadMessageID
+            var previousThreadID = ""
+            var nextThreadID = ""
+
+            if indexPath.row + 1 < self.comments.count {
+                 nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+            }
+            //check for a previous row
+            if indexPath.row != 0{
+                // then get the thread id of this row
+                previousThreadID = self.comments[indexPath.row - 1].threadHeadMessageID!
+            }
+            
             if self.dayData?.messageLink != nil && indexPath.section == 1 {
-                if comment.threadHeadMessageID != previousThreadID {
-                    if let previousThreadID = comment.threadHeadMessageID {
-                        self.previousThreadID = previousThreadID
-                        if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
-                            cell.setBuddyCommentData(comment)
-                            cell.indexPath = indexPath
-                            cell.commentDelegate = self
-                            if self.dayData?.commentLink != nil {
-                                cell.replyToComment.hidden = true
-                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                            } else if comment.replyLink != nil {
-                                cell.replyToComment.hidden = false
-                                self.sendCommentFooter!.postReplyLink = comment.replyLink
-                            }
-                            return cell
-                        }
+                //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
+                if currentThreadID != previousThreadID {
+                    if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                        cell.setBuddyCommentData(comment)
+                        cell.indexPath = indexPath
+                        cell.commentDelegate = self
+                        cell.hideShowReplyButton(self.dayData?.commentLink != nil)
+
+                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
+
+                        return cell
                     }
                 } else {
-                    if let previousThreadID = comment.threadHeadMessageID {
-                        self.previousThreadID = previousThreadID
-                        if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
-                            cell.setBuddyCommentData(comment)
-                            cell.indexPath = indexPath
-                            cell.commentDelegate = self
-                            if self.dayData?.commentLink != nil {
-                                cell.replyToComment.hidden = true
-                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                            } else if comment.replyLink != nil {
-                                cell.replyToComment.hidden = false
-                                self.sendCommentFooter!.postReplyLink = comment.replyLink
-                            }
-                            return cell
-                        }
+                    // if the thread id is the same then show the reply to comment cell
+                    if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                        cell.setBuddyCommentData(comment)
+                        cell.indexPath = indexPath
+                        cell.commentDelegate = self
+                        cell.hideShowReplyButton(nextThreadID == currentThreadID)
+                        
+                        self.sendCommentFooter?.alpha = 0
+                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
+
+                        return cell
                     }
                 }
             }
+            
         }
         return UITableViewCell(frame: CGRectZero)
         
@@ -446,6 +448,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
         if let commentsLink = self.dayData?.messageLink {
+            size = 4
+            page = 1
             self.getComments(commentsLink)
         }
     }
