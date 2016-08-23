@@ -63,6 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        
+        print ("I came here")
+        return true
+    }
+    
+    
     //MARK: Handle environment switch
     func updateEnvironmentSettings() -> Bool
     {

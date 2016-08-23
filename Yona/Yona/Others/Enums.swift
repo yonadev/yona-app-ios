@@ -96,6 +96,7 @@ enum userRequestTypes{
     case updateUser
     case confirmMobile
     case resendMobileConfirmCode
+    case getConfigFile
 }
 
 enum GetUserRequest{

@@ -245,6 +245,7 @@ class ActivitiesRequestManager {
                                     }
                                     })
                             }
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
  
                         } else {
                             //response from request failed
@@ -289,11 +290,16 @@ class ActivitiesRequestManager {
                     
                 }
                 let daysActivities = DayActivityOverview(Date: theDate, theActivities: dateActivity)
+ 
+                
+
                 
                 newData.append(daysActivities)
             }
         }
 
+        
+        
         return newData
     }
 

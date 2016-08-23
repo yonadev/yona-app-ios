@@ -20,6 +20,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var firstWeek :  NSDate = NSDate()
     var currentWeek : NSDate = NSDate()
     var correctToday = NSDate()
+    
+    
     @IBOutlet weak var tableView : UITableView!
     
     override func viewDidLoad() {
@@ -201,8 +203,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         Loader.Show()
         
         if typeToLoad == .own {
-            if let data = initialObject  {
-                if let path = data.weekDetailLink {
+            if let data = initialObject,
+                let path = data.weekDetailLink {
                     ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                         if success {
                             
@@ -220,7 +222,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                         }
                     })
                 }
-            }
         } else  if typeToLoad == .prev {
             if let data = week[currentWeek.yearWeek]  {
                 if let path = data.prevLink {
