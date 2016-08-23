@@ -27,11 +27,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Fpm-v2-kz6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AMf-oz-gSu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="S1p-g9-SMB" id="L3G-JI-h2W"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-nr-w55" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="491" width="600" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="aDw-3q-3I4"/>
@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qZ-Gd-xtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-293" y="827"/>
+            <point key="canvasLocation" x="487" y="1227"/>
         </scene>
         <!--Me Dash Board Main View Controller-->
         <scene sceneID="0BX-Y1-1ZG">
@@ -239,11 +239,11 @@
                         <viewControllerLayoutGuide type="bottom" id="z4e-qq-zf6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u93-o7-Obw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UbE-Mh-h0r" id="ROA-cf-jLI"/>
@@ -251,7 +251,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAs-Es-UVR" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="491" width="600" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="CWX-7n-8tr"/>
@@ -342,7 +342,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="417" y="883"/>
+            <point key="canvasLocation" x="-283" y="213"/>
         </scene>
         <!--notifications.messages.title-->
         <scene sceneID="2b2-Hb-0BV">
@@ -371,12 +371,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <segue destination="WCO-lA-rh6" kind="show" identifier="showAcceptFriend" id="dQJ-b8-YTO"/>
+                        <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetailMessage" id="i6A-dg-q6c"/>
+                        <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetailMessage" id="rQa-zh-Tis"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPq-EN-rhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4fa-FB-FqU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1207" y="878"/>
+            <point key="canvasLocation" x="1261" y="1168"/>
         </scene>
         <!--confirm.request.title-->
         <scene sceneID="ooq-AF-k4X">
@@ -477,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZd-3g-eWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926" y="883"/>
+            <point key="canvasLocation" x="2312" y="999"/>
         </scene>
     </scenes>
     <resources>
@@ -485,4 +487,8 @@
         <image name="icnEdit" width="24" height="24"/>
         <image name="icnReminder" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rQa-zh-Tis"/>
+        <segue reference="i6A-dg-q6c"/>
+    </inferredMetricsTieBreakers>
 </document>

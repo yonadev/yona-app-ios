@@ -16,6 +16,7 @@ enum detailRows : Int  {
 
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
     var initialObject : WeekSingleActivityGoal?
+    var initialObjectLink : String?
     var week : [String:WeekSingleActivityDetail] = [:]
     var firstWeek :  NSDate = NSDate()
     var currentWeek : NSDate = NSDate()
@@ -89,6 +90,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 navigationItem.title = NSLocalizedString(txt, comment: "")
             }
             
+            loadData(.own)
+        } else if initialObjectLink != nil {
             loadData(.own)
         }
     }
@@ -310,32 +313,40 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         page = 1
         
         if typeToLoad == .own {
-            if let data = initialObject  {
-                if let path = data.weekDetailLink {
-                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                        if success {
-                            
-                            if let data = activitygoals {
-                                self.currentWeek = data.date
-                                self.week[data.date.yearWeek] = data
-                                print (data.date.yearWeek)
-                                if let commentsLink = data.messageLink {
-                                    self.getComments(commentsLink)
-                                }
-                                if data.commentLink != nil {
-                                    self.sendCommentFooter!.postCommentLink = data.commentLink
-                                }
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
+            var path : String?
+            if let url = initialObjectLink {
+                path = url
+            } else {
+                if let data = initialObject,
+                    let url = data.weekDetailLink {
+                        path = url
                 }
             }
+            if let path = path {
+                ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                    if success {
+                        
+                        if let data = activitygoals {
+                            self.currentWeek = data.date
+                            self.week[data.date.yearWeek] = data
+                            print (data.date.yearWeek)
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            if data.commentLink != nil {
+                                self.sendCommentFooter!.postCommentLink = data.commentLink
+                            }
+                        }
+                        
+                        Loader.Hide()
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
+            }
+            
         } else  if typeToLoad == .prev {
             if let data = week[currentWeek.yearWeek]  {
                 if let path = data.prevLink {

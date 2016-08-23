@@ -62,30 +62,14 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         }
         
         if segue.destinationViewController is MeWeekDetailWeekViewController {
-            var controller = segue.destinationViewController as! MeWeekDetailWeekViewController
-            ActivitiesRequestManager.sharedInstance.getWeekActivityDetails(self.aMessage!.weekDetailsLink!, date: (self.aMessage?.creationTime)!, onCompletion: { (success, message, code, singleWeekActivity, error) in
-                if success {
-                    if let data = singleWeekActivity {
-                        controller.initialObject = data
-                    }
-                }
-            })
-            
+            let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
+            controller.initialObjectLink = self.aMessage!.dayDetailsLink!
+
         }
         
         if segue.destinationViewController is MeDayDetailViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
-            ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                if success {
-                    
-//                    if let data = activitygoals {
-//                        controller.activityGoal = data
-//                    }
-                    Loader.Hide()
-                } else {
-                    Loader.Hide()
-                }
-            })
+            controller.initialObjectLink = self.aMessage!.dayDetailsLink!
         }
         
     }
@@ -112,14 +96,14 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             if success {
                 Loader.Hide()
                 self.buddyData = buddy
-                if let aMessage = aMessage {
+                if let aMessage = self.aMessage {
                     if aMessage.status == buddyRequestStatus.REQUESTED {
                         self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
                     } else if aMessage.messageType == notificationType.ActivityCommentMessage {
                         if aMessage.dayDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
                         } else if aMessage.weekDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
                         }
                     }
                 }

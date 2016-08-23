@@ -71,7 +71,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         self.sendCommentFooter?.delegate = self
         self.sendCommentFooter?.alpha = 0
     }
-    
+        
     func registreTableViewCells () {
         
         var nib = UINib(nibName: "SpreadCell", bundle: nil)
@@ -137,6 +137,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
+                            self.navigationItem.title = self.dayData?.goalName //only need to do this in the first original data
+
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }
