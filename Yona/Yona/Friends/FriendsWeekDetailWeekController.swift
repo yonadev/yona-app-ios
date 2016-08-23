@@ -14,9 +14,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-//        sendCommentFooter!.delegate = self
-//        self.commentView.addSubview(sendCommentFooter!)
+        self.comments = []
         self.sendCommentFooter!.alpha = 1
     }
     

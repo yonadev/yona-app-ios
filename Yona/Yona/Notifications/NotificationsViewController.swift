@@ -14,6 +14,14 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     var selectedIndex : NSIndexPath?
     var buddyData : Buddies?
 
+    var page : Int = 1
+    var size : Int = 20
+    
+    //paging
+    var totalSize: Int = 0
+    var totalPages : Int = 0
+    var aMessage: Message?
+    
     //MARK: searchResultMovies hold the movie search results
     var messages = [[Message]]() {
         didSet{
@@ -53,6 +61,33 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             self.tableView.reloadData()
         }
         
+        if segue.destinationViewController is MeWeekDetailWeekViewController {
+            var controller = segue.destinationViewController as! MeWeekDetailWeekViewController
+            ActivitiesRequestManager.sharedInstance.getWeekActivityDetails(self.aMessage!.weekDetailsLink!, date: (self.aMessage?.creationTime)!, onCompletion: { (success, message, code, singleWeekActivity, error) in
+                if success {
+                    if let data = singleWeekActivity {
+                        controller.initialObject = data
+                    }
+                }
+            })
+            
+        }
+        
+        if segue.destinationViewController is MeDayDetailViewController {
+            let controller = segue.destinationViewController as! MeDayDetailViewController
+            ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                if success {
+                    
+//                    if let data = activitygoals {
+//                        controller.activityGoal = data
+//                    }
+                    Loader.Hide()
+                } else {
+                    Loader.Hide()
+                }
+            })
+        }
+        
     }
     
     //MARK: - tableview methods
@@ -70,15 +105,23 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
-        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
         Loader.Show()
-        BuddyRequestManager.sharedInstance.getBuddy(aMessage.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
             //success so get the user?
             if success {
                 Loader.Hide()
                 self.buddyData = buddy
-                if aMessage.status == buddyRequestStatus.REQUESTED {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                if let aMessage = aMessage {
+                    if aMessage.status == buddyRequestStatus.REQUESTED {
+                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                    } else if aMessage.messageType == notificationType.ActivityCommentMessage {
+                        if aMessage.dayDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
+                        } else if aMessage.weekDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showWeekDetail, sender: self)
+                        }
+                    }
                 }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             } else {
@@ -148,6 +191,33 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
 
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if messages[indexPath.section].count > 0{
+            print(indexPath.row)
+            print(indexPath.section)
+            print(messages[indexPath.section].count)
+
+            if indexPath.row == page * size - 1 && page < self.totalPages {
+                page = page + 1
+                self.loadMessages(self)
+
+//                    if let commentsLink = self.dayData?.messageLink {
+//                        Loader.Show()
+//                        CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+//                            Loader.Hide()
+//                            if success {
+//                                if let comments = comments {
+//                                    for comment in comments {
+//                                        self.comments.append(comment)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+            }
+        }
+    }
+    
     // MARK: - YonaUserCellDelegate
     func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message) {
         let aMessage = message as Message
@@ -163,9 +233,12 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     // MARK: - server methods
     func loadMessages(sender:AnyObject) {
         Loader.Show()
-        MessageRequestManager.sharedInstance.getMessages(10, page: 0, onCompletion: {
+        MessageRequestManager.sharedInstance.getMessages(size, page: page, onCompletion: {
         (success, message, code, text, theMessages) in
             if success {
+                self.totalPages = MessageRequestManager.sharedInstance.totalPages!
+                self.totalSize = MessageRequestManager.sharedInstance.totalSize!
+
                 var allLoadedMessage : [[Message]] = []
                 var tmpArray: [Message] = []
                 //success so sort by date... and create sub arrays
@@ -203,7 +276,6 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             } else {
                 //response from request failed
             }
-//            self.refreshControl!.endRefreshing()
             Loader.Hide()
         })
         

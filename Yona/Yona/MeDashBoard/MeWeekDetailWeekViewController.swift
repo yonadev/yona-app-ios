@@ -154,6 +154,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 
                 if indexPath.row + 1 < self.comments.count {
                     nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+                } else {
+                    nextThreadID = ""
                 }
                 //check for a previous row
                 if indexPath.row != 0{
@@ -168,10 +170,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            cell.hideShowReplyButton(data.commentLink != nil)
-                            
+                            cell.hideShowReplyButton(data.commentLink != nil && comment.replyLink == nil)
                             self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
-                            
                             return cell
                         }
                     } else {
@@ -180,11 +180,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            cell.hideShowReplyButton(nextThreadID == currentThreadID)
-                            
+                            cell.hideShowReplyButton(comment.replyLink == nil)
                             self.sendCommentFooter?.alpha = 0
-                            self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
-                            
                             return cell
                         }
                     }
@@ -308,6 +305,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
         // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()
+        //reset these so that the data can be loaded when we switch to a different set of challenges we need to see from the beginning
+        size = 4
+        page = 1
         
         if typeToLoad == .own {
             if let data = initialObject  {

@@ -126,7 +126,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()
-        
+        size = 4
+        page = 1
         if typeToLoad == .own {
             if let path = initialObjectLink {
                 ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
@@ -320,7 +321,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
-                        cell.hideShowReplyButton(self.dayData?.commentLink == nil)
+                        cell.hideShowReplyButton(self.dayData?.commentLink != nil && comment.replyLink == nil)
 
                         self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
 
@@ -332,7 +333,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
-                        cell.hideShowReplyButton(nextThreadID == currentThreadID)
+                        cell.hideShowReplyButton(comment.replyLink == nil)
                         
                         self.sendCommentFooter?.alpha = 0
 //                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)

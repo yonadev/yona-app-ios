@@ -28,6 +28,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.comments = []
         self.sendCommentFooter!.alpha = 1
     }
     

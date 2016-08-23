@@ -96,6 +96,8 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         var tmpLast = ""
         if aMessage.UserRequestfirstName.characters.count > 0 {
             tmpFirst = aMessage.UserRequestfirstName
+        } else {
+            tmpFirst = aMessage.nickname
         }
         if aMessage.UserRequestlastName.characters.count > 0 {
             tmpLast = aMessage.UserRequestlastName
