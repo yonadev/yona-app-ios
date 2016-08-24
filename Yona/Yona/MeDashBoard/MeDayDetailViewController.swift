@@ -67,12 +67,15 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             currentDate = activityGoal.date
             goalName = activityGoal.goalName
         }
-        self.navigationController?.navigationBar.hidden = true
         registreTableViewCells()
         self.sendCommentFooter?.delegate = self
         self.sendCommentFooter?.alpha = 0
-    }
         
+//        self.navigationItem.leftBarButtonItem = nil
+//        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
     func registreTableViewCells () {
         
         var nib = UINib(nibName: "SpreadCell", bundle: nil)
@@ -106,11 +109,9 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
-
         self.loadData(.own)
-        self.navigationItem.title = goalName
+        self.navigationController?.navigationItem.title = goalName
 
     }
     

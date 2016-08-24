@@ -63,7 +63,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
-            controller.initialObjectLink = self.aMessage!.dayDetailsLink!
+            controller.initialObjectLink = self.aMessage!.weekDetailsLink!
 
         }
         
@@ -101,9 +101,9 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                         self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
                     } else if aMessage.messageType == notificationType.ActivityCommentMessage {
                         if aMessage.dayDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-                        } else if aMessage.weekDetailsLink != nil {
                             self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                        } else if aMessage.weekDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
                         }
                     }
                 }
@@ -217,7 +217,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     // MARK: - server methods
     func loadMessages(sender:AnyObject) {
         Loader.Show()
-        MessageRequestManager.sharedInstance.getMessages(size, page: page, onCompletion: {
+        MessageRequestManager.sharedInstance.getMessages(size, page: page - 1, onCompletion: {
         (success, message, code, text, theMessages) in
             if success {
                 self.totalPages = MessageRequestManager.sharedInstance.totalPages!
