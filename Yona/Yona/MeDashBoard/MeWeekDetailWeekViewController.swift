@@ -26,7 +26,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBOutlet weak var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
     
-    var page : Int = 1
+    var page : Int = 0
     var size : Int = 4
     
     //paging
@@ -49,7 +49,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self
+<<<<<<< HEAD
         
+=======
+        self.navigationItem.setHidesBackButton(true, animated: false)
+>>>>>>> 6c4a1295553a72dc25bbf77679cc0c7471c40427
     }
 
     func registreTableViewCells () {
@@ -353,6 +357,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             if data.commentLink != nil {
                                 self.sendCommentFooter!.postCommentLink = data.commentLink
                             }
+                            self.navigationItem.title = data.goalName //only need to do this in the first original data
+
                         }
                         
                         Loader.Hide()
