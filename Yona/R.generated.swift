@@ -467,6 +467,8 @@ struct R {
     
     struct notificationsViewController {
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
+      static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
+      static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }
     }
     
     struct pinResetValidationVC {

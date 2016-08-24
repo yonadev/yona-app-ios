@@ -16,6 +16,8 @@ enum detailRows : Int  {
 
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
     var initialObject : WeekSingleActivityGoal?
+    var initialObjectLink : String?
+    var goalType : String?
     var week : [String:WeekSingleActivityDetail] = [:]
     var firstWeek :  NSDate = NSDate()
     var currentWeek : NSDate = NSDate()
@@ -24,8 +26,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBOutlet weak var commentView : UIView?
     @IBOutlet weak var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
-    
-    var page : Int = 1
+    var animatedCells : [String] = []
+
+    var page : Int = 0
     var size : Int = 4
     
     //paging
@@ -49,7 +52,20 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self
     }
-
+    
+    func shouldAnimate(cell : NSIndexPath) -> Bool {
+        let txt = "\(cell.section)-\(cell.row)"
+        
+        if animatedCells.indexOf(txt) == nil {
+            print("Animated \(txt)")
+            animatedCells.append(txt)
+            return true
+        }
+        print("NO animated \(txt)")
+        return false
+        
+    }
+    
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
@@ -79,6 +95,13 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
     }
 
+    @IBAction func backAction(sender : AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
@@ -88,7 +111,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             if let txt = aWeek.goalName {
                 navigationItem.title = NSLocalizedString(txt, comment: "")
             }
-            
+            loadData(.own)
+        } else if initialObjectLink != nil {
             loadData(.own)
         }
     }
@@ -100,6 +124,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if week[currentWeek.yearWeek] == nil {
+            return 0
+        }
+        
         var numberOfSections = 0
         if let _ = week[currentWeek.yearWeek]  {
             numberOfSections = 3
@@ -121,7 +149,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
                 
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setSingleActivity(data ,isScore: true)
+                    cell.setSingleActivity(data ,isScore: shouldAnimate(indexPath))
                 }
                 return cell
             
@@ -129,9 +157,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
             if indexPath.row == detailRows.activity.rawValue {
                 if let data = week[currentWeek.yearWeek]  {
-                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
+                    if goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
                         let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                        cell.setWeekActivityDetailForView(data, animated: true)
+                        cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                         return cell
                     }
                 }
@@ -140,7 +168,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             if indexPath.row == detailRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
+                    cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
                 return cell
             }
@@ -154,6 +182,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 
                 if indexPath.row + 1 < self.comments.count {
                     nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+                } else {
+                    nextThreadID = ""
                 }
                 //check for a previous row
                 if indexPath.row != 0{
@@ -168,10 +198,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            cell.hideShowReplyButton(data.commentLink != nil)
-                            
+                            cell.hideShowReplyButton(data.commentLink != nil && comment.replyLink == nil)
                             self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
-                            
                             return cell
                         }
                     } else {
@@ -180,11 +208,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
-                            cell.hideShowReplyButton(nextThreadID == currentThreadID)
-                            
+                            cell.hideShowReplyButton(comment.replyLink == nil)
                             self.sendCommentFooter?.alpha = 0
-                            self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: data.commentLink)
-                            
                             return cell
                         }
                     }
@@ -241,14 +266,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
-            if let initialObject = initialObject {
-                if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
-                    cellHeight = 165
-                } else if initialObject.goalType == GoalType.NoGoGoalString.rawValue {
-                    cellHeight = 0
-                } else if initialObject.goalType == GoalType.TimeZoneGoalString.rawValue {
-                    cellHeight = 0
-                }
+            if goalType == GoalType.BudgetGoalString.rawValue {
+                cellHeight = 165
+            } else if goalType == GoalType.NoGoGoalString.rawValue {
+                cellHeight = 0
+            } else if goalType == GoalType.TimeZoneGoalString.rawValue {
+                cellHeight = 0
             }
         }
         if indexPath.row == detailRows.spreadCell.rawValue {
@@ -308,34 +331,47 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
         // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()
+        //reset these so that the data can be loaded when we switch to a different set of challenges we need to see from the beginning
+        size = 4
+        page = 1
         
         if typeToLoad == .own {
-            if let data = initialObject  {
-                if let path = data.weekDetailLink {
-                    ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                        if success {
-                            
-                            if let data = activitygoals {
-                                self.currentWeek = data.date
-                                self.week[data.date.yearWeek] = data
-                                print (data.date.yearWeek)
-                                if let commentsLink = data.messageLink {
-                                    self.getComments(commentsLink)
-                                }
-                                if data.commentLink != nil {
-                                    self.sendCommentFooter!.postCommentLink = data.commentLink
-                                }
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
+            var path : String?
+            if let url = initialObjectLink {
+                path = url
+            } else {
+                if let data = initialObject,
+                    let url = data.weekDetailLink {
+                        path = url
                 }
             }
+            if let path = path {
+                ActivitiesRequestManager.sharedInstance.getActivityDetails(path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                    if success {
+                        
+                        if let data = activitygoals {
+                            self.navigationItem.title = data.goalName
+                            self.currentWeek = data.date
+                            self.week[data.date.yearWeek] = data
+                            self.goalType = data.goalType
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            if data.commentLink != nil {
+                                self.sendCommentFooter!.postCommentLink = data.commentLink
+                            }
+                            self.navigationItem.title = data.goalName //only need to do this in the first original data
+
+                        }
+                        self.tableView.reloadData()
+                        Loader.Hide()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
+            }
+            
         } else  if typeToLoad == .prev {
             if let data = week[currentWeek.yearWeek]  {
                 if let path = data.prevLink {
@@ -353,9 +389,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
-                            
-                            Loader.Hide()
                             self.tableView.reloadData()
+                            Loader.Hide()
                             
                         } else {
                             Loader.Hide()
@@ -380,9 +415,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
-                            
-                            Loader.Hide()
                             self.tableView.reloadData()
+                            Loader.Hide()
                             
                         } else {
                             Loader.Hide()
@@ -393,9 +427,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
             
         }
-        Loader.Hide()
         self.tableView.reloadData()
-            
+        Loader.Hide()
+        
     }
     
     // MARK: - CommentCellDelegate

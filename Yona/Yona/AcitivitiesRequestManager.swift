@@ -593,48 +593,6 @@ class ActivitiesRequestManager {
     
     //MARK: - Single day activity
     
-    /**
-     // Get day app activity for a specific goal on a specific day
-     - paramter size : The number of elements to be fetched
-     - paramter page : The page to be fetched
-     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
-    
-     
-     */
-    
-    func getDayActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse ){
-        self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
-            if let json = json {
-                guard success == true else {
-                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                    return
-                }
-                var newData : DaySingleActivityDetail?
-                
-                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
-                    
-                    if activities?.count > 0 {
-                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
-                            
-                            if status  {
-                                newData = DaySingleActivityDetail(data: json, allGoals: goals!)
-                            }
-                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
-                            
-                        })
-                        
-                    } else {
-                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                    }
-                })
-                
-            } else {
-                //response from request failed
-                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-            }
-        }
-    }
-    
     func getBuddyDayActivityDetails(activityLink : String,date :NSDate, buddy: Buddies ,onCompletion: APIActivityDayDetailResponse ){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
@@ -670,19 +628,19 @@ class ActivitiesRequestManager {
  
  
     /**
-     // Get day app activity for a specific goal on a specific day
+     // Get week app activity for a specific goal on a specific week
      - paramter size : The number of elements to be fetched
      - paramter page : The page to be fetched
-     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     - parameter onCompletion: APIActivityWeekDetailResponse, returns the activity requested as an Activities object
      */
-    func getWeekActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse){
+    func getWeekActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityWeekDetailResponse){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
                 guard success == true else {
                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                     return
                 }
-                var newData : DaySingleActivityDetail?
+                var newData : WeekSingleActivityDetail?
                 
                 self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
                     
@@ -691,7 +649,7 @@ class ActivitiesRequestManager {
                         GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
                             
                             if status  {
-                                newData = DaySingleActivityDetail(data: json, allGoals: goals!)
+                                newData = WeekSingleActivityDetail(data: json, allGoals: goals!)
                             }
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
                             
@@ -709,58 +667,87 @@ class ActivitiesRequestManager {
         
     }
 
+    /**
+     // Get day app activity for a specific goal on a specific day
+     - paramter size : The number of elements to be fetched
+     - paramter page : The page to be fetched
+     - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
+     */
+    func getDayActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse ){
+        self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
+            if let json = json {
+                guard success == true else {
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    return
+                }
+                var newData : DaySingleActivityDetail?
+                
+                self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                    
+                    if activities?.count > 0 {
+                        GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (status, servermessage, servercode, nil, goals, error) in
+                            
+                            if status  {
+                                newData = DaySingleActivityDetail(data: json, allGoals: goals!)
+                            }
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
+                            
+                        })
+                        
+                    } else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                    }
+                })
+                
+            } else {
+                //response from request failed
+                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+            }
+        }
+    }
     
     func getTimeLineActivity(onCompletion: APIActivityTimeLineResponse){
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             if success {
-  //              BuddyRequestManager.sharedInstance.getAllbuddies({(succes, serverMessage, serverCode, buddies, allBuddies) in
-   //                 if succes && allBuddies != nil{
-                        
-                        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
-                            if success && user?.timeLineLink != nil {
-                                var data : [TimeLineDayActivityOverview] = []
-                                self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
-                                    if let json = json {
-                                        guard success == true else {
-                                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                                            return
-                                        }
-                                        if let embedded = json[YonaConstants.jsonKeys.embedded],
-                                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray {
-                                            
-                                            self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
-                                                if activities?.count > 0 {
-                                                    for activity in embeddedActivities {
-                                                        let obj = TimeLineDayActivityOverview(jsonData : activity as! BodyDataDictionary, activities : activities!)
-                                                        data.append(obj)
-                                                        
-                                                    }
-                                                    // NOW All data load  - Fill out the blanks :-|
-                                                    self.loadAllGoals(data , completion : {(succes) in
-                                                        for obj in data {
-                                                            if let theBuddies = user?.buddies {
-                                                                obj.configureForTableView(theBuddies,aUser:user!)
-                                                            }
-                                                        }
-                                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), data, error)
-                                                        
-                                                    })
-                                                        }
+                UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+                    if success && user?.timeLineLink != nil {
+                        var data : [TimeLineDayActivityOverview] = []
+                        self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
+                            if let json = json {
+                                guard success == true else {
+                                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                                    return
+                                }
+                                if let embedded = json[YonaConstants.jsonKeys.embedded],
+                                    let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray {
+                                    
+                                    self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                        if activities?.count > 0 {
+                                            for activity in embeddedActivities {
+                                                let obj = TimeLineDayActivityOverview(jsonData : activity as! BodyDataDictionary, activities : activities!)
+                                                data.append(obj)
                                                 
-                                                })
+                                            }
+                                            // NOW All data load  - Fill out the blanks :-|
+                                            self.loadAllGoals(data , completion : {(succes) in
+                                                for obj in data {
+                                                    if let theBuddies = user?.buddies {
+                                                        obj.configureForTableView(theBuddies,aUser:user!)
+                                                    }
+                                                }
+                                                onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), data, error)
+                                                
+                                            })
+                                                }
+                                        
+                                        })
 
-                                            
-                                        }
+                                    
+                                }
+                            }
                         }
                     }
-                            }
-                
-                    else {
-                        
-                    }
-                }//)
-               
-                
+                }
             }
         }
     }

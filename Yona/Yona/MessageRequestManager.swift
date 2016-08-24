@@ -13,6 +13,12 @@ class MessageRequestManager {
     var message: Message?
     var messages: [Message] = []
 
+    //paging
+    var currentSize: Int?
+    var currentPage : Int?
+    var totalSize: Int? = 0
+    var totalPages : Int? = 0
+    
     static let sharedInstance = MessageRequestManager()
     
     private init() {}
@@ -27,6 +33,20 @@ class MessageRequestManager {
                         let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page)
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
                             if let json = json {
+                                if let data = json[commentKeys.page.rawValue] {
+                                    if let size = data[commentKeys.size.rawValue] as? Int{
+                                        self.currentSize = size
+                                    }
+                                    if let totalSize = data[commentKeys.totalElements.rawValue] as? Int{
+                                        self.totalSize = totalSize
+                                    }
+                                    if let totalPages = data[commentKeys.totalPages.rawValue] as? Int{
+                                        self.totalPages = totalPages
+                                    }
+                                    if let currentPage = data[commentKeys.number.rawValue] as? Int{
+                                        self.currentPage = currentPage
+                                    }
+                                }
                                 if let embedded = json[getMessagesKeys.embedded.rawValue],
                                 let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray{
                                     //iterate messages

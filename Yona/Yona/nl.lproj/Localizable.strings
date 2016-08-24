@@ -179,6 +179,7 @@
 "message.type.friendresponse.rejected" = "Vriendenverzoek afgewezen";
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
+"message.type.message" = "Bericht";
 
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";

@@ -76,26 +76,24 @@ class ActivitiesGoal : NSObject{
             self.spread = theSpread
         }
 
-                if let goalAccomplished = activityData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
-                    self.goalAccomplished = goalAccomplished
+        if let goalAccomplished = activityData[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
+            self.goalAccomplished = goalAccomplished
+        }
+        
+        
+        
+        if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
+            if let edit = links[YonaConstants.jsonKeys.yonaGoal] as? [String: AnyObject],
+                let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.goalLinks = editLink
+            }
+            if let selfLink = links[YonaConstants.jsonKeys.yonaDayDetails] as? [String: AnyObject],
+                let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
+                self.dayDetailLinks = href
+                if let lastPath = NSURL(string: href)?.lastPathComponent {
+                    self.activityID = lastPath
                 }
-                
-                
-                
-                if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
-                    if let edit = links[YonaConstants.jsonKeys.yonaGoal] as? [String: AnyObject],
-                        let editLink = edit[YonaConstants.jsonKeys.hrefKey] as? String{
-                        self.goalLinks = editLink
-                    }
-                    if let selfLink = links[YonaConstants.jsonKeys.yonaDayDetails] as? [String: AnyObject],
-                        let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
-                        self.dayDetailLinks = href
-                        if let lastPath = NSURL(string: href)?.lastPathComponent {
-                            self.activityID = lastPath
-                        }
-                    }
-//                }
-//            }
+            }
         }
     }
     

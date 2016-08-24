@@ -260,6 +260,8 @@
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
 
+"message.type.message" = "Message";
+
 //me day cells
 "meday.message.minutesover" = "minutes over limit";
 "meday.message.minutesleft" = "minutes left";

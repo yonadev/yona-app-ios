@@ -94,15 +94,21 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
      
         var tmpFirst = ""
         var tmpLast = ""
+        var tmpnickname = ""
+
         if aMessage.UserRequestfirstName.characters.count > 0 {
             tmpFirst = aMessage.UserRequestfirstName
+        } else {
+            tmpnickname = aMessage.nickname
         }
         if aMessage.UserRequestlastName.characters.count > 0 {
             tmpLast = aMessage.UserRequestlastName
         }
         if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
-        // AVATAR NOT Implemented - must check for avatar image when implemented on server
+            // AVATAR NOT Implemented - must check for avatar image when implemented on server
             avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!) \(tmpLast.capitalizedString.characters.first!)"
+        } else {
+            avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
         }
         
         

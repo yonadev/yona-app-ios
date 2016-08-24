@@ -11,13 +11,30 @@ import Foundation
 class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
   
     var buddy : Buddies?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sendCommentFooter = tableView.dequeueReusableCellWithIdentifier("SendCommentControl") as? SendCommentControl
-//        sendCommentFooter!.delegate = self
-//        self.commentView.addSubview(sendCommentFooter!)
+        self.comments = []
         self.sendCommentFooter!.alpha = 1
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var cellHeight = 165
+        if indexPath.row == detailRows.activity.rawValue {
+            if initialObject!.goalType == GoalType.BudgetGoalString.rawValue {
+                cellHeight = 165
+            } else if initialObject!.goalType == GoalType.NoGoGoalString.rawValue {
+                cellHeight = 0
+            } else if initialObject!.goalType == GoalType.TimeZoneGoalString.rawValue {
+                cellHeight = 0
+            }
+        }
+        if indexPath.row == detailRows.spreadCell.rawValue {
+            cellHeight = 165
+            
+        }
+        return CGFloat(cellHeight)
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -28,7 +45,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
                 let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
                 
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setSingleActivity(data ,isScore: true)
+                    cell.setSingleActivity(data ,isScore: shouldAnimate(indexPath))
                 }
                 return cell
                 
@@ -36,9 +53,9 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             
             if indexPath.row == detailRows.activity.rawValue {
                 if let data = week[currentWeek.yearWeek]  {
-                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
+                    if self.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
                         let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                        cell.setWeekActivityDetailForView(data, animated: true)
+                        cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                         return cell
                     }
                 }
@@ -47,7 +64,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             if indexPath.row == detailRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
+                    cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
                 return cell
             }
