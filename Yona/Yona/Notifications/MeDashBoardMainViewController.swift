@@ -13,8 +13,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBOutlet var userDetailButton: UIBarButtonItem!
     @IBOutlet var notificationsButton: UIButton?
 
+    @IBOutlet weak var leftBarItem  : UIBarButtonItem!
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
+    
     
     var animatedCells : [String] = []
     var corretcToday : NSDate = NSDate()
@@ -28,6 +30,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         self.navigationController?.navigationBarHidden = false
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
         configureCorrectToday()
+        configurProfileBarItem()
     }
     
     func registreTableViewCells () {
@@ -48,43 +51,21 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }
     
-    func configureLeftBarItem () {
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+    func configurProfileBarItem()  {
+
         
-            let containView = UIView(frame: CGRectMake(0, 0,40, 40))
-            
-            let imageview = UIImageView(frame: CGRectMake(2, 2,36 , 36))
-            imageview.layer.borderColor = UIColor.whiteColor().CGColor
-            imageview.layer.borderWidth = 1
-            imageview.layer.masksToBounds = true
-            imageview.layer.cornerRadius = imageview.frame.size.width/2
-            imageview.backgroundColor = UIColor.clearColor()
-            
-            
-            containView.addSubview(imageview)
-            
-            let label = UILabel(frame: CGRectMake(0, 0, 40, 40))
-            if let name = user?.firstName {
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+           if let name = user?.firstName {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
-                    label.text =  "\(name.capitalizedString.characters.first!)"
+                    self.leftBarItem.title = "\(name.capitalizedString.characters.first!)"
+                    self.leftBarItem.addCircle()
                 }
             }
-
             
-            label.textAlignment = NSTextAlignment.Center
-            label.textColor = UIColor.whiteColor()
-            containView.addSubview(label)
-            
-            let barBut = UIBarButtonItem(customView: containView)
-            barBut.action = #selector(MeDashBoardMainViewController.showUserProfile)
-            barBut.target = self
-            self.navigationItem.leftBarButtonItem = barBut
         }
     }
     
     func configureCorrectToday() {
-
-        
         let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
         userCalendar?.minimumDaysInFirstWeek = 5
         userCalendar?.firstWeekday = 6
@@ -96,11 +77,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let aDate = formatter.dateFromString(startdate)  {
             corretcToday = aDate
         }
-        
-
     }
-    
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -113,7 +90,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }    // MARK: - private functions
     private func setupUI() {
-           configureLeftBarItem()
+         //  configureLeftBarItem()
         //showLeftTab(leftTabMainView)
         
     }
@@ -165,7 +142,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if selectedTab == .left {
             return getCellForDayTableRow(indexPath)
         }
-        
         
         let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
         cell.setSingleActivity(rightTabData[indexPath.section].activity[indexPath.row])
@@ -256,7 +232,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         loadActivitiesForWeek(page)
     }
 
-    func showUserProfile() {
+    @IBAction func showUserProfile(sender : AnyObject) {
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showProfile, sender: self)
         //showProfile
     }

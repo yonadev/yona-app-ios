@@ -12,7 +12,12 @@ import Foundation
 class YonaNotificationsAccessTextTableViewCell: UITableViewCell {
     @IBOutlet weak var aTextLabel : UILabel!
  
-    
+    override func awakeFromNib() {
+        aTextLabel.numberOfLines = 5
+        aTextLabel.minimumScaleFactor = 0.5
+        aTextLabel.adjustsFontSizeToFitWidth = true
+    }
+
     func setPhoneNumber(aMessage : Message) {
         let num = aMessage.UserRequestmobileNumber
         let text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)

@@ -27,33 +27,52 @@
                         <viewControllerLayoutGuide type="bottom" id="Fpm-v2-kz6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AMf-oz-gSu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="S1p-g9-SMB" id="L3G-JI-h2W"/>
                                     <outlet property="delegate" destination="S1p-g9-SMB" id="Okd-M5-hu8"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-nr-w55" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="491" width="600" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="aDw-3q-3I4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2WS-nr-w55" secondAttribute="trailing" id="2La-hr-2Cv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tUy-r1-XJQ" secondAttribute="trailing" constant="-20" id="DVz-0t-wFx"/>
                             <constraint firstItem="Fpm-v2-kz6" firstAttribute="top" secondItem="tUy-r1-XJQ" secondAttribute="bottom" id="e5H-Om-aXK"/>
+                            <constraint firstItem="2WS-nr-w55" firstAttribute="leading" secondItem="AMf-oz-gSu" secondAttribute="leading" id="nOV-JG-weM"/>
                             <constraint firstItem="tUy-r1-XJQ" firstAttribute="leading" secondItem="AMf-oz-gSu" secondAttribute="leadingMargin" constant="-20" id="t5p-AC-sEh"/>
                             <constraint firstItem="tUy-r1-XJQ" firstAttribute="top" secondItem="AMf-oz-gSu" secondAttribute="topMargin" id="u50-47-SYM"/>
+                            <constraint firstItem="Fpm-v2-kz6" firstAttribute="top" secondItem="2WS-nr-w55" secondAttribute="bottom" id="yFw-jn-drG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZpL-QY-qgp">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="UrD-Rq-gwN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backAction:" destination="S1p-g9-SMB" id="Awv-KQ-FKs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="sendCommentFooter" destination="2WS-nr-w55" id="lRE-Vx-cKE"/>
                         <outlet property="tableView" destination="tUy-r1-XJQ" id="J3k-xz-rEY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qZ-Gd-xtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-293" y="827"/>
+            <point key="canvasLocation" x="487" y="1227"/>
         </scene>
         <!--Me Dash Board Main View Controller-->
         <scene sceneID="0BX-Y1-1ZG">
@@ -176,9 +195,9 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TSV-ok-ptH">
-                        <barButtonItem key="leftBarButtonItem" image="icnMe" id="ICv-k3-0Sf">
+                        <barButtonItem key="leftBarButtonItem" title="Yona" style="plain" id="fmy-Mm-EgE">
                             <connections>
-                                <segue destination="xCU-fF-PB5" kind="show" identifier="showProfile" id="0zA-0m-K30"/>
+                                <action selector="showUserProfile:" destination="Z05-OL-lvB" id="WYr-Gr-HrF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icnReminder" id="fCv-V5-hWc">
@@ -187,12 +206,12 @@
                             </connections>
                         </barButtonItem>
                         <connections>
-                            <outlet property="leftBarButtonItem" destination="ICv-k3-0Sf" id="RZq-hQ-Zxy"/>
                             <outlet property="rightBarButtonItem" destination="fCv-V5-hWc" id="49v-6h-Vy5"/>
                         </connections>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="leftBarItem" destination="fmy-Mm-EgE" id="257-uY-SG6"/>
                         <outlet property="leftTabLabel" destination="ATP-Ot-zjW" id="c7f-fw-iFk"/>
                         <outlet property="leftTabMainView" destination="Z2p-TJ-zi0" id="oGt-Wz-SxK"/>
                         <outlet property="leftTabSelcetionView" destination="eOu-0p-cGI" id="Z9E-OZ-zUc"/>
@@ -202,6 +221,7 @@
                         <outlet property="theTableView" destination="wFB-LI-Dhz" id="QtI-B7-Chp"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetail" id="KjT-n8-LgP"/>
                         <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetail" id="8eJ-V0-7GW"/>
+                        <segue destination="xCU-fF-PB5" kind="show" identifier="showProfile" id="FrQ-ud-i11"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G8K-p6-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,28 +247,46 @@
                         <viewControllerLayoutGuide type="bottom" id="z4e-qq-zf6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u93-o7-Obw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UbE-Mh-h0r" id="ROA-cf-jLI"/>
                                     <outlet property="delegate" destination="UbE-Mh-h0r" id="cFW-RF-KfC"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAs-Es-UVR" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="491" width="600" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="CWX-7n-8tr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="z4e-qq-zf6" firstAttribute="top" secondItem="fAs-Es-UVR" secondAttribute="bottom" id="Fvy-yR-OiH"/>
+                            <constraint firstItem="fAs-Es-UVR" firstAttribute="leading" secondItem="u93-o7-Obw" secondAttribute="leading" id="Jzo-x1-eJb"/>
                             <constraint firstItem="z4e-qq-zf6" firstAttribute="top" secondItem="yFv-JC-3KO" secondAttribute="bottom" id="QhM-1G-EyQ"/>
+                            <constraint firstAttribute="trailing" secondItem="fAs-Es-UVR" secondAttribute="trailing" id="WCR-mc-MqV"/>
                             <constraint firstItem="yFv-JC-3KO" firstAttribute="top" secondItem="u93-o7-Obw" secondAttribute="topMargin" id="Xbr-LN-FxA"/>
                             <constraint firstItem="yFv-JC-3KO" firstAttribute="leading" secondItem="u93-o7-Obw" secondAttribute="leadingMargin" constant="-20" id="e50-9c-64r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yFv-JC-3KO" secondAttribute="trailing" constant="-20" id="qT2-Qj-a6h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="dg0-eE-dEG"/>
+                    <navigationItem key="navigationItem" id="3nt-Zg-1zE">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="Pak-xT-tx4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backAction:" destination="UbE-Mh-h0r" id="cHG-kw-0yK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="sendCommentFooter" destination="fAs-Es-UVR" id="LQG-W9-5G9"/>
                         <outlet property="tableView" destination="yFv-JC-3KO" id="d2Z-vL-heb"/>
                     </connections>
                 </viewController>
@@ -319,7 +357,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9Z-pV-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rtq-3M-PqB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="417" y="883"/>
+            <point key="canvasLocation" x="-283" y="213"/>
         </scene>
         <!--notifications.messages.title-->
         <scene sceneID="2b2-Hb-0BV">
@@ -348,12 +386,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <segue destination="WCO-lA-rh6" kind="show" identifier="showAcceptFriend" id="dQJ-b8-YTO"/>
+                        <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetailMessage" id="i6A-dg-q6c"/>
+                        <segue destination="S1p-g9-SMB" kind="show" identifier="showDayDetailMessage" id="rQa-zh-Tis"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPq-EN-rhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4fa-FB-FqU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1207" y="878"/>
+            <point key="canvasLocation" x="1261" y="1168"/>
         </scene>
         <!--confirm.request.title-->
         <scene sceneID="ooq-AF-k4X">
@@ -454,13 +494,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZd-3g-eWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926" y="883"/>
+            <point key="canvasLocation" x="2312" y="999"/>
         </scene>
     </scenes>
     <resources>
         <image name="icnBack" width="13" height="21"/>
         <image name="icnEdit" width="24" height="24"/>
-        <image name="icnMe" width="32" height="32"/>
         <image name="icnReminder" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rQa-zh-Tis"/>
+        <segue reference="i6A-dg-q6c"/>
+    </inferredMetricsTieBreakers>
 </document>

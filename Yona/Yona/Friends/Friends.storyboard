@@ -182,7 +182,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1003" y="359"/>
+            <point key="canvasLocation" x="881" y="277"/>
         </scene>
         <!--addfriend-->
         <scene sceneID="KFn-zP-KFj">
@@ -580,21 +580,19 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oxJ-mE-kxE">
-                        <barButtonItem key="rightBarButtonItem" image="icnAvatar" id="Src-Yo-bvp">
+                        <barButtonItem key="rightBarButtonItem" title="Yona" style="plain" id="Src-Yo-bvp">
                             <inset key="imageInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                             <connections>
                                 <action selector="didChooseUserProfile:" destination="30a-nZ-Iva" id="u8m-26-g7J"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="rightBarButtonItem" destination="Src-Yo-bvp" id="oPP-fP-Wm9"/>
-                        </connections>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="leftTabLabel" destination="HxJ-GK-aOm" id="EHm-yO-zVk"/>
                         <outlet property="leftTabMainView" destination="Y2X-SU-YBm" id="WFF-aQ-GR7"/>
                         <outlet property="leftTabSelcetionView" destination="POT-J8-1Xd" id="Jly-CO-JDL"/>
+                        <outlet property="rightNavBarItem" destination="Src-Yo-bvp" id="6tZ-7o-JWB"/>
                         <outlet property="rightTabLabel" destination="8Sn-pD-XDE" id="ebj-Oh-ha8"/>
                         <outlet property="rightTabMainView" destination="GtH-UK-bBj" id="2gk-Ym-Sga"/>
                         <outlet property="rightTabSelectionsView" destination="PwE-Is-1df" id="frk-SM-ZmM"/>
@@ -690,29 +688,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-m3-iuu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="552"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WCB-5H-QxB" id="eVm-kJ-31D"/>
                                     <outlet property="delegate" destination="WCB-5H-QxB" id="hBn-a6-1Z1"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHT-DJ-rWP" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F7A-JY-3IH"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.9529411793" green="0.9529411793" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="kFV-m3-iuu" secondAttribute="trailing" constant="-20" id="2WO-WW-Yj8"/>
-                            <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leadingMargin" constant="-20" id="9GJ-yY-tgE"/>
-                            <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="topMargin" id="HtA-MY-EeN"/>
-                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="zqw-tV-OiY"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="top" id="3jM-Hg-Og3"/>
+                            <constraint firstAttribute="trailing" secondItem="kHT-DJ-rWP" secondAttribute="trailing" id="RbB-QN-mev"/>
+                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" constant="-2" id="Wye-2s-EGa"/>
+                            <constraint firstAttribute="trailing" secondItem="kFV-m3-iuu" secondAttribute="trailing" id="Yu8-ch-l0i"/>
+                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="bOA-QQ-rUV"/>
+                            <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="wfe-5w-Mck"/>
+                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kHT-DJ-rWP" secondAttribute="bottom" id="whd-qn-Jxt"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="iRa-lx-cHW"/>
                         <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3l-n5-bME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="1896"/>
+            <point key="canvasLocation" x="1270" y="1966"/>
         </scene>
         <!--MeWeekDetailWeekViewController-->
         <scene sceneID="jtD-KT-XRP">
@@ -734,31 +744,42 @@
                                     <outlet property="delegate" destination="lqa-d1-gYJ" id="sIO-6r-lSh"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="554" width="600" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="U30-62-gk4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9yG-JP-Y8i" firstAttribute="top" secondItem="hpX-Jy-atY" secondAttribute="bottom" id="HPf-3z-9HP"/>
-                            <constraint firstItem="hpX-Jy-atY" firstAttribute="top" secondItem="5K8-7N-nN1" secondAttribute="topMargin" id="i8v-UP-xVa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hpX-Jy-atY" secondAttribute="trailing" constant="-20" id="xJf-AH-9sg"/>
-                            <constraint firstItem="hpX-Jy-atY" firstAttribute="leading" secondItem="5K8-7N-nN1" secondAttribute="leadingMargin" constant="-20" id="zYc-v9-LTt"/>
+                            <constraint firstItem="9yG-JP-Y8i" firstAttribute="top" secondItem="hpX-Jy-atY" secondAttribute="bottom" id="DFB-2L-Pbe"/>
+                            <constraint firstItem="itp-Nv-Czt" firstAttribute="leading" secondItem="5K8-7N-nN1" secondAttribute="leading" id="Iv7-zt-Z4r"/>
+                            <constraint firstItem="hpX-Jy-atY" firstAttribute="top" secondItem="5K8-7N-nN1" secondAttribute="topMargin" id="JU2-wS-jHs"/>
+                            <constraint firstItem="hpX-Jy-atY" firstAttribute="top" secondItem="5K8-7N-nN1" secondAttribute="top" id="WaN-Gh-iak"/>
+                            <constraint firstAttribute="trailing" secondItem="itp-Nv-Czt" secondAttribute="trailing" id="bZU-NE-PMO"/>
+                            <constraint firstItem="9yG-JP-Y8i" firstAttribute="top" secondItem="itp-Nv-Czt" secondAttribute="bottom" id="n5q-uf-hV1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hpX-Jy-atY" secondAttribute="trailing" constant="-20" id="qTF-DT-0jM"/>
+                            <constraint firstItem="hpX-Jy-atY" firstAttribute="leading" secondItem="5K8-7N-nN1" secondAttribute="leadingMargin" constant="-20" id="sCz-6k-BTC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
                     <connections>
+                        <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="njt-I3-REJ"/>
                         <outlet property="tableView" destination="hpX-Jy-atY" id="vie-LS-wFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9O-yf-jPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1997" y="1896"/>
+            <point key="canvasLocation" x="1995" y="1966"/>
         </scene>
     </scenes>
     <resources>
         <image name="icnAdd" width="24" height="24"/>
-        <image name="icnAvatar" width="44" height="45"/>
         <image name="icnBack" width="13" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qBF-uj-5D3"/>
+        <segue reference="fkA-FJ-c4C"/>
     </inferredMetricsTieBreakers>
 </document>

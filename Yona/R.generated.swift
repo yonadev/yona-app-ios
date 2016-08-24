@@ -327,9 +327,12 @@ struct R {
     static var icnChallengeTimebucket: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimebucket", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimebucket") } }
     static var icnChallengeTimezone: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimezone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimezone") } }
     static var icnChallenges: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallenges", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallenges") } }
+    static var icnComment: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnComment", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnComment") } }
+    static var icnCommentBar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCommentBar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCommentBar") } }
     static var icnCreate: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCreate") } }
     static var icnDateBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateBack") } }
     static var icnDateForward: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateForward") } }
+    static var icnDelete: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDelete", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDelete") } }
     static var icnEdit: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnEdit") } }
     static var icnFriends: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriends") } }
     static var icnFriendsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriendsActive") } }
@@ -366,6 +369,14 @@ struct R {
     static var intro2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_2") } }
     static var intro3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_1") } }
     static var intro3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_2") } }
+    static var intro_setting_1_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_1") } }
+    static var intro_setting_1_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_2") } }
+    static var intro_setting_2_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_1") } }
+    static var intro_setting_2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_2") } }
+    static var intro_setting_3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_1") } }
+    static var intro_setting_3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_2") } }
+    static var intro_setting_4_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_1") } }
+    static var intro_setting_4_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_2") } }
     static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
     static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
     static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
@@ -376,8 +387,12 @@ struct R {
   }
   
   struct nib {
+    static var commentControlCell: _R.nib._CommentControlCell { return _R.nib._CommentControlCell() }
+    static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
+    static var replyToComment: _R.nib._ReplyToComment { return _R.nib._ReplyToComment() }
+    static var sendCommentControl: _R.nib._SendCommentControl { return _R.nib._SendCommentControl() }
     static var spreadCell: _R.nib._SpreadCell { return _R.nib._SpreadCell() }
     static var timeBucketControlCell: _R.nib._TimeBucketControlCell { return _R.nib._TimeBucketControlCell() }
     static var timeLineHeaderCell: _R.nib._TimeLineHeaderCell { return _R.nib._TimeLineHeaderCell() }
@@ -398,6 +413,8 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+    static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
     static var timeLineHeaderCell: ReuseIdentifier<TimeLineHeaderCell> { return ReuseIdentifier(identifier: "TimeLineHeaderCell") }
@@ -450,6 +467,8 @@ struct R {
     
     struct notificationsViewController {
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
+      static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
+      static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }
     }
     
     struct pinResetValidationVC {
@@ -542,9 +561,8 @@ struct R {
       static var instance: UIStoryboard { return UIStoryboard(name: "Friends", bundle: _R.hostingBundle) }
       
       static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Friends', but couldn't be loaded.")
         assert(UIImage(named: "icnAdd") != nil, "[R.swift] Image named 'icnAdd' is used in storyboard 'Friends', but couldn't be loaded.")
-        assert(UIImage(named: "icnAvatar") != nil, "[R.swift] Image named 'icnAvatar' is used in storyboard 'Friends', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Friends', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
@@ -621,7 +639,6 @@ struct R {
       static func validateImages() {
         assert(UIImage(named: "icnEdit") != nil, "[R.swift] Image named 'icnEdit' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
         assert(UIImage(named: "icnReminder") != nil, "[R.swift] Image named 'icnReminder' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
-        assert(UIImage(named: "icnMe") != nil, "[R.swift] Image named 'icnMe' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
         assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'MeDashBoard', but couldn't be loaded.")
       }
       
@@ -660,13 +677,21 @@ struct R {
       static var yonaVPNFlowMainViewController: YonaVPNFlowMainViewController? { return instance.instantiateViewControllerWithIdentifier("YonaVPNFlowMainViewController") as? YonaVPNFlowMainViewController }
       
       static func validateImages() {
+        assert(UIImage(named: "intro_setting_3_1") != nil, "[R.swift] Image named 'intro_setting_3_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro1_2") != nil, "[R.swift] Image named 'intro1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
-        assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro3_1") != nil, "[R.swift] Image named 'intro3_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro3_2") != nil, "[R.swift] Image named 'intro3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_2_2") != nil, "[R.swift] Image named 'intro_setting_2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_2_1") != nil, "[R.swift] Image named 'intro_setting_2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "icn_vpn_Alert") != nil, "[R.swift] Image named 'icn_vpn_Alert' is used in storyboard 'VPNFlow', but couldn't be loaded.")
-        assert(UIImage(named: "intro2_1") != nil, "[R.swift] Image named 'intro2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
         assert(UIImage(named: "intro2_2") != nil, "[R.swift] Image named 'intro2_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_1_2") != nil, "[R.swift] Image named 'intro_setting_1_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_3_2") != nil, "[R.swift] Image named 'intro_setting_3_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_4_2") != nil, "[R.swift] Image named 'intro_setting_4_2' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro1_1") != nil, "[R.swift] Image named 'intro1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_1_1") != nil, "[R.swift] Image named 'intro_setting_1_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro2_1") != nil, "[R.swift] Image named 'intro2_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
+        assert(UIImage(named: "intro_setting_4_1") != nil, "[R.swift] Image named 'intro_setting_4_1' is used in storyboard 'VPNFlow', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
@@ -738,6 +763,33 @@ struct _R {
   static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.xaton.yona") }
   
   struct nib {
+    struct _CommentControlCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "CommentControlCell", bundle: _R.hostingBundle) }
+      var name: String { return "CommentControlCell" }
+      var reuseIdentifier: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentControlCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentControlCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _CommentTableHeader: NibResource {
+      var instance: UINib { return UINib.init(nibName: "CommentTableHeader", bundle: _R.hostingBundle) }
+      var name: String { return "CommentTableHeader" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentTableHeader? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentTableHeader
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
     struct _NoGoCell: NibResource, Reusable {
       var instance: UINib { return UINib.init(nibName: "NoGoCell", bundle: _R.hostingBundle) }
       var name: String { return "NoGoCell" }
@@ -759,6 +811,33 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> NoGoCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? NoGoCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _ReplyToComment: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "ReplyToComment", bundle: _R.hostingBundle) }
+      var name: String { return "ReplyToComment" }
+      var reuseIdentifier: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> ReplyToComment? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? ReplyToComment
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _SendCommentControl: NibResource {
+      var instance: UINib { return UINib.init(nibName: "SendCommentControl", bundle: _R.hostingBundle) }
+      var name: String { return "SendCommentControl" }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> UIView? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? UIView
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

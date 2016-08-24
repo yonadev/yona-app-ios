@@ -220,4 +220,3 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
 private extension Selector {
     static let back = #selector(TimeFrameBudgetChallengeViewController.back(_:))
 }
-

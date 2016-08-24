@@ -14,6 +14,7 @@ class TimeZoneCustomView: UIView {
     var spreadWidth : CGFloat?
     var spreadHeight : CGFloat = 32
     var timeZoneColour : UIColor?
+    var animated : Bool?
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,10 +8,19 @@
 
 import Foundation
 
-class NotificationsViewController: UITableViewController {
+class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
+    var buddyData : Buddies?
+
+    var page : Int = 1
+    var size : Int = 20
+    
+    //paging
+    var totalSize: Int = 0
+    var totalPages : Int = 0
+    var aMessage: Message?
     
     //MARK: searchResultMovies hold the movie search results
     var messages = [[Message]]() {
@@ -28,10 +37,6 @@ class NotificationsViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
-        
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl!.addTarget(self, action: #selector(loadMessages(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func registreTableViewCells () {
@@ -39,7 +44,6 @@ class NotificationsViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -48,17 +52,33 @@ class NotificationsViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
             let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
-            controller.aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!]
-            selectedIndex = nil
+            controller.aMessage = self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
+            controller.aBuddy = self.buddyData
+            self.selectedIndex = nil
+            self.tableView.reloadData()
         }
+        
+        if segue.destinationViewController is MeWeekDetailWeekViewController {
+            let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
+            controller.initialObjectLink = self.aMessage!.weekDetailsLink!
+
+        }
+        
+        if segue.destinationViewController is MeDayDetailViewController {
+            let controller = segue.destinationViewController as! MeDayDetailViewController
+            controller.initialObjectLink = self.aMessage!.dayDetailsLink!
+        }
+        
     }
     
     //MARK: - tableview methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return messages.count
     }
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages.count == 0 {
@@ -69,17 +89,38 @@ class NotificationsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
-        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        if aMessage.status == buddyRequestStatus.REQUESTED {
-            performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
+        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        Loader.Show()
+        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+            //success so get the user?
+            if success {
+                Loader.Hide()
+                self.buddyData = buddy
+                if let aMessage = self.aMessage {
+                    if aMessage.status == buddyRequestStatus.REQUESTED {
+                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                    } else if aMessage.messageType == notificationType.ActivityCommentMessage {
+                        if aMessage.dayDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                        } else if aMessage.weekDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                        }
+                    }
+                }
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            } else {
+                //response from request failed
+                Loader.Hide()
+            }
+        })
 
+    }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
+        cell.yonaUserDelegate = self
         return cell
     }
 
@@ -134,13 +175,54 @@ class NotificationsViewController: UITableViewController {
 
     }
     
-    // MARK: - server methods
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if messages[indexPath.section].count > 0{
+            print(indexPath.row)
+            print(indexPath.section)
+            print(messages[indexPath.section].count)
+
+            if indexPath.row == page * size - 1 && page < self.totalPages {
+                page = page + 1
+                self.loadMessages(self)
+
+//                    if let commentsLink = self.dayData?.messageLink {
+//                        Loader.Show()
+//                        CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+//                            Loader.Hide()
+//                            if success {
+//                                if let comments = comments {
+//                                    for comment in comments {
+//                                        self.comments.append(comment)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+            }
+        }
+    }
     
+    // MARK: - YonaUserCellDelegate
+    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message) {
+        let aMessage = message as Message
+        MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+            if success {
+                self.loadMessages(self)
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
+    }
+    
+    // MARK: - server methods
     func loadMessages(sender:AnyObject) {
         Loader.Show()
-        MessageRequestManager.sharedInstance.getMessages(10, page: 0, onCompletion: {
+        MessageRequestManager.sharedInstance.getMessages(size, page: page - 1, onCompletion: {
         (success, message, code, text, theMessages) in
             if success {
+                self.totalPages = MessageRequestManager.sharedInstance.totalPages!
+                self.totalSize = MessageRequestManager.sharedInstance.totalSize!
+
                 var allLoadedMessage : [[Message]] = []
                 var tmpArray: [Message] = []
                 //success so sort by date... and create sub arrays
@@ -178,7 +260,6 @@ class NotificationsViewController: UITableViewController {
             } else {
                 //response from request failed
             }
-            self.refreshControl!.endRefreshing()
             Loader.Hide()
         })
         

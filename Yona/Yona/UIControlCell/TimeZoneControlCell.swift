@@ -27,6 +27,7 @@ class TimeZoneControlCell : UITableViewCell {
     @IBOutlet weak var fourleftConstraint: NSLayoutConstraint!
     weak var outsideTimeZoneView: UIView!
     weak var insideTimeZoneView: UIView!
+    var shouldAnimate : Bool = false
 
     var pxPerSpread : CGFloat = 0
     var pxPerMinute : CGFloat = 0
@@ -110,6 +111,7 @@ class TimeZoneControlCell : UITableViewCell {
         for spreadCell in spreadCells {
             //set frame of timezone
             let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
+            timeZoneView.animated = self.shouldAnimate
             if activitySpread.contains(spreadValue){ //if activity goal spread cells contains
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
                 timeWithinTimeZone += spreadCell
@@ -141,6 +143,7 @@ class TimeZoneControlCell : UITableViewCell {
     }
     
     func setDataForView (activityGoal : ActivitiesGoal, animated: Bool) {
+        self.shouldAnimate = animated
         spreadCells = activityGoal.spread
         activitySpread = activityGoal.spreadCells
         if let txt = activityGoal.goalName {
@@ -151,6 +154,7 @@ class TimeZoneControlCell : UITableViewCell {
     }
     
     func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+        self.shouldAnimate = animated
         spreadCells = dayActivity.daySpread
         activitySpread = dayActivity.spreadCells
         goalNameText = dayActivity.goalName

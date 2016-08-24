@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentControlCell" rowHeight="166" id="TTk-S7-AoB" customClass="CommentControlCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TTk-S7-AoB" id="KPH-cg-99g">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkN-LG-VnM">
+                        <rect key="frame" x="0.0" y="0.0" width="379" height="165"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-TF-T6M">
+                                <rect key="frame" x="97" y="13" width="250" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="XKF-td-Xhd"/>
+                                    <constraint firstAttribute="width" constant="250" id="ftF-2R-XKR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fG9-u0-Vbh">
+                                <rect key="frame" x="92" y="35" width="255" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="255" id="3hl-lI-IYa"/>
+                                    <constraint firstAttribute="height" constant="80" id="aZc-H2-3Rs"/>
+                                </constraints>
+                                <string key="text">Dat ziet er niet best uit makker, het lijkt erop dat je je dates niet helemaal onder controle hebt...lijkt erop dat je je dates niet helemaal onder controle hebt...dates niet helemaal onder</string>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-eb-xaW">
+                                <rect key="frame" x="23" y="13" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="dQw-r6-ZVG"/>
+                                    <constraint firstAttribute="width" constant="56" id="nnz-Zg-KaY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufl-5g-oBW">
+                                <rect key="frame" x="30" y="30" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1U5-Sa-caB"/>
+                                    <constraint firstAttribute="width" constant="42" id="Xdr-DF-Vk6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycg-K8-aqW" userLabel="separator">
+                                <rect key="frame" x="97" y="156" width="255" height="1"/>
+                                <color key="backgroundColor" red="0.90588235855102539" green="0.90588235855102539" blue="0.90588235855102539" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Chj-gC-4yn"/>
+                                    <constraint firstAttribute="width" constant="255" id="xmW-uX-yst"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Hl-5hm">
+                                <rect key="frame" x="97" y="123" width="171" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Nap-bD-wba"/>
+                                    <constraint firstAttribute="width" constant="171" id="iJC-B3-GVN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Beantwoorden">
+                                    <color key="titleColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="replyToCommentButton:" destination="TTk-S7-AoB" eventType="touchUpInside" id="u8h-4O-Q0g"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fG9-u0-Vbh" firstAttribute="top" secondItem="iAy-TF-T6M" secondAttribute="bottom" constant="1" id="6AC-j4-ueA"/>
+                            <constraint firstItem="ci5-eb-xaW" firstAttribute="top" secondItem="hkN-LG-VnM" secondAttribute="top" constant="13" id="6DV-ay-vVY"/>
+                            <constraint firstAttribute="trailing" secondItem="fG9-u0-Vbh" secondAttribute="trailing" constant="32" id="7bq-Tr-4qP"/>
+                            <constraint firstItem="iAy-TF-T6M" firstAttribute="top" secondItem="hkN-LG-VnM" secondAttribute="top" constant="13" id="Fih-TI-CsO"/>
+                            <constraint firstItem="Ycg-K8-aqW" firstAttribute="leading" secondItem="hkN-LG-VnM" secondAttribute="leading" constant="97" id="Jgy-ez-oJY"/>
+                            <constraint firstItem="ci5-eb-xaW" firstAttribute="leading" secondItem="hkN-LG-VnM" secondAttribute="leading" constant="23" id="MEO-Vw-4IM"/>
+                            <constraint firstItem="iAy-TF-T6M" firstAttribute="leading" secondItem="ci5-eb-xaW" secondAttribute="trailing" constant="18" id="SlM-w1-T3v"/>
+                            <constraint firstItem="Ufl-5g-oBW" firstAttribute="leading" secondItem="hkN-LG-VnM" secondAttribute="leading" constant="30" id="TLx-2t-Dqg"/>
+                            <constraint firstItem="Ycg-K8-aqW" firstAttribute="top" secondItem="hhc-Hl-5hm" secondAttribute="bottom" constant="13" id="WQW-Y0-e8l"/>
+                            <constraint firstItem="hhc-Hl-5hm" firstAttribute="top" secondItem="fG9-u0-Vbh" secondAttribute="bottom" constant="8" id="WiJ-ck-dVp"/>
+                            <constraint firstItem="Ufl-5g-oBW" firstAttribute="top" secondItem="hkN-LG-VnM" secondAttribute="top" constant="30" id="auE-HH-4L4"/>
+                            <constraint firstItem="hhc-Hl-5hm" firstAttribute="leading" secondItem="hkN-LG-VnM" secondAttribute="leading" constant="97" id="oaK-9U-kOO"/>
+                            <constraint firstItem="fG9-u0-Vbh" firstAttribute="leading" secondItem="ci5-eb-xaW" secondAttribute="trailing" constant="13" id="tsc-cd-G6w"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hkN-LG-VnM" firstAttribute="leading" secondItem="KPH-cg-99g" secondAttribute="leading" id="7Hm-23-fAF"/>
+                    <constraint firstItem="hkN-LG-VnM" firstAttribute="top" secondItem="KPH-cg-99g" secondAttribute="top" id="IwN-g3-cUl"/>
+                    <constraint firstAttribute="trailing" secondItem="hkN-LG-VnM" secondAttribute="trailing" constant="-4" id="ebO-PE-0Sj"/>
+                    <constraint firstAttribute="bottom" secondItem="hkN-LG-VnM" secondAttribute="bottom" id="mqp-nG-loI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="ci5-eb-xaW" id="XAA-Pk-enV"/>
+                <outlet property="avatarNameLabel" destination="Ufl-5g-oBW" id="l3x-C4-HAv"/>
+                <outlet property="commentTextView" destination="fG9-u0-Vbh" id="h13-iF-v66"/>
+                <outlet property="name" destination="iAy-TF-T6M" id="Yrx-YK-QHw"/>
+                <outlet property="replyToComment" destination="hhc-Hl-5hm" id="piI-wC-vNq"/>
+                <outlet property="separator" destination="Ycg-K8-aqW" id="1B0-52-KDc"/>
+            </connections>
+            <point key="canvasLocation" x="552.5" y="263"/>
+        </tableViewCell>
+    </objects>
+</document>

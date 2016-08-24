@@ -22,8 +22,9 @@ class DaySingleActivityDetail: NSObject {
     var nextLink : String?
     var prevLink : String?
     var messageLink : String?
-    
+    var commentLink : String?
     var goalName : String = ""
+    var goalType: String?
     
     var totalActivityDurationMinutes : Int
     var goalAccomplished : Bool
@@ -95,6 +96,11 @@ class DaySingleActivityDetail: NSObject {
                 let aNextLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 nextLink = aNextLink
             }
+            if let link = links[YonaConstants.jsonKeys.commentLink] as? [String: AnyObject],
+                let aCommentLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
+                commentLink = aCommentLink
+            }
+            
         }
         
         let range1 =  goalLinks?.rangeOfString("goals/")?.startIndex
@@ -113,12 +119,14 @@ class DaySingleActivityDetail: NSObject {
         
 //        for goal in allGoals {
 //            if goalLinks == goal.selfLinks {
+                goalType = goal.goalType
                 zones = goal.zones
                 spreadCells = goal.spreadCells
                 maxDurationMinutes = goal.maxDurationMinutes
                 if let txt = goal.GoalName {
                     goalName = txt
                 }
+                
             }
         }
     }

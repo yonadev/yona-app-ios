@@ -15,11 +15,14 @@ enum notificationType : String {
     case BuddyConnectResponseMessage = "BuddyConnectResponseMessage"
     case BuddyDisconnectMessage = "BuddyDisconnectMessage"
     case GoalConflictMessage = "GoalConflictMessage"
+    case ActivityCommentMessage = "ActivityCommentMessage"
     case NoValue = "Not found"
     
 }
 
 struct Message{
+    var dayDetailsLink: String?
+    var weekDetailsLink: String?
     var selfLink: String?
     var editLink: String?
     var rejectLink: String?
@@ -107,6 +110,16 @@ struct Message{
                 let processLinkHref = processLink[getMessagesKeys.href.rawValue] as? String{
                 self.yonaProcessLink = processLinkHref
             }
+            
+            if let dayDetailsLink = links[YonaConstants.jsonKeys.yonaDayDetails],
+                let href = dayDetailsLink[getMessagesKeys.href.rawValue] as? String{
+                self.dayDetailsLink = href
+            }
+            
+            if let weekDetailsLink = links[YonaConstants.jsonKeys.yonaWeekDetails],
+                let href = weekDetailsLink[getMessagesKeys.href.rawValue] as? String{
+                self.weekDetailsLink = href
+            }
         }
         
         //store user who made the request
@@ -163,6 +176,8 @@ struct Message{
             return NSLocalizedString("message.type.friendremoved", comment: "")
         case .GoalConflictMessage:
             return NSLocalizedString("message.type.nogoalert", comment: "")
+        case .ActivityCommentMessage:
+            return NSLocalizedString("message.type.message", comment: "")
         default :
             return NSLocalizedString("Error", comment: "")
         }
@@ -183,6 +198,8 @@ struct Message{
         case .BuddyDisconnectMessage:
             return UIImage.init()//UIImage(named: "")!
         case .GoalConflictMessage:
+            return UIImage.init()//UIImage(named: "")!
+        case .ActivityCommentMessage:
             return UIImage.init()//UIImage(named: "")!
         default :
             return UIImage.init()//UIImage(named: "")!

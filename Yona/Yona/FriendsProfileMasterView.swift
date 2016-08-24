@@ -35,7 +35,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     var AcceptedBuddy = [Buddies]()
     var RequestedBuddy = [Buddies]()
-    var refreshControl: UIRefreshControl!
+//    var refreshControl: UIRefreshControl!
     
     var timeLineData : [TimeLineDayActivityOverview] = []
     var animatedCells : [String] = []
@@ -44,10 +44,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl!.addTarget(self, action: #selector(reloadData), forControlEvents: UIControlEvents.ValueChanged)
-        theTableView.addSubview(refreshControl)
+//        refreshControl = UIRefreshControl()
+//        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl!.addTarget(self, action: #selector(reloadData), forControlEvents: UIControlEvents.ValueChanged)
+//        theTableView.addSubview(refreshControl)
         //setupUI()
         registreTableViewCells()
         showRightTab(rightTabMainView)
@@ -57,9 +57,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         super.viewWillAppear(animated)
         setupUI()
     }
+    
     func setupUI() {
-        
-        
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
@@ -166,14 +165,13 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if selectedTab == .left {
-            
             return cellForTimeLineView(indexPath)
         } else {
         
             let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+            cell.isPanEnabled = false
             if indexPath.section == friendsSections.connected.rawValue {
                 cell.setBuddie(AcceptedBuddy[indexPath.row])
-                
             } else if indexPath.section == friendsSections.pending.rawValue {
                 cell.setBuddie(RequestedBuddy[indexPath.row])
             }
@@ -332,7 +330,7 @@ TimeLinedayActivitiesForUsers
                 return 70
             }
             if obj.goalType == "TimeZoneGoal" {
-                return 73
+                return 80
                 
             }
             return 30
