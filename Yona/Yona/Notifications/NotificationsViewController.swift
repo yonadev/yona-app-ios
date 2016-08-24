@@ -14,7 +14,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     var selectedIndex : NSIndexPath?
     var buddyData : Buddies?
 
-    var page : Int = 1
+    var page : Int = 0
     var size : Int = 20
     
     //paging
@@ -64,6 +64,8 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
+//            self.navigationController?.navigationItem.leftBarButtonItem = nil
+//            self.navigationController?.navigationItem.backBarButtonItem = nil
 
         }
         

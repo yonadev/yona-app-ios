@@ -49,6 +49,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self
+        
     }
 
     func registreTableViewCells () {
@@ -80,6 +81,13 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
     }
 
+    @IBAction func backAction(sender : AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
@@ -93,6 +101,14 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
+        
+//            let back = navigationController?.navigationItem
+//            navigationController?.navigationItem
+//            navigationItem
+//            setLeftBarButtonItem(nil, animated: false)
+//            //navigationItem.setHidesBackButton(true, animated: false)
+//
+//            print (back)
         }
     }
     
@@ -327,6 +343,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                     if success {
                         
                         if let data = activitygoals {
+                            self.navigationItem.title = data.goalName
                             self.currentWeek = data.date
                             self.week[data.date.yearWeek] = data
                             print (data.date.yearWeek)
