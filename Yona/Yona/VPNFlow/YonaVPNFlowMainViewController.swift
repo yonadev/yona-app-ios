@@ -40,7 +40,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBOutlet weak var spacerView1 : UIView!
     @IBOutlet weak var spacerView2 : UIView!
     var demoCounter = 0
-    var httpServer : RoutingHTTPServer?
+//    var httpServer : RoutingHTTPServer?
     var mobileconfigData : NSData?
     var currentProgress : VPNSetupStatus = .yonaAppInstalled
     var customView : UIView  = UIView(frame: CGRectZero)
@@ -178,7 +178,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             return
         }
         if currentProgress == .configurationInstalled {
-            httpServer?.stop()
+//            httpServer?.stop()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
             self.dismissViewControllerAnimated(true, completion: {})
             return
@@ -471,29 +471,26 @@ class YonaVPNFlowMainViewController: UIViewController {
     //MARK: - mobilconfigurationfile
     func serverSetup() {
         
-        httpServer = RoutingHTTPServer()
-        httpServer?.setPort(8089)
-        
-        httpServer?.handleMethod("GET", withPath: "/start", target: self, selector: #selector(handleMobileconfigRootRequest))
-        httpServer?.handleMethod("GET", withPath: "/load", target: self, selector: #selector(handleMobileconfigLoadRequest))
+//        httpServer = RoutingHTTPServer()
+//        httpServer?.setPort(8089)
+//        
+//        httpServer?.handleMethod("GET", withPath: "/start", target: self, selector: #selector(handleMobileconfigRootRequest))
+//        httpServer?.handleMethod("GET", withPath: "/load", target: self, selector: #selector(handleMobileconfigLoadRequest))
         let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
         mobileconfigData = NSData(contentsOfFile: resourceDocPath)
 
         
         
-        do {
-           try  self.httpServer?.start()
-            print("SERVER STARTET")
-        } catch {
-            return
-        }
+        
+           (UIApplication.sharedApplication().delegate as! AppDelegate).startServer()
+            print("SERVER STARTET in VPN")
     }
     
     func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
         print("handleMobileconfigRootRequest");
         let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},400);</script><BODY></BODY></HTML>"
         response.respondWithString(txt)
-}
+    }
 
     func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
         if firstTime  {
@@ -507,7 +504,12 @@ class YonaVPNFlowMainViewController: UIViewController {
             response.statusCode = 302
             //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
             //response.setHeader("Location", value: "yonaApp://")
-            response.setHeader("Location", value: "http://www.simusoft.dk")
+            
+            if #available(iOS 9, *) {
+                response.setHeader("Location", value: "http://www.simusoft.dk/yonaapp/")
+            } else {
+                response.setHeader("Location", value: "yonaApp://yonaapp/")
+            }
             
             currentProgress = .configurationInstalled
             NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
@@ -581,15 +583,15 @@ class YonaVPNFlowMainViewController: UIViewController {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 4))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             var running = false
-            running = (self.httpServer?.isRunning())!
+            running = ((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())!
             if  running {
                 Loader.Hide()
-                print("SERVER IS STARTED : \(self.httpServer?.isRunning())")
+                print("SERVER IS STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
                 if let url = NSURL(string:"http://localhost:8089/start/") {
                     UIApplication.sharedApplication().openURL(url)
                 }
             } else {
-                print("SERVER IS NOT STARTED : \(self.httpServer?.isRunning())")
+                print("SERVER IS NOT STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
                 print("re-trying")
                 self.testForServerAndContinue()
             }

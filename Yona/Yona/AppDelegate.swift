@@ -12,6 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var firstTime = false
+    var httpServer : RoutingHTTPServer?
+    var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -49,9 +52,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func beginBackgroundUpdateTask() {
+        self.backgroundUpdateTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({
+            self.endBackgroundUpdateTask()
+        })
+    }
+    
+    func endBackgroundUpdateTask() {
+        UIApplication.sharedApplication().endBackgroundTask(self.backgroundUpdateTask)
+        self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    }
+
+    
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
     }
+    
+    func doBackgroundTask() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            self.beginBackgroundUpdateTask()
+            
+            
+            
+            // End the background task.
+            self.endBackgroundUpdateTask()
+        })
+    }
+    
+    func startServer() {
+        self.httpServer = RoutingHTTPServer()
+        self.httpServer?.setPort(8089)
+        
+        self.httpServer?.handleMethod("GET", withPath: "/start", target: self, selector: #selector(self.handleMobileconfigRootRequest))
+        self.httpServer?.handleMethod("GET", withPath: "/load", target: self, selector: #selector(self.handleMobileconfigLoadRequest))
+        
+        
+        
+        do {
+            try  self.httpServer?.start()
+            print("SERVER STARTET")
+        } catch {
+            return
+        }
+
+    
+    }
+    func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
+        print("handleMobileconfigRootRequest");
+        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},400);</script><BODY></BODY></HTML>"
+        response.respondWithString(txt)
+    }
+    
+    func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
+        if firstTime  {
+            print("handleMobileconfigLoadRequest, first time")
+            firstTime = false
+            let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+            let mobileconfigData = NSData(contentsOfFile: resourceDocPath)
+         
+            response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
+            response.respondWithData(mobileconfigData)
+        } else {
+            print("handleMobileconfigLoadRequest, NOT first time")
+            response.statusCode = 302
+            //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
+            //response.setHeader("Location", value: "yonaApp://")
+            
+            if #available(iOS 9, *) {
+                response.setHeader("Location", value: "http://www.simusoft.dk/yonaapp/")
+            } else {
+                response.setHeader("Location", value: "yonaApp://yonaapp/")
+            }
+            
+  //          currentProgress = .configurationInstalled
+            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            
+        }
+    }
+
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.

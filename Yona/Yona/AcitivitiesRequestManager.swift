@@ -718,57 +718,53 @@ class ActivitiesRequestManager {
     
     func getTimeLineActivity(onCompletion: APIActivityTimeLineResponse){
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
-            if success {
-  //              BuddyRequestManager.sharedInstance.getAllbuddies({(succes, serverMessage, serverCode, buddies, allBuddies) in
-   //                 if succes && allBuddies != nil{
-                        
-                        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
-                            if success && user?.timeLineLink != nil {
-                                var data : [TimeLineDayActivityOverview] = []
-                                self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
-                                    if let json = json {
-                                        guard success == true else {
-                                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
-                                            return
-                                        }
-                                        if let embedded = json[YonaConstants.jsonKeys.embedded],
-                                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray {
-                                            
-                                            self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
-                                                if activities?.count > 0 {
-                                                    for activity in embeddedActivities {
-                                                        let obj = TimeLineDayActivityOverview(jsonData : activity as! BodyDataDictionary, activities : activities!)
-                                                        data.append(obj)
-                                                        
-                                                    }
-                                                    // NOW All data load  - Fill out the blanks :-|
-                                                    self.loadAllGoals(data , completion : {(succes) in
-                                                        for obj in data {
-                                                            if let theBuddies = user?.buddies {
-                                                                obj.configureForTableView(theBuddies,aUser:user!)
-                                                            }
-                                                        }
-                                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), data, error)
-                                                        
-                                                    })
-                                                        }
-                                                
-                                                })
-
-                                            
-                                        }
+            if success && user?.timeLineLink != nil {
+                var data : [TimeLineDayActivityOverview] = []
+                self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
+                    if let json = json {
+                        guard success == true else {
+                            onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                            return
                         }
-                    }
-                            }
-                
-                    else {
+                        if let embedded = json[YonaConstants.jsonKeys.embedded],
+                            let embeddedActivities = embedded[YonaConstants.jsonKeys.yonaDayActivityOverviews] as? NSArray {
+                            
+                            self.getActivityCategories(  {(status, ServerMessage, ServerCode, activities, error) in
+                                if activities?.count > 0 {
+                                    for activity in embeddedActivities {
+                                        let obj = TimeLineDayActivityOverview(jsonData : activity as! BodyDataDictionary, activities : activities!)
+                                        data.append(obj)
+                                        
+                                    }
+                                    // NOW All data load  - Fill out the blanks :-|
+                                    self.loadAllGoals(data , completion : {(succes) in
+                                        for obj in data {
+                                            if let theBuddies = user?.buddies {
+                                                obj.configureForTableView(theBuddies,aUser:user!)
+                                            }
+                                        }
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), data, error)
+                                        
+                                    })
+                                }
+                                
+                            })
+                            
+                            
+                        } else {
+                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
+                        }
+                        
+                        
                         
                     }
-                }//)
-               
+                }
+            }
+                
+            else {
                 
             }
-        }
+        }//)
     }
     
     
