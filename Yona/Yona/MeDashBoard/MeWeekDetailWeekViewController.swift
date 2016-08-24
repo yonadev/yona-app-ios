@@ -100,14 +100,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
-        
-//            let back = navigationController?.navigationItem
-//            navigationController?.navigationItem
-//            navigationItem
-//            setLeftBarButtonItem(nil, animated: false)
-//            //navigationItem.setHidesBackButton(true, animated: false)
-//
-//            print (back)
         }
     }
     
