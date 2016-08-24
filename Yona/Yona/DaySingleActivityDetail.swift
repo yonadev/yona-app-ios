@@ -24,6 +24,7 @@ class DaySingleActivityDetail: NSObject {
     var messageLink : String?
     var commentLink : String?
     var goalName : String = ""
+    var goalType: String?
     
     var totalActivityDurationMinutes : Int
     var goalAccomplished : Bool
@@ -118,12 +119,14 @@ class DaySingleActivityDetail: NSObject {
         
 //        for goal in allGoals {
 //            if goalLinks == goal.selfLinks {
+                goalType = goal.goalType
                 zones = goal.zones
                 spreadCells = goal.spreadCells
                 maxDurationMinutes = goal.maxDurationMinutes
                 if let txt = goal.GoalName {
                     goalName = txt
                 }
+                
             }
         }
     }

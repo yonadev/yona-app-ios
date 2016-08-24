@@ -93,6 +93,7 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
         }
         for goal in allGoals {
             if goalLinks == goal.selfLinks {
+                goalType = goal.goalType
                 zones = goal.zones
                 spreadCells = goal.spreadCells
                 maxDurationMinutes = goal.maxDurationMinutes  // datat for a week

@@ -17,6 +17,7 @@ enum detailRows : Int  {
 class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
     var initialObject : WeekSingleActivityGoal?
     var initialObjectLink : String?
+    var goalType : String?
     var week : [String:WeekSingleActivityDetail] = [:]
     var firstWeek :  NSDate = NSDate()
     var currentWeek : NSDate = NSDate()
@@ -25,7 +26,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBOutlet weak var commentView : UIView?
     @IBOutlet weak var sendCommentFooter : SendCommentControl?
     var previousThreadID : String = ""
-    
+    var animatedCells : [String] = []
+
     var page : Int = 0
     var size : Int = 4
     
@@ -49,6 +51,19 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self
+    }
+    
+    func shouldAnimate(cell : NSIndexPath) -> Bool {
+        let txt = "\(cell.section)-\(cell.row)"
+        
+        if animatedCells.indexOf(txt) == nil {
+            print("Animated \(txt)")
+            animatedCells.append(txt)
+            return true
+        }
+        print("NO animated \(txt)")
+        return false
+        
     }
     
     func registreTableViewCells () {
@@ -96,7 +111,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             if let txt = aWeek.goalName {
                 navigationItem.title = NSLocalizedString(txt, comment: "")
             }
-            
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
@@ -131,7 +145,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
                 
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setSingleActivity(data ,isScore: true)
+                    cell.setSingleActivity(data ,isScore: shouldAnimate(indexPath))
                 }
                 return cell
             
@@ -139,9 +153,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
             if indexPath.row == detailRows.activity.rawValue {
                 if let data = week[currentWeek.yearWeek]  {
-                    if data.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
+                    if goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
                         let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                        cell.setWeekActivityDetailForView(data, animated: true)
+                        cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                         return cell
                     }
                 }
@@ -150,7 +164,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             if indexPath.row == detailRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
-                    cell.setWeekActivityDetailForView(data, animated: true)
+                    cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
                 return cell
             }
@@ -248,14 +262,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
-            if let initialObject = initialObject {
-                if initialObject.goalType == GoalType.BudgetGoalString.rawValue {
-                    cellHeight = 165
-                } else if initialObject.goalType == GoalType.NoGoGoalString.rawValue {
-                    cellHeight = 0
-                } else if initialObject.goalType == GoalType.TimeZoneGoalString.rawValue {
-                    cellHeight = 0
-                }
+            if goalType == GoalType.BudgetGoalString.rawValue {
+                cellHeight = 165
+            } else if goalType == GoalType.NoGoGoalString.rawValue {
+                cellHeight = 0
+            } else if goalType == GoalType.TimeZoneGoalString.rawValue {
+                cellHeight = 0
             }
         }
         if indexPath.row == detailRows.spreadCell.rawValue {
@@ -337,7 +349,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             self.navigationItem.title = data.goalName
                             self.currentWeek = data.date
                             self.week[data.date.yearWeek] = data
-                            print (data.date.yearWeek)
+                            self.goalType = data.goalType
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }
@@ -349,7 +361,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                         }
                         
                         Loader.Hide()
-                        self.tableView.reloadData()
                         
                     } else {
                         Loader.Hide()
@@ -376,7 +387,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             }
                             
                             Loader.Hide()
-                            self.tableView.reloadData()
                             
                         } else {
                             Loader.Hide()
@@ -403,7 +413,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             }
                             
                             Loader.Hide()
-                            self.tableView.reloadData()
                             
                         } else {
                             Loader.Hide()
@@ -415,7 +424,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
         }
         Loader.Hide()
-        self.tableView.reloadData()
             
     }
     

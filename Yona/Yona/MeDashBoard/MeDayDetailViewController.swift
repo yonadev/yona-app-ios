@@ -34,6 +34,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var activityGoal : ActivitiesGoal?
     var initialObjectLink : String?
     var goalName : String?
+    var goalType : String?
     var currentDate : NSDate = NSDate()
     var currentDay : String?
     var nextLink : String?
@@ -42,6 +43,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var previousThreadID : String = ""
     var page : Int = 1
     var size : Int = 4
+    var animatedCells : [String] = []
 
     //paging
     var totalSize: Int = 0
@@ -66,6 +68,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             initialObjectLink = activityGoal.dayDetailLinks
             currentDate = activityGoal.date
             goalName = activityGoal.goalName
+            goalType = activityGoal.goalType
         }
        // self.navigationController?.navigationBar.hidden = true
         registreTableViewCells()
@@ -80,6 +83,18 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
     }
     
+    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+        let txt = "\(cell.section)-\(cell.row)"
+        
+        if animatedCells.indexOf(txt) == nil {
+            print("Animated \(txt)")
+            animatedCells.append(txt)
+            return true
+        }
+        print("NO animated \(txt)")
+        return false
+        
+    }
 
     func registreTableViewCells () {
         
@@ -144,6 +159,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             self.currentDate = data.date!
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
+                            self.goalType = data.goalType
                             self.navigationItem.title = self.dayData?.goalName //only need to do this in the first original data
 
                             if let commentsLink = data.messageLink {
@@ -229,11 +245,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
-                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue {
                     cellHeight = 165
-                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                } else if goalType == GoalType.NoGoGoalString.rawValue {
                     cellHeight = 85
-                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue {
                     cellHeight = 165
                 }
             }
@@ -278,26 +294,26 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             if indexPath.row == detailDayRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
+                    cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
                 return cell
                 
             }
             if indexPath.row == detailDayRows.activity.rawValue {
 
-                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue {
                     let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                     if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: true)
+                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
-                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue {
                     let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
                     if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: true)
+                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
-                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                } else if goalType == GoalType.NoGoGoalString.rawValue {
                     let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data)
@@ -331,9 +347,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
                         cell.hideShowReplyButton(self.dayData?.commentLink != nil && comment.replyLink == nil)
-
                         self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
-
                         return cell
                     }
                 } else {
@@ -343,10 +357,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
                         cell.hideShowReplyButton(comment.replyLink == nil)
-                        
                         self.sendCommentFooter?.alpha = 0
-//                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
-
                         return cell
                     }
                 }

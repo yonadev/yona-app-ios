@@ -26,6 +26,20 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
 
     }
+    
+    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+        let txt = "\(cell.section)-\(cell.row)"
+        
+        if animatedCells.indexOf(txt) == nil {
+            print("Animated \(txt)")
+            animatedCells.append(txt)
+            return true
+        }
+        print("NO animated \(txt)")
+        return false
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.comments = []
@@ -46,6 +60,29 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         return heightOfHeader
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var cellHeight = 165
+        if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
+                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 165
+                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 165
+                }
+            }
+            
+            if indexPath.row == detailDayRows.spreadCell.rawValue{
+                cellHeight = 165
+            }
+        } else if indexPath.section == detailDaySections.comment.rawValue {
+            cellHeight = 165
+        }
+        
+        return CGFloat(cellHeight)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         
@@ -53,7 +90,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             if indexPath.row == detailDayRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
                 if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: true)
+                    cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
                 return cell
                 
@@ -63,13 +100,13 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                 if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
                     let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                     if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: true)
+                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
                     let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
                     if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: true)
+                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {

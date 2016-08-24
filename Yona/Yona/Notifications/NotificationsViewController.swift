@@ -14,7 +14,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     var selectedIndex : NSIndexPath?
     var buddyData : Buddies?
 
-    var page : Int = 0
+    var page : Int = 1
     var size : Int = 20
     
     //paging
