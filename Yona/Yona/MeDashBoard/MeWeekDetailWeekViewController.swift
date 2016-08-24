@@ -49,13 +49,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
         self.sendCommentFooter?.delegate = self
-<<<<<<< HEAD
-        
-=======
-        self.navigationItem.setHidesBackButton(true, animated: false)
->>>>>>> 6c4a1295553a72dc25bbf77679cc0c7471c40427
     }
-
+    
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")

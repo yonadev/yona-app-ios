@@ -63,13 +63,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
-<<<<<<< HEAD
-            controller.initialObjectLink = self.aMessage!.dayDetailsLink!
-//            self.navigationController?.navigationItem.leftBarButtonItem = nil
-//            self.navigationController?.navigationItem.backBarButtonItem = nil
-=======
             controller.initialObjectLink = self.aMessage!.weekDetailsLink!
->>>>>>> 6c4a1295553a72dc25bbf77679cc0c7471c40427
 
         }
         
