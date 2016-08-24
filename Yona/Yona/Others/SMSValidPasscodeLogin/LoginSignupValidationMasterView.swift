@@ -123,10 +123,12 @@ extension LoginSignupValidationMasterView {
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
         isFromPinReset = true
+        view.userInteractionEnabled = false
         Loader.Show()
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
                 Loader.Hide()
+                self.view.userInteractionEnabled = true
                 if let timeISOCode = pincode {
                     //we need to store this incase the app is backgrounded
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
@@ -139,6 +141,8 @@ extension LoginSignupValidationMasterView {
             } else {
                 PinResetRequestManager.sharedInstance.pinResendResetRequest({ (success, pincode, message, code) in
                     Loader.Hide()
+                    self.view.userInteractionEnabled = true
+
                     if success {
                         
                         setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
