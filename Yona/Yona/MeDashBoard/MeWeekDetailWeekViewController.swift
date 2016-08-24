@@ -363,7 +363,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             self.navigationItem.title = data.goalName //only need to do this in the first original data
 
                         }
-                        
+                        self.tableView.reloadData()
                         Loader.Hide()
                         
                     } else {
@@ -389,7 +389,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
-                            
+                            self.tableView.reloadData()
                             Loader.Hide()
                             
                         } else {
@@ -415,7 +415,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                                     self.sendCommentFooter!.postCommentLink = data.commentLink
                                 }
                             }
-                            
+                            self.tableView.reloadData()
                             Loader.Hide()
                             
                         } else {
@@ -427,8 +427,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             
             
         }
+        self.tableView.reloadData()
         Loader.Hide()
-            
+        
     }
     
     // MARK: - CommentCellDelegate
