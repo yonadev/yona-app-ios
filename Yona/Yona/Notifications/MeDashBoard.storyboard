@@ -57,6 +57,14 @@
                             <constraint firstItem="Fpm-v2-kz6" firstAttribute="top" secondItem="2WS-nr-w55" secondAttribute="bottom" id="yFw-jn-drG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZpL-QY-qgp">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="UrD-Rq-gwN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backAction:" destination="S1p-g9-SMB" id="Awv-KQ-FKs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="sendCommentFooter" destination="2WS-nr-w55" id="lRE-Vx-cKE"/>
                         <outlet property="tableView" destination="tUy-r1-XJQ" id="J3k-xz-rEY"/>

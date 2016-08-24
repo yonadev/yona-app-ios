@@ -72,11 +72,15 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         self.sendCommentFooter?.delegate = self
         self.sendCommentFooter?.alpha = 0
         
-//        self.navigationItem.leftBarButtonItem = nil
-//        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
-        self.navigationItem.setHidesBackButton(true, animated: false)
+    }
+    @IBAction func backAction(sender : AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+        
     }
     
+
     func registreTableViewCells () {
         
         var nib = UINib(nibName: "SpreadCell", bundle: nil)
