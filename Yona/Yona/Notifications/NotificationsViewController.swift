@@ -120,6 +120,30 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         cell.setMessage(messages[indexPath.section][indexPath.row])
+        
+        //turn off/on delete messages by disabling the pan gesture on our custom delete cell
+        if aMessage?.messageType == notificationType.ActivityCommentMessage {
+            cell.isPanEnabled = false
+        } else {
+            cell.isPanEnabled = true
+        }
+        if let txt = aMessage?.messageType { //cannot swithc on a optional type so have
+            switch txt {
+            case .ActivityCommentMessage:
+                cell.isPanEnabled = false
+            case .BuddyConnectRequestMessage:
+                cell.isPanEnabled = true
+            case .BuddyDisconnectMessage:
+                cell.isPanEnabled = true
+            case .BuddyConnectResponseMessage:
+                cell.isPanEnabled = true
+            case .GoalConflictMessage:
+                cell.isPanEnabled = true
+            case .NoValue:
+                cell.isPanEnabled = true
+            }
+        }
+
         cell.yonaUserDelegate = self
         return cell
     }
