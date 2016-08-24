@@ -278,6 +278,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if  dayData == nil {
+            return 0
+        }
+        
         var numberOfSections = 2
         if section == 1 {
             numberOfSections = self.comments.count // number of comments
@@ -285,7 +289,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             numberOfSections = 1
         }
         return numberOfSections
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

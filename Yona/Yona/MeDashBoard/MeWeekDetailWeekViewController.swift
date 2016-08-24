@@ -124,6 +124,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if week[currentWeek.yearWeek] == nil {
+            return 0
+        }
+        
         var numberOfSections = 0
         if let _ = week[currentWeek.yearWeek]  {
             numberOfSections = 3
