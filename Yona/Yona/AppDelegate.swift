@@ -151,6 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Handle environment switch
     func updateEnvironmentSettings() -> Bool
     {
+        //comment   
         let environemtnSettingsChanged = EnvironmentManager.updateEnvironment()
         if environemtnSettingsChanged{
             logout()
