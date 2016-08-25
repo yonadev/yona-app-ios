@@ -37,6 +37,8 @@ struct Users{
     var timeLineLink : String?
 
     var formatetMobileNumber : String!
+    
+    var mobilConfigFileURL: String = ""
     init(userData: BodyDataDictionary) {
         
         userID = "NOID"
@@ -161,6 +163,12 @@ struct Users{
                     let timeline  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                     timeLineLink = timeline
                 }
+                if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaappleMobileConfig],
+                    let mobilconfig  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    mobilConfigFileURL = mobilconfig
+                }
+                
+                
                 
             }
             

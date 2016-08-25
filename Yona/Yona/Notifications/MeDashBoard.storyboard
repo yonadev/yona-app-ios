@@ -195,7 +195,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TSV-ok-ptH">
-                        <barButtonItem key="leftBarButtonItem" title="Yona" style="plain" id="fmy-Mm-EgE">
+                        <barButtonItem key="leftBarButtonItem" title="Yona" id="fmy-Mm-EgE">
                             <connections>
                                 <action selector="showUserProfile:" destination="Z05-OL-lvB" id="WYr-Gr-HrF"/>
                             </connections>
