@@ -241,6 +241,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.picker?.cancelButtonTitle.title = "Cancel"
             self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
+            self.configureTimeZone(self.picker?.selectedValue)
             self.activeIndexPath = indexPath
             self.isFromButton = false
             self.picker?.pickerTitleLabel("To")
