@@ -168,7 +168,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
             
-  //          currentProgress = .configurationInstalled
             NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             
         }
