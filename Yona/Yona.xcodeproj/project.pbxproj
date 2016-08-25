@@ -380,6 +380,7 @@
 		160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineNoGoCell.swift; sourceTree = "<group>"; };
 		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
+		164CD1D91D6B86EC004E585B /* Yona.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Yona.entitlements; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
 		1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage2.swift; sourceTree = "<group>"; };
@@ -1718,6 +1719,7 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				164CD1D91D6B86EC004E585B /* Yona.entitlements */,
 				165BB1E81D2289A20013A4EF /* UIControlCell */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
 				90FF6E001D01D73000A674C4 /* BaseViewController.swift */,
@@ -1844,6 +1846,12 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KMR2VE49BG;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					D9D54EDC1CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
@@ -2461,6 +2469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2471,7 +2480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.Yona;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
@@ -2486,8 +2495,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yona/Others",
@@ -2495,9 +2505,9 @@
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.Yona;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;

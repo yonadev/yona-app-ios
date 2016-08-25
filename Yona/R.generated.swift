@@ -760,7 +760,7 @@ struct R {
 }
 
 struct _R {
-  static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.Yona") }
+  static var hostingBundle: NSBundle? { return NSBundle(identifier: "nl.yonafoundation.yona") }
   
   struct nib {
     struct _CommentControlCell: NibResource, Reusable {

@@ -12,6 +12,9 @@ typealias budgetGoals = Array<Goal>?
 typealias timezoneGoals = Array<Goal>?
 typealias nogoGoals = Array<Goal>?
 
+
+typealias APIMobileConfigResponse = (Bool, String?, ServerCode?) -> Void
+
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
 typealias APICommentResponse = (Bool, Comment?, Array<Comment>?, ServerMessage?, ServerCode?) -> Void
@@ -138,4 +141,48 @@ extension Manager {
             
         }
     }
+
+
+    func makeFileRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+    {
+        do{
+            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                if error != nil{
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onCompletion(false, nil, "")
+                        return
+                    }
+                }
+                if response != nil{
+                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
+                        let string = NSString(data:data!, encoding:NSUTF8StringEncoding) as String?
+                            let omdbError = requestResult.init(success: true, errorMessage: responseMessages.success.rawValue, errorCode: responseCodes.ok200.rawValue, domain: errorDomains.successDomain.rawValue)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onCompletion(true, string , "")
+                            }
+                    } else {
+                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                        //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
+                        let userInfo = [
+                            NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
+                        ]
+                        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onCompletion(false, nil, "")
+                        }
+                    }
+                }
+            })
+            task.resume()
+        } catch let error as NSError{
+            dispatch_async(dispatch_get_main_queue()) {
+                onCompletion(false, nil, "")
+            }
+            
+        }
+    }
+
 }

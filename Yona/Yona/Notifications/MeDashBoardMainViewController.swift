@@ -20,8 +20,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     var animatedCells : [String] = []
     var corretcToday : NSDate = NSDate()
-    var page : Int = 0
+    var leftPage : Int = 0
+    var rightPage : Int = 0
+
     var size : Int = 3
+    var loading = false
+    var scrolling = false
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +85,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        leftPage = 0
+        rightPage = 0
         if selectedTab == .left {
             showLeftTab(leftTabMainView)
         } else {
@@ -92,7 +97,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     private func setupUI() {
          //  configureLeftBarItem()
         //showLeftTab(leftTabMainView)
-        
+        //theTableView.alwaysBounceVertical = false
     }
     
     @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
@@ -114,6 +119,30 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     // MARK: - tableview Override
 
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        let y = CGFloat(offset.y + bounds.size.height - inset.bottom)
+        let h = CGFloat(size.height)
+        
+        let reload_distance = CGFloat(80)  // MUST find right distance ....
+        if(y > (h + reload_distance)) {
+            
+            if !scrolling {
+                scrolling = true
+                loadMoreRows()
+            }
+        } else if y == 0 {
+            scrolling = false
+        }
+    }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrolling = false
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if selectedTab == .left {
             return leftTabData.count
@@ -222,14 +251,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
-        loadActivitiesForDay(page)
+        loadActivitiesForDay(leftPage)
         // The subController must override this to have any action after the tabe selection
   
     }
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        loadActivitiesForWeek(page)
+        loadActivitiesForWeek(rightPage)
     }
 
     @IBAction func showUserProfile(sender : AnyObject) {
@@ -291,38 +320,75 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     // MARK: - Data loaders
     
+    func loadMoreRows() {
+        if selectedTab == .left {
+            loadActivitiesForDay(leftPage)
+        
+        }
+        if selectedTab == .right {
+            loadActivitiesForWeek(rightPage)
+            
+        }
+    }
+    
     func loadActivitiesForDay(page : Int = 0) {
-        print("Entering day loader")
+        if loading {
+            return
+        }
+        loading = true
+        print("Entering day loader :\(leftPage) ")
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
                 
                 if let data = activitygoals {
-                    self.animatedCells.removeAll()
-                    self.leftTabData = data
+                    if data.count > 0  {
+                        self.animatedCells.removeAll()
+                        if self.leftPage == 0 {
+                            self.leftTabData = data
+                        } else {
+                            self.leftTabData.appendContentsOf(data)
+                        }
+                        self.leftPage += 1
+                    }
                 }
                 Loader.Hide()
                 self.theTableView.reloadData()
+                self.loading = false
             } else {
                 Loader.Hide()
+                self.loading = false
             }
             })
         
     }
     func loadActivitiesForWeek(page : Int = 0) {
+        if loading {
+            return
+        }
+
+        print("Entering day loader :\(leftPage) ")
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrWeek(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
                 
                 if let data = activitygoals {
-                    self.rightTabData = data
+                    if data.count > 0  {
+                        if self.rightPage == 0 {
+                            self.rightTabData = data
+                        } else {
+                            self.rightTabData.appendContentsOf(data)
+                        }
+                        self.rightPage += 1
+                    }
                 }
            
             Loader.Hide()
             self.theTableView.reloadData()
-                
+            self.loading = false
             } else {
                 Loader.Hide()
+                self.loading = false
             }
         })
         

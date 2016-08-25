@@ -40,6 +40,22 @@ class APIServiceManager {
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
     }
 
+    func callRequestWithAPIMobileConfigResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIMobileConfigResponse){
+        
+        guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
+            onCompletion(false,nil, "")
+            return
+        }
+        
+        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let language = "\(langId)-\(countryId)"
+        
+        let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
+        Manager.sharedInstance.makeFileRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
+    }
+
+    
     /**
      Setups up the messages from the server so the UI knows what is going wrong or right
      
