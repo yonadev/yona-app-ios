@@ -1846,7 +1846,6 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KMR2VE49BG;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -2480,7 +2479,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
@@ -2496,7 +2495,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2505,7 +2504,7 @@
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
