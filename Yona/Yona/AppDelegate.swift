@@ -119,6 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
+    /** Starts the local host for making the safari browser return to the application
+     */
     func startServer() {
         self.httpServer = RoutingHTTPServer()
         self.httpServer?.setPort(8089)
@@ -143,6 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         response.respondWithString(txt)
     }
     
+    /** Catches first and second attempts to load config file, and then inserts an address into safari to switch back to the app
+     */
     func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
         if firstTime  {
             print("handleMobileconfigLoadRequest, first time")
@@ -159,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //response.setHeader("Location", value: "yonaApp://")
             
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "http://www.simusoft.dk/yonaapp/")
+                response.setHeader("Location", value: "http://yona.nl/yonaapp/")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
