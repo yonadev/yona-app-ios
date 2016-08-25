@@ -58,9 +58,9 @@ class LoginViewController: LoginSignupValidationMasterView {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
-            self.codeInputView.becomeFirstResponder()
-        }
+//        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+//            self.codeInputView.becomeFirstResponder()
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -162,6 +162,10 @@ extension LoginViewController: CodeInputViewDelegate {
                             //do nothing or send back to start of signup?
                         }
                     })
+                }
+            } else {
+                if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+                    self.codeInputView.becomeFirstResponder()
                 }
             }
         }

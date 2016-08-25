@@ -14,11 +14,12 @@ class WeekActivityGoal: NSObject {
     
     init(data : BodyDataDictionary, allGoals : [Goal] ) {
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
-            let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
+            let userCalendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierISO8601)//NSGregorianCalendar)
             userCalendar?.firstWeekday = 1
             let formatter = NSDateFormatter()
             formatter.dateFormat = "YYYY'-W'ww"
-            formatter.locale = NSLocale.currentLocale()
+            //formatter.locale = NSLocale.currentLocale()
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
             formatter.calendar = userCalendar;
 
             if let startdate = formatter.dateFromString(adDate) {

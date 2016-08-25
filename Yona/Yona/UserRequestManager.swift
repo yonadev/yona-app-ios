@@ -174,7 +174,7 @@ class UserRequestManager{
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func confirmMobileNumber(body: BodyDataDictionary?, onCompletion: APIResponse) {
-        if let confirmMobileLink = self.newUser?.confirmMobileLink{
+        if let confirmMobileLink = self.newUser?.confirmMobileLink {
             genericUserRequest(httpMethods.post, path: confirmMobileLink, userRequestType: userRequestTypes.confirmMobile, body: body, onCompletion: { (success, message, code, user) in
                 if success {
                     //if we confirmed successfully get the user as new links need to be parsed
@@ -188,6 +188,24 @@ class UserRequestManager{
         } else {
             //Failed to retrive details for confirm mobile request
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode))
+        }
+    }
+    
+    func getMobileConfigFile( onCompletion: APIMobileConfigResponse) {
+        if let mobileConfigURL = self.newUser?.mobilConfigFileURL {
+           APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL, httpMethod: httpMethods.get, onCompletion: onCompletion)
+            
+//            Manager.sharedInstance.makeFileRequest(mobileConfigURL, body: nil, httpMethod: httpMethods.get
+//                , httpHeader: <#T##[String : String]#>, onCompletion: <#T##APIMobileConfigResponse##APIMobileConfigResponse##(Bool, String?, ServerCode?) -> Void#>)
+//            
+//            genericUserRequest(httpMethods.get, path:mobileConfigURL, userRequestType: userRequestTypes.getConfigFile, body: ["":""], onCompletion: { (success, message, code, user) in
+//                if success {
+//                    onCompletion(success, nil, code)
+//                }
+//                else {
+//                    onCompletion(success, nil, code)
+//                }
+//            })
         }
     }
 }
