@@ -197,8 +197,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController is FriendsDayViewController {
-            
-            
             let controller = segue.destinationViewController as! FriendsDayViewController
             if let indexpath = theTableView.indexPathForSelectedRow {
                 

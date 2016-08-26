@@ -107,8 +107,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func loadActivitiesForDay(page : Int = 0) {
         print("Entering day loader")
-        Loader.Show()
         if let buddy = buddyToShow  {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrDay(buddy, size: 3, page:0, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
                     
@@ -127,8 +127,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func loadActivitiesForWeek(page : Int = 0) {
-        Loader.Show()
         if let buddy = buddyToShow  {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
                     

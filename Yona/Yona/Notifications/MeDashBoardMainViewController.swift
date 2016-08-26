@@ -55,17 +55,21 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
     }
     
-    func configurProfileBarItem()  {
-
+    @IBAction func backAction(sender : AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
         
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+    }
+    
+    func configurProfileBarItem()  {
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
            if let name = user?.firstName {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
                     self.leftBarItem.title = "\(name.capitalizedString.characters.first!)"
                     self.leftBarItem.addCircle()
                 }
-            }
-            
+            }            
         }
     }
     

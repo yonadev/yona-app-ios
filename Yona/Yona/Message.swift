@@ -184,8 +184,9 @@ struct Message{
         case .GoalChangeMessage:
             return NSLocalizedString("message.type.goalchange", comment: "")
         case .DisclosureRequestMessage:
+            return NSLocalizedString("message.type.disclosurerequest", comment: "")
         case .DisclosureResponseMessage:
-            
+            return NSLocalizedString("message.type.disclosureresponse", comment: "")
         default :
             return NSLocalizedString("Error", comment: "")
         }
