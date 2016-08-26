@@ -186,7 +186,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44.0
+        return 53.0
     }
 
     

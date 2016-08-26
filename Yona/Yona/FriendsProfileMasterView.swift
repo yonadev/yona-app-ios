@@ -76,7 +76,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineTimeZoneCell")
         nib = UINib(nibName: "TimeLineNoGoCell", bundle: nil)
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineNoGoCell")
+        nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
+        theTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
     
+        
     
     }
     private func shouldAnimate(cell : NSIndexPath) -> Bool {
@@ -92,40 +95,66 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
     }
 
-    
-    
-    // MARK: - Table view data source
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+     // MARK: - Table view data source
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         if selectedTab == .left {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
             
             if timeLineData[section].date.isToday() {
-                return NSLocalizedString("Today", comment: "")
+                cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
             } else if timeLineData[section].date.isYesterday() {
-                return  NSLocalizedString("Yesterday", comment: "")
+                cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
             } else {
-                return  dateFormatter.stringFromDate(timeLineData[section].date)
+                cell.headerTextLabel.text =  dateFormatter.stringFromDate(timeLineData[section].date)
             }
             
         } else {
             if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
-                return nil
+                cell.headerTextLabel.text = nil
             } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
-                return nil
+                cell.headerTextLabel.text = nil
             }
-            return friendsSections(rawValue: section)?.simpleDescription()
+            cell.headerTextLabel.text = friendsSections(rawValue: section)?.simpleDescription()
         }
+
+        return cell
     }
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor.yiWhiteThreeColor()
 
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel?.font = UIFont(name: "SFUIDisplay-Bold", size: 11.0)
-        header.textLabel?.textAlignment = NSTextAlignment.Center
-        header.textLabel?.textColor = UIColor.yiBlackColor()
-    }
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if selectedTab == .left {
+//            let dateFormatter : NSDateFormatter = NSDateFormatter()
+//            dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
+//            
+//            if timeLineData[section].date.isToday() {
+//                return NSLocalizedString("Today", comment: "")
+//            } else if timeLineData[section].date.isYesterday() {
+//                return  NSLocalizedString("Yesterday", comment: "")
+//            } else {
+//                return  dateFormatter.stringFromDate(timeLineData[section].date)
+//            }
+//            
+//        } else {
+//            if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
+//                return nil
+//            } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
+//                return nil
+//            }
+//            return friendsSections(rawValue: section)?.simpleDescription()
+//        }
+//    }
+//    
+//    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.tintColor = UIColor.yiWhiteThreeColor()
+//
+//        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+//        header.textLabel?.font = UIFont(name: "SFUIDisplay-Bold", size: 11.0)
+//        header.textLabel?.textAlignment = NSTextAlignment.Center
+//        header.textLabel?.textColor = UIColor.yiBlackColor()
+//    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if selectedTab == .left {
