@@ -50,7 +50,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 //        theTableView.addSubview(refreshControl)
         //setupUI()
         registreTableViewCells()
-        showRightTab(rightTabMainView)
+        showLeftTab(leftTabMainView)
     }
     
     override func viewWillAppear(animated: Bool) {
