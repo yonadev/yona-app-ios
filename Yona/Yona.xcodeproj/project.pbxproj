@@ -1852,6 +1852,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = SFWNSYN8YK;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;

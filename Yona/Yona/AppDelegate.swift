@@ -112,9 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func doBackgroundTask() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             self.beginBackgroundUpdateTask()
-            
-            
-            
             // End the background task.
             self.endBackgroundUpdateTask()
         })
