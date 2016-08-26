@@ -180,6 +180,9 @@
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
+"message.type.goalchange" = "Challenge gewijzigd";
+"message.type.disclosureresponse" = "Reviewverzoek geacceoteerd";
+"message.type.disclosurerequest" = "Verzoek om review";
 
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";

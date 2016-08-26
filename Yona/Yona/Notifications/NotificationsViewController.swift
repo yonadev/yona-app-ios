@@ -135,6 +135,12 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             cell.isPanEnabled = true
         case .GoalConflictMessage:
             cell.isPanEnabled = true
+        case .GoalChangeMessage:
+            cell.isPanEnabled = true
+        case .DisclosureResponseMessage:
+            cell.isPanEnabled = true
+        case .DisclosureRequestMessage:
+            cell.isPanEnabled = true
         case .NoValue:
             cell.isPanEnabled = true
         }

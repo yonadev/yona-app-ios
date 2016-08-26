@@ -16,6 +16,9 @@ enum notificationType : String {
     case BuddyDisconnectMessage = "BuddyDisconnectMessage"
     case GoalConflictMessage = "GoalConflictMessage"
     case ActivityCommentMessage = "ActivityCommentMessage"
+    case GoalChangeMessage = "GoalChangeMessage"
+    case DisclosureRequestMessage = "DisclosureRequestMessage"
+    case DisclosureResponseMessage = "DisclosureResponseMessage"
     case NoValue = "Not found"
     
 }
@@ -178,6 +181,11 @@ struct Message{
             return NSLocalizedString("message.type.nogoalert", comment: "")
         case .ActivityCommentMessage:
             return NSLocalizedString("message.type.message", comment: "")
+        case .GoalChangeMessage:
+            return NSLocalizedString("message.type.goalchange", comment: "")
+        case .DisclosureRequestMessage:
+        case .DisclosureResponseMessage:
+            
         default :
             return NSLocalizedString("Error", comment: "")
         }

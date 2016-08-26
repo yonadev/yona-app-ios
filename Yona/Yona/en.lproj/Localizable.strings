@@ -259,8 +259,10 @@
 "message.type.friendrequestrejected" = "";
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
-
+"message.type.goalchange" = "Challenge Changed";
 "message.type.message" = "Message";
+"message.type.disclosureresponse" = "Review accepted";
+"message.type.disclosurerequest" = "Review requested";
 
 //me day cells
 "meday.message.minutesover" = "minutes over limit";

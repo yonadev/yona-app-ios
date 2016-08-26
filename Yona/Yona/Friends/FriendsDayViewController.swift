@@ -37,6 +37,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         super.viewDidAppear(animated)
         self.rightNavBarItem.addCircle()
     }
+    
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
         loadActivitiesForDay()
@@ -46,18 +47,16 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        
         loadActivitiesForWeek()
-        
     }
 
     override func configurProfileBarItem () {
-            if let name = buddyToShow?.UserRequestfirstName {
-                if name.characters.count > 0 {//&& user?.characters.count > 0{
-                    self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
-                    self.rightNavBarItem.addCircle()
-                }
+        if let name = buddyToShow?.UserRequestfirstName {
+            if name.characters.count > 0 {//&& user?.characters.count > 0{
+                self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
+                self.rightNavBarItem.addCircle()
             }
+        }
     }
 
     
