@@ -21,9 +21,11 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     @IBOutlet weak var statusImageConstraint: NSLayoutConstraint!
     
     var aMessage : Message?
-    
+    @IBOutlet weak var gradientView: GradientSmooth!
+
     override func awakeFromNib() {
-        
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+
         boldLineLabel.text = ""
         avatarNameLabel.text = ""
         normalLineLabel.text = ""
