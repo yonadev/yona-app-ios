@@ -52,4 +52,6 @@ class WeekSingleActivityGoal: NSObject {
         }
     }
     
+    
+
 }

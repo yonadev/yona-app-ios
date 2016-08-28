@@ -47,7 +47,8 @@ class WeekCircleView: UIView {
 
     
     @IBOutlet weak var dateText : UILabel!
-
+    var theData : NSDate?
+    var activity : SingleDayActivityGoal?
     override func awakeFromNib() {
         layer.cornerRadius = frame.size.height/2
         layer.masksToBounds = true
@@ -62,7 +63,7 @@ class WeekCircleView: UIView {
     }
     
     func configureUI(aDate : NSDate, status : circleViewStatus = .noData) {
-    
+        theData = aDate
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EE\nd"
         dateText.text = dateFormatter.stringFromDate(aDate)

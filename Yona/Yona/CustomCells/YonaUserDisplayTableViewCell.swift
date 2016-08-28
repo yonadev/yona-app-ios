@@ -25,6 +25,10 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         
     }
+    func setActive (){
+        theTextField.becomeFirstResponder()
+    }
+    
     func setBuddyData (delegate theDelegate: AnyObject, cellType : FriendsProfileCategoryHeader){
         buddyCellType = cellType
         //theUserModel = userModel

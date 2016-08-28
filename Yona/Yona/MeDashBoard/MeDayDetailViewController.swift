@@ -148,8 +148,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()
-        size = 4
-        page = 1
+//        size = 4
+//        page = 1
         if typeToLoad == .own {
             if let path = initialObjectLink {
                 ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in

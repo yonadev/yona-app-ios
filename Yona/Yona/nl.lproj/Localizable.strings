@@ -128,6 +128,7 @@
 
 "enter-first-name-validation" = "Je moet een naam invoeren";
 "enter-last-name-validation"  = "Je moet een naam invoeren";
+"enter-nickname-validation" = "You need to enter a nickname";
 "enter-number-validation" = "Nummer moet 9 cijfers bevatten";
 "enteremailvalidation" = "You need to enter email address of friend.";
 
@@ -180,7 +181,7 @@
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
-
+"message.type.goalchange.add" = "Challenge Added";
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
