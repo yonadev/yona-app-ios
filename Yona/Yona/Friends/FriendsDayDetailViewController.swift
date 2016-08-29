@@ -120,22 +120,19 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
-            if self.dayData?.messageLink != nil && indexPath.section == 1 {
-                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
-                    cell.setBuddyCommentData(comment)
-                    cell.indexPath = indexPath
-                    cell.commentDelegate = self
-                    if self.dayData?.commentLink != nil {
-                        cell.replyToComment.hidden = true
-                        self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                    } else if comment.replyLink != nil {
-                        cell.replyToComment.hidden = false
-                        self.sendCommentFooter!.postReplyLink = comment.replyLink
-                    }
-                    return cell
+            if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                cell.setBuddyCommentData(comment)
+                cell.indexPath = indexPath
+                cell.commentDelegate = self
+                if self.dayData?.commentLink != nil {
+                    cell.replyToComment.hidden = true
+                    self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                } else if comment.replyLink != nil {
+                    cell.replyToComment.hidden = false
+                    self.sendCommentFooter!.postReplyLink = comment.replyLink
                 }
+                return cell
             }
-        
         }
         return UITableViewCell(frame: CGRectZero)
     }

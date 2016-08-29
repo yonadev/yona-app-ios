@@ -161,6 +161,7 @@
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "AFWIJZEN";
 "notifications.accept.accept" = "ACCEPTEER";
+"notifications.delete" = "verwijder";
 
 // String for Profile
 
@@ -182,6 +183,9 @@
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
 "message.type.goalchange.add" = "Challenge Added";
+"message.type.goalchange" = "Challenge gewijzigd";
+"message.type.disclosureresponse" = "Reviewverzoek geacceoteerd";
+"message.type.disclosurerequest" = "Verzoek om review";
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";

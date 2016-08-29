@@ -37,6 +37,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         super.viewDidAppear(animated)
         self.rightNavBarItem.addCircle()
     }
+    
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
         loadActivitiesForDay()
@@ -46,18 +47,16 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        
         loadActivitiesForWeek()
-        
     }
 
     override func configurProfileBarItem () {
-            if let name = buddyToShow?.UserRequestfirstName {
-                if name.characters.count > 0 {//&& user?.characters.count > 0{
-                    self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
-                    self.rightNavBarItem.addCircle()
-                }
+        if let name = buddyToShow?.UserRequestfirstName {
+            if name.characters.count > 0 {//&& user?.characters.count > 0{
+                self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
+                self.rightNavBarItem.addCircle()
             }
+        }
     }
 
     
@@ -108,8 +107,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func loadActivitiesForDay(page : Int = 0) {
         print("Entering day loader")
-        Loader.Show()
         if let buddy = buddyToShow  {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrDay(buddy, size: 3, page:0, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
                     
@@ -128,8 +127,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func loadActivitiesForWeek(page : Int = 0) {
-        Loader.Show()
         if let buddy = buddyToShow  {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
                     
