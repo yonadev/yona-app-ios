@@ -238,6 +238,7 @@
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "REJECT";
 "notifications.accept.accept" = "ACCEPT";
+"notifications.delete" = "delete";
 
 // String for Profile
 

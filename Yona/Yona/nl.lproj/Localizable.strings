@@ -160,6 +160,7 @@
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "AFWIJZEN";
 "notifications.accept.accept" = "ACCEPTEER";
+"notifications.delete" = "verwijder";
 
 // String for Profile
 
