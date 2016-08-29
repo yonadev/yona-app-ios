@@ -413,6 +413,8 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
+    static var challengeCell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "challengeCell") }
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
