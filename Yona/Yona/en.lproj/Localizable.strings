@@ -262,7 +262,7 @@
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.goalchange.add" = "Challenge Added";
-
+"message.type.goalchange" = "Challenged Changed";
 "message.type.message" = "Message";
 "message.type.disclosureresponse" = "Review accepted";
 "message.type.disclosurerequest" = "Review requested";
