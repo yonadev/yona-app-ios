@@ -72,10 +72,11 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
         }
         
-        if segue.destinationViewController is FriendsDayViewController {
-            let controller = segue.destinationViewController as! FriendsDayViewController
-            controller.buddyToShow = self.buddyData
-        }
+        //implement later
+//        if segue.destinationViewController is FriendsDayViewController {
+//            let controller = segue.destinationViewController as! FriendsDayViewController
+//            controller.buddyToShow = self.buddyData
+//        }
         
     }
     
@@ -120,7 +121,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                     case .GoalConflictMessage:
                         break
                     case .GoalChangeMessage:
-                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+//                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
                         break
                     case .DisclosureResponseMessage:
                         //not implemented yet
