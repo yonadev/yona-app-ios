@@ -40,7 +40,7 @@ class NoGoCell : UITableViewCell {
             let dateFromat = NSDateFormatter()
             dateFromat.dateFormat = "hh:mm a"
             let date = dateFromat.stringFromDate(goalDate)
-            self.nogoMessage.text =  "\(date) - \(String(totalMinutesBeyondGoal)) \(NSLocalizedString("meday.nogo.minutes", comment: ""))"
+            self.nogoMessage.text =  "\(NSLocalizedString("meday.nogo.minutes", comment: ""))"
         }
     }
     
