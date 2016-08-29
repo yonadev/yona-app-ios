@@ -91,7 +91,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         normalLineLabel.text = aBuddie.buddyNickName
 
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!) \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
     }
     
     // MARK: using cell as Message
@@ -123,7 +123,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         }
         if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
             // AVATAR NOT Implemented - must check for avatar image when implemented on server
-            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!) \(tmpLast.capitalizedString.characters.first!)"
+            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!)"//\(tmpLast.capitalizedString.characters.first!)"
         } else {
             avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
         }

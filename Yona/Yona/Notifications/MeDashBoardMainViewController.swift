@@ -16,7 +16,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBOutlet weak var leftBarItem  : UIBarButtonItem!
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
-    
+    var weekDayDetailLink : String?
     
     var animatedCells : [String] = []
     var corretcToday : NSDate = NSDate()
@@ -178,6 +178,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
         let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
         cell.setSingleActivity(rightTabData[indexPath.section].activity[indexPath.row])
+        cell.delegate = self
         return cell
         
     }
@@ -190,7 +191,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44.0
+        return 53.0
     }
 
     
@@ -240,17 +241,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == size { //max number of pages
-//            if selectedTab == .right {
-//                loadActivitiesForWeek(page)
-//            }
-//            
-//            if selectedTab == .left {
-//                loadActivitiesForDay(0)
-//            }
-        }
-
+    
+    //MARK: - week delegate methods
+    func didSelectDayInWeek(goal: SingleDayActivityGoal, aDate : NSDate) {
+    
+        weekDayDetailLink = goal.yonadayDetails
+        performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
     }
     
     //MARK: - implementations metods
@@ -413,10 +409,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
         if segue.destinationViewController is MeDayDetailViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
-            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            if let path = weekDayDetailLink {
+                controller.initialObjectLink = path
+                weekDayDetailLink = nil
+                
+            } else  if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
             }
+            
         }
     }
     

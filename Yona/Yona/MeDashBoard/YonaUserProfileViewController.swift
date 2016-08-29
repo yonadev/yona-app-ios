@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum validateError {
+    case firstname
+    case lastname
+    case nickname
+    case phone
+    case none
+}
+
 class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol {
     
     @IBOutlet weak var tableView: UITableView!
@@ -76,11 +84,32 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBAction func userDidSelectEdit(sender: AnyObject) {
         if tableView.editing {
-            rightSideButton.image = UIImage.init(named: "icnEdit")
-            tableView.setEditing(false, animated: true)
-            topCell?.setTopViewInNormalMode()
-            updateUser()
             
+            let result = isUserDataValid()
+            if  result == .none {
+                rightSideButton.image = UIImage.init(named: "icnEdit")
+                tableView.setEditing(false, animated: true)
+                topCell?.setTopViewInNormalMode()
+                updateUser()
+            } else {
+                switch result {
+                case .firstname:
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! YonaUserDisplayTableViewCell
+                        cell.setActive()
+                case .lastname:
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    cell.setActive()
+                case .nickname:
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    cell.setActive()
+                case .phone:
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    cell.setActive()
+                default:
+                    return
+                }
+            
+            }
         } else {
             rightSideButton.image = UIImage.init(named: "icnCreate")
             tableView.setEditing(true, animated: true)
@@ -166,7 +195,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     func updateUser() {
         
         
-        if !isUserDataValid() {
+        if isUserDataValid() != .none {
             return
         }
         Loader.Show()
@@ -193,20 +222,24 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             })
      }
     
-    func isUserDataValid() -> Bool {
+    func isUserDataValid() -> validateError {
         if aUser?.firstName.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-first-name-validation", comment: ""))
-            return false
+            return .firstname
         }
         else if aUser?.lastName.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-last-name-validation", comment: ""))
-            return false
+            return .lastname
         } else if aUser?.mobileNumber.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-number-validation", comment: ""))
-            return false
+            return .phone
+        } else if aUser?.nickname.characters.count == 0 {
+            self.displayAlertMessage("", alertDescription:
+                NSLocalizedString("enter-nickname-validation", comment: ""))
+            return .nickname
         } else {
             var number = ""
             if let mobilenum = aUser?.mobileNumber {
@@ -218,7 +251,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 if trimmedString.validateMobileNumber() == false {
                     self.displayAlertMessage("", alertDescription:
                         NSLocalizedString("enter-number-validation", comment: ""))
-                    return false
+                    return .phone
                 } else {
                 aUser?.mobileNumber = trimmedString.stringByReplacingOccurrencesOfString("310", withString: "+31")
                 }
@@ -227,6 +260,6 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         }
 
     
-        return true
+        return .none
     }
 }
