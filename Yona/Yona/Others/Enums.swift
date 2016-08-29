@@ -185,7 +185,7 @@ enum getMessagesKeys : String {
     case totalElements = "totalElements"
     case totalPages = "totalPages"
     case number = "number"
-
+    case change = "change"
     case dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSZZZ"
     case dateFormatSimple = "YYYY-MM-dd"
     case dateFormatWeek = "yyyy'-W'w"

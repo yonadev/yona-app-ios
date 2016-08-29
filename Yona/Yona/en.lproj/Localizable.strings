@@ -138,6 +138,7 @@
 
 "enter-first-name-validation" = "You need to enter a name";
 "enter-last-name-validation"  = "You need to enter a name";
+"enter-nickname-validation" = "You need to enter a nickname";
 "enter-number-validation" = "Number should be 9 digits";
 "enteremailvalidation" = "You need to enter email address of friend.";
 
@@ -259,6 +260,7 @@
 "message.type.friendrequestrejected" = "";
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
+"message.type.goalchange.add" = "Challenge Added";
 
 "message.type.message" = "Message";
 
