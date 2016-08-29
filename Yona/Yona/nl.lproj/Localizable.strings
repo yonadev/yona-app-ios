@@ -247,3 +247,8 @@
 //Commenting
 "commenting.sendComment" = "Vesturen";
 "commenting.replyToComment" = "Beantwoorden";
+
+"addfriend.alert.title.text" = "Warning";
+"addfriend.alert.text" = "You must allow Yona App acces to Your addressbook, to select friends from it";
+"addfriend.alert.nosettings.text"  = "You must allow Yona App acces to Your addressbook, to select friends from it. Please allow in settings";
+"addfriend.alert.settings.text" = "Settings";

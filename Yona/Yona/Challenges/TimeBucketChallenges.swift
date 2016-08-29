@@ -380,7 +380,7 @@ extension TimeBucketChallenges {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("challengeCell", forIndexPath: indexPath)
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
@@ -408,7 +408,9 @@ extension TimeBucketChallenges {
                 
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = localizedString
-                cell.detailTextLabel?.numberOfLines = 0
+                cell.detailTextLabel?.numberOfLines = 5
+                cell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+                //cell.detailTextLabel?.
             }
             
         case .TimeZoneActivity:
@@ -430,8 +432,8 @@ extension TimeBucketChallenges {
             cell.detailTextLabel?.text = ""
         }
         
-        cell.textLabel?.numberOfLines = 0
-        cell.detailTextLabel?.numberOfLines = 0
+//        cell.textLabel?.numberOfLines = 0
+//        cell.detailTextLabel?.numberOfLines = 0
         
         return cell
     }
@@ -471,7 +473,7 @@ extension TimeBucketChallenges {
         }
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
@@ -481,8 +483,21 @@ extension TimeBucketChallenges {
         }
         
         return self.tableView.rowHeight
+
     }
     
+//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        
+//        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
+//            tableView.rowHeight =  100.0
+//        } else {
+//            tableView.rowHeight =  60.0
+//        }
+//        
+//        return self.tableView.rowHeight
+//    }
+//    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
         print(tableView.estimatedRowHeight)
