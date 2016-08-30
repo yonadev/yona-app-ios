@@ -42,8 +42,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.comments = []
-        self.sendCommentFooter!.alpha = 1
+        self.comments = []        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,7 +84,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        
+
         if indexPath.section == 0 {
             if indexPath.row == detailDayRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
