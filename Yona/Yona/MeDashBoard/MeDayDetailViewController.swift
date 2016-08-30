@@ -167,6 +167,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             }
                             //make sure the commentview has the right link to post comments to
                             if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                             }
                         }
@@ -194,6 +195,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }
@@ -222,6 +224,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }
