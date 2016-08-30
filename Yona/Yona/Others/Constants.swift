@@ -206,6 +206,7 @@ struct YonaConstants {
 
     struct nsUserDefaultsKeys{
         static let timeToPinReset = "timeToPinReset"
+        static let timeToPinResetInitialRequestTime = "timeToPinResetInitialRequestTime"
         static let isBlocked = "isBlocked"
         static let isFromSettings = "isFromSettings"
         static let isLoggedIn = "isLoggedIn"
