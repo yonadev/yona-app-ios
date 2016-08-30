@@ -750,11 +750,11 @@ class ActivitiesRequestManager {
                         } else {
                         onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                         }
-                        
-                        
-                        
+
                     }
+                    onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                 }
+                
             }
                 
             else {

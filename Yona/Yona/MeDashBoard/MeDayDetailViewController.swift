@@ -148,8 +148,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()
-        size = 4
-        page = 1
+//        size = 4
+//        page = 1
         if typeToLoad == .own {
             if let path = initialObjectLink {
                 ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
@@ -167,6 +167,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             }
                             //make sure the commentview has the right link to post comments to
                             if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                 self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                             }
                         }
@@ -194,6 +195,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }
@@ -222,6 +224,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                                 }
                                 //make sure the commentview has the right link to post comments to
                                 if self.dayData?.commentLink != nil {
+                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
                                     self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                                 }
                             }

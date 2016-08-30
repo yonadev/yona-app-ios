@@ -67,6 +67,7 @@
 "challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen ";
 "challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
+"challenges.user.TimeZoneDescription" = "waarbinnen gebruik is toegestaan";
 
 "challenges.budgetGoal.Title" = "TEGOED";
 "challenges.timezoneGoal.Title" = "TIJDZONE";
@@ -128,6 +129,7 @@
 
 "enter-first-name-validation" = "Je moet een naam invoeren";
 "enter-last-name-validation"  = "Je moet een naam invoeren";
+"enter-nickname-validation" = "You need to enter a nickname";
 "enter-number-validation" = "Nummer moet 9 cijfers bevatten";
 "enteremailvalidation" = "You need to enter email address of friend.";
 
@@ -160,6 +162,7 @@
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "AFWIJZEN";
 "notifications.accept.accept" = "ACCEPTEER";
+"notifications.delete" = "verwijder";
 
 // String for Profile
 
@@ -180,7 +183,10 @@
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
-
+"message.type.goalchange.add" = "Challenge Added";
+"message.type.goalchange" = "Challenge gewijzigd";
+"message.type.disclosureresponse" = "Reviewverzoek geacceoteerd";
+"message.type.disclosurerequest" = "Verzoek om review";
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
@@ -246,3 +252,8 @@
 //Commenting
 "commenting.sendComment" = "Vesturen";
 "commenting.replyToComment" = "Beantwoorden";
+
+"addfriend.alert.title.text" = "Warning";
+"addfriend.alert.text" = "You must allow Yona App acces to Your addressbook, to select friends from it";
+"addfriend.alert.nosettings.text"  = "You must allow Yona App acces to Your addressbook, to select friends from it. Please allow in settings";
+"addfriend.alert.settings.text" = "Settings";

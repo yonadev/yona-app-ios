@@ -24,6 +24,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YOx-82-VY6" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uCZ-Kg-Seh" userLabel="Avatar View">
                         <rect key="frame" x="16" y="16" width="56" height="56"/>
                         <constraints>
@@ -86,6 +90,7 @@
                 <outlet property="avatarImageView" destination="uCZ-Kg-Seh" id="eEa-6L-evz"/>
                 <outlet property="avatarNameLabel" destination="9rC-4f-MDB" id="cCD-e0-Uqh"/>
                 <outlet property="boldLineLabel" destination="Ee6-12-OjT" id="IbS-eM-cgO"/>
+                <outlet property="gradientView" destination="YOx-82-VY6" id="pvj-ZD-Zto"/>
                 <outlet property="normalLineLabel" destination="Ric-Ra-Qlj" id="d73-UA-GdG"/>
                 <outlet property="statusImageConstraint" destination="Up9-RB-nzc" id="K8k-vK-p4h"/>
                 <outlet property="statusImageView" destination="X0W-l2-iHi" id="Bju-YT-FXh"/>

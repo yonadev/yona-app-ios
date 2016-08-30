@@ -32,11 +32,11 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         registreTableViewCells()
         
         navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-        self.navigationController?.navigationBar.backgroundColor = UIColor.yiMidBlueColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar
         
         navbarColor = navbar.gradientColor
-        navbar.gradientColor = UIColor.yiWindowsBlueColor()
+        navbar.gradientColor = UIColor.yiMidBlueColor()
         
         self.title = ""
     }

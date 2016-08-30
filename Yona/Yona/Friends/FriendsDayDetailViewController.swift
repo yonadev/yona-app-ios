@@ -42,8 +42,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.comments = []
-        self.sendCommentFooter!.alpha = 1
+        self.comments = []        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,7 +84,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        
+
         if indexPath.section == 0 {
             if indexPath.row == detailDayRows.spreadCell.rawValue {
                 let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
@@ -120,22 +119,19 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
-            if self.dayData?.messageLink != nil && indexPath.section == 1 {
-                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
-                    cell.setBuddyCommentData(comment)
-                    cell.indexPath = indexPath
-                    cell.commentDelegate = self
-                    if self.dayData?.commentLink != nil {
-                        cell.replyToComment.hidden = true
-                        self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                    } else if comment.replyLink != nil {
-                        cell.replyToComment.hidden = false
-                        self.sendCommentFooter!.postReplyLink = comment.replyLink
-                    }
-                    return cell
+            if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                cell.setBuddyCommentData(comment)
+                cell.indexPath = indexPath
+                cell.commentDelegate = self
+                if self.dayData?.commentLink != nil {
+                    cell.replyToComment.hidden = true
+                    self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                } else if comment.replyLink != nil {
+                    cell.replyToComment.hidden = false
+                    self.sendCommentFooter!.postReplyLink = comment.replyLink
                 }
+                return cell
             }
-        
         }
         return UITableViewCell(frame: CGRectZero)
     }

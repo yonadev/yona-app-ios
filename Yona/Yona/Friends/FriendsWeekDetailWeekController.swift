@@ -38,7 +38,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         if indexPath.section == 0 {
             
             if indexPath.row == detailRows.weekoverview.rawValue {
@@ -70,6 +70,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             }
         }
         if let data = week[currentWeek.yearWeek]  {
+            self.sendCommentFooter!.alpha = data.commentLink != nil ? 1 : 0
             if data.messageLink != nil && indexPath.section == 1 {
                 let comment = self.comments[indexPath.row]
                 if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {

@@ -336,6 +336,7 @@ struct R {
     static var icnEdit: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnEdit") } }
     static var icnFriends: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriends") } }
     static var icnFriendsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriendsActive") } }
+    static var icnLock: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnLock", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnLock") } }
     static var icnMail: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMail", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMail") } }
     static var icnMe: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMe", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMe") } }
     static var icnMeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMeActive") } }
@@ -413,6 +414,8 @@ struct R {
   }
   
   struct reuseIdentifier {
+    static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
+    static var challengeCell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "challengeCell") }
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
@@ -468,6 +471,7 @@ struct R {
     struct notificationsViewController {
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
       static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
+      static var showFriendDayView: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, FriendsDayViewController> { return StoryboardSegueIdentifier(identifier: "showFriendDayView") }
       static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }
     }
     
@@ -516,12 +520,13 @@ struct R {
       static var timeFrameTimeZoneChallengeStoryboard: TimeFrameTimeZoneChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameTimeZoneChallengeStoryboard") as? TimeFrameTimeZoneChallengeViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnLock") != nil, "[R.swift] Image named 'icnLock' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {
@@ -630,6 +635,7 @@ struct R {
     }
     
     struct meDashBoard {
+      static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
       static var initialViewController: MeDashBoardMainViewController? { return instance.instantiateInitialViewController() as? MeDashBoardMainViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
       static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
@@ -646,6 +652,7 @@ struct R {
         assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
         assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
         assert(yonaNotificationAcceptFriendRequestViewController != nil, "[R.swift] ViewController with identifier 'yonaNotificationAcceptFriendRequestViewController' could not be loaded from storyboard 'MeDashBoard' as 'YonaNotificationAcceptFriendRequestViewController'.")
+        assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'MeDashBoard' as 'FriendsDayViewController'.")
       }
     }
     
@@ -760,7 +767,7 @@ struct R {
 }
 
 struct _R {
-  static var hostingBundle: NSBundle? { return NSBundle(identifier: "nl.yonafoundation.yona") }
+  static var hostingBundle: NSBundle? { return NSBundle(identifier: "com.alessioroberto.yona") }
   
   struct nib {
     struct _CommentControlCell: NibResource, Reusable {

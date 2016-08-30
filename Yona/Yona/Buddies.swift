@@ -123,15 +123,21 @@ struct Buddies{
         
 
     }
+    
     private func formatMobileNumber() -> String {
-        
-        let num = UserRequestmobileNumber.stringByReplacingOccurrencesOfString("+31", withString: YonaConstants.mobileDucthPrefix.txt)
-        let number1 = num[num.startIndex...num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace)]
-        let number2 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace+1)..<num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace)]
-        let number3 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace+1)..<num.endIndex]
-        
-        let formatNum = number1+" "+number2+" "+number3
-        return formatNum
+        let num = UserRequestmobileNumber.stringByReplacingOccurrencesOfString("+31", withString: "+310")
+        return num
     }
+
+//    private func formatMobileNumber() -> String {
+//        
+//        let num = UserRequestmobileNumber.stringByReplacingOccurrencesOfString("+31", withString: YonaConstants.mobileDucthPrefix.txt)
+//        let number1 = num[num.startIndex...num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace)]
+//        let number2 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileMiddleSpace+1)..<num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace)]
+//        let number3 = num[num.startIndex.advancedBy(YonaConstants.mobilePhoneSpace.mobileLastSpace+1)..<num.endIndex]
+//        
+//        let formatNum = number1+" "+number2+" "+number3
+//        return formatNum
+//    }
     
 }

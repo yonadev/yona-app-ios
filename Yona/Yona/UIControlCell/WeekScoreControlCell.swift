@@ -29,8 +29,10 @@ class WeekScoreControlCell: UITableViewCell {
     @IBOutlet weak var secondLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var fourthLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var lastLayoutConstraint: NSLayoutConstraint!
-    weak var aActivityGoal : WeekSingleActivityGoal!
     
+    
+    weak var aActivityGoal : WeekSingleActivityGoal!
+    weak var delegate : MeDashBoardMainViewController?
     
     override func layoutSubviews() {
         var width = frame.width
@@ -70,6 +72,7 @@ class WeekScoreControlCell: UITableViewCell {
             var tempStatus : circleViewStatus = circleViewStatus.noData
             for dayActivity in aActivityGoal.activity {
                 if dayActivity.dayofweek.rawValue == getDayOfWeek(aDate) {
+                    obje.activity = dayActivity
                     if (dayActivity.goalAccomplished) {
                         tempStatus = .underGoal
                     } else if !dayActivity.goalAccomplished {
@@ -91,4 +94,41 @@ class WeekScoreControlCell: UITableViewCell {
         let weekDay = myComponents.weekday
         return weekDay
     }
+
+    @IBAction func singeldayAction(sender : UIButton){
+        var aDate : NSDate?
+        var aActivity : SingleDayActivityGoal?
+        switch sender.tag {
+        case 1:
+            aDate = day1CircelView.theData
+            aActivity = day1CircelView.activity
+        case 2:
+            aDate = day2CircelView.theData
+            aActivity = day2CircelView.activity
+        case 3:
+            aDate = day3CircelView.theData
+            aActivity = day3CircelView.activity
+        case 4:
+            aDate = day4CircelView.theData
+            aActivity = day4CircelView.activity
+        case 5:
+            aDate = day5CircelView.theData
+            aActivity = day5CircelView.activity
+        case 6:
+            aDate = day6CircelView.theData
+            aActivity = day6CircelView.activity
+        case 7:
+            aDate = day7CircelView.theData
+            aActivity = day7CircelView.activity
+        default:
+            return
+        }
+        
+        if aDate != nil {
+            if let activ = aActivity {
+                delegate?.didSelectDayInWeek(activ, aDate: aDate!)
+            }
+        }
+    }
+
 }

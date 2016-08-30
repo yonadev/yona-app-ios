@@ -31,6 +31,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     @IBOutlet weak var setChallengeButton: UIButton!
     @IBOutlet weak var timeZoneLabel: UILabel!
+    @IBOutlet weak var timeZoneInstructions: UILabel!
     @IBOutlet weak var timezoneChallengeTitle: UILabel!
     @IBOutlet weak var timezoneChallengeDescription: UILabel!
     @IBOutlet weak var bottomLabelText: UILabel!
@@ -100,6 +101,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        timeZoneInstructions.text = NSLocalizedString("challenges.user.TimeZoneDescription", comment: "")
         
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
@@ -249,7 +251,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.picker?.cancelButtonTitle.title = "Prev"
             self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
         }
-        cell.rowNumber.text = String(indexPath.row + 1)
         
         return cell
     }

@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import AddressBookUI
 
-class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
+class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIAlertViewDelegate {
     
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var manualTabView: UIView!
@@ -124,6 +124,13 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
+        
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
+
+        
         
         let multiValue: ABMultiValueRef = ABRecordCopyValue(person, property).takeRetainedValue()
         let index = ABMultiValueGetIndexForIdentifier(multiValue, identifier)
@@ -252,46 +259,71 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             }
     }
     
-        func addressbookAccess() {
-            switch ABAddressBookGetAuthorizationStatus(){
-            case .Authorized:
-                print("Already authorized")
+    
+    
+    func addressbookAccess() {
+        switch ABAddressBookGetAuthorizationStatus(){
+        case .Authorized:
+            print("Already authorized")
+            
+            createAddressBook()
+            people.peoplePickerDelegate = self
+            dispatch_async(dispatch_get_main_queue(), {
+                UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
+                UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
                 
-                createAddressBook()
-                people.peoplePickerDelegate = self
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.presentViewController(self.people, animated: true, completion: nil)
+                self.presentViewController(self.people, animated: true, completion: nil)
+            })
+            /* Access the address book */
+        case .Denied:
+            if #available(iOS 8.0, *) {
+            
+                let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.text", comment:""), preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                let settingsAction = UIAlertAction(title:  NSLocalizedString("addfriend.alert.settings.text", comment:""), style: .Default , handler:{(alert : UIAlertAction!) in
+                    let settingsURL = UIApplicationOpenSettingsURLString
+                    UIApplication.sharedApplication().openURL(NSURL(string: settingsURL)!)
+                    
                 })
-                /* Access the address book */
-            case .Denied:
-                print("Denied access to address book")
+                alert.addAction(settingsAction)
+                presentViewController(alert, animated: true, completion:nil )
                 
-            case .NotDetermined:
-                createAddressBook()
-                if let theBook: ABAddressBookRef = addressBook{
-                    ABAddressBookRequestAccessWithCompletion(theBook,
-                                                             {(granted: Bool, error: CFError!) in
-                                                                
-                                                                if granted{
-                                                                    print("Access granted")
-                                                                    self.people.peoplePickerDelegate = self
-                                                                    dispatch_async(dispatch_get_main_queue(), {
-                                                                        self.presentViewController(self.people, animated: true, completion: nil)
-                                                                    })
-                                                                } else {
-                                                                    print("Access not granted")
-                                                                }
-                                                                
-                    })
-                }
-                
-            case .Restricted:
-                print("Access restricted")
             }
+            else {
+                
+                UIAlertView(title:  NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.nosettings.text", comment:""), delegate: self, cancelButtonTitle: "OK").show()
+            }
+            
+        case .NotDetermined:
+            createAddressBook()
+            if let theBook: ABAddressBookRef = addressBook{
+                ABAddressBookRequestAccessWithCompletion(theBook,
+                                                         {(granted: Bool, error: CFError!) in
+                                                            
+                                                            if granted{
+                                                                print("Access granted")
+                                                                self.people.peoplePickerDelegate = self
+                                                                UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
+                                                                UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
+                                                                
+                                                                dispatch_async(dispatch_get_main_queue(), {
+                                                                    self.presentViewController(self.people, animated: true, completion: nil)
+                                                                })
+                                                            } else {
+                                                                print("Access not granted")
+                                                            }
+                                                            
+                })
+            }
+            
+        case .Restricted:
+            print("Access restricted")
         }
     }
-    
-    
+}
+
+
     // MARK: Touch Event of Custom Segment
     extension AddFriendsViewController {
         

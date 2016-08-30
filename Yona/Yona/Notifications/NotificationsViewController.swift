@@ -72,6 +72,12 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
         }
         
+        //implement later
+//        if segue.destinationViewController is FriendsDayViewController {
+//            let controller = segue.destinationViewController as! FriendsDayViewController
+//            controller.buddyToShow = self.buddyData
+//        }
+        
     }
     
     //MARK: - tableview methods
@@ -97,14 +103,35 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                 Loader.Hide()
                 self.buddyData = buddy
                 if let aMessage = self.aMessage {
-                    if aMessage.status == buddyRequestStatus.REQUESTED {
-                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-                    } else if aMessage.messageType == notificationType.ActivityCommentMessage {
+                    switch aMessage.messageType {
+                    case .ActivityCommentMessage:
                         if aMessage.dayDetailsLink != nil {
                             self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
                         } else if aMessage.weekDetailsLink != nil {
                             self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
                         }
+                    case .BuddyConnectRequestMessage:
+                        if aMessage.status == buddyRequestStatus.REQUESTED {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                        }
+                    case .BuddyDisconnectMessage:
+                        break
+                    case .BuddyConnectResponseMessage:
+                        break
+                    case .GoalConflictMessage:
+                        break
+                    case .GoalChangeMessage:
+//                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+                        break
+                    case .DisclosureResponseMessage:
+                        //not implemented yet
+                        break
+                    case .DisclosureRequestMessage:
+                        //not implemented yet
+                        break
+                    case .NoValue:
+                        break
+                        
                     }
                 }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -134,6 +161,12 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         case .BuddyConnectResponseMessage:
             cell.isPanEnabled = true
         case .GoalConflictMessage:
+            cell.isPanEnabled = true
+        case .GoalChangeMessage:
+            cell.isPanEnabled = true
+        case .DisclosureResponseMessage:
+            cell.isPanEnabled = true
+        case .DisclosureRequestMessage:
             cell.isPanEnabled = true
         case .NoValue:
             cell.isPanEnabled = true

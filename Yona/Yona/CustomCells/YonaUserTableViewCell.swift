@@ -21,10 +21,14 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     @IBOutlet weak var statusImageConstraint: NSLayoutConstraint!
     
     var aMessage : Message?
-    
+    @IBOutlet weak var gradientView: GradientSmooth!
+
     override func awakeFromNib() {
-        
+//        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+
         boldLineLabel.text = ""
+        boldLineLabel.adjustsFontSizeToFitWidth = true
         avatarNameLabel.text = ""
         normalLineLabel.text = ""
         
@@ -45,15 +49,28 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
         viewCall.frame = CGRectMake(0,0, self.frame.size.height,self.frame.size.height)
+        
+
         //Add a button to perform the action when user will tap on call and add a image to display
         let btnCall = UIButton(type: UIButtonType.Custom)
-        btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
+        btnCall.frame = CGRectMake(0, -10,viewCall.frame.size.width,viewCall.frame.size.height)
         btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
         btnCall.addTarget(self, action: "deleteMessage", forControlEvents: UIControlEvents.TouchUpInside)
         
+        
+        //Add a label to display the call text
+        let lblCall = UILabel()
+        lblCall.text  = NSLocalizedString("notifications.delete", comment: "")
+        lblCall.font = UIFont(name: "SFUIDisplay-Medium", size: 14)
+        lblCall.textColor = UIColor.yiWhiteColor()
+        lblCall.textAlignment = NSTextAlignment.Center
+        lblCall.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 40,viewCall.frame.size.width,20)
+        
         viewCall.addSubview(btnCall)
+        viewCall.addSubview(lblCall)
         //Call the super addRightOptions to set the view that will display while swiping
         super.addRightOptionsView(viewCall)
+
     }
 
     
@@ -74,7 +91,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         normalLineLabel.text = aBuddie.buddyNickName
 
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!) \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
     }
     
     // MARK: using cell as Message
@@ -106,7 +123,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         }
         if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
             // AVATAR NOT Implemented - must check for avatar image when implemented on server
-            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!) \(tmpLast.capitalizedString.characters.first!)"
+            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!)"//\(tmpLast.capitalizedString.characters.first!)"
         } else {
             avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
         }

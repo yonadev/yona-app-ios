@@ -138,6 +138,7 @@
 
 "enter-first-name-validation" = "You need to enter a name";
 "enter-last-name-validation"  = "You need to enter a name";
+"enter-nickname-validation" = "You need to enter a nickname";
 "enter-number-validation" = "Number should be 9 digits";
 "enteremailvalidation" = "You need to enter email address of friend.";
 
@@ -187,6 +188,7 @@
 "challenges.user.TimeZoneGoalDescriptionText" = "Time slot between ";
 "challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
+"challenges.user.TimeZoneDescription" = "usage is permitted between";
 
 "challenges.budgetGoal.Title" = "BUDGET";
 "challenges.timezoneGoal.Title" = "TIMEZONE";
@@ -206,7 +208,7 @@
 "challenges.addBudgetGoal.NoGoChallengeDescription" = "Lets you indicate that you in no way want to %@";
 
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIMEZONE ALLOWED";
-"challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine here if you want to spend or no time on %@";
+"challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine in what time frame you want to use %@";
 
 "login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s) %@minute(s) %@second(s).";
 "userNotFoundAlert" = "User not found";
@@ -238,6 +240,7 @@
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "REJECT";
 "notifications.accept.accept" = "ACCEPT";
+"notifications.delete" = "delete";
 
 // String for Profile
 
@@ -259,8 +262,11 @@
 "message.type.friendrequestrejected" = "";
 "message.type.friendremoved" = "You have been removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
-
+"message.type.goalchange.add" = "Challenge Added";
+"message.type.goalchange" = "Challenged Changed";
 "message.type.message" = "Message";
+"message.type.disclosureresponse" = "Review accepted";
+"message.type.disclosurerequest" = "Review requested";
 
 //me day cells
 "meday.message.minutesover" = "minutes over limit";
@@ -331,3 +337,7 @@
 "commenting.sendComment" = "Send Comment";
 "commenting.replyToComment" = "Reply To Comment";
 
+"addfriend.alert.title.text" = "Warning";
+"addfriend.alert.text" = "You must allow Yona App acces to Your addressbook, to select friends from it";
+"addfriend.alert.nosettings.text"  = "You must allow Yona App acces to Your addressbook, to select friends from it. Please allow in settings";
+"addfriend.alert.settings.text" = "Settings";

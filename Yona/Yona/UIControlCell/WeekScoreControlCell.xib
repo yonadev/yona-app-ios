@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -76,13 +76,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx5-hM-MWc">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="15I-8V-o39"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="1yF-lx-qtZ"/>
+                            <constraint firstAttribute="bottom" secondItem="Fx5-hM-MWc" secondAttribute="bottom" id="DSD-Vy-n0B"/>
+                            <constraint firstItem="Fx5-hM-MWc" firstAttribute="top" secondItem="L2i-vb-f3E" secondAttribute="top" id="Qs7-E3-GvL"/>
                             <constraint firstItem="MRL-cl-bli" firstAttribute="centerX" secondItem="L2i-vb-f3E" secondAttribute="centerX" id="Wfx-Tj-i95"/>
                             <constraint firstAttribute="width" constant="35" id="Zb5-jg-4Jx"/>
                             <constraint firstItem="MRL-cl-bli" firstAttribute="centerY" secondItem="L2i-vb-f3E" secondAttribute="centerY" id="chm-Qj-azz"/>
+                            <constraint firstItem="Fx5-hM-MWc" firstAttribute="leading" secondItem="L2i-vb-f3E" secondAttribute="leading" id="hQB-fk-u9y"/>
+                            <constraint firstAttribute="trailing" secondItem="Fx5-hM-MWc" secondAttribute="trailing" id="zrr-iY-Sxe"/>
                         </constraints>
                         <connections>
                             <outlet property="dateText" destination="MRL-cl-bli" id="wi5-ts-VXJ"/>
@@ -101,12 +112,23 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwc-h1-EB0">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="HfZ-Bs-6Oe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="uwc-h1-EB0" firstAttribute="top" secondItem="neI-tC-E3N" secondAttribute="top" id="5PS-CD-I1w"/>
+                            <constraint firstAttribute="bottom" secondItem="uwc-h1-EB0" secondAttribute="bottom" id="8iy-v2-eq1"/>
                             <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerX" secondItem="neI-tC-E3N" secondAttribute="centerX" id="MTB-sA-n4b"/>
+                            <constraint firstAttribute="trailing" secondItem="uwc-h1-EB0" secondAttribute="trailing" id="PSD-EG-9AM"/>
                             <constraint firstAttribute="width" constant="35" id="cIi-YD-2OE"/>
                             <constraint firstItem="oa0-Ai-Mni" firstAttribute="centerY" secondItem="neI-tC-E3N" secondAttribute="centerY" id="dcg-5k-UMk"/>
+                            <constraint firstItem="uwc-h1-EB0" firstAttribute="leading" secondItem="neI-tC-E3N" secondAttribute="leading" id="i0h-Mj-cZR"/>
                             <constraint firstAttribute="height" constant="35" id="s1M-EM-Pvp"/>
                         </constraints>
                         <connections>
@@ -126,12 +148,23 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zE-7t-750">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="K0k-yx-aJf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerY" secondItem="BaA-Cs-Vgh" secondAttribute="centerY" id="9SR-ZH-vSc"/>
                             <constraint firstItem="VXS-5j-ywJ" firstAttribute="centerX" secondItem="BaA-Cs-Vgh" secondAttribute="centerX" id="9gi-fU-0GE"/>
+                            <constraint firstAttribute="bottom" secondItem="7zE-7t-750" secondAttribute="bottom" id="DQq-rh-E4x"/>
+                            <constraint firstItem="7zE-7t-750" firstAttribute="leading" secondItem="BaA-Cs-Vgh" secondAttribute="leading" id="Llb-LA-9d2"/>
+                            <constraint firstAttribute="trailing" secondItem="7zE-7t-750" secondAttribute="trailing" id="NcR-Hj-hwb"/>
                             <constraint firstAttribute="height" constant="35" id="bFP-Jc-MCf"/>
+                            <constraint firstItem="7zE-7t-750" firstAttribute="top" secondItem="BaA-Cs-Vgh" secondAttribute="top" id="kMc-zp-05O"/>
                             <constraint firstAttribute="width" constant="35" id="qkx-Ce-5My"/>
                         </constraints>
                         <connections>
@@ -151,13 +184,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbf-D2-pMI">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="jPo-wM-p8B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerY" secondItem="CbU-0Z-MEU" secondAttribute="centerY" id="5Gu-tx-T2A"/>
+                            <constraint firstAttribute="bottom" secondItem="Fbf-D2-pMI" secondAttribute="bottom" id="8Xu-0I-Lxq"/>
                             <constraint firstAttribute="height" constant="35" id="EPq-Yj-FeH"/>
+                            <constraint firstAttribute="trailing" secondItem="Fbf-D2-pMI" secondAttribute="trailing" id="Eew-lI-AhV"/>
+                            <constraint firstItem="Fbf-D2-pMI" firstAttribute="leading" secondItem="CbU-0Z-MEU" secondAttribute="leading" id="FZl-De-kPy"/>
                             <constraint firstAttribute="width" constant="35" id="ZyS-Bj-2F5"/>
                             <constraint firstItem="twJ-Zb-lm3" firstAttribute="centerX" secondItem="CbU-0Z-MEU" secondAttribute="centerX" id="lBk-pw-Gat"/>
+                            <constraint firstItem="Fbf-D2-pMI" firstAttribute="top" secondItem="CbU-0Z-MEU" secondAttribute="top" id="vgG-sI-zHG"/>
                         </constraints>
                         <connections>
                             <outlet property="dateText" destination="twJ-Zb-lm3" id="iub-zj-nq9"/>
@@ -176,12 +220,23 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFu-3F-6Ad">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="C4j-xM-m2f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qFu-3F-6Ad" secondAttribute="bottom" id="1TN-j1-6y7"/>
                             <constraint firstAttribute="height" constant="35" id="4Y9-tA-Tp4"/>
                             <constraint firstAttribute="width" constant="35" id="MVf-Ro-OVa"/>
                             <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerX" secondItem="EJ3-Og-eQq" secondAttribute="centerX" id="O1h-NN-xWL"/>
+                            <constraint firstItem="qFu-3F-6Ad" firstAttribute="top" secondItem="EJ3-Og-eQq" secondAttribute="top" id="Sdp-hm-nMm"/>
+                            <constraint firstAttribute="trailing" secondItem="qFu-3F-6Ad" secondAttribute="trailing" id="Web-3S-bzH"/>
+                            <constraint firstItem="qFu-3F-6Ad" firstAttribute="leading" secondItem="EJ3-Og-eQq" secondAttribute="leading" id="Y7v-p5-RDi"/>
                             <constraint firstItem="wTZ-MA-QUu" firstAttribute="centerY" secondItem="EJ3-Og-eQq" secondAttribute="centerY" id="sYw-zd-DE2"/>
                         </constraints>
                         <connections>
@@ -201,10 +256,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCm-Kj-atQ">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="w2o-Np-k5B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="FCm-Kj-atQ" firstAttribute="leading" secondItem="Y4D-2c-gUK" secondAttribute="leading" id="Pk9-Bo-4pl"/>
+                            <constraint firstAttribute="trailing" secondItem="FCm-Kj-atQ" secondAttribute="trailing" id="UcB-T8-qVN"/>
+                            <constraint firstItem="FCm-Kj-atQ" firstAttribute="top" secondItem="Y4D-2c-gUK" secondAttribute="top" id="WDO-Tg-Sxd"/>
                             <constraint firstItem="GLG-wS-iKt" firstAttribute="centerX" secondItem="Y4D-2c-gUK" secondAttribute="centerX" id="b0p-Xi-OM3"/>
+                            <constraint firstAttribute="bottom" secondItem="FCm-Kj-atQ" secondAttribute="bottom" id="fXz-xB-37i"/>
                             <constraint firstItem="GLG-wS-iKt" firstAttribute="centerY" secondItem="Y4D-2c-gUK" secondAttribute="centerY" id="h5a-2C-1aW"/>
                             <constraint firstAttribute="height" constant="35" id="hMy-kM-uI3"/>
                             <constraint firstAttribute="width" constant="35" id="iiK-KP-fl3"/>
@@ -226,11 +292,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CW1-vL-llH">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <connections>
+                                    <action selector="singeldayAction:" destination="Mb0-8R-zPh" eventType="touchUpInside" id="FYq-Mr-0O9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.079846833879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="CW1-vL-llH" firstAttribute="top" secondItem="1Yi-py-dRO" secondAttribute="top" id="5Dg-uL-mnX"/>
                             <constraint firstAttribute="width" constant="35" id="7Ba-5m-Smg"/>
                             <constraint firstAttribute="height" constant="35" id="DvL-fY-bdQ"/>
+                            <constraint firstAttribute="bottom" secondItem="CW1-vL-llH" secondAttribute="bottom" id="GW1-94-3AA"/>
+                            <constraint firstItem="CW1-vL-llH" firstAttribute="leading" secondItem="1Yi-py-dRO" secondAttribute="leading" id="LCk-P8-wVy"/>
+                            <constraint firstAttribute="trailing" secondItem="CW1-vL-llH" secondAttribute="trailing" id="MZ7-3p-PZY"/>
                             <constraint firstItem="eJj-QR-o7L" firstAttribute="centerY" secondItem="1Yi-py-dRO" secondAttribute="centerY" id="TR8-zU-7OL"/>
                             <constraint firstItem="eJj-QR-o7L" firstAttribute="centerX" secondItem="1Yi-py-dRO" secondAttribute="centerX" id="Uer-8M-Bqe"/>
                         </constraints>

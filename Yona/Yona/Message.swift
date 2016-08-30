@@ -16,6 +16,9 @@ enum notificationType : String {
     case BuddyDisconnectMessage = "BuddyDisconnectMessage"
     case GoalConflictMessage = "GoalConflictMessage"
     case ActivityCommentMessage = "ActivityCommentMessage"
+    case GoalChangeMessage = "GoalChangeMessage"
+    case DisclosureRequestMessage = "DisclosureRequestMessage"
+    case DisclosureResponseMessage = "DisclosureResponseMessage"
     case NoValue = "Not found"
     
 }
@@ -34,6 +37,7 @@ struct Message{
     var status: buddyRequestStatus?
     var messageType: notificationType
     var creationTime : NSDate
+    var change : String?
     
     //details of user who made request
     var UserRequestfirstName: String
@@ -66,6 +70,11 @@ struct Message{
         if let nickname = messageData[getMessagesKeys.nickname.rawValue] as? String{
             self.nickname = nickname
         }
+        if let aChange = messageData[getMessagesKeys.change.rawValue] as? String{
+            self.change = aChange
+        }
+
+        
         if let message = messageData[getMessagesKeys.message.rawValue] as? String{
             self.message = message
         }
@@ -178,6 +187,13 @@ struct Message{
             return NSLocalizedString("message.type.nogoalert", comment: "")
         case .ActivityCommentMessage:
             return NSLocalizedString("message.type.message", comment: "")
+        case .GoalChangeMessage:
+            if change == "GOAL_ADDED" {
+                return NSLocalizedString("message.type.goalchange.add", comment: "")
+            } else {
+                return NSLocalizedString("message.type.goalchange", comment: "")
+            }
+            
         default :
             return NSLocalizedString("Error", comment: "")
         }
