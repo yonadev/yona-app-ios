@@ -336,6 +336,7 @@ struct R {
     static var icnEdit: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnEdit") } }
     static var icnFriends: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriends") } }
     static var icnFriendsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriendsActive") } }
+    static var icnLock: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnLock", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnLock") } }
     static var icnMail: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMail", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMail") } }
     static var icnMe: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMe", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMe") } }
     static var icnMeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMeActive") } }
@@ -519,12 +520,13 @@ struct R {
       static var timeFrameTimeZoneChallengeStoryboard: TimeFrameTimeZoneChallengeViewController? { return instance.instantiateViewControllerWithIdentifier("TimeFrameTimeZoneChallengeStoryboard") as? TimeFrameTimeZoneChallengeViewController }
       
       static func validateImages() {
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnLock") != nil, "[R.swift] Image named 'icnLock' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       
       static func validateViewControllers() {

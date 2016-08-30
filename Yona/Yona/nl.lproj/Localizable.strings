@@ -67,6 +67,7 @@
 "challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen ";
 "challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
+"challenges.user.TimeZoneDescription" = "waarbinnen gebruik is toegestaan";
 
 "challenges.budgetGoal.Title" = "TEGOED";
 "challenges.timezoneGoal.Title" = "TIJDZONE";
