@@ -37,6 +37,13 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         
     }
     
+//    func didSelectDayInWeek(goal: SingleDayActivityGoal, aDate : NSDate) {
+//        
+//        weekDayDetailLink = goal.yonadayDetails
+//        performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
+//    }
+
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {

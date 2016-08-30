@@ -119,6 +119,9 @@ class MessageRequestManager {
             let body = ["properties":[:]]
             self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
                 print("how did we do \(success)")
+                UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed, onCompletion:{(success, servermessage, servercode, users) in
+                    print("user updated")
+                })
                 onCompletion(success , "", "")
             })
         } else {

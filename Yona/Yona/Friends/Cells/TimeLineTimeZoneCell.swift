@@ -17,7 +17,8 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
     @IBOutlet weak var spacerView : UIView!
     var firstName = ""
     var lastName = ""
-
+    var nickname = ""
+    
     //time labels
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -83,20 +84,25 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
         if let bud = timelineDayActivity.buddy {
             firstName = bud.UserRequestfirstName
             lastName = bud.UserRequestlastName
+            nickname = bud.buddyNickName
         } else if let theUser = timelineDayActivity.user {
             firstName = theUser.firstName
             lastName = theUser.lastName
+            nickname = theUser.nickname
         }
 
     }
 
     
     private func dravTheUser () {
-        
-        //will crash if empty
-        if firstName.characters.count > 0 && lastName.characters.count > 0{
-            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
+        if nickname.characters.count > 0 {
+            userInitial.text = "\(nickname.capitalizedString.characters.first!)"
         }
+
+        //will crash if empty
+//        if firstName.characters.count > 0 && lastName.characters.count > 0{
+//            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
+//        }
         
     }
 

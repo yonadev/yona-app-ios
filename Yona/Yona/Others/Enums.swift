@@ -239,6 +239,7 @@ enum ProfileCategoryHeader : Int {
 // Used in Profile
 enum FriendsProfileCategoryHeader : Int {
     case Name = 0
+    case LastName
     case NickName
     case CellNumber
     
@@ -246,7 +247,9 @@ enum FriendsProfileCategoryHeader : Int {
     func headerText() -> String{
         switch self {
         case FriendsProfileCategoryHeader.Name:
-            return  NSLocalizedString("profile.user.data.name", comment: "ProfileCell FirstName header")
+            return  NSLocalizedString("profile.user.data.firstname", comment: "ProfileCell FirstName header")
+        case FriendsProfileCategoryHeader.LastName:
+            return  NSLocalizedString("profile.user.data.lastname", comment: "ProfileCell FirstName header")
         case FriendsProfileCategoryHeader.NickName:
             return  NSLocalizedString("profile.user.data.nickname", comment: "ProfileCell NickName header")
         case FriendsProfileCategoryHeader.CellNumber:
@@ -258,6 +261,8 @@ enum FriendsProfileCategoryHeader : Int {
         
         switch self {
         case FriendsProfileCategoryHeader.Name:
+            return  UIImage(named: "icnName")!
+        case FriendsProfileCategoryHeader.LastName:
             return  UIImage(named: "icnName")!
         case FriendsProfileCategoryHeader.NickName:
             return  UIImage(named: "icnNickname")!

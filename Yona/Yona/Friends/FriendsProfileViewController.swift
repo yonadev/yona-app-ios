@@ -87,7 +87,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if isShowingProfile {
-            return 3
+            return 4
         } else {
             return 0
         }

@@ -91,7 +91,9 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         normalLineLabel.text = aBuddie.buddyNickName
 
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+        avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+
+//        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
     }
     
     // MARK: using cell as Message
@@ -109,24 +111,31 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
      
-        var tmpFirst = ""
-        var tmpLast = ""
+//        var tmpFirst = ""
+//        var tmpLast = ""
         var tmpnickname = ""
-
-        if aMessage.UserRequestfirstName.characters.count > 0 {
-            tmpFirst = aMessage.UserRequestfirstName
-        } else {
-            tmpnickname = aMessage.nickname
-        }
-        if aMessage.UserRequestlastName.characters.count > 0 {
-            tmpLast = aMessage.UserRequestlastName
-        }
-        if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
-            // AVATAR NOT Implemented - must check for avatar image when implemented on server
-            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!)"//\(tmpLast.capitalizedString.characters.first!)"
-        } else {
+        tmpnickname = aMessage.nickname
+        if tmpnickname.characters.count > 0 {
             avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
+        } else {
+            avatarNameLabel.text = ""
         }
+        
+//        if aMessage.UserRequestfirstName.characters.count > 0 {
+//            tmpFirst = aMessage.UserRequestfirstName
+//        } else {
+//            tmpnickname = aMessage.nickname
+//        }
+//        if aMessage.UserRequestlastName.characters.count > 0 {
+//            tmpLast = aMessage.UserRequestlastName
+//        }
+//        if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
+//            // AVATAR NOT Implemented - must check for avatar image when implemented on server
+//            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!)"//\(tmpLast.capitalizedString.characters.first!)"
+//        } else {
+  
+//        avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
+//        }
         
         
         statusImageView.image = aMessage.iconForStatus()
