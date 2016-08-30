@@ -132,6 +132,8 @@ extension LoginSignupValidationMasterView {
                 if let timeISOCode = pincode {
                     //we need to store this incase the app is backgrounded
                     NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
+                    NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: YonaConstants.nsUserDefaultsKeys.timeToPinResetInitialRequestTime)
+                    NSUserDefaults.standardUserDefaults().synchronize()
                     self.displayPincodeRemainingMessage()
 //                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     
