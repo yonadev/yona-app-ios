@@ -68,14 +68,13 @@ extension String {
         return randomString
     }
     
-    func convertFromISO8601Duration() -> (String, String, String){
+    func convertFromISO8601Duration() -> (Int, Int, Int){
         
         var displayedString: String?
         var hasHitTimeSection = false
         var isSingular = false
         
         var hours = 0
-        var days = 0
         var minutes = 0
         var seconds = 0
         
@@ -179,7 +178,6 @@ extension String {
                     } else {
                         tempString += " Days "
                     }
-                    days = Int(displayedString!)!
                     break
                     
                 case "H", "h":
@@ -215,7 +213,7 @@ extension String {
             print("minute\(minutes)")
             print("seconds\(seconds)")
         #endif
-        return (String(hours), String(minutes), String(seconds))
+        return (hours, minutes, seconds)
         
     }
     

@@ -11,6 +11,17 @@ import Foundation
 final class PinResetValidationVC: ValidationMasterView {
     @IBOutlet var resendOTPResetCode: UIButton!
 
+    
+    //MARK: Pin reset Count down
+    var pinResetCountDownTimer: NSTimer?
+    var pinResetCountDownStartTime : NSDate?
+    
+    @IBOutlet weak var pinResetCountDownContainer: UIView!
+    @IBOutlet weak var remainingHoursLabel: UILabel!
+    @IBOutlet weak var remainingMinutesLabel: UILabel!
+    @IBOutlet weak var remainingSecondsLabel: UILabel!
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setBackgroundColour()
@@ -48,6 +59,86 @@ final class PinResetValidationVC: ValidationMasterView {
                 })
             }
         }
+    }
+    
+    
+    override func displayPincodeRemainingMessage(){
+        guard let timeISOCode = NSUserDefaults.standardUserDefaults().valueForKey(YonaConstants.nsUserDefaultsKeys.timeToPinReset) as? String else {
+            return
+        }
+        
+        let userInfo = NSMutableDictionary()
+        let (hours, minutes, seconds) = timeISOCode.convertFromISO8601Duration()
+        userInfo["hours"] = hours
+        userInfo["minutes"] = minutes
+        userInfo["seconds"] = seconds
+        pinResetCountDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(PinResetValidationVC.executePinResetCounter(_:)), userInfo: userInfo, repeats: true)
+        
+        executePinResetCounter(pinResetCountDownTimer!)
+
+    }
+    
+    func executePinResetCounter(timer: NSTimer)
+    {
+        let userInfo = timer.userInfo! as! NSDictionary
+        let hours = userInfo["hours"]! as! Int
+        let minutes = userInfo["minutes"]! as! Int
+        let seconds = userInfo["seconds"]! as! Int
+        
+        if(pinResetCountDownStartTime == nil){
+            if let startDate = NSUserDefaults.standardUserDefaults().valueForKey(YonaConstants.nsUserDefaultsKeys.timeToPinResetInitialRequestTime) as? NSDate{
+                pinResetCountDownStartTime = startDate
+            }else{
+                pinResetCountDownStartTime = NSDate()
+            }
+            
+        }
+        updateRemainingMessageForCountDown(hours, minutes: minutes, seconds: seconds)
+    }
+    
+    func updateRemainingMessageForCountDown(hours: Int, minutes: Int, seconds: Int)
+    {
+        
+        let second = Int(1)
+        let minute = Int(second * 60)
+        let hour = Int(minute * 60)
+        
+        var remainingHours = hours
+        var remainingMinutes = minutes
+        var remainingSeconds = seconds
+        
+        var diff = Int(abs(pinResetCountDownStartTime!.timeIntervalSinceNow))
+        
+        if diff > hour{
+            let diffHours = (diff / hour)
+            remainingHours -= diffHours
+            diff -= diffHours
+        }
+        
+        if diff > minute{
+            let diffMinutes = (diff / minute)
+            remainingMinutes -= diffMinutes
+            diff -= diffMinutes
+        }
+        
+        remainingSeconds -= diff
+        
+        if remainingHours > 0 || remainingMinutes > 0 || remainingSeconds > 0{
+            //update our labels...
+            codeView.hidden = true
+            resendOTPResetCode.hidden = true
+            pinResetCountDownContainer.hidden = false
+            remainingHoursLabel.text = "\(remainingHours)"
+            remainingMinutesLabel.text = "\(remainingMinutes)"
+            remainingSecondsLabel.text = "\(remainingSeconds)"
+        }else{
+            //allow the user to enter his pin code
+            pinResetCountDownContainer.hidden = true
+            codeView.hidden = false
+            resendOTPResetCode.hidden = false
+            pinResetCountDownTimer?.invalidate()
+        }
+        
     }
 }
 

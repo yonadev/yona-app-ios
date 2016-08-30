@@ -45,7 +45,6 @@ class TimeZoneTableViewCell: PKSwipeTableViewCell {
     
     func deleteCell(){
         if let timezoneCellDelegate = timezoneCellDelegate{
-            
             timezoneCellDelegate.deleteTimezone(self)
         }
     }
