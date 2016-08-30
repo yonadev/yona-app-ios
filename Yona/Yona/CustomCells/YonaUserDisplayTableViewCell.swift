@@ -42,14 +42,16 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             case FriendsProfileCategoryHeader.Name:
                 var tmpFirst = ""
-                var tmpLast = ""
                 if let txt = controller.aUser?.UserRequestfirstName {
                     tmpFirst = txt
                 }
+                theTextField.text = tmpFirst
+            case FriendsProfileCategoryHeader.LastName:
+                var tmpLast = ""
                 if let txt = controller.aUser?.UserRequestlastName {
                     tmpLast = txt
                 }
-                theTextField.text = "\(tmpFirst) \(tmpLast)"
+                theTextField.text = tmpLast
                 
             case FriendsProfileCategoryHeader.NickName:
                 theTextField.text = controller.aUser?.buddyNickName
@@ -144,6 +146,8 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             switch buddyCellType! {
             case .Name:
                 controller.aUser?.UserRequestfirstName = textToSet
+            case .LastName:
+                controller.aUser?.UserRequestlastName = textToSet
             case .NickName:
                 controller.aUser?.buddyNickName = textToSet
             case .CellNumber:
