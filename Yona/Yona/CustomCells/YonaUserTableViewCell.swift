@@ -8,7 +8,7 @@
 
 import Foundation
 
-class YonaUserTableViewCell: PKSwipeTableViewCell {
+class YonaUserTableViewCell: SHSwippableTableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
@@ -24,6 +24,8 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     @IBOutlet weak var gradientView: GradientSmooth!
 
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
 //        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
 
@@ -39,47 +41,18 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         statusImageView.layer.masksToBounds = true
 
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
-        addRightViewInCell()
         
     }
     
-    func addRightViewInCell() {
-        
-        //Create a view that will display when user swipe the cell in right
-        let viewCall = UIView()
-        viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
-        viewCall.frame = CGRectMake(0,0, self.frame.size.height,self.frame.size.height)
-        
 
-        //Add a button to perform the action when user will tap on call and add a image to display
-        let btnCall = UIButton(type: UIButtonType.Custom)
-        btnCall.frame = CGRectMake(0, -10,viewCall.frame.size.width,viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
-        btnCall.addTarget(self, action: "deleteMessage", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        
-        //Add a label to display the call text
-        let lblCall = UILabel()
-        lblCall.text  = NSLocalizedString("notifications.delete", comment: "")
-        lblCall.font = UIFont(name: "SFUIDisplay-Medium", size: 14)
-        lblCall.textColor = UIColor.yiWhiteColor()
-        lblCall.textAlignment = NSTextAlignment.Center
-        lblCall.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 40,viewCall.frame.size.width,20)
-        
-        viewCall.addSubview(btnCall)
-        viewCall.addSubview(lblCall)
-        //Call the super addRightOptions to set the view that will display while swiping
-        super.addRightOptionsView(viewCall)
-
-    }
 
     
-    func deleteMessage(){
-        if let yonaUserDelegate = yonaUserDelegate,
-            let aMessage = aMessage{
-            yonaUserDelegate.messageNeedToBeDeleted(self, message: aMessage)
-        }
-    }
+//    func deleteMessage(){
+//        if let yonaUserDelegate = yonaUserDelegate,
+//            let aMessage = aMessage{
+//            yonaUserDelegate.messageNeedToBeDeleted(self, message: aMessage)
+//        }
+//    }
     
     func setBuddie(aBuddie : Buddies) {
         
@@ -102,11 +75,11 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         self.aMessage = aMessage
         
         //if the messsage has been accepted can we delete so disable pan
-        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-            self.isPanEnabled = true
-        } else {
-            self.isPanEnabled = false
-        }
+//        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+//            self.isPanEnabled = true
+//        } else {
+//            self.isPanEnabled = false
+//        }
         
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"

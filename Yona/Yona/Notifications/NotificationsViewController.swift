@@ -93,55 +93,55 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         return messages[section].count
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndex = indexPath
-        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        Loader.Show()
-        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
-            //success so get the user?
-            if success {
-                Loader.Hide()
-                self.buddyData = buddy
-                if let aMessage = self.aMessage {
-                    switch aMessage.messageType {
-                    case .ActivityCommentMessage:
-                        if aMessage.dayDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
-                        } else if aMessage.weekDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-                        }
-                    case .BuddyConnectRequestMessage:
-                        if aMessage.status == buddyRequestStatus.REQUESTED {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-                        }
-                    case .BuddyDisconnectMessage:
-                        break
-                    case .BuddyConnectResponseMessage:
-                        break
-                    case .GoalConflictMessage:
-                        break
-                    case .GoalChangeMessage:
-//                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
-                        break
-                    case .DisclosureResponseMessage:
-                        //not implemented yet
-                        break
-                    case .DisclosureRequestMessage:
-                        //not implemented yet
-                        break
-                    case .NoValue:
-                        break
-                        
-                    }
-                }
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            } else {
-                //response from request failed
-                Loader.Hide()
-            }
-        })
-
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        selectedIndex = indexPath
+//        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+//        Loader.Show()
+//        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+//            //success so get the user?
+//            if success {
+//                Loader.Hide()
+//                self.buddyData = buddy
+//                if let aMessage = self.aMessage {
+//                    switch aMessage.messageType {
+//                    case .ActivityCommentMessage:
+//                        if aMessage.dayDetailsLink != nil {
+//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+//                        } else if aMessage.weekDetailsLink != nil {
+//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+//                        }
+//                    case .BuddyConnectRequestMessage:
+//                        if aMessage.status == buddyRequestStatus.REQUESTED {
+//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+//                        }
+//                    case .BuddyDisconnectMessage:
+//                        break
+//                    case .BuddyConnectResponseMessage:
+//                        break
+//                    case .GoalConflictMessage:
+//                        break
+//                    case .GoalChangeMessage:
+////                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+//                        break
+//                    case .DisclosureResponseMessage:
+//                        //not implemented yet
+//                        break
+//                    case .DisclosureRequestMessage:
+//                        //not implemented yet
+//                        break
+//                    case .NoValue:
+//                        break
+//                        
+//                    }
+//                }
+//                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            } else {
+//                //response from request failed
+//                Loader.Hide()
+//            }
+//        })
+//
+//    }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -153,26 +153,26 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         //cannot swithc on a optional type so have
         switch currentMessage.messageType {
         case .ActivityCommentMessage:
-            cell.isPanEnabled = false
+            cell.allowsSwipeAction = false
         case .BuddyConnectRequestMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .BuddyDisconnectMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .BuddyConnectResponseMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .GoalConflictMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .GoalChangeMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .DisclosureResponseMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .DisclosureRequestMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .NoValue:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         }
 
-        cell.yonaUserDelegate = self
+//        cell.yonaUserDelegate = self
         return cell
     }
 
@@ -199,33 +199,33 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         
     }
     
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            selectedIndex = indexPath
-            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
-                if success {
-                    self.loadMessages(self)
-                } else {
-                    self.displayAlertMessage(message!, alertDescription: "")
-                }
-            })
-        }
-    }
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        selectedIndex = indexPath
-
-        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        //we can only delete a buddy request if it has been accepted or rejected
-        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-            return true
-        } else {
-            return false
-        }
-
-    }
+//    // Override to support editing the table view.
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            selectedIndex = indexPath
+//            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+//            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+//                if success {
+//                    self.loadMessages(self)
+//                } else {
+//                    self.displayAlertMessage(message!, alertDescription: "")
+//                }
+//            })
+//        }
+//    }
+//    
+//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        selectedIndex = indexPath
+//
+//        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+//        //we can only delete a buddy request if it has been accepted or rejected
+//        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+//            return true
+//        } else {
+//            return false
+//        }
+//
+//    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if messages[indexPath.section].count > 0{
