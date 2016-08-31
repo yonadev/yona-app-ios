@@ -44,7 +44,13 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         // The subController must override this to have any action after the tabe selection
         
     }
-    
+    //MARK: - week delegate methods
+    override func didSelectDayInWeek(goal: SingleDayActivityGoal, aDate : NSDate) {
+        
+        weekDayDetailLink = goal.yonadayDetails
+        performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+    }
+
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
         loadActivitiesForWeek()
@@ -74,7 +80,12 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
         if segue.destinationViewController is FriendsDayDetailViewController {
             let controller = segue.destinationViewController as! FriendsDayDetailViewController
-            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            
+            if let path = weekDayDetailLink {
+                controller.initialObjectLink = path
+                weekDayDetailLink = nil
+                
+            } else if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
                 controller.buddy = buddyToShow

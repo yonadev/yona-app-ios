@@ -114,8 +114,6 @@ class BaseTabViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
     func updateSelectedIndex() {
         if userHasGaols(){
             self.selectedIndex = Tab.profile.rawValue

@@ -35,7 +35,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
 
     var firstName = ""
     var lastName = ""
-    
+    var nickName = ""
     //MARK: - override methods
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -90,10 +90,13 @@ class TimeLineTimeBucketCell : UITableViewCell {
     private func dravTheUser () {
     
         //will crash if empty
-        if firstName.characters.count > 0 && lastName.characters.count > 0{
-            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
+//        if firstName.characters.count > 0 && lastName.characters.count > 0{
+//            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
+//        }
+        if nickName.characters.count > 0 {
+            userInitial.text = "\(nickName.capitalizedString.characters.first!)"
         }
-
+        
     }
     
     private func doInitialSetup() {
@@ -206,9 +209,11 @@ class TimeLineTimeBucketCell : UITableViewCell {
         if let bud = timeline.buddy {
             firstName = bud.UserRequestfirstName
             lastName = bud.UserRequestlastName
+            nickName = bud.buddyNickName
         } else if let theUser = timeline.user {
             firstName = theUser.firstName
             lastName = theUser.lastName
+            nickName = theUser.nickname
         }
 
         
