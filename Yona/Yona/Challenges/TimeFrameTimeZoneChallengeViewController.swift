@@ -94,11 +94,11 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     func configureView() {
-        if BaseTabViewController.userHasGoals() == false {
-            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        } else {
+//        if BaseTabViewController.userHasGoals() == false {
+//            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+//        } else {
             setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        }
+//        }
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5

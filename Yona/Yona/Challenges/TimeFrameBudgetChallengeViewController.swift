@@ -44,11 +44,11 @@ class TimeFrameBudgetChallengeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if BaseTabViewController.userHasGoals() == false {
-            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        } else {
+//        if BaseTabViewController.userHasGoals() == false {
+//            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+//        } else {
             setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        }
+//        }
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
