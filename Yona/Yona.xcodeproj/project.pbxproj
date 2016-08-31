@@ -76,7 +76,6 @@
 		16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */; };
 		16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */; };
 		16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */; };
-		16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16D73D8E1D08453800181AC9 /* SecretKeys.plist */; };
 		16F7A0E61D244BE100CBB0CB /* SingleDayActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */; };
 		16F7A0E81D2453D800CBB0CB /* WeekSingleActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */; };
 		16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */; };
@@ -92,6 +91,7 @@
 		16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */; };
 		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
 		485299538EF178971C053A0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F4E094BD09171901BB56B3 /* Pods.framework */; };
+		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */; };
@@ -99,7 +99,6 @@
 		6042829B1D0ADA4600F5543C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604282941D0ADA4600F5543C /* SVProgressHUD.bundle */; };
 		6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282961D0ADA4600F5543C /* SVProgressHUD.m */; };
 		6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */; };
-		60443D201D18075E00474277 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */; };
@@ -259,6 +258,7 @@
 		BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */; };
 		BEB0CE011CEA81ED0056280A /* MessageAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */; };
 		BEEDBF861D0FFA6100ED8AD1 /* PinResetValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */; };
+		CC192FCE1D76AF04006F0F10 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */; };
 		D91FAE2E1CAED18800E7013B /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5571F51CAAEEF6000BF880 /* SignUpFirstStepViewController.swift */; };
 		D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */; };
 		D94A93BD1CB26E3A00ABE0F8 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */; };
@@ -267,7 +267,6 @@
 		D94A93C51CB291FC00ABE0F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D94A93C81CB2ACE300ABE0F8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		D94A93CA1CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
-		D984921B1CD3B48600291B56 /* MacroAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D984921A1CD3B48600291B56 /* MacroAccessor.m */; };
 		D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */; };
 		D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */; };
 		D98635551CABF44000A8535C /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */; };
@@ -463,7 +462,6 @@
 		16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserDisplayTableViewCell.xib; sourceTree = "<group>"; };
 		16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaDefaultTableHeaderView.xib; sourceTree = "<group>"; };
 		16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaDefaultTableHeaderView.swift; sourceTree = "<group>"; };
-		16D73D8E1D08453800181AC9 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleDayActivityGoal.swift; path = DAOObjects/SingleDayActivityGoal.swift; sourceTree = "<group>"; };
 		16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityGoal.swift; path = DAOObjects/WeekSingleActivityGoal.swift; sourceTree = "<group>"; };
 		16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationAcceptFriendRequestViewController.swift; sourceTree = "<group>"; };
@@ -663,6 +661,7 @@
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
 		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
+		CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -670,8 +669,6 @@
 		D94A93C41CB291FC00ABE0F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
-		D98492191CD3B48600291B56 /* MacroAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroAccessor.h; sourceTree = "<group>"; };
-		D984921A1CD3B48600291B56 /* MacroAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroAccessor.m; sourceTree = "<group>"; };
 		D986353E1CABF44000A8535C /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Black.otf"; path = "Fonts/SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		D986353F1CABF44000A8535C /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Bold.otf"; path = "Fonts/SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		D98635401CABF44000A8535C /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Heavy.otf"; path = "Fonts/SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -1380,8 +1377,6 @@
 				9042C7371CD898E300100306 /* AGi18nLocalizableStrings */,
 				AD00DEB91CD3648F006BBA7E /* IQKeyboardManagerSwift */,
 				D94A93C61CB2ACB900ABE0F8 /* Keychain Manager */,
-				D98492191CD3B48600291B56 /* MacroAccessor.h */,
-				D984921A1CD3B48600291B56 /* MacroAccessor.m */,
 			);
 			name = 3rd_Party_APIs;
 			path = Others;
@@ -1744,9 +1739,9 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				16D73D8E1D08453800181AC9 /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
+				CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1793,7 +1788,6 @@
 				D9D54EC51CA28CD2007805F4 /* Resources */,
 				F77FF96084CAC8939A8152F2 /* Embed Pods Frameworks */,
 				173E4173B6737B3290E96712 /* Copy Pods Resources */,
-				D9B8A69A1CB3B38D0033DE34 /* HockeyApp */,
 			);
 			buildRules = (
 			);
@@ -1894,6 +1888,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */,
 				165BB1EC1D228A260013A4EF /* TimeBucketControlCell.xib in Resources */,
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
@@ -1948,6 +1943,7 @@
 				166CB8561D2FA200008B425D /* YonaButtonTableViewCell.xib in Resources */,
 				ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */,
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
+				CC192FCE1D76AF04006F0F10 /* SecretKeys.plist in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
 				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
 				906FED8D1CEE23C100029845 /* Login.storyboard in Resources */,
@@ -1969,14 +1965,12 @@
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
-				16D73D8F1D08453800181AC9 /* SecretKeys.plist in Resources */,
 				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
 				ADEF8F011CADFD0C001D5EED /* Roboto-Bold.ttf in Resources */,
 				ADEF8F001CADFD0C001D5EED /* Roboto-BlackItalic.ttf in Resources */,
 				ADD108201CC78C3B0048852F /* Oswald-BoldItalic.ttf in Resources */,
 				16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */,
-				60443D201D18075E00474277 /* Settings.bundle in Resources */,
 				ADEF8F061CADFD0C001D5EED /* Roboto-CondensedItalic.ttf in Resources */,
 				D98635651CABF44000A8535C /* SF-UI-Text-RegularItalic.otf in Resources */,
 				ADEF8EFF1CADFD0C001D5EED /* Roboto-Black.ttf in Resources */,
@@ -2021,23 +2015,9 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D9B8A69A1CB3B38D0033DE34 /* HockeyApp */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = HockeyApp;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
-		};
 		D9D54EFC1CA565B7007805F4 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -2045,7 +2025,7 @@
 			name = R.swift;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
@@ -2150,7 +2130,6 @@
 				1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */,
 				90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */,
 				166CB8481D2B1524008B425D /* DayActivityOverview.swift in Sources */,
-				D984921B1CD3B48600291B56 /* MacroAccessor.m in Sources */,
 				9054CC841CE2270F00F575E2 /* RequestResult.swift in Sources */,
 				9054D5391D52359B0060D22E /* CommentTableHeader.swift in Sources */,
 				90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */,
@@ -2427,7 +2406,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"HOCKEYAPP_KEY=@\\\"$(HOCKEYAPP_KEY)\\\"",
+					"SRC_ROOT=@\\\"$(SRCROOT)\\\"",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2462,14 +2441,13 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xaton B.V. (Ent)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "HOCKEYAPP_KEY=@\\\"$(HOCKEYAPP_KEY)\\\"";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2503,7 +2481,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2517,8 +2495,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yona/Others",
@@ -2528,7 +2506,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.yona.foundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;
