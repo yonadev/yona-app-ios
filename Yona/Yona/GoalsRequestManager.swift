@@ -273,20 +273,20 @@ class GoalsRequestManager {
      - parameter goalEditLink: String?, If a goal is not mandatory then it will have and edit link and we will beable to delete it
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
-    func deleteUserGoal(goalEditLink: String?, onCompletion: APIResponse) {
+    func deleteUserGoal(goalEditLink: String?, onCompletion: APIGoalResponse) {
         
         self.goalsHelper(httpMethods.delete, body: nil, goalLinkAction: goalEditLink) { (success, message, serverCode, goal, goals, error) in
             if success {
                 ActivitiesRequestManager.sharedInstance.getActivityCategories({ (success, message, code, activities, error) in
                     if let activities = activities {
                         self.getAllTheGoals(activities) { (success, message, code, nil, goals, error) in
-                            onCompletion(success, message, serverCode)
+                            onCompletion(success, message, serverCode, goal, goals, error)
                         }
                     }
                 })
 
             } else {
-                onCompletion(false, message, serverCode)
+                onCompletion(false, message, serverCode, nil, nil, error)
             }
         }
     }

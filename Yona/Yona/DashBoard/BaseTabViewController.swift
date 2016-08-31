@@ -117,14 +117,14 @@ class BaseTabViewController: UITabBarController {
     
 
     func updateSelectedIndex() {
-        if userHasGaols(){
+        if BaseTabViewController.userHasGoals(){
             self.selectedIndex = Tab.profile.rawValue
         }else{
             self.selectedIndex = Tab.challenges.rawValue
         }
     }
     
-    func userHasGaols() -> Bool {
+    class func userHasGoals() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded);
     }
 }
