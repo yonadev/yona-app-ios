@@ -122,6 +122,9 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                         break
                     case .GoalChangeMessage:
 //                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+                        self.tabBarController?.selectedIndex = 1
+                        let targetVc = self.tabBarController?.viewControllers?[1] as? UINavigationController
+                        targetVc!.viewControllers[0]
                         break
                     case .DisclosureResponseMessage:
                         //not implemented yet
