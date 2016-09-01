@@ -27,7 +27,7 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         
         super.awakeFromNib()
 //        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
-        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+//        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
 
         boldLineLabel.text = ""
         boldLineLabel.adjustsFontSizeToFitWidth = true
@@ -44,7 +44,9 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         
     }
     
-
+//    func layoutSubviews() {
+//        
+//    }
 
     
 //    func deleteMessage(){
