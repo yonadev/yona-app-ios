@@ -34,6 +34,9 @@
                                     <constraint firstAttribute="height" constant="24" id="zQY-mf-rzw"/>
                                 </constraints>
                                 <state key="normal" image="icnDelete"/>
+                                <connections>
+                                    <action selector="deleteMessage:" destination="JJX-QR-1hb" eventType="touchUpInside" id="xSw-fl-qpo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5h-mK-s7f">
                                 <rect key="frame" x="23" y="53" width="42" height="21"/>
@@ -133,6 +136,7 @@
                 <outlet property="boldLineLabel" destination="Ee6-12-OjT" id="IbS-eM-cgO"/>
                 <outlet property="gradientView" destination="X51-dA-6JH" id="LlU-T6-21C"/>
                 <outlet property="normalLineLabel" destination="Ric-Ra-Qlj" id="d73-UA-GdG"/>
+                <outlet property="statusImageConstraint" destination="cvY-2S-eVu" id="TBI-sH-MKR"/>
                 <outlet property="statusImageView" destination="X0W-l2-iHi" id="Bju-YT-FXh"/>
                 <outlet property="swipableContent" destination="X51-dA-6JH" id="jNx-3K-NgH"/>
                 <outlet property="swipableContentHorizontalConstraint" destination="tHf-L3-APw" id="4Rt-Ef-cNy"/>

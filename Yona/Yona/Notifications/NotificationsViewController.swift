@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
+class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
@@ -96,60 +96,60 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         return messages[section].count
     }
     
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        selectedIndex = indexPath
-//        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-//        Loader.Show()
-//        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
-//            //success so get the user?
-//            if success {
-//                Loader.Hide()
-//                self.buddyData = buddy
-//                if let aMessage = self.aMessage {
-//                    switch aMessage.messageType {
-//                    case .ActivityCommentMessage:
-//                        if aMessage.dayDetailsLink != nil {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
-//                        } else if aMessage.weekDetailsLink != nil {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-//                        }
-//                    case .BuddyConnectRequestMessage:
-//                        if aMessage.status == buddyRequestStatus.REQUESTED {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-//                        }
-//                    case .BuddyDisconnectMessage:
-//                        break
-//                    case .BuddyConnectResponseMessage:
-//                        break
-//                    case .GoalConflictMessage:
-//                        break
-//                    case .GoalChangeMessage:
-////                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
-//                        break
-//                    case .DisclosureResponseMessage:
-//                        //not implemented yet
-//                        break
-//                    case .DisclosureRequestMessage:
-//                        //not implemented yet
-//                        break
-//                    case .NoValue:
-//                        break
-//                        
-//                    }
-//                }
-//                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//            } else {
-//                //response from request failed
-//                Loader.Hide()
-//            }
-//        })
-//
-//    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndex = indexPath
+        aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+        Loader.Show()
+        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
+            //success so get the user?
+            if success {
+                Loader.Hide()
+                self.buddyData = buddy
+                if let aMessage = self.aMessage {
+                    switch aMessage.messageType {
+                    case .ActivityCommentMessage:
+                        if aMessage.dayDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                        } else if aMessage.weekDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                        }
+                    case .BuddyConnectRequestMessage:
+                        if aMessage.status == buddyRequestStatus.REQUESTED {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                        }
+                    case .BuddyDisconnectMessage:
+                        break
+                    case .BuddyConnectResponseMessage:
+                        break
+                    case .GoalConflictMessage:
+                        break
+                    case .GoalChangeMessage:
+//                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+                        break
+                    case .DisclosureResponseMessage:
+                        //not implemented yet
+                        break
+                    case .DisclosureRequestMessage:
+                        //not implemented yet
+                        break
+                    case .NoValue:
+                        break
+                        
+                    }
+                }
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            } else {
+                //response from request failed
+                Loader.Hide()
+            }
+        })
+
+    }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: CustomDeleteCell = tableView.dequeueReusableCellWithIdentifier("CustomDeleteCell", forIndexPath: indexPath) as! CustomDeleteCell
-   //     cell.setMessage(messages[indexPath.section][indexPath.row])
+        let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+        cell.setMessage(messages[indexPath.section][indexPath.row])
         
         let currentMessage = messages[indexPath.section][indexPath.row] as Message
         //turn off/on delete messages by disabling the pan gesture on our custom delete cell
@@ -175,7 +175,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             cell.allowsSwipeAction = true
         }
 
-//        cell.yonaUserDelegate = self
+        cell.yonaUserSwipeDelegate = self
         return cell
     }
 

@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol YonaUserSwipeCellDelegate {
+    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
+}
+
 class YonaUserTableViewCell: SHSwippableTableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -21,6 +25,8 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
     @IBOutlet weak var statusImageConstraint: NSLayoutConstraint!
     
     var aMessage : Message?
+    internal var yonaUserSwipeDelegate:YonaUserSwipeCellDelegate?
+
     @IBOutlet weak var gradientView: GradientSmooth!
 
     override func awakeFromNib() {
@@ -49,12 +55,12 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
 //    }
 
     
-//    func deleteMessage(){
-//        if let yonaUserDelegate = yonaUserDelegate,
-//            let aMessage = aMessage{
-//            yonaUserDelegate.messageNeedToBeDeleted(self, message: aMessage)
-//        }
-//    }
+    @IBAction func deleteMessage(sender: UIButton){
+        if let yonaUserSwipeDelegate = yonaUserSwipeDelegate,
+            let aMessage = aMessage{
+            yonaUserSwipeDelegate.messageNeedToBeDeleted(self, message: aMessage)
+        }
+    }
     
     func setBuddie(aBuddie : Buddies) {
         
@@ -77,11 +83,11 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         self.aMessage = aMessage
         
         //if the messsage has been accepted can we delete so disable pan
-//        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-//            self.isPanEnabled = true
-//        } else {
-//            self.isPanEnabled = false
-//        }
+        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+            self.allowsSwipeAction = true
+        } else {
+            self.allowsSwipeAction = false
+        }
         
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
