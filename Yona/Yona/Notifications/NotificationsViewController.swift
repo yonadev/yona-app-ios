@@ -149,31 +149,31 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CustomDeleteCell = tableView.dequeueReusableCellWithIdentifier("CustomDeleteCell", forIndexPath: indexPath) as! CustomDeleteCell
-//        cell.setMessage(messages[indexPath.section][indexPath.row])
+   //     cell.setMessage(messages[indexPath.section][indexPath.row])
         
         let currentMessage = messages[indexPath.section][indexPath.row] as Message
         //turn off/on delete messages by disabling the pan gesture on our custom delete cell
         //cannot swithc on a optional type so have
-//        switch currentMessage.messageType {
-//        case .ActivityCommentMessage:
-//            cell.allowsSwipeAction = false
-//        case .BuddyConnectRequestMessage:
-//            cell.allowsSwipeAction = true
-//        case .BuddyDisconnectMessage:
-//            cell.allowsSwipeAction = true
-//        case .BuddyConnectResponseMessage:
-//            cell.allowsSwipeAction = true
-//        case .GoalConflictMessage:
-//            cell.allowsSwipeAction = true
-//        case .GoalChangeMessage:
-//            cell.allowsSwipeAction = true
-//        case .DisclosureResponseMessage:
-//            cell.allowsSwipeAction = true
-//        case .DisclosureRequestMessage:
-//            cell.allowsSwipeAction = true
-//        case .NoValue:
-//            cell.allowsSwipeAction = true
-//        }
+        switch currentMessage.messageType {
+        case .ActivityCommentMessage:
+            cell.allowsSwipeAction = false
+        case .BuddyConnectRequestMessage:
+            cell.allowsSwipeAction = true
+        case .BuddyDisconnectMessage:
+            cell.allowsSwipeAction = true
+        case .BuddyConnectResponseMessage:
+            cell.allowsSwipeAction = true
+        case .GoalConflictMessage:
+            cell.allowsSwipeAction = true
+        case .GoalChangeMessage:
+            cell.allowsSwipeAction = true
+        case .DisclosureResponseMessage:
+            cell.allowsSwipeAction = true
+        case .DisclosureRequestMessage:
+            cell.allowsSwipeAction = true
+        case .NoValue:
+            cell.allowsSwipeAction = true
+        }
 
 //        cell.yonaUserDelegate = self
         return cell

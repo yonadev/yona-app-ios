@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,56 +12,39 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1K-WI-6A4" userLabel="ActionView">
-                        <rect key="frame" x="224" y="1" width="96" height="87"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-cs-24h">
-                                <rect key="frame" x="26" y="29" width="43" height="30"/>
-                                <state key="normal" title="delete"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="TbS-cs-24h" firstAttribute="centerX" secondItem="I1K-WI-6A4" secondAttribute="centerX" id="HUt-pY-kgf"/>
-                            <constraint firstItem="TbS-cs-24h" firstAttribute="centerY" secondItem="I1K-WI-6A4" secondAttribute="centerY" id="KXj-wr-MH3"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="x8V-Ks-yj1"/>
-                        </constraints>
-                    </view>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPM-GO-6YK" userLabel="Swipe">
-                        <rect key="frame" x="0.0" y="1" width="320" height="87"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Cell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hd-vW-xQt">
-                                <rect key="frame" x="127" y="34" width="66" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QY4-0s-Vbj" userLabel="Action">
+                        <rect key="frame" x="232" y="0.0" width="88" height="87.5"/>
                         <color key="backgroundColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4hd-vW-xQt" firstAttribute="centerX" secondItem="mPM-GO-6YK" secondAttribute="centerX" id="6IA-fY-bMB"/>
-                            <constraint firstItem="4hd-vW-xQt" firstAttribute="centerY" secondItem="mPM-GO-6YK" secondAttribute="centerY" id="YtP-fM-68u"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="cY2-OC-dKA"/>
                         </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-5F-7x3" userLabel="Swipe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                        <color key="backgroundColor" red="0.9098039269" green="0.18823529780000001" blue="0.5411764979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="I1K-WI-6A4" secondAttribute="bottom" id="3SU-1B-mhk"/>
-                    <constraint firstItem="mPM-GO-6YK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6wu-fb-C1G"/>
-                    <constraint firstAttribute="trailing" secondItem="I1K-WI-6A4" secondAttribute="trailing" id="7kb-Qz-KJ4"/>
-                    <constraint firstItem="I1K-WI-6A4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="J1x-uL-MtJ"/>
-                    <constraint firstItem="I1K-WI-6A4" firstAttribute="leading" secondItem="mPM-GO-6YK" secondAttribute="trailing" priority="999" id="VlG-NI-M4o"/>
-                    <constraint firstItem="mPM-GO-6YK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="bJy-iU-Shh"/>
-                    <constraint firstItem="mPM-GO-6YK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="jOX-LT-xoQ"/>
-                    <constraint firstAttribute="bottom" secondItem="mPM-GO-6YK" secondAttribute="bottom" id="qUY-8F-Zsr"/>
+                    <constraint firstItem="gVK-5F-7x3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2vV-Fl-QCk"/>
+                    <constraint firstItem="QY4-0s-Vbj" firstAttribute="leading" secondItem="gVK-5F-7x3" secondAttribute="trailing" priority="999" id="87E-d3-CMl"/>
+                    <constraint firstAttribute="trailing" secondItem="QY4-0s-Vbj" secondAttribute="trailing" id="FDF-cU-djg"/>
+                    <constraint firstAttribute="bottom" secondItem="QY4-0s-Vbj" secondAttribute="bottom" id="NPb-Di-21d"/>
+                    <constraint firstItem="gVK-5F-7x3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="VcN-IH-Ybc"/>
+                    <constraint firstItem="gVK-5F-7x3" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="Wa4-Jd-YOe"/>
+                    <constraint firstItem="QY4-0s-Vbj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nWp-z3-pQH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gVK-5F-7x3" secondAttribute="bottom" id="zmh-5p-bpS"/>
                 </constraints>
             </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSwipeAction" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="actionViewWidthConstraint" destination="x8V-Ks-yj1" id="2L0-CC-1ZS"/>
-                <outlet property="swipableContent" destination="mPM-GO-6YK" id="hd6-7q-HAU"/>
-                <outlet property="swipableContentHorizontalConstraint" destination="bJy-iU-Shh" id="lrd-hx-KHN"/>
+                <outlet property="actionViewWidthConstraint" destination="cY2-OC-dKA" id="k12-u3-ISu"/>
+                <outlet property="swipableContent" destination="gVK-5F-7x3" id="tzy-N9-lCo"/>
+                <outlet property="swipableContentHorizontalConstraint" destination="VcN-IH-Ybc" id="U0c-bb-eBS"/>
             </connections>
         </tableViewCell>
     </objects>
