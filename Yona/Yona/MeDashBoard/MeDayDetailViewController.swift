@@ -76,6 +76,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         self.sendCommentFooter?.alpha = 0
         
     }
+    
     @IBAction func backAction(sender : AnyObject) {
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)

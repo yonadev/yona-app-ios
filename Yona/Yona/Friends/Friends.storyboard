@@ -580,6 +580,11 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oxJ-mE-kxE">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="Htj-TK-Ekc">
+                            <connections>
+                                <action selector="backAction:" destination="30a-nZ-Iva" id="W5w-UN-c0m"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Yona" style="plain" id="Src-Yo-bvp">
                             <inset key="imageInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                             <connections>
@@ -715,6 +720,13 @@
                             <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kHT-DJ-rWP" secondAttribute="bottom" id="whd-qn-Jxt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="SYv-oO-LjM">
+                        <barButtonItem key="leftBarButtonItem" image="icnBack" id="1el-fk-Qvc">
+                            <connections>
+                                <action selector="backAction:" destination="WCB-5H-QxB" id="9a0-2d-rka"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="iRa-lx-cHW"/>
                         <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
