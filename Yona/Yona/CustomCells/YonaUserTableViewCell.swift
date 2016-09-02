@@ -50,11 +50,6 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         
     }
     
-//    func layoutSubviews() {
-//        
-//    }
-
-    
     @IBAction func deleteMessage(sender: UIButton){
         if let yonaUserSwipeDelegate = yonaUserSwipeDelegate,
             let aMessage = aMessage{

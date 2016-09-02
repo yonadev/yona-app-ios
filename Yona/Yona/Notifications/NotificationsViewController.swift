@@ -99,11 +99,11 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        Loader.Show()
+//        Loader.Show()
         BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
             //success so get the user?
             if success {
-                Loader.Hide()
+//                Loader.Hide()
                 self.buddyData = buddy
                 if let aMessage = self.aMessage {
                     switch aMessage.messageType {
@@ -140,7 +140,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             } else {
                 //response from request failed
-                Loader.Hide()
+//                Loader.Hide()
             }
         })
 
