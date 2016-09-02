@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
+class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     var selectedIndex : NSIndexPath?
@@ -44,6 +44,9 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
+        nib = UINib(nibName: "CustomDeleteCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "CustomDeleteCell")
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -96,11 +99,11 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        Loader.Show()
+//        Loader.Show()
         BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
             //success so get the user?
             if success {
-                Loader.Hide()
+//                Loader.Hide()
                 self.buddyData = buddy
                 if let aMessage = self.aMessage {
                     switch aMessage.messageType {
@@ -137,7 +140,7 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             } else {
                 //response from request failed
-                Loader.Hide()
+//                Loader.Hide()
             }
         })
 
@@ -153,26 +156,26 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         //cannot swithc on a optional type so have
         switch currentMessage.messageType {
         case .ActivityCommentMessage:
-            cell.isPanEnabled = false
+            cell.allowsSwipeAction = false
         case .BuddyConnectRequestMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .BuddyDisconnectMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .BuddyConnectResponseMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .GoalConflictMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .GoalChangeMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .DisclosureResponseMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .DisclosureRequestMessage:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         case .NoValue:
-            cell.isPanEnabled = true
+            cell.allowsSwipeAction = true
         }
 
-        cell.yonaUserDelegate = self
+        cell.yonaUserSwipeDelegate = self
         return cell
     }
 
@@ -199,33 +202,33 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
         
     }
     
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            selectedIndex = indexPath
-            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
-                if success {
-                    self.loadMessages(self)
-                } else {
-                    self.displayAlertMessage(message!, alertDescription: "")
-                }
-            })
-        }
-    }
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        selectedIndex = indexPath
-
-        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        //we can only delete a buddy request if it has been accepted or rejected
-        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-            return true
-        } else {
-            return false
-        }
-
-    }
+//    // Override to support editing the table view.
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            selectedIndex = indexPath
+//            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+//            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+//                if success {
+//                    self.loadMessages(self)
+//                } else {
+//                    self.displayAlertMessage(message!, alertDescription: "")
+//                }
+//            })
+//        }
+//    }
+//    
+//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        selectedIndex = indexPath
+//
+//        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
+//        //we can only delete a buddy request if it has been accepted or rejected
+//        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
+//            return true
+//        } else {
+//            return false
+//        }
+//
+//    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if messages[indexPath.section].count > 0{
