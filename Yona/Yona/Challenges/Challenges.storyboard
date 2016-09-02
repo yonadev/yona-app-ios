@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -884,33 +884,36 @@ Pinterest, Instagram, Snapchat</string>
                                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX4-6X-brS">
-                                                        <rect key="frame" x="557" y="35" width="30" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="7WT-gr-Ryy"/>
-                                                        </constraints>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
+                                                        <rect key="frame" x="557" y="29" width="29.5" height="43.5"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
-                                                        <state key="normal" title="10">
-                                                            <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
+                                                        <rect key="frame" x="28" y="70" width="561" height="31"/>
+                                                        <color key="minimumTrackTintColor" red="0.58823529409999997" green="0.74901960779999999" blue="0.1960784314" alpha="1" colorSpace="deviceRGB"/>
+                                                        <color key="thumbTintColor" red="0.58823529411764708" green="0.74901960784313726" blue="0.19607843137254902" alpha="1" colorSpace="deviceRGB"/>
                                                         <connections>
-                                                            <action selector="maxTimebuttonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="9PY-rC-Hqh"/>
+                                                            <action selector="minutesDidChange:" destination="9hD-qE-oqu" eventType="valueChanged" id="kci-1Y-Zey"/>
                                                         </connections>
-                                                    </button>
+                                                    </slider>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="mpN-kc-503" firstAttribute="leading" secondItem="Z0G-at-WY5" secondAttribute="leading" constant="30" id="1r3-ia-dsY"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="55k-2L-X4Y"/>
+                                                    <constraint firstAttribute="bottom" secondItem="aht-yC-Voh" secondAttribute="bottom" id="6cw-bZ-OXq"/>
                                                     <constraint firstItem="mpN-kc-503" firstAttribute="top" secondItem="APG-DO-NcS" secondAttribute="bottom" constant="4" id="RyQ-Wt-IVd"/>
-                                                    <constraint firstItem="DX4-6X-brS" firstAttribute="top" secondItem="Z0G-at-WY5" secondAttribute="top" constant="35" id="TBj-jt-fIy"/>
+                                                    <constraint firstItem="aht-yC-Voh" firstAttribute="leading" secondItem="mpN-kc-503" secondAttribute="leading" id="Snr-cz-i5R"/>
+                                                    <constraint firstItem="aht-yC-Voh" firstAttribute="trailing" secondItem="M4u-WC-0pb" secondAttribute="trailing" id="Two-eD-hyl"/>
                                                     <constraint firstItem="APG-DO-NcS" firstAttribute="top" secondItem="Z0G-at-WY5" secondAttribute="top" constant="27" id="Z6d-8c-Eay"/>
                                                     <constraint firstItem="APG-DO-NcS" firstAttribute="leading" secondItem="Z0G-at-WY5" secondAttribute="leading" constant="30" id="aOQ-mj-x2J"/>
-                                                    <constraint firstAttribute="trailing" secondItem="DX4-6X-brS" secondAttribute="trailing" constant="17" id="bjv-kz-e1I"/>
                                                     <constraint firstAttribute="trailing" secondItem="APG-DO-NcS" secondAttribute="trailing" constant="90" id="hIp-zp-D6J"/>
                                                     <constraint firstAttribute="height" constant="100" id="nIZ-bs-DLg"/>
-                                                    <constraint firstAttribute="bottom" secondItem="DX4-6X-brS" secondAttribute="bottom" constant="35" id="qSf-Uh-EgD"/>
+                                                    <constraint firstItem="M4u-WC-0pb" firstAttribute="centerY" secondItem="Z0G-at-WY5" secondAttribute="centerY" id="qzA-6N-DwM"/>
                                                     <constraint firstAttribute="trailing" secondItem="mpN-kc-503" secondAttribute="trailing" constant="90" id="vT1-XL-LVU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="M4u-WC-0pb" secondAttribute="trailing" constant="17" id="zCc-LT-Q12"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -1061,9 +1064,9 @@ Pinterest, Instagram, Snapchat</string>
                         <outlet property="deleteGoalButton" destination="toe-i8-Ekn" id="XYD-EE-OQg"/>
                         <outlet property="footerGradientView" destination="Aje-8k-rUN" id="7Zc-8w-9qf"/>
                         <outlet property="headerView" destination="XEI-aB-5HT" id="Von-33-xLy"/>
-                        <outlet property="maxTimeButton" destination="DX4-6X-brS" id="Wj9-Vq-ffO"/>
+                        <outlet property="minutesLabel" destination="M4u-WC-0pb" id="DsS-go-vEz"/>
                         <outlet property="minutesPerDayLabel" destination="mpN-kc-503" id="bCc-xj-m2u"/>
-                        <outlet property="pickerBackgroundView" destination="6ji-LY-TbC" id="hdg-Rv-icM"/>
+                        <outlet property="minutesSlider" destination="aht-yC-Voh" id="2Si-FZ-ko0"/>
                         <outlet property="scrollView" destination="cdb-1L-Uwf" id="Cf8-jv-trm"/>
                         <outlet property="setChallengeButton" destination="CZh-m0-g2j" id="LV0-yj-lgv"/>
                         <outlet property="timeZoneLabel" destination="APG-DO-NcS" id="wjI-gV-RlK"/>
@@ -1071,11 +1074,6 @@ Pinterest, Instagram, Snapchat</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tkr-FY-jUl" userLabel="Exit" sceneMemberID="exit"/>
-                <view contentMode="scaleToFill" id="6ji-LY-TbC">
-                    <rect key="frame" x="0.0" y="0.0" width="598" height="180"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="1468" y="-494"/>
         </scene>
