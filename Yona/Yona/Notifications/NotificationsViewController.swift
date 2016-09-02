@@ -72,12 +72,6 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
         }
         
-//        //implement later
-//        if segue.destinationViewController is FriendsDayDetailViewController {
-//            let controller = segue.destinationViewController as! FriendsDayDetailViewController
-//            controller.buddyToShow = self.buddyData
-//        }
-        
     }
     
     //MARK: - tableview methods
@@ -125,6 +119,18 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
             case .BuddyConnectResponseMessage:
                 break
             case .GoalConflictMessage:
+                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
+                vc.buddy = self.buddyData
+                vc.initialObjectLink = aMessage.dayDetailsLink
+                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                let navbar = navigationController?.navigationBar as! GradientNavBar
+                
+                vc.navbarColor = navbar.gradientColor
+                navbar.gradientColor = UIColor.yiMidBlueColor()
+                
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case .GoalChangeMessage:
                 let storyboard = UIStoryboard(name: "Friends", bundle: nil)
