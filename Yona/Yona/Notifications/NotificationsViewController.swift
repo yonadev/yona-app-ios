@@ -122,7 +122,10 @@ class NotificationsViewController: UITableViewController, YonaUserCellDelegate {
                 let storyboard = UIStoryboard(name: "Friends", bundle: nil)
                 let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
                 vc.buddy = self.buddyData
+                vc.goalType = GoalType.NoGoGoalString.rawValue
+                vc.currentDate = aMessage.creationTime
                 vc.initialObjectLink = aMessage.dayDetailsLink
+                
                 vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
                 self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
                 let navbar = navigationController?.navigationBar as! GradientNavBar

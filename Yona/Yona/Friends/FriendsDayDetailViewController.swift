@@ -75,11 +75,11 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
-                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue || activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
                     cellHeight = 165
-                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                } else if goalType == GoalType.NoGoGoalString.rawValue || activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
                     cellHeight = 85
-                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue || activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
                     cellHeight = 165
                 }
             }
@@ -108,19 +108,19 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             }
             if indexPath.row == detailDayRows.activity.rawValue {
                 
-                if activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue || activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
                     let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
-                } else if activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue || activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
                     let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
-                } else if activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
+                } else if goalType == GoalType.NoGoGoalString.rawValue || activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
                     let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data)
