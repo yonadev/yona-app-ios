@@ -96,6 +96,7 @@ struct YonaConstants {
         static let  goalAccomplished = "goalAccomplished"
         static let  totalMinutesBeyondGoal = "totalMinutesBeyondGoal"
         static let  yonaDayDetails = "yona:dayDetails"
+        static let  yonaDayDetailsReport = "yona:dailyActivityReports"
         static let  date = "date"
         static let  yonaGoal = "yona:goal"
         static let  spread = "spread"

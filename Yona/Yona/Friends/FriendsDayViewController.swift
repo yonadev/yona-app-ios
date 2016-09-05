@@ -11,13 +11,24 @@ import Foundation
 class FriendsDayViewController: MeDashBoardMainViewController {
     
     var buddyToShow :Buddies?
+    var navbarColor1 : UIColor?
+    var navbarColor : UIColor?
     
     @IBOutlet weak var rightNavBarItem : UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("", comment: "")
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        if let navbarColor1 = navbarColor1,
+            let navbarColor = navbarColor {
+            self.navigationController?.navigationBar.backgroundColor = navbarColor1
+            let navbar = navigationController?.navigationBar as! GradientNavBar
+            navbar.gradientColor = navbarColor
+        }
+        
+    }
 
     override func viewWillAppear(animated: Bool) {
         var tmpFirst = ""

@@ -473,7 +473,6 @@ struct R {
     struct notificationsViewController {
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
       static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
-      static var showFriendDayView: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, FriendsDayViewController> { return StoryboardSegueIdentifier(identifier: "showFriendDayView") }
       static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }
     }
     
@@ -637,7 +636,6 @@ struct R {
     }
     
     struct meDashBoard {
-      static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
       static var initialViewController: MeDashBoardMainViewController? { return instance.instantiateInitialViewController() as? MeDashBoardMainViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
       static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
@@ -654,7 +652,6 @@ struct R {
         assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
         assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
         assert(yonaNotificationAcceptFriendRequestViewController != nil, "[R.swift] ViewController with identifier 'yonaNotificationAcceptFriendRequestViewController' could not be loaded from storyboard 'MeDashBoard' as 'YonaNotificationAcceptFriendRequestViewController'.")
-        assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'MeDashBoard' as 'FriendsDayViewController'.")
       }
     }
     

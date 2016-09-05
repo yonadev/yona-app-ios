@@ -44,7 +44,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var page : Int = 1
     var size : Int = 4
     var animatedCells : [String] = []
-
+    
+    var navbarColor1 : UIColor?
+    var navbarColor : UIColor?
+    
     //paging
     var totalSize: Int = 0
     var totalPages : Int = 0
@@ -69,6 +72,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             currentDate = activityGoal.date
             goalName = activityGoal.goalName
             goalType = activityGoal.goalType
+            
         }
        // self.navigationController?.navigationBar.hidden = true
         registreTableViewCells()
@@ -76,6 +80,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         self.sendCommentFooter?.alpha = 0
         
     }
+    
     @IBAction func backAction(sender : AnyObject) {
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
