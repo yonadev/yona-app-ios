@@ -503,7 +503,7 @@
         <image name="icnReminder" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i6A-dg-q6c"/>
         <segue reference="rQa-zh-Tis"/>
+        <segue reference="i6A-dg-q6c"/>
     </inferredMetricsTieBreakers>
 </document>

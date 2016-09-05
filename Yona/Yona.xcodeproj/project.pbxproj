@@ -150,13 +150,16 @@
 		906FED931CEE23D600029845 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D741CA940D9008CAFB1 /* Settings.storyboard */; };
 		906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAEAFE11CB40FA4005ED7B4 /* Welcome.storyboard */; };
 		906FED971CEE23E200029845 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD291D2A1CA928A2008CAFB1 /* WalkThrough.storyboard */; };
+		9075AF141D7DA78800D72654 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9075AF131D7DA78800D72654 /* SecretKeys.plist */; };
 		907DA5241CBBD0400031850E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5231CBBD0400031850E /* Manager.swift */; };
 		907DA5261CBE590A0031850E /* ActivityAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */; };
 		907DA5281CBE5C5D0031850E /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5271CBE5C5D0031850E /* Activities.swift */; };
 		907DA52A1CC51C310031850E /* NewDeviceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA5291CC51C310031850E /* NewDeviceRequests.swift */; };
 		908497701CD911BE0030AEE4 /* AdminRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */; };
 		908497721CD918700030AEE4 /* AdminOverrideRequestsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */; };
-		90B004261D79A7F300C720BB /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90B004251D79A7F300C720BB /* SecretKeys.plist */; };
+		90B6E6061D771BB40082FB6D /* SHSwippableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6E6041D771BB40082FB6D /* SHSwippableTableViewCell.m */; };
+		90B6E6091D78260B0082FB6D /* CustomDeleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B6E6071D78260B0082FB6D /* CustomDeleteCell.swift */; };
+		90B6E60A1D78260B0082FB6D /* CustomDeleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B6E6081D78260B0082FB6D /* CustomDeleteCell.xib */; };
 		90C5B5361CE4F00F00D87BFF /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */; };
 		90DE87981CD2372900C1E706 /* NewDeviceRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */; };
@@ -545,6 +548,7 @@
 		906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeDashBoard.storyboard; path = ../Notifications/MeDashBoard.storyboard; sourceTree = "<group>"; };
 		906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsProfileMasterView.swift; path = Yona/FriendsProfileMasterView.swift; sourceTree = SOURCE_ROOT; };
 		906FED851CEDC72300029845 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		9075AF131D7DA78800D72654 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		907DA5231CBBD0400031850E /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		907DA5251CBE590A0031850E /* ActivityAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAPIServiceTests.swift; sourceTree = "<group>"; };
 		907DA5271CBE5C5D0031850E /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -552,7 +556,10 @@
 		907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9084976F1CD911BE0030AEE4 /* AdminRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminRequestManager.swift; sourceTree = "<group>"; };
 		908497711CD918700030AEE4 /* AdminOverrideRequestsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideRequestsTest.swift; sourceTree = "<group>"; };
-		90B004251D79A7F300C720BB /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		90B6E6041D771BB40082FB6D /* SHSwippableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSwippableTableViewCell.m; sourceTree = "<group>"; };
+		90B6E6051D771BB40082FB6D /* SHSwippableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSwippableTableViewCell.h; sourceTree = "<group>"; };
+		90B6E6071D78260B0082FB6D /* CustomDeleteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeleteCell.swift; sourceTree = "<group>"; };
+		90B6E6081D78260B0082FB6D /* CustomDeleteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDeleteCell.xib; sourceTree = "<group>"; };
 		90DE87951CD2369700C1E706 /* PinResetRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetRequestManager.swift; sourceTree = "<group>"; };
 		90DE87971CD2372900C1E706 /* NewDeviceRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeviceRequestManager.swift; sourceTree = "<group>"; };
 		90DE879B1CD238B400C1E706 /* GoalsRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsRequestManager.swift; sourceTree = "<group>"; };
@@ -953,6 +960,8 @@
 		16B1CD221D15730F00A1ABA7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				90B6E6041D771BB40082FB6D /* SHSwippableTableViewCell.m */,
+				90B6E6051D771BB40082FB6D /* SHSwippableTableViewCell.h */,
 				9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */,
 				166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */,
 				9054D5381D52359B0060D22E /* CommentTableHeader.swift */,
@@ -960,6 +969,8 @@
 				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
 				16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */,
 				16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */,
+				90B6E6081D78260B0082FB6D /* CustomDeleteCell.xib */,
+				90B6E6071D78260B0082FB6D /* CustomDeleteCell.swift */,
 				16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */,
 				16B1CD2C1D15900E00A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.swift */,
 				16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */,
@@ -1739,7 +1750,7 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				90B004251D79A7F300C720BB /* SecretKeys.plist */,
+				9075AF131D7DA78800D72654 /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 			);
@@ -1923,6 +1934,7 @@
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
 				166CB8441D24EEC9008B425D /* WeekScoreControlCell.xib in Resources */,
+				90B6E60A1D78260B0082FB6D /* CustomDeleteCell.xib in Resources */,
 				ADEF8F081CADFD0C001D5EED /* Roboto-Light.ttf in Resources */,
 				90F123E71D385B4F00E2BBBA /* NoGoCellFriends.xib in Resources */,
 				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
@@ -1935,6 +1947,7 @@
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
+				9075AF141D7DA78800D72654 /* SecretKeys.plist in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				166CB84E1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,
@@ -1943,7 +1956,6 @@
 				166CB8561D2FA200008B425D /* YonaButtonTableViewCell.xib in Resources */,
 				ADD108241CC78C3B0048852F /* Oswald-ExtraLight.ttf in Resources */,
 				D98635561CABF44000A8535C /* SF-UI-Display-Light.otf in Resources */,
-				90B004261D79A7F300C720BB /* SecretKeys.plist in Resources */,
 				D98635641CABF44000A8535C /* SF-UI-Text-Regular.otf in Resources */,
 				ADD108221CC78C3B0048852F /* Oswald-DemiBold.ttf in Resources */,
 				906FED8D1CEE23C100029845 /* Login.storyboard in Resources */,
@@ -2111,6 +2123,7 @@
 				1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */,
 				90DE87961CD2369700C1E706 /* PinResetRequestManager.swift in Sources */,
 				1656A5D01D4BEA0B00EB288D /* DDNumber.m in Sources */,
+				90B6E6091D78260B0082FB6D /* CustomDeleteCell.swift in Sources */,
 				160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */,
 				165BB1E71D22829D0013A4EF /* ActivitiesGoal.swift in Sources */,
 				D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */,
@@ -2142,6 +2155,7 @@
 				16FDABE31D55C13000B847DB /* TimeLineHeaderCell.swift in Sources */,
 				90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
+				90B6E6061D771BB40082FB6D /* SHSwippableTableViewCell.m in Sources */,
 				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
 				166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */,
 				1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */,
