@@ -16,8 +16,6 @@ enum DayDetailSecions : Int{
 class FriendsDayDetailViewController : MeDayDetailViewController {
 
     var buddy : Buddies?
-    var navbarColor1 : UIColor?
-    var navbarColor : UIColor?
     
     override func registreTableViewCells () {
         super.registreTableViewCells()
@@ -30,13 +28,14 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         if let navbarColor1 = navbarColor1,
             let navbarColor = navbarColor {
             self.navigationController?.navigationBar.backgroundColor = navbarColor1
-            let navbar = navigationController?.navigationBar as! GradientNavBar
-            navbar.gradientColor = navbarColor
+            if let navbar = navigationController?.navigationBar as? GradientNavBar{
+                navbar.gradientColor = navbarColor
+            }
         }
-        
     }
     
     private func shouldAnimate(cell : NSIndexPath) -> Bool {
