@@ -39,6 +39,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     var timeLineData : [TimeLineDayActivityOverview] = []
     var animatedCells : [String] = []
+    var scrolling = false
+    var leftPage : Int = 0
     
     // MARK: - View
     override func viewDidLoad() {
@@ -50,13 +52,19 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 //        theTableView.addSubview(refreshControl)
         //setupUI()
         registreTableViewCells()
-        showLeftTab(leftTabMainView)
+        //showLeftTab(leftTabMainView)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
+        leftPage = 0
+        if selectedTab == .left  {
+            showLeftTab(leftTabMainView)
+        }
     }
+    
+
     
     func setupUI() {
         //Nav bar Back button.
@@ -96,6 +104,31 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
 
      // MARK: - Table view data source
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        let y = CGFloat(offset.y + bounds.size.height - inset.bottom)
+        let h = CGFloat(size.height)
+        
+        let reload_distance = CGFloat(80)  // MUST find right distance ....
+        if(y > (h + reload_distance)) {
+            
+            if !scrolling {
+                scrolling = true
+                loadMoreRows()
+            }
+        } else if y == 0 {
+            scrolling = false
+        }
+    }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrolling = false
+    }
+
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
@@ -124,37 +157,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
 
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if selectedTab == .left {
-//            let dateFormatter : NSDateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
-//            
-//            if timeLineData[section].date.isToday() {
-//                return NSLocalizedString("Today", comment: "")
-//            } else if timeLineData[section].date.isYesterday() {
-//                return  NSLocalizedString("Yesterday", comment: "")
-//            } else {
-//                return  dateFormatter.stringFromDate(timeLineData[section].date)
-//            }
-//            
-//        } else {
-//            if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
-//                return nil
-//            } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
-//                return nil
-//            }
-//            return friendsSections(rawValue: section)?.simpleDescription()
-//        }
-//    }
-//    
-//    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        view.tintColor = UIColor.yiWhiteThreeColor()
-//
-//        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-//        header.textLabel?.font = UIFont(name: "SFUIDisplay-Bold", size: 11.0)
-//        header.textLabel?.textAlignment = NSTextAlignment.Center
-//        header.textLabel?.textColor = UIColor.yiBlackColor()
-//    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if selectedTab == .left {
@@ -260,32 +262,42 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 
     override func actionsAfterLeftButtonPush() {
         self.navigationItem.rightBarButtonItem = nil
-        loadDataForTimeLine()
+        loadDataForTimeLine(leftPage)
         
     }
     
-    func loadDataForTimeLine() {
-    
-        if timeLineData.count > 0 {
-            theTableView.reloadData()
-            return
+    func loadMoreRows() {
+        if selectedTab == .left {
+            loadDataForTimeLine(leftPage)
+            
         }
+    }
+
+    
+    func loadDataForTimeLine(page : Int) {
+    
+//        if timeLineData.count > 0 {
+//            theTableView.reloadData()
+//            return
+//        }
         Loader.Show()
-        ActivitiesRequestManager.sharedInstance.getTimeLineActivity {(succes, serverMessage, serverCode, timeLineDayActivityOverview, error) in
+        ActivitiesRequestManager.sharedInstance.getTimeLineActivity (3,page: page,onCompletion: {(succes, serverMessage, serverCode, timeLineDayActivityOverview, error) in
             
             print("Success \(succes)")
             if timeLineDayActivityOverview != nil {
-                self.timeLineData = timeLineDayActivityOverview!
+                if self.leftPage == 0 {
+                    self.timeLineData = timeLineDayActivityOverview!
+                } else {
+                    self.timeLineData.appendContentsOf(timeLineDayActivityOverview!)
+                }
+                self.leftPage += 1
+
+                
             }
             
-//            for each in self.timeLineData as [TimeLineDayActivityOverview] {
-//                for type in each.activites  {
-//                    self.timeLineSectionCount += 1
-//                }
-//             }
             Loader.Hide()
             self.theTableView.reloadData()
-        }
+        })
     }
     
     
@@ -296,7 +308,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     func reloadData() {
         if selectedTab == .left {
-            loadDataForTimeLine()
+            loadDataForTimeLine(leftPage)
             
         } else {
             loadAllBuddyList(self)

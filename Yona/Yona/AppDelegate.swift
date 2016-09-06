@@ -12,11 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var firstTime = false
+    var firstTime = true
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        print ("First time : \(firstTime)")
         
         updateEnvironmentSettings()
         //check for goals, no go go
@@ -69,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
+        testForVpnEnabled()
     }
     
     func doBackgroundTask() {
@@ -119,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //response.setHeader("Location", value: "yonaApp://")
             
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "http://www.simusoft.dk/yonaapp/")
+                response.setHeader("Location", value: "https://www.yona.nl/yonaapp/")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
@@ -167,5 +170,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserRequestManager.sharedInstance.deleteUser { (success, message, code) in
             //delete user on log out
         }
+    }
+    
+    
+    //MARK: - test for enviroment settings
+    
+    /*
+     * When the app starts we will check if vpn is enabled
+     * as well as checking if openVPN is installed.
+     * If not we will alert the user
+     */
+    
+    
+    
+    func testForVpnEnabled() {
+        if let url = NSURL(string: "https://10.96.169.12:442/cgi-bin/login.cgi") {
+            let request:NSURLRequest = NSURLRequest(URL:url)
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            config.timeoutIntervalForRequest = 10
+            let session = NSURLSession(configuration: config)
+            
+            let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+                if let aError = error {
+                    print (" No access through vpn \(aError.code), \(aError.localizedDescription)")
+                }
+            });
+            
+            task.resume()
+        }
+    }
+    
+    func testForOpenVPN() {
+        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+        
     }
 }

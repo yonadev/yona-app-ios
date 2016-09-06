@@ -40,12 +40,11 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBOutlet weak var spacerView1 : UIView!
     @IBOutlet weak var spacerView2 : UIView!
     var demoCounter = 0
-//    var httpServer : RoutingHTTPServer?
+
     var mobileconfigData : NSData?
     var currentProgress : VPNSetupStatus = .yonaAppInstalled
     var customView : UIView  = UIView(frame: CGRectZero)
     var firstTime = true
-    //var webServer : GCDWebUploader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -503,10 +502,8 @@ class YonaVPNFlowMainViewController: UIViewController {
             print("handleMobileconfigLoadRequest, NOT first time")
             response.statusCode = 302
             //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
-            //response.setHeader("Location", value: "yonaApp://")
-            
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "http://www.simusoft.dk/yonaapp/")
+                response.setHeader("Location", value: "http://www.yona.nl/yonaapp/")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
