@@ -37,7 +37,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
@@ -123,10 +123,12 @@ class TimeFrameNoGoChallengeViewController: BaseViewController {
         if let goalUnwrap = self.goalCreated,
             let goalEditLink = goalUnwrap.editLinks {
             Loader.Show()
-            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode) in
+            GoalsRequestManager.sharedInstance.deleteUserGoal(goalEditLink) { (success, serverMessage, serverCode, goal, goals, error) in
                 Loader.Hide()
                 if success {
-                    
+                    if goals?.count == 1 {
+                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                    }
                     self.delegate?.callGoalsMethod()
                     
                     self.navigationController?.popViewControllerAnimated(true)

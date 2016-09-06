@@ -125,6 +125,11 @@ struct Message{
                 self.dayDetailsLink = href
             }
             
+            if let dayDetailsLink = links[YonaConstants.jsonKeys.yonaDayDetailsReport],
+                let href = dayDetailsLink[getMessagesKeys.href.rawValue] as? String{
+                self.dayDetailsLink = href
+            }
+            
             if let weekDetailsLink = links[YonaConstants.jsonKeys.yonaWeekDetails],
                 let href = weekDetailsLink[getMessagesKeys.href.rawValue] as? String{
                 self.weekDetailsLink = href

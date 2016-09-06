@@ -37,6 +37,16 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         configurProfileBarItem()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //make sure we set the nav bar to correct purple colours
+        if let navbar = navigationController?.navigationBar as? GradientNavBar{
+            navbar.backgroundColor = UIColor.yiGrapeColor()
+            navbar.gradientColor = UIColor.yiGrapeTwoColor()
+        }
+    }
+    
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
@@ -89,6 +99,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         leftPage = 0
         rightPage = 0
         if selectedTab == .left {

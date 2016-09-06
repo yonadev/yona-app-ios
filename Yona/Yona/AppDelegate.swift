@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        updateEnvironmentSettings()
+        //check for goals, no go go
+        if BaseTabViewController.userHasGoals() == false {
+            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+        }
         hockeyAppSetup()
 		updateEnvironmentSettings()
         IQKeyboardManager.sharedManager().enable = true
@@ -63,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().endBackgroundTask(self.backgroundUpdateTask)
         self.backgroundUpdateTask = UIBackgroundTaskInvalid
     }
-
+ 
     
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()

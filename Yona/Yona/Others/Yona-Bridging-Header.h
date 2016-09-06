@@ -5,4 +5,6 @@
 #import "MacroAccessor.h"
 #import "EnvironmentManager.h"
 #import "SVProgressHUD.h"
+#import "EnvironmentManager.h"
 #import "RoutingHTTPServer.h"
+#import "SHSwippableTableViewCell.h"

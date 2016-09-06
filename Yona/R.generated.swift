@@ -85,7 +85,6 @@ struct R {
     static var sFUITextSemiboldItalicOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-SemiboldItalic", withExtension: "otf") }
     static var sFUITextSemiboldOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Semibold", withExtension: "otf") }
     static var sVProgressHUDBundle: NSURL? { return _R.hostingBundle?.URLForResource("SVProgressHUD", withExtension: "bundle") }
-    static var secretKeysPlist: NSURL? { return _R.hostingBundle?.URLForResource("SecretKeys", withExtension: "plist") }
     static var settingsBundle: NSURL? { return _R.hostingBundle?.URLForResource("Settings", withExtension: "bundle") }
   }
   
@@ -390,6 +389,7 @@ struct R {
   struct nib {
     static var commentControlCell: _R.nib._CommentControlCell { return _R.nib._CommentControlCell() }
     static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
+    static var customDeleteCell: _R.nib._CustomDeleteCell { return _R.nib._CustomDeleteCell() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var replyToComment: _R.nib._ReplyToComment { return _R.nib._ReplyToComment() }
@@ -417,6 +417,7 @@ struct R {
     static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
     static var challengeCell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "challengeCell") }
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
+    static var customDeleteCell: ReuseIdentifier<CustomDeleteCell> { return ReuseIdentifier(identifier: "CustomDeleteCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
@@ -471,7 +472,6 @@ struct R {
     struct notificationsViewController {
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
       static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
-      static var showFriendDayView: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, FriendsDayViewController> { return StoryboardSegueIdentifier(identifier: "showFriendDayView") }
       static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }
     }
     
@@ -635,7 +635,6 @@ struct R {
     }
     
     struct meDashBoard {
-      static var friendsDayViewController: FriendsDayViewController? { return instance.instantiateViewControllerWithIdentifier("FriendsDayViewController") as? FriendsDayViewController }
       static var initialViewController: MeDashBoardMainViewController? { return instance.instantiateInitialViewController() as? MeDashBoardMainViewController }
       static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
       static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
@@ -652,7 +651,6 @@ struct R {
         assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
         assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
         assert(yonaNotificationAcceptFriendRequestViewController != nil, "[R.swift] ViewController with identifier 'yonaNotificationAcceptFriendRequestViewController' could not be loaded from storyboard 'MeDashBoard' as 'YonaNotificationAcceptFriendRequestViewController'.")
-        assert(friendsDayViewController != nil, "[R.swift] ViewController with identifier 'friendsDayViewController' could not be loaded from storyboard 'MeDashBoard' as 'FriendsDayViewController'.")
       }
     }
     
@@ -790,6 +788,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentTableHeader? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentTableHeader
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _CustomDeleteCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "CustomDeleteCell", bundle: _R.hostingBundle) }
+      var name: String { return "CustomDeleteCell" }
+      var reuseIdentifier: ReuseIdentifier<CustomDeleteCell> { return ReuseIdentifier(identifier: "CustomDeleteCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CustomDeleteCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CustomDeleteCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
