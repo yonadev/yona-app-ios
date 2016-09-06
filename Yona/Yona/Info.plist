@@ -38,6 +38,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>openvpn</string>
+		<string>yonaApp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

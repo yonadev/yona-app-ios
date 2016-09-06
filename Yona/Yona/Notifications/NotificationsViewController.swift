@@ -93,76 +93,76 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-        Loader.Show()
-        BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
-            //success so get the user?
-            if success {
-                Loader.Hide()
-                self.buddyData = buddy
-                if let aMessage = self.aMessage {
-                    switch aMessage.messageType {
-                    case .ActivityCommentMessage:
-                        if aMessage.dayDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
-                        } else if aMessage.weekDetailsLink != nil {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-                        }
-                    case .BuddyConnectRequestMessage:
-                        if aMessage.status == buddyRequestStatus.REQUESTED {
-                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-                        }
-                    case .BuddyDisconnectMessage:
-                        break
-                    case .BuddyConnectResponseMessage:
-                        break
-                    case .GoalConflictMessage:
-                        let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                        let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
-                        vc.buddy = self.buddyData
-                        vc.goalType = GoalType.NoGoGoalString.rawValue
-                        vc.currentDate = aMessage.creationTime
-                        vc.initialObjectLink = aMessage.dayDetailsLink
-                        
-                        vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                        let navbar = self.navigationController?.navigationBar as! GradientNavBar
-                        
-                        vc.navbarColor = navbar.gradientColor
-                        navbar.gradientColor = UIColor.yiMidBlueColor()
-                        
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        break
-                    case .GoalChangeMessage:
-                        let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                        let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
-                        vc.buddyToShow = self.buddyData
-                        
-                        vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                        let navbar = self.navigationController?.navigationBar as! GradientNavBar
-                        
-                        vc.navbarColor = navbar.gradientColor
-                        navbar.gradientColor = UIColor.yiMidBlueColor()
-                        
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        break
-                    case .DisclosureResponseMessage:
-                        //not implemented yet
-                        break
-                    case .DisclosureRequestMessage:
-                        //not implemented yet
-                        break
-                    case .NoValue:
-                        break
-                        
+        
+        //this gets the buddy that matches the link in hte message for daily activity reports, so we can pass VC the correct buddy data
+        if let buddies = UserRequestManager.sharedInstance.newUser?.buddies {
+            for each in buddies {
+                if let dailyActivityLink = each.dailyActivityReports {
+                    if dailyActivityLink == aMessage?.dayDetailsLink {
+                        self.buddyData = each
                     }
                 }
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            } else {
-                //response from request failed
-                Loader.Hide()
             }
-        })
+        }
+        
+        if let aMessage = self.aMessage {
+            switch aMessage.messageType {
+            case .ActivityCommentMessage:
+                if aMessage.dayDetailsLink != nil {
+                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                } else if aMessage.weekDetailsLink != nil {
+                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                }
+            case .BuddyConnectRequestMessage:
+                if aMessage.status == buddyRequestStatus.REQUESTED {
+                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                }
+            case .BuddyDisconnectMessage:
+                break
+            case .BuddyConnectResponseMessage:
+                break
+            case .GoalConflictMessage:
+                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
+                vc.buddy = self.buddyData
+                vc.goalType = GoalType.NoGoGoalString.rawValue
+                vc.currentDate = aMessage.creationTime
+                vc.initialObjectLink = aMessage.dayDetailsLink
+                
+                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                
+                vc.navbarColor = navbar.gradientColor
+                navbar.gradientColor = UIColor.yiMidBlueColor()
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case .GoalChangeMessage:
+                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
+                vc.buddyToShow = self.buddyData
+                
+                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                
+                vc.navbarColor = navbar.gradientColor
+                navbar.gradientColor = UIColor.yiMidBlueColor()
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case .DisclosureResponseMessage:
+                //not implemented yet
+                break
+            case .DisclosureRequestMessage:
+                //not implemented yet
+                break
+            case .NoValue:
+                break
+                
+            }
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
     }

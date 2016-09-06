@@ -600,6 +600,8 @@ class ActivitiesRequestManager {
     //MARK: - Single day activity
     
     func getBuddyDayActivityDetails(activityLink : String,date :NSDate, buddy: Buddies ,onCompletion: APIActivityDayDetailResponse ){
+        
+        
         self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
                 guard success == true else {
@@ -712,11 +714,16 @@ class ActivitiesRequestManager {
         }
     }
     
-    func getTimeLineActivity(onCompletion: APIActivityTimeLineResponse){
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+    func getTimeLineActivity(size : Int, page : Int,onCompletion: APIActivityTimeLineResponse){
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
             if success && user?.timeLineLink != nil {
                 var data : [TimeLineDayActivityOverview] = []
-                self.APIService.callRequestWithAPIServiceResponse(nil, path: (user?.timeLineLink!)!, httpMethod: httpMethods.get) { success, json, error in
+                var link = ""
+                if let aLink = user?.timeLineLink {
+                    link = aLink
+                }
+                let aPath = link + "?size=" + String(size) + "&page=" + String(page)
+                self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
                     if let json = json {
                         guard success == true else {
                             onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
