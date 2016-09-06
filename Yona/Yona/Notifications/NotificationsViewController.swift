@@ -58,7 +58,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
 
         if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
             let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
-            controller.aMessage = self.aMessage //self.messages[(self.selectedIndex?.section)!][(self.selectedIndex?.row)!]
+            controller.aMessage = self.aMessage
             controller.aBuddy = self.buddyData
             self.selectedIndex = nil
             self.tableView.reloadData()
@@ -93,33 +93,58 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-//        Loader.Show()
+        Loader.Show()
         BuddyRequestManager.sharedInstance.getBuddy(aMessage!.selfLink, onCompletion: { (success, message, code, buddy, buddies) in
             //success so get the user?
             if success {
-//                Loader.Hide()
+                Loader.Hide()
                 self.buddyData = buddy
                 if let aMessage = self.aMessage {
                     switch aMessage.messageType {
                     case .ActivityCommentMessage:
-//                        if aMessage.dayDetailsLink != nil {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
-//                        } else if aMessage.weekDetailsLink != nil {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-//                        }
-                        break
+                        if aMessage.dayDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                        } else if aMessage.weekDetailsLink != nil {
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                        }
                     case .BuddyConnectRequestMessage:
                         if aMessage.status == buddyRequestStatus.REQUESTED {
-//                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                            self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
                         }
                     case .BuddyDisconnectMessage:
                         break
                     case .BuddyConnectResponseMessage:
                         break
                     case .GoalConflictMessage:
+                        let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                        let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
+                        vc.buddy = self.buddyData
+                        vc.goalType = GoalType.NoGoGoalString.rawValue
+                        vc.currentDate = aMessage.creationTime
+                        vc.initialObjectLink = aMessage.dayDetailsLink
+                        
+                        vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                        let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                        
+                        vc.navbarColor = navbar.gradientColor
+                        navbar.gradientColor = UIColor.yiMidBlueColor()
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                         break
                     case .GoalChangeMessage:
-//                        self.performSegueWithIdentifier(R.segue.notificationsViewController.showFriendDayView, sender: self)
+                        let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                        let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
+                        vc.buddyToShow = self.buddyData
+                        
+                        vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                        let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                        
+                        vc.navbarColor = navbar.gradientColor
+                        navbar.gradientColor = UIColor.yiMidBlueColor()
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                         break
                     case .DisclosureResponseMessage:
                         //not implemented yet
@@ -135,68 +160,9 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             } else {
                 //response from request failed
-//                Loader.Hide()
+                Loader.Hide()
             }
         })
-
-        if let aMessage = self.aMessage {
-            switch aMessage.messageType {
-            case .ActivityCommentMessage:
-                if aMessage.dayDetailsLink != nil {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
-                } else if aMessage.weekDetailsLink != nil {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
-                }
-            case .BuddyConnectRequestMessage:
-                if aMessage.status == buddyRequestStatus.REQUESTED {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
-                }
-            case .BuddyDisconnectMessage:
-                break
-            case .BuddyConnectResponseMessage:
-                break
-            case .GoalConflictMessage:
-                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
-                vc.buddy = self.buddyData
-                vc.goalType = GoalType.NoGoGoalString.rawValue
-                vc.currentDate = aMessage.creationTime
-                vc.initialObjectLink = aMessage.dayDetailsLink
-                
-                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                let navbar = navigationController?.navigationBar as! GradientNavBar
-                
-                vc.navbarColor = navbar.gradientColor
-                navbar.gradientColor = UIColor.yiMidBlueColor()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            case .GoalChangeMessage:
-                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
-                vc.buddyToShow = self.buddyData
-                
-                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                let navbar = navigationController?.navigationBar as! GradientNavBar
-                
-                vc.navbarColor = navbar.gradientColor
-                navbar.gradientColor = UIColor.yiMidBlueColor()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            case .DisclosureResponseMessage:
-                //not implemented yet
-                break
-            case .DisclosureRequestMessage:
-                //not implemented yet
-                break
-            case .NoValue:
-                break
-                
-            }
-        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
     }
@@ -256,34 +222,6 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         return cell
         
     }
-    
-//    // Override to support editing the table view.
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            selectedIndex = indexPath
-//            let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-//            MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
-//                if success {
-//                    self.loadMessages(self)
-//                } else {
-//                    self.displayAlertMessage(message!, alertDescription: "")
-//                }
-//            })
-//        }
-//    }
-//    
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        selectedIndex = indexPath
-//
-//        let aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
-//        //we can only delete a buddy request if it has been accepted or rejected
-//        if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-//            return true
-//        } else {
-//            return false
-//        }
-//
-//    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if messages[indexPath.section].count > 0{
