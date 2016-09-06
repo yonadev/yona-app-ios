@@ -275,12 +275,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
                 return 165
             } else if goaltype == "TimeZoneGoal" {
-                // Time Frame Control
-                // TODO:  Changes this once the cell has been created
                 return 165
             } else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 // NoGo Control
-                // TODO:  Changes this once the cell has been created
                 return 86
             }
         }
@@ -300,14 +297,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 return cell
             }
             // Time Frame Control
-            // TODO:  Changes this once the cell has been created
+
             else if goaltype == "TimeZoneGoal" {
                 let cell: TimeZoneControlCell = theTableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
                 cell.setDataForView(activityGoal, animated: true)
                 return cell
             }
             // NoGo Control
-            // TODO:  Changes this once the cell has been created
             else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 let cell: NoGoCell = theTableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
                 cell.setDataForView(activityGoal)

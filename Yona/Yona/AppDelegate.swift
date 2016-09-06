@@ -181,6 +181,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      * If not we will alert the user
      */
     
+    
+    
     func testForVpnEnabled() {
         if let url = NSURL(string: "https://10.96.169.12:442/cgi-bin/login.cgi") {
             let request:NSURLRequest = NSURLRequest(URL:url)
@@ -196,5 +198,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             task.resume()
         }
+    }
+    
+    func testForOpenVPN() {
+        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+        
     }
 }
