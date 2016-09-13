@@ -87,9 +87,13 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     }
     
     func setMessage (aMessage : Message) {
+        configureColors(isBuddy: true)
         nameLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
         nicknameLabel.text = aMessage.nickname
-       
+        if aMessage.UserRequestfirstName.characters.count > 0 && aMessage.UserRequestlastName.characters.count > 0{
+            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
+        }
+
         
     }
     

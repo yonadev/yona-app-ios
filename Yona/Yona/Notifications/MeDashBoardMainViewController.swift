@@ -34,7 +34,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         self.navigationController?.navigationBarHidden = false
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
         configureCorrectToday()
-        configurProfileBarItem()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,7 +45,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             navbar.backgroundColor = UIColor.yiGrapeColor()
             navbar.gradientColor = UIColor.yiGrapeTwoColor()
         }
+        configurProfileBarItem()
     }
+    
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
@@ -86,12 +88,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func configureCorrectToday() {
         let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
         userCalendar?.minimumDaysInFirstWeek = 5
-        userCalendar?.firstWeekday = 6
+        userCalendar?.firstWeekday = 1
         let formatter = NSDateFormatter()
         formatter.dateFormat = "YYYY-ww"
-        formatter.locale = NSLocale.currentLocale()
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        //formatter.locale = NSLocale.currentLocale()
         formatter.calendar = userCalendar;
-        let startdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24))
+//        let startdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24))
+        let startdate = formatter.stringFromDate(NSDate())
         if let aDate = formatter.dateFromString(startdate)  {
             corretcToday = aDate
         }
