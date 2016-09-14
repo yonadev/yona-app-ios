@@ -47,7 +47,8 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         statusImageView.layer.masksToBounds = true
 
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
-        
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+
     }
     
     @IBAction func deleteMessage(sender: UIButton){

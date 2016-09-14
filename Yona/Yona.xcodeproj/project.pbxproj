@@ -76,6 +76,7 @@
 		16B1CD301D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */; };
 		16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */; };
 		16B1CD351D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */; };
+		16B45B0B1D848CC700928908 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B45B0A1D848CC700928908 /* SecretKeys.plist */; };
 		16F7A0E61D244BE100CBB0CB /* SingleDayActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */; };
 		16F7A0E81D2453D800CBB0CB /* WeekSingleActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */; };
 		16F951A01D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */; };
@@ -257,7 +258,6 @@
 		BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */; };
 		BE0FE69F1D65C4FB00AE6B5A /* SendCommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FE69D1D65C4FB00AE6B5A /* SendCommentControl.swift */; };
 		BE8254441CEA92F400F97045 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8254431CEA92F400F97045 /* Message.swift */; };
-		BE95AEFB1D7E5E8100287764 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE95AEFA1D7E5E8100287764 /* SecretKeys.plist */; };
 		BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C71CB2ACE300ABE0F8 /* KeychainManager.swift */; };
 		BEB0CDFB1CEA4E9B0056280A /* MessageRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */; };
 		BEB0CE011CEA81ED0056280A /* MessageAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */; };
@@ -466,6 +466,7 @@
 		16B1CD2F1D1590F100A1ABA7 /* YonaUserDisplayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserDisplayTableViewCell.xib; sourceTree = "<group>"; };
 		16B1CD321D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaDefaultTableHeaderView.xib; sourceTree = "<group>"; };
 		16B1CD341D16F64900A1ABA7 /* YonaDefaultTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaDefaultTableHeaderView.swift; sourceTree = "<group>"; };
+		16B45B0A1D848CC700928908 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		16F7A0E51D244BE100CBB0CB /* SingleDayActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleDayActivityGoal.swift; path = DAOObjects/SingleDayActivityGoal.swift; sourceTree = "<group>"; };
 		16F7A0E71D2453D800CBB0CB /* WeekSingleActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityGoal.swift; path = DAOObjects/WeekSingleActivityGoal.swift; sourceTree = "<group>"; };
 		16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaNotificationAcceptFriendRequestViewController.swift; sourceTree = "<group>"; };
@@ -666,7 +667,6 @@
 		BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCommentControl.xib; sourceTree = "<group>"; };
 		BE0FE69D1D65C4FB00AE6B5A /* SendCommentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCommentControl.swift; sourceTree = "<group>"; };
 		BE8254431CEA92F400F97045 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		BE95AEFA1D7E5E8100287764 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
 		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
@@ -1052,6 +1052,7 @@
 			isa = PBXGroup;
 			children = (
 				EF26DAC44A5AE3C2779CD0D3 /* Pods.debug.xcconfig */,
+				16B45B0A1D848CC700928908 /* SecretKeys.plist */,
 				907FA2CEF83C3EDC00E5F021 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
@@ -1752,7 +1753,6 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				BE95AEFA1D7E5E8100287764 /* SecretKeys.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 				CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */,
@@ -1934,7 +1934,6 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				BE95AEFB1D7E5E8100287764 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -1952,6 +1951,7 @@
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
+				16B45B0B1D848CC700928908 /* SecretKeys.plist in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				166CB84E1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib in Resources */,
 				AD5571F91CABA022000BF880 /* Main.storyboard in Resources */,

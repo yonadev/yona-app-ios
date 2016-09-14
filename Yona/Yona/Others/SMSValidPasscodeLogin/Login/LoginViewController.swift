@@ -26,6 +26,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         super.viewWillAppear(animated)
         if !isFromSettings {
             //Get user call
+            Loader.Hide()
             self.closeButton?.enabled = false
             self.closeButton?.tintColor = UIColor.clearColor()
             checkUserExists()
@@ -165,6 +166,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 }
             } else {
                 if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+                    print("  ---   SHOW KEYBOARD  ----")
                     self.codeInputView.becomeFirstResponder()
                 }
             }

@@ -128,6 +128,19 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         scrolling = false
     }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if selectedTab == .left {
+            return 44
+        }
+
+        if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
+            return 0.0
+        } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
+            return 0.0
+        }
+        return 44
+
+    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -146,9 +159,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
         } else {
             if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
-                cell.headerTextLabel.text = nil
+                return nil//cell.headerTextLabel.text = nil
             } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
-                cell.headerTextLabel.text = nil
+                return nil//cell.headerTextLabel.text = nil
             }
             cell.headerTextLabel.text = friendsSections(rawValue: section)?.simpleDescription()
         }

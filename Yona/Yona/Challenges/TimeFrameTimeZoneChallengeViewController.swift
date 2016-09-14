@@ -23,7 +23,7 @@ protocol TimeZoneChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezoneCellDelegateProtocol {
+class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezoneCellDelegateProtocol,UIAlertViewDelegate {
     
     weak var delegate: TimeZoneChallengeDelegate?
     
@@ -313,6 +313,29 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        if #available(iOS 8, *)  {
+            let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: {void in
+                self.deleteGoal()
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+            let alert = UIAlertView(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
+            
+            alert.show()
+        }
+        
+    }
+    
+    func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
+        
+        if buttonIndex == 1 {
+            deleteGoal()
+        }
+    }
+    func deleteGoal() {
         deleteTimezone()
     }
     
