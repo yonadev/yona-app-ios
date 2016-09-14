@@ -31,7 +31,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        var tmpFirst = ""
+        //change APPDEV-819
+        /*var tmpFirst = ""
         var tmpLast = ""
         if let txt = buddyToShow?.UserRequestfirstName {
             tmpFirst = txt
@@ -39,14 +40,15 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         if let txt = buddyToShow?.UserRequestlastName {
             tmpLast = txt
         }
-
-        navigationItem.title = NSLocalizedString("\(tmpFirst) \(tmpLast)", comment: "")
         
+        navigationItem.title = NSLocalizedString("\(tmpFirst) \(tmpLast)", comment: "")*/
+        navigationItem.title = NSLocalizedString("friends", comment: "")
+        configurProfileBarItem()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.rightNavBarItem.addCircle()
+        rightNavBarItem.addCircle()
     }
     
     //MARK: - implementations metods
