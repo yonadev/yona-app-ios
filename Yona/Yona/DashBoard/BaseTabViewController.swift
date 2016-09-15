@@ -20,6 +20,25 @@ class BaseTabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+ //ADDing the nav bar programitcally to overcome problems with navbar
+// DashBoard
+        
+        
+        var  controller = viewControllers
+        
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name:"MeDashBoard", bundle: NSBundle.mainBundle())
+        let navi = storyBoard.instantiateViewControllerWithIdentifier("DashBoardMainNavigationController") as! UINavigationController
+        navi.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "icnMe"),
+            tag: 1)
+        navi.tabBarItem.selectedImage = UIImage(named: "icnMeActive")
+        controller![0] = navi
+        setViewControllers(controller, animated: false)
+        
+        
         updateSelectedIndex()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
         self.presentView()

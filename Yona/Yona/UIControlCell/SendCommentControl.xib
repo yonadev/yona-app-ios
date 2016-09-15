@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="1" id="HND-B6-VWd"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GES-7t-4IF" userLabel="Bottom line">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GES-7t-4IF" userLabel="Bottom line">
                     <rect key="frame" x="0.0" y="44" width="375" height="1"/>
                     <color key="backgroundColor" red="0.83529412746429443" green="0.83529412746429443" blue="0.83529412746429443" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
@@ -68,8 +68,8 @@
                 <constraint firstItem="GES-7t-4IF" firstAttribute="leading" secondItem="NAz-Qs-4B9" secondAttribute="leading" id="IDv-yo-9Ef"/>
                 <constraint firstAttribute="trailing" secondItem="DKB-dA-YTh" secondAttribute="trailing" id="KKv-wY-IOL"/>
                 <constraint firstAttribute="trailing" secondItem="ZzW-v7-FGx" secondAttribute="trailing" id="THs-wY-LnP"/>
-                <constraint firstItem="GES-7t-4IF" firstAttribute="top" secondItem="VG6-lx-Zr1" secondAttribute="bottom" constant="4" id="aex-aC-vT2"/>
-                <constraint firstAttribute="bottom" secondItem="GES-7t-4IF" secondAttribute="bottom" constant="-5" id="gld-aa-yek"/>
+                <constraint firstItem="GES-7t-4IF" firstAttribute="top" secondItem="VG6-lx-Zr1" secondAttribute="bottom" constant="-1" id="aex-aC-vT2"/>
+                <constraint firstAttribute="bottom" secondItem="GES-7t-4IF" secondAttribute="bottom" id="gld-aa-yek"/>
                 <constraint firstItem="DKB-dA-YTh" firstAttribute="leading" secondItem="VG6-lx-Zr1" secondAttribute="trailing" id="iOh-ec-kuF"/>
                 <constraint firstAttribute="trailing" secondItem="GES-7t-4IF" secondAttribute="trailing" id="jhM-je-lKU"/>
             </constraints>
