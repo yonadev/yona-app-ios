@@ -118,5 +118,8 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         statusImageView.image = aMessage.iconForStatus()
     }
 
+    override func prepareForReuse() {
+        closeCell()
+    }
 }
 

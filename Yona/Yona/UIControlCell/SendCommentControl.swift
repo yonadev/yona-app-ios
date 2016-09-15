@@ -70,6 +70,9 @@ class SendCommentControl : UIView {
     @IBAction func sendComment(sender: UIButton) {
         
         if let commentText = self.commentTextField.text{
+            if commentText.characters.count == 0 {
+                return
+            }
             var messageBody: [String:AnyObject]
             if let postCommentLink = postCommentLink {
                 messageBody = [

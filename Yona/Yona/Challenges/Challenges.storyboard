@@ -45,6 +45,7 @@
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -319,7 +320,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
                                             <rect key="frame" x="514" y="16" width="56" height="49"/>
                                             <state key="normal" image="addCircel"/>
                                             <connections>
@@ -868,7 +869,7 @@ Pinterest, Instagram, Snapchat</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
                                                         <rect key="frame" x="247" y="20" width="110" height="110"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
                                                                 <rect key="frame" x="34" y="34" width="42" height="42"/>
                                                             </imageView>
                                                         </subviews>
@@ -1017,11 +1018,12 @@ Pinterest, Instagram, Snapchat</string>
                                                             <constraint firstItem="Aje-8k-rUN" firstAttribute="top" secondItem="yoa-6t-2LM" secondAttribute="top" id="wLH-S0-Vja"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-m0-g2j">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-m0-g2j">
                                                         <rect key="frame" x="30" y="20" width="544" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="e6V-Pt-FZy"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
                                                         <state key="normal" title="CHALLENGE OPSLAAN">
                                                             <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>

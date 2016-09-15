@@ -103,8 +103,10 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.minutesLabel.text = String(Int(maxDurationMinutes)!)
         self.minutesSlider.value = Float(maxDurationMinutes)!
         if self.minutesSlider.value > 0{
+            setChallengeButton.alpha = 1.0
             self.setChallengeButton.enabled = true
         }else{
+            setChallengeButton.alpha = 0.5
             self.setChallengeButton.enabled = false
         }
     }

@@ -75,11 +75,30 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func configurProfileBarItem()  {
+        
+        
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
            if let name = user?.firstName {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
-                    self.leftBarItem.title = "\(name.capitalizedString.characters.first!)"
-                    self.leftBarItem.addCircle()
+                    let btnName = UIButton()
+                    let txt = "\(name.capitalizedString.characters.first!)"
+                    btnName.setTitle(txt, forState: .Normal)
+                    btnName.frame = CGRectMake(0, 0, 35, 35)
+                    btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
+                    
+                    btnName.backgroundColor = UIColor.clearColor()
+                    btnName.layer.cornerRadius = btnName.frame.size.width/2
+                    btnName.layer.borderWidth = 1
+                    btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                    
+                    let rightBarButton = UIBarButtonItem()
+                    rightBarButton.customView = btnName
+                    self.navigationItem.leftBarButtonItem = rightBarButton
+
+                    
+                    
+//                    self.leftBarItem.title = "\(name.capitalizedString.characters.first!)"
+//                    self.leftBarItem.addCircle()
                 }
             }            
         }

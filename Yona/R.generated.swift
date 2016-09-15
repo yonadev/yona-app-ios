@@ -636,7 +636,8 @@ struct R {
     }
     
     struct meDashBoard {
-      static var initialViewController: MeDashBoardMainViewController? { return instance.instantiateInitialViewController() as? MeDashBoardMainViewController }
+      static var dashBoardMainNavigationController: UINavigationController? { return instance.instantiateViewControllerWithIdentifier("DashBoardMainNavigationController") as? UINavigationController }
+      static var initialViewController: UINavigationController? { return instance.instantiateInitialViewController() as? UINavigationController }
       static var instance: UIStoryboard { return UIStoryboard(name: "MeDashBoard", bundle: _R.hostingBundle) }
       static var profileStoryboard: YonaUserProfileViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileStoryboard") as? YonaUserProfileViewController }
       static var profileViewController: MeDashBoardMainViewController? { return instance.instantiateViewControllerWithIdentifier("ProfileViewController") as? MeDashBoardMainViewController }
@@ -649,6 +650,7 @@ struct R {
       }
       
       static func validateViewControllers() {
+        assert(dashBoardMainNavigationController != nil, "[R.swift] ViewController with identifier 'dashBoardMainNavigationController' could not be loaded from storyboard 'MeDashBoard' as 'UINavigationController'.")
         assert(profileViewController != nil, "[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'MeDashBoard' as 'MeDashBoardMainViewController'.")
         assert(profileStoryboard != nil, "[R.swift] ViewController with identifier 'profileStoryboard' could not be loaded from storyboard 'MeDashBoard' as 'YonaUserProfileViewController'.")
         assert(yonaNotificationAcceptFriendRequestViewController != nil, "[R.swift] ViewController with identifier 'yonaNotificationAcceptFriendRequestViewController' could not be loaded from storyboard 'MeDashBoard' as 'YonaNotificationAcceptFriendRequestViewController'.")

@@ -40,7 +40,7 @@ class CommentControlCell: PKSwipeTableViewCell {
         let btnCall = UIButton(type: UIButtonType.Custom)
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
         btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
-        btnCall.addTarget(self, action: "deleteMessage", forControlEvents: UIControlEvents.TouchUpInside)
+        btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), forControlEvents: UIControlEvents.TouchUpInside)
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
