@@ -139,6 +139,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             case .GoalChangeMessage:
+                break
+                // DISABLED AS REQUEST in APPDEV-817
                 let storyboard = UIStoryboard(name: "Friends", bundle: nil)
                 let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
                 vc.buddyToShow = self.buddyData
