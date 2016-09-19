@@ -429,8 +429,6 @@ struct R {
     static var timeZoneControlCell: ReuseIdentifier<TimeZoneControlCell> { return ReuseIdentifier(identifier: "TimeZoneControlCell") }
     static var weekScoreControlCell: ReuseIdentifier<WeekScoreControlCell> { return ReuseIdentifier(identifier: "WeekScoreControlCell") }
     static var yonaButtonTableViewCell: ReuseIdentifier<YonaButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaButtonTableViewCell") }
-    static var yonaNotificationsAccessTextTableViewCell: ReuseIdentifier<YonaNotificationsAccessTextTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTextTableViewCell") }
-    static var yonaNotificationsAccessTypeTableViewCell: ReuseIdentifier<YonaNotificationsAccessTypeTableViewCell> { return ReuseIdentifier(identifier: "YonaNotificationsAccessTypeTableViewCell") }
     static var yonaTwoButtonTableViewCell: ReuseIdentifier<YonaTwoButtonTableViewCell> { return ReuseIdentifier(identifier: "YonaTwoButtonTableViewCell") }
     static var yonaUserDisplayTableViewCell: ReuseIdentifier<YonaUserDisplayTableViewCell> { return ReuseIdentifier(identifier: "YonaUserDisplayTableViewCell") }
     static var yonaUserHeaderWithTwoTabTableViewCell: ReuseIdentifier<YonaUserHeaderWithTwoTabTableViewCell> { return ReuseIdentifier(identifier: "YonaUserHeaderWithTwoTabTableViewCell") }
@@ -465,6 +463,7 @@ struct R {
     
     struct meDashBoardMainViewController {
       static var showDayDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetail") }
+      static var showNotifications: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, NotificationsViewController> { return StoryboardSegueIdentifier(identifier: "showNotifications") }
       static var showProfile: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, YonaUserProfileViewController> { return StoryboardSegueIdentifier(identifier: "showProfile") }
       static var showWeekDetail: StoryboardSegueIdentifier<UIStoryboardSegue, MeDashBoardMainViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetail") }
     }

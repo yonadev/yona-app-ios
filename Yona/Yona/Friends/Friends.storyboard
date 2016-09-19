@@ -653,7 +653,7 @@
                     <navigationItem key="navigationItem" id="QRT-Eh-cq9">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="VTN-zW-Xav">
                             <connections>
-                                <segue destination="cKT-D0-chq" kind="unwind" unwindAction="unwindToProfileView:" id="HmH-Cf-4u0"/>
+                                <action selector="backAction:" destination="1Xa-hD-zS7" id="b2D-JI-Zf0"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -676,7 +676,6 @@
                     </connections>
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1Z-HZ-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="cKT-D0-chq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2457" y="1099"/>
         </scene>

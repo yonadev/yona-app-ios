@@ -29,4 +29,8 @@ class GradientSmooth: GradientView {
         self.layer.addSublayer(gradientLayer)
         
     }
+    func setSolid(color1: UIColor) {
+        self.backgroundColor = color1
+        gradientLayer.removeFromSuperlayer()
+    }
 }

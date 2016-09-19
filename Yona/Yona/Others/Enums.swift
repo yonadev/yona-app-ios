@@ -170,6 +170,7 @@ enum getMessagesKeys : String {
     case reject =  "yona:reject"
     case accept =  "yona:accept"
     case process =  "yona:process"
+    case markRead = "yona:markRead"
     case selfKey = "self"
     case links = "_links"
     case edit = "edit"
@@ -189,6 +190,7 @@ enum getMessagesKeys : String {
     case dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSZZZ"
     case dateFormatSimple = "YYYY-MM-dd"
     case dateFormatWeek = "yyyy'-W'w"
+    case isRead = "isRead"
 }
 
 enum addUserKeys : String {

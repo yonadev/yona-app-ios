@@ -46,15 +46,22 @@ class TimeZoneControlCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.layoutIfNeeded()
+        setupGradient()
         doInitialSetup()
         drawTheCell()
     }
 
+    func setupGradient () {
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        
+    }
+
+    
     func doInitialSetup() {
         if goalType != nil {
             goalType!.text = goalNameText

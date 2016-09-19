@@ -21,13 +21,23 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     
     
     var topCell : YonaUserHeaderWithTwoTabTableViewCell?
-    
+    var navbarColor1 : UIColor?
+    var navbarColor : UIColor?
+
     var aUser : Buddies?
     var isShowingProfile = true
     var rightSideButtonItems : [UIBarButtonItem]?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
+        
+        navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+        let navbar = navigationController?.navigationBar as! GradientNavBar
+        
+        navbarColor = navbar.gradientColor
+        navbar.gradientColor = UIColor.yiMidBlueColor()
+
         registreTableViewCells()
         dataLoading()
     }
@@ -48,6 +58,13 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.backgroundColor = navbarColor1
+        let navbar = navigationController?.navigationBar as! GradientNavBar
+        navbar.gradientColor = navbarColor
+        
+    }
+
     
     func dataLoading () {
         self.tableView.reloadData()
@@ -149,6 +166,12 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         return false
     }
     
+    @IBAction func backAction(sender : AnyObject) {
+ 
+        dispatch_async(dispatch_get_main_queue(), {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    }
     
  
     

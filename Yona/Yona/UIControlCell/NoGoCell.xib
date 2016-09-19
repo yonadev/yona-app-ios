@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1x-Rt-XOE" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1x-Rt-XOE" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -64,8 +64,10 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="b1x-Rt-XOE" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="-8" id="1RO-87-HwW"/>
                     <constraint firstItem="haM-Nc-zR4" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="24" id="DaH-mN-RBZ"/>
                     <constraint firstItem="haM-Nc-zR4" firstAttribute="centerY" secondItem="DxN-bN-UmD" secondAttribute="centerY" id="FSv-i0-b3s"/>
+                    <constraint firstItem="b1x-Rt-XOE" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="-8" id="ICt-2T-Aba"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="centerY" secondItem="DxN-bN-UmD" secondAttribute="centerY" id="J3I-GG-sQU"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="28" id="R5o-oq-y1I"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="7" id="SQ4-Pe-dND"/>
@@ -76,6 +78,8 @@
                     <constraint firstItem="haM-Nc-zR4" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="26" id="mEx-f4-6lP"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="8" id="oKF-3q-Rtg"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="centerY" secondItem="haM-Nc-zR4" secondAttribute="centerY" id="pgM-KS-HLg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="b1x-Rt-XOE" secondAttribute="trailing" constant="-8" id="rkt-fc-kye"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="b1x-Rt-XOE" secondAttribute="bottom" constant="-8.5" id="tjx-7S-lHD"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="haM-Nc-zR4" secondAttribute="trailing" constant="8" id="x1m-Ia-BsP"/>
                 </constraints>
                 <variation key="default">

@@ -20,14 +20,18 @@ class NoGoCell : UITableViewCell {
     var totalMinutesBeyondGoal: Int = 0
     
     override func layoutSubviews() {
-        super.layoutSubviews()
+        contentView.layoutIfNeeded()
+        setupGradient()
         drawTheCell()
     }
 
-    override func awakeFromNib() {
+    func setupGradient () {
         gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
-
+        
     }
+    
+
+    
     
     func drawTheCell (){
         

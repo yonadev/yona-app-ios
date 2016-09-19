@@ -107,6 +107,7 @@ class SettingsViewController: UIViewController {
         //TODO: UnSubscribe API InProgress
         UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey:  YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                 if let welcome = R.storyboard.welcome.initialViewController {
                     self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
                 }

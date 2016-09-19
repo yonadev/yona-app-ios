@@ -192,15 +192,20 @@ class GoalsRequestManager {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             //success so get the user?
             if success {
-                self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
-                    #if DEBUG
-                        print("Get all goals API call: " + String(success))
-                    #endif
-                    if success {
-                        onCompletion(true, message, server, nil, goals, error)
-                    } else {
-                        onCompletion(false, message, server, nil, nil, error)
+                if let goalLink = user?.getAllGoalsLink {
+                    self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: user?.getAllGoalsLink!) { (success, message, server, goal, goals, error) in
+                        #if DEBUG
+                            print("Get all goals API call: " + String(success))
+                        #endif
+                        if success {
+                            onCompletion(true, message, server, nil, goals, error)
+                        } else {
+                            onCompletion(false, message, server, nil, nil, error)
+                        }
                     }
+                } else {
+                    onCompletion(false, YonaConstants.YonaErrorTypes.UserRequestFailed.localizedDescription, self.APIService.determineErrorCode(YonaConstants.YonaErrorTypes.UserRequestFailed), nil, nil, YonaConstants.YonaErrorTypes.UserRequestFailed)
+                
                 }
             } else {
                 //response from request failed

@@ -88,8 +88,6 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         boldLineLabel.text = aMessage.simpleDescription()
         normalLineLabel.text = "\(aMessage.nickname)"
      
-//        var tmpFirst = ""
-//        var tmpLast = ""
         var tmpnickname = ""
         tmpnickname = aMessage.nickname
         if tmpnickname.characters.count > 0 {
@@ -98,22 +96,14 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
             avatarNameLabel.text = ""
         }
         
-//        if aMessage.UserRequestfirstName.characters.count > 0 {
-//            tmpFirst = aMessage.UserRequestfirstName
-//        } else {
-//            tmpnickname = aMessage.nickname
-//        }
-//        if aMessage.UserRequestlastName.characters.count > 0 {
-//            tmpLast = aMessage.UserRequestlastName
-//        }
-//        if tmpFirst.characters.count > 0 && tmpLast.characters.count > 0 {
-//            // AVATAR NOT Implemented - must check for avatar image when implemented on server
-//            avatarNameLabel.text = "\(tmpFirst.capitalizedString.characters.first!)"//\(tmpLast.capitalizedString.characters.first!)"
-//        } else {
-  
-//        avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
-//        }
-        
+
+        if aMessage.isRead {
+            gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        } else {
+            gradientView.setSolid(UIColor.yiMessageUnreadColor())
+            
+            
+        }
         
         statusImageView.image = aMessage.iconForStatus()
     }
