@@ -11,9 +11,6 @@ import UIKit
 
 enum acceptFriendRequest : Int {
     case profile
-    case type
-//    case message
-    case number
     case buttons
 }
 
@@ -39,6 +36,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         navbar.gradientColor = UIColor.yiMidBlueColor()
         
         self.title = ""
+        
+        tableView.backgroundColor = UIColor.yiTableBGGreyColor()
     }
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = navbarColor1
@@ -70,23 +69,9 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case acceptFriendRequest.number.rawValue:
-            if let msg = aMessage {
-                if let aURL = NSURL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
-                    UIApplication.sharedApplication().openURL(aURL)
-                }
-                
-            }
-           return
-        default:
-            return
-        }
-    }
+
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -103,19 +88,12 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                 cell.setMessage(msg)
             }
             return cell
-        case acceptFriendRequest.type.rawValue:
-            let cell: YonaNotificationsAccessTypeTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTypeTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTypeTableViewCell
-            cell.typeTextLable.text = NSLocalizedString("notifications.accept.type", comment: "")
-            return cell
-        case acceptFriendRequest.number.rawValue:
-            let cell: YonaNotificationsAccessTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaNotificationsAccessTextTableViewCell", forIndexPath: indexPath) as! YonaNotificationsAccessTextTableViewCell
-            if let msg = aMessage {
-                cell.setPhoneNumber(msg)
-            }
-            return cell
         case acceptFriendRequest.buttons.rawValue:
             let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
             cell.delegate = self
+            if let msg = aMessage {
+                cell.setNumber(msg)
+            }
             return cell
     
             
@@ -128,12 +106,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
             return 221
-//        case acceptFriendRequest.message.rawValue:
-//            return calculateHeightForCell(acceptFriendRequest.message)
-        case acceptFriendRequest.number.rawValue:
-            return calculateHeightForCell(acceptFriendRequest.number)
         case acceptFriendRequest.buttons.rawValue:
-            return 60
+            return 227
         
         default:
             return 40
@@ -141,28 +115,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     }
     
     
-    
-    // MARK : Utility methods
-    
-    func calculateHeightForCell(row :acceptFriendRequest) -> CGFloat{
-       return 80
-        
-        var text = ""
-        if let msg = aMessage {
-            switch row {
-            case acceptFriendRequest.number:
-                text = msg.message
-            default:
-                text = ""
-            }
-            let font = UIFont(name: "HelveticaNeue", size: 14)!
-            let heigth = text.heightForWithFont(font, width: tableView.frame.size.width, insets: UIEdgeInsetsMake(10, 20, 10, 20))
-            return heigth+15
-        }
-       
-
-        return 10
-    }
     
     // MARK - YonaTowButtonCellProtocol
     

@@ -11,9 +11,12 @@ import Foundation
 class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
+
+    
     var selectedIndex : NSIndexPath?
     var buddyData : Buddies?
 
+    
     var page : Int = 1
     var size : Int = 20
     
@@ -37,6 +40,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
+        
+        
     }
     
     func registreTableViewCells () {
@@ -94,6 +99,13 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
         
+        if !(aMessage?.isRead)! {
+            aMessage?.isRead = true
+            messages[(selectedIndex?.section)!][(selectedIndex?.row)!] = aMessage!
+            MessageRequestManager.sharedInstance.postReadMessage(aMessage! ,onCompletion:{(succes, serverMessage, serverCode) in
+            })
+            
+        }
         //this gets the buddy that matches the link in hte message for daily activity reports, so we can pass VC the correct buddy data
         if let buddies = UserRequestManager.sharedInstance.newUser?.buddies {
             for each in buddies {
@@ -110,13 +122,22 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             case .ActivityCommentMessage:
                 if aMessage.dayDetailsLink != nil {
                     self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                    return
                 } else if aMessage.weekDetailsLink != nil {
                     self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                    return
                 }
             case .BuddyConnectRequestMessage:
                 if aMessage.status == buddyRequestStatus.REQUESTED {
                     self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                    return
                 }
+                if aMessage.status == buddyRequestStatus.ACCEPTED {
+                    showBuddyProfile(aMessage)
+                    return
+                }
+
+            
             case .BuddyDisconnectMessage:
                 break
             case .BuddyConnectResponseMessage:
@@ -137,6 +158,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 navbar.gradientColor = UIColor.yiMidBlueColor()
                 
                 self.navigationController?.pushViewController(vc, animated: true)
+                return
                 break
             case .GoalChangeMessage:
                 break
@@ -153,6 +175,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 navbar.gradientColor = UIColor.yiMidBlueColor()
                 
                 self.navigationController?.pushViewController(vc, animated: true)
+                return
                 break
             case .DisclosureResponseMessage:
                 //not implemented yet
@@ -166,7 +189,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
+        tableView.reloadData()
     }
     
     
@@ -314,5 +337,28 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         })
         
      }
+    
+    func showBuddyProfile(theMessage : Message) {
+  
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
+            
+            if succes {
+                if let user = aUser {
+                    for aBuddies in user.buddies {
+                        if aBuddies.UserRequestSelfLink == theMessage.UserRequestSelfLink {
+                            let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: NSBundle.mainBundle())
+                            let controller = storyBoard.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as! FriendsProfileViewController
+                            controller.aUser = aBuddies
+                            self.navigationController?.pushViewController(controller, animated: true)
+                           
+                        }
+                    }
+                }
+            }
+        })
 
+        
+    }
+
+    
 }

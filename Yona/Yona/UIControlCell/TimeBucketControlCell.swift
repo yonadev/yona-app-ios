@@ -42,14 +42,19 @@ class TimeBucketControlCell : UITableViewCell {
     //MARK: - override methods
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.layoutIfNeeded()
+        setupGradient()
         setUpView()
         doInitialSetup()
         drawTheCell(shouldAnimate)
     }
     
+    func setupGradient () {
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+    
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()

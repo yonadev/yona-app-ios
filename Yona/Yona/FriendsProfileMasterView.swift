@@ -274,7 +274,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 // MARK: Touch Event of Custom Segment
 
     override func actionsAfterLeftButtonPush() {
-        self.navigationItem.rightBarButtonItem = nil
+        self.navigationItem.rightBarButtonItem = self.addBuddyButton
+        //self.navigationItem.rightBarButtonItem = nil
         loadDataForTimeLine(leftPage)
         
     }
@@ -295,19 +296,34 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 //        }
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getTimeLineActivity (3,page: page,onCompletion: {(succes, serverMessage, serverCode, timeLineDayActivityOverview, error) in
-            
-            print("Success \(succes)")
-            if timeLineDayActivityOverview != nil {
-                if self.leftPage == 0 {
-                    self.timeLineData = timeLineDayActivityOverview!
-                } else {
-                    self.timeLineData.appendContentsOf(timeLineDayActivityOverview!)
+            if succes {
+                print("Success \(succes)")
+                if timeLineDayActivityOverview != nil {
+                    if self.leftPage == 0 {
+                        self.timeLineData = timeLineDayActivityOverview!
+                    } else {
+                        self.timeLineData.appendContentsOf(timeLineDayActivityOverview!)
+                    }
+                    self.leftPage += 1
                 }
-                self.leftPage += 1
+            } else {
+                Loader.Hide()
+                if  let msg = serverMessage {
+                    if #available(iOS 8, *)  {
+                        let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    } else {
+                        let alert = UIAlertView(title: NSLocalizedString("WARNING", comment: ""), message: msg, delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+                        
+                        
+                        alert.show()
+                    }
+                }
 
-                
-            }
             
+            }
             Loader.Hide()
             self.theTableView.reloadData()
         })

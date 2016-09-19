@@ -29,11 +29,16 @@ final class PinResetValidationVC: ValidationMasterView {
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
-        
+        codeView.resignFirstResponder()
         //keyboard functions
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    override func viewDidAppear(animated: Bool) {
+        if !(pinResetCountDownTimer?.valid)! {
+            codeInputView.becomeFirstResponder()
+        }
     }
     
     @IBAction func resendPinResetRequestOTPCode(sender: UIButton) {
@@ -41,7 +46,8 @@ final class PinResetValidationVC: ValidationMasterView {
         PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {
                 Loader.Hide()
-                self.codeInputView.userInteractionEnabled = true
+                //self.codeInputView.userInteractionEnabled = true
+                
                 #if DEBUG
                     print ("pincode is \(code)")
                 #endif
@@ -50,7 +56,7 @@ final class PinResetValidationVC: ValidationMasterView {
                     Loader.Hide()
                     if success {
                         self.displayPincodeRemainingMessage()
-                        self.codeInputView.userInteractionEnabled = true
+                       // self.codeInputView.userInteractionEnabled = true
                     } else {
                         if let message = message {
                             self.infoLabel.text = message
@@ -137,6 +143,7 @@ final class PinResetValidationVC: ValidationMasterView {
             codeView.hidden = false
             resendOTPResetCode.hidden = false
             pinResetCountDownTimer?.invalidate()
+            codeInputView.becomeFirstResponder()
         }
         
     }

@@ -13,15 +13,28 @@ protocol YonaTwoButtonTableViewCellProtocol {
     func didSelectLeftButton(button: UIButton)
 }
 
-class YonaTwoButtonTableViewCell : UITableViewCell{
+class YonaTwoButtonTableViewCell : UITableViewCell {
 
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
+    
 
     var delegate : YonaTwoButtonTableViewCellProtocol?
+    var message : Message?
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.layoutIfNeeded()
+
+        addGradient()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        headerLabel.text =  NSLocalizedString("notifications.accept.type", comment: "")
         
         leftButton.layer.cornerRadius = leftButton.frame.size.height/2
         leftButton.layer.masksToBounds = true
@@ -38,6 +51,14 @@ class YonaTwoButtonTableViewCell : UITableViewCell{
         rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), forState: UIControlState.Normal)
     }
     
+    func setNumber(message: Message){
+        self.message = message
+        let num = message.UserRequestmobileNumber
+        let text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
+        
+        numberLabel.text = text
+
+    }
     
     @IBAction func rightButtonAction(sender: UIButton) {
         delegate?.didSelectRightButton(sender)
@@ -47,4 +68,28 @@ class YonaTwoButtonTableViewCell : UITableViewCell{
     @IBAction func leftButtonAction(sender: UIButton) {
        delegate?.didSelectLeftButton(sender)
     }
+    
+    func addGradient() {
+        
+        let colorTop =  UIColor.yiBgGradientOneColor().CGColor
+        let colorBottom = UIColor.yiBgGradientTwoColor().CGColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ colorTop, colorBottom]
+        gradientLayer.locations = [ 0.0, 0.5]
+        gradientLayer.frame =  gradientView.bounds
+        
+        gradientView.layer.addSublayer(gradientLayer)
+
+    }
+    
+    @IBAction func callNumber () {
+        if let msg = message {
+            if let aURL = NSURL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
+                UIApplication.sharedApplication().openURL(aURL)
+            }
+        }
+
+    }
+    
 }
