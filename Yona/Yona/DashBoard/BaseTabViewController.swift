@@ -61,10 +61,10 @@ class BaseTabViewController: UITabBarController {
     }
 
     func presentView(){
-        if !BaseTabViewController.userHasGoals() {
-            updateSelectedIndex()
-            return
-        }
+//        if !BaseTabViewController.userHasGoals() {
+//            updateSelectedIndex()
+//            return
+//        }
         if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
             let viewControllerToShow = getScreen(viewControllerName)
             
@@ -74,6 +74,12 @@ class BaseTabViewController: UITabBarController {
                 self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
             }
         }
+
+                if !BaseTabViewController.userHasGoals() {
+                    updateSelectedIndex()
+                    return
+                }
+
     }
     /* This method returns the view controller we ask for as a string
      
