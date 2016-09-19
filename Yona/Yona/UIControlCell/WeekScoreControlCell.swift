@@ -35,6 +35,9 @@ class WeekScoreControlCell: UITableViewCell {
     weak var delegate : MeDashBoardMainViewController?
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.layoutIfNeeded()
+
         var width = frame.width
         width -= day1CircelView.frame.size.width*7+(2*32)
         let distanceBetweenEach = width / 7

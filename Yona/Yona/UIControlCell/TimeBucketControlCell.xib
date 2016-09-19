@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,7 +29,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAa-lP-wXD" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAa-lP-wXD" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -113,18 +113,22 @@
                     <constraint firstItem="Ss0-0r-zLz" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="bottom" constant="8" id="4p0-nF-ykE"/>
                     <constraint firstItem="drz-uD-GrX" firstAttribute="leading" secondItem="vIZ-pa-TJW" secondAttribute="trailing" constant="3" id="5c6-vz-uJe"/>
                     <constraint firstItem="rUf-Jw-v1k" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="21" id="8h8-7X-7ce"/>
+                    <constraint firstItem="GAa-lP-wXD" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="-8" id="9rS-uV-vgx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="drz-uD-GrX" secondAttribute="trailing" constant="24" id="A70-7e-IFh"/>
                     <constraint firstItem="mj9-S4-ntV" firstAttribute="top" secondItem="mTL-Jd-BWR" secondAttribute="bottom" constant="8" id="Do6-vJ-aMp"/>
                     <constraint firstItem="mTL-Jd-BWR" firstAttribute="top" secondItem="vIZ-pa-TJW" secondAttribute="bottom" constant="16" id="J65-8v-TB2"/>
                     <constraint firstItem="sfL-pn-dhQ" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="SG0-Lz-kc5"/>
                     <constraint firstItem="mTL-Jd-BWR" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="UWk-Ms-FC4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mTL-Jd-BWR" secondAttribute="trailing" constant="24" id="ei4-L3-8Ru"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="GAa-lP-wXD" secondAttribute="bottom" constant="-7.5" id="fRa-uP-uLa"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="centerX" secondItem="zoS-j4-1EE" secondAttribute="centerX" id="fhU-AS-5pN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mj9-S4-ntV" secondAttribute="trailing" constant="24" id="kcJ-dt-qfL"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="leading" secondItem="rUf-Jw-v1k" secondAttribute="trailing" constant="-1" id="o8O-LH-oxN"/>
                     <constraint firstItem="rUf-Jw-v1k" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="24" id="ooY-Ea-aXR"/>
                     <constraint firstItem="drz-uD-GrX" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="19" id="pPe-zk-bu3"/>
                     <constraint firstItem="vIZ-pa-TJW" firstAttribute="top" secondItem="zoS-j4-1EE" secondAttribute="topMargin" constant="3" id="pkd-cf-f0M"/>
+                    <constraint firstItem="GAa-lP-wXD" firstAttribute="leading" secondItem="zoS-j4-1EE" secondAttribute="leadingMargin" constant="-8" id="seb-i3-iCz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GAa-lP-wXD" secondAttribute="trailing" constant="-8" id="sll-Fj-bZw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

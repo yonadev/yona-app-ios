@@ -30,10 +30,15 @@ class LoginViewController: LoginSignupValidationMasterView {
             self.closeButton?.enabled = false
             self.closeButton?.tintColor = UIColor.clearColor()
             checkUserExists()
+            pinResetButton.hidden = false
         } else {
+            pinResetButton.hidden = true
             self.closeButton?.enabled = true
             self.closeButton?.tintColor = UIColor.whiteColor()
+            
+            
         }
+        
         
         setBackgroundColour()
         self.codeInputView.delegate = self
@@ -42,13 +47,14 @@ class LoginViewController: LoginSignupValidationMasterView {
         codeInputView.clear()
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
             
-            self.codeInputView.hidden = true
-            self.setCornerRadius()
+            codeInputView.hidden = true
+            setCornerRadius()
             errorLabel.hidden = false
             errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
-            self.codeInputView.resignFirstResponder()
-            self.accountBlockedTitle?.hidden = false
-            self.infoLabel?.hidden = true
+            codeInputView.resignFirstResponder()
+            accountBlockedTitle?.hidden = false
+            infoLabel?.hidden = true
+            avtarImage.image = UIImage(named: "icnSecure")
             return;
         }
         
@@ -58,10 +64,18 @@ class LoginViewController: LoginSignupValidationMasterView {
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    
+    
     override func viewDidAppear(animated: Bool) {
 //        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
 //            self.codeInputView.becomeFirstResponder()
 //        }
+        if isFromSettings {
+            codeInputView.becomeFirstResponder()
+            closeButton  = UIBarButtonItem(image: UIImage(named: "icnBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(LoginViewController.backToSettings(_:)))
+            self.navigationItem.setLeftBarButtonItem(closeButton, animated: false)
+            
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -121,6 +135,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 self.accountBlockedTitle?.hidden = false
                 self.infoLabel?.hidden = true
                 self.setCornerRadius()
+                avtarImage.image = UIImage(named: "icnSecure")
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {

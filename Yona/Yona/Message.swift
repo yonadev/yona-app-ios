@@ -31,6 +31,7 @@ struct Message{
     var rejectLink: String?
     var acceptLink: String?
     var yonaProcessLink: String?
+    var markReadLink : String?
     //var creationTime: String?
     var nickname: String
     var message: String
@@ -38,6 +39,8 @@ struct Message{
     var messageType: notificationType
     var creationTime : NSDate
     var change : String?
+    
+    var isRead : Bool = true
     
     //details of user who made request
     var UserRequestfirstName: String
@@ -74,6 +77,9 @@ struct Message{
             self.change = aChange
         }
 
+        if let aBool = messageData[getMessagesKeys.isRead.rawValue] as? Bool{
+            isRead = aBool
+        }
         
         if let message = messageData[getMessagesKeys.message.rawValue] as? String{
             self.message = message
@@ -130,10 +136,16 @@ struct Message{
                 self.dayDetailsLink = href
             }
             
+            
             if let weekDetailsLink = links[YonaConstants.jsonKeys.yonaWeekDetails],
                 let href = weekDetailsLink[getMessagesKeys.href.rawValue] as? String{
                 self.weekDetailsLink = href
             }
+            if let markAsRead = links[getMessagesKeys.markRead.rawValue],
+                let href = markAsRead[getMessagesKeys.href.rawValue] as? String{
+                self.markReadLink = href
+            }
+
         }
         
         //store user who made the request

@@ -112,6 +112,7 @@ extension LoginSignupValidationMasterView {
                 errorLabel.text = errorLabelText
                 errorLabel.hidden = false
             }
+            
         } else {
             //Nav bar Back button.
             self.navigationController?.setNavigationBarHidden(false, animated: false)

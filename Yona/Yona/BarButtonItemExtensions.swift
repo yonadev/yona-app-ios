@@ -41,7 +41,11 @@ extension UIBarButtonItem {
         let radius : CGFloat = 12
         let location = CGPoint(x: view.frame.width/2, y: radius+2 )
         badge.drawCircleAtLocation(location, withRadius: radius, andColor: UIColor.whiteColor(), filled: false)
-        view.layer.addSublayer(badge)
+        if #available(iOS 8.0, *) {
+            view.layer.addSublayer(badge)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     

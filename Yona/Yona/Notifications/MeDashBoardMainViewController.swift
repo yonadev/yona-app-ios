@@ -35,6 +35,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
         configureCorrectToday()
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,6 +47,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             navbar.gradientColor = UIColor.yiGrapeTwoColor()
         }
         configurProfileBarItem()
+        configureRightTabBar()
     }
     
     
@@ -83,7 +85,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     let btnName = UIButton()
                     let txt = "\(name.capitalizedString.characters.first!)"
                     btnName.setTitle(txt, forState: .Normal)
-                    btnName.frame = CGRectMake(0, 0, 35, 35)
+                    btnName.frame = CGRectMake(0, 0, 32, 32)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
                     
                     btnName.backgroundColor = UIColor.clearColor()
@@ -94,14 +96,39 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     let rightBarButton = UIBarButtonItem()
                     rightBarButton.customView = btnName
                     self.navigationItem.leftBarButtonItem = rightBarButton
-
-                    
-                    
-//                    self.leftBarItem.title = "\(name.capitalizedString.characters.first!)"
-//                    self.leftBarItem.addCircle()
                 }
             }            
         }
+    }
+
+    func configureRightTabBar() {
+        MessageRequestManager.sharedInstance.getUnReadMessages({
+            (success, message, code, text, theMessages) in
+            if let count = MessageRequestManager.sharedInstance.totalSize {
+                let btnName = UIButton()
+                let txt = "\(count)"
+                btnName.setTitle(txt, forState: .Normal)
+                btnName.frame = CGRectMake(0, 0, 21, 21)
+                //btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
+                btnName.titleLabel?.font = UIFont (name: "SFUIDisplay-Regular", size: 12)
+                btnName.backgroundColor = UIColor.yiDarkishPinkColor()
+                btnName.layer.cornerRadius = btnName.frame.size.width/2
+                btnName.layer.borderWidth = 1
+                //btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                let rightBarButton = UIBarButtonItem()
+                rightBarButton.customView = btnName
+                
+                
+                let bellButton = UIBarButtonItem(image: UIImage(named: "icnNotifications"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.showNotifications(_:)))
+                if count > 0 {
+                    self.navigationItem.rightBarButtonItems = [bellButton,rightBarButton]
+                } else {
+                    self.navigationItem.rightBarButtonItems = [bellButton]
+                }
+            }
+        })
+    
     }
     
     func configureCorrectToday() {
@@ -297,8 +324,15 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     @IBAction func showUserProfile(sender : AnyObject) {
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showProfile, sender: self)
-        //showProfile
+        
     }
+
+    @IBAction func showNotifications(sender : AnyObject) {
+        performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showNotifications, sender: self)
+        
+        
+    }
+
     
     //MARK:  ME DAY Cell methods
     func heigthForDayCell (indexPath : NSIndexPath) -> CGFloat{

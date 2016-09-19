@@ -23,14 +23,14 @@ class MessageRequestManager {
     
     private init() {}
     
-    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int, page: Int, onCompletion: APIMessageResponse) {
+    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int, page: Int, onlyUnRead : Bool = false, onCompletion: APIMessageResponse) {
         switch httpMethod {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
                 if success {
                     self.messages.removeAll()
                     if let getMessagesLink = user?.messagesLink {
-                        let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page)
+                        let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page) + "&onlyUnreadMessages="+"\(onlyUnRead)"
                         self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
                             if let json = json {
                                 if let data = json[commentKeys.page.rawValue] {
@@ -48,14 +48,12 @@ class MessageRequestManager {
                                     }
                                 }
                                 if let embedded = json[getMessagesKeys.embedded.rawValue],
-                                let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray{
+                                let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray {
+                                    
                                     //iterate messages
                                     for message in yonaMessages {
                                         if let message = message as? BodyDataDictionary {
                                             let aMessage = Message.init(messageData: message)
-                                            
-                                            // FOR NAW IT HAS BEEN REMOVED
-                                            //if aMessage.UserRequestmobileNumber.characters.count > 0 {
                                                 self.messages.append(aMessage)
                                             //}
                                         }
@@ -89,7 +87,11 @@ class MessageRequestManager {
     func getMessages(size: Int, page: Int, onCompletion: APIMessageResponse){
         self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: size, page: page, onCompletion: onCompletion)
     }
-    
+
+    func getUnReadMessages(onCompletion: APIMessageResponse){
+        self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: 3  , page: 0,onlyUnRead: true, onCompletion: onCompletion)
+    }
+
     func deleteMessage(aMessage : Message, onCompletion: APIResponse ){
         if let deleteLink = aMessage.editLink {
             let body = ["properties":[:]]
@@ -138,6 +140,22 @@ class MessageRequestManager {
             })
         } else {
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveProcessLink, String(responseCodes.internalErrorCode))
+        }
+    }
+
+    
+    func postReadMessage(aMesage : Message, onCompletion: APIResponse ){
+        if let markAsRead = aMesage.markReadLink {
+            let body = ["properties":[:]]
+            self.APIService.callRequestWithAPIServiceResponse(body, path: markAsRead, httpMethod: .post, onCompletion: {success, json, error in
+                print("how did we do \(success)")
+                UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed, onCompletion:{(success, servermessage, servercode, users) in
+                    print("user updated")
+                })
+                onCompletion(success , "", "")
+            })
+        } else {
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(responseCodes.internalErrorCode))
         }
     }
 

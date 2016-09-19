@@ -766,6 +766,9 @@ class ActivitiesRequestManager {
                 
             else {
                 
+                onCompletion(false, message, code, nil, nil)
+                
+                
 
             }
         }//)
