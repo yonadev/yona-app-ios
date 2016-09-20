@@ -29,6 +29,11 @@
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
 "smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
+
+"smsvalidation.wait.headerTitle" = "Je moet even wachten";
+"smsvalidation.wait.infomessage" = "Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 uur nadat je een nieuwe PIN code hebt aangevraagd.";
+
+
 "add-device" = "DEVICE TOEVOEGEN";
 "user-signup-message" = "We gebruiken je mobiele telefoonnummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een betere privacy.";
 
