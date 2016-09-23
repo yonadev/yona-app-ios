@@ -32,7 +32,7 @@
 "per-day" = "Per Day";
 "per-week" = "Per Week";
 "timeline" = "Timeline";
-"overiview" = "Overview";
+"overview" = "Overview";
 "profile" = "Profile";
 "message" = "NOTIFICATIONS";
 "profile-details" = "Profile";
@@ -53,14 +53,14 @@
 "loading" = "Loading";
 "ok" = "Ok";
 
-"user-override" = "Mobile Number %@ already register with Yona, do you want to re-register same number? (Note:All data associated with this number will be removed, if you want to add another device, you can go back and click on InLoggin.)";
+"user-override" = "Mobile Number %@ already register with Yona. Do you want to re-register same number? (Note: All data associated with this number will be removed, if you want to add another device, you can go back and click on Login.)";
 
 
 "passcode-title" = "You are not alone";
 "passcode-tryagain" = "Try again";
 "pincode" = "PINCODE";
 "passcode-step1-title" = "Account created";
-"passcode-step1-desc" = "For security";
+"passcode-step1-desc" = "For security, it is mandatory to provide the Yona app with a pincode. Set your PIN below.";
 "passcode-step2-title" = "Confirm pincode";
 "passcode-step2-desc" = "Enter your PIN again to confirm.";
 "login-accountBlocked-title" = "Your account is blocked";
@@ -68,51 +68,46 @@
 "passcode-reset" = "PIN reset";
 "invalid-otp" = "Invalid accesscode";
 "account-login" = "Account be created";
-"account-login-security-message" = "For security";
-"add-device" = "ADD DEVICE";
+"account-login-security-message" = "For security, you will receive a code by SMS. Please enter this code below.";
+"add-device" = "Add device";
 
 "send-otp-again" = "Send code again";
 "smsvalidation.button.resendConfirmOTPCode" = "Send Confirm Mobile OTP code again";
 "smsvalidation.button.resendResetOTPCode" = "Send Reset Pin OTP code again";
 
 "yona-add-device-message" = "Enter this passcode on the new device where you like to use Yona.";
-"loggedin-add-device-message" = "You arent logged on this device before. Go to your primary device (probably your mobile)";
+"loggedin-add-device-message" = "You have not logged on this device before. Go to your primary device (probably your mobile), open Yona, open settings and use 'Add Device' and enter the fields below.";
 "passcode" = "CODE";
 "in-loggin" = "LOGIN";
-"enter-passcode" = "Je moet een 6 cijferig alfanumeriek code invoeren.";
-"reset-pin-request" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %1$s hours.";
+"enter-passcode" = "You need to enter a 6 digit alphanumeric passcode.";
+"reset-pin-request" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within 24 hours.";
 "yes" = "Yes";
 "no" = "No";
 "challenges.addBudgetGoal.setChallengeButton" = "CHALLENGE SAVE";
-"challenges.addBudgetGoal.budgetChallengeMainTitle" = "TEGOED VASTLEGGEN";
-"challenges.addBudgetGoal.minutesPerDayLabel" = "minuten per dag";
-"challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
-"challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
-"challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder Goal";
-"challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
-"cancel" = "Cancel";
-"challenges-nogo-header" = "Hier leg je vast waar je helemaal niet wilt komen.";
-"challenges-tijdzone-header" = "Kies een categorie waar je een tijdzone voor wilt instellen";
-"challenges-tegoed-header" = "Kies een categorie waar je een tegoed voor wilt vastleggen";
-"challenges-footer" = "De volgende apps zijn \nonderdeel van deze challenge:";
-"challenges-goal-create-button" = "CHALLENGE OPSLAAN";
-"budget-goal-desc" = "minuten per dag";
-"budget-goal-title" = "Tegoed";
-"timezone-goal-header-subtext" = "Bepaal hier wanneer je wel of geen tijd aan %1$s wilt besteden";
-"budget-goal-header-subtext" = "Bepaal hier hoeveel tijd je aan %1$s wilt besteden";
-"timezone" = "Tijdzone";
-"screentitle1" = "Transparantie";
-"screentitle2" = "Delen";
-"screentitle3" = "Grenzen";
-"screentitle4" = "Tijdsbesteding";
-"screendesc1" = "Persoonlijke keuze om transparant te zijn...";
-"screendesc2" = "Je doelen delen met de persoon die je vertrouwt";
-"screendesc3" = "Grenzen afspreken en daar anderen in betrekken";
-"screendesc4" = "Controle houden over de tijd die je online bent";
+"challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Can't remove mandatory challenge";
+"cancel" = "CANCEL";
+"challenges-nogo-header" = "Here you will capture where you do not want to come at all.";
+"challenges-tijdzone-header" = "Choose a category from where you want to set a time zone";
+"challenges-tegoed-header" = "Select a category from where you want to define a credit for";
+"challenges-footer" = "The following apps are part of this challenge:";
+"challenges-goal-create-button" = "SAVE CHALLENGE";
+"budget-goal-desc" = "minutes per day";
+"budget-goal-title" = "Credit";
+"timezone-goal-header-subtext" = "Specify the time range you want to spend on %@";
+"budget-goal-header-subtext" = "Specify how much time you want to spend on %@";
+"timezone" = "Timezone";
+"screentitle1" = "Transparency";
+"screentitle2" = "Share";
+"screentitle3" = "Borders";
+"screentitle4" = "Time Allocation";
+"screendesc1" = "Personal choice to be transparent...";
+"screendesc2" = "Share your goals with someone you trust.";
+"screendesc3" = "Set borders and involve others ";
+"screendesc4" = "Keep control of the time you're online";
 "url-not-found" = "Url Not found.";
-"challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
-"challenges-timzoe-subtext" = "Timeslot tussen %1$sen tussen %2$s";
-"challenges-budget-subtext" = "Je kunt per dag %1$s minuten %2$s";
+"challenges-nogo-subText" = "You don’t what to spend time here";
+"challenges-timzoe-subtext" = "Permitted between %@ and %@";
+"challenges-budget-subtext" = "You can spend %@ minutes a day on this category";
 "pull-to-refresh" = "Pull to refresh";
 
 //TODO: replace english text here(not yet provided by Yona)
@@ -153,6 +148,7 @@
 
 
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
+"smsvalidation.user.countdownmessage" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within 24 hours.";
 "smsvalidation.button.resendCode" = "Send code again";
 "smsvalidation.user.headerTitle" = "Account Login";
 "smsvalidation.user.pincodeattempted5times" = "Too many wrong attempts";
@@ -177,9 +173,9 @@
 
 "login.user.errorinfoText" = "Your account has been locked for security reasons, use the reset passcode option to enable our account.";
 
-"challenges.user.budgetGoalHeader" = "Set yourself a target by setting a daily balance";
+"challenges.user.budgetGoalHeader" = "Set yourself a target by setting a daily credit balance";
 "challenges.user.timezoneGoalHeader" = "Decide if you want to spend time or not.";
-"challenges.user.nogoGoalHeader" = "Here you will capture you do not want to come at all.";
+"challenges.user.nogoGoalHeader" = "Here you will capture where you do not want to go at all.";
 
 "challenges.user.budgetCategoryHeader" = "Select where you want to capture a budget for";
 "challenges.user.timezoneCategoryHeader" = "Choose a category in which you want to set a time zone";
@@ -197,15 +193,15 @@
 "challenges.timezoneGoal.Title" = "TIMEZONE";
 "challenges.nogoGoal.Title" = "NO GO";
 
-"challenges.addBudgetGoal.budgetChallengeMainTitle" = "TIME ALLOWED";
+"challenges.addBudgetGoal.budgetChallengeMainTitle" = "CAPTURE CREDIT";
 "challenges.addBudgetGoal.minutesPerDayLabel" = "minutes per day";
-"challenges.addBudgetGoal.budgetChallengeDescription" = "Determine how much time you want to spend on %@";
+"challenges.addBudgetGoal.budgetChallengeDescription" = "Specify how much time you want to spend on %@";
 "challenges.addBudgetGoal.budgetLabel" = "Budget";
 "challenges.addBudgetGoal.bottomLabelText" = "The following apps are part of this challenge:";
-"challenges.addBudgetGoal.deletedGoalMessage" = "Deleted Goal";
+"challenges.addBudgetGoal.deletedGoalMessage" = "Remove Challenge";
 "challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Cannot delete mandatory goal";
-"challenges.addBudgetGoal.goalAddedSuccessfully" = "New Goal Added";
-"challenges.addBudgetGoal.newPinCode" = "New PIN-code";
+"challenges.addBudgetGoal.goalAddedSuccessfully" = "New challenge added";
+"challenges.addBudgetGoal.newPinCode" = "New Pincode";
 
 "challenges.addBudgetGoal.NoGoChallengeMainTitle" = "NOGO ALLOWED";
 "challenges.addBudgetGoal.NoGoChallengeDescription" = "Lets you indicate that you in no way want to %@";
@@ -213,7 +209,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIMEZONE ALLOWED";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Determine in what time frame you want to use %@";
 
-"login.user.pinResetReuestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s) %@minute(s) %@second(s).";
+"login.user.pinResetRequestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s)";
 "userNotFoundAlert" = "User not found";
 "change-pin" = "Change PIN";
 "settings.privacy" = "PRIVACY";
