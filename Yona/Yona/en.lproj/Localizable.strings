@@ -157,6 +157,9 @@
 "smsvalidation.user.headerTitle" = "Account Login";
 "smsvalidation.user.pincodeattempted5times" = "Too many wrong attempts";
 
+"smsvalidation.wait.headerTitle" = "You have to wait";
+"smsvalidation.wait.infomessage" = "For security reasons your account blocked . Can activate 24 hours after you apply for a new PIN .";
+
 "passcode.user.headerTitle" = "Account has been created";
 "passcode.user.infomessage" = "For security , it is mandatory to provide the Yona app PIN. Set your PIN below.";
 

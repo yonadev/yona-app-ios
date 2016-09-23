@@ -503,7 +503,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             response.statusCode = 302
             //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "http://www.yona.nl/yonaapp/")
+                response.setHeader("Location", value: "https://www.yona.nl/yonaapp/")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }

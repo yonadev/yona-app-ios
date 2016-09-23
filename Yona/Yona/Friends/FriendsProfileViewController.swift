@@ -60,8 +60,9 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = navbarColor1
-        let navbar = navigationController?.navigationBar as! GradientNavBar
-        navbar.gradientColor = navbarColor
+        if let navbar = navigationController?.navigationBar as? GradientNavBar {
+            navbar.gradientColor = UIColor.yiMidBlueColor()
+        }
         
     }
 
