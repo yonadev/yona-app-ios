@@ -262,3 +262,6 @@
 "addfriend.alert.text" = "You must allow Yona App acces to Your addressbook, to select friends from it";
 "addfriend.alert.nosettings.text"  = "You must allow Yona App acces to Your addressbook, to select friends from it. Please allow in settings";
 "addfriend.alert.settings.text" = "Settings";
+
+"vpnerror.notrunning.title.text" = "The VPN is Not Running";
+"vpnerror.notrunning.message.text" = "The VPN is Not Running. You must enable it to track activity";

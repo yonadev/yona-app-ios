@@ -487,7 +487,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
         print("handleMobileconfigRootRequest");
-        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},400);</script><BODY></BODY></HTML>"
+        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},2000);</script><BODY></BODY></HTML>"
         response.respondWithString(txt)
     }
 

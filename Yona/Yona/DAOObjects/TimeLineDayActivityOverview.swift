@@ -63,11 +63,11 @@ class TimeLineDayActivityOverview: NSObject {
             }
             var validData = false
             for row in obj.userData {
-                if row.goalType == "NoGoGoal" && !row.goalAccomplished {
+//                if row.goalType == "NoGoGoal" && !row.goalAccomplished {
+//                    validData = true
+//                } else if row.goalType != "NoGoGoal" {
                     validData = true
-                } else if row.goalType != "NoGoGoal" {
-                    validData = true
-                }
+//                }
             }
 
             if validData {

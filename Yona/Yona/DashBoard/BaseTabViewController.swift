@@ -156,4 +156,5 @@ class BaseTabViewController: UITabBarController {
     class func userHasGoals() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded);
     }
+
 }

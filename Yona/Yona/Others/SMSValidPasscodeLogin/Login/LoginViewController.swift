@@ -176,6 +176,7 @@ extension LoginViewController: CodeInputViewDelegate {
                         case alertButtonType.cancel:
                             break
                             //do nothing or send back to start of signup?
+                            self.codeInputView.becomeFirstResponder()
                         }
                     })
                 }

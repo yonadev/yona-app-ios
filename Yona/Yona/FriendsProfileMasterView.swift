@@ -401,6 +401,10 @@ TimeLinedayActivitiesForUsers
                 return 80
                 
             }
+            if obj.goalType == "NoGoGoal" {
+                return 50   
+                
+            }
             return 30
         }
 
