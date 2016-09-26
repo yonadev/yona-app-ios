@@ -66,12 +66,12 @@
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
 "adddevice.user.InputPassCode" = "Behagen ingang wachtwoord";
-"adddevice.user.InputValidCode" = "Gelieve ingang geldig Telefoonnummer";
+"adddevice.user.InputValidCode" = "Geen een geldig telefoonnummer in";
 "adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in uw andere apparaat";
 
 "login.user.errorinfoText" = "Jouw account is geblokkeerd om veiligheidsredenen, gebruik de optie reset-toegangscode om jouw account te activeren.";
 
-"challenges.user.budgetGoalHeader" = "Stel jezelf een doel door een dagelijk tegoed vast te stellen";
+"challenges.user.budgetGoalHeader" = "Stel jezelf een doel door een tegoed per dag vast te stellen";
 "challenges.user.timezoneGoalHeader" = "Bepaal zelf wanneer je wel of niet tijd wilt besteden.";
 "challenges.user.nogoGoalHeader" = "Hier leg je vast waar je helemaal niet wilt komen.";
 "challenges-credit" = "CREDIT";
@@ -146,7 +146,9 @@
 
 "yesterday" = "GISTEREN";
 "today" = "VANDAAG";
-"pull-to-refresh" = "Trek op te frissen";
+"pull-to-refresh" = "Swipe om te verversen";
+"this_week" = "DEZE WEEK";
+"last_week" = "VORIGE WEEK";
 
 //Friends Overview
 "friends" = "VRIENDEN";
@@ -161,18 +163,14 @@
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
 "enteremailvalidation" = "Je moet het e-mailadres van de vriend in te voeren.";
-"addBuddyMessage" = "Hallo daar, wil je mijn vriend worden?";
+"addBuddyMessage" = "Hoi, wil jij mijn buddy worden?";
 "email" = "EMAIL";
 
-"enter-first-name-validation" = "Je moet een naam invoeren";
-"enter-last-name-validation"  = "Je moet een naam invoeren";
-"enter-nickname-validation" = "You need to enter a nickname";
+"enter-first-name-validation" = "Je moet een voornaam invullen";
+"enter-nickname-validation"  = "Een nickname is verplicht";
+"enter-last-name-validation"  = "Je moet een achternaam invullen";
 "enter-number-validation" = "Nummer moet 9 cijfers bevatten";
-"enteremailvalidation" = "You need to enter email address of friend.";
 "loading" = "Loading";
-"login-accountBlocked-title" = "Your account is blocked";
-"passcode-title" = "You are not alone";
-"passcode-reset" = "PIN reset";
 "invalid-otp" = "Ongeldige toegangcode";
 
 //ChangePin
@@ -221,12 +219,12 @@
 "message.type.friendrequest" = "Vriendenverzoek";
 
 "message.type.friendresponse.accepted" = "Vriendenverzoek geaccepteerd";
-"message.type.friendresponse.rejected" = "Vriendenverzoek afgewezen";
+"message.type.friendresponse.rejected" = "Vriendenverzoek geweigerd";
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
-"message.type.goalchange.add" = "Challenge Added";
-"message.type.goalchange" = "Challenge gewijzigd";
+"message.type.goalchange.add" = "Challenge toegevoegd";
+"message.type.goalchange" = "Challenge aangepast";
 "message.type.disclosureresponse" = "Reviewverzoek geacceoteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
 //me day cells
@@ -243,7 +241,7 @@
 
 // WeekScoreControl Cell
 "meweek.message.timescompleted" = "x doel gehaald";
-"meweek.message.score" = "aantal punten";
+"meweek.message.score" = "Score";
 "meweek.message.minutesAverage" = "Gemiddeld";
 
 
