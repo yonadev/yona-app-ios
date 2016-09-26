@@ -23,6 +23,12 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "ConfirmPasscodeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)

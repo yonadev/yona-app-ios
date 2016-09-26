@@ -38,6 +38,13 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "FriendsProfileViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         navbarColor1 = self.navigationController?.navigationBar.backgroundColor
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar

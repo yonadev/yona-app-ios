@@ -24,6 +24,12 @@ final class PinResetValidationVC: ValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "PinResetValidationVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setBackgroundColour()
         displayPincodeRemainingMessage()
         self.codeInputView.delegate = self

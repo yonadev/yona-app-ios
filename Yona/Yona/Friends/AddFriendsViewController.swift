@@ -36,6 +36,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.setupUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "AddFriendsViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()

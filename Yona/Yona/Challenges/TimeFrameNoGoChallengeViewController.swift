@@ -80,6 +80,14 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeFrameNoGoChallengeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)

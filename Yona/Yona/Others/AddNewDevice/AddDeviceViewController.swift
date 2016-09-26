@@ -30,6 +30,14 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         setupUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "AddDeviceViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     private func setupUI() {
         // Text Delegates
         if var label = previousRange {

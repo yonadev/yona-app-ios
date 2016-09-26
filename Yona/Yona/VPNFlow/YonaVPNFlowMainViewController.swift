@@ -53,6 +53,14 @@ class YonaVPNFlowMainViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         resetAllViews()
@@ -91,7 +99,11 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
         
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     func removeScreen() {

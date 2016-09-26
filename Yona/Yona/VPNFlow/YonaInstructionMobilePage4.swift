@@ -17,6 +17,14 @@ class YonaInstructionMobilePage4 : YonaVPNInstructionsViewController{
         textLabel.text = NSLocalizedString("vpnflowintro2.title4.text", comment: "")
         actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), forState: UIControlState.Normal)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaInstructionMobilePage4")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
 
     @IBAction func requestReRun(sender: AnyObject){
         delegate?.didRequestReRun()

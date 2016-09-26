@@ -16,6 +16,11 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "WalkThroughViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     

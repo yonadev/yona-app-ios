@@ -25,11 +25,14 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         setupUI()
     }
     
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowInstructionsVPNViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+ 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         

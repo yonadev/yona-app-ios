@@ -39,6 +39,15 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         
         tableView.backgroundColor = UIColor.yiTableBGGreyColor()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaNotificationAcceptFriendRequestViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = navbarColor1
         let navbar = navigationController?.navigationBar as! GradientNavBar

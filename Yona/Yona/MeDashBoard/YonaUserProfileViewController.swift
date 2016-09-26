@@ -33,6 +33,14 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         registreTableViewCells()
         dataLoading()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaUserProfileViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
 
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)

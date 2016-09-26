@@ -36,6 +36,12 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         dispatch_async(dispatch_get_main_queue(), {
             
         })

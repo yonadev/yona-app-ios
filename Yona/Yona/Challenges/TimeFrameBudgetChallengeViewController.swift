@@ -94,7 +94,13 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.updateValues()
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
     
     // MARK: - functions
    

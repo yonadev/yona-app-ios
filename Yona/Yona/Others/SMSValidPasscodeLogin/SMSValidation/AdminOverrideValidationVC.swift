@@ -13,6 +13,13 @@ class AdminOverrideValidationVC: ValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "AdminOverrideValidationVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setBackgroundColour()
         
         self.codeInputView.delegate = self

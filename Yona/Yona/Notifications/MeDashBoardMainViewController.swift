@@ -41,6 +41,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "MeDashBoardMainViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         //make sure we set the nav bar to correct purple colours
         if let navbar = navigationController?.navigationBar as? GradientNavBar{
             navbar.backgroundColor = UIColor.yiGrapeColor()

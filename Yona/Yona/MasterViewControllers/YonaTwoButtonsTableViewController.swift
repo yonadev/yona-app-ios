@@ -42,6 +42,12 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaTwoButtonsTableViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
     }
     

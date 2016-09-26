@@ -38,6 +38,13 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "SignUpSecondStepViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         IQKeyboardManager.sharedManager().enable = false
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)

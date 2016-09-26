@@ -60,7 +60,11 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //It will select NoGo tab by default
-
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeBucketChallenges")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
         
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
