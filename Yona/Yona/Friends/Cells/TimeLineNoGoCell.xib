@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,50 +14,54 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeLineNoGoCell" id="Pkj-rn-LNI" customClass="TimeLineNoGoCell" customModule="Yona" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeLineNoGoCell" rowHeight="100" id="Pkj-rn-LNI" customClass="TimeLineNoGoCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pkj-rn-LNI" id="DxN-bN-UmD">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1x-Rt-XOE" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-4v-NH6">
-                                <rect key="frame" x="20" y="15" width="56" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="1NF-5U-KgL"/>
-                                    <constraint firstAttribute="height" constant="56" id="4F4-BF-zfn"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="4F4-BF-zfn"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
-                        </subviews>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="aWg-4v-NH6" secondAttribute="bottom" constant="15" id="4mo-li-VhA"/>
-                            <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="b1x-Rt-XOE" secondAttribute="leading" constant="20" id="7Xb-w1-QtC"/>
-                            <constraint firstItem="aWg-4v-NH6" firstAttribute="top" secondItem="b1x-Rt-XOE" secondAttribute="top" constant="15" id="C8v-7e-a1i"/>
-                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="geen hits, hou vol" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-Bb-GTZ">
-                        <rect key="frame" x="223" y="36" width="125" height="17"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-4v-NH6">
+                        <rect key="frame" x="16" y="34" width="32" height="32"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="125" id="0lh-Hk-CiD"/>
-                            <constraint firstAttribute="height" constant="17" id="O3X-gd-eK0"/>
+                            <constraint firstAttribute="height" constant="56" id="4F4-BF-zfn"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="A9f-ff-LPB"/>
+                            <constraint firstAttribute="width" constant="32" id="KKR-YR-dT0"/>
+                            <constraint firstAttribute="width" constant="56" id="Usv-xL-Gmi"/>
+                            <constraint firstAttribute="height" constant="32" id="fRq-aQ-E2V"/>
+                            <constraint firstAttribute="height" constant="56" id="jhu-PK-bSI"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="oCG-OQ-Xg7"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4F4-BF-zfn"/>
+                                <exclude reference="A9f-ff-LPB"/>
+                                <exclude reference="Usv-xL-Gmi"/>
+                                <exclude reference="jhu-PK-bSI"/>
+                                <exclude reference="oCG-OQ-Xg7"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MIp-Xb-SQs">
+                        <rect key="frame" x="67" y="42" width="138" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Qeq-0N-oX7"/>
+                            <constraint firstAttribute="width" constant="138" id="Wzo-Zb-Sjg"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MIp-Xb-SQs">
-                        <rect key="frame" x="86" y="36" width="138" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="geen hits, hou vol" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-Bb-GTZ">
+                        <rect key="frame" x="223" y="41.5" width="125" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="Rk4-3H-wMh"/>
+                            <constraint firstAttribute="height" constant="17" id="AsK-69-VnB"/>
+                            <constraint firstAttribute="width" constant="125" id="eao-RN-3xZ"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,16 +69,25 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="centerY" secondItem="DxN-bN-UmD" secondAttribute="centerY" id="1SR-BG-wQv"/>
                     <constraint firstAttribute="bottomMargin" secondItem="b1x-Rt-XOE" secondAttribute="bottom" constant="-8.5" id="6Ju-5Z-gUx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="b1x-Rt-XOE" secondAttribute="trailing" constant="-8" id="8Rv-EM-afh"/>
                     <constraint firstItem="b1x-Rt-XOE" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="-8" id="Hrf-Xl-5iF"/>
+                    <constraint firstItem="ObH-Bb-GTZ" firstAttribute="centerX" secondItem="DxN-bN-UmD" secondAttribute="centerX" id="P6s-Lq-ssB"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="28" id="R5o-oq-y1I"/>
-                    <constraint firstItem="ObH-Bb-GTZ" firstAttribute="leading" secondItem="MIp-Xb-SQs" secondAttribute="trailing" constant="-1" id="bQj-Rn-jZg"/>
+                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="19" id="TLf-Pq-pZL"/>
                     <constraint firstItem="b1x-Rt-XOE" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="-8" id="cYq-Nv-N3I"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ObH-Bb-GTZ" secondAttribute="trailing" constant="19" id="ee7-QH-Nf8"/>
-                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="78" id="m0j-X0-KFq"/>
-                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="28" id="rj0-Po-0py"/>
+                    <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="8" id="cqS-YI-cf1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ObH-Bb-GTZ" secondAttribute="trailing" constant="19" id="dbm-hy-fgr"/>
+                    <constraint firstItem="ObH-Bb-GTZ" firstAttribute="centerY" secondItem="DxN-bN-UmD" secondAttribute="centerY" id="neO-Dg-VDy"/>
+                    <constraint firstItem="aWg-4v-NH6" firstAttribute="centerY" secondItem="DxN-bN-UmD" secondAttribute="centerY" id="roQ-i0-Hjc"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="P6s-Lq-ssB"/>
+                        <exclude reference="R5o-oq-y1I"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="gradientView" destination="b1x-Rt-XOE" id="RFE-RQ-7i1"/>
@@ -82,7 +95,7 @@
                 <outlet property="nogoMessage" destination="ObH-Bb-GTZ" id="LRF-8o-ihZ"/>
                 <outlet property="personName" destination="MIp-Xb-SQs" id="DZF-bD-erH"/>
             </connections>
-            <point key="canvasLocation" x="411.5" y="322"/>
+            <point key="canvasLocation" x="411.5" y="311"/>
         </tableViewCell>
     </objects>
 </document>

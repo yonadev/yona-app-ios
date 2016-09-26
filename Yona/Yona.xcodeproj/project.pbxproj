@@ -19,6 +19,7 @@
 		160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */; };
 		160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
+		164E549C1D95B3F6006FCFE4 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */; };
 		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
 		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
 		1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */; };
@@ -68,7 +69,6 @@
 		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
 		167C514A1D5CB32600222EF8 /* BarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */; };
 		16939AD81D3A800F003DD3A3 /* WeekSingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */; };
-		16AB73331D91B280003E8D3E /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16AB73321D91B280003E8D3E /* SecretKeys.plist */; };
 		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
 		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
 		16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */; };
@@ -385,6 +385,7 @@
 		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		164CD1D91D6B86EC004E585B /* Yona.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Yona.entitlements; sourceTree = "<group>"; };
+		164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
 		1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage2.swift; sourceTree = "<group>"; };
@@ -458,7 +459,6 @@
 		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
 		167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityDetail.swift; path = DAOObjects/WeekSingleActivityDetail.swift; sourceTree = "<group>"; };
-		16AB73321D91B280003E8D3E /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
 		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
 		16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserHeaderWithTwoTabTableViewCell.xib; sourceTree = "<group>"; };
@@ -1748,7 +1748,7 @@
 				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
-				16AB73321D91B280003E8D3E /* SecretKeys.plist */,
+				164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
@@ -1934,7 +1934,7 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				16AB73331D91B280003E8D3E /* SecretKeys.plist in Resources */,
+				164E549C1D95B3F6006FCFE4 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -2515,7 +2515,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xaton B.V. (Ent)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

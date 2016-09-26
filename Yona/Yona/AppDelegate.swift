@@ -73,7 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
-        testForVpnEnabled()
+        doTestCycleForVPN()
+        
     }
 
     private func hockeyAppSetup() {
@@ -146,7 +147,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
         print("handleMobileconfigRootRequest");
-        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},400);</script><BODY></BODY></HTML>"
+        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script type=\"text/javascript\">window.addEventListener(\"focus\", function(evt){load()},false);window.addEventListener(\"blur\", function(evt) {console.log('hide');}, false);</script><script type=\"text/javascript\">function load() {clearInterval(int);window.location.href='http://localhost:8089/load/';}var int=self.setInterval(function(){load()},200);</script><BODY></BODY></HTML>"
+        
+        
+        /*"<HTML><HEAD><title>Profile Install</title></HEAD><script type=\"text/javascript\">window.addEventListener(\"pageshow\", function(evt){alert('show');}, false);window.addEventListener(\"pagehide\", function(evt){console.log('hide';}, false);</script><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},4000);</script><BODY></BODY></HTML>"*/
         response.respondWithString(txt)
     }
     
@@ -174,7 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-            
+            httpServer?.stop()
         }
     }
 
@@ -228,6 +232,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      */
     
     
+    func doTestCycleForVPN() {
+        
+        
+        // first test if VPN is installed
+        if !testForOpenVPNInstalled() {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
+
+            return
+        }
+
+        testForVpnEnabled()
+    }
+    
     
     func testForVpnEnabled() {
         if let url = NSURL(string: "https://10.96.169.12:442/cgi-bin/login.cgi") {
@@ -239,15 +258,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
                 if let aError = error {
                     print (" No access through vpn \(aError.code), \(aError.localizedDescription)")
+                    if #available(iOS 8.0, *) {
+                        
+                        let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: NSLocalizedString("vpnerror.notrunning.message.text", comment:""), preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
+                            void in
+                            self.handleOpenVPNNotRuning()
+                        })
+                        alert.addAction(cancelAction)
+                        self.window?.rootViewController!.presentViewController(alert, animated: true, completion:nil )
+                        
+                    }
+                    else {
+                        
+                        UIAlertView(title:  NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: NSLocalizedString("vpnerror.notrunning.message.text", comment:""), delegate: self, cancelButtonTitle: "OK").show()
+                    }
+
+                    
                 }
             });
             
             task.resume()
         }
     }
-    
-    func testForOpenVPN() {
-        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+    func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
         
+        if buttonIndex == 1 {
+            handleOpenVPNNotRuning()
+        }
+    }
+
+    
+    func handleOpenVPNNotRuning() {
+        print("I came here")
+    }
+    
+    func testForOpenVPNInstalled () -> Bool {
+        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+        return installed
     }
 }

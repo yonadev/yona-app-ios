@@ -21,11 +21,11 @@ class TimeLineNoGoCell : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        drawTheCell()
+       // drawTheCell()
     }
 
     override func awakeFromNib() {
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+      //  gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
 
     }
     
@@ -46,9 +46,19 @@ class TimeLineNoGoCell : UITableViewCell {
     
     
     func setData(timelineData : TimeLinedayActivitiesForUsers) {
+        
         if timelineData.totalMinutesBeyondGoal > 0 {
             self.goalAccomplished = false
+            self.nogoImage.image = R.image.adultSad
+            let dateFromat = NSDateFormatter()
+            dateFromat.dateFormat = "hh:mm a"
+            let date = dateFromat.stringFromDate(goalDate)
+            self.nogoMessage.text =  "\(date) - \(String(totalMinutesBeyondGoal)) \(NSLocalizedString("meday.nogo.minutes", comment: ""))"
+        } else {
+            self.nogoImage.image = R.image.adultHappy
+            self.nogoMessage.text = NSLocalizedString("meday.nogo.message", comment: "")
         }
+        
         if let firstname =  timelineData.user?.firstName {
             if let last = timelineData.user?.lastName {
                 personName.text = firstname + " " + last
