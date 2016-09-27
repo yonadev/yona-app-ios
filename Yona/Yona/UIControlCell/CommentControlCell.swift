@@ -73,6 +73,9 @@ class CommentControlCell: PKSwipeTableViewCell {
     }
     
     @IBAction func replyToCommentButton(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "replyToCommentButton", label: "Replying to comment button press", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         commentDelegate?.showSendComment(comment)
     }
 

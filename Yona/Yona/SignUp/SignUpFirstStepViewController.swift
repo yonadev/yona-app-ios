@@ -107,6 +107,9 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

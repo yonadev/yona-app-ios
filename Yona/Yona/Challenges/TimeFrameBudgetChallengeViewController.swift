@@ -119,14 +119,23 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func minutesDidChange(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "minutesDidChange", label: "Change minutes", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         maxDurationMinutes = String(Int(minutesSlider.value))
         self.updateValues()
     }
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if isFromActivity == true {
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
                 let bodyBudgetGoal: [String: AnyObject] = [
@@ -191,6 +200,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
   
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

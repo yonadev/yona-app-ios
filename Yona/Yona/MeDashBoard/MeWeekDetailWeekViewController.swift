@@ -99,6 +99,8 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
 
     @IBAction func backAction(sender : AnyObject) {
         dispatch_async(dispatch_get_main_queue(), {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil) as AnyObject as! [NSObject : AnyObject])
             self.navigationController?.popViewControllerAnimated(true)
         })
     

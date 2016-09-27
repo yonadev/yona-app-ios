@@ -181,7 +181,9 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func backAction(sender : AnyObject) {
- 
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionFriendsProfileView", label: "Back from friends profile view page", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
         })

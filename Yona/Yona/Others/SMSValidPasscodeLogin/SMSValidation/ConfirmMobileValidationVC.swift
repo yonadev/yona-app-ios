@@ -39,6 +39,9 @@ class ConfirmMobileValidationVC: ValidationMasterView {
     
     @IBAction func sendOTPConfirmMobileAgain(sender: UIButton) {
         Loader.Show()
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendOTPConfirmMobileAgain", label: "Send confirm OTP mobile again", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
             if success {
                 Loader.Hide()

@@ -90,11 +90,17 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameNoGoChallengeViewController", label: "Back from no go challenge page", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
         
     }
     
     @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewNoGoChallengeButtonTapped", label: "Post No Go Challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
                 "@type": "BudgetGoal",
@@ -127,6 +133,9 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTappedNoGo", label: "Delete No Go Challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

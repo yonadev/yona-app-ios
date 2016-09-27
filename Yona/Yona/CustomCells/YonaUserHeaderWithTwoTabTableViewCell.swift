@@ -149,6 +149,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         badgesTabLabel.alpha = 0.5
         delegate?.didSelectProfileTab()
     }
+    
     @IBAction func showBadgesTab (sender : AnyObject) {
         profileTabLabel.alpha = 0.5
         profileTabSelcetionView.hidden = true

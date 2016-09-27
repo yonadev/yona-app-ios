@@ -297,10 +297,16 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
 extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewTimeZoneChallengeButtonTapped", label: "Add timezone challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
         if isFromActivity == true {
             addANewTimeZone()
@@ -321,6 +327,9 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTappedTimeZone", label: "Delete timezone challenge", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

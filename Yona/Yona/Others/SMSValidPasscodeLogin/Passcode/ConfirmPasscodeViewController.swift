@@ -60,6 +60,9 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

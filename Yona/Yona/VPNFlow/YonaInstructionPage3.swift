@@ -27,6 +27,9 @@ class YonaInstructionPage3 : YonaVPNInstructionsViewController {
     }
     
     @IBAction func requestReRun(sender: AnyObject){
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "requestReRun", label: "Request re run of instructions", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         delegate?.didRequestReRun()
     }
     

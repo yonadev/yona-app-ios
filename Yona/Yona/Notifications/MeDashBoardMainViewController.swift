@@ -333,14 +333,18 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
 
     @IBAction func showUserProfile(sender : AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil) as AnyObject as! [NSObject : AnyObject])
+
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showProfile, sender: self)
         
     }
 
     @IBAction func showNotifications(sender : AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showNotifications, sender: self)
-        
-        
     }
 
     

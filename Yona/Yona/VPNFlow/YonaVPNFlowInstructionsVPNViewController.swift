@@ -150,6 +150,8 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     // Mark: - buttons actions
     
     @IBAction func downloadOpenVPNAction(sender : UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "downloadOpenVPNAction", label: "Download VPN action button pressed to go to appstore", value: nil) as AnyObject as! [NSObject : AnyObject])
         
         appStoreCall()
     

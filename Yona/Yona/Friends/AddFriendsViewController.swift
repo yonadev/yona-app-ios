@@ -208,6 +208,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     @IBAction func addNewBuddyButtonTapped(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         if firstnameTextfield.text!.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-first-name-validation", comment: ""))
@@ -336,6 +339,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     extension AddFriendsViewController {
         
         @IBAction func ManualTabAction(sender: AnyObject) {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil) as AnyObject as! [NSObject : AnyObject])
+            
             addressBookTabView.alpha = 0.5
             addressBookTabBottomBorder.hidden = true
             manualTabView.alpha = 1.0
@@ -343,6 +349,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         }
         
         @IBAction func AddressBookTabAction(sender: AnyObject) {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil) as AnyObject as! [NSObject : AnyObject])
+            
             manualTabView.alpha = 0.5
             manualTabBottomBorder.hidden = true
             addressBookTabView.alpha = 1.0

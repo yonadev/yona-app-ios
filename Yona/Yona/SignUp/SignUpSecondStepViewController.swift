@@ -120,12 +120,18 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextStepInSignup", label: "Step 2 finished, next step in sign up", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         var number = ""
         if let mobilenum = mobileTextField.text {
             number = (nederlandPhonePrefix) + mobilenum

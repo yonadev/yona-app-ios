@@ -76,7 +76,9 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     // MARK: - ACTION
     @IBAction func didChooseUserProfile(sender : AnyObject) {
-    
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)
     
     }

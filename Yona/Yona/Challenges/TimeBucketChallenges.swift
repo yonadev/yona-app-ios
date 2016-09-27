@@ -286,10 +286,16 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         self.setSelectedCategory(selectedCategoryView)
     }
     
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         sender.hidden = true
         self.navigationItem.leftBarButtonItem = self.backButton
         if selectedCategoryView == budgetView {

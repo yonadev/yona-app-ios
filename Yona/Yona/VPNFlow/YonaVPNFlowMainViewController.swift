@@ -154,6 +154,8 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     
     @IBAction func finalInstrucsionsButtonAction (sender :UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil) as AnyObject as! [NSObject : AnyObject])
         
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationItem.hidesBackButton = true
@@ -164,8 +166,12 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
     
     @IBAction func buttonAction (sender :UIButton) {
+
         
         if currentProgress == .openVPNAppNotInstalledShow {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil) as AnyObject as! [NSObject : AnyObject])
+            
             dispatch_async(dispatch_get_main_queue(), {
                 NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                 self.currentProgress = .openVPNAppNotInstalledSetup
@@ -176,12 +182,16 @@ class YonaVPNFlowMainViewController: UIViewController {
             return
         }
         if currentProgress == .openVPNAppInstalledStep3 {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil) as AnyObject as! [NSObject : AnyObject])
+            
             downloadFileFromServer()
-        
             return
         }
         if currentProgress == .configurationInstalled {
-//            httpServer?.stop()
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil) as AnyObject as! [NSObject : AnyObject])
+            
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
             self.dismissViewControllerAnimated(true, completion: {})
             return

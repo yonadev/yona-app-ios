@@ -387,6 +387,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     @IBAction func unwindToFriendsOverview(segue: UIStoryboardSegue) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil) as AnyObject as! [NSObject : AnyObject])
+        
         print(segue.sourceViewController)
     }
 
