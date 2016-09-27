@@ -290,9 +290,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let otherDate = otherDateStart.yearWeek
         
         if corretcToday.yearWeek == other {
-            cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+            cell.headerTextLabel.text = NSLocalizedString("this_week", comment: "")
         } else if other == otherDate {
-            cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
+            cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
         } else {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM"
