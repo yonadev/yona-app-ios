@@ -258,7 +258,6 @@
 "message.type.friendresponse.accepted" = "Friend request accepted";
 "message.type.friendresponse.rejected" = "Friend request rejected";
 
-"message.type.friendrequestrejected" = "";
 "message.type.friendremoved" = "You are removed as a friend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.goalchange.add" = "Challenge added";
