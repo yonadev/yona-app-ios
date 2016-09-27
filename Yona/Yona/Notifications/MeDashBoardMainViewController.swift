@@ -76,6 +76,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     @IBAction func backAction(sender : AnyObject) {
+        
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDashboard", value: nil) as AnyObject as! [NSObject : AnyObject])
+
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
         })

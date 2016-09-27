@@ -81,14 +81,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "MeDayDetailViewController")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
-    }
-    
     @IBAction func backAction(sender : AnyObject) {
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
