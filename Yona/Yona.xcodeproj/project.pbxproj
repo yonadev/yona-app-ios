@@ -101,6 +101,7 @@
 		6042829C1D0ADA4600F5543C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282961D0ADA4600F5543C /* SVProgressHUD.m */; };
 		6042829D1D0ADA4600F5543C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */; };
 		60E5B5BF1CE612E80090E593 /* DashboardNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */; };
+		9007DD121D9576820092AA9E /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9007DD111D9576820092AA9E /* SecretKeys.plist */; };
 		900972B41CC7B77000EEB7E7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
 		90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */; };
 		90351BF61D101FD90012E983 /* ValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90351BF51D101FD90012E983 /* ValidationMasterView.swift */; };
@@ -495,6 +496,7 @@
 		604282971D0ADA4600F5543C /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationViewController.swift; sourceTree = "<group>"; };
+		9007DD111D9576820092AA9E /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideValidationVC.swift; sourceTree = "<group>"; };
 		90351BF51D101FD90012E983 /* ValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationMasterView.swift; sourceTree = "<group>"; };

@@ -38,10 +38,8 @@ final class PinResetValidationVC: ValidationMasterView {
     override func viewDidAppear(animated: Bool) {
         if !(pinResetCountDownTimer?.valid)! {
             codeInputView.becomeFirstResponder()
-            headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment:"")
+            headerTitleLabel.text = NSLocalizedString("login-accountBlocked-title", comment:"")
             infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment:"")
-
-            
         }
     }
     
@@ -85,12 +83,9 @@ final class PinResetValidationVC: ValidationMasterView {
         pinResetCountDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(PinResetValidationVC.executePinResetCounter(_:)), userInfo: userInfo, repeats: true)
         
         executePinResetCounter(pinResetCountDownTimer!)
-        
-        headerTitleLabel.text = NSLocalizedString("smsvalidation.wait.headerTitle", comment:"")
-        infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment:"")
 
-        headerTitleLabel.text = "Je moet even wachten"
-        infoLabel.text = "Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 uur nadat je een nieuwe PIN code hebt aangevraagd."
+        headerTitleLabel.text = NSLocalizedString("smsvalidation.wait.headerTitle", comment:"")// "Je moet even wachten"
+        infoLabel.text = NSLocalizedString("smsvalidation.user.countdownmessage", comment:"") //"Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 uur nadat je een nieuwe PIN code hebt aangevraagd."
 
     }
     
