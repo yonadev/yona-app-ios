@@ -167,7 +167,7 @@ extension LoginSignupValidationMasterView {
             return
         }
         let (hour, minute, seconds) = timeISOCode.convertFromISO8601Duration()
-        let localizedString = NSLocalizedString("login.user.pinResetReuestAlert", comment: "")
+        let localizedString = NSLocalizedString("login.user.pinResetRequestAlert", comment: "")
         let alert = NSString(format: localizedString, String(hour), String(minute), String(seconds))
         if let infolabelText = self.infoLabel {
             infolabelText.text = String(alert)
