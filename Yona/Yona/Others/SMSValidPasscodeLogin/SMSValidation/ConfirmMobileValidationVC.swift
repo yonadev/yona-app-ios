@@ -19,6 +19,12 @@ class ConfirmMobileValidationVC: ValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "ConfirmMobileValidationVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setBackgroundColour()
         
         self.codeInputView.delegate = self
@@ -33,6 +39,9 @@ class ConfirmMobileValidationVC: ValidationMasterView {
     
     @IBAction func sendOTPConfirmMobileAgain(sender: UIButton) {
         Loader.Show()
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendOTPConfirmMobileAgain", label: "Send confirm OTP mobile again", value: nil).build() as [NSObject : AnyObject])
+        
         UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
             if success {
                 Loader.Hide()

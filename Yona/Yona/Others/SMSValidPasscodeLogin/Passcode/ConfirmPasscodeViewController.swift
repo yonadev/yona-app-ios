@@ -23,6 +23,12 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "ConfirmPasscodeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
@@ -54,6 +60,9 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil).build() as [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

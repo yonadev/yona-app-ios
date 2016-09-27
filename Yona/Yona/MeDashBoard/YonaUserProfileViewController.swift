@@ -33,6 +33,14 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         registreTableViewCells()
         dataLoading()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaUserProfileViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
 
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)
@@ -83,8 +91,10 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     @IBAction func userDidSelectEdit(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as [NSObject : AnyObject])
+        
         if tableView.editing {
-            
             let result = isUserDataValid()
             if  result == .none {
                 rightSideButton.image = UIImage.init(named: "icnEdit")

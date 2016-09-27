@@ -19,6 +19,14 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
         self.privacyView.loadRequest(requestObj)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "PrivacyStatementVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     //when webview is loaded stop the loading wheel and hide the view
     func webViewDidFinishLoad(webView: UIWebView) {
         Loader.Hide()

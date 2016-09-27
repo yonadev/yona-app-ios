@@ -58,7 +58,12 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "FriendsDayDetailViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -31,6 +31,14 @@ class YonaVPNInstructionsViewController : UIViewController {
         view.backgroundColor = UIColor.yiGrapeColor()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNInstructionsViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
 //MARK: Protocol impl
     func startAnimation(){
     

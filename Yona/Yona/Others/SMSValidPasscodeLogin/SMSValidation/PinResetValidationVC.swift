@@ -24,6 +24,12 @@ final class PinResetValidationVC: ValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "PinResetValidationVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setBackgroundColour()
         displayPincodeRemainingMessage()
         self.codeInputView.delegate = self
@@ -45,6 +51,10 @@ final class PinResetValidationVC: ValidationMasterView {
     
     @IBAction func resendPinResetRequestOTPCode(sender: UIButton) {
         Loader.Show()
+        
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "resendPinResetRequestOTPCode", label: "Resend the OTP pin reset code", value: nil).build() as [NSObject : AnyObject])
+        
         PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {
                 Loader.Hide()

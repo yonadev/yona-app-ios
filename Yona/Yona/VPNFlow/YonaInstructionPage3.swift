@@ -18,7 +18,18 @@ class YonaInstructionPage3 : YonaVPNInstructionsViewController {
         actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), forState: UIControlState.Normal)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaInstructionPage3")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     @IBAction func requestReRun(sender: AnyObject){
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "requestReRun", label: "Request re run of instructions", value: nil).build() as [NSObject : AnyObject])
+        
         delegate?.didRequestReRun()
     }
     

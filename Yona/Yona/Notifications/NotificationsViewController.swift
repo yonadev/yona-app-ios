@@ -35,13 +35,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
-        
-        
     }
     
     func registreTableViewCells () {
@@ -56,7 +53,11 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "NotificationsViewController")
         
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
         
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiGrapeColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar

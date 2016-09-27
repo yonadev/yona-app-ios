@@ -38,6 +38,13 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "SignUpSecondStepViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         IQKeyboardManager.sharedManager().enable = false
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
@@ -113,12 +120,18 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     
     // Go To Another ViewController
     @IBAction func nextPressed(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as [NSObject : AnyObject])
+        
         var number = ""
         if let mobilenum = mobileTextField.text {
             number = (nederlandPhonePrefix) + mobilenum

@@ -16,6 +16,11 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "WalkThroughViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     
@@ -71,6 +76,8 @@ class TourScreenViewController: AVPageContentViewController {
     @IBOutlet var descLabel: UILabel?
     
     @IBAction func nextAction(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextActionWalkthrough", label: "Go to next walkthrough", value: nil).build() as [NSObject : AnyObject])
         delegate?.buttonAction(self.viewControllerIndex)
         
         setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
