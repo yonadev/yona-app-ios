@@ -53,7 +53,7 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
     
     @IBAction func deleteMessage(sender: UIButton){
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deleteMessage", label: "Delete notification message", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as [NSObject : AnyObject])
         
         if let yonaUserSwipeDelegate = yonaUserSwipeDelegate,
             let aMessage = aMessage{

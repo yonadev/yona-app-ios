@@ -159,7 +159,7 @@ extension LoginViewController: CodeInputViewDelegate {
     
     @IBAction func pinResetTapped(sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "pinResetTapped", label: "Reset the pin button pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "pinResetTapped", label: "Reset the pin button pressed", value: nil).build() as [NSObject : AnyObject])
         
         self.pinResetTapped()
     }
@@ -167,7 +167,7 @@ extension LoginViewController: CodeInputViewDelegate {
     // Go Back To Previous VC
     @IBAction func backToSettings(sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backToSettings", label: "Back to settings from pinreset", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backToSettings", label: "Back to settings from pinreset", value: nil).build() as [NSObject : AnyObject])
         
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }

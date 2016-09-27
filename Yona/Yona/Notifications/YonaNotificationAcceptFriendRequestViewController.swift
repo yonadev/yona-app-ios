@@ -69,7 +69,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     // MARK: - Actions
     @IBAction func backAction (sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as [NSObject : AnyObject])
         navigationController?.popViewControllerAnimated(true)
         
     }

@@ -84,7 +84,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     @IBAction func backAction(sender : AnyObject) {
         dispatch_async(dispatch_get_main_queue(), {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil) as AnyObject as! [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as [NSObject : AnyObject])
 
             self.navigationController?.popViewControllerAnimated(true)
         })

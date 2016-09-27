@@ -192,7 +192,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     @IBAction func installMobilConfigFile(sender : UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as [NSObject : AnyObject])
         
         NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         delegate?.installMobileProfile()

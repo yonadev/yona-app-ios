@@ -53,7 +53,7 @@ final class PinResetValidationVC: ValidationMasterView {
         Loader.Show()
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "resendPinResetRequestOTPCode", label: "Resend the OTP pin reset code", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "resendPinResetRequestOTPCode", label: "Resend the OTP pin reset code", value: nil).build() as [NSObject : AnyObject])
         
         PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {

@@ -34,7 +34,7 @@ class AdminOverrideValidationVC: ValidationMasterView {
     
     @IBAction func sendAdminRequestOTPConfirmMobileAgain(sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil).build() as [NSObject : AnyObject])
         
         Loader.Show()
         if let userBody = NSUserDefaults.standardUserDefaults().objectForKey(YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {

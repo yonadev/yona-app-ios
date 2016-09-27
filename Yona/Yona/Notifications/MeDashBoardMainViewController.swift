@@ -78,7 +78,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBAction func backAction(sender : AnyObject) {
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDashboard", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDashboard", value: nil).build() as [NSObject : AnyObject])
 
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
@@ -334,7 +334,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     @IBAction func showUserProfile(sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil).build() as [NSObject : AnyObject])
 
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showProfile, sender: self)
         
@@ -342,7 +342,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     @IBAction func showNotifications(sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil).build() as [NSObject : AnyObject])
         
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showNotifications, sender: self)
     }

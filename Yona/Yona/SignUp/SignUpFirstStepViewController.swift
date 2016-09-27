@@ -50,8 +50,9 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == R.segue.signUpFirstStepViewController.signUpSecondStepViewController.identifier,
-        
             let vc = segue.destinationViewController as? SignUpSecondStepViewController {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextSignupSecondStep", label: "Go to step 2 signup", value: nil).build() as [NSObject : AnyObject])
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text
         }
@@ -81,7 +82,6 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     
     private func setupUI() {
         // Text Delegates
-        
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
    
@@ -108,7 +108,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     // Go Back To Previous VC
     @IBAction func back(sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil).build() as [NSObject : AnyObject])
         
         self.navigationController?.popViewControllerAnimated(true)
     }

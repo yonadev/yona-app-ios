@@ -92,7 +92,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBAction func userDidSelectEdit(sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as [NSObject : AnyObject])
         
         if tableView.editing {
             let result = isUserDataValid()

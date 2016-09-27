@@ -73,7 +73,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     // Go To Another ViewController
     @IBAction func loginPressed(sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil) as AnyObject as! [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as [NSObject : AnyObject])
         
         var number = ""
         if let mobilenum = mobileTextField.text {
