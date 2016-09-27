@@ -113,9 +113,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 btnName.titleLabel?.font = UIFont (name: "SFUIDisplay-Regular", size: 12)
                 btnName.backgroundColor = UIColor.yiDarkishPinkColor()
                 btnName.layer.cornerRadius = btnName.frame.size.width/2
-                btnName.layer.borderWidth = 1
-                //btnName.layer.borderColor = UIColor.whiteColor().CGColor
-                
+                btnName.layer.borderWidth = 0
+                btnName.layer.masksToBounds = true
+                btnName.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 

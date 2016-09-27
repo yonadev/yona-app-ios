@@ -46,7 +46,13 @@ class WeekScoreControlCell: UITableViewCell {
         fourthLayoutConstraint.constant = distanceBetweenEach
         lastLayoutConstraint.constant = distanceBetweenEach
         
+        setupGradient()
     }
+    func setupGradient () {
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        
+    }
+
     
     func setSingleActivity(theActivityGoal : WeekSingleActivityGoal, isScore :Bool = false) {
         aActivityGoal = theActivityGoal

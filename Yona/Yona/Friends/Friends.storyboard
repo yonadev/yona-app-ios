@@ -642,7 +642,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2UA-cL-aCQ" firstAttribute="leading" secondItem="X5Q-b1-oF7" secondAttribute="leadingMargin" constant="-20" id="1vo-vU-Ovd"/>
                             <constraint firstItem="2St-Ua-Gi3" firstAttribute="top" secondItem="2UA-cL-aCQ" secondAttribute="bottom" constant="-1" id="ANd-W5-yl0"/>

@@ -56,6 +56,12 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.yiGrapeColor()
+        let navbar = navigationController?.navigationBar as! GradientNavBar
+        navbar.gradientColor = UIColor.yiGrapeTwoColor()
+
        loadMessages(self)
     }
     

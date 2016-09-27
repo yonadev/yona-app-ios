@@ -31,15 +31,20 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         
+
+        registreTableViewCells()
+        dataLoading()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         navbarColor1 = self.navigationController?.navigationBar.backgroundColor
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar
         
         navbarColor = navbar.gradientColor
         navbar.gradientColor = UIColor.yiMidBlueColor()
-
-        registreTableViewCells()
-        dataLoading()
+        
     }
     
     func registreTableViewCells () {
@@ -59,6 +64,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
         self.navigationController?.navigationBar.backgroundColor = navbarColor1
         if let navbar = navigationController?.navigationBar as? GradientNavBar {
             navbar.gradientColor = UIColor.yiMidBlueColor()

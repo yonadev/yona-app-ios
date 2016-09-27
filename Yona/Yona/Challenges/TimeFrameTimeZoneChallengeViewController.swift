@@ -387,7 +387,9 @@ extension TimeFrameTimeZoneChallengeViewController {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
-                    self.navigationController?.popViewControllerAnimated(true)
+                    if goal?.zones.count < 1 {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
                 } else { //only one timezone delete the goal
                     self.deleteTimezone()
                 }
