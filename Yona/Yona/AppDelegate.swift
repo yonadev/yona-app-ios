@@ -248,7 +248,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func testForOpenVPNInstalled () -> Bool {
-        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
-        return installed
+        #if (arch(i386) || arch(x86_64))
+            return NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN")
+            
+        #else
+            let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+            return installed
+        #endif
     }
 }
