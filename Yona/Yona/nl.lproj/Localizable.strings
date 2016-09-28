@@ -1,17 +1,17 @@
-/* 
-  Localizable.strings
-  Yona
-
-  Created by Alessio Roberto on 31/03/16.
-  Copyright © 2016 Yona. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Yona
+ 
+ Created by Alessio Roberto on 31/03/16.
+ Copyright © 2016 Yona. All rights reserved.
+ */
 
 
 //Signup screens
 
 "join" = "DOE MEE";
 "login" = "INLOGGEN";
-"login-accountBlocked-title" = "Je account is geblok";
+"login-accountBlocked-title" = "Je account is geblokkeerd";
 "first-name" = "VOORNAAM";
 "last-name" = "ACHTERNAAM";
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
@@ -34,7 +34,7 @@
 
 "smsvalidation.user.resendAdminCodeButtonTitle" = "Resend Lost Device Code";
 "smsvalidation.user.errormessage" = "De code is niet correct. Probeer nog een keer";
-"smsvalidation.user.infomessage" = "Als extra beveiligings  ontvang je een code per SMS, graag deze code hieronder invullen.";
+"smsvalidation.user.infomessage" = "Als extra beveiliging ontvang je een code per SMS, graag deze code hieronder invullen.";
 "smsvalidation.user.countdownmessage" = "Je reset-aanvraag is ontvangen. Binnen 24 uur ontvang je een sms met een PIN-reset bevestigingscode.";
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
 "smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
@@ -65,9 +65,9 @@
 "adddevice.user.mobileNumber" = "MOBIEL TELEFOONNUMMER";
 "adddevice.user.passcode" = "PASSCODE";
 "adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
-"adddevice.user.InputPassCode" = "Behagen ingang wachtwoord";
-"adddevice.user.InputValidCode" = "Geen een geldig telefoonnummer in";
-"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in uw andere apparaat";
+"adddevice.user.InputPassCode" = "Voer geldig wachtwoord in";
+"adddevice.user.InputValidCode" = "Voer geldig telefoonnummer in";
+"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in te voer op uw andere apparaat";
 
 "login.user.errorinfoText" = "Jouw account is geblokkeerd om veiligheidsredenen, gebruik de optie reset-toegangscode om jouw account te activeren.";
 
@@ -141,7 +141,7 @@
 "change-pin" = "Wijzig pincode";
 "privacy" = "Privacy";
 "add-device" = "Device toevoegen";
-"delete-user" = "Unsubscribe";
+"delete-user" = "Uitschrijven";
 "deleteusermessage" = "Uitschrijven betekent dat je alle informatie (vrienden, meldingen, uitdagingen, activiteiten, etc.) op al je apparaten verliest. Druk op OK wanneer dit de bedoeling is.";
 
 "yesterday" = "GISTEREN";
@@ -175,7 +175,7 @@
 
 //ChangePin
 "settings_current_pin" = "Huidige pincode";
-"settings_current_pin_message" = "Om je pincode te wijzigen vragenwe je eerst je oude pincode in te voeren.";
+"settings_current_pin_message" = "Om je pincode te wijzigen vragen we je eerst je oude pincode in te voeren.";
 "settings_new_pincode" = "Nieuwe pincode";
 "settings_new_pin_message" = "Vul nu je nieuwe pincode in.";
 "settings_confirm_new_pin" = "Bevestig pincode";
@@ -213,7 +213,7 @@
 "profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
 "profile.tab.profile" = "Profiel";
-"profile.tab.badges" = "badges";
+"profile.tab.badges" = "Badges";
 
 //message types
 "message.type.friendrequest" = "Vriendenverzoek";
@@ -225,7 +225,7 @@
 "message.type.message" = "Bericht";
 "message.type.goalchange.add" = "Challenge toegevoegd";
 "message.type.goalchange" = "Challenge aangepast";
-"message.type.disclosureresponse" = "Reviewverzoek geacceoteerd";
+"message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
@@ -248,55 +248,55 @@
 // VPN setup text
 "vpnflowmainscreen.title.text" = "SIGN UP";
 
-"vpnflowmainscreen.appinstalled.progress.text" = "Thank you\nfor signing up!";
-"vpnflowmainscreen.appinstalled.info.text" = "Let's get Yona up and running";
+"vpnflowmainscreen.appinstalled.progress.text" = "BEDANKT\nvoor je inschrijving!";
+"vpnflowmainscreen.appinstalled.info.text" = "Laten we je jouw Yona instellen";
 "vpnflowmainscreen.button.next" = "VOLGENDE";
 
-"YonaVPNProgressView.yonaapp.text" = "Yona is installed on your phone...";
-"YonaVPNProgressView.openvpn.text" = "You need to make a safe\nconnection to your phone";
-"YonaVPNProgressView.profile.text" = "Download the Yona profile for the\nsafe connection";
+"YonaVPNProgressView.yonaapp.text" = "Yona is geïnstalleerd op je telefoon…";
+"YonaVPNProgressView.openvpn.text" = "Je moet een veilige\nverbinding naar je telefoon maken";
+"YonaVPNProgressView.profile.text" = "Download het Yona profiel voor de \nveilige verbinding";
 
-"vpnflowmainscreen.appinstalled.progress1.text" = "Setup a connection";
-"vpnflowmainscreen.appinstalled.info1.text" = "Next step...";
-"YonaVPNProgressView.openvpn1.text" = "Yona needs OpenVPN to run\nproperly";
-"vpnflowmainscreen.button1.next" = "INSTRUCTIONS";
+"vpnflowmainscreen.appinstalled.progress1.text" = "Verbinding instellen";
+"vpnflowmainscreen.appinstalled.info1.text" = "Volgende stap...";
+"YonaVPNProgressView.openvpn1.text" = "Yona heeft OpenVPN nodig \nom goed te werken”;
+"vpnflowmainscreen.button1.next" = "INSTRUCTIES";
 
-"vpnflowintro1.title1.text" = "First press 'download'";
-"vpnflowintro1.title2.text" = "Do not click 'open'";
-"vpnflowintro1.title3.text" = "Return to Yona";
-"vpnflowintro1.rerun.text" = "show instructions again";
+"vpnflowintro1.title1.text" = "Druk op 'download'";
+"vpnflowintro1.title2.text" = "Klik NIET op 'open'";
+"vpnflowintro1.title3.text" = "Ga terug naar Yona";
+"vpnflowintro1.rerun.text" = "Laat de instructies opnieuw zien";
 "vpnflowmainscreen.button2.text" = "DOWNLOAD OPENVPN";
 
-"vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nThe App is installed now";
+"vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nDe app is nu geïnstalleerd";
 "vpnflowmainscreen.appinstalled.info2.text" = "Almost there ;)";
 
-"vpnflowmainscreen.appinstalled.progress3.text" = "One step to go...";
-"vpnflowmainscreen.appinstalled.info3.text" = "Install and accept Yona profile";
-"vpnflowmainscreen.button3.next" = "INSTALL AND ACCEPT PROFILE";
+"vpnflowmainscreen.appinstalled.progress3.text" = "Nog een stap te gaan…";
+"vpnflowmainscreen.appinstalled.info3.text" = "Installeer en accepteer Yona profiel";
+"vpnflowmainscreen.button3.next" = "INSTALLEER EN ACCEPT PROFIEL";
 
-"vpnflowmainscreen.finalInstructions.button" = "show instructions";
-
-
-"vpnflowintro2.title1.text" = "First you will be asked to\rinstall our profile";
-"vpnflowintro2.title2.text" = "Then Your PINcode is needed";
-"vpnflowintro2.title3.text" = "This warning will be shown.\r Click 'install'";
-"vpnflowintro2.title4.text" = "After 'OK' you are ready";
-"vpnflowintro2.rerun.text" = "show instructions again";
-"vpnflowintro2.button2.text" = "INSTALL AND ACCEPT PROFILE";
+"vpnflowmainscreen.finalInstructions.button" = "laat instructies zien";
 
 
-"vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\nYour ready to go!";
-"vpnflowmainscreen.appinstalled.info4.text" = "Congratulations. You made it. Now continue and set your first challenge.";
-"vpnflowmainscreen.button4.next" = "SET YOUR FIRST CHALLENGE";
+"vpnflowintro2.title1.text" = "Je wordt eerst gevraagd om \rons profiel te installeren";
+"vpnflowintro2.title2.text" = "Daarna moet je je PIN invoeren";
+"vpnflowintro2.title3.text" = "Deze waarschuwing wordt getoond\r Klik 'install'";
+"vpnflowintro2.title4.text" = "Druk op 'OK' je bent klaar";
+"vpnflowintro2.rerun.text" = "laat de instructies normaal zien";
+"vpnflowintro2.button2.text" = "INSTALLEER EN ACCEPTEER PROFIEL";
+
+
+"vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\n Ready to go!";
+"vpnflowmainscreen.appinstalled.info4.text" = "Gefeliciteerd! We zijn er. Tijd om je eerste challenge in te voeren!";
+"vpnflowmainscreen.button4.next" = "EERSTE CHALLENGE INVOEREN";
 
 //Commenting
 "commenting.sendComment" = "Vesturen";
 "commenting.replyToComment" = "Beantwoorden";
 
-"addfriend.alert.title.text" = "Warning";
-"addfriend.alert.text" = "You must allow Yona App acces to Your addressbook, to select friends from it";
-"addfriend.alert.nosettings.text"  = "You must allow Yona App acces to Your addressbook, to select friends from it. Please allow in settings";
+"addfriend.alert.title.text" = "Waarschuwing";
+"addfriend.alert.text" = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren";
+"addfriend.alert.nosettings.text"  = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren. Graag aanvinken in de settings";
 "addfriend.alert.settings.text" = "INSTELLINGEN";
 
-"vpnerror.notrunning.title.text" = "The VPN is Not Running";
-"vpnerror.notrunning.message.text" = "The VPN is Not Running. You must enable it to track activity";
+"vpnerror.notrunning.title.text" = "De VPN is niet actief";
+"vpnerror.notrunning.message.text" = "De VPN is niet actief. Schakel deze in om je activiteit bij te houden.";
