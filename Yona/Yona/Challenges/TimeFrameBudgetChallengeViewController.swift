@@ -117,7 +117,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
             setChallengeButton.alpha = 1.0
             self.setChallengeButton.enabled = true
         }else{
-            setChallengeButton.alpha = 0.5
+            setChallengeButton.alpha = 0.0
             self.setChallengeButton.enabled = false
         }
     }
