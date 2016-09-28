@@ -218,28 +218,29 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     }
     
     // MARK: - DeleteCellDelegate
-    
     func deleteTimezone(cell: TimeZoneTableViewCell) {
-        if let indexPath = cell.indexPath {
-            self.tableView.beginUpdates()
-            self.zonesArrayString.removeAtIndex(indexPath.row)
-            self.zonesArrayDate.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            if self.zonesArrayDate.count == 0 {
-                picker?.hideShowDatePickerView(isToShow: false)
-                self.setChallengeButton.enabled = false
-                self.setChallengeButton.alpha = 0.5
+        if tableView.numberOfRowsInSection(0) > 1 {
+
+            if let indexPath = cell.indexPath {
+                self.tableView.beginUpdates()
+                self.zonesArrayString.removeAtIndex(indexPath.row)
+                self.zonesArrayDate.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                if self.zonesArrayDate.count == 0 {
+                    picker?.hideShowDatePickerView(isToShow: false)
+                    self.setChallengeButton.enabled = false
+                    self.setChallengeButton.alpha = 0.5
+                }
+                self.tableView.endUpdates()
+                activeIndexPath = nil
+                self.delegate?.callGoalsMethod()
+                updateTimezone()
+                NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
             }
-            self.tableView.endUpdates()
-            activeIndexPath = nil
-            self.delegate?.callGoalsMethod()
-            updateTimezone()
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
     
     // MARK: - TableViewDelegate
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -251,6 +252,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
+        if tableView.numberOfRowsInSection(0) == 1 {
+            cell.isPanEnabled = false
+        }
         cell.timezoneCellDelegate = self
         cell.indexPath = indexPath
         let s: String = zonesArrayString[indexPath.row]
@@ -412,11 +416,17 @@ extension TimeFrameTimeZoneChallengeViewController {
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
-                    if goal?.zones.count < 1 {
-                        self.navigationController?.popViewControllerAnimated(true)
+                    if goal?.zones.count <= 1 {
+                        self.setChallengeButton.enabled = false
+                        self.setChallengeButton.alpha = 0.5
+//                        self.navigationController?.popViewControllerAnimated(true)
+                    } else {
+                        self.setChallengeButton.enabled = true
+                        self.setChallengeButton.alpha = 1.0
                     }
-                } else { //only one timezone delete the goal
-                    self.deleteTimezone()
+                } else { //only one timezone disable save button
+                    self.setChallengeButton.enabled = false
+                    self.setChallengeButton.alpha = 0.5
                 }
             })
         }
