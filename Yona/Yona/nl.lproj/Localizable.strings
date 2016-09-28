@@ -258,7 +258,7 @@
 
 "vpnflowmainscreen.appinstalled.progress1.text" = "Verbinding instellen";
 "vpnflowmainscreen.appinstalled.info1.text" = "Volgende stap...";
-"YonaVPNProgressView.openvpn1.text" = "Yona heeft OpenVPN nodig \nom goed te werken”;
+"YonaVPNProgressView.openvpn1.text" = "Yona heeft OpenVPN nodig \nom goed te werken";
 "vpnflowmainscreen.button1.next" = "INSTRUCTIES";
 
 "vpnflowintro1.title1.text" = "Druk op 'download'";
@@ -295,7 +295,7 @@
 
 "addfriend.alert.title.text" = "Waarschuwing";
 "addfriend.alert.text" = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren";
-"addfriend.alert.nosettings.text"  = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren. Graag aanvinken in de settings";
+"addfriend.alert.nosettings.text"  = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren. Graag aanvingen in de settings";
 "addfriend.alert.settings.text" = "INSTELLINGEN";
 
 "vpnerror.notrunning.title.text" = "De VPN is niet actief";
