@@ -18,14 +18,6 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "DashboardNavigationViewController")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

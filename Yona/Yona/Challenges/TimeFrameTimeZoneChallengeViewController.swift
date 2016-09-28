@@ -37,6 +37,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var timezoneChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
+    @IBOutlet weak var appList: UILabel!
 
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
@@ -56,6 +57,16 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
+        
         configureView()
         configureDatePickerView()
     }

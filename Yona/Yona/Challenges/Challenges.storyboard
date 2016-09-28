@@ -828,7 +828,7 @@ Pinterest, Instagram, Snapchat</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="730"/>
                     <connections>
-                        <outlet property="appList" destination="yfN-TY-GOx" id="J9g-Bf-nr1"/>
+                        <outlet property="appList" destination="yfN-TY-GOx" id="V2P-Aq-9cm"/>
                         <outlet property="bottomLabelText" destination="tUC-r3-f9U" id="xA1-FG-HQQ"/>
                         <outlet property="deleteGoalButton" destination="LwQ-Hs-h9z" id="plp-gh-G98"/>
                         <outlet property="footerGradientView" destination="1nz-jn-Qwz" id="Nzx-Fy-qTN"/>
@@ -871,7 +871,7 @@ Pinterest, Instagram, Snapchat</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
                                                         <rect key="frame" x="247" y="20" width="110" height="110"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
                                                                 <rect key="frame" x="34" y="34" width="42" height="42"/>
                                                             </imageView>
                                                         </subviews>
@@ -1104,7 +1104,7 @@ Pinterest, Instagram, Snapchat</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
-                        <outlet property="appList" destination="4Ug-1I-HdL" id="gsF-Ak-MdH"/>
+                        <outlet property="appList" destination="4Ug-1I-HdL" id="nks-gp-mgf"/>
                         <outlet property="bottomLabelText" destination="PNz-P2-HmF" id="jWN-KZ-aAb"/>
                         <outlet property="budgetChallengeDescription" destination="kYa-ba-ZYU" id="4Uq-tY-vWR"/>
                         <outlet property="budgetChallengeTitle" destination="nZg-5a-C9x" id="Opk-XV-TjP"/>

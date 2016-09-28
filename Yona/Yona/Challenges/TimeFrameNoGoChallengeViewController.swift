@@ -23,6 +23,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     @IBOutlet var headerImage: UIImageView!
+    @IBOutlet weak var appList: UILabel!
 
     @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
@@ -37,7 +38,16 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
+        
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2

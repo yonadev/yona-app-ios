@@ -37,13 +37,10 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var addNewGoalButton: UIButton!
     
-    
     @IBOutlet var budgetViewBottomBorder: UIView!
     @IBOutlet var timezoneViewBottomBorder: UIView!
     @IBOutlet var nogoViewBottomBorder: UIView!
-    
-    @IBOutlet weak var appList: UILabel!
-    
+        
     var selectedCategoryView: UIView!
     var activityCategoriesArray = [Activities]()
     
@@ -55,7 +52,6 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     var budgetGoalSelected: Goal?
     
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
-
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -390,13 +386,6 @@ extension TimeBucketChallenges {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("challengeCell", forIndexPath: indexPath)
-        
-        let activityApps = self.activityCategoriesArray[indexPath.row].applicationsStore
-        var appString = ""
-        for activityApp in activityApps as [String] {
-            appString += "" + activityApp + ", "
-        }
-        self.appList.text = appString
         
         switch categoryHeader {
         case .BudgetGoal:

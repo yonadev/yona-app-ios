@@ -32,7 +32,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    
+    @IBOutlet weak var appList: UILabel!
     
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
@@ -42,6 +42,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
         
         setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
