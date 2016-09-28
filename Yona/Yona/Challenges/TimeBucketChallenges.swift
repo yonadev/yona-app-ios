@@ -42,7 +42,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     @IBOutlet var timezoneViewBottomBorder: UIView!
     @IBOutlet var nogoViewBottomBorder: UIView!
     
-    
+    @IBOutlet weak var appList: UILabel!
     
     var selectedCategoryView: UIView!
     var activityCategoriesArray = [Activities]()
@@ -157,8 +157,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     }
     
     private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
-        
-       let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
+        let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
             self.budgetArray = arrayData
@@ -391,6 +390,14 @@ extension TimeBucketChallenges {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("challengeCell", forIndexPath: indexPath)
+        
+        let activityApps = self.activityCategoriesArray[indexPath.row].applicationsStore
+        var appString = ""
+        for activityApp in activityApps as [String] {
+            appString += "" + activityApp + ", "
+        }
+        self.appList.text = appString
+        
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,

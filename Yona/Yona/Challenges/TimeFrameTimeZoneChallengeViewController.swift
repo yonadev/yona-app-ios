@@ -37,7 +37,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var timezoneChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
-    
+
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -102,11 +102,8 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     func configureView() {
-//        if BaseTabViewController.userHasGoals() == false {
-//            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        } else {
-            setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        }
+        setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5

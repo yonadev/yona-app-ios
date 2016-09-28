@@ -23,7 +23,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     @IBOutlet var headerImage: UIImageView!
-    
+
     @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -75,7 +75,6 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         }
         
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
-        
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
     
     }
