@@ -32,7 +32,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    
+    @IBOutlet weak var appList: UILabel!
     
     var isFromActivity :Bool?
     var activitiyToPost: Activities?
@@ -43,11 +43,16 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if BaseTabViewController.userHasGoals() == false {
-//            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        } else {
-            setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        }
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
+        
+        setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -94,7 +99,13 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.updateValues()
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
     
     // MARK: - functions
    
@@ -106,21 +117,30 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
             setChallengeButton.alpha = 1.0
             self.setChallengeButton.enabled = true
         }else{
-            setChallengeButton.alpha = 0.5
+            setChallengeButton.alpha = 0.0
             self.setChallengeButton.enabled = false
         }
     }
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil).build() as [NSObject : AnyObject])
+        
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func minutesDidChange(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "minutesDidChange", label: "Change minutes", value: nil).build() as [NSObject : AnyObject])
+        
         maxDurationMinutes = String(Int(minutesSlider.value))
         self.updateValues()
     }
     @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil).build() as [NSObject : AnyObject])
+        
         if isFromActivity == true {
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
                 let bodyBudgetGoal: [String: AnyObject] = [
@@ -185,6 +205,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
   
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil).build() as [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

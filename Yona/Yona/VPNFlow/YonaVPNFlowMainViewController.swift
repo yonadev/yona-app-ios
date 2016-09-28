@@ -52,7 +52,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeScreen), name: UIApplicationDidEnterBackgroundNotification, object: nil)
 
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         resetAllViews()
@@ -91,7 +91,11 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
         
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     func removeScreen() {
@@ -150,6 +154,8 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     
     @IBAction func finalInstrucsionsButtonAction (sender :UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil).build() as [NSObject : AnyObject])
         
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationItem.hidesBackButton = true
@@ -160,8 +166,12 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
     
     @IBAction func buttonAction (sender :UIButton) {
+
         
         if currentProgress == .openVPNAppNotInstalledShow {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil).build() as [NSObject : AnyObject])
+            
             dispatch_async(dispatch_get_main_queue(), {
                 NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                 self.currentProgress = .openVPNAppNotInstalledSetup
@@ -172,12 +182,16 @@ class YonaVPNFlowMainViewController: UIViewController {
             return
         }
         if currentProgress == .openVPNAppInstalledStep3 {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil).build() as [NSObject : AnyObject])
+            
             downloadFileFromServer()
-        
             return
         }
         if currentProgress == .configurationInstalled {
-//            httpServer?.stop()
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as [NSObject : AnyObject])
+            
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
             self.dismissViewControllerAnimated(true, completion: {})
             return

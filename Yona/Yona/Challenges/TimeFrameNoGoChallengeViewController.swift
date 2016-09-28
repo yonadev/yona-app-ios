@@ -23,7 +23,8 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
     @IBOutlet var headerImage: UIImageView!
-    
+    @IBOutlet weak var appList: UILabel!
+
     @IBOutlet var footerGradientView: GradientLargeView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -37,7 +38,16 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
+        
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = setChallengeButton.frame.size.height/2
@@ -75,18 +85,31 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         }
         
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
-        
         self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
     
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeFrameNoGoChallengeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameNoGoChallengeViewController", label: "Back from no go challenge page", value: nil).build() as [NSObject : AnyObject])
+        
         self.navigationController?.popViewControllerAnimated(true)
         
     }
     
     @IBAction func postNewNoGoChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewNoGoChallengeButtonTapped", label: "Post No Go Challenge", value: nil).build() as [NSObject : AnyObject])
+        
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
                 "@type": "BudgetGoal",
@@ -119,6 +142,9 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTappedNoGo", label: "Delete No Go Challenge", value: nil).build() as [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

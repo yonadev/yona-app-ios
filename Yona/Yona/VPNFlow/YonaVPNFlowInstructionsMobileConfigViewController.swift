@@ -36,6 +36,12 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         dispatch_async(dispatch_get_main_queue(), {
             
         })
@@ -185,6 +191,9 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     // Mark: - buttons actions
     
     @IBAction func installMobilConfigFile(sender : UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as [NSObject : AnyObject])
+        
         NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         delegate?.installMobileProfile()
         

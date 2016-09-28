@@ -36,6 +36,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.setupUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "AddFriendsViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
@@ -200,6 +208,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     @IBAction func addNewBuddyButtonTapped(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as [NSObject : AnyObject])
+        
         if firstnameTextfield.text!.characters.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-first-name-validation", comment: ""))
@@ -328,6 +339,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     extension AddFriendsViewController {
         
         @IBAction func ManualTabAction(sender: AnyObject) {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil).build() as [NSObject : AnyObject])
+            
             addressBookTabView.alpha = 0.5
             addressBookTabBottomBorder.hidden = true
             manualTabView.alpha = 1.0
@@ -335,6 +349,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         }
         
         @IBAction func AddressBookTabAction(sender: AnyObject) {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil).build() as [NSObject : AnyObject])
+            
             manualTabView.alpha = 0.5
             manualTabBottomBorder.hidden = true
             addressBookTabView.alpha = 1.0

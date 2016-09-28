@@ -24,6 +24,12 @@ final class PinResetValidationVC: ValidationMasterView {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "PinResetValidationVC")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setBackgroundColour()
         displayPincodeRemainingMessage()
         self.codeInputView.delegate = self
@@ -38,15 +44,17 @@ final class PinResetValidationVC: ValidationMasterView {
     override func viewDidAppear(animated: Bool) {
         if !(pinResetCountDownTimer?.valid)! {
             codeInputView.becomeFirstResponder()
-            headerTitleLabel.text = NSLocalizedString("smsvalidation.user.headerTitle", comment:"")
+            headerTitleLabel.text = NSLocalizedString("login-accountBlocked-title", comment:"")
             infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment:"")
-
-            
         }
     }
     
     @IBAction func resendPinResetRequestOTPCode(sender: UIButton) {
         Loader.Show()
+        
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "resendPinResetRequestOTPCode", label: "Resend the OTP pin reset code", value: nil).build() as [NSObject : AnyObject])
+        
         PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {
                 Loader.Hide()
@@ -85,12 +93,9 @@ final class PinResetValidationVC: ValidationMasterView {
         pinResetCountDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(PinResetValidationVC.executePinResetCounter(_:)), userInfo: userInfo, repeats: true)
         
         executePinResetCounter(pinResetCountDownTimer!)
-        
-        headerTitleLabel.text = NSLocalizedString("smsvalidation.wait.headerTitle", comment:"")
-        infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment:"")
 
-        headerTitleLabel.text = "Je moet even wachten"
-        infoLabel.text = "Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 uur nadat je een nieuwe PIN code hebt aangevraagd."
+        headerTitleLabel.text = NSLocalizedString("smsvalidation.wait.headerTitle", comment:"")// "Je moet even wachten"
+        infoLabel.text = NSLocalizedString("smsvalidation.user.countdownmessage", comment:"") //"Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 uur nadat je een nieuwe PIN code hebt aangevraagd."
 
     }
     

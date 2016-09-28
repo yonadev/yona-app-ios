@@ -21,13 +21,10 @@ class BaseTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
- //ADDing the nav bar programitcally to overcome problems with navbar
-// DashBoard
-        
+        //ADDing the nav bar programitcally to overcome problems with navbar
+        //DashBoard
         
         var  controller = viewControllers
-        
-        
         let storyBoard: UIStoryboard = UIStoryboard(name:"MeDashBoard", bundle: NSBundle.mainBundle())
         let navi = storyBoard.instantiateViewControllerWithIdentifier("DashBoardMainNavigationController") as! UINavigationController
         navi.tabBarItem = UITabBarItem(
@@ -59,12 +56,9 @@ class BaseTabViewController: UITabBarController {
         }
 
     }
+    
 
     func presentView(){
-//        if !BaseTabViewController.userHasGoals() {
-//            updateSelectedIndex()
-//            return
-//        }
         if let viewControllerName = getViewControllerToDisplay(YonaConstants.nsUserDefaultsKeys.screenToDisplay) {
             let viewControllerToShow = getScreen(viewControllerName)
             
@@ -75,10 +69,10 @@ class BaseTabViewController: UITabBarController {
             }
         }
 
-                if !BaseTabViewController.userHasGoals() {
-                    updateSelectedIndex()
-                    return
-                }
+        if !BaseTabViewController.userHasGoals() {
+            updateSelectedIndex()
+            return
+        }
 
     }
     /* This method returns the view controller we ask for as a string

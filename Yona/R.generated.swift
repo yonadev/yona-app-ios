@@ -30,6 +30,7 @@ struct R {
   }
   
   struct file {
+    static var googleServiceInfoPlist: NSURL? { return _R.hostingBundle?.URLForResource("GoogleService-Info", withExtension: "plist") }
     static var iQKeyboardManagerBundle: NSURL? { return _R.hostingBundle?.URLForResource("IQKeyboardManager", withExtension: "bundle") }
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }

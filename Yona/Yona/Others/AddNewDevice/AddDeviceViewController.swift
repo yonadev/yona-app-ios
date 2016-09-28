@@ -30,6 +30,14 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         setupUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "AddDeviceViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     private func setupUI() {
         // Text Delegates
         if var label = previousRange {
@@ -64,6 +72,9 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     
     // Go To Another ViewController
     @IBAction func loginPressed(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as [NSObject : AnyObject])
+        
         var number = ""
         if let mobilenum = mobileTextField.text {
             number = (nederlandPhonePrefix) + mobilenum

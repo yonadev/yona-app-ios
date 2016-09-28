@@ -37,7 +37,8 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     @IBOutlet weak var bottomLabelText: UILabel!
     @IBOutlet weak var timezoneChallengeMainTitle: UILabel!
     @IBOutlet weak var deleteGoalButton: UIBarButtonItem!
-    
+    @IBOutlet weak var appList: UILabel!
+
     @IBOutlet var footerGradientView: GradientView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
@@ -56,8 +57,26 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let activitiyToPost = self.activitiyToPost {
+            let activityApps = activitiyToPost.applicationsStore
+            var appString = ""
+            for activityApp in activityApps as [String] {
+                appString += "" + activityApp + ", "
+            }
+            self.appList.text = appString
+        }
+        
         configureView()
         configureDatePickerView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeFrameTimeZoneChallengeViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -94,11 +113,8 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     func configureView() {
-//        if BaseTabViewController.userHasGoals() == false {
-//            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        } else {
-            setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-//        }
+        setTimeBucketTabToDisplay(.timeZone, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+
         setChallengeButton.backgroundColor = UIColor.clearColor()
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
@@ -289,10 +305,16 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
 extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as [NSObject : AnyObject])
+        
         navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewTimeZoneChallengeButtonTapped", label: "Add timezone challenge", value: nil).build() as [NSObject : AnyObject])
+        
         self.scrollView.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: true)
         if isFromActivity == true {
             addANewTimeZone()
@@ -313,6 +335,9 @@ extension TimeFrameTimeZoneChallengeViewController {
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTappedTimeZone", label: "Delete timezone challenge", value: nil).build() as [NSObject : AnyObject])
+        
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))

@@ -57,6 +57,13 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "FriendsProfileMasterView")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         setupUI()
         leftPage = 0
         if selectedTab == .left  {
@@ -380,6 +387,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     @IBAction func unwindToFriendsOverview(segue: UIStoryboardSegue) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil).build() as [NSObject : AnyObject])
+        
         print(segue.sourceViewController)
     }
 

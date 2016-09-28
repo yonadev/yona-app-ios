@@ -8,3 +8,4 @@
 #import "EnvironmentManager.h"
 #import "RoutingHTTPServer.h"
 #import "SHSwippableTableViewCell.h"
+#import <Google/Analytics.h>

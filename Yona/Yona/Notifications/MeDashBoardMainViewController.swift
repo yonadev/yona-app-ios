@@ -41,6 +41,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "MeDashBoardMainViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         //make sure we set the nav bar to correct purple colours
         if let navbar = navigationController?.navigationBar as? GradientNavBar{
             navbar.backgroundColor = UIColor.yiGrapeColor()
@@ -70,6 +76,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     @IBAction func backAction(sender : AnyObject) {
+        
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDashboard", value: nil).build() as [NSObject : AnyObject])
+
         dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.popViewControllerAnimated(true)
         })
@@ -280,9 +290,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let otherDate = otherDateStart.yearWeek
         
         if corretcToday.yearWeek == other {
-            cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+            cell.headerTextLabel.text = NSLocalizedString("this_week", comment: "")
         } else if other == otherDate {
-            cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
+            cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
         } else {
             let dateFormatter : NSDateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM"
@@ -323,14 +333,18 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
 
     @IBAction func showUserProfile(sender : AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil).build() as [NSObject : AnyObject])
+
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showProfile, sender: self)
         
     }
 
     @IBAction func showNotifications(sender : AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil).build() as [NSObject : AnyObject])
+        
         performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showNotifications, sender: self)
-        
-        
     }
 
     

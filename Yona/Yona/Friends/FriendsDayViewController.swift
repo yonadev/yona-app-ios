@@ -31,17 +31,12 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        //change APPDEV-819
-        /*var tmpFirst = ""
-        var tmpLast = ""
-        if let txt = buddyToShow?.UserRequestfirstName {
-            tmpFirst = txt
-        }
-        if let txt = buddyToShow?.UserRequestlastName {
-            tmpLast = txt
-        }
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "FriendsDayViewController")
         
-        navigationItem.title = NSLocalizedString("\(tmpFirst) \(tmpLast)", comment: "")*/
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         navigationItem.title = NSLocalizedString("friends", comment: "")
         configurProfileBarItem()
     }
@@ -81,7 +76,9 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     // MARK: - ACTION
     @IBAction func didChooseUserProfile(sender : AnyObject) {
-    
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as [NSObject : AnyObject])
+        
         performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)
     
     }

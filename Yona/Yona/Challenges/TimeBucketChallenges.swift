@@ -37,13 +37,10 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var addNewGoalButton: UIButton!
     
-    
     @IBOutlet var budgetViewBottomBorder: UIView!
     @IBOutlet var timezoneViewBottomBorder: UIView!
     @IBOutlet var nogoViewBottomBorder: UIView!
-    
-    
-    
+        
     var selectedCategoryView: UIView!
     var activityCategoriesArray = [Activities]()
     
@@ -55,12 +52,15 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     var budgetGoalSelected: Goal?
     
     var categoryHeader = SelectedCategoryHeader.BudgetGoal
-
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //It will select NoGo tab by default
-
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "TimeBucketChallenges")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
         
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
@@ -153,8 +153,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     }
     
     private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
-        
-       let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
+        let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
             self.budgetArray = arrayData
@@ -282,10 +281,16 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     // MARK: - Actions
     @IBAction func back(sender: AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil).build() as [NSObject : AnyObject])
+        
         self.setSelectedCategory(selectedCategoryView)
     }
     
     @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil).build() as [NSObject : AnyObject])
+        
         sender.hidden = true
         self.navigationItem.leftBarButtonItem = self.backButton
         if selectedCategoryView == budgetView {
@@ -381,6 +386,7 @@ extension TimeBucketChallenges {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("challengeCell", forIndexPath: indexPath)
+        
         switch categoryHeader {
         case .BudgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,

@@ -15,5 +15,11 @@ class YonaInstructionMobilePage2 : YonaVPNInstructionsViewController{
         textLabel.text = NSLocalizedString("vpnflowintro2.title2.text", comment: "")
     }
 
-
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "YonaInstructionMobilePage2")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
 }

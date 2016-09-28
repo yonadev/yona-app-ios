@@ -18,6 +18,14 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         self.sendCommentFooter!.alpha = 1
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "FriendsWeekDetailWeekController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
