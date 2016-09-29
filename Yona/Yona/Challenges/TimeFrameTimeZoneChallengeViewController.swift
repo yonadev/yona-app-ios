@@ -43,6 +43,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     var isFromActivity :Bool?
+    var isSaved :Bool = true
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var timeInterval: Int = 15
@@ -163,6 +164,8 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
      - return none
      */
     private func configureTimeZone(doneValue: NSDate?) {
+        self.isSaved = false
+
         if doneValue != nil {
             if tempToFromDate == nil {
                 tempToFromDate = ToFromDate()
@@ -218,9 +221,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     }
     
     // MARK: - DeleteCellDelegate
-    
     func deleteTimezone(cell: TimeZoneTableViewCell) {
         if let indexPath = cell.indexPath {
+            self.isSaved = false
             self.tableView.beginUpdates()
             self.zonesArrayString.removeAtIndex(indexPath.row)
             self.zonesArrayDate.removeAtIndex(indexPath.row)
@@ -233,13 +236,12 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.tableView.endUpdates()
             activeIndexPath = nil
             self.delegate?.callGoalsMethod()
-            updateTimezone()
+//            updateTimezone()
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
     
     // MARK: - TableViewDelegate
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -251,6 +253,11 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: TimeZoneTableViewCell = tableView.dequeueReusableCellWithIdentifier("timeZoneCell", forIndexPath: indexPath) as! TimeZoneTableViewCell
+//        if tableView.numberOfRowsInSection(0) == 1 {
+//            cell.isPanEnabled = false
+//        } else {
+//            cell.isPanEnabled = true
+//        }
         cell.timezoneCellDelegate = self
         cell.indexPath = indexPath
         let s: String = zonesArrayString[indexPath.row]
@@ -277,27 +284,28 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            self.tableView.beginUpdates()
-            self.zonesArrayString.removeAtIndex(indexPath.row)
-            self.zonesArrayDate.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            if self.zonesArrayDate.count == 0 {
-                picker?.hideShowDatePickerView(isToShow: false)
-                self.setChallengeButton.enabled = false
-                self.setChallengeButton.alpha = 0.5
-            }
-            self.tableView.endUpdates()
-            activeIndexPath = nil
-
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
-        }
-    }
+//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return true
+//    }
+//    
+//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+//            self.isSaved = false
+//            self.tableView.beginUpdates()
+//            self.zonesArrayString.removeAtIndex(indexPath.row)
+//            self.zonesArrayDate.removeAtIndex(indexPath.row)
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//            if self.zonesArrayDate.count == 0 {
+//                picker?.hideShowDatePickerView(isToShow: false)
+//                self.setChallengeButton.enabled = false
+//                self.setChallengeButton.alpha = 0.5
+//            }
+//            self.tableView.endUpdates()
+//            activeIndexPath = nil
+//
+//            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
+//        }
+//    }
 }
 
 
@@ -305,10 +313,23 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
 extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func back(sender: AnyObject) {
-        weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as [NSObject : AnyObject])
-        
-        navigationController?.popViewControllerAnimated(true)
+        if isSaved == false {
+            
+            self.displayAlertOption(NSLocalizedString("addfriend.alert.title.text", comment: ""), cancelButton: true, alertDescription: NSLocalizedString("challenges.user.TimeZoneNotSaved", comment: ""), onCompletion: { (buttonType) in
+                if buttonType == .OK {
+                    weak var tracker = GAI.sharedInstance().defaultTracker
+                    tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as [NSObject : AnyObject])
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            })
+        } else {
+            weak var tracker = GAI.sharedInstance().defaultTracker
+            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as [NSObject : AnyObject])
+            
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+
     }
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(sender: AnyObject) {
@@ -325,6 +346,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         isFromButton = true
+        self.isSaved = false
         picker?.pickerTitleLabel("From")
         picker?.okButtonTitle.title = "Next"
         picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
@@ -337,17 +359,18 @@ extension TimeFrameTimeZoneChallengeViewController {
     @IBAction func deletebuttonTapped(sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTappedTimeZone", label: "Delete timezone challenge", value: nil).build() as [NSObject : AnyObject])
-        
+        self.isSaved = false
+
         if #available(iOS 8, *)  {
-            let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
+            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: {void in
                 self.deleteGoal()
             }))
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            let alert = UIAlertView(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
+            let alert = UIAlertView(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
             
             alert.show()
         }
@@ -366,7 +389,8 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     func addANewTimeZone(){
         if let activityCategoryLink = activitiyToPost?.selfLinks {
-            
+            self.isSaved = false
+
             let bodyTimeZoneSocialGoal = [ "@type": "TimeZoneGoal", YonaConstants.jsonKeys.linksKeys: [
                 YonaConstants.jsonKeys.yonaActivityCategory: [YonaConstants.jsonKeys.hrefKey: activityCategoryLink]
                 ],
@@ -404,19 +428,27 @@ extension TimeFrameTimeZoneChallengeViewController {
                 YonaConstants.jsonKeys.zones: zonesArrayString
             ];
             Loader.Show()
-            
+            isSaved = true
             GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: updatedBodyTimeZoneSocialGoal as! BodyDataDictionary, onCompletion: { (success, serverMessage, server, goal, goals, error) in
                 Loader.Hide()
                 if success {
+                    self.isSaved = true
                     self.delegate?.callGoalsMethod()
                     if let goalUnwrap = goal {
                         self.goalCreated = goalUnwrap
                     }
-                    if goal?.zones.count < 1 {
-                        self.navigationController?.popViewControllerAnimated(true)
+                    if goal?.zones.count <= 1 {
+                        self.setChallengeButton.enabled = false
+                        self.setChallengeButton.alpha = 0.5
+                    } else {
+                        self.setChallengeButton.enabled = true
+                        self.setChallengeButton.alpha = 1.0
                     }
-                } else { //only one timezone delete the goal
-                    self.deleteTimezone()
+                    self.navigationController?.popViewControllerAnimated(true)
+
+                } else { //only one timezone disable save button
+                    self.setChallengeButton.enabled = false
+                    self.setChallengeButton.alpha = 0.5
                 }
             })
         }
@@ -441,11 +473,11 @@ extension TimeFrameTimeZoneChallengeViewController {
             }
         }
     }
+    
 }
 
 
 private extension Selector {
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
-    
     static let tableReload = #selector(TimeFrameTimeZoneChallengeViewController.tableReload)
 }

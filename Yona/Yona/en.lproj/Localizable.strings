@@ -188,6 +188,8 @@
 "challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
 "challenges.user.TimeZoneDescription" = "usage is permitted between";
+"challenges.user.TimeZoneNotSaved" = "You haven't saved your changes";
+"challenges.timezone.deletetimezonemessage" = "Are you sure";
 
 "challenges.budgetGoal.Title" = "BUDGET";
 "challenges.timezoneGoal.Title" = "TIMEZONE";
