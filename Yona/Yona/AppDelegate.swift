@@ -259,6 +259,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func testForVpnEnabled() {
+        #if (arch(i386) || arch(x86_64))
+                print("On simulator we don't test...")
+        #else
         if let url = NSURL(string: "https://10.96.169.12:442/cgi-bin/login.cgi") {
             let request:NSURLRequest = NSURLRequest(URL:url)
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -290,6 +293,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             task.resume()
         }
+        #endif
     }
     func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
         

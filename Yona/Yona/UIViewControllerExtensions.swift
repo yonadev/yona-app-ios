@@ -44,13 +44,13 @@ extension UIViewController {
     func displayAlertOption(alertTitle:String, cancelButton: Bool, alertDescription:String, onCompletion: DisplayAlertResponse) -> Void {
         if #available(iOS 8.0, *) {
             let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            let OKAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default) { (action) in
                 onCompletion(alertButtonType.OK)
                 return
             }
             
             if cancelButton {
-                let CANCELAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
+                let CANCELAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Default) { (action) in
                     onCompletion(alertButtonType.cancel)
                     return
                 }

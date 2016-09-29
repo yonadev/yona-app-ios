@@ -197,7 +197,9 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
             
             Loader.Hide()
             self.navigationController?.popToRootViewControllerAnimated(true)
-            
+            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed, onCompletion: {(succes, uerverMessage, serverCode, users) in
+                print("user refreshed afer delete \(succes)")
+            })
         })
     
     }

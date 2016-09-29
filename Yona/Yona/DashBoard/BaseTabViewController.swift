@@ -34,7 +34,7 @@ class BaseTabViewController: UITabBarController {
         navi.tabBarItem.selectedImage = UIImage(named: "icnMeActive")
         controller![0] = navi
         setViewControllers(controller, animated: false)
-        
+
         
         updateSelectedIndex()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
@@ -146,7 +146,10 @@ class BaseTabViewController: UITabBarController {
     }
     
     class func userHasGoals() -> Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded);
+        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.fromAddressBook) {
+            return true
+        }
+        return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
     }
 
 }
