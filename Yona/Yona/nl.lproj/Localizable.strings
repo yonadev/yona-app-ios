@@ -85,10 +85,12 @@
 "challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
 "challenges.user.nogoGoalDescriptionText" = "Vermijd %@ gerelateerde content";
 
-"challenges.user.TimeZoneGoalDescriptionText" = "Timeslot tussen ";
+"challenges.user.TimeZoneGoalDescriptionText" = "Tijdzone tussen ";
 "challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
 "challenges.user.TimeZoneDescription" = "waarbinnen gebruik is toegestaan";
+"challenges.user.TimeZoneNotSaved" = "Je hebt je wijzigingen nog niet opgeslagen";
+"challenges.timezone.deletetimezonemessage" = "Weet je het zeker?";
 
 "challenges.budgetGoal.Title" = "TEGOED";
 "challenges.timezoneGoal.Title" = "TIJDZONE";
@@ -118,7 +120,7 @@
 "timezone" = "Tijdzone";
 "url-not-found" = "Url Not found.";
 "challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
-"challenges-timzoe-subtext" = "Timeslot tussen %@ en tussen %@";
+"challenges-timzoe-subtext" = "Tijdzone tussen %@ en tussen %@";
 "challenges-budget-subtext" = "Je kunt per dag %@ minuten %@";
 
 "challenges.addBudgetGoal.NoGoChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
