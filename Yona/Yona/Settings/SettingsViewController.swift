@@ -113,9 +113,26 @@ class SettingsViewController: UIViewController {
      */
     private func callUnSubscribeMethod() {
         //TODO: UnSubscribe API InProgress
+
+        
+        // Getting the Navcontroller on tab 2 (goals), and setting to initial controller
+        
+        let tabbar = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as! BaseTabViewController
+        
+        if let views = tabbar.viewControllers {
+            if  views.count > 2 {
+                if let nav = views[2] as? UINavigationController {
+                    nav.popToRootViewControllerAnimated(false)
+                }
+            }
+            
+        }
+        
         UserRequestManager.sharedInstance.deleteUser({ (success, serverMessage, serverCode) in
             if success {
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey:  YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                
+                
                 if let welcome = R.storyboard.welcome.initialViewController {
                     self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
                 }

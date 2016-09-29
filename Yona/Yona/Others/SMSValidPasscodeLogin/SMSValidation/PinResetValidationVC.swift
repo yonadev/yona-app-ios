@@ -128,23 +128,23 @@ final class PinResetValidationVC: ValidationMasterView {
         var remainingMinutes = minutes
         var remainingSeconds = seconds
         
-        var diff = Int(abs(pinResetCountDownStartTime!.timeIntervalSinceNow))
+        let diff = Int(abs(pinResetCountDownStartTime!.timeIntervalSinceNow))
+        let totalremain = hours*hour+minutes*minute+seconds
+        let master = Double(diff - totalremain)
+    
+        let differenceSeconds = Double(abs(diff - totalremain))
+        let days = Int(differenceSeconds/(3600.0*24.00))
+        let diffDay = differenceSeconds-(Double(days)*3600*24)
+        let h=Int(diffDay/3600.00)
+        let diffMin=diffDay-(Double(h)*3600.0)
+        let m=Int(diffMin/60.0)
+        let s=Int(diffMin-(Double(m)*60))
+
         
-        if diff > hour{
-            let diffHours = (diff / hour)
-            remainingHours -= diffHours
-            diff -= diffHours
-        }
-        
-        if diff > minute{
-            let diffMinutes = (diff / minute)
-            remainingMinutes -= diffMinutes
-            diff -= diffMinutes
-        }
-        
-        remainingSeconds -= diff
-        
-        if remainingHours > 0 || remainingMinutes > 0 || remainingSeconds > 0{
+    remainingHours = h
+    remainingMinutes = m
+    remainingSeconds = s
+    if (remainingHours > 0 || remainingMinutes > 0 || remainingSeconds > 0) && master < 0{
             //update our labels...
             codeView.hidden = true
             resendOTPResetCode.hidden = true

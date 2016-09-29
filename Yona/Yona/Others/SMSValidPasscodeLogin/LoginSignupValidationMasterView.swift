@@ -136,7 +136,6 @@ extension LoginSignupValidationMasterView {
                     NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: YonaConstants.nsUserDefaultsKeys.timeToPinResetInitialRequestTime)
                     NSUserDefaults.standardUserDefaults().synchronize()
                     self.displayPincodeRemainingMessage()
-//                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                     
                     setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
