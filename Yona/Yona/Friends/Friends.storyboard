@@ -422,6 +422,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="addfriend" id="0CF-J0-aGj">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="2G2-i8-Df5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xnB-aB-GzK" kind="unwind" unwindAction="unwindToFriendsOverview:" id="egE-0f-YBJ"/>
                             </connections>
@@ -791,6 +792,6 @@
         <image name="icnBack" width="13" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fkA-FJ-c4C"/>
+        <segue reference="qBF-uj-5D3"/>
     </inferredMetricsTieBreakers>
 </document>
