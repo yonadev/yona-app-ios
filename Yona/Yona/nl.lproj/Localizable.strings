@@ -89,7 +89,8 @@
 "challenges.user.TimeZoneGoalDescriptionAndText" = " en ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " en tussen ";
 "challenges.user.TimeZoneDescription" = "waarbinnen gebruik is toegestaan";
-"challenges.user.TimeZoneNotSaved" = "Nieuwe tijdzone niet opgeslagen";
+"challenges.user.TimeZoneNotSaved" = "Je hebt je wijzigingen nog niet opgeslagen";
+"challenges.timezone.deletetimezonemessage" = "Weet je het zeker?";
 
 "challenges.budgetGoal.Title" = "TEGOED";
 "challenges.timezoneGoal.Title" = "TIJDZONE";

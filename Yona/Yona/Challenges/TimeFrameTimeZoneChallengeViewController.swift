@@ -362,7 +362,7 @@ extension TimeFrameTimeZoneChallengeViewController {
         self.isSaved = false
 
         if #available(iOS 8, *)  {
-            let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: {void in
                 self.deleteGoal()
@@ -370,7 +370,7 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            let alert = UIAlertView(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("Are you sure", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
+            let alert = UIAlertView(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
             
             alert.show()
         }
@@ -479,9 +479,5 @@ extension TimeFrameTimeZoneChallengeViewController {
 
 private extension Selector {
     static let back = #selector(TimeFrameTimeZoneChallengeViewController.back(_:))
-    
     static let tableReload = #selector(TimeFrameTimeZoneChallengeViewController.tableReload)
-    
-
-    
 }
