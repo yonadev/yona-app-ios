@@ -522,8 +522,8 @@ private extension Selector {
 
 // MARK: Touch Event of Custom Segment
 extension TimeBucketChallenges {
-    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
-        print(segue.sourceViewController)
-    }
+//    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
+//        print(segue.sourceViewController)
+//    }
 }
 

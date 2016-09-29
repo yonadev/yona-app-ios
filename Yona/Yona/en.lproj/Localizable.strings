@@ -188,6 +188,7 @@
 "challenges.user.TimeZoneGoalDescriptionAndText" = " and ";
 "challenges.user.TimeZoneGoalDescriptionBetweenText" = " and between ";
 "challenges.user.TimeZoneDescription" = "usage is permitted between";
+"challenges.user.TimeZoneNotSaved" = "New timezones not saved";
 
 "challenges.budgetGoal.Title" = "BUDGET";
 "challenges.timezoneGoal.Title" = "TIMEZONE";
