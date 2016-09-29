@@ -59,15 +59,20 @@ class TimeLineNoGoCell : UITableViewCell {
             self.nogoMessage.text = NSLocalizedString("meday.nogo.message", comment: "")
         }
         
-        if let firstname =  timelineData.user?.firstName {
-            if let last = timelineData.user?.lastName {
-                personName.text = firstname + " " + last
-            }
-        } else if let firstname =  timelineData.buddy?.UserRequestfirstName {
-            if let last = timelineData.buddy?.UserRequestlastName {
-                personName.text = firstname + " " + last
-            }
-        } else {
+//        if let firstname =  timelineData.user?.firstName {
+//            if let last = timelineData.user?.lastName {
+//                personName.text = firstname + " " + last
+//            }
+//        } else if let firstname =  timelineData.buddy?.UserRequestfirstName {
+//            if let last = timelineData.buddy?.UserRequestlastName {
+//                personName.text = firstname + " " + last
+//            }
+        if let txt =  timelineData.user?.nickname {
+                personName.text = txt
+        } else if let txt = timelineData.buddy?.buddyNickName {
+            personName.text = txt
+        }
+        else {
             personName.text = ""
         }
         self.totalMinutesBeyondGoal = timelineData.totalMinutesBeyondGoal

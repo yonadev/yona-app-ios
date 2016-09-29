@@ -68,7 +68,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         leftPage = 0
         if selectedTab == .left  {
             showLeftTab(leftTabMainView)
+        } else {
+            showRightTab(rightTabMainView)
         }
+        
     }
     
 
@@ -312,6 +315,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                         self.timeLineData.appendContentsOf(timeLineDayActivityOverview!)
                     }
                     self.leftPage += 1
+                }
+                if self.leftPage == 0 && timeLineDayActivityOverview == nil { // NO DATA
+                    self.timeLineData = []
                 }
             } else {
                 Loader.Hide()
