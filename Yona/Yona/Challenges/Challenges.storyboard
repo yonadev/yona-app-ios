@@ -813,7 +813,7 @@ Pinterest, Instagram, Snapchat</string>
                     <navigationItem key="navigationItem" title="challenges.addBudgetGoal.TimeZoneChallengeMainTitle" id="Hnu-YR-E7s">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="ozo-3f-4PI">
                             <connections>
-                                <segue destination="92n-8W-5Ei" kind="unwind" unwindAction="unwindToTimeBucketChallenges:" id="kIv-VZ-Whi"/>
+                                <action selector="back:" destination="OaK-4S-ODd" id="Nl0-R6-EFf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icnTrash" id="LwQ-Hs-h9z">
@@ -843,7 +843,6 @@ Pinterest, Instagram, Snapchat</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9X-P9-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="92n-8W-5Ei" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1412" y="557"/>
         </scene>
@@ -935,8 +934,8 @@ Pinterest, Instagram, Snapchat</string>
                                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
-                                                        <rect key="frame" x="557" y="29" width="29.5" height="43.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
+                                                        <rect key="frame" x="557" y="29" width="30" height="44"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>

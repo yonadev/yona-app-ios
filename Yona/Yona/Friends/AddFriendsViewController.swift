@@ -98,7 +98,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         firstname.contentMode = UIViewContentMode.Center
         firstnameTextfield.rightView = firstname;
         firstnameTextfield.rightViewMode = UITextFieldViewMode.Always
-        
+                
         let lastname = UIImageView(image: R.image.icnName)
         lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
         lastname.contentMode = UIViewContentMode.Center
