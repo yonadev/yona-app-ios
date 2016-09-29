@@ -157,11 +157,11 @@ extension SettingsViewController:UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #if DEBUG
-            return settingsOptions.lastrow.rawValue
-        #else            
+//        #if DEBUG
+//            return settingsOptions.lastrow.rawValue
+//        #else            
             return (settingsOptions.lastrow.rawValue - 1)
-        #endif
+//        #endif
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
