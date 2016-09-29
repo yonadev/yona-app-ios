@@ -178,7 +178,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
                             if activeIndexPath != nil {
                                 zonesArrayDate[(self.activeIndexPath?.row)!] = unWrappedTempToFromDate
                                 zonesArrayString = self.zonesArrayDate.convertToString()
-                            } else {
+                            } else if !(unWrappedTempToFromDate.fromDate).isEqualToDate(unWrappedTempToFromDate.fromDate){
                                 zonesArrayDate.append(unWrappedTempToFromDate)
                                 zonesArrayString = self.zonesArrayDate.convertToString()
                             }
