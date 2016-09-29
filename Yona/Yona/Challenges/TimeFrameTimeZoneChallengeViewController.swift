@@ -108,6 +108,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             }
             
         }) { doneValue in
+            
             self.configureTimeZone(doneValue)
         }
     }
@@ -181,7 +182,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
                             if activeIndexPath != nil {
                                 zonesArrayDate[(self.activeIndexPath?.row)!] = unWrappedTempToFromDate
                                 zonesArrayString = self.zonesArrayDate.convertToString()
-                            } else if !(unWrappedTempToFromDate.fromDate).isEqualToDate(unWrappedTempToFromDate.fromDate){
+                            } else {
                                 zonesArrayDate.append(unWrappedTempToFromDate)
                                 zonesArrayString = self.zonesArrayDate.convertToString()
                             }
@@ -207,7 +208,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             picker?.cancelButtonTitle.title = "Prev"
             isFromButton = false
         } else {
-            activeIndexPath = nil
             if self.zonesArrayString.count > 0 {
                 self.setChallengeButton.enabled = true
                 self.setChallengeButton.alpha = 1.0
@@ -236,7 +236,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.tableView.endUpdates()
             activeIndexPath = nil
             self.delegate?.callGoalsMethod()
-//            updateTimezone()
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
         }
     }
@@ -270,8 +269,10 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.picker?.cancelButtonTitle.title = "Cancel"
             self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
-            self.configureTimeZone(self.picker?.selectedValue)
+            
             self.activeIndexPath = indexPath
+            self.configureTimeZone(self.picker?.selectedValue)
+            
             self.isFromButton = false
             self.picker?.pickerTitleLabel("To")
             self.picker?.okButtonTitle.title = "Done"
@@ -282,30 +283,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         return cell
     }
     
-    
-    
-//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
-//    
-//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-//            self.isSaved = false
-//            self.tableView.beginUpdates()
-//            self.zonesArrayString.removeAtIndex(indexPath.row)
-//            self.zonesArrayDate.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//            if self.zonesArrayDate.count == 0 {
-//                picker?.hideShowDatePickerView(isToShow: false)
-//                self.setChallengeButton.enabled = false
-//                self.setChallengeButton.alpha = 0.5
-//            }
-//            self.tableView.endUpdates()
-//            activeIndexPath = nil
-//
-//            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector.tableReload, userInfo: nil, repeats: false)
-//        }
-//    }
 }
 
 
@@ -354,6 +331,7 @@ extension TimeFrameTimeZoneChallengeViewController {
         if view.frame.size.height < 570 {
             scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
         }
+        activeIndexPath = nil
     }
     
     @IBAction func deletebuttonTapped(sender: AnyObject) {
