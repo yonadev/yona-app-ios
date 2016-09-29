@@ -91,6 +91,7 @@
 "challenges.user.TimeZoneDescription" = "waarbinnen gebruik is toegestaan";
 "challenges.user.TimeZoneNotSaved" = "Je hebt je wijzigingen nog niet opgeslagen";
 "challenges.timezone.deletetimezonemessage" = "Weet je het zeker?";
+"challenges.timezone.totimegreaterwarning" = "Eindtijd moet later zijn dan de begintijd"
 
 "challenges.budgetGoal.Title" = "TEGOED";
 "challenges.timezoneGoal.Title" = "TIJDZONE";

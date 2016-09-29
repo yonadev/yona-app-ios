@@ -187,7 +187,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
                                 zonesArrayString = self.zonesArrayDate.convertToString()
                             }
                         } else {
-                            displayAlertMessage("To time must be greater than From time", alertDescription: "")
+                            displayAlertMessage(NSLocalizedString("challenges.timezone.totimegreaterwarning", comment: ""), alertDescription: "")
                         }
                     }
                 }
