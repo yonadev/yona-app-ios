@@ -438,9 +438,6 @@ extension TimeBucketChallenges {
             cell.detailTextLabel?.text = ""
         }
         
-//        cell.textLabel?.numberOfLines = 0
-//        cell.detailTextLabel?.numberOfLines = 0
-        
         return cell
     }
     
@@ -492,18 +489,6 @@ extension TimeBucketChallenges {
 
     }
     
-//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        self.tableView.rowHeight = UITableViewAutomaticDimension
-//        
-//        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
-//            tableView.rowHeight =  100.0
-//        } else {
-//            tableView.rowHeight =  60.0
-//        }
-//        
-//        return self.tableView.rowHeight
-//    }
-//    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
         print(tableView.estimatedRowHeight)
@@ -522,8 +507,8 @@ private extension Selector {
 
 // MARK: Touch Event of Custom Segment
 extension TimeBucketChallenges {
-//    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
-//        print(segue.sourceViewController)
-//    }
+    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
+    }
 }
 
