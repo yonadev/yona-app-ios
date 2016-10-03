@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U6O-cp-2EY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -349,53 +349,65 @@
                                             <outlet property="delegate" destination="OjV-ne-DEf" id="xWH-uf-Syz"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
-                                        <rect key="frame" x="30" y="350" width="540" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paT-EG-5L4">
+                                        <rect key="frame" x="0.0" y="339" width="600" height="215"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
+                                                <rect key="frame" x="30" y="11" width="540" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="TJx-22-Und"/>
+                                                </constraints>
+                                                <state key="normal" title="invitefriend">
+                                                    <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addNewBuddyButtonTapped:" destination="OjV-ne-DEf" eventType="touchUpInside" id="qTJ-Y8-TkI"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.9529411793" green="0.9529411793" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="TJx-22-Und"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="paT-EG-5L4" secondAttribute="top" constant="11" id="76A-Y9-2RU"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="centerX" secondItem="paT-EG-5L4" secondAttribute="centerX" id="Fsu-rC-1cJ"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="centerY" secondItem="paT-EG-5L4" secondAttribute="centerY" constant="-71.5" id="ITr-oi-dUp"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="leading" secondItem="paT-EG-5L4" secondAttribute="leading" constant="30" id="fJy-dh-z1j"/>
                                         </constraints>
-                                        <state key="normal" title="invitefriend">
-                                            <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addNewBuddyButtonTapped:" destination="OjV-ne-DEf" eventType="touchUpInside" id="qTJ-Y8-TkI"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="paT-EG-5L4" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" id="0ao-G5-thH"/>
                                     <constraint firstAttribute="trailing" secondItem="qBM-hQ-L7Q" secondAttribute="trailing" constant="32" id="1jf-iV-HCO"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="2G2-rf-tdy"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="4VL-jc-zsc"/>
-                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="Ynk-t5-H0M" secondAttribute="bottom" constant="3" id="5AH-57-Ifp"/>
+                                    <constraint firstItem="paT-EG-5L4" firstAttribute="centerX" secondItem="bJK-ti-jOR" secondAttribute="centerX" id="6QW-Ei-Djk"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="B8P-QJ-kOd"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="3" id="BIv-Oo-C2r"/>
                                     <constraint firstItem="Ynk-t5-H0M" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="87" id="BmW-ib-eyo"/>
+                                    <constraint firstItem="paT-EG-5L4" firstAttribute="top" secondItem="mhK-cf-R3p" secondAttribute="bottom" constant="79" id="CdW-Hf-syx"/>
                                     <constraint firstItem="h95-OS-lxS" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="Dzl-Xa-OFj"/>
                                     <constraint firstAttribute="trailing" secondItem="Ynk-t5-H0M" secondAttribute="trailing" constant="32" id="E4P-pG-BKm"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="top" secondItem="h95-OS-lxS" secondAttribute="bottom" id="G6R-32-wIt"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="Icj-hu-O1Y"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="Jh7-oQ-bdf"/>
-                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="centerX" secondItem="bJK-ti-jOR" secondAttribute="centerX" id="K1T-pk-gdM"/>
-                                    <constraint firstAttribute="trailing" secondItem="TPn-S7-xHv" secondAttribute="trailing" constant="30" id="LwS-xk-Dfg"/>
+                                    <constraint firstAttribute="bottom" secondItem="paT-EG-5L4" secondAttribute="bottom" id="LFD-xy-oJM"/>
                                     <constraint firstAttribute="trailing" secondItem="h95-OS-lxS" secondAttribute="trailing" constant="32" id="Nqc-6j-Byf"/>
                                     <constraint firstAttribute="trailing" secondItem="mhK-cf-R3p" secondAttribute="trailing" constant="32" id="Ren-kT-Ker"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="top" secondItem="uEP-4R-nOf" secondAttribute="bottom" constant="-4" id="TDR-lr-hlL"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="Xjd-K8-pvd"/>
                                     <constraint firstAttribute="trailing" secondItem="uEP-4R-nOf" secondAttribute="trailing" constant="32" id="YGv-6t-3XO"/>
+                                    <constraint firstAttribute="bottom" secondItem="paT-EG-5L4" secondAttribute="bottom" constant="-64" id="YZx-ed-xeV"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="b64-ms-2lG"/>
                                     <constraint firstItem="mhK-cf-R3p" firstAttribute="top" secondItem="h95-OS-lxS" secondAttribute="bottom" constant="84" id="cig-KM-a6G"/>
+                                    <constraint firstItem="paT-EG-5L4" firstAttribute="centerX" secondItem="Ynk-t5-H0M" secondAttribute="centerX" id="ek6-jE-4bD"/>
                                     <constraint firstItem="Ynk-t5-H0M" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="32" id="ls1-58-1Oj"/>
-                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="qBM-hQ-L7Q" secondAttribute="bottom" constant="87" id="rzr-bC-g0p"/>
-                                    <constraint firstItem="TPn-S7-xHv" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" constant="30" id="tH8-gI-LED"/>
-                                    <constraint firstAttribute="bottom" secondItem="TPn-S7-xHv" secondAttribute="bottom" constant="60" id="u7g-IM-UwG"/>
                                     <constraint firstItem="h95-OS-lxS" firstAttribute="top" secondItem="bJK-ti-jOR" secondAttribute="top" id="uEc-Re-fXc"/>
                                     <constraint firstItem="uEP-4R-nOf" firstAttribute="height" secondItem="h95-OS-lxS" secondAttribute="height" id="wrK-AU-3Of"/>
                                     <constraint firstItem="qBM-hQ-L7Q" firstAttribute="width" secondItem="h95-OS-lxS" secondAttribute="width" id="zT0-PF-BPY"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="rzr-bC-g0p"/>
+                                        <exclude reference="LFD-xy-oJM"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -422,6 +434,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="addfriend" id="0CF-J0-aGj">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="2G2-i8-Df5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xnB-aB-GzK" kind="unwind" unwindAction="unwindToFriendsOverview:" id="egE-0f-YBJ"/>
                             </connections>
@@ -791,6 +804,6 @@
         <image name="icnBack" width="13" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fkA-FJ-c4C"/>
+        <segue reference="qBF-uj-5D3"/>
     </inferredMetricsTieBreakers>
 </document>

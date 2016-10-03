@@ -37,17 +37,26 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "AddFriendsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
+        ManualTabAction(UIButton)
+//        UIToolbar.appearance().tintColor = UIColor.yellowColor()
+//        UINavigationBar.appearance().tintColor = UIColor.yellowColor()
+//        UINavigationBar.appearance().barTintColor = UIColor.yellowColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiBlackColor(),
+//        UIToolbar.appearance().tintColor = UIColor.yellowColor()
+//        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+//        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
     override func viewDidDisappear(animated: Bool) {
@@ -56,6 +65,11 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    
+        
+    //This is an ugly hack to handle the situation where the app returns from the Addresbook, and BaseTabViewController kicks in
+    NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
+
     }
     
     // MARK: - private functions
@@ -84,7 +98,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         firstname.contentMode = UIViewContentMode.Center
         firstnameTextfield.rightView = firstname;
         firstnameTextfield.rightViewMode = UITextFieldViewMode.Always
-        
+                
         let lastname = UIImageView(image: R.image.icnName)
         lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
         lastname.contentMode = UIViewContentMode.Center
@@ -133,7 +147,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
         
-        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.blackColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
@@ -192,15 +206,17 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         } else {
             emailTextfield.text = ""
         }
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
         peoplePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
-        dismissViewControllerAnimated(true, completion: nil)
+        //dismissViewControllerAnimated(true, completion: nil)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
     }
  
     func dismissKeyboard(){
