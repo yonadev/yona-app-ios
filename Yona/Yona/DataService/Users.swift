@@ -206,6 +206,10 @@ struct Users{
                     }
                 }
             }
+            // UGLY HACK TO FIX   APPDEV-852
+            // Code should be changed to NOT use the NSUserDefaults for this...
+            //
+            NSUserDefaults.standardUserDefaults().setBool(userGoals.count > 0, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
             
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
@@ -219,15 +223,6 @@ struct Users{
                         }
             }
         }
-        /*
-        - parameter body: BodyDataDictionary, pass in the body as below on how you want to update the user
-        {
-            "firstName": "Richard",
-            "lastName": "Quin",
-            "mobileNumber": "+31612345678",
-            "nickname": "RQ"
-        }
-        */
         
     }
     
