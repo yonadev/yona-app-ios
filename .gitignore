@@ -64,9 +64,17 @@ Carthage/Build
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/docs/Gitignore.md
 
+# fastlane specific
 fastlane/report.xml
+
+# deliver temporary files
+fastlane/Preview.html
+
+# snapshot generated screenshots
 fastlane/screenshots
 
+# scan temporary files
+fastlane/test_output
 
 ### Objective-C ###
 # Xcode
