@@ -25,8 +25,8 @@ platform :ios do
   # Download status: "1" = No user can download; "2" = Available for download
   lane :hockeyApp do
       hockey(
-        ipa:"../build/Yona-CI-iOS-TEST.ipa",
-        dsym: "../build/Yona-CI-iOS-TEST-dSYM.zip",
+        ipa:"../build/YONA-CI-IOS.ipa",
+        dsym: "../build/YONA-CI-IOS-dSYM.zip",
         api_token: "0840764dbf6641d79b61e39a5656d2e5",
         notify: "0",
         release_type: "0",
