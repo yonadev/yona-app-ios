@@ -36,7 +36,7 @@ class YonaCustomDatePickerView: UIView {
     
     func loadDatePickerView() -> UIView {
         var views = NSBundle.mainBundle().loadNibNamed("YonaCustomDatePickerView", owner: self, options: nil)
-        let view = views[0] as! UIView
+        let view = views![0] as! UIView
         view.frame.origin.y = UIScreen.mainScreen().bounds.height + 200
         view.frame.size.width = UIScreen.mainScreen().bounds.width
         return view
