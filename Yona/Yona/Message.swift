@@ -227,15 +227,19 @@ struct Message{
                 return UIImage(named: "icnNo")!
             }
         case .BuddyConnectResponseMessage:
-            return UIImage(named: "icnOk")!
+            if status == buddyRequestStatus.ACCEPTED {
+                return UIImage(named: "icnOk")!
+            } else if status == buddyRequestStatus.REJECTED {
+                return UIImage(named: "icnNo")!
+            }
         case .BuddyDisconnectMessage:
-            return UIImage.init()//UIImage(named: "")!
+            return UIImage.init()
         case .GoalConflictMessage:
-            return UIImage.init()//UIImage(named: "")!
+            return UIImage.init()
         case .ActivityCommentMessage:
-            return UIImage.init()//UIImage(named: "")!
+            return UIImage.init()
         default :
-            return UIImage.init()//UIImage(named: "")!
+            return UIImage.init()
         }
         return UIImage.init()
     }

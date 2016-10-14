@@ -40,6 +40,7 @@ class GradientView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.shapeLayer.path = getPath()
+
     }
     
     func getPath() -> CGPath {
