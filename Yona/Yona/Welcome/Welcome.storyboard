@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,10 +10,10 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
@@ -39,7 +39,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
                                 <rect key="frame" x="113" y="-34" width="375" height="668"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-cZ-1Wg">
@@ -48,7 +48,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Mfw-BH-maZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -57,9 +57,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuO-p0-ekh">
-                                <rect key="frame" x="0.0" y="540" width="299" height="60"/>
+                                <rect key="frame" x="0.0" y="540" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="join">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -73,13 +73,22 @@
                             <constraint firstItem="tuO-p0-ekh" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="9G1-CX-RiA"/>
                             <constraint firstAttribute="trailing" secondItem="j8k-cZ-1Wg" secondAttribute="trailing" id="A4Q-NE-D8e"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="2" id="EJA-aW-N14"/>
-                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerX" secondItem="S7o-bB-jMm" secondAttribute="centerX" id="G6y-rF-hpI"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="1" id="Mff-ev-Eek"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="width" secondItem="tuO-p0-ekh" secondAttribute="width" id="NJ3-Jb-gBr"/>
-                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerY" secondItem="S7o-bB-jMm" secondAttribute="centerY" id="Q0V-Fk-vcv"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerX" secondItem="S7o-bB-jMm" secondAttribute="centerX" id="a4Q-yv-t9X"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="height" secondItem="tuO-p0-ekh" secondAttribute="height" id="c7k-iZ-PV3"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="1" id="hz6-MO-WSD"/>
                             <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="tuO-p0-ekh" secondAttribute="bottom" id="jPn-zV-HGF"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="top" secondItem="S7o-bB-jMm" secondAttribute="topMargin" constant="-34" id="rEp-Pl-QfQ"/>
                             <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="j8k-cZ-1Wg" secondAttribute="bottom" id="sAE-Vd-LJP"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerY" secondItem="S7o-bB-jMm" secondAttribute="centerY" id="zKr-Qr-3ou"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EJA-aW-N14"/>
+                                <exclude reference="Mff-ev-Eek"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="vc8-lA-K8m"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -394,7 +403,7 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5j-vq-PFG">
-                                <rect key="frame" x="0.0" y="540" width="299" height="60"/>
+                                <rect key="frame" x="0.0" y="540" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="previous">
@@ -425,14 +434,14 @@
                             <constraint firstItem="D5j-vq-PFG" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" id="2p5-zR-8mj"/>
                             <constraint firstItem="MBw-dR-p4d" firstAttribute="height" secondItem="D5j-vq-PFG" secondAttribute="height" id="3OX-Qd-kox"/>
                             <constraint firstItem="MBw-dR-p4d" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" id="IyS-d9-Ehc"/>
-                            <constraint firstItem="MBw-dR-p4d" firstAttribute="width" secondItem="D5j-vq-PFG" secondAttribute="width" id="LBr-xe-9nA"/>
+                            <constraint firstItem="MBw-dR-p4d" firstAttribute="width" secondItem="D5j-vq-PFG" secondAttribute="width" constant="-1" id="LBr-xe-9nA"/>
                             <constraint firstItem="1rq-rT-ImI" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leadingMargin" constant="-20" id="NJ6-Pf-VPV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1rq-rT-ImI" secondAttribute="trailing" constant="-20" id="P1v-v6-Tqu"/>
                             <constraint firstItem="AgW-VK-YiR" firstAttribute="top" secondItem="1rq-rT-ImI" secondAttribute="bottom" id="VuW-v6-kym"/>
                             <constraint firstItem="AgW-VK-YiR" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leading" id="ZYa-jd-qxc"/>
                             <constraint firstItem="1rq-rT-ImI" firstAttribute="top" secondItem="LHm-YL-BcV" secondAttribute="bottom" id="dgA-LK-lbK"/>
                             <constraint firstAttribute="trailing" secondItem="AgW-VK-YiR" secondAttribute="trailing" id="fhc-Xw-VBY"/>
-                            <constraint firstItem="MBw-dR-p4d" firstAttribute="leading" secondItem="D5j-vq-PFG" secondAttribute="trailing" constant="2" id="gAV-Pr-W09"/>
+                            <constraint firstItem="MBw-dR-p4d" firstAttribute="leading" secondItem="D5j-vq-PFG" secondAttribute="trailing" constant="1" id="gAV-Pr-W09"/>
                             <constraint firstItem="D5j-vq-PFG" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leading" id="htJ-Gb-gE5"/>
                             <constraint firstAttribute="trailing" secondItem="MBw-dR-p4d" secondAttribute="trailing" id="iC0-cp-b7u"/>
                             <constraint firstItem="1W1-O0-1Oh" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" constant="60" id="vvX-BO-NGa"/>
