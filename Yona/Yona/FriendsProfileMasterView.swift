@@ -408,8 +408,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
 
         if timeLineData[indexPath.section].tableViewCells[indexPath.row] is TimeLinedayActivitiesForUsers {
-            let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row] as!
-TimeLinedayActivitiesForUsers
+            let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row] as! TimeLinedayActivitiesForUsers
             if obj.goalType == "BudgetGoal" {
                 return 70
             }

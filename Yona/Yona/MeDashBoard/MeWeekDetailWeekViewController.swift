@@ -52,7 +52,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         self.comments = []
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
-        self.sendCommentFooter?.delegate = self
+        self.sendCommentFooter?.commentControlDelegate = self
     }
     
     func shouldAnimate(cell : NSIndexPath) -> Bool {
