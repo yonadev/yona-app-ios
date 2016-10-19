@@ -118,7 +118,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 let btnName = UIButton()
                 let txt = "\(count)"
                 btnName.setTitle(txt, forState: .Normal)
-                btnName.frame = CGRectMake(0, 0, 21, 21)
+                btnName.frame = CGRectMake(10, 0, 21, 21)
                 //btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
                 btnName.titleLabel?.font = UIFont (name: "SFUIDisplay-Regular", size: 12)
                 btnName.backgroundColor = UIColor.yiDarkishPinkColor()
