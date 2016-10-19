@@ -219,7 +219,7 @@
                                 <action selector="showUserProfile:" destination="Z05-OL-lvB" id="WYr-Gr-HrF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icnReminder" id="fCv-V5-hWc">
+                        <barButtonItem key="rightBarButtonItem" image="icnReminder" style="plain" id="fCv-V5-hWc">
                             <connections>
                                 <segue destination="vEb-Ig-NeG" kind="show" identifier="showNotifications" id="CxY-j7-UUz"/>
                             </connections>

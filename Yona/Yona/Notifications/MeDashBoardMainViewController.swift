@@ -118,7 +118,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 let btnName = UIButton()
                 let txt = "\(count)"
                 btnName.setTitle(txt, forState: .Normal)
-                btnName.frame = CGRectMake(10, 0, 21, 21)
+                btnName.frame = CGRectMake(0, 0, 21, 21)
                 //btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
                 btnName.titleLabel?.font = UIFont (name: "SFUIDisplay-Regular", size: 12)
                 btnName.backgroundColor = UIColor.yiDarkishPinkColor()
@@ -126,13 +126,17 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 btnName.layer.borderWidth = 0
                 btnName.layer.masksToBounds = true
                 btnName.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//                btnName.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: -10)
+
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 
-                
+//                var space = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+//                space.width = -200
                 let bellButton = UIBarButtonItem(image: UIImage(named: "icnNotifications"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.showNotifications(_:)))
                 if count > 0 {
                     self.navigationItem.rightBarButtonItems = [bellButton,rightBarButton]
+                    
                 } else {
                     self.navigationItem.rightBarButtonItems = [bellButton]
                 }
