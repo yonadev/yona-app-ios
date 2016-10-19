@@ -76,7 +76,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         }
        // self.navigationController?.navigationBar.hidden = true
         registreTableViewCells()
-        self.sendCommentFooter?.delegate = self
+        self.sendCommentFooter?.commentControlDelegate = self
         self.sendCommentFooter?.alpha = 0
         
     }
@@ -479,6 +479,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     // MARK: - SendCommentControlProtocol
+    
     func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
         if textField == commentTextField {
             IQKeyboardManager.sharedManager().enableAutoToolbar = true
