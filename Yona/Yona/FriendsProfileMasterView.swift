@@ -160,9 +160,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
             
             if timeLineData[section].date.isToday() {
-                cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
+                cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
             } else if timeLineData[section].date.isYesterday() {
-                cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+                cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
             } else {
                 cell.headerTextLabel.text =  dateFormatter.stringFromDate(timeLineData[section].date)
             }

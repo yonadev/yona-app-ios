@@ -245,9 +245,9 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
         
         if messages[section].first!.creationTime.isSameDayAs(dateTodate) {
-            cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
+            cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
         } else if messages[section].first!.creationTime.isSameDayAs(yesterDate) {
-            cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+            cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
         } else {
             cell.headerTextLabel.text =  dateFormatter.stringFromDate(messages[section].first!.creationTime)
         }
