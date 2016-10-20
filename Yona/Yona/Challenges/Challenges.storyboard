@@ -563,16 +563,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-fZ-zwR">
                                                     <rect key="frame" x="0.0" y="90" width="600" height="176"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
-                                                            <rect key="frame" x="50" y="69" width="500" height="29"/>
-                                                            <string key="text">De volgende apps zijn 
-onderdeel van deze challenge:</string>
-                                                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
-                                                            <rect key="frame" x="50" y="112" width="500" height="34"/>
+                                                            <rect key="frame" x="50" y="75" width="500" height="34"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -587,16 +579,24 @@ Pinterest, Instagram, Snapchat</string>
                                                                 <constraint firstAttribute="height" constant="30" id="hTr-1s-DCw"/>
                                                             </constraints>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
+                                                            <rect key="frame" x="50" y="38" width="500" height="29"/>
+                                                            <string key="text">De volgende apps zijn 
+onderdeel van deze challenge:</string>
+                                                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="yfN-TY-GOx" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" constant="50" id="3wT-Hl-fVB"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="centerX" secondItem="zJ5-fZ-zwR" secondAttribute="centerX" id="E7E-PM-i3V"/>
                                                         <constraint firstItem="1nz-jn-Qwz" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" id="K2L-OA-r6M"/>
-                                                        <constraint firstItem="tUC-r3-f9U" firstAttribute="top" secondItem="1nz-jn-Qwz" secondAttribute="bottom" constant="39" id="Pg6-TL-nWe"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" constant="50" id="QHN-fL-Mej"/>
                                                         <constraint firstAttribute="trailing" secondItem="yfN-TY-GOx" secondAttribute="trailing" constant="50" id="bIo-0I-UvQ"/>
-                                                        <constraint firstItem="yfN-TY-GOx" firstAttribute="top" secondItem="tUC-r3-f9U" secondAttribute="bottom" constant="14" id="haU-K3-ElD"/>
+                                                        <constraint firstItem="tUC-r3-f9U" firstAttribute="top" secondItem="1nz-jn-Qwz" secondAttribute="bottom" constant="8" symbolic="YES" id="cID-rX-4bX"/>
+                                                        <constraint firstItem="yfN-TY-GOx" firstAttribute="top" secondItem="tUC-r3-f9U" secondAttribute="bottom" constant="8" id="haU-K3-ElD"/>
                                                         <constraint firstItem="1nz-jn-Qwz" firstAttribute="top" secondItem="zJ5-fZ-zwR" secondAttribute="top" id="hlF-Hl-UwY"/>
                                                         <constraint firstAttribute="trailing" secondItem="1nz-jn-Qwz" secondAttribute="trailing" id="kfn-nB-pAG"/>
                                                         <constraint firstAttribute="trailing" secondItem="tUC-r3-f9U" secondAttribute="trailing" constant="50" id="lcC-AI-FEg"/>
@@ -934,7 +934,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
                                                         <rect key="frame" x="557" y="29" width="30" height="44"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -960,7 +960,7 @@ Pinterest, Instagram, Snapchat</string>
                                                     <constraint firstItem="APG-DO-NcS" firstAttribute="leading" secondItem="Z0G-at-WY5" secondAttribute="leading" constant="30" id="aOQ-mj-x2J"/>
                                                     <constraint firstAttribute="trailing" secondItem="APG-DO-NcS" secondAttribute="trailing" constant="86" id="hIp-zp-D6J"/>
                                                     <constraint firstAttribute="height" constant="100" id="nIZ-bs-DLg"/>
-                                                    <constraint firstItem="M4u-WC-0pb" firstAttribute="centerY" secondItem="Z0G-at-WY5" secondAttribute="centerY" id="qzA-6N-DwM"/>
+                                                    <constraint firstItem="M4u-WC-0pb" firstAttribute="centerY" secondItem="Z0G-at-WY5" secondAttribute="centerY" constant="1" id="qzA-6N-DwM"/>
                                                     <constraint firstAttribute="trailing" secondItem="mpN-kc-503" secondAttribute="trailing" constant="86" id="vT1-XL-LVU"/>
                                                     <constraint firstAttribute="trailing" secondItem="M4u-WC-0pb" secondAttribute="trailing" constant="13.5" id="zCc-LT-Q12"/>
                                                 </constraints>
@@ -980,7 +980,7 @@ Pinterest, Instagram, Snapchat</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNz-P2-HmF">
-                                                                <rect key="frame" x="50" y="58" width="504" height="29"/>
+                                                                <rect key="frame" x="50" y="44" width="504" height="29"/>
                                                                 <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -988,7 +988,7 @@ onderdeel van deze challenge:</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
-                                                                <rect key="frame" x="50" y="102" width="504" height="34"/>
+                                                                <rect key="frame" x="50" y="88" width="504" height="34"/>
                                                                 <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -1004,7 +1004,7 @@ Pinterest, Instagram, Snapchat</string>
                                                             <constraint firstItem="4Ug-1I-HdL" firstAttribute="centerX" secondItem="yoa-6t-2LM" secondAttribute="centerX" id="Hvh-nw-doY"/>
                                                             <constraint firstAttribute="trailing" secondItem="4Ug-1I-HdL" secondAttribute="trailing" constant="50" id="Kd6-oh-Vbi"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="131" id="Nh2-TY-SYA"/>
-                                                            <constraint firstItem="PNz-P2-HmF" firstAttribute="top" secondItem="Aje-8k-rUN" secondAttribute="bottom" constant="34" id="R9V-se-5ap"/>
+                                                            <constraint firstItem="PNz-P2-HmF" firstAttribute="top" secondItem="Aje-8k-rUN" secondAttribute="bottom" constant="20" id="R9V-se-5ap"/>
                                                             <constraint firstAttribute="trailing" secondItem="Aje-8k-rUN" secondAttribute="trailing" id="Tjk-4d-f71"/>
                                                             <constraint firstItem="4Ug-1I-HdL" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" constant="50" id="Yy7-sZ-ew1"/>
                                                             <constraint firstItem="PNz-P2-HmF" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" constant="50" id="dHM-6z-Ghi"/>
@@ -1261,8 +1261,8 @@ onderdeel van deze challenge:</string>
                                                                             </mask>
                                                                         </variation>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
-                                                                        <rect key="frame" x="0.0" y="54" width="604" height="34"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
+                                                                        <rect key="frame" x="70" y="37" width="456" height="51"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="g8S-s9-nVc"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="hY9-9L-7Uv"/>
