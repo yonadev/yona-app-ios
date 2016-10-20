@@ -12,7 +12,11 @@ import AddressBookUI
 
 class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIAlertViewDelegate {
     
-    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var gradientSmooth: GradientSmooth!
+    @IBOutlet var gradientSmooth1: GradientSmooth!
+    @IBOutlet var gradientSmooth2: GradientSmooth!
+    @IBOutlet var gradientSmooth3: GradientSmooth!
+
     @IBOutlet var manualTabView: UIView!
     @IBOutlet var addressBookTabView: UIView!
     @IBOutlet var manualTabBottomBorder: UIView!
@@ -28,10 +32,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     var people = ABPeoplePickerNavigationController()
     var previousRange: NSRange!
     private let nederlandPhonePrefix = "+31 (0) "
-    
+
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        gradientSmooth.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+        gradientSmooth1.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+        gradientSmooth2.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+        gradientSmooth3.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
         ManualTabAction(manualTabView)
         self.setupUI()
     }
@@ -98,7 +106,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         firstname.contentMode = UIViewContentMode.Center
         firstnameTextfield.rightView = firstname;
         firstnameTextfield.rightViewMode = UITextFieldViewMode.Always
-                
+       
         let lastname = UIImageView(image: R.image.icnName)
         lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
         lastname.contentMode = UIViewContentMode.Center
@@ -133,9 +141,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.mobileTextfield.leftView = label
         self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
         
-        //Add textfields array to manage responder
-//        UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield,messageTextfield])
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
+        
     }
     
     func createAddressBook(){
