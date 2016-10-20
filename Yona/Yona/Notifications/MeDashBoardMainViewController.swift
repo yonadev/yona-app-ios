@@ -32,7 +32,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         registreTableViewCells()
         setupUI()
         self.navigationController?.navigationBarHidden = false
-        navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
+        let title = NSLocalizedString("DASHBOARD", comment: "")
+        navigationItem.title = title.uppercaseString
         configureCorrectToday()
         
         
@@ -484,6 +485,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
+                controller.title = data.goalName?.uppercaseString
                 controller.initialObject = data
                 
             }
@@ -497,6 +499,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 
             } else  if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
+                controller.title = data.goalName?.uppercaseString
                 controller.activityGoal = data
             }
             

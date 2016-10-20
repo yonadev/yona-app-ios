@@ -74,7 +74,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             goalType = activityGoal.goalType
             
         }
-       // self.navigationController?.navigationBar.hidden = true
         registreTableViewCells()
         self.sendCommentFooter?.delegate = self
         self.sendCommentFooter?.alpha = 0
@@ -145,7 +144,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
         self.loadData(.own)
-        self.navigationController?.navigationItem.title = goalName
 
     }
     
@@ -174,7 +172,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
                             self.goalType = data.goalType
-                            self.navigationItem.title = self.dayData?.goalName //only need to do this in the first original data
+                            self.navigationItem.title = self.dayData?.goalName.uppercaseString //only need to do this in the first original data
 
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
