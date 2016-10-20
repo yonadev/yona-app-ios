@@ -54,7 +54,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVg-yT-4lq">
-                        <rect key="frame" x="218" y="28" width="125" height="21"/>
+                        <rect key="frame" x="218" y="28" width="130" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="iVP-f0-Uxl"/>
                         </constraints>
@@ -138,7 +138,7 @@
                     <constraint firstItem="tVg-yT-4lq" firstAttribute="leading" secondItem="dGV-mZ-EMq" secondAttribute="trailing" constant="3" id="8R2-KF-tYG"/>
                     <constraint firstItem="PgA-Do-Pb9" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="8" id="A0E-fs-jDs"/>
                     <constraint firstItem="5Jb-ix-DDc" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="6" id="Ce5-0Q-Kfd"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="tVg-yT-4lq" secondAttribute="trailing" constant="24" id="Ef3-Xh-QaN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="tVg-yT-4lq" secondAttribute="trailing" constant="19" id="Ef3-Xh-QaN"/>
                     <constraint firstItem="dGV-mZ-EMq" firstAttribute="leading" secondItem="lb7-IR-CPH" secondAttribute="trailing" id="Glg-Tk-y9f"/>
                     <constraint firstItem="b1k-gu-99s" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="8" id="KLz-Rw-JAg"/>
                     <constraint firstItem="4Nu-fw-oRM" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="211" id="ORG-DA-xnc"/>

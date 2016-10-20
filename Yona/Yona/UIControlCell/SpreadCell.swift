@@ -144,7 +144,7 @@ class SpreadCell : UITableViewCell {
                 }
             }
         } else {
-            spreadCellView.backgroundColor = UIColor.yiGraphBarOneColor()
+            spreadCellView.backgroundColor = UIColor.yiGraphBarTwoColor()
         }
     }
 
