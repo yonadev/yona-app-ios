@@ -522,12 +522,11 @@ struct R {
       
       static func validateImages() {
         assert(UIImage(named: "icnTrash") != nil, "[R.swift] Image named 'icnTrash' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "9A67DECE-588D-443C-AEB2-9E0103B94E6D") != nil, "[R.swift] Image named '9A67DECE-588D-443C-AEB2-9E0103B94E6D' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimezone") != nil, "[R.swift] Image named 'icnChallengeTimezone' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnChallengeTimebucket") != nil, "[R.swift] Image named 'icnChallengeTimebucket' is used in storyboard 'Challenges', but couldn't be loaded.")
-        assert(UIImage(named: "icnBack") != nil, "[R.swift] Image named 'icnBack' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "icnLock") != nil, "[R.swift] Image named 'icnLock' is used in storyboard 'Challenges', but couldn't be loaded.")
+        assert(UIImage(named: "icnChallengeNogo") != nil, "[R.swift] Image named 'icnChallengeNogo' is used in storyboard 'Challenges', but couldn't be loaded.")
         assert(UIImage(named: "addCircel") != nil, "[R.swift] Image named 'addCircel' is used in storyboard 'Challenges', but couldn't be loaded.")
       }
       

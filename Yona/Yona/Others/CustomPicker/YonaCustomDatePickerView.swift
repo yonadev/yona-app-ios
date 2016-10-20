@@ -6,7 +6,6 @@ import UIKit
 class YonaCustomDatePickerView: UIView {
     
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var title: UIBarButtonItem!
     typealias CancelListener = () -> ()
     typealias DoneListener = (NSDate) -> ()
     var gCancelListener: CancelListener?
@@ -48,7 +47,6 @@ class YonaCustomDatePickerView: UIView {
         gCancelListener = cancel
         gDoneListener = done
         parentView = v
-        title.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiBlackColor()], forState: UIControlState.Normal)
         UIApplication.sharedApplication().keyWindow?.addSubview(self)
     }
     
