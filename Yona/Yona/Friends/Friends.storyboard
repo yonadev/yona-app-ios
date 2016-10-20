@@ -754,10 +754,10 @@
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="IKH-GV-2zB" secondAttribute="top" id="3jM-Hg-Og3"/>
                             <constraint firstAttribute="trailing" secondItem="kHT-DJ-rWP" secondAttribute="trailing" id="RbB-QN-mev"/>
                             <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" constant="-50" id="Wye-2s-EGa"/>
+                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kHT-DJ-rWP" secondAttribute="bottom" id="YXS-Vl-CzT"/>
                             <constraint firstAttribute="trailing" secondItem="kFV-m3-iuu" secondAttribute="trailing" id="Yu8-ch-l0i"/>
                             <constraint firstItem="kHT-DJ-rWP" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="bOA-QQ-rUV"/>
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="wfe-5w-Mck"/>
-                            <constraint firstItem="vEf-fm-dft" firstAttribute="top" secondItem="kHT-DJ-rWP" secondAttribute="bottom" id="whd-qn-Jxt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SYv-oO-LjM">
