@@ -74,7 +74,7 @@
                                     <action selector="replyToCommentButton:" destination="TTk-S7-AoB" eventType="touchUpInside" id="u8h-4O-Q0g"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-TF-T6M">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-TF-T6M">
                                 <rect key="frame" x="97" y="37" width="250" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="XKF-td-Xhd"/>
