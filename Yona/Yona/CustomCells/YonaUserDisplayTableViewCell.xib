@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,6 +15,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="86.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ue-Zl-Cyc" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="82D-bI-ih8">
                         <rect key="frame" x="545" y="28" width="24" height="24"/>
                         <constraints>
@@ -55,6 +59,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="gradientView" destination="7Ue-Zl-Cyc" id="GVd-ZD-wyv"/>
                 <outlet property="theIconImage" destination="82D-bI-ih8" id="Sbd-ZY-INd"/>
                 <outlet property="theTextField" destination="npd-hV-8oD" id="hOk-bd-8sa"/>
                 <outlet property="theTitleLable" destination="UXe-JZ-u7F" id="GCg-Pr-9N6"/>
