@@ -18,7 +18,7 @@ class SendCommentControl : UIView {
     var postCommentLink : String?
     var postReplyLink : String?
     
-    var delegate : SendCommentControlProtocol?
+    var commentControlDelegate : SendCommentControlProtocol?
 
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendCommentButton: UIButton!
@@ -82,7 +82,7 @@ class SendCommentControl : UIView {
                 ]
                 CommentRequestManager.sharedInstance.postComment(postCommentLink, messageBody: messageBody) { (success, comment, nil, message, code) in
                     if success {
-                        self.delegate?.textFieldEndEdit(self.commentTextField, comment: comment)
+                        self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
                 }
@@ -94,7 +94,7 @@ class SendCommentControl : UIView {
                 ]
                 CommentRequestManager.sharedInstance.postReply(postReplyLink, messageBody: messageBody) { (success, comment, comments, message, code) in
                     if success {
-                        self.delegate?.textFieldEndEdit(self.commentTextField, comment: comment)
+                        self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
                 }
@@ -106,7 +106,7 @@ class SendCommentControl : UIView {
 extension SendCommentControl: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        delegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)
+        commentControlDelegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -120,6 +120,6 @@ extension SendCommentControl: UITextFieldDelegate {
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(){
-        delegate?.textFieldEndEdit(commentTextField, comment: nil)
+        commentControlDelegate?.textFieldEndEdit(commentTextField, comment: nil)
     }
 }
