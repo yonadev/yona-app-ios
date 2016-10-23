@@ -175,19 +175,11 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         if isShowingProfile {
             let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
-//            var gradientView = GradientSmooth.init(frame: cell.frame)
-//            gradientView.setGradientSmooth(UIColor.yiGrapeColor(), color2: UIColor.yiBgGradientTwoColor())
-//            cell.addSubview(gradientView)
-//            cell.sendSubviewToBack(gradientView)
             return cell
         } else {
         // must be changed to show badges
             let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
-//            var gradientView = GradientSmooth.init(frame: cell.frame)
-//            gradientView.setGradientSmooth(UIColor.yiGrapeColor(), color2: UIColor.yiBgGradientTwoColor())
-//            cell.addSubview(gradientView)
-//            cell.sendSubviewToBack(gradientView)
             return cell
 
         }
