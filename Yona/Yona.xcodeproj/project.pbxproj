@@ -167,7 +167,6 @@
 		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
 		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */; };
-		90EB40AA1DBE297C00F73722 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90EB40A91DBE297C00F73722 /* SecretKeys.plist */; };
 		90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */; };
 		90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */; };
 		90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */; };
@@ -352,6 +351,7 @@
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		D9D54EE21CA28CD2007805F4 /* UserAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */; };
 		D9D54EED1CA28CD2007805F4 /* YonaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */; };
+		D9E8CD931DBE36FE001D0996 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9E8CD921DBE36FE001D0996 /* SecretKeys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -567,7 +567,6 @@
 		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
-		90EB40A91DBE297C00F73722 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../../../../../Downloads/SecretKeys.plist; sourceTree = "<group>"; };
 		90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeZoneControlCell.xib; sourceTree = "<group>"; };
 		90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneControlCell.swift; sourceTree = "<group>"; };
 		90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneCustomView.swift; sourceTree = "<group>"; };
@@ -821,6 +820,7 @@
 		D9D54EE81CA28CD2007805F4 /* YonaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YonaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54EEC1CA28CD2007805F4 /* YonaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YonaUITests.swift; sourceTree = "<group>"; };
 		D9D54EEE1CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9E8CD921DBE36FE001D0996 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		EF26DAC44A5AE3C2779CD0D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1732,6 +1732,7 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
+				D9E8CD921DBE36FE001D0996 /* SecretKeys.plist */,
 				164CD1D91D6B86EC004E585B /* Yona.entitlements */,
 				165BB1E81D2289A20013A4EF /* UIControlCell */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
@@ -1754,7 +1755,6 @@
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				9007DD131D9957A10092AA9E /* GoogleService-Info.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
-				90EB40A91DBE297C00F73722 /* SecretKeys.plist */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 			);
 			path = Yona;
@@ -1934,7 +1934,7 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				90EB40AA1DBE297C00F73722 /* SecretKeys.plist in Resources */,
+				D9E8CD931DBE36FE001D0996 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
