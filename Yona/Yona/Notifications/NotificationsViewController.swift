@@ -166,24 +166,23 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 
                 self.navigationController?.pushViewController(vc, animated: true)
                 return
-                break
             case .GoalChangeMessage:
                 break
                 // DISABLED AS REQUEST in APPDEV-817
-                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
-                vc.buddyToShow = self.buddyData
-                
-                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                let navbar = self.navigationController?.navigationBar as! GradientNavBar
-                
-                vc.navbarColor = navbar.gradientColor
-                navbar.gradientColor = UIColor.yiMidBlueColor()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                return
-                break
+//                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+//                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
+//                vc.buddyToShow = self.buddyData
+//                
+//                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+//                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+//                let navbar = self.navigationController?.navigationBar as! GradientNavBar
+//                
+//                vc.navbarColor = navbar.gradientColor
+//                navbar.gradientColor = UIColor.yiMidBlueColor()
+//                
+//                self.navigationController?.pushViewController(vc, animated: true)
+//                return
+//                break
             case .DisclosureResponseMessage:
                 //not implemented yet
                 break
@@ -245,9 +244,9 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
         
         if messages[section].first!.creationTime.isSameDayAs(dateTodate) {
-            cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
+            cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
         } else if messages[section].first!.creationTime.isSameDayAs(yesterDate) {
-            cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+            cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
         } else {
             cell.headerTextLabel.text =  dateFormatter.stringFromDate(messages[section].first!.creationTime)
         }

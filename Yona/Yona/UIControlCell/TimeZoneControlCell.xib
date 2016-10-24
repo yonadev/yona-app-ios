@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -53,7 +53,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-1u-TUE">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-1u-TUE">
                         <rect key="frame" x="218" y="28" width="125" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="lmp-RP-5CH"/>
@@ -139,6 +139,7 @@
                     <constraint firstItem="4Dm-Zy-EzF" firstAttribute="centerX" secondItem="7rU-t2-PUz" secondAttribute="centerX" id="4L7-41-xlD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SpK-A8-xhE" secondAttribute="trailing" constant="23" id="Cm2-ar-B9K"/>
                     <constraint firstItem="ofH-LR-W23" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="24" id="FsV-Z0-FiM"/>
+                    <constraint firstItem="3fL-NV-I6V" firstAttribute="leading" secondItem="hgf-kD-SXI" secondAttribute="trailing" constant="24" id="HGh-Jd-aGB"/>
                     <constraint firstItem="sbv-Vr-RGw" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="-8" id="JeF-WV-QJ8"/>
                     <constraint firstItem="4Dm-Zy-EzF" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="3" id="MuX-uP-IoT"/>
                     <constraint firstItem="3fL-NV-I6V" firstAttribute="centerX" secondItem="7rU-t2-PUz" secondAttribute="centerX" id="NQl-9o-BjS"/>

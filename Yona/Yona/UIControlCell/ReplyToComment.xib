@@ -75,7 +75,7 @@
                                     <constraint firstAttribute="height" constant="1" id="z5s-Jh-DIl"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aZ-fS-vZA">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willempie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aZ-fS-vZA">
                                 <rect key="frame" x="132" y="27" width="198" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="RHy-i1-n0j"/>

@@ -16,10 +16,11 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var theCellType : ProfileCategoryHeader?
     var buddyCellType : FriendsProfileCategoryHeader?
-    
+    @IBOutlet var gradientView: GradientSmooth!
     var previousRange: NSRange!
     var delegate : AnyObject?
     override func awakeFromNib() {
+        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         theTitleLable.text = ""
         theTextField.text = ""
         

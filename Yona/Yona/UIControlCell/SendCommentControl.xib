@@ -13,8 +13,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
             <connections>
-                <outlet property="commentTextField" destination="VG6-lx-Zr1" id="5vP-SP-lOc"/>
-                <outlet property="sendCommentButton" destination="DKB-dA-YTh" id="SOI-Ah-bmh"/>
+                <outlet property="commentTextField" destination="VG6-lx-Zr1" id="7j1-dv-tdt"/>
+                <outlet property="sendCommentButton" destination="DKB-dA-YTh" id="LjY-yN-WsX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -52,11 +52,10 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VG6-lx-Zr1">
                     <rect key="frame" x="10" y="1" width="256" height="44"/>
-                    <color key="textColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="dO3-ew-ALs"/>
+                        <outlet property="delegate" destination="-1" id="OIT-Je-oQu"/>
                     </connections>
                 </textField>
             </subviews>

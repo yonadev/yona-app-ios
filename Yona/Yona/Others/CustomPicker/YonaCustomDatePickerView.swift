@@ -16,7 +16,8 @@ class YonaCustomDatePickerView: UIView {
     @IBOutlet weak var cancelButtonTitle: UIBarButtonItem!
     @IBOutlet weak var okButtonTitle: UIBarButtonItem!
     @IBOutlet weak var pickerTitleLabel: UIBarButtonItem!
-    
+    @IBOutlet weak var title: UIBarButtonItem!
+
     @IBAction func cancelAction(sender: AnyObject) {
         gCancelListener?()
     }
@@ -47,6 +48,7 @@ class YonaCustomDatePickerView: UIView {
         gCancelListener = cancel
         gDoneListener = done
         parentView = v
+        title.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiBlackColor()], forState: UIControlState.Normal)
         UIApplication.sharedApplication().keyWindow?.addSubview(self)
     }
     
