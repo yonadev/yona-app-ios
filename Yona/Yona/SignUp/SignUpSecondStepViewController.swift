@@ -108,8 +108,8 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
         
-        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
-        label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        let label = UILabel(frame: CGRectMake(0, 10, 50, 50))
+        label.font = UIFont(name: "SFUIDisplay-Regular", size: 12)
         label.textColor = UIColor.yiBlackColor()
         label.contentMode = UIViewContentMode.Center
         label.textAlignment = NSTextAlignment.Center

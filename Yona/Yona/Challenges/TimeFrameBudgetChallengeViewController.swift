@@ -44,12 +44,21 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         super.viewDidLoad()
         
         if let activitiyToPost = self.activitiyToPost {
-            let activityApps = activitiyToPost.applicationsStore
-            var appString = ""
-            for activityApp in activityApps as [String] {
-                appString += "" + activityApp + ", "
-            }
-            self.appList.text = appString
+            self.listActivities(activitiyToPost.applicationsStore)
+        } else {
+            ActivitiesRequestManager.sharedInstance.getActivityCategories({ (success, message, code, activitiesReturned, error) in
+                if success {
+                    if let activities = activitiesReturned! as? [Activities]{
+                        for activity in activities {
+                            if activity.activityCategoryName == self.goalCreated?.GoalName {
+                                let apps : [String] = activity.applicationsStore
+                                self.listActivities(apps)
+                                print(apps)
+                            }
+                        }
+                    }
+                }
+            })
         }
         
         setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
@@ -96,6 +105,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         }
         
         self.updateValues()
+    }
+    
+    func listActivities(activities: [String]){
+        let activityApps = activities
+        var appString = ""
+        for activityApp in activityApps as [String] {
+            appString += "" + activityApp + ", "
+        }
+        self.appList.text = appString
     }
     
     override func viewWillAppear(animated: Bool) {

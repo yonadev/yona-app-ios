@@ -18,6 +18,12 @@ class GradientView: UIView {
         }
     }
     
+    @IBInspectable var gradientColor2: UIColor! {
+        didSet{
+            self.awakeFromNib()
+        }
+    }
+    
     // Default Colors
     var colors:[UIColor] = [] {
         didSet {
@@ -26,12 +32,13 @@ class GradientView: UIView {
     }
     
     func setGradient(color1: UIColor, color2: UIColor) {
-        
+        gradientColor = color1
+        gradientColor2 = color2
         shapeLayer.frame = self.bounds
         shapeLayer.path = getPath()
         shapeLayer.lineWidth = 1.0
-        shapeLayer.strokeColor = color1.CGColor
-        shapeLayer.fillColor = color2.CGColor
+        shapeLayer.strokeColor = gradientColor.CGColor
+        shapeLayer.fillColor = gradientColor2.CGColor
         
         self.layer.insertSublayer(shapeLayer, atIndex: 0)
         
@@ -40,6 +47,7 @@ class GradientView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.shapeLayer.path = getPath()
+
     }
     
     func getPath() -> CGPath {

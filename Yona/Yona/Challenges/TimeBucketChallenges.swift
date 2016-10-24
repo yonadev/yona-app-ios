@@ -414,7 +414,7 @@ extension TimeBucketChallenges {
                 
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = localizedString
-                cell.detailTextLabel?.numberOfLines = 5
+                cell.detailTextLabel?.numberOfLines = 2
                 cell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByTruncatingTail
                 //cell.detailTextLabel?.
             }

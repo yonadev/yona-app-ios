@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVV-Xz-ZoM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-        </mutableArray>
         <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
             <string>SFUIDisplay-Regular</string>
@@ -39,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="welcomeScreen" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Yy-Xd9">
                                 <rect key="frame" x="113" y="-34" width="375" height="668"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-cZ-1Wg">
@@ -48,7 +46,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Mfw-BH-maZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -57,9 +55,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuO-p0-ekh">
-                                <rect key="frame" x="0.0" y="540" width="299" height="60"/>
+                                <rect key="frame" x="0.0" y="540" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="join">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -73,13 +71,22 @@
                             <constraint firstItem="tuO-p0-ekh" firstAttribute="leading" secondItem="S7o-bB-jMm" secondAttribute="leading" id="9G1-CX-RiA"/>
                             <constraint firstAttribute="trailing" secondItem="j8k-cZ-1Wg" secondAttribute="trailing" id="A4Q-NE-D8e"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="2" id="EJA-aW-N14"/>
-                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerX" secondItem="S7o-bB-jMm" secondAttribute="centerX" id="G6y-rF-hpI"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="1" id="Mff-ev-Eek"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="width" secondItem="tuO-p0-ekh" secondAttribute="width" id="NJ3-Jb-gBr"/>
-                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerY" secondItem="S7o-bB-jMm" secondAttribute="centerY" id="Q0V-Fk-vcv"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerX" secondItem="S7o-bB-jMm" secondAttribute="centerX" id="a4Q-yv-t9X"/>
                             <constraint firstItem="j8k-cZ-1Wg" firstAttribute="height" secondItem="tuO-p0-ekh" secondAttribute="height" id="c7k-iZ-PV3"/>
+                            <constraint firstItem="j8k-cZ-1Wg" firstAttribute="leading" secondItem="tuO-p0-ekh" secondAttribute="trailing" constant="1" id="hz6-MO-WSD"/>
                             <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="tuO-p0-ekh" secondAttribute="bottom" id="jPn-zV-HGF"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="top" secondItem="S7o-bB-jMm" secondAttribute="topMargin" constant="-34" id="rEp-Pl-QfQ"/>
                             <constraint firstItem="GPe-ch-MPs" firstAttribute="top" secondItem="j8k-cZ-1Wg" secondAttribute="bottom" id="sAE-Vd-LJP"/>
+                            <constraint firstItem="lay-Yy-Xd9" firstAttribute="centerY" secondItem="S7o-bB-jMm" secondAttribute="centerY" id="zKr-Qr-3ou"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EJA-aW-N14"/>
+                                <exclude reference="Mff-ev-Eek"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="vc8-lA-K8m"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -139,7 +146,7 @@
                                             <constraint firstAttribute="height" constant="40" id="SRk-LP-fr8"/>
                                         </constraints>
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9m-gx-vB9" userLabel="Line1">
@@ -159,7 +166,7 @@
                                             <constraint firstAttribute="height" constant="40" id="eqY-7a-WFo"/>
                                         </constraints>
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDq-0O-IEq" userLabel="Line2">
@@ -172,12 +179,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="privacy-policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vU-zC-yra">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="privacy-policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vU-zC-yra">
                                         <rect key="frame" x="36" y="124" width="528" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="53" id="orq-MU-Xx3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="widthClass=compact" misplaced="YES">
@@ -313,13 +320,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="207"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mobile-number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8A-ji-r8s">
-                                                <rect key="frame" x="29" y="26" width="536" height="40"/>
+                                                <rect key="frame" x="29" y="28" width="536" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="BDf-zq-I5Z"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="phonePad" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xaj-XJ-6w1" userLabel="Line1">
@@ -339,7 +346,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="ql0-rn-aPl"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAf-ny-OKK" userLabel="Line2">
@@ -352,9 +359,9 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user-signup-message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCv-H3-UIQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user-signup-message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCv-H3-UIQ">
                                                 <rect key="frame" x="29" y="157" width="542" height="15"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" misplaced="YES">
@@ -364,12 +371,12 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="gCv-H3-UIQ" firstAttribute="leading" secondItem="OE8-7z-91Z" secondAttribute="leading" constant="29" id="6cV-PI-lVC"/>
-                                            <constraint firstItem="Xaj-XJ-6w1" firstAttribute="top" secondItem="l8A-ji-r8s" secondAttribute="bottom" constant="8" id="8gF-mI-eEf"/>
+                                            <constraint firstItem="Xaj-XJ-6w1" firstAttribute="top" secondItem="l8A-ji-r8s" secondAttribute="bottom" constant="6" id="8gF-mI-eEf"/>
                                             <constraint firstAttribute="trailing" secondItem="l8A-ji-r8s" secondAttribute="trailing" constant="35" id="BEo-Fp-XEQ"/>
                                             <constraint firstAttribute="trailing" secondItem="dAf-ny-OKK" secondAttribute="trailing" constant="35" id="DhO-GP-B4T"/>
                                             <constraint firstItem="Xaj-XJ-6w1" firstAttribute="leading" secondItem="OE8-7z-91Z" secondAttribute="leading" constant="29" id="E8X-iV-V8p"/>
                                             <constraint firstItem="dAf-ny-OKK" firstAttribute="top" secondItem="Jn0-jN-9PD" secondAttribute="bottom" constant="8" id="GoP-yu-Bcc"/>
-                                            <constraint firstItem="l8A-ji-r8s" firstAttribute="top" secondItem="OE8-7z-91Z" secondAttribute="top" constant="26" id="Ijo-yn-4Ig"/>
+                                            <constraint firstItem="l8A-ji-r8s" firstAttribute="top" secondItem="OE8-7z-91Z" secondAttribute="top" constant="28" id="Ijo-yn-4Ig"/>
                                             <constraint firstAttribute="trailing" secondItem="gCv-H3-UIQ" secondAttribute="trailing" constant="29" id="J3K-v0-cLn"/>
                                             <constraint firstAttribute="height" constant="207" id="OKp-RE-TwY"/>
                                             <constraint firstAttribute="trailing" secondItem="Jn0-jN-9PD" secondAttribute="trailing" constant="35" id="RNy-tV-QxV"/>
@@ -394,7 +401,7 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5j-vq-PFG">
-                                <rect key="frame" x="0.0" y="540" width="299" height="60"/>
+                                <rect key="frame" x="0.0" y="540" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="previous">
@@ -425,14 +432,14 @@
                             <constraint firstItem="D5j-vq-PFG" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" id="2p5-zR-8mj"/>
                             <constraint firstItem="MBw-dR-p4d" firstAttribute="height" secondItem="D5j-vq-PFG" secondAttribute="height" id="3OX-Qd-kox"/>
                             <constraint firstItem="MBw-dR-p4d" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" id="IyS-d9-Ehc"/>
-                            <constraint firstItem="MBw-dR-p4d" firstAttribute="width" secondItem="D5j-vq-PFG" secondAttribute="width" id="LBr-xe-9nA"/>
+                            <constraint firstItem="MBw-dR-p4d" firstAttribute="width" secondItem="D5j-vq-PFG" secondAttribute="width" constant="-1" id="LBr-xe-9nA"/>
                             <constraint firstItem="1rq-rT-ImI" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leadingMargin" constant="-20" id="NJ6-Pf-VPV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1rq-rT-ImI" secondAttribute="trailing" constant="-20" id="P1v-v6-Tqu"/>
                             <constraint firstItem="AgW-VK-YiR" firstAttribute="top" secondItem="1rq-rT-ImI" secondAttribute="bottom" id="VuW-v6-kym"/>
                             <constraint firstItem="AgW-VK-YiR" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leading" id="ZYa-jd-qxc"/>
                             <constraint firstItem="1rq-rT-ImI" firstAttribute="top" secondItem="LHm-YL-BcV" secondAttribute="bottom" id="dgA-LK-lbK"/>
                             <constraint firstAttribute="trailing" secondItem="AgW-VK-YiR" secondAttribute="trailing" id="fhc-Xw-VBY"/>
-                            <constraint firstItem="MBw-dR-p4d" firstAttribute="leading" secondItem="D5j-vq-PFG" secondAttribute="trailing" constant="2" id="gAV-Pr-W09"/>
+                            <constraint firstItem="MBw-dR-p4d" firstAttribute="leading" secondItem="D5j-vq-PFG" secondAttribute="trailing" constant="1" id="gAV-Pr-W09"/>
                             <constraint firstItem="D5j-vq-PFG" firstAttribute="leading" secondItem="8nz-N3-RMX" secondAttribute="leading" id="htJ-Gb-gE5"/>
                             <constraint firstAttribute="trailing" secondItem="MBw-dR-p4d" secondAttribute="trailing" id="iC0-cp-b7u"/>
                             <constraint firstItem="1W1-O0-1Oh" firstAttribute="top" secondItem="AgW-VK-YiR" secondAttribute="bottom" constant="60" id="vvX-BO-NGa"/>
@@ -502,16 +509,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ac-Q6-fGY" userLabel="BottomView">
                                         <rect key="frame" x="0.0" y="260" width="600" height="280"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adddevice.user.infoText" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pho-Of-4RB">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adddevice.user.infoText" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pho-Of-4RB">
                                                 <rect key="frame" x="29" y="35" width="542" height="15"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="29" y="158" width="342" height="28"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.mobileNumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-VA-VXo">
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.mobileNumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-VA-VXo">
                                                 <rect key="frame" x="29" y="91" width="536" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="auN-Ge-2rS"/>
@@ -530,7 +537,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.passcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KtQ-BD-mz3">
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="adddevice.user.passcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KtQ-BD-mz3">
                                                 <rect key="frame" x="29" y="152" width="536" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ggr-Nl-dk9"/>

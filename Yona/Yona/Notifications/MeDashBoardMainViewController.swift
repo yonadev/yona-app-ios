@@ -32,7 +32,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         registreTableViewCells()
         setupUI()
         self.navigationController?.navigationBarHidden = false
-        navigationItem.title = NSLocalizedString("DASHBOARD", comment: "")
+        let title = NSLocalizedString("DASHBOARD", comment: "")
+        navigationItem.title = title.uppercaseString
         configureCorrectToday()
         
         
@@ -126,13 +127,17 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 btnName.layer.borderWidth = 0
                 btnName.layer.masksToBounds = true
                 btnName.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//                btnName.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: -10)
+
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 
-                
+//                var space = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+//                space.width = -200
                 let bellButton = UIBarButtonItem(image: UIImage(named: "icnNotifications"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.showNotifications(_:)))
                 if count > 0 {
                     self.navigationItem.rightBarButtonItems = [bellButton,rightBarButton]
+                    
                 } else {
                     self.navigationItem.rightBarButtonItems = [bellButton]
                 }
@@ -275,9 +280,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
             
             if leftTabData[section].date.isToday() {
-                cell.headerTextLabel.text = NSLocalizedString("Today", comment: "")
+                cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
             } else if leftTabData[section].date.isYesterday() {
-                cell.headerTextLabel.text =  NSLocalizedString("Yesterday", comment: "")
+                cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
             } else {
                 cell.headerTextLabel.text =  dateFormatter.stringFromDate(leftTabData[section].date)
             }
@@ -480,6 +485,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
+                controller.title = data.goalName?.uppercaseString
                 controller.initialObject = data
                 
             }
@@ -493,6 +499,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 
             } else  if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
+                controller.title = data.goalName?.uppercaseString
                 controller.activityGoal = data
             }
             

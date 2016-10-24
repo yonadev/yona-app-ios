@@ -167,6 +167,7 @@
 		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
 		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */; };
+		90EB40AA1DBE297C00F73722 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90EB40A91DBE297C00F73722 /* SecretKeys.plist */; };
 		90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */; };
 		90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */; };
 		90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */; };
@@ -566,6 +567,7 @@
 		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		90EB40A91DBE297C00F73722 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../../../../../Downloads/SecretKeys.plist; sourceTree = "<group>"; };
 		90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeZoneControlCell.xib; sourceTree = "<group>"; };
 		90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneControlCell.swift; sourceTree = "<group>"; };
 		90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneCustomView.swift; sourceTree = "<group>"; };
@@ -669,7 +671,6 @@
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
 		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
-		CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -965,9 +966,9 @@
 				90B6E6051D771BB40082FB6D /* SHSwippableTableViewCell.h */,
 				9054D5441D5CD8620060D22E /* PKSwipeTableViewCell.swift */,
 				166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */,
+				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
 				9054D5381D52359B0060D22E /* CommentTableHeader.swift */,
 				9054D53A1D5235A90060D22E /* CommentTableHeader.xib */,
-				166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */,
 				16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */,
 				16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */,
 				90B6E6081D78260B0082FB6D /* CustomDeleteCell.xib */,
@@ -1753,8 +1754,8 @@
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				9007DD131D9957A10092AA9E /* GoogleService-Info.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
+				90EB40A91DBE297C00F73722 /* SecretKeys.plist */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
-				CC192FCD1D76AF04006F0F10 /* SecretKeys.plist */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1933,6 +1934,7 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
+				90EB40AA1DBE297C00F73722 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -2437,6 +2439,7 @@
 				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
@@ -2476,6 +2479,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;

@@ -35,7 +35,7 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     func loadPickerView() -> UIView {
         var views = NSBundle.mainBundle().loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
         
-        return views[0] as! UIView
+        return views![0] as! UIView
     }
     
     

@@ -105,7 +105,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 switch result {
                 case .firstname:
                     let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! YonaUserDisplayTableViewCell
-                        cell.setActive()
+                    cell.setActive()
                 case .lastname:
                     let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! YonaUserDisplayTableViewCell
                     cell.setActive()
@@ -203,7 +203,6 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - server call
     
     func updateUser() {
-        
         
         if isUserDataValid() != .none {
             return

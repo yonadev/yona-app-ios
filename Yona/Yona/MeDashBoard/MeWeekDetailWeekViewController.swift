@@ -52,7 +52,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         self.comments = []
         registreTableViewCells()
         self.sendCommentFooter!.alpha = 0
-        self.sendCommentFooter?.delegate = self
+        self.sendCommentFooter?.commentControlDelegate = self
     }
     
     func shouldAnimate(cell : NSIndexPath) -> Bool {
@@ -118,9 +118,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
 
         if let aWeek = initialObject {
-            if let txt = aWeek.goalName {
-                navigationItem.title = NSLocalizedString(txt, comment: "")
-            }
+//            if let txt = aWeek.goalName?.uppercaseString {
+//                navigationItem.title = NSLocalizedString(txt, comment: "")
+//            }
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
@@ -242,9 +242,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 let otherDate = otherDateStart.yearWeek
                 
                 if correctToday.yearWeek == other {
-                    cell.headerTextLabel.text = NSLocalizedString("This week", comment: "")
+                    cell.headerTextLabel.text = NSLocalizedString("this_week", comment: "")
                 } else if other == otherDate {
-                    cell.headerTextLabel.text =  NSLocalizedString("Last week", comment: "")
+                    cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
                 } else {
                     let dateFormatter : NSDateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd MMM"
@@ -360,7 +360,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                     if success {
                         
                         if let data = activitygoals {
-                            self.navigationItem.title = data.goalName
+                            self.navigationItem.title = data.goalName?.uppercaseString
                             self.currentWeek = data.date
                             self.week[data.date.yearWeek] = data
                             self.goalType = data.goalType
@@ -370,7 +370,6 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                             if data.commentLink != nil {
                                 self.sendCommentFooter!.postCommentLink = data.commentLink
                             }
-                            self.navigationItem.title = data.goalName //only need to do this in the first original data
 
                         }
                         self.tableView.reloadData()

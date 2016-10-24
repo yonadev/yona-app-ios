@@ -40,12 +40,21 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         super.viewDidLoad()
         
         if let activitiyToPost = self.activitiyToPost {
-            let activityApps = activitiyToPost.applicationsStore
-            var appString = ""
-            for activityApp in activityApps as [String] {
-                appString += "" + activityApp + ", "
-            }
-            self.appList.text = appString
+            self.listActivities(activitiyToPost.applicationsStore)
+        } else {
+            ActivitiesRequestManager.sharedInstance.getActivityCategories({ (success, message, code, activitiesReturned, error) in
+                if success {
+                    if let activities = activitiesReturned! as? [Activities]{
+                        for activity in activities {
+                            if activity.activityCategoryName == self.goalCreated?.GoalName {
+                                let apps : [String] = activity.applicationsStore
+                                self.listActivities(apps)
+                                print(apps)
+                            }
+                        }
+                    }
+                }
+            })
         }
         
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
@@ -95,6 +104,15 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
+    func listActivities(activities: [String]){
+        let activityApps = activities
+        var appString = ""
+        for activityApp in activityApps as [String] {
+            appString += "" + activityApp + ", "
+        }
+        self.appList.text = appString
     }
     
     // MARK: - Actions
