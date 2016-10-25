@@ -40,7 +40,7 @@
 "challenges-credit" = "CREDIT";
 "challenges-zone" = "TIMEZONE";
 "challenges-no-go" = "NO GO";
-"change-pin" = "Change PIN";
+"change-pin" = "CHANGE PIN";
 "privacy" = "Privacy";
 
 "connection-not-available" = "OOPS! No Internet Connection Available";
@@ -214,7 +214,6 @@
 
 "login.user.pinResetRequestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s)";
 "userNotFoundAlert" = "User not found";
-"change-pin" = "Change PIN";
 "settings.privacy" = "PRIVACY";
 "add-device" = "Add device";
 "delete-user" = "Unsubscribe";

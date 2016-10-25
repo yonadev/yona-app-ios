@@ -561,9 +561,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-fZ-zwR">
-                                                    <rect key="frame" x="0.0" y="90" width="600" height="176"/>
+                                                    <rect key="frame" x="0.0" y="90" width="600" height="355"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
+                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
                                                             <rect key="frame" x="50" y="75" width="500" height="34"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
@@ -618,7 +618,7 @@ onderdeel van deze challenge:</string>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="zJ5-fZ-zwR" secondAttribute="bottom" id="6yO-me-sQ4"/>
+                                                <constraint firstAttribute="bottom" secondItem="zJ5-fZ-zwR" secondAttribute="bottom" constant="-179" id="6yO-me-sQ4"/>
                                                 <constraint firstItem="Z2j-ti-haz" firstAttribute="centerX" secondItem="qwx-DA-pmH" secondAttribute="centerX" id="B42-Nw-FK0"/>
                                                 <constraint firstItem="Z2j-ti-haz" firstAttribute="leading" secondItem="qwx-DA-pmH" secondAttribute="leading" constant="30" id="EpB-zP-hy7"/>
                                                 <constraint firstItem="zJ5-fZ-zwR" firstAttribute="leading" secondItem="qwx-DA-pmH" secondAttribute="leading" id="IzH-Zz-2bs"/>
@@ -937,7 +937,7 @@ onderdeel van deze challenge:</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
                                                         <rect key="frame" x="557" y="29" width="30" height="44"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
@@ -987,7 +987,7 @@ onderdeel van deze challenge:</string>
                                                                 <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
+                                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
                                                                 <rect key="frame" x="50" y="88" width="504" height="34"/>
                                                                 <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
@@ -1238,7 +1238,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-Dh-0Hg">
-                                                        <rect key="frame" x="0.0" y="176" width="604" height="115"/>
+                                                        <rect key="frame" x="0.0" y="176" width="604" height="199"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psd-ww-wDc">
                                                                 <rect key="frame" x="0.0" y="8" width="604" height="100"/>
@@ -1261,12 +1261,12 @@ onderdeel van deze challenge:</string>
                                                                             </mask>
                                                                         </variation>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
                                                                         <rect key="frame" x="70" y="37" width="456" height="51"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="g8S-s9-nVc"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="hY9-9L-7Uv"/>
-                                                                            <constraint firstAttribute="height" constant="34" id="mAp-Ob-kBi"/>
+                                                                            <constraint firstAttribute="height" constant="51" id="mAp-Ob-kBi"/>
                                                                         </constraints>
                                                                         <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
@@ -1283,8 +1283,8 @@ Pinterest, Instagram, Snapchat</string>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="100" id="0sp-BB-iU0"/>
-                                                                    <constraint firstItem="Mt9-Rt-DQg" firstAttribute="leading" secondItem="psd-ww-wDc" secondAttribute="leading" id="5wn-ok-IiS"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Mt9-Rt-DQg" secondAttribute="trailing" id="Cab-Tb-gPw"/>
+                                                                    <constraint firstItem="Mt9-Rt-DQg" firstAttribute="leading" secondItem="psd-ww-wDc" secondAttribute="leading" constant="70" id="5wn-ok-IiS"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Mt9-Rt-DQg" secondAttribute="trailing" constant="78" id="Cab-Tb-gPw"/>
                                                                     <constraint firstAttribute="bottom" secondItem="Mt9-Rt-DQg" secondAttribute="bottom" constant="12" id="J6H-ks-Mbr"/>
                                                                     <constraint firstItem="wEg-pc-qS6" firstAttribute="top" secondItem="psd-ww-wDc" secondAttribute="top" id="JlG-w7-2nm"/>
                                                                     <constraint firstItem="wEg-pc-qS6" firstAttribute="leading" secondItem="psd-ww-wDc" secondAttribute="leading" id="KUu-dy-kyx"/>
@@ -1296,9 +1296,9 @@ Pinterest, Instagram, Snapchat</string>
                                                         <constraints>
                                                             <constraint firstItem="psd-ww-wDc" firstAttribute="centerY" secondItem="hFu-Dh-0Hg" secondAttribute="centerY" id="2ah-bo-o9U"/>
                                                             <constraint firstAttribute="trailing" secondItem="psd-ww-wDc" secondAttribute="trailing" id="3l7-zs-FxV"/>
-                                                            <constraint firstAttribute="bottom" secondItem="psd-ww-wDc" secondAttribute="bottom" constant="7" id="DJv-pO-C4D"/>
+                                                            <constraint firstAttribute="bottom" secondItem="psd-ww-wDc" secondAttribute="bottom" constant="91" id="DJv-pO-C4D"/>
                                                             <constraint firstItem="psd-ww-wDc" firstAttribute="leading" secondItem="hFu-Dh-0Hg" secondAttribute="leading" id="WTX-sJ-LV7"/>
-                                                            <constraint firstItem="psd-ww-wDc" firstAttribute="centerY" secondItem="hFu-Dh-0Hg" secondAttribute="centerY" id="p9H-sg-74l"/>
+                                                            <constraint firstItem="psd-ww-wDc" firstAttribute="centerY" secondItem="hFu-Dh-0Hg" secondAttribute="centerY" constant="-41.5" id="p9H-sg-74l"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
@@ -1319,7 +1319,7 @@ Pinterest, Instagram, Snapchat</string>
                                                     <constraint firstAttribute="bottom" secondItem="hFu-Dh-0Hg" secondAttribute="bottom" constant="-1" id="R7e-Cf-ZZI"/>
                                                     <constraint firstItem="hFu-Dh-0Hg" firstAttribute="leading" secondItem="e9H-xl-pNz" secondAttribute="leading" id="g7N-Nt-rtg"/>
                                                     <constraint firstAttribute="height" constant="290" id="gKi-fz-fVl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hFu-Dh-0Hg" secondAttribute="bottom" constant="-1" id="jGE-6d-4yC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hFu-Dh-0Hg" secondAttribute="bottom" constant="-85" id="jGE-6d-4yC"/>
                                                     <constraint firstItem="wiI-R9-Lps" firstAttribute="top" secondItem="e9H-xl-pNz" secondAttribute="top" id="mI5-hF-IeW"/>
                                                     <constraint firstItem="wiI-R9-Lps" firstAttribute="leading" secondItem="e9H-xl-pNz" secondAttribute="leading" id="mLW-L9-La9"/>
                                                     <constraint firstItem="9T7-6Q-RTF" firstAttribute="top" secondItem="wiI-R9-Lps" secondAttribute="bottom" constant="-1" id="rC3-Ib-2y0"/>

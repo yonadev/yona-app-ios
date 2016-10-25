@@ -65,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="591" y="-133"/>
         </scene>
-        <!--INLOGGEN-->
+        <!--PINCODE-->
         <scene sceneID="yt2-PP-BDh">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnl-Nx-TV9" customClass="LoginViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -199,7 +199,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="INLOGGEN" id="0bT-bA-EVK">
+                    <navigationItem key="navigationItem" title="PINCODE" id="0bT-bA-EVK">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="gOT-9b-uqI">
                             <connections>
                                 <action selector="backToSettings:" destination="Mnl-Nx-TV9" id="6WE-ao-n16"/>
@@ -476,7 +476,7 @@
             </objects>
             <point key="canvasLocation" x="2109" y="-109"/>
         </scene>
-        <!--DOE MEE-->
+        <!--join-->
         <scene sceneID="ugD-cH-7XQ">
             <objects>
                 <viewController storyboardIdentifier="confirmPinValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -594,7 +594,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="DOE MEE" id="Jp3-Sm-WmJ"/>
+                    <navigationItem key="navigationItem" title="join" id="Jp3-Sm-WmJ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="codeView" destination="OaW-Ei-xzT" id="6vh-Pf-rTr"/>
@@ -611,7 +611,7 @@
             </objects>
             <point key="canvasLocation" x="1324" y="-133"/>
         </scene>
-        <!--DOE MEE-->
+        <!--change-pin-->
         <scene sceneID="s5H-OV-ekE">
             <objects>
                 <viewController storyboardIdentifier="pinResetValidationController" id="z24-12-ZEv" customClass="PinResetValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -827,7 +827,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="DOE MEE" id="Gzh-T3-zrH"/>
+                    <navigationItem key="navigationItem" title="change-pin" id="Gzh-T3-zrH"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="codeView" destination="94a-VO-ITS" id="y62-cH-wp2"/>
@@ -848,7 +848,7 @@
             </objects>
             <point key="canvasLocation" x="1318" y="-968"/>
         </scene>
-        <!--DOE MEE-->
+        <!--join-->
         <scene sceneID="lhX-ow-6Ny">
             <objects>
                 <viewController storyboardIdentifier="adminOverrideValidationViewController" id="IYW-3h-xN3" customClass="AdminOverrideValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
@@ -965,7 +965,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="DOE MEE" id="fY1-hy-zQi"/>
+                    <navigationItem key="navigationItem" title="join" id="fY1-hy-zQi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="codeView" destination="ZCv-2m-xlP" id="eqA-KE-Ma5"/>
@@ -991,6 +991,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BLL-RE-SXW"/>
+        <segue reference="kBX-Qa-igm"/>
     </inferredMetricsTieBreakers>
 </document>
