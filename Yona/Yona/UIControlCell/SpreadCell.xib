@@ -30,7 +30,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvo-S0-2zj" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvo-S0-2zj" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -146,16 +146,20 @@
                     <constraint firstAttribute="trailingMargin" secondItem="5Jb-ix-DDc" secondAttribute="trailing" constant="23" id="XXL-p2-BTx"/>
                     <constraint firstItem="GKS-lz-J5j" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="24" id="XXU-Gv-FxT"/>
                     <constraint firstItem="J64-PL-f6i" firstAttribute="top" secondItem="dGV-mZ-EMq" secondAttribute="bottom" constant="16" id="Yis-RQ-naF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zvo-S0-2zj" secondAttribute="trailing" constant="-8" id="bSf-6B-M0C"/>
                     <constraint firstItem="J64-PL-f6i" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="24" id="d8t-Bb-glS"/>
                     <constraint firstItem="M4e-rr-RaN" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="6" id="eXe-JB-IH8"/>
                     <constraint firstItem="RRD-si-yFR" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="258" id="eqB-n6-eKf"/>
                     <constraint firstItem="M4e-rr-RaN" firstAttribute="centerX" secondItem="wLW-5L-7Ju" secondAttribute="centerX" id="fhU-fL-5tK"/>
                     <constraint firstItem="4Nu-fw-oRM" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="8" id="gYF-ev-Fbq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zvo-S0-2zj" secondAttribute="bottom" constant="-8" id="ing-Ma-rCA"/>
                     <constraint firstItem="dGV-mZ-EMq" firstAttribute="top" secondItem="wLW-5L-7Ju" secondAttribute="topMargin" constant="3" id="k61-ay-Hee"/>
                     <constraint firstItem="b1k-gu-99s" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="118" id="lh9-Ul-yVC"/>
                     <constraint firstItem="RRD-si-yFR" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="8" id="ltZ-NY-Epr"/>
                     <constraint firstItem="GKS-lz-J5j" firstAttribute="top" secondItem="J64-PL-f6i" secondAttribute="bottom" constant="7" id="ncE-EQ-JwC"/>
+                    <constraint firstItem="zvo-S0-2zj" firstAttribute="leading" secondItem="wLW-5L-7Ju" secondAttribute="leadingMargin" constant="-8" id="ohp-VG-BRi"/>
                     <constraint firstItem="lb7-IR-CPH" firstAttribute="top" secondItem="wLW-5L-7Ju" secondAttribute="topMargin" constant="21" id="pyr-vt-WQB"/>
+                    <constraint firstItem="zvo-S0-2zj" firstAttribute="top" secondItem="wLW-5L-7Ju" secondAttribute="topMargin" constant="-8" id="qhj-8z-A8S"/>
                     <constraint firstItem="tVg-yT-4lq" firstAttribute="top" secondItem="wLW-5L-7Ju" secondAttribute="topMargin" constant="20" id="se1-y2-8ko"/>
                     <constraint firstAttribute="trailingMargin" secondItem="J64-PL-f6i" secondAttribute="trailing" constant="23" id="yCB-PO-pyX"/>
                 </constraints>

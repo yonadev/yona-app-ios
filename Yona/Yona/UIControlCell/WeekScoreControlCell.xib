@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -326,9 +326,11 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="DSt-0M-tVm" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leadingMargin" constant="-8" id="0aI-Yq-bB1"/>
                     <constraint firstAttribute="trailing" secondItem="DSt-0M-tVm" secondAttribute="trailing" id="0ad-Te-W6Q"/>
                     <constraint firstItem="DSt-0M-tVm" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="top" id="8BL-wE-yTB"/>
                     <constraint firstItem="CbU-0Z-MEU" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="AYq-Va-Frv"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="DSt-0M-tVm" secondAttribute="bottom" constant="-8.5" id="CeD-6M-6gn"/>
                     <constraint firstItem="BaA-Cs-Vgh" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="DvH-Vc-FLo"/>
                     <constraint firstItem="gug-Vp-0sx" firstAttribute="centerX" secondItem="BVy-IL-WHi" secondAttribute="centerX" id="G3V-o5-Ztq"/>
                     <constraint firstItem="L2i-vb-f3E" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="Jbs-dQ-PMy"/>
@@ -338,6 +340,7 @@
                     <constraint firstItem="CbU-0Z-MEU" firstAttribute="top" secondItem="gug-Vp-0sx" secondAttribute="bottom" constant="9" id="OM9-TW-wL3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="awu-e5-7Cb" secondAttribute="trailing" constant="24" id="OSW-TM-VGe"/>
                     <constraint firstItem="EJ3-Og-eQq" firstAttribute="leading" secondItem="CbU-0Z-MEU" secondAttribute="trailing" constant="11" id="Qhn-Do-ZLu"/>
+                    <constraint firstItem="DSt-0M-tVm" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="-8" id="VNx-Eg-9Yp"/>
                     <constraint firstItem="awu-e5-7Cb" firstAttribute="leading" secondItem="gug-Vp-0sx" secondAttribute="trailing" constant="9" id="W8b-Th-Hc3"/>
                     <constraint firstItem="neI-tC-E3N" firstAttribute="leading" secondItem="L2i-vb-f3E" secondAttribute="trailing" constant="11" id="Zyn-x0-L2C"/>
                     <constraint firstItem="gug-Vp-0sx" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="4" id="adM-pd-zLv"/>
@@ -348,6 +351,7 @@
                     <constraint firstItem="pYI-aG-3FI" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="22" id="i5j-ye-w5h"/>
                     <constraint firstItem="DSt-0M-tVm" firstAttribute="leading" secondItem="BVy-IL-WHi" secondAttribute="leading" id="l2r-CU-sBC"/>
                     <constraint firstAttribute="bottom" secondItem="DSt-0M-tVm" secondAttribute="bottom" id="mac-lW-97P"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="DSt-0M-tVm" secondAttribute="trailing" constant="-8" id="o4B-oD-219"/>
                     <constraint firstItem="Y4D-2c-gUK" firstAttribute="top" secondItem="BVy-IL-WHi" secondAttribute="topMargin" constant="60" id="oOj-j8-cAS"/>
                     <constraint firstItem="BaA-Cs-Vgh" firstAttribute="leading" secondItem="neI-tC-E3N" secondAttribute="trailing" constant="11" id="rb9-iX-6U2"/>
                     <constraint firstItem="1Yi-py-dRO" firstAttribute="leading" secondItem="Y4D-2c-gUK" secondAttribute="trailing" constant="11" id="sVt-Ld-pfq"/>

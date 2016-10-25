@@ -19,7 +19,6 @@
 		160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */; };
 		160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
-		164E549C1D95B3F6006FCFE4 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */; };
 		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
 		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
 		1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */; };
@@ -180,6 +179,7 @@
 		90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */; };
 		90F123F71D3FCEE400E2BBBA /* MeDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */; };
 		90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */; };
+		90F13E0E1DBFB85D00A6427C /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -385,7 +385,6 @@
 		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		164CD1D91D6B86EC004E585B /* Yona.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Yona.entitlements; sourceTree = "<group>"; };
-		164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
 		1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage2.swift; sourceTree = "<group>"; };
@@ -580,6 +579,7 @@
 		90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCellCustomView.swift; sourceTree = "<group>"; };
 		90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeDayDetailViewController.swift; sourceTree = "<group>"; };
 		90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySingleActivityDetail.swift; sourceTree = "<group>"; };
+		90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../../../../../Desktop/SecretKeys.plist; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -1748,7 +1748,7 @@
 				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
-				164E549B1D95B3F6006FCFE4 /* SecretKeys.plist */,
+				90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
@@ -1934,7 +1934,6 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				164E549C1D95B3F6006FCFE4 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -1981,6 +1980,7 @@
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				9007DD141D9957A10092AA9E /* GoogleService-Info.plist in Resources */,
+				90F13E0E1DBFB85D00A6427C /* SecretKeys.plist in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,

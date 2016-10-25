@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SF-UI-Display-Bold.otf">
@@ -79,8 +80,12 @@
                 <constraints>
                     <constraint firstItem="6Pi-cf-VjH" firstAttribute="centerY" secondItem="Y3R-UB-A4A" secondAttribute="centerY" id="5la-Tm-wGK"/>
                     <constraint firstAttribute="trailing" secondItem="6Pi-cf-VjH" secondAttribute="trailing" id="9QC-E4-FxN"/>
+                    <constraint firstItem="6Pi-cf-VjH" firstAttribute="top" secondItem="Y3R-UB-A4A" secondAttribute="topMargin" constant="-8" id="Aqt-Sl-0jI"/>
                     <constraint firstItem="6Pi-cf-VjH" firstAttribute="top" secondItem="Y3R-UB-A4A" secondAttribute="top" id="CgM-cB-Wli"/>
                     <constraint firstItem="6Pi-cf-VjH" firstAttribute="leading" secondItem="Y3R-UB-A4A" secondAttribute="leading" id="Unr-zF-VdT"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6Pi-cf-VjH" secondAttribute="bottom" constant="-8.5" id="lAh-5m-Seg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6Pi-cf-VjH" secondAttribute="trailing" constant="-8" id="nJf-H5-H7s"/>
+                    <constraint firstItem="6Pi-cf-VjH" firstAttribute="leading" secondItem="Y3R-UB-A4A" secondAttribute="leadingMargin" constant="-8" id="ncS-4w-1s6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
