@@ -62,6 +62,17 @@ class WeekCircleView: UIView {
         
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.size.height/2
+        layer.masksToBounds = true
+        layer.backgroundColor = UIColor.yiGraphBarTwoColor().CGColor
+        dateText.textColor = UIColor.yiWhiteColor()
+        
+        layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.borderWidth = 1.0
+    }
+    
     func configureUI(aDate : NSDate, status : circleViewStatus = .noData) {
         theData = aDate
         let dateFormatter = NSDateFormatter()
