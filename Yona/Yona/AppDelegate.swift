@@ -160,7 +160,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script type=\"text/javascript\">window.addEventListener(\"focus\", function(evt){load()},false);window.addEventListener(\"blur\", function(evt) {console.log('hide');}, false);</script><script type=\"text/javascript\">function load() {clearInterval(int);window.location.href='http://localhost:8089/load/';}var int=self.setInterval(function(){load()},200);</script><BODY></BODY></HTML>"
         
         
-        /*"<HTML><HEAD><title>Profile Install</title></HEAD><script type=\"text/javascript\">window.addEventListener(\"pageshow\", function(evt){alert('show');}, false);window.addEventListener(\"pagehide\", function(evt){console.log('hide';}, false);</script><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},4000);</script><BODY></BODY></HTML>"*/
         response.respondWithString(txt)
     }
     
@@ -182,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //response.setHeader("Location", value: "yonaApp://")
             
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "https://beta.prd.yona.nu/yonaapp/")
+                response.setHeader("Location", value: "https://beta.prd.yona.nu/yonaapp")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
