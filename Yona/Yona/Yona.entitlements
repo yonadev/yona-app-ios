@@ -4,7 +4,8 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:www.simusoft.dk</string>
+		<string>applinks:beta.prd.yona.nu</string>
+		<string>applinks:beta.prd.yona.nu</string>
 	</array>
 </dict>
 </plist>
