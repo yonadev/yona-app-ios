@@ -41,6 +41,7 @@
 "challenges-zone" = "TIMEZONE";
 "challenges-no-go" = "NO GO";
 "change-pin" = "CHANGE PIN";
+"change-pin-settings" = "Change pin";
 "privacy" = "Privacy";
 
 "connection-not-available" = "OOPS! No Internet Connection Available";

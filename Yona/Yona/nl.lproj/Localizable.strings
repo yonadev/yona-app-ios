@@ -142,6 +142,7 @@
 "screendesc4" = "Controle houden over de tijd die je online bent";
 
 "change-pin" = "WIJZIG PINCODE";
+"change-pin-settings" = "Wijzig pincode";
 "privacy" = "Privacy";
 "add-device" = "Device toevoegen";
 "delete-user" = "Uitschrijven";
