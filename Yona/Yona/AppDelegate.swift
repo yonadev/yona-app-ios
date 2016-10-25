@@ -182,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //response.setHeader("Location", value: "yonaApp://")
             
             if #available(iOS 9, *) {
-                response.setHeader("Location", value: "https://www.yona.nl/yonaapp/")
+                response.setHeader("Location", value: "https://beta.prd.yona.nu/yonaapp/")
             } else {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }

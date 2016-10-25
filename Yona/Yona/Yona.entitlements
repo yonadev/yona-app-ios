@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:www.yona.nl</string>
+		<string>applinks:beta.prd.yona.nu</string>
 	</array>
 </dict>
 </plist>
