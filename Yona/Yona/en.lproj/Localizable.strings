@@ -65,7 +65,7 @@
 "passcode-step2-desc" = "Enter your PIN again to confirm.";
 "login-accountBlocked-title" = "Your account is blocked";
 "msg-block-user" = "Your account has been locked for security reasons";
-"passcode-reset" = "PIN reset";
+"passcode-reset" = "PIN RESET";
 "invalid-otp" = "Invalid accesscode";
 "account-login" = "Account be created";
 "account-login-security-message" = "For security, you will receive a code by SMS. Please enter this code below.";
