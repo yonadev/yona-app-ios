@@ -254,6 +254,7 @@
 
 "profile.tab.profile" = "profile";
 "profile.tab.badges" = "badges";
+"profile.tab.editaccounttitle" = "EDIT ACCOUNT";
 
 //message types
 "message.type.friendrequest" = "Friend request";

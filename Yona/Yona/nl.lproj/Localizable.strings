@@ -218,6 +218,7 @@
 
 "profile.tab.profile" = "Profiel";
 "profile.tab.badges" = "Badges";
+"profile.tab.editaccounttitle" = "BEWERK ACCOUNT";
 
 //message types
 "message.type.friendrequest" = "Vriendenverzoek";
