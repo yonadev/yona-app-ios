@@ -292,7 +292,6 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
-		D98C7A5D1DBE3E6E0038001E /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D98C7A5C1DBE3E6E0038001E /* SecretKeys.plist */; };
 		D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744E71CB3CA7B008E463A /* KeychainTests.swift */; };
 		D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
@@ -702,7 +701,6 @@
 		D98635751CAD626F00A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		D986357A1CAD62B100A8535C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D986357C1CAD62B400A8535C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D98C7A5C1DBE3E6E0038001E /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../SecretKeys.plist; sourceTree = "<group>"; };
 		D9C744E71CB3CA7B008E463A /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
 		D9C744F21CB3F2F4008E463A /* CucumberishExampleUITests-Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CucumberishExampleUITests-Swift.m"; sourceTree = "<group>"; };
@@ -1732,7 +1730,6 @@
 		D9D54EC91CA28CD2007805F4 /* Yona */ = {
 			isa = PBXGroup;
 			children = (
-				D98C7A5C1DBE3E6E0038001E /* SecretKeys.plist */,
 				164CD1D91D6B86EC004E585B /* Yona.entitlements */,
 				165BB1E81D2289A20013A4EF /* UIControlCell */,
 				D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */,
@@ -1934,7 +1931,6 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				D98C7A5D1DBE3E6E0038001E /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -2436,7 +2432,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
@@ -2477,7 +2472,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "5d2adbf8-0af4-4aab-8e7c-35a86d4ef84e";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = NO;
@@ -2504,7 +2498,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b812af57-1b8e-4f15-83de-4ad4de21e255";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2518,8 +2512,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xaton B.V. (Ent)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yona/Others",
@@ -2529,7 +2523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b812af57-1b8e-4f15-83de-4ad4de21e255";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;

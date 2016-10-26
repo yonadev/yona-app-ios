@@ -136,6 +136,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
                 errorLabel.hidden = false
+                self.navigationItem.title = NSLocalizedString("change-pin", comment: "")
                 self.codeInputView.resignFirstResponder()
                 self.codeInputView.hidden = true
                 self.accountBlockedTitle?.hidden = false

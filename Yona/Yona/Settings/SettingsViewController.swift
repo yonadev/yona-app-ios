@@ -19,7 +19,7 @@ enum  settingsOptions : Int {
     func simpleDescription() -> String {
         switch self {
         case .changepin:
-            return NSLocalizedString("change-pin", comment: "")
+            return NSLocalizedString("change-pin-settings", comment: "")
         case .privacy:
             return NSLocalizedString("privacy", comment: "")
         case .adddevice:

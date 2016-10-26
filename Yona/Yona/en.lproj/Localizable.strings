@@ -40,7 +40,8 @@
 "challenges-credit" = "CREDIT";
 "challenges-zone" = "TIMEZONE";
 "challenges-no-go" = "NO GO";
-"change-pin" = "Change PIN";
+"change-pin" = "CHANGE PIN";
+"change-pin-settings" = "Change pin";
 "privacy" = "Privacy";
 
 "connection-not-available" = "OOPS! No Internet Connection Available";
@@ -65,7 +66,7 @@
 "passcode-step2-desc" = "Enter your PIN again to confirm.";
 "login-accountBlocked-title" = "Your account is blocked";
 "msg-block-user" = "Your account has been locked for security reasons";
-"passcode-reset" = "PIN reset";
+"passcode-reset" = "PIN RESET";
 "invalid-otp" = "Invalid accesscode";
 "account-login" = "Account be created";
 "account-login-security-message" = "For security, you will receive a code by SMS. Please enter this code below.";
@@ -214,7 +215,6 @@
 
 "login.user.pinResetRequestAlert" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within %@hour(s)";
 "userNotFoundAlert" = "User not found";
-"change-pin" = "Change PIN";
 "settings.privacy" = "PRIVACY";
 "add-device" = "Add device";
 "delete-user" = "Unsubscribe";

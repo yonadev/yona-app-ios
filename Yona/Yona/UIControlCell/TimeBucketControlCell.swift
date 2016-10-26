@@ -219,7 +219,7 @@ class TimeBucketControlCell : UITableViewCell {
         maxDurationMinutes = weekActivityDetail.maxDurationMinutes
         averageActivityDurationMinutes = weekActivityDetail.averageActivityDurationMinutes
         
-        goalName = NSLocalizedString("meweek.message.minutesAverage", comment: "")
+        goalName = NSLocalizedString("meweek.message.score", comment: "")
         goalMessage.text = NSLocalizedString("meday.spreadcontrol.title", comment: "")
 
         isWeek = true
