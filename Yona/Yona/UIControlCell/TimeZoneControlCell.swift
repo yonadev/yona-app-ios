@@ -164,7 +164,7 @@ class TimeZoneControlCell : UITableViewCell {
         self.shouldAnimate = animated
         spreadCells = dayActivity.daySpread
         activitySpread = dayActivity.spreadCells
-        goalNameText = dayActivity.goalName
+        goalNameText = NSLocalizedString("meweek.message.score", comment: "")
         totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes
     }

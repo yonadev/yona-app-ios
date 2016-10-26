@@ -462,13 +462,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-sQ-VHj">
-                                                <rect key="frame" x="15" y="178" width="570" height="19"/>
+                                                <rect key="frame" x="15" y="166" width="570" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Bepaal hier wanneer je wel of geen tijd aan social media wilt besteden" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Em-cj-kPG">
-                                                <rect key="frame" x="15" y="194" width="570" height="47"/>
+                                                <rect key="frame" x="15" y="182" width="570" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="n0M-wQ-usK"/>
                                                     <constraint firstAttribute="height" constant="47" id="tca-FB-NsH"/>
@@ -489,11 +489,11 @@
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="0fB-y5-tIR"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="2Pb-4W-G3c"/>
                                             <constraint firstAttribute="trailing" secondItem="6Em-cj-kPG" secondAttribute="trailing" constant="15" id="4Mt-KA-kDC"/>
-                                            <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="46" id="7z4-Jf-b1l"/>
+                                            <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="34" id="7z4-Jf-b1l"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="a6P-sQ-VHj" secondAttribute="bottom" constant="13" id="8U8-v3-jbB"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="8hK-Lq-UzI"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="9Hg-0q-rJn"/>
-                                            <constraint firstItem="a6P-sQ-VHj" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="30" id="Fmc-Fi-vj0"/>
+                                            <constraint firstItem="a6P-sQ-VHj" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="18" id="Fmc-Fi-vj0"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="KRc-KY-4kE"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="38" id="TWw-gQ-Ben"/>
                                             <constraint firstAttribute="trailing" secondItem="a6P-sQ-VHj" secondAttribute="trailing" constant="15" id="uT1-pe-TAY"/>
@@ -886,13 +886,13 @@ onderdeel van deze challenge:</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-ba-ZYU">
-                                                        <rect key="frame" x="15" y="193" width="574" height="17"/>
+                                                        <rect key="frame" x="15" y="180" width="574" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZg-5a-C9x">
-                                                        <rect key="frame" x="15" y="160" width="574" height="20"/>
+                                                        <rect key="frame" x="15" y="147" width="574" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -909,7 +909,7 @@ onderdeel van deze challenge:</string>
                                                     <constraint firstAttribute="trailing" secondItem="kYa-ba-ZYU" secondAttribute="trailing" constant="11" id="Y2V-tQ-Qrq"/>
                                                     <constraint firstItem="kYa-ba-ZYU" firstAttribute="top" secondItem="nZg-5a-C9x" secondAttribute="bottom" constant="13" id="ahQ-tG-ZfC"/>
                                                     <constraint firstItem="kYa-ba-ZYU" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" constant="2" id="e1s-Fe-oBj"/>
-                                                    <constraint firstItem="nZg-5a-C9x" firstAttribute="top" secondItem="XEI-aB-5HT" secondAttribute="bottom" constant="30" id="eLM-C1-4jR"/>
+                                                    <constraint firstItem="nZg-5a-C9x" firstAttribute="top" secondItem="XEI-aB-5HT" secondAttribute="bottom" constant="17" id="eLM-C1-4jR"/>
                                                     <constraint firstItem="XEI-aB-5HT" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" constant="2" id="gZc-un-oqs"/>
                                                     <constraint firstItem="nZg-5a-C9x" firstAttribute="centerX" secondItem="E3C-hk-9oT" secondAttribute="centerX" constant="2" id="tRo-dd-TaV"/>
                                                 </constraints>
@@ -1145,7 +1145,7 @@ Pinterest, Instagram, Snapchat</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="604" height="256"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-dg-Et7">
-                                                        <rect key="frame" x="247" y="38" width="110" height="110"/>
+                                                        <rect key="frame" x="247" y="26" width="110" height="110"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeNogo" translatesAutoresizingMaskIntoConstraints="NO" id="ube-g2-H23">
                                                                 <rect key="frame" x="31" y="31" width="48" height="48"/>
@@ -1167,16 +1167,16 @@ Pinterest, Instagram, Snapchat</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-Zu-XzU">
-                                                        <rect key="frame" x="15" y="211" width="574" height="45"/>
+                                                        <rect key="frame" x="15" y="189" width="574" height="39"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="skz-F6-aUp"/>
+                                                            <constraint firstAttribute="height" constant="39" id="skz-F6-aUp"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkc-fL-yGV">
-                                                        <rect key="frame" x="15" y="178" width="574" height="20"/>
+                                                        <rect key="frame" x="15" y="161" width="574" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="fa0-fV-2yc"/>
                                                         </constraints>
@@ -1189,14 +1189,16 @@ Pinterest, Instagram, Snapchat</string>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="4ga-Zu-XzU" secondAttribute="trailing" constant="15" id="0yr-5x-46W"/>
                                                     <constraint firstAttribute="height" constant="256" id="308-rf-8VH"/>
+                                                    <constraint firstItem="Nkc-fL-yGV" firstAttribute="trailing" secondItem="4ga-Zu-XzU" secondAttribute="trailing" id="IKq-YF-6s9"/>
                                                     <constraint firstAttribute="trailing" secondItem="Nkc-fL-yGV" secondAttribute="trailing" constant="15" id="IQi-g0-Skb"/>
                                                     <constraint firstItem="Nkc-fL-yGV" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="K4b-aa-0hd"/>
-                                                    <constraint firstItem="vLg-dg-Et7" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="38" id="OyL-Bq-Gww"/>
-                                                    <constraint firstItem="Nkc-fL-yGV" firstAttribute="top" secondItem="vLg-dg-Et7" secondAttribute="bottom" constant="30" id="UOn-7m-iBy"/>
+                                                    <constraint firstItem="vLg-dg-Et7" firstAttribute="top" secondItem="olM-AX-pnp" secondAttribute="top" constant="26" id="OyL-Bq-Gww"/>
+                                                    <constraint firstItem="Nkc-fL-yGV" firstAttribute="top" secondItem="vLg-dg-Et7" secondAttribute="bottom" constant="25" id="UOn-7m-iBy"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="256" id="Vd2-JJ-cgL"/>
                                                     <constraint firstItem="4ga-Zu-XzU" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="XhE-yg-Rjd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4ga-Zu-XzU" secondAttribute="bottom" constant="28" id="gn5-QW-khE"/>
                                                     <constraint firstItem="vLg-dg-Et7" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="hbh-YH-2VF"/>
-                                                    <constraint firstItem="4ga-Zu-XzU" firstAttribute="top" secondItem="Nkc-fL-yGV" secondAttribute="bottom" constant="13" id="q06-FY-v7V"/>
+                                                    <constraint firstItem="4ga-Zu-XzU" firstAttribute="top" secondItem="Nkc-fL-yGV" secondAttribute="bottom" constant="8" id="q06-FY-v7V"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
