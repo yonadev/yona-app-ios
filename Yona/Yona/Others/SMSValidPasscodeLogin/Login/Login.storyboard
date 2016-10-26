@@ -629,7 +629,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChD-co-TJf" userLabel="TopView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="439"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-ie-Vkh">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnSecure" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-ie-Vkh">
                                                 <rect key="frame" x="268" y="37" width="64" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="LoC-ei-dle"/>
@@ -991,6 +991,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kBX-Qa-igm"/>
+        <segue reference="BLL-RE-SXW"/>
     </inferredMetricsTieBreakers>
 </document>

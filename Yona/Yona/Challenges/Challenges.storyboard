@@ -440,7 +440,7 @@
                                         <rect key="frame" x="0.0" y="44" width="600" height="256"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5j-Dx-cxe">
-                                                <rect key="frame" x="245" y="38" width="110" height="110"/>
+                                                <rect key="frame" x="245" y="30" width="110" height="110"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimezone" translatesAutoresizingMaskIntoConstraints="NO" id="N5Z-V7-Xhc">
                                                         <rect key="frame" x="34" y="33" width="42" height="44"/>
@@ -468,10 +468,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Bepaal hier wanneer je wel of geen tijd aan social media wilt besteden" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Em-cj-kPG">
-                                                <rect key="frame" x="15" y="182" width="570" height="47"/>
+                                                <rect key="frame" x="15" y="198" width="570" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="n0M-wQ-usK"/>
-                                                    <constraint firstAttribute="height" constant="47" id="tca-FB-NsH"/>
+                                                    <constraint firstAttribute="height" constant="35" id="tca-FB-NsH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -489,13 +489,14 @@
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="0fB-y5-tIR"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="2Pb-4W-G3c"/>
                                             <constraint firstAttribute="trailing" secondItem="6Em-cj-kPG" secondAttribute="trailing" constant="15" id="4Mt-KA-kDC"/>
-                                            <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="34" id="7z4-Jf-b1l"/>
+                                            <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="a6P-sQ-VHj" secondAttribute="leading" id="4fI-4b-Fxi"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="a6P-sQ-VHj" secondAttribute="bottom" constant="13" id="8U8-v3-jbB"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="8hK-Lq-UzI"/>
                                             <constraint firstItem="W5j-Dx-cxe" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="9Hg-0q-rJn"/>
-                                            <constraint firstItem="a6P-sQ-VHj" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="18" id="Fmc-Fi-vj0"/>
+                                            <constraint firstItem="a6P-sQ-VHj" firstAttribute="top" secondItem="W5j-Dx-cxe" secondAttribute="bottom" constant="26" id="Fmc-Fi-vj0"/>
                                             <constraint firstItem="a6P-sQ-VHj" firstAttribute="centerX" secondItem="73d-Nb-LNL" secondAttribute="centerX" id="KRc-KY-4kE"/>
-                                            <constraint firstItem="W5j-Dx-cxe" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="38" id="TWw-gQ-Ben"/>
+                                            <constraint firstItem="W5j-Dx-cxe" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="top" constant="30" id="TWw-gQ-Ben"/>
+                                            <constraint firstItem="6Em-cj-kPG" firstAttribute="top" secondItem="a6P-sQ-VHj" secondAttribute="bottom" constant="13" id="bu2-aa-bum"/>
                                             <constraint firstAttribute="trailing" secondItem="a6P-sQ-VHj" secondAttribute="trailing" constant="15" id="uT1-pe-TAY"/>
                                             <constraint firstAttribute="trailing" secondItem="6Em-cj-kPG" secondAttribute="trailing" constant="15" id="usM-ab-V0E"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="vvS-Ys-56K"/>
@@ -868,7 +869,7 @@ onderdeel van deze challenge:</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="236"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
-                                                        <rect key="frame" x="247" y="20" width="110" height="110"/>
+                                                        <rect key="frame" x="247" y="30" width="110" height="110"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
                                                                 <rect key="frame" x="34" y="34" width="42" height="42"/>
@@ -886,13 +887,13 @@ onderdeel van deze challenge:</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-ba-ZYU">
-                                                        <rect key="frame" x="15" y="180" width="574" height="17"/>
+                                                        <rect key="frame" x="15" y="190" width="574" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZg-5a-C9x">
-                                                        <rect key="frame" x="15" y="147" width="574" height="20"/>
+                                                        <rect key="frame" x="15" y="157" width="574" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -903,7 +904,7 @@ onderdeel van deze challenge:</string>
                                                     <constraint firstAttribute="trailing" secondItem="nZg-5a-C9x" secondAttribute="trailing" constant="11" id="90a-z9-htw"/>
                                                     <constraint firstAttribute="height" constant="236" id="OBR-n7-Wkc"/>
                                                     <constraint firstItem="kYa-ba-ZYU" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="15" id="P1i-rQ-kzs"/>
-                                                    <constraint firstItem="XEI-aB-5HT" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="20" id="SYF-Hy-ges"/>
+                                                    <constraint firstItem="XEI-aB-5HT" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="top" constant="30" id="SYF-Hy-ges"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="236" id="TJu-Ll-Yap"/>
                                                     <constraint firstItem="nZg-5a-C9x" firstAttribute="leading" secondItem="E3C-hk-9oT" secondAttribute="leading" constant="15" id="UaZ-eH-lvy"/>
                                                     <constraint firstAttribute="trailing" secondItem="kYa-ba-ZYU" secondAttribute="trailing" constant="11" id="Y2V-tQ-Qrq"/>
@@ -1166,21 +1167,21 @@ Pinterest, Instagram, Snapchat</string>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="55"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-Zu-XzU">
-                                                        <rect key="frame" x="15" y="189" width="574" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="skz-F6-aUp"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkc-fL-yGV">
                                                         <rect key="frame" x="15" y="161" width="574" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="fa0-fV-2yc"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-Zu-XzU">
+                                                        <rect key="frame" x="15" y="194" width="574" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="skz-F6-aUp"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1196,9 +1197,9 @@ Pinterest, Instagram, Snapchat</string>
                                                     <constraint firstItem="Nkc-fL-yGV" firstAttribute="top" secondItem="vLg-dg-Et7" secondAttribute="bottom" constant="25" id="UOn-7m-iBy"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="256" id="Vd2-JJ-cgL"/>
                                                     <constraint firstItem="4ga-Zu-XzU" firstAttribute="leading" secondItem="olM-AX-pnp" secondAttribute="leading" constant="15" id="XhE-yg-Rjd"/>
-                                                    <constraint firstAttribute="bottom" secondItem="4ga-Zu-XzU" secondAttribute="bottom" constant="28" id="gn5-QW-khE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4ga-Zu-XzU" secondAttribute="bottom" constant="23" id="gn5-QW-khE"/>
                                                     <constraint firstItem="vLg-dg-Et7" firstAttribute="centerX" secondItem="olM-AX-pnp" secondAttribute="centerX" id="hbh-YH-2VF"/>
-                                                    <constraint firstItem="4ga-Zu-XzU" firstAttribute="top" secondItem="Nkc-fL-yGV" secondAttribute="bottom" constant="8" id="q06-FY-v7V"/>
+                                                    <constraint firstItem="4ga-Zu-XzU" firstAttribute="top" secondItem="Nkc-fL-yGV" secondAttribute="bottom" constant="13" id="q06-FY-v7V"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
