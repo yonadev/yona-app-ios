@@ -8,24 +8,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="44o-kk-hLG" customClass="CommentTableHeader" customModule="Yona" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="45"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygq-Ms-5Nh">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygq-Ms-5Nh">
+                    <rect key="frame" x="0.0" y="0.0" width="500" height="45"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icnCommentBar" translatesAutoresizingMaskIntoConstraints="NO" id="FsP-pT-KwV">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.84705883264541626" green="0.84705883264541626" blue="0.84705883264541626" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="500" id="r2l-H1-RAe"/>
+                    </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.84705883260000003" green="0.84705883260000003" blue="0.84705883260000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ygq-Ms-5Nh" secondAttribute="bottom" id="Z2K-0v-hjo"/>
+                <constraint firstItem="ygq-Ms-5Nh" firstAttribute="leading" secondItem="44o-kk-hLG" secondAttribute="leading" id="hzX-8a-Xv7"/>
+                <constraint firstItem="ygq-Ms-5Nh" firstAttribute="top" secondItem="44o-kk-hLG" secondAttribute="top" id="qmK-Ai-sda"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="500.5" y="698.5"/>
+            <point key="canvasLocation" x="563" y="698.5"/>
         </view>
     </objects>
     <resources>

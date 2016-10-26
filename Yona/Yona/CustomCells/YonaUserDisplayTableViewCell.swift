@@ -20,7 +20,7 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     var previousRange: NSRange!
     var delegate : AnyObject?
     override func awakeFromNib() {
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
         theTitleLable.text = ""
         theTextField.text = ""
         

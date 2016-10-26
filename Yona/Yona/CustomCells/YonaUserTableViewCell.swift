@@ -32,9 +32,6 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-//        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
-//        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
-
         boldLineLabel.text = ""
         boldLineLabel.adjustsFontSizeToFitWidth = true
         avatarNameLabel.text = ""
@@ -47,7 +44,7 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         statusImageView.layer.masksToBounds = true
 
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
 
     }
     

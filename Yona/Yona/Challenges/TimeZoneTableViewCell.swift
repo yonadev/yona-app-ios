@@ -28,7 +28,7 @@ class TimeZoneTableViewCell: PKSwipeTableViewCell {
     
     func addRightViewInCell() {
         gradientView = GradientSmooth.init(frame: self.frame)
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
 
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()

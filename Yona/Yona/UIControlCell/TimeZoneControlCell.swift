@@ -57,7 +57,7 @@ class TimeZoneControlCell : UITableViewCell {
     }
 
     func setupGradient () {
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
         
     }
 

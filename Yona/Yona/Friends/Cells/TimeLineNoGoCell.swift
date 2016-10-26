@@ -25,7 +25,7 @@ class TimeLineNoGoCell : UITableViewCell {
     }
 
     override func awakeFromNib() {
-      //  gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
 
     }
     
