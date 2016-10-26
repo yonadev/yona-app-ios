@@ -62,7 +62,7 @@ class NoGoCell : UITableViewCell {
         if let goalDate = activityGoal.date {
             self.goalDate = goalDate
         }
-        self.goalName = activityGoal.goalName
+        self.goalName = NSLocalizedString("meweek.message.score", comment: "")
         self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
     }
     
@@ -70,9 +70,8 @@ class NoGoCell : UITableViewCell {
         if activityGoal.totalMinutesBeyondGoal > 0 {
             self.goalAccomplished = false
         }
-        if let goalName = activityGoal.goalName {
-            self.goalName = goalName
-        }
+        self.goalName = NSLocalizedString("meweek.message.score", comment: "")
+        
         self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
     }
     

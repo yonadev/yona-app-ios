@@ -373,7 +373,7 @@
                                         <rect key="frame" x="0.0" y="339" width="600" height="215"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-S7-xHv">
-                                                <rect key="frame" x="30" y="11" width="540" height="50"/>
+                                                <rect key="frame" x="30" y="31" width="540" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="TJx-22-Und"/>
                                                 </constraints>
@@ -387,9 +387,9 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.9529411793" green="0.9529411793" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="paT-EG-5L4" secondAttribute="top" constant="11" id="76A-Y9-2RU"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="top" secondItem="paT-EG-5L4" secondAttribute="top" constant="31" id="76A-Y9-2RU"/>
                                             <constraint firstItem="TPn-S7-xHv" firstAttribute="centerX" secondItem="paT-EG-5L4" secondAttribute="centerX" id="Fsu-rC-1cJ"/>
-                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="centerY" secondItem="paT-EG-5L4" secondAttribute="centerY" constant="-71.5" id="ITr-oi-dUp"/>
+                                            <constraint firstItem="TPn-S7-xHv" firstAttribute="centerY" secondItem="paT-EG-5L4" secondAttribute="centerY" constant="-51.5" id="ITr-oi-dUp"/>
                                             <constraint firstItem="TPn-S7-xHv" firstAttribute="leading" secondItem="paT-EG-5L4" secondAttribute="leading" constant="30" id="fJy-dh-z1j"/>
                                         </constraints>
                                     </view>
