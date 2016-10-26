@@ -67,6 +67,7 @@
 		166CB8561D2FA200008B425D /* YonaButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */; };
 		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
 		167C514A1D5CB32600222EF8 /* BarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */; };
+		1680E37D1DBFDA5400E18050 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1680E37C1DBFDA5400E18050 /* SecretKeys.plist */; };
 		16939AD81D3A800F003DD3A3 /* WeekSingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */; };
 		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
 		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
@@ -179,7 +180,6 @@
 		90F123F51D3F7DCF00E2BBBA /* SpreadCellCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */; };
 		90F123F71D3FCEE400E2BBBA /* MeDayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */; };
 		90F123F91D422C1300E2BBBA /* DaySingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */; };
-		90F13E0E1DBFB85D00A6427C /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */; };
 		90FF6DF91D00344900A674C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DF81D00344900A674C4 /* GradientView.swift */; };
 		90FF6DFB1D00346100A674C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF6DFA1D00346100A674C4 /* StringExtensions.swift */; };
 		90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900972B31CC7B77000EEB7E7 /* Enums.swift */; };
@@ -457,6 +457,7 @@
 		166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaButtonTableViewCell.xib; sourceTree = "<group>"; };
 		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
 		167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		1680E37C1DBFDA5400E18050 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityDetail.swift; path = DAOObjects/WeekSingleActivityDetail.swift; sourceTree = "<group>"; };
 		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
 		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
@@ -579,7 +580,6 @@
 		90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadCellCustomView.swift; sourceTree = "<group>"; };
 		90F123F61D3FCEE400E2BBBA /* MeDayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeDayDetailViewController.swift; sourceTree = "<group>"; };
 		90F123F81D422C1300E2BBBA /* DaySingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySingleActivityDetail.swift; sourceTree = "<group>"; };
-		90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../../../../../Desktop/SecretKeys.plist; sourceTree = "<group>"; };
 		90FF6DF81D00344900A674C4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -1748,7 +1748,7 @@
 				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
-				90F13E0D1DBFB85D00A6427C /* SecretKeys.plist */,
+				1680E37C1DBFDA5400E18050 /* SecretKeys.plist */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
@@ -1980,7 +1980,7 @@
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				9007DD141D9957A10092AA9E /* GoogleService-Info.plist in Resources */,
-				90F13E0E1DBFB85D00A6427C /* SecretKeys.plist in Resources */,
+				1680E37D1DBFDA5400E18050 /* SecretKeys.plist in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
