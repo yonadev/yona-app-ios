@@ -24,10 +24,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="374" height="93.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCh-aG-HKm" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="98"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hc9-ji-HwP">
                         <rect key="frame" x="16" y="18" width="32" height="32"/>
                         <constraints>
@@ -46,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxe-DN-kOu">
-                        <rect key="frame" x="37" y="0.0" width="334" height="93.5"/>
+                        <rect key="frame" x="37" y="0.0" width="334" height="94"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ko6-Lw-VTN">
                                 <rect key="frame" x="27" y="20" width="280" height="32"/>
@@ -147,7 +143,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="bns-eb-Px0" firstAttribute="top" secondItem="IDP-i6-97I" secondAttribute="topMargin" constant="15" id="2jd-BM-6N1"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="JCh-aG-HKm" secondAttribute="bottom" constant="-12.5" id="8iM-1K-kXL"/>
                     <constraint firstItem="bns-eb-Px0" firstAttribute="leading" secondItem="IDP-i6-97I" secondAttribute="leadingMargin" constant="8" id="Gho-H5-1dp"/>
                     <constraint firstItem="Qxe-DN-kOu" firstAttribute="top" secondItem="IDP-i6-97I" secondAttribute="topMargin" constant="-8" id="Knv-0b-F6A"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Qxe-DN-kOu" secondAttribute="bottom" constant="-8" id="ORd-dc-9ZG"/>
@@ -155,9 +150,6 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Qxe-DN-kOu" secondAttribute="trailing" constant="-5" id="XRP-dZ-IeU"/>
                     <constraint firstItem="Qxe-DN-kOu" firstAttribute="leading" secondItem="IDP-i6-97I" secondAttribute="leadingMargin" constant="29" id="q2d-MS-IDR"/>
                     <constraint firstItem="hc9-ji-HwP" firstAttribute="leading" secondItem="IDP-i6-97I" secondAttribute="leadingMargin" constant="8" id="s13-WS-KRT"/>
-                    <constraint firstItem="JCh-aG-HKm" firstAttribute="leading" secondItem="IDP-i6-97I" secondAttribute="leadingMargin" constant="-8" id="w0I-Ms-Nac"/>
-                    <constraint firstItem="JCh-aG-HKm" firstAttribute="top" secondItem="IDP-i6-97I" secondAttribute="topMargin" constant="-8" id="wRx-pn-Sr2"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="JCh-aG-HKm" secondAttribute="trailing" constant="-8" id="zgm-6s-87y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -166,7 +158,6 @@
                 <outlet property="eightAmConstraint" destination="A6m-Xv-GkH" id="IFb-fu-68j"/>
                 <outlet property="fourAm" destination="3UN-p4-Mig" id="hrX-1n-b7x"/>
                 <outlet property="fourleftConstraint" destination="hry-dg-hdh" id="G5p-gF-rVf"/>
-                <outlet property="gradientView" destination="JCh-aG-HKm" id="LSG-F3-cgV"/>
                 <outlet property="sixteenHundred" destination="jLf-Pr-tzS" id="8gR-6K-QRE"/>
                 <outlet property="sixteenHundredConstraint" destination="489-iM-DBF" id="y7O-cD-YlA"/>
                 <outlet property="spacerView" destination="Qxe-DN-kOu" id="KHD-Oq-74W"/>
