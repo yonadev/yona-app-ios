@@ -315,7 +315,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-7P-Xxd">
-                                            <rect key="frame" x="34" y="41" width="444" height="2"/>
+                                            <rect key="frame" x="40" y="41" width="444" height="2"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -330,11 +330,11 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="bDM-lS-sgm" firstAttribute="leading" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="36" id="BBY-gs-ki7"/>
+                                        <constraint firstItem="bDM-lS-sgm" firstAttribute="leading" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="30" id="BBY-gs-ki7"/>
                                         <constraint firstAttribute="trailing" secondItem="bDM-lS-sgm" secondAttribute="trailing" constant="30" id="D8c-Hh-yx5"/>
-                                        <constraint firstItem="sCh-7P-Xxd" firstAttribute="leading" secondItem="SQq-2J-rok" secondAttribute="leading" constant="34" id="Fkz-cs-c75"/>
+                                        <constraint firstItem="sCh-7P-Xxd" firstAttribute="leading" secondItem="SQq-2J-rok" secondAttribute="leading" constant="40" id="Fkz-cs-c75"/>
                                         <constraint firstItem="sCh-7P-Xxd" firstAttribute="centerY" secondItem="SQq-2J-rok" secondAttribute="centerY" constant="2" id="Oab-ng-WEl"/>
-                                        <constraint firstAttribute="trailing" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="122" id="RgC-KQ-IG4"/>
+                                        <constraint firstAttribute="trailing" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="116" id="RgC-KQ-IG4"/>
                                         <constraint firstItem="bDM-lS-sgm" firstAttribute="centerY" secondItem="SQq-2J-rok" secondAttribute="centerY" id="WGF-HV-XZj"/>
                                     </constraints>
                                 </view>
@@ -358,7 +358,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Je kunt per dag 30 minuten op social media doorbrengen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH3-I2-fwM">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="left" text="Je kunt per dag 30 minuten op social media doorbrengen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH3-I2-fwM">
                                                     <rect key="frame" x="35" y="51" width="357" height="16.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -969,8 +969,8 @@ onderdeel van deze challenge:</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWS-2Z-Kub" userLabel="FooterView">
                                                 <rect key="frame" x="0.0" y="336" width="600" height="266"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
-                                                        <rect key="frame" x="0.0" y="89" width="604" height="178"/>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
+                                                        <rect key="frame" x="0.0" y="89" width="604" height="266"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-8k-rUN" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="604" height="24"/>

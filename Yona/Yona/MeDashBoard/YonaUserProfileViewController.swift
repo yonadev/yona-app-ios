@@ -93,8 +93,9 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     @IBAction func userDidSelectEdit(sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as [NSObject : AnyObject])
-        
+
         if tableView.editing {
+            self.navigationItem.title = ""
             let result = isUserDataValid()
             if  result == .none {
                 rightSideButton.image = UIImage.init(named: "icnEdit")
@@ -121,6 +122,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             
             }
         } else {
+            self.navigationItem.title = NSLocalizedString("profile.tab.editaccounttitle", comment: "")
             rightSideButton.image = UIImage.init(named: "icnCreate")
             tableView.setEditing(true, animated: true)
             topCell?.setTopViewInEditMode()
@@ -135,6 +137,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func userDidEndEdit() {
+
         self.navigationItem.rightBarButtonItems = rightSideButtonItems
     }
     

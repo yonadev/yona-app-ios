@@ -38,6 +38,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        self.tableView.backgroundColor = UIColor.yiGraphBarOneColor()
         
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "FriendsProfileViewController")
@@ -146,6 +147,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         
             let cell: YonaButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaButtonTableViewCell", forIndexPath: indexPath) as! YonaButtonTableViewCell
             cell.delegate = self
+            cell.backgroundColor = UIColor.yiGraphBarOneColor()
             return cell
           
             

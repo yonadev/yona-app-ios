@@ -41,7 +41,7 @@ class SpreadCell : UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
     }
     
     override func layoutSubviews() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,13 +20,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kND-um-BEJ" id="0fw-28-BIv">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="typ-AS-lyB" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqH-cV-iPq">
                         <rect key="frame" x="64" y="16" width="279" height="20"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.90588235859999999" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -95,14 +91,10 @@
                     <constraint firstItem="sqH-cV-iPq" firstAttribute="top" secondItem="0fw-28-BIv" secondAttribute="topMargin" constant="8" id="7Hn-x9-bUD"/>
                     <constraint firstItem="EGB-t0-CLK" firstAttribute="top" secondItem="0fw-28-BIv" secondAttribute="topMargin" constant="7" id="9cd-HW-jb9"/>
                     <constraint firstItem="VFc-Oe-dIi" firstAttribute="top" secondItem="sqH-cV-iPq" secondAttribute="bottom" constant="11" id="CT8-62-Cf2"/>
-                    <constraint firstItem="typ-AS-lyB" firstAttribute="leading" secondItem="0fw-28-BIv" secondAttribute="leadingMargin" constant="-8" id="DY9-EP-Cqf"/>
                     <constraint firstItem="sqH-cV-iPq" firstAttribute="leading" secondItem="0fw-28-BIv" secondAttribute="leadingMargin" constant="56" id="HzU-Fx-iaE"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="typ-AS-lyB" secondAttribute="bottom" constant="-15.5" id="LqQ-9c-Md3"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="typ-AS-lyB" secondAttribute="trailing" constant="-8" id="OYd-MB-s3Q"/>
                     <constraint firstItem="qZt-aR-mWQ" firstAttribute="leading" secondItem="0fw-28-BIv" secondAttribute="leadingMargin" constant="8" id="P57-UK-X4X"/>
                     <constraint firstItem="Dq3-Jn-hay" firstAttribute="top" secondItem="sqH-cV-iPq" secondAttribute="bottom" constant="11" id="TDi-Wv-a6Y"/>
                     <constraint firstItem="sd2-Ar-lMV" firstAttribute="leading" secondItem="0fw-28-BIv" secondAttribute="leadingMargin" constant="56" id="UXb-sS-xya"/>
-                    <constraint firstItem="typ-AS-lyB" firstAttribute="top" secondItem="0fw-28-BIv" secondAttribute="topMargin" constant="-8" id="VrS-HC-Tr7"/>
                     <constraint firstItem="VFc-Oe-dIi" firstAttribute="leading" secondItem="0fw-28-BIv" secondAttribute="leadingMargin" constant="56" id="aZL-6e-UIS"/>
                     <constraint firstItem="qZt-aR-mWQ" firstAttribute="top" secondItem="0fw-28-BIv" secondAttribute="topMargin" constant="2" id="cvG-fb-CWg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="sqH-cV-iPq" secondAttribute="trailing" constant="24" id="fxO-9N-2Ri"/>
@@ -114,7 +106,6 @@
             <connections>
                 <outlet property="backgroundMinsView" destination="sqH-cV-iPq" id="KKf-Kn-2oZ"/>
                 <outlet property="endMinutes" destination="Dq3-Jn-hay" id="Qbj-Y8-oFV"/>
-                <outlet property="gradientView" destination="typ-AS-lyB" id="aca-Uz-4EN"/>
                 <outlet property="minutesBeyondGoal" destination="VFc-Oe-dIi" id="0dJ-Yu-OTz"/>
                 <outlet property="userIcon" destination="qZt-aR-mWQ" id="NsA-w4-A6o"/>
                 <outlet property="userInitial" destination="EGB-t0-CLK" id="kdv-SN-lWn"/>

@@ -20,10 +20,9 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
     var previousRange: NSRange!
     var delegate : AnyObject?
     override func awakeFromNib() {
-        gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
         theTitleLable.text = ""
         theTextField.text = ""
-        
         
     }
     func setActive (){
@@ -121,6 +120,7 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             // Setup the buttons to be put in the system.
             let item1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
             let item = UIBarButtonItem(title: NSLocalizedString("Done", comment: "done text"), style: UIBarButtonItemStyle.Bordered, target: self, action: #selector(YonaUserDisplayTableViewCell.endEditingNow) )
+            item.tintColor = UIColor.yiBlackColor()
             let toolbarButtons = [item1,item]
             
             //Put the buttons into the ToolBar and display the tool bar
@@ -170,11 +170,7 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    
-    
     //MARK: - Helper Methods
-    
-
     func endEditingNow(){
         theTextField.resignFirstResponder()
     }

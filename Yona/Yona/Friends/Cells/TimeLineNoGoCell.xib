@@ -48,7 +48,7 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MIp-Xb-SQs">
-                        <rect key="frame" x="67" y="42" width="138" height="17"/>
+                        <rect key="frame" x="64" y="42" width="138" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="Qeq-0N-oX7"/>
                             <constraint firstAttribute="width" constant="138" id="Wzo-Zb-Sjg"/>
@@ -75,7 +75,7 @@
                     <constraint firstItem="b1x-Rt-XOE" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="-8" id="Hrf-Xl-5iF"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="centerX" secondItem="DxN-bN-UmD" secondAttribute="centerX" id="P6s-Lq-ssB"/>
                     <constraint firstItem="ObH-Bb-GTZ" firstAttribute="top" secondItem="DxN-bN-UmD" secondAttribute="topMargin" constant="28" id="R5o-oq-y1I"/>
-                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="19" id="TLf-Pq-pZL"/>
+                    <constraint firstItem="MIp-Xb-SQs" firstAttribute="leading" secondItem="aWg-4v-NH6" secondAttribute="trailing" constant="16" id="TLf-Pq-pZL"/>
                     <constraint firstItem="b1x-Rt-XOE" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="-8" id="cYq-Nv-N3I"/>
                     <constraint firstItem="aWg-4v-NH6" firstAttribute="leading" secondItem="DxN-bN-UmD" secondAttribute="leadingMargin" constant="8" id="cqS-YI-cf1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ObH-Bb-GTZ" secondAttribute="trailing" constant="19" id="dbm-hy-fgr"/>

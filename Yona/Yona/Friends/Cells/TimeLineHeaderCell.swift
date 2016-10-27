@@ -25,7 +25,7 @@ class TimeLineHeaderCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+//        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
     }
     override func prepareForReuse() {
         typeTiltle.text = ""

@@ -148,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         do {
             try  self.httpServer?.start()
-            print("SERVER STARTET")
+            print("SERVER STARTET \(self.httpServer?.name())")
         } catch {
             return
         }

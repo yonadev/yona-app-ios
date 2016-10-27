@@ -30,7 +30,7 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
         doInitialSetup()
         drawTheCell()
         dravTheUser()
-       // gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientOneColor())
+//        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
     }
 
     

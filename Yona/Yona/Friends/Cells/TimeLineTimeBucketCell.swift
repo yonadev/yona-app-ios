@@ -47,7 +47,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
+//        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
         zeroMins.text = "0"
         zeroMins.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         zeroMins.textColor = UIColor.yiBlackColor()
@@ -145,7 +145,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
         
         // THE backgroundview holds both the neg view and the pos view, so
         // use the backgroundviews indent (x) as base for the label
-        zeroMinsConstraint.constant = backgroundMinsView.frame.origin.y+9 + CGFloat(negative) * pxPrMinute + zeroMins.frame.size.width
+        zeroMinsConstraint.constant = backgroundMinsView.frame.origin.y+15 + CGFloat(negative) * pxPrMinute + zeroMins.frame.size.width
         zeroMins.setNeedsLayout()
         
     }
