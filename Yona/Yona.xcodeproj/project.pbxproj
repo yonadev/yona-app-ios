@@ -68,6 +68,7 @@
 		166DE35B1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */; };
 		167C514A1D5CB32600222EF8 /* BarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */; };
 		16939AD81D3A800F003DD3A3 /* WeekSingleActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */; };
+		16B05B1B1DC2975B00B8A0C7 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B05B1A1DC2975B00B8A0C7 /* SecretKeys.plist */; };
 		16B1CD241D15732900A1ABA7 /* YonaUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */; };
 		16B1CD261D1573E400A1ABA7 /* YonaUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */; };
 		16B1CD281D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */; };
@@ -139,7 +140,6 @@
 		9054D5481D65EB9D0060D22E /* ReplyToComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D5471D65EB9D0060D22E /* ReplyToComment.xib */; };
 		9054D54A1D65EBAC0060D22E /* ReplyToComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5491D65EBAC0060D22E /* ReplyToComment.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
-		906C449B1DC1459C00AE222F /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 906C449A1DC1459C00AE222F /* SecretKeys.plist */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
 		906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */; };
@@ -458,6 +458,7 @@
 		166DE35A1D147FD9007AEAAC /* YonaTwoButtonsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaTwoButtonsTableViewController.swift; sourceTree = "<group>"; };
 		167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		16939AD71D3A800F003DD3A3 /* WeekSingleActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekSingleActivityDetail.swift; path = DAOObjects/WeekSingleActivityDetail.swift; sourceTree = "<group>"; };
+		16B05B1A1DC2975B00B8A0C7 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = SOURCE_ROOT; };
 		16B1CD231D15732900A1ABA7 /* YonaUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaUserTableViewCell.swift; sourceTree = "<group>"; };
 		16B1CD251D1573E400A1ABA7 /* YonaUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserTableViewCell.xib; sourceTree = "<group>"; };
 		16B1CD271D158F8400A1ABA7 /* YonaUserHeaderWithTwoTabTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaUserHeaderWithTwoTabTableViewCell.xib; sourceTree = "<group>"; };
@@ -545,7 +546,6 @@
 		9054D5471D65EB9D0060D22E /* ReplyToComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyToComment.xib; sourceTree = "<group>"; };
 		9054D5491D65EBAC0060D22E /* ReplyToComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyToComment.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
-		906C449A1DC1459C00AE222F /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecretKeys.plist; path = ../../../../../Desktop/SecretKeys.plist; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
 		906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeDashBoard.storyboard; path = ../Notifications/MeDashBoard.storyboard; sourceTree = "<group>"; };
@@ -1748,10 +1748,10 @@
 				AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */,
 				D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */,
 				AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */,
-				906C449A1DC1459C00AE222F /* SecretKeys.plist */,
 				D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */,
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
+				16B05B1A1DC2975B00B8A0C7 /* SecretKeys.plist */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
 				9007DD131D9957A10092AA9E /* GoogleService-Info.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
@@ -1934,6 +1934,7 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
+				16B05B1B1DC2975B00B8A0C7 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -1980,7 +1981,6 @@
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
 				9007DD141D9957A10092AA9E /* GoogleService-Info.plist in Resources */,
-				906C449B1DC1459C00AE222F /* SecretKeys.plist in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
 				D98635611CABF44000A8535C /* SF-UI-Text-LightItalic.otf in Resources */,
