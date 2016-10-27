@@ -394,7 +394,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="paT-EG-5L4" firstAttribute="leading" secondItem="bJK-ti-jOR" secondAttribute="leading" id="0ao-G5-thH"/>
                                     <constraint firstAttribute="trailing" secondItem="qBM-hQ-L7Q" secondAttribute="trailing" constant="32" id="1jf-iV-HCO"/>
@@ -792,8 +792,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="lqa-d1-gYJ" id="YHd-fl-IKg"/>
-                                    <outlet property="delegate" destination="lqa-d1-gYJ" id="sIO-6r-lSh"/>
+                                    <outlet property="dataSource" destination="lqa-d1-gYJ" id="FBW-dI-Mau"/>
+                                    <outlet property="delegate" destination="lqa-d1-gYJ" id="rqE-sw-j3y"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
@@ -819,7 +819,7 @@
                     <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
                     <connections>
                         <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="njt-I3-REJ"/>
-                        <outlet property="tableView" destination="hpX-Jy-atY" id="vie-LS-wFL"/>
+                        <outlet property="tableView" destination="hpX-Jy-atY" id="Bqy-Ed-lV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9O-yf-jPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
