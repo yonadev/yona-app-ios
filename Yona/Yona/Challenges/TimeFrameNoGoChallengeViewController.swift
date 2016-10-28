@@ -39,20 +39,20 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let activitiyToPost = self.activitiyToPost {
-            self.listActivities(activitiyToPost.applicationsStore)
-        } else {
-            ActivitiesRequestManager.sharedInstance.getActivityCategories({ (success, message, code, activitiesReturned, error) in
+        if let activityName = self.goalCreated?.GoalName{
+            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
                 if success {
-                    if let activities = activitiesReturned! as? [Activities]{
-                        for activity in activities {
-                            if activity.activityCategoryName == self.goalCreated?.GoalName {
-                                let apps : [String] = activity.applicationsStore
-                                self.listActivities(apps)
-                                print(apps)
-                            }
-                        }
-                    }
+                    self.appList.text = apps
+                } else {
+                    self.appList.text = ""
+                }
+            })
+        } else if let activityName = self.activitiyToPost?.activityCategoryName {
+            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+                if success {
+                    self.appList.text = apps
+                } else {
+                    self.appList.text = ""
                 }
             })
         }
