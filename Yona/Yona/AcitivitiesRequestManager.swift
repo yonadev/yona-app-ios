@@ -57,6 +57,35 @@ class ActivitiesRequestManager {
         }
     }
     
+    func getActivityApplications(activityCategory: String, onCompletion: APIActivityApps) {
+        ActivitiesRequestManager.sharedInstance.getActivityCategories({ (success, message, code, activitiesReturned, error) in
+            if success {
+                var apps : [String]?
+                if let activities = activitiesReturned! as? [Activities]{
+                    for activity in activities {
+                        if activity.activityCategoryName == activityCategory {
+                            apps = activity.applicationsStore
+                        }
+                    }
+                }
+                if let apps = apps {
+                    onCompletion(success, message, code, self.listActivities(apps), error)
+                } else {
+                    onCompletion(success, message, code, "", error)
+                }
+            }
+        })
+    }
+    
+    func listActivities(activities: [String]) -> String{
+        let activityApps = activities
+        var appString = ""
+        for activityApp in activityApps as [String] {
+            appString += "" + activityApp + ", "
+        }
+        return appString
+    }
+    
     /**
      Returns a self link (used to get an activity not edit) for an activity of a specific type from the get all activities API,
      

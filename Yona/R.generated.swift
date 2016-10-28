@@ -86,6 +86,7 @@ struct R {
     static var sFUITextSemiboldItalicOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-SemiboldItalic", withExtension: "otf") }
     static var sFUITextSemiboldOtf: NSURL? { return _R.hostingBundle?.URLForResource("SF-UI-Text-Semibold", withExtension: "otf") }
     static var sVProgressHUDBundle: NSURL? { return _R.hostingBundle?.URLForResource("SVProgressHUD", withExtension: "bundle") }
+    static var secretKeysPlist: NSURL? { return _R.hostingBundle?.URLForResource("SecretKeys", withExtension: "plist") }
     static var settingsBundle: NSURL? { return _R.hostingBundle?.URLForResource("Settings", withExtension: "bundle") }
   }
   

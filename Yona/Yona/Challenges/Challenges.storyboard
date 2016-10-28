@@ -969,8 +969,8 @@ onderdeel van deze challenge:</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWS-2Z-Kub" userLabel="FooterView">
                                                 <rect key="frame" x="0.0" y="336" width="600" height="266"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
-                                                        <rect key="frame" x="0.0" y="89" width="604" height="266"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
+                                                        <rect key="frame" x="0.0" y="89" width="604" height="345"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-8k-rUN" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="604" height="24"/>
@@ -1009,7 +1009,7 @@ Pinterest, Instagram, Snapchat</string>
                                                             <constraint firstAttribute="trailing" secondItem="Aje-8k-rUN" secondAttribute="trailing" id="Tjk-4d-f71"/>
                                                             <constraint firstItem="4Ug-1I-HdL" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" constant="50" id="Yy7-sZ-ew1"/>
                                                             <constraint firstItem="PNz-P2-HmF" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" constant="50" id="dHM-6z-Ghi"/>
-                                                            <constraint firstAttribute="height" constant="178" id="du6-tF-qKS"/>
+                                                            <constraint firstAttribute="height" constant="345" id="du6-tF-qKS"/>
                                                             <constraint firstAttribute="trailing" secondItem="PNz-P2-HmF" secondAttribute="trailing" constant="50" id="eK9-bh-TCX"/>
                                                             <constraint firstItem="Aje-8k-rUN" firstAttribute="top" secondItem="yoa-6t-2LM" secondAttribute="top" id="wLH-S0-Vja"/>
                                                         </constraints>
