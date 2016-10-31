@@ -498,7 +498,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1734" y="298"/>
+            <point key="canvasLocation" x="1670" y="277"/>
         </scene>
         <!--Friends Day View Controller-->
         <scene sceneID="cKj-uQ-IPV">
@@ -718,7 +718,7 @@
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1Z-HZ-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="1099"/>
+            <point key="canvasLocation" x="2599" y="1088"/>
         </scene>
         <!--Friends Day Detail View Controller-->
         <scene sceneID="EBs-hP-bnN">
@@ -792,8 +792,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="lqa-d1-gYJ" id="FBW-dI-Mau"/>
-                                    <outlet property="delegate" destination="lqa-d1-gYJ" id="rqE-sw-j3y"/>
+                                    <outlet property="dataSource" destination="lqa-d1-gYJ" id="grw-gh-mDw"/>
+                                    <outlet property="delegate" destination="lqa-d1-gYJ" id="TDu-DD-ykz"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Nv-Czt" customClass="SendCommentControl" customModule="Yona" customModuleProvider="target">
@@ -819,7 +819,7 @@
                     <navigationItem key="navigationItem" title="Title" id="GoU-Vg-hZg"/>
                     <connections>
                         <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="njt-I3-REJ"/>
-                        <outlet property="tableView" destination="hpX-Jy-atY" id="Bqy-Ed-lV0"/>
+                        <outlet property="tableView" destination="hpX-Jy-atY" id="taD-64-QMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9O-yf-jPo" userLabel="First Responder" sceneMemberID="firstResponder"/>

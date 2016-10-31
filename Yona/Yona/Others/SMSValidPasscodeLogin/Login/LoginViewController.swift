@@ -38,7 +38,7 @@ class LoginViewController: LoginSignupValidationMasterView {
             checkUserExists()
             pinResetButton.hidden = false
         } else {
-            pinResetButton.hidden = true
+            pinResetButton.hidden = false
             self.closeButton?.enabled = true
             self.closeButton?.tintColor = UIColor.whiteColor()
             
@@ -146,6 +146,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
             }
             else {
+                errorLabel.text = NSLocalizedString("passcode-tryagain", comment: "")
                 loginAttempts += 1
             }
         }
@@ -153,9 +154,13 @@ extension LoginViewController: CodeInputViewDelegate {
     
     func setCornerRadius(){
         self.pinResetButton.backgroundColor = UIColor.whiteColor()
-        self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), forState: UIControlState.Normal)
+        if isFromSettings {
+            self.pinResetButton.setTitleColor(UIColor.yiMangoColor(), forState: UIControlState.Normal)
+        } else {
+            self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), forState: UIControlState.Normal)
+        }
         pinResetButton.layer.cornerRadius = pinResetButton.frame.size.height/2
-        pinResetButton.layer.borderWidth = 1
+//        pinResetButton.layer.borderWidth = 1
     }
     
     @IBAction func pinResetTapped(sender: UIButton) {
