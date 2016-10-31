@@ -255,7 +255,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="602" y="-244"/>
+            <point key="canvasLocation" x="798" y="-302"/>
         </scene>
         <!--MeWeekDetailWeekViewController-->
         <scene sceneID="Zem-J9-IOm">
@@ -311,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="py6-od-Skh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2476" y="357"/>
+            <point key="canvasLocation" x="2106" y="544"/>
         </scene>
         <!--Yona User Profile View Controller-->
         <scene sceneID="2eb-Pq-zZf">
@@ -412,7 +412,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPq-EN-rhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4fa-FB-FqU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="544"/>
+            <point key="canvasLocation" x="1229" y="534"/>
         </scene>
         <!--confirm.request.title-->
         <scene sceneID="ooq-AF-k4X">
@@ -468,7 +468,7 @@
         <image name="icnReminder" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i6A-dg-q6c"/>
         <segue reference="rQa-zh-Tis"/>
+        <segue reference="i6A-dg-q6c"/>
     </inferredMetricsTieBreakers>
 </document>

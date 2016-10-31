@@ -39,13 +39,15 @@ enum  settingsOptions : Int {
 class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
-    
+    var gradientView: GradientSmooth!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
-        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -167,6 +169,12 @@ extension SettingsViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         cell.textLabel?.text = settingsOptions(rawValue: indexPath.row)?.simpleDescription()
+        cell.textLabel?.backgroundColor = UIColor.clearColor()
+
+        gradientView = GradientSmooth.init(frame: cell.frame)
+        gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
+        cell.backgroundView = gradientView
+        
         return cell
     }
     
