@@ -9,7 +9,9 @@
         <scene sceneID="Ugf-V2-vg5">
             <objects>
                 <navigationController title="Settings" id="rng-1n-xFW" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icnSettings" selectedImage="icnSettingsActive" id="CmE-iO-eeK"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnSettings" selectedImage="icnSettingsActive" id="CmE-iO-eeK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJp-9t-hfr" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,7 +32,9 @@
         <scene sceneID="8d5-sH-Zid">
             <objects>
                 <navigationController title="Challenges" id="hVk-qi-HFB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icnChallenges" selectedImage="icnChallengeActive" id="L4N-oF-7Fa"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnChallenges" selectedImage="icnChallengeActive" id="L4N-oF-7Fa">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xBy-py-dGd" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -51,7 +55,9 @@
         <scene sceneID="cwD-Fk-YVI">
             <objects>
                 <navigationController title="Friends" id="m70-iS-oHB" customClass="DashboardNavigationViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icnFriends" selectedImage="icnFriendsActive" id="ohe-Hg-b0e"/>
+                    <tabBarItem key="tabBarItem" title="" image="icnFriends" selectedImage="icnFriendsActive" id="ohe-Hg-b0e">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
