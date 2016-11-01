@@ -117,7 +117,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         MessageRequestManager.sharedInstance.getUnReadMessages({
             (success, message, code, text, theMessages) in
             if let count = MessageRequestManager.sharedInstance.totalSize {
-                let btnName = UIButton()
                 let txt = "\(count)"
                 let rightBarButton = UIBarButtonItem()
                 self.notificationsButton = MIBadgeButton.init(frame: CGRectMake(0, 0, (UIImage(named: "icnNotifications")?.size.width)!, (UIImage(named: "icnNotifications")?.size.height)!))
