@@ -90,6 +90,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     //MARK: - tableview methods
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return messages.count
     }
@@ -201,6 +202,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+        cell.resest()
+        
         cell.setMessage(messages[indexPath.section][indexPath.row])
         
         let currentMessage = messages[indexPath.section][indexPath.row] as Message
