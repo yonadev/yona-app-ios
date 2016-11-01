@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import MIBadgeButton
 
 class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     @IBOutlet var userDetailButton: UIBarButtonItem!
-    @IBOutlet var notificationsButton: UIButton?
-
     @IBOutlet weak var leftBarItem  : UIBarButtonItem!
+
+    var notificationsButton: MIBadgeButton?
     var leftTabData : [DayActivityOverview] = []
     var rightTabData : [WeekActivityGoal] = []
     var weekDayDetailLink : String?
@@ -118,29 +119,18 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             if let count = MessageRequestManager.sharedInstance.totalSize {
                 let btnName = UIButton()
                 let txt = "\(count)"
-                btnName.setTitle(txt, forState: .Normal)
-                btnName.frame = CGRectMake(0, 0, 21, 21)
-                //btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
-                btnName.titleLabel?.font = UIFont (name: "SFUIDisplay-Regular", size: 12)
-                btnName.backgroundColor = UIColor.yiDarkishPinkColor()
-                btnName.layer.cornerRadius = btnName.frame.size.width/2
-                btnName.layer.borderWidth = 0
-                btnName.layer.masksToBounds = true
-                btnName.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//                btnName.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: -10)
-
                 let rightBarButton = UIBarButtonItem()
-                rightBarButton.customView = btnName
-                
-//                var space = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
-//                space.width = -200
-                let bellButton = UIBarButtonItem(image: UIImage(named: "icnNotifications"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.showNotifications(_:)))
-                if count > 0 {
-                    self.navigationItem.rightBarButtonItems = [bellButton,rightBarButton]
-                    
-                } else {
-                    self.navigationItem.rightBarButtonItems = [bellButton]
-                }
+                self.notificationsButton = MIBadgeButton.init(frame: CGRectMake(0, 0, (UIImage(named: "icnNotifications")?.size.width)!, (UIImage(named: "icnNotifications")?.size.height)!))
+                self.notificationsButton?.badgeString = txt
+                self.notificationsButton?.hideWhenZero = true
+                self.notificationsButton?.badgeTextColor = UIColor.yiWhiteColor()
+                self.notificationsButton?.badgeBackgroundColor = UIColor.yiDarkishPinkColor()
+                self.notificationsButton?.setImage(UIImage(named: "icnNotifications"), forState: UIControlState.Normal)
+                self.notificationsButton?.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: .TouchUpInside)
+                self.notificationsButton?.badgeEdgeInsets = UIEdgeInsetsMake(15, 0, 0, 38)
+                rightBarButton.customView = self.notificationsButton
+                self.navigationItem.rightBarButtonItems = [rightBarButton]
+
             }
         })
     
