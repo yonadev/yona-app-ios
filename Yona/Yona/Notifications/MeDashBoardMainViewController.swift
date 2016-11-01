@@ -126,7 +126,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 self.notificationsButton?.badgeBackgroundColor = UIColor.yiDarkishPinkColor()
                 self.notificationsButton?.setImage(UIImage(named: "icnNotifications"), forState: UIControlState.Normal)
                 self.notificationsButton?.addTarget(self, action: #selector(self.showNotifications(_:)), forControlEvents: .TouchUpInside)
-                self.notificationsButton?.badgeEdgeInsets = UIEdgeInsetsMake(15, 0, 0, 38)
+                self.notificationsButton?.badgeEdgeInsets = UIEdgeInsetsMake(17, 0, 0, 32)
                 rightBarButton.customView = self.notificationsButton
                 self.navigationItem.rightBarButtonItems = [rightBarButton]
 

@@ -24,13 +24,11 @@ PODS:
   - HockeySDK (3.8.6):
     - HockeySDK/AllFeaturesLib (= 3.8.6)
   - HockeySDK/AllFeaturesLib (3.8.6)
-  - MIBadgeButton (0.0.7)
   - R.swift (0.13.0)
 
 DEPENDENCIES:
   - Google/Analytics
   - HockeySDK (~> 3.8.5)
-  - MIBadgeButton (~> 0.0)
   - R.swift
 
 SPEC CHECKSUMS:
@@ -43,7 +41,6 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   HockeySDK: ab68303eec6680f6b539de65d747742dd276e934
-  MIBadgeButton: 7c34f180a194d152bb3817c05443eab3a01433cd
   R.swift: 07e0796d2b4d50b875eb7de9bd8e6193e15c6434
 
 COCOAPODS: 0.39.0
