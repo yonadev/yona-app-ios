@@ -593,20 +593,20 @@ class YonaVPNFlowMainViewController: UIViewController {
     func testForServerAndContinue () {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 4))
         dispatch_after(delayTime, dispatch_get_main_queue()){
-            var running = false
-            running = ((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())!
-            if  running {
-                Loader.Hide()
-                print("SERVER IS STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
-                if let url = NSURL(string:"http://localhost:8089/start/") {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-            } else {
-                print("SERVER IS NOT STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
-                print("re-trying")
-                self.testForServerAndContinue()
-            }
             
+            if let running = (UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning() {
+                if  running {
+                    Loader.Hide()
+                    print("SERVER IS STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
+                    if let url = NSURL(string:"http://localhost:8089/start/") {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                } else {
+                    print("SERVER IS NOT STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
+                    print("re-trying")
+                    self.testForServerAndContinue()
+                }
+            }
         }
 
     
