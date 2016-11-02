@@ -92,7 +92,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
             if let path = weekDayDetailLink {
                 controller.initialObjectLink = path
                 weekDayDetailLink = nil
-                
+                controller.buddy = buddyToShow
             } else if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
@@ -112,9 +112,9 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if selectedTab == .right {
-            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
-        }
+//        if selectedTab == .right {
+//            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
+//        }
         
         if selectedTab == .left {
             performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
