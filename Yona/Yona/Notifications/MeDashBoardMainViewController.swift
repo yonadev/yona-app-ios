@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MIBadgeButton
 
 class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
