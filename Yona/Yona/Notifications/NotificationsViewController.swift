@@ -90,6 +90,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     //MARK: - tableview methods
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return messages.count
     }
@@ -201,6 +202,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+        cell.resest()
+        
         cell.setMessage(messages[indexPath.section][indexPath.row])
         
         let currentMessage = messages[indexPath.section][indexPath.row] as Message
@@ -347,7 +350,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     func showBuddyProfile(theMessage : Message) {
   
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
-            
+            var countPush = 0
             if succes {
                 if let user = aUser {
                     for aBuddies in user.buddies {
@@ -355,8 +358,11 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                             let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: NSBundle.mainBundle())
                             let controller = storyBoard.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as! FriendsProfileViewController
                             controller.aUser = aBuddies
-                            self.navigationController?.pushViewController(controller, animated: true)
-                           
+                            //Make sure it only pushes once!
+                            if countPush <= 0 {
+                                self.navigationController?.pushViewController(controller, animated: true)
+                            }
+                            countPush += 1
                         }
                     }
                 }

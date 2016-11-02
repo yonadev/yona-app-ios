@@ -14,7 +14,6 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         super.viewDidLoad()
         self.setNavigationBarHidden(false, animated: false)
         let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -100), forBarMetrics: .Default)
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
     }
     

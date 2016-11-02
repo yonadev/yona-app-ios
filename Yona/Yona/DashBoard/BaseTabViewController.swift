@@ -32,6 +32,7 @@ class BaseTabViewController: UITabBarController {
             image: UIImage(named: "icnMe"),
             tag: 1)
         navi.tabBarItem.selectedImage = UIImage(named: "icnMeActive")
+        navi.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         controller![0] = navi
         setViewControllers(controller, animated: false)
 
