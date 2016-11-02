@@ -110,7 +110,7 @@
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJC-BX-fly">
                                                 <rect key="frame" x="30" y="152" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.86696146441679378" green="0.86856267828983302" blue="0.90980392160000001" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="XsZ-iV-EU3"/>
                                                 </constraints>
@@ -647,7 +647,7 @@
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYb-3d-j0Y">
                                                 <rect key="frame" x="30" y="176" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="XVb-UQ-7ab"/>
                                                 </constraints>
@@ -663,7 +663,7 @@
                                                 <rect key="frame" x="68" y="255" width="464" height="72"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZ2-1W-0lR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="155" height="72"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="U" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJN-bv-NVG">
                                                                 <rect key="frame" x="59" y="16" width="10" height="17"/>
@@ -689,7 +689,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xib-5j-1ZB">
-                                                        <rect key="frame" x="154.5" y="0.0" width="155" height="72"/>
+                                                        <rect key="frame" x="155" y="0.0" width="155" height="72"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c9-jT-WXl">
                                                                 <rect key="frame" x="0.0" y="0.0" width="58" height="72"/>
@@ -715,7 +715,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRp-LU-9mF">
-                                                        <rect key="frame" x="309.5" y="0.0" width="154.5" height="72"/>
+                                                        <rect key="frame" x="310" y="0.0" width="154" height="72"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Av-xp-Eaf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="58" height="72"/>
@@ -991,6 +991,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BLL-RE-SXW"/>
+        <segue reference="kBX-Qa-igm"/>
     </inferredMetricsTieBreakers>
 </document>
