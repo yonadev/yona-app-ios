@@ -152,4 +152,106 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         return UITableViewCell(frame: CGRectZero)
     }
     
-}
+    
+    override func loadData (typeToLoad : loadType = .own) {
+        
+        Loader.Show()
+        //        size = 4
+        //        page = 1
+        if typeToLoad == .own {
+            if let path = initialObjectLink,
+                let aBuddy = buddy {
+                ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: aBuddy, onCompletion:  {(success, serverMessage, serverCode, dayActivity, err) in
+                    if success {
+                        
+                        if let data = dayActivity {
+                            self.currentDate = data.date!
+                            self.currentDay = data.dayOfWeek
+                            self.dayData  = data
+                            self.goalType = data.goalType
+                            self.navigationItem.title = self.dayData?.goalName.uppercaseString //only need to do this in the first original data
+                            
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            //make sure the commentview has the right link to post comments to
+                            if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                            }
+                        }
+                        
+                        Loader.Hide()
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
+            }
+        }
+        else if typeToLoad == .prev {
+            if let path = dayData!.prevLink,
+                let aBuddy = buddy {
+                ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: aBuddy, onCompletion:  {(success, serverMessage, serverCode, dayActivity, err) in
+                    if success {
+                        
+                        if let data = dayActivity {
+                            self.currentDate = data.date!
+                            self.currentDay = data.dayOfWeek
+                            self.dayData  = data
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            //make sure the commentview has the right link to post comments to
+                            if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                            }
+                        }
+                        
+                        Loader.Hide()
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
+            }
+            
+        }
+        else if typeToLoad == .next {
+            if let path = dayData!.nextLink,
+                let aBuddy = buddy {
+                ActivitiesRequestManager.sharedInstance.getBuddyDayActivityDetails(path, date: currentDate, buddy: aBuddy, onCompletion:  {(success, serverMessage, serverCode, dayActivity, err) in
+                    if success {
+                        
+                        if let data = dayActivity {
+                            self.currentDate = data.date!
+                            self.currentDay = data.dayOfWeek
+                            self.dayData  = data
+                            if let commentsLink = data.messageLink {
+                                self.getComments(commentsLink)
+                            }
+                            //make sure the commentview has the right link to post comments to
+                            if self.dayData?.commentLink != nil {
+                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                            }
+                        }
+                        Loader.Hide()
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        Loader.Hide()
+                    }
+                })
+            }
+        }
+        
+        //Loader.Hide()
+        self.tableView.reloadData()
+        
+    }
+
+ }

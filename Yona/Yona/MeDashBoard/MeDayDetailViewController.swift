@@ -508,5 +508,4 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
         }
     }
-
 }
