@@ -380,7 +380,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-iD-fbV">
                                                 <rect key="frame" x="30" y="175" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.90308942901491096" green="0.90980392160000001" blue="0.90241331401837566" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="gNj-cG-miF"/>
                                                 </constraints>
@@ -512,7 +512,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uv-mB-Hzi">
                                                 <rect key="frame" x="30" y="176" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.90980392160000001" green="0.83442824958763451" blue="0.86410910971606847" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="NoL-5m-9rc"/>
                                                 </constraints>
@@ -884,7 +884,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-hF-gQt">
                                                 <rect key="frame" x="30" y="176" width="540" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.54117647059999996" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.90284739636354061" green="0.86142588602449388" blue="0.90980392160000001" alpha="0.20193728890000001" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="wLK-Gf-5nv"/>
                                                 </constraints>
