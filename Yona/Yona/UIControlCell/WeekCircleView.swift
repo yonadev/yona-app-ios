@@ -49,6 +49,7 @@ class WeekCircleView: UIView {
     @IBOutlet weak var dateText : UILabel!
     var theData : NSDate?
     var activity : SingleDayActivityGoal?
+    var status : circleViewStatus = .noData
     override func awakeFromNib() {
         layer.cornerRadius = frame.size.height/2
         layer.masksToBounds = true
@@ -57,7 +58,9 @@ class WeekCircleView: UIView {
         
         layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
         layer.borderWidth = 1.0
-        
+        layer.backgroundColor = status.circleColor().CGColor
+        layer.borderColor = status.circleBorderColor().CGColor
+
         
         
     }
@@ -71,10 +74,15 @@ class WeekCircleView: UIView {
         
         layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
         layer.borderWidth = 1.0
+
+        layer.backgroundColor = status.circleColor().CGColor
+        layer.borderColor = status.circleBorderColor().CGColor
+
     }
     
     func configureUI(aDate : NSDate, status : circleViewStatus = .noData) {
         theData = aDate
+        self.status = status
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EE\nd"
         dateText.text = dateFormatter.stringFromDate(aDate)
