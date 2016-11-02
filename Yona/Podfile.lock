@@ -28,7 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - Google/Analytics
-  - HockeySDK (~> 3.8.5)
+  - HockeySDK
   - R.swift
 
 SPEC CHECKSUMS:

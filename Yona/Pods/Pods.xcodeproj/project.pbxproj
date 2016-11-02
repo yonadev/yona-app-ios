@@ -848,6 +848,7 @@
 		545682C1399272FEC8570CE754BB6FFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = HockeySDKResources;
 				SDKROOT = iphoneos;
@@ -859,6 +860,7 @@
 		83B4F31C5FEF07393032C9C822ACF25E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = HockeySDKResources;
 				SDKROOT = iphoneos;
@@ -940,7 +942,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6729D4554934C85D36813956E7CC343 /* GoogleToolboxForMac.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -967,7 +970,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6729D4554934C85D36813956E7CC343 /* GoogleToolboxForMac.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
