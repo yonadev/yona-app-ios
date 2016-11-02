@@ -2513,6 +2513,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yona/Others",
@@ -2539,6 +2540,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xaton B.V. (Ent)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Yona/Others",
