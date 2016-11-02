@@ -16,6 +16,7 @@
 		160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */; };
 		160571641D479EFE00E86CC2 /* YonaInstructionPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */; };
 		160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */; };
+		16088EAD1DC89746008777F4 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16088EAC1DC89746008777F4 /* SecretKeys.plist */; };
 		160BF93C1D5B712800AF9EF4 /* TimeLineNoGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */; };
 		160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */; };
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
@@ -139,7 +140,6 @@
 		9054D5481D65EB9D0060D22E /* ReplyToComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054D5471D65EB9D0060D22E /* ReplyToComment.xib */; };
 		9054D54A1D65EBAC0060D22E /* ReplyToComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054D5491D65EBAC0060D22E /* ReplyToComment.swift */; };
 		9059D6FF1CC954E900A2B5BF /* PinResetAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */; };
-		906C44A11DC38D8B00AE222F /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 906C44A01DC38D8B00AE222F /* SecretKeys.plist */; };
 		906FED781CEC7E4400029845 /* PrivacyStatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */; };
 		906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */; };
 		906FED801CEDB81400029845 /* FriendsProfileMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */; };
@@ -168,6 +168,8 @@
 		90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */; };
 		90DE87A01CD23AB200C1E706 /* AcitivitiesRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */; };
 		90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */; };
+		90F08E751DC8F0B300B63D2B /* MIBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F08E721DC8F0B300B63D2B /* MIBadgeButton.m */; };
+		90F08E761DC8F0B300B63D2B /* MIBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F08E741DC8F0B300B63D2B /* MIBadgeLabel.m */; };
 		90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */; };
 		90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */; };
 		90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */; };
@@ -381,6 +383,7 @@
 		160571611D479EF500E86CC2 /* YonaInstructionPage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage1.swift; sourceTree = "<group>"; };
 		160571631D479EFE00E86CC2 /* YonaInstructionPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage2.swift; sourceTree = "<group>"; };
 		160571651D479F0900E86CC2 /* YonaInstructionPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionPage3.swift; sourceTree = "<group>"; };
+		16088EAC1DC89746008777F4 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		160BF93A1D5B712800AF9EF4 /* TimeLineNoGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineNoGoCell.swift; sourceTree = "<group>"; };
 		160BF93B1D5B712800AF9EF4 /* TimeLineNoGoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineNoGoCell.xib; sourceTree = "<group>"; };
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
@@ -545,7 +548,6 @@
 		9054D5471D65EB9D0060D22E /* ReplyToComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyToComment.xib; sourceTree = "<group>"; };
 		9054D5491D65EBAC0060D22E /* ReplyToComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyToComment.swift; sourceTree = "<group>"; };
 		9059D6FE1CC954E900A2B5BF /* PinResetAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetAPIServiceTests.swift; sourceTree = "<group>"; };
-		906C44A01DC38D8B00AE222F /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
 		906FED771CEC7E4400029845 /* PrivacyStatementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementVC.swift; sourceTree = "<group>"; };
 		906FED7A1CEDB25500029845 /* MeDashBoardMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeDashBoardMainViewController.swift; path = ../Notifications/MeDashBoardMainViewController.swift; sourceTree = "<group>"; };
 		906FED7C1CEDB31A00029845 /* MeDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeDashBoard.storyboard; path = ../Notifications/MeDashBoard.storyboard; sourceTree = "<group>"; };
@@ -568,6 +570,10 @@
 		90DE879D1CD23AA600C1E706 /* UserRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestManager.swift; sourceTree = "<group>"; };
 		90DE879F1CD23AB200C1E706 /* AcitivitiesRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcitivitiesRequestManager.swift; sourceTree = "<group>"; };
 		90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		90F08E711DC8F0B300B63D2B /* MIBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIBadgeButton.h; path = ../../../../../../Desktop/MIBadgeButton.h; sourceTree = "<group>"; };
+		90F08E721DC8F0B300B63D2B /* MIBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIBadgeButton.m; path = ../../../../../../Desktop/MIBadgeButton.m; sourceTree = "<group>"; };
+		90F08E731DC8F0B300B63D2B /* MIBadgeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIBadgeLabel.h; path = ../../../../../../Desktop/MIBadgeLabel.h; sourceTree = "<group>"; };
+		90F08E741DC8F0B300B63D2B /* MIBadgeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIBadgeLabel.m; path = ../../../../../../Desktop/MIBadgeLabel.m; sourceTree = "<group>"; };
 		90F123DA1D2E60F300E2BBBA /* TimeZoneControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeZoneControlCell.xib; sourceTree = "<group>"; };
 		90F123DC1D2E610800E2BBBA /* TimeZoneControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneControlCell.swift; sourceTree = "<group>"; };
 		90F123DE1D34EE6F00E2BBBA /* TimeZoneCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZoneCustomView.swift; sourceTree = "<group>"; };
@@ -1219,6 +1225,17 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		90F08E701DC8F09C00B63D2B /* MIBadgeButton */ = {
+			isa = PBXGroup;
+			children = (
+				90F08E711DC8F0B300B63D2B /* MIBadgeButton.h */,
+				90F08E721DC8F0B300B63D2B /* MIBadgeButton.m */,
+				90F08E731DC8F0B300B63D2B /* MIBadgeLabel.h */,
+				90F08E741DC8F0B300B63D2B /* MIBadgeLabel.m */,
+			);
+			name = MIBadgeButton;
+			sourceTree = "<group>";
+		};
 		90FF6DFC1D0095C000A674C4 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1382,6 +1399,7 @@
 		AD291DA21CAAA7AB008CAFB1 /* 3rd_Party_APIs */ = {
 			isa = PBXGroup;
 			children = (
+				90F08E701DC8F09C00B63D2B /* MIBadgeButton */,
 				1656A5971D4BE6B300EB288D /* RoutingHTTPServer */,
 				1656A3EF1D4BE63F00EB288D /* CocoaHTTPServer */,
 				604282801D0AD9F200F5543C /* SVProgressHUD */,
@@ -1752,7 +1770,7 @@
 				D986357B1CAD62B100A8535C /* Localizable.strings */,
 				AD5571F71CABA022000BF880 /* Main.storyboard */,
 				D9D54ED81CA28CD2007805F4 /* Info.plist */,
-				906C44A01DC38D8B00AE222F /* SecretKeys.plist */,
+				16088EAC1DC89746008777F4 /* SecretKeys.plist */,
 				9007DD131D9957A10092AA9E /* GoogleService-Info.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
 				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
@@ -1934,7 +1952,7 @@
 				ADEF8F071CADFD0C001D5EED /* Roboto-Italic.ttf in Resources */,
 				BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */,
 				906FED8C1CEE23BF00029845 /* Dashboard.storyboard in Resources */,
-				906C44A11DC38D8B00AE222F /* SecretKeys.plist in Resources */,
+				16088EAD1DC89746008777F4 /* SecretKeys.plist in Resources */,
 				D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */,
 				D98635571CABF44000A8535C /* SF-UI-Display-Medium.otf in Resources */,
 				906FED961CEE23DF00029845 /* Welcome.storyboard in Resources */,
@@ -2192,10 +2210,12 @@
 				160571661D479F0900E86CC2 /* YonaInstructionPage3.swift in Sources */,
 				9054D5451D5CD8620060D22E /* PKSwipeTableViewCell.swift in Sources */,
 				1656A5D31D4BEA0B00EB288D /* HTTPAsyncFileResponse.m in Sources */,
+				90F08E751DC8F0B300B63D2B /* MIBadgeButton.m in Sources */,
 				16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */,
 				AD22632B1CD2672F00AD4AB1 /* Loader.swift in Sources */,
 				166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */,
 				603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */,
+				90F08E761DC8F0B300B63D2B /* MIBadgeLabel.m in Sources */,
 				16F951A41D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift in Sources */,
 				160571581D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift in Sources */,
 				D94A93B71CB26E1C00ABE0F8 /* R.generated.swift in Sources */,

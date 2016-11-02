@@ -15,4 +15,8 @@
 - (void)animateSwippingAction;
 - (void)closeCell;
 - (void)openCell;
+- (void)resest;
+
+@property (nonatomic) BOOL isOpen;
+
 @end

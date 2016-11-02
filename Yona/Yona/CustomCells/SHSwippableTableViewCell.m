@@ -50,6 +50,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.isOpen = NO;
     
     self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanning:)];
     self.panRecognizer.cancelsTouchesInView = NO;
@@ -101,9 +102,17 @@
     }
 }
 
+-(void) resest
+{
+    self.swipableContentHorizontalConstraint.constant = 0;
+    self.isOpen = NO;
+    [self layoutIfNeeded];
+}
+
 
 - (void)closeCell
 {
+    _isOpen = NO;
     //Nothing to do...
     if (self.swipableContentHorizontalConstraint.constant ==  0) {
         return;
@@ -116,6 +125,7 @@
 
 - (void)openCell
 {
+    _isOpen = YES;
     //Nothing to do...
     if (self.swipableContentHorizontalConstraint.constant ==  -self.actionViewWidthConstraint.constant) {
         return;

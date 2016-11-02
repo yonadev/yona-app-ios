@@ -109,7 +109,9 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
     }
 
     override func prepareForReuse() {
-        closeCell()
+        super.prepareForReuse()
+        // do nothing
     }
+    
 }
 

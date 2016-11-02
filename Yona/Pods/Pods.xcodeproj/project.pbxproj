@@ -10,43 +10,110 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>0196023EA9ED79D6D12E77396768D8BB</key>
+		<key>00E77DB586CB18EA7BFAF8B4202BA3FB</key>
 		<dict>
-			<key>children</key>
-			<array/>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>R.swift</string>
+			<string>authorize_denied.png</string>
 			<key>path</key>
-			<string>R.swift</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/authorize_denied.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>024C103848113AEF76AC5A742AF80B75</key>
+		<key>016E8A01CAF2ACF56E2C71754D3ADF94</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseInstanceID.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>022E1305CCAA2FF5640242F00140BD25</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Ok@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Ok@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>02E304FDF6B4E2BEE98B1CB376B1C499</key>
 		<dict>
 			<key>fileRef</key>
-			<string>2BCC458FDD5F692BBB2BFC64BB5701FC</string>
+			<string>869FA270BD2E6DD19162E79633A323B0</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
-		<key>04A86DE57DBAF520830C0183C5C97C32</key>
+		<key>04C41D8BC711BB49803BC342BF687676</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>F363D3AF5CB1925DE93CD2FC53C9D76D</string>
+				<string>FAC4671714DCA4C45A494D4968E232A9</string>
+				<string>98C216C617043F0B199516300357CBCB</string>
+				<string>82DB14E97E3422622FC8C1CFC10C3D44</string>
+				<string>00E77DB586CB18EA7BFAF8B4202BA3FB</string>
+				<string>C33EAF350ED4C224DDA449773966B4DD</string>
+				<string>55FC7E6B7D8CD50E1ADBA06579A11A18</string>
+				<string>1E575F589491467074CBFC8E95D2B432</string>
+				<string>1C8B6695698CB6B57AD92D0541DC7B39</string>
+				<string>403DE12C0904889F5E9D1B99D3DCFF4B</string>
+				<string>8244ED19A8DAEA88005DA524A15E85DF</string>
+				<string>665728760EF71ED61DA37ABB046E6C78</string>
+				<string>9ED5D68F96A6FE00A05AD29F6D0DA1AD</string>
+				<string>82A99CB21851D608DF7F7B70FB329EFD</string>
+				<string>511F05CCAE8480184F5D8D3ACBD7FCFB</string>
+				<string>BDDAAACB2105285EEA7F15B180BF59D2</string>
+				<string>7C5AB4BAECE90A9F2941FFF569DF7CB2</string>
+				<string>E9B49EA9EF56E0FCEA06A2E9FFF6339C</string>
+				<string>6C857B25DE66191E654F6D2B127A98C2</string>
+				<string>FAE6961EE701B22DFA08A89E7575DE3E</string>
+				<string>CE13F80328C232ECCF640E35C33AA5B8</string>
+				<string>551938C9D5C69FB52FA5EF086A70A275</string>
+				<string>1F433514B7A458BA9962C7A1F27D948A</string>
+				<string>C8A5595740676210AA33A7E57934E094</string>
+				<string>991443A4763A524184E1C1328DB59C80</string>
+				<string>579F58D6080088AE5C16AB683F6D23EF</string>
+				<string>BEC05B9FD65E4D8D48C69681D6FFA25E</string>
+				<string>33B188BA73AC9F9AF06C91314DD4FFAA</string>
+				<string>869FA270BD2E6DD19162E79633A323B0</string>
+				<string>075BF982A12CCB85BADD07F3108BAA65</string>
+				<string>FEFC9F14769BE1E5C59E8F693CEA893F</string>
+				<string>A5369A580EB154422D323F5F48C0D3D9</string>
+				<string>A78FED5256E4043A7A6580DBD4EB3BD4</string>
+				<string>6811FAC9405BF8CD6D9F5F683D2DB493</string>
+				<string>F20459413C452339178C8E538AC6BE12</string>
+				<string>4B3A7C1679A8224127B5534C28BD2FF9</string>
+				<string>B00D815AB0682D268D51760947A1DA8C</string>
+				<string>DAA924FE89A3AF9B4A26A9B536917C73</string>
+				<string>FA4DC611E350677E1C81744A4385DF99</string>
+				<string>F75F40C77D11DDAE033F150691DBE966</string>
+				<string>C30E3AFAC97B991B051772225823C55A</string>
+				<string>2FF919B84A498E7898FB900DAD0AA8C7</string>
+				<string>022E1305CCAA2FF5640242F00140BD25</string>
+				<string>CEE008027078BECADB19D3C738E02E0B</string>
+				<string>A150F0333920A3A807D6D7A8D7A7807E</string>
+				<string>7CC83BA3F90CB07C8939AD3B7B927E53</string>
+				<string>F8908151D72A2187F2AE6A0481F8DDBB</string>
+				<string>9C800FD085528259A751ECD2E1CED48B</string>
+				<string>4B5C6C907C93931597EB2FD7C142DA6B</string>
+				<string>87F4ED3388A62ABFDD92F4C6E013C7AC</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>Resources</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -118,109 +185,69 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>06EC05D2B8F71FE9D3C5FAE45D6961AE</key>
+		<key>0635CB409599626203089CC4A73157D7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>069E0A0488C2B9A2553783DF7C754AE3</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>archive.ar</string>
-			<key>name</key>
-			<string>libGoogleAnalytics.a</string>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>Libraries/libGoogleAnalytics.a</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>08D670627C20706E0C030A818A7F6E00</key>
+		<key>075BF982A12CCB85BADD07F3108BAA65</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>36C30B5C48007CE6E075C35D3905787F</string>
-				<string>2F9C6759A61CB363955B598F1A554594</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseInstanceID</string>
-			<key>path</key>
-			<string>FirebaseInstanceID</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>19D3A9921764ADCE06029E5FC8A58930</key>
-		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>FirebaseInstanceID.framework</string>
+			<string>feedbackActivity~ipad.png</string>
 			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/feedbackActivity~ipad.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>1BA84416B19DF31967CCD7D02D962E49</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>E151796BBCB376D96AD1C38DD0B21AC6</string>
-			<key>buildPhases</key>
-			<array>
-				<string>94E92B28A5AF3478251705B46FC8586F</string>
-				<string>F3168C673007601935FDD8CF0A0C1C66</string>
-				<string>59A00F9704B6AFE0A9DC699A4B8B033F</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>productName</key>
-			<string>Pods</string>
-			<key>productReference</key>
-			<string>BB5D32B5D8FFDA27126FB97ADA2F84CF</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>1E615E9CA3F7C983E82758A5B9F64D21</key>
+		<key>0A02F4EB0DBBC92B221459C91C2E368E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>894E5DA93A9F359521A89826BE6DA777</string>
+			<string>991443A4763A524184E1C1328DB59C80</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>1F65C4CD40C947C4415F8D28536735CC</key>
+		<key>0A2554300978F087FA7DCABE91C88D10</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>BB5D32B5D8FFDA27126FB97ADA2F84CF</string>
-			</array>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>GoogleToolboxForMac</string>
+			<key>target</key>
+			<string>92BB131FA876445E027D20AE23EA7B5F</string>
+			<key>targetProxy</key>
+			<string>BBB8EE3DBC0869B3AA423D96C9C2B39B</string>
 		</dict>
-		<key>252C482DD96F008FCCFAD872CC519B33</key>
+		<key>0BB42B52BB3CFAB9691D32A88715AF8A</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>06EC05D2B8F71FE9D3C5FAE45D6961AE</string>
-			</array>
+			<key>fileRef</key>
+			<string>F20459413C452339178C8E538AC6BE12</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
-		<key>273A602192FDAF6FA13FC3E962C30C82</key>
+		<key>0CB5B2D3F7F4FF245883576B0107D09E</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -229,13 +256,31 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>Analytics-Module.h</string>
+			<string>GAITrackedViewController.h</string>
 			<key>path</key>
-			<string>Headers/ModuleHeaders/Analytics-Module.h</string>
+			<string>Sources/GAITrackedViewController.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>29C5439F80E0EB87DA9EA62B559F9A2C</key>
+		<key>10C02C1DF5EB1C46F47C934647FE160D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F8908151D72A2187F2AE6A0481F8DDBB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>12ED99C14D43EBE6496C8574C02B147D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>14224AD11B1C0E78878192BABFFB0A6A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -244,37 +289,173 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>Core-Module.h</string>
+			<string>GAILogger.h</string>
 			<key>path</key>
-			<string>Headers/ModuleHeaders/Core-Module.h</string>
+			<string>Sources/GAILogger.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2A376C9B95296EA70341C3008EA4DAF1</key>
+		<key>15B0EA76A5CEA09D0C0BE60A22C30BFC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>16123269223B014A45DF85A400D846F9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FAE6961EE701B22DFA08A89E7575DE3E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1B13920EEE24EB507A2EF0EDCE9770C7</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>2377E523395CB5EC94D91283344580A1</string>
+				<string>AF5A33CAE747988723CB39520111DC1D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>1BC9360E419DCF096E12B1D726328FEB</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>85E27F44C07B456DBFF72418CF7972FC</string>
+				<string>A15257B4A7CAF8ACA422EA198040743E</string>
+				<string>AF9767AE2AB06AC02358545E31BECBB0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>Google</string>
+			<key>path</key>
+			<string>Google</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2BB1FB18518858FDC710898404036187</key>
+		<key>1C4F98664F0D531EBD1AD654A218458B</key>
 		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
+			<key>explicitFileType</key>
 			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>GoogleInterchangeUtilities.framework</string>
+			<string>Pods.framework</string>
 			<key>path</key>
-			<string>Frameworks/GoogleInterchangeUtilities.framework</string>
+			<string>Pods.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>1C8B6695698CB6B57AD92D0541DC7B39</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Blur.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Blur.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1CD43A7A40813BD66639A86BC34ECBB5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>579F58D6080088AE5C16AB683F6D23EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1DB66EC3B4CD974B50458F30A2FBB7A8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SignIn-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/SignIn-Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1E575F589491467074CBFC8E95D2B432</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>bg.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/bg.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1F433514B7A458BA9962C7A1F27D948A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>de.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/de.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2298EF06B7F6F38E2A1DBF7EC071A7E4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GAI.h</string>
+			<key>path</key>
+			<string>Sources/GAI.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2377E523395CB5EC94D91283344580A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5707FCC248ECD79082BBF5D0A9986F39</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>26035D03DD35459CE5EC042B76947A9C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C33EAF350ED4C224DDA449773966B4DD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>280DA857779FC1D5A702C2B980A8E725</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FA4DC611E350677E1C81744A4385DF99</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>2BCC458FDD5F692BBB2BFC64BB5701FC</key>
 		<dict>
@@ -286,6 +467,21 @@
 			<string>sourcecode.c.h</string>
 			<key>path</key>
 			<string>Pods-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2C62CBA32961128DFF7304EC0C246DF4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMNSData+zlib.m</string>
+			<key>path</key>
+			<string>Foundation/GTMNSData+zlib.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -303,415 +499,43 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2F48FD8C0AAF1B05720D4E83626AA65E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3F3CA2C20463EE3CA4C09846FB0FE650</string>
-				<string>EE56C2466FC4ECFC45596D0611E1A5B2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Google</string>
-			<key>path</key>
-			<string>Google</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2F9C6759A61CB363955B598F1A554594</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>19D3A9921764ADCE06029E5FC8A58930</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>36C30B5C48007CE6E075C35D3905787F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>FIRInstanceID.h</string>
-			<key>path</key>
-			<string>Sources/FIRInstanceID.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3D2CEA7A8AB58879A31D3BF64D129682</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>Analytics.h</string>
-			<key>path</key>
-			<string>Headers/Analytics.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3E4E89230EF59BC255123B67864ACF77</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>3F3CA2C20463EE3CA4C09846FB0FE650</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3D2CEA7A8AB58879A31D3BF64D129682</string>
-				<string>2A376C9B95296EA70341C3008EA4DAF1</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Analytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4F53192D75EB99D6C9B6BE7F2A55ECD7</key>
+		<key>2DCDFB8DE25721AEF30490982AD3DD42</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<string>BDDAAACB2105285EEA7F15B180BF59D2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>59A00F9704B6AFE0A9DC699A4B8B033F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>024C103848113AEF76AC5A742AF80B75</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5F0362E17077DA279B7D5407E4114403</key>
+		<key>2FF919B84A498E7898FB900DAD0AA8C7</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>SignIn-Module.h</string>
+			<string>Ok@2x.png</string>
 			<key>path</key>
-			<string>Headers/ModuleHeaders/SignIn-Module.h</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Ok@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>64327F3BB993870368C2306E1624EC77</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>92AC865070A9243F18664F2009980A21</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseAnalytics</string>
-			<key>path</key>
-			<string>FirebaseAnalytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6517B7189562102D44D0C83B67FA4544</key>
+		<key>33B188BA73AC9F9AF06C91314DD4FFAA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GAIEcommerceProduct.h</string>
+			<string>feedbackActivity@2x~ipad.png</string>
 			<key>path</key>
-			<string>Sources/GAIEcommerceProduct.h</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/feedbackActivity@2x~ipad.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>65994B68B764881C9B4D7AA4710372C0</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B1173D240A5B8756BE2A6395EC2F02B8</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities</string>
-			<key>path</key>
-			<string>GoogleSymbolUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>725C7D5D6560368E488258AA3DCA9CFF</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>729313E4B7AD1C29FD9B7889A3F28952</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GAITracker.h</string>
-			<key>path</key>
-			<string>Sources/GAITracker.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>75D98FF52E597A11900E131B6C4E1ADA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E8446514FBAD26C0E18F24A5715AEF67</string>
-				<string>79A9DEDC89FE8336BF5FEDAAF75BF7FC</string>
-				<string>D0405803033A2A777B8E4DFA0C1800ED</string>
-				<string>87B213035BAC5F75386F62D3C75D2342</string>
-				<string>894E5DA93A9F359521A89826BE6DA777</string>
-				<string>E7F21354943D9F42A70697D5A5EF72E9</string>
-				<string>CBC0F7C552B739C909B650A0F42F7F38</string>
-				<string>2BCC458FDD5F692BBB2BFC64BB5701FC</string>
-				<string>977577C045EDA9D9D1F46E2598D19FC7</string>
-				<string>DA312349A49333542E6F4B36B329960E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>path</key>
-			<string>Target Support Files/Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>77522F81A3D72E16E4336CDDC879CF0B</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseAnalytics.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>79A9DEDC89FE8336BF5FEDAAF75BF7FC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7DB346D0F39D3F0E887471402A8071AB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
-				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>D32C108AA4873DF1ECF47911ACB9ECEF</string>
-				<string>1F65C4CD40C947C4415F8D28536735CC</string>
-				<string>B7B80995527643776607AFFA75B91E24</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>859E4687FEEED96066129FCF37DED51C</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FD2182B9E81A653584B2AAED58CF148F</string>
-				<string>906A40580E17B68CA154AD92487F9E6E</string>
-				<string>E74B4E539866F968CD763FD8ED40E4BF</string>
-				<string>6517B7189562102D44D0C83B67FA4544</string>
-				<string>87C3132D7B3EC655EC12E5A5F1B69CA5</string>
-				<string>94F670F8E2F9EBDC313597F0417935D3</string>
-				<string>ADEA1504D04332341674A43196061009</string>
-				<string>B5B059A80BA33CD104BEEF964BF5BFA7</string>
-				<string>EBEE243D9D663D6117522C3A251536F6</string>
-				<string>729313E4B7AD1C29FD9B7889A3F28952</string>
-				<string>252C482DD96F008FCCFAD872CC519B33</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleAnalytics</string>
-			<key>path</key>
-			<string>GoogleAnalytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>85E27F44C07B456DBFF72418CF7972FC</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GGLAnalytics.framework</string>
-			<key>path</key>
-			<string>Frameworks/GGLAnalytics.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>87B213035BAC5F75386F62D3C75D2342</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>87C3132D7B3EC655EC12E5A5F1B69CA5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GAIEcommerceProductAction.h</string>
-			<key>path</key>
-			<string>Sources/GAIEcommerceProductAction.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>894E5DA93A9F359521A89826BE6DA777</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>906A40580E17B68CA154AD92487F9E6E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GAIDictionaryBuilder.h</string>
-			<key>path</key>
-			<string>Sources/GAIDictionaryBuilder.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>92AC865070A9243F18664F2009980A21</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>77522F81A3D72E16E4336CDDC879CF0B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>94E92B28A5AF3478251705B46FC8586F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>1E615E9CA3F7C983E82758A5B9F64D21</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>94F670F8E2F9EBDC313597F0417935D3</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GAIEcommercePromotion.h</string>
-			<key>path</key>
-			<string>Sources/GAIEcommercePromotion.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>977577C045EDA9D9D1F46E2598D19FC7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A45600AE25D694ADA946D57641D6DF9F</key>
+		<key>34A6620D6DF098B7B42EB253FB19CA87</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>DA312349A49333542E6F4B36B329960E</string>
+			<string>977577C045EDA9D9D1F46E2598D19FC7</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -745,7 +569,7 @@
 				<key>MODULEMAP_FILE</key>
 				<string>Target Support Files/Pods/Pods.modulemap</string>
 				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
+				<string>YES</string>
 				<key>OTHER_LDFLAGS</key>
 				<string></string>
 				<key>OTHER_LIBTOOLFLAGS</key>
@@ -768,13 +592,1386 @@
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>Release</string>
+			<string>Debug</string>
 		</dict>
-		<key>AD4FDD33C2D2664C48C7357DE0C3266A</key>
+		<key>35D1C3780F49A135CA214EF5EAB88F9D</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>C32520C21B35ED0920DDFB4602D7E929</string>
+				<string>B59083EA49F823F57646E78C19467736</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>37E4BDCD8DFD788A3CD267A722C99334</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3C014F737BF0E4D82F49D1E8DBB98C79</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>3C2A43A27B3D62A3BD4388B91C909AE5</string>
+			<key>buildPhases</key>
+			<array>
+				<string>12ED99C14D43EBE6496C8574C02B147D</string>
+				<string>94D81D36BFD6B9DEE92D5A60AF290DB7</string>
+				<string>A510653F52BE12202CC218C408B334AE</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>HockeySDK-HockeySDKResources</string>
+			<key>productName</key>
+			<string>HockeySDK-HockeySDKResources</string>
+			<key>productReference</key>
+			<string>D13212ECA59BF803498901FA6280DCC2</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle</string>
+		</dict>
+		<key>3C2A43A27B3D62A3BD4388B91C909AE5</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>83B4F31C5FEF07393032C9C822ACF25E</string>
+				<string>545682C1399272FEC8570CE754BB6FFB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>3E4E89230EF59BC255123B67864ACF77</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>403DE12C0904889F5E9D1B99D3DCFF4B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Blur@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Blur@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>42F05D4C3AD1EC7537215395FB68B422</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>AB76909B21DCADFD5CA9DFA5E6563C74</string>
+				<string>D644D81B1B2C564496BBCFE149DEB96D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseInstanceID</string>
+			<key>path</key>
+			<string>FirebaseInstanceID</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4387F161B8EF714982FAD067E3F4FB31</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GAITracker.h</string>
+			<key>path</key>
+			<string>Sources/GAITracker.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>447CC86B12C273AAE3C9F4D66F0C3C5A</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8A38623C6F015D8BC0535740D7C62C9F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4534CD22129787E011DB2FD9E8021DEC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C8A5595740676210AA33A7E57934E094</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>482DBC7E862BB2B35507F395BD222442</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GAIDictionaryBuilder.h</string>
+			<key>path</key>
+			<string>Sources/GAIDictionaryBuilder.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>48824B3684D2DCB8076D47C04F09D832</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A78FED5256E4043A7A6580DBD4EB3BD4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>495430AB5D7B4CF306379A6CA860741D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C30E3AFAC97B991B051772225823C55A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4B3A7C1679A8224127B5534C28BD2FF9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>IconGradient.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/IconGradient.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4B5C6C907C93931597EB2FD7C142DA6B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>ru.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/ru.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>511F05CCAE8480184F5D8D3ACBD7FCFB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedDeleteHighlighted@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>545682C1399272FEC8570CE754BB6FFB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>HockeySDKResources</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>bundle</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>551938C9D5C69FB52FA5EF086A70A275</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Cancel@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Cancel@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>55D4AF01C1F707CFF254FF5EC1E6332F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D68B1CE78674DEFBA5033CF8F79EE8C9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>55FC7E6B7D8CD50E1ADBA06579A11A18</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>authorize_denied@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/authorize_denied@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>566099C1B8F78562086BFFBF1B2B33A9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2298EF06B7F6F38E2A1DBF7EC071A7E4</string>
+				<string>482DBC7E862BB2B35507F395BD222442</string>
+				<string>AFF458D2FD8532A6058F150C6F144675</string>
+				<string>F6FC1AFC1C93507368BAEFC83CB8510F</string>
+				<string>F234E653BF80FEC927D352FAD985848C</string>
+				<string>B4DB8BB56F1E831753C8B8CFBE3C3C78</string>
+				<string>B1C1157E9838BFD35E74BBBAB25B4C1C</string>
+				<string>14224AD11B1C0E78878192BABFFB0A6A</string>
+				<string>0CB5B2D3F7F4FF245883576B0107D09E</string>
+				<string>4387F161B8EF714982FAD067E3F4FB31</string>
+				<string>C29ACFE689C60F2CDC931BCCE2B2AC9E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleAnalytics</string>
+			<key>path</key>
+			<string>GoogleAnalytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5707FCC248ECD79082BBF5D0A9986F39</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5715EBA56CA713CAA6C3235C7C0B41FF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>EB864ADBFCF7E8F1C4D1387974950270</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5760BD3BAD665071AE5A87E39C4D434F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FAC4671714DCA4C45A494D4968E232A9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>579F58D6080088AE5C16AB683F6D23EF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>feedbackActivity.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/feedbackActivity.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>597DA470397C112E058E3F2B0A326511</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Core-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/Core-Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>59EC9B3E04F4D632E52535931860B97A</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C1AD9377F9E952BA7D99CB8AD2B1F228</string>
+				<string>5E261C1199A87358009476D86B610D47</string>
+				<string>E7829AD3096083C983BBEFB9482A9A4D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleToolboxForMac</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E261C1199A87358009476D86B610D47</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CA0F82805445B92DE6A1C13BF2BDD9B1</string>
+				<string>2C62CBA32961128DFF7304EC0C246DF4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>NSData+zlib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>63645274736672804EC7714131E97457</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6C857B25DE66191E654F6D2B127A98C2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>641525E758A28C59C214E3724D5F2198</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAnalytics.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>665728760EF71ED61DA37ABB046E6C78</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedDelete.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedDelete.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6811FAC9405BF8CD6D9F5F683D2DB493</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>iconCamera.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/iconCamera.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6A55BEA6D94EA68CEBB1316B69500C2D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GTMDefines.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFAD76B7C2FBC3FC43313963BAF0CB1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Analytics.h</string>
+			<key>path</key>
+			<string>Headers/Analytics.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6C857B25DE66191E654F6D2B127A98C2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedRegularHighlighted@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedRegularHighlighted@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F17E89B8BBC7D1290534E82A81E5212</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9C800FD085528259A751ECD2E1CED48B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F94EF079B5350A0549862E4129AC979</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>35D1C3780F49A135CA214EF5EAB88F9D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleSymbolUtilities</string>
+			<key>path</key>
+			<string>GoogleSymbolUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>739CD3CE7D2A9101E8319C54A8D060BF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>894E5DA93A9F359521A89826BE6DA777</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>749523E83BC154F3C4A2E4990800CE0C</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>HockeySDK-HockeySDKResources</string>
+			<key>target</key>
+			<string>3C014F737BF0E4D82F49D1E8DBB98C79</string>
+			<key>targetProxy</key>
+			<string>9EA34252F139E8DF09CE50F8E4A28EBD</string>
+		</dict>
+		<key>74B3B310C2671D132AF6E0A9E01BEA12</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2FF919B84A498E7898FB900DAD0AA8C7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>75D98FF52E597A11900E131B6C4E1ADA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E8446514FBAD26C0E18F24A5715AEF67</string>
+				<string>79A9DEDC89FE8336BF5FEDAAF75BF7FC</string>
+				<string>D0405803033A2A777B8E4DFA0C1800ED</string>
+				<string>87B213035BAC5F75386F62D3C75D2342</string>
+				<string>894E5DA93A9F359521A89826BE6DA777</string>
+				<string>E7F21354943D9F42A70697D5A5EF72E9</string>
+				<string>CBC0F7C552B739C909B650A0F42F7F38</string>
+				<string>2BCC458FDD5F692BBB2BFC64BB5701FC</string>
+				<string>977577C045EDA9D9D1F46E2598D19FC7</string>
+				<string>DA312349A49333542E6F4B36B329960E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>path</key>
+			<string>Target Support Files/Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>776EACDC46D04A74BE8D52C2E82C15D5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CEE008027078BECADB19D3C738E02E0B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>77C3E84E939AB3190902B0B7681E1004</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A150F0333920A3A807D6D7A8D7A7807E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>790E5FC279BA7C0AEFDAA7969F7BE525</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>7DCE79431A327A44BE70FFBB38FFBA15</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>79A9DEDC89FE8336BF5FEDAAF75BF7FC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>79F5B9D0504B65061471F16042713008</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Analytics-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/Analytics-Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7C3F60A0180E03DD2C7E2BEBD5D27EBE</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>83F7E95FFEFF299CD80F717B5D90D090</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>7C5AB4BAECE90A9F2941FFF569DF7CB2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedRegular@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedRegular@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7CC83BA3F90CB07C8939AD3B7B927E53</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Rectangle.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Rectangle.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7CFB3ADE367D2692775C304F8709CCC2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A5369A580EB154422D323F5F48C0D3D9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
+				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
+				<string>911A07CD03F066FFE4540FBE446D6AAA</string>
+				<string>C4FD0EB08C579237182767C6C745C242</string>
+				<string>B7B80995527643776607AFFA75B91E24</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7DCE79431A327A44BE70FFBB38FFBA15</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>816C42995B259F5CFEE129606FE5B936</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CF6707293D3428C0DC5AB1890D356CAA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseAnalytics</string>
+			<key>path</key>
+			<string>FirebaseAnalytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8244ED19A8DAEA88005DA524A15E85DF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Blur@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Blur@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>82A99CB21851D608DF7F7B70FB329EFD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedDeleteHighlighted.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>82DB14E97E3422622FC8C1CFC10C3D44</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Arrow@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Arrow@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>83B4F31C5FEF07393032C9C822ACF25E</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>HockeySDKResources</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>bundle</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>83F7E95FFEFF299CD80F717B5D90D090</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2BCC458FDD5F692BBB2BFC64BB5701FC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>85FF21BD92EEA12FABF49B5FB6166994</key>
+		<dict>
+			<key>fileRef</key>
+			<string>403DE12C0904889F5E9D1B99D3DCFF4B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>869FA270BD2E6DD19162E79633A323B0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>feedbackActivity@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/feedbackActivity@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87B213035BAC5F75386F62D3C75D2342</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87F4ED3388A62ABFDD92F4C6E013C7AC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>zh-Hans.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/zh-Hans.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>894E5DA93A9F359521A89826BE6DA777</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8A38623C6F015D8BC0535740D7C62C9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GGLCore.framework</string>
+			<key>path</key>
+			<string>Frameworks/GGLCore.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8AE6C60F51AF9DEDFD73B95200C94D4B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7C5AB4BAECE90A9F2941FFF569DF7CB2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8B465D54C800F29955B1EAA69CEF1CAD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CA0F82805445B92DE6A1C13BF2BDD9B1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>8ED0654955869D7CD0501B5220685FF8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FEFC9F14769BE1E5C59E8F693CEA893F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>911A07CD03F066FFE4540FBE446D6AAA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>816C42995B259F5CFEE129606FE5B936</string>
+				<string>C264F6C9E031C88C795C5D78DBC6C412</string>
+				<string>42F05D4C3AD1EC7537215395FB68B422</string>
+				<string>1BC9360E419DCF096E12B1D726328FEB</string>
+				<string>566099C1B8F78562086BFFBF1B2B33A9</string>
+				<string>B07D09B4664CE16A4FFF8C8CBC1C4438</string>
+				<string>6F94EF079B5350A0549862E4129AC979</string>
+				<string>59EC9B3E04F4D632E52535931860B97A</string>
+				<string>985D1F16AD6CDDBF3C24622C583FFCE8</string>
+				<string>B21041552F2BB54ACFE15FDC10FAD8E8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>91B611F8E5BB709FBE11A2D05598665C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7CC83BA3F90CB07C8939AD3B7B927E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>91DE269266CE9182C7402DEE01E9DCFC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>55D4AF01C1F707CFF254FF5EC1E6332F</string>
+				<string>04C41D8BC711BB49803BC342BF687676</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>AllFeaturesLib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>92BB131FA876445E027D20AE23EA7B5F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>EA52F66354E9F71BC37B9128BC55EABF</string>
+			<key>buildPhases</key>
+			<array>
+				<string>1B13920EEE24EB507A2EF0EDCE9770C7</string>
+				<string>790E5FC279BA7C0AEFDAA7969F7BE525</string>
+				<string>9C7DF7BA6D3248730861A2FB6E19B4BC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>GoogleToolboxForMac</string>
+			<key>productName</key>
+			<string>GoogleToolboxForMac</string>
+			<key>productReference</key>
+			<string>A6A2E86766A796D21475A93A7A676FEB</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>94D81D36BFD6B9DEE92D5A60AF290DB7</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>977577C045EDA9D9D1F46E2598D19FC7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>985D1F16AD6CDDBF3C24622C583FFCE8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>91DE269266CE9182C7402DEE01E9DCFC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HockeySDK</string>
+			<key>path</key>
+			<string>HockeySDK</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>98A0252E126739B2C842686F7F9B17F1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8244ED19A8DAEA88005DA524A15E85DF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>98A50D63C57EF1721AB05F78E35471F3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>022E1305CCAA2FF5640242F00140BD25</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>98C216C617043F0B199516300357CBCB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Arrow@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Arrow@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>991443A4763A524184E1C1328DB59C80</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>es.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/es.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>99F243DB52C2CBE3BB823A1D5146B119</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4B3A7C1679A8224127B5534C28BD2FF9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9B45C853EE8CFFC1B24721A6D58ECAE8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1F433514B7A458BA9962C7A1F27D948A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9C35EF9D3E8D51FEF09F09AEE97B4635</key>
+		<dict>
+			<key>fileRef</key>
+			<string>665728760EF71ED61DA37ABB046E6C78</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9C602C7BEF5548774EE4648554C9C986</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B8BFBAB5B396535D60CA1A63DFCBFB98</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9C7DF7BA6D3248730861A2FB6E19B4BC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9C602C7BEF5548774EE4648554C9C986</string>
+				<string>A76E9C6510EC3CBA92D72C206673FF46</string>
+				<string>8B465D54C800F29955B1EAA69CEF1CAD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9C800FD085528259A751ECD2E1CED48B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Rectangle@3x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Rectangle@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9EA34252F139E8DF09CE50F8E4A28EBD</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>3C014F737BF0E4D82F49D1E8DBB98C79</string>
+			<key>remoteInfo</key>
+			<string>HockeySDK-HockeySDKResources</string>
+		</dict>
+		<key>9ED5D68F96A6FE00A05AD29F6D0DA1AD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedDelete@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedDelete@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9FD223E7F72DF0CE08258059356A3917</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/GoogleInterchangeUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0242CF0FE4CBA42446ECC19419B6620</key>
+		<dict>
+			<key>fileRef</key>
+			<string>55FC7E6B7D8CD50E1ADBA06579A11A18</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A150F0333920A3A807D6D7A8D7A7807E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>pt-PT.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/pt-PT.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A15257B4A7CAF8ACA422EA198040743E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFAD76B7C2FBC3FC43313963BAF0CB1</string>
+				<string>5715EBA56CA713CAA6C3235C7C0B41FF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Analytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A213D8D5305A63E3304935EBB5E7BC66</key>
+		<dict>
+			<key>fileRef</key>
+			<string>82DB14E97E3422622FC8C1CFC10C3D44</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A4DC6A053094C4A60FCC84313A52688B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1C8B6695698CB6B57AD92D0541DC7B39</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A510653F52BE12202CC218C408B334AE</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>5760BD3BAD665071AE5A87E39C4D434F</string>
+				<string>D85D0C32D052557AAED9098655219240</string>
+				<string>A213D8D5305A63E3304935EBB5E7BC66</string>
+				<string>D150B487AF49A40B7C779C1F5110AC5C</string>
+				<string>26035D03DD35459CE5EC042B76947A9C</string>
+				<string>A0242CF0FE4CBA42446ECC19419B6620</string>
+				<string>A82E7E95C363836A50EE842C911BCE54</string>
+				<string>A4DC6A053094C4A60FCC84313A52688B</string>
+				<string>85FF21BD92EEA12FABF49B5FB6166994</string>
+				<string>98A0252E126739B2C842686F7F9B17F1</string>
+				<string>9C35EF9D3E8D51FEF09F09AEE97B4635</string>
+				<string>F640777A57A5A43F6B052F3CB2D1227F</string>
+				<string>F72DD12B9FD770BD5C61B247C9BB35E6</string>
+				<string>E0C0FB3FF317B9A48DD1EDC06218F9EF</string>
+				<string>2DCDFB8DE25721AEF30490982AD3DD42</string>
+				<string>8AE6C60F51AF9DEDFD73B95200C94D4B</string>
+				<string>F46372D08527C9E5B2D9829144388777</string>
+				<string>63645274736672804EC7714131E97457</string>
+				<string>16123269223B014A45DF85A400D846F9</string>
+				<string>B474B49BB5CFD5E6C258B996B0FC847A</string>
+				<string>AE8D66F02A3958F8E8F2C6BAD097DA41</string>
+				<string>9B45C853EE8CFFC1B24721A6D58ECAE8</string>
+				<string>4534CD22129787E011DB2FD9E8021DEC</string>
+				<string>0A02F4EB0DBBC92B221459C91C2E368E</string>
+				<string>1CD43A7A40813BD66639A86BC34ECBB5</string>
+				<string>BB9FF87651BAC7FDC6719EF8E7780B3C</string>
+				<string>DB28BBD5CFB7C1454E5D3147F5B3EFD9</string>
+				<string>02E304FDF6B4E2BEE98B1CB376B1C499</string>
+				<string>DCD8737D8DF3A14F3442F1C3CA835D5C</string>
+				<string>8ED0654955869D7CD0501B5220685FF8</string>
+				<string>7CFB3ADE367D2692775C304F8709CCC2</string>
+				<string>48824B3684D2DCB8076D47C04F09D832</string>
+				<string>C22367563F2D0F7FDD222BE38C985518</string>
+				<string>0BB42B52BB3CFAB9691D32A88715AF8A</string>
+				<string>99F243DB52C2CBE3BB823A1D5146B119</string>
+				<string>C1836B13373FEA8873C95DCA32C08D31</string>
+				<string>FEDF6E6EDEC7D17CA8E2E5D478088D09</string>
+				<string>280DA857779FC1D5A702C2B980A8E725</string>
+				<string>E734D38194FF7C32820D03E55C4C4FE7</string>
+				<string>495430AB5D7B4CF306379A6CA860741D</string>
+				<string>74B3B310C2671D132AF6E0A9E01BEA12</string>
+				<string>98A50D63C57EF1721AB05F78E35471F3</string>
+				<string>77C3E84E939AB3190902B0B7681E1004</string>
+				<string>776EACDC46D04A74BE8D52C2E82C15D5</string>
+				<string>91B611F8E5BB709FBE11A2D05598665C</string>
+				<string>10C02C1DF5EB1C46F47C934647FE160D</string>
+				<string>6F17E89B8BBC7D1290534E82A81E5212</string>
+				<string>FDB3A9D29603047D2F26DA0DE5285AF1</string>
+				<string>CE1F550301BC25B511C5D9D8C6F68D92</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A5369A580EB154422D323F5F48C0D3D9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>hr.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/hr.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6729D4554934C85D36813956E7CC343</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6A2E86766A796D21475A93A7A676FEB</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>GoogleToolboxForMac.framework</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>A76E9C6510EC3CBA92D72C206673FF46</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6A55BEA6D94EA68CEBB1316B69500C2D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A78FED5256E4043A7A6580DBD4EB3BD4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>hu.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/hu.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A82E7E95C363836A50EE842C911BCE54</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1E575F589491467074CBFC8E95D2B432</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AB76909B21DCADFD5CA9DFA5E6563C74</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FIRInstanceID.h</string>
+			<key>path</key>
+			<string>Sources/FIRInstanceID.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ACCADF2B4CCA1E18B7E0E397A8EE5751</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>34A6620D6DF098B7B42EB253FB19CA87</string>
+				<string>C93955D78CA7D606A0872453FCC921E9</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>AE8D66F02A3958F8E8F2C6BAD097DA41</key>
+		<dict>
+			<key>fileRef</key>
+			<string>551938C9D5C69FB52FA5EF086A70A275</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AF5A33CAE747988723CB39520111DC1D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2C62CBA32961128DFF7304EC0C246DF4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>AF9767AE2AB06AC02358545E31BECBB0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>79F5B9D0504B65061471F16042713008</string>
+				<string>F00C33733C992DBD035B828E19F08C0B</string>
+				<string>597DA470397C112E058E3F2B0A326511</string>
+				<string>1DB66EC3B4CD974B50458F30A2FBB7A8</string>
+				<string>447CC86B12C273AAE3C9F4D66F0C3C5A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Core</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AFF458D2FD8532A6058F150C6F144675</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GAIEcommerceFields.h</string>
+			<key>path</key>
+			<string>Sources/GAIEcommerceFields.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B00D815AB0682D268D51760947A1DA8C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>IconGradient@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/IconGradient@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B07D09B4664CE16A4FFF8C8CBC1C4438</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F5F90CED2E47931BCA3FF426810F55B3</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -785,7 +1982,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>ADEA1504D04332341674A43196061009</key>
+		<key>B1C1157E9838BFD35E74BBBAB25B4C1C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -800,16 +1997,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B1173D240A5B8756BE2A6395EC2F02B8</key>
+		<key>B21041552F2BB54ACFE15FDC10FAD8E8</key>
 		<dict>
 			<key>children</key>
-			<array>
-				<string>E025D73D4B4E83AE017A2CD3C8764EF2</string>
-			</array>
+			<array/>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>R.swift</string>
+			<key>path</key>
+			<string>R.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -886,20 +2083,14 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>B53A10ECA455971C571132D1D9607C2D</key>
+		<key>B474B49BB5CFD5E6C258B996B0FC847A</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>725C7D5D6560368E488258AA3DCA9CFF</string>
-			</array>
+			<key>fileRef</key>
+			<string>CE13F80328C232ECCF640E35C33AA5B8</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
-		<key>B5B059A80BA33CD104BEEF964BF5BFA7</key>
+		<key>B4DB8BB56F1E831753C8B8CFBE3C3C78</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -908,11 +2099,37 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GAILogger.h</string>
+			<string>GAIEcommercePromotion.h</string>
 			<key>path</key>
-			<string>Sources/GAILogger.h</string>
+			<string>Sources/GAIEcommercePromotion.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B59083EA49F823F57646E78C19467736</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleSymbolUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/GoogleSymbolUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B701456F8493782788D7A800270B751D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>739CD3CE7D2A9101E8319C54A8D060BF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>B7B80995527643776607AFFA75B91E24</key>
 		<dict>
@@ -926,6 +2143,47 @@
 			<string>Targets Support Files</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B8BFBAB5B396535D60CA1A63DFCBFB98</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B9BAF36ABFDD3CF23EBB116A3E65ECF1</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>ACCADF2B4CCA1E18B7E0E397A8EE5751</string>
+			<key>buildPhases</key>
+			<array>
+				<string>B701456F8493782788D7A800270B751D</string>
+				<string>C5A93F64C21DCE2BA8716DCC8FAE516C</string>
+				<string>7C3F60A0180E03DD2C7E2BEBD5D27EBE</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>0A2554300978F087FA7DCABE91C88D10</string>
+				<string>749523E83BC154F3C4A2E4990800CE0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>productName</key>
+			<string>Pods</string>
+			<key>productReference</key>
+			<string>1C4F98664F0D531EBD1AD654A218458B</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
 		</dict>
 		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
 		<dict>
@@ -944,20 +2202,25 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>BB5D32B5D8FFDA27126FB97ADA2F84CF</key>
+		<key>BB9FF87651BAC7FDC6719EF8E7780B3C</key>
 		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
+			<key>fileRef</key>
+			<string>BEC05B9FD65E4D8D48C69681D6FFA25E</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods.framework</string>
-			<key>path</key>
-			<string>Pods.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BBB8EE3DBC0869B3AA423D96C9C2B39B</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>92BB131FA876445E027D20AE23EA7B5F</string>
+			<key>remoteInfo</key>
+			<string>GoogleToolboxForMac</string>
 		</dict>
 		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
 		<dict>
@@ -969,6 +2232,32 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BDDAAACB2105285EEA7F15B180BF59D2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedRegular.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedRegular.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEC05B9FD65E4D8D48C69681D6FFA25E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>feedbackActivity@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/feedbackActivity@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -985,10 +2274,160 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C2A55B845C7458B88C6A2F519F8BF274</key>
+		<key>C0FB2742D09ABE13EC84D3833F2C925D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.ar</string>
+			<key>name</key>
+			<string>libGoogleAnalytics.a</string>
+			<key>path</key>
+			<string>Libraries/libGoogleAnalytics.a</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C1836B13373FEA8873C95DCA32C08D31</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B00D815AB0682D268D51760947A1DA8C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C1AD9377F9E952BA7D99CB8AD2B1F228</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6A55BEA6D94EA68CEBB1316B69500C2D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Defines</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C22367563F2D0F7FDD222BE38C985518</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6811FAC9405BF8CD6D9F5F683D2DB493</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C264F6C9E031C88C795C5D78DBC6C412</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>FFFC8B93CEF84E147AD06EA03BF515B9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseCore</string>
+			<key>path</key>
+			<string>FirebaseCore</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C29ACFE689C60F2CDC931BCCE2B2AC9E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C0FB2742D09ABE13EC84D3833F2C925D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C30E3AFAC97B991B051772225823C55A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Ok.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Ok.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C33EAF350ED4C224DDA449773966B4DD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>authorize_denied@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/authorize_denied@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C4FD0EB08C579237182767C6C745C242</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6A2E86766A796D21475A93A7A676FEB</string>
+				<string>D13212ECA59BF803498901FA6280DCC2</string>
+				<string>1C4F98664F0D531EBD1AD654A218458B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C5A93F64C21DCE2BA8716DCC8FAE516C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>37E4BDCD8DFD788A3CD267A722C99334</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C63868EEBC8526F51A0B9DB89B807A1A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseCore.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseCore.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C8A5595740676210AA33A7E57934E094</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>en.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/en.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C93955D78CA7D606A0872453FCC921E9</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>977577C045EDA9D9D1F46E2598D19FC7</string>
+			<string>DA312349A49333542E6F4B36B329960E</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -1022,7 +2461,7 @@
 				<key>MODULEMAP_FILE</key>
 				<string>Target Support Files/Pods/Pods.modulemap</string>
 				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
+				<string>NO</string>
 				<key>OTHER_LDFLAGS</key>
 				<string></string>
 				<key>OTHER_LIBTOOLFLAGS</key>
@@ -1045,18 +2484,20 @@
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>Debug</string>
+			<string>Release</string>
 		</dict>
-		<key>C32520C21B35ED0920DDFB4602D7E929</key>
+		<key>CA0F82805445B92DE6A1C13BF2BDD9B1</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>2BB1FB18518858FDC710898404036187</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>GTMNSData+zlib.h</string>
+			<key>path</key>
+			<string>Foundation/GTMNSData+zlib.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1073,6 +2514,108 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>CE13F80328C232ECCF640E35C33AA5B8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Cancel@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Cancel@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CE1F550301BC25B511C5D9D8C6F68D92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>87F4ED3388A62ABFDD92F4C6E013C7AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>CEE008027078BECADB19D3C738E02E0B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>pt.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/pt.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CF6707293D3428C0DC5AB1890D356CAA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>641525E758A28C59C214E3724D5F2198</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CFC181C2C6738083E9DE937FC50FE7FE</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>A6729D4554934C85D36813956E7CC343</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/GoogleToolboxForMac/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>GoogleToolboxForMac</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
 		<key>D0405803033A2A777B8E4DFA0C1800ED</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1086,25 +2629,27 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D32C108AA4873DF1ECF47911ACB9ECEF</key>
+		<key>D13212ECA59BF803498901FA6280DCC2</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>64327F3BB993870368C2306E1624EC77</string>
-				<string>08D670627C20706E0C030A818A7F6E00</string>
-				<string>2F48FD8C0AAF1B05720D4E83626AA65E</string>
-				<string>859E4687FEEED96066129FCF37DED51C</string>
-				<string>AD4FDD33C2D2664C48C7357DE0C3266A</string>
-				<string>65994B68B764881C9B4D7AA4710372C0</string>
-				<string>F20CAB62CD2CF33256F151CE8AAB582F</string>
-				<string>0196023EA9ED79D6D12E77396768D8BB</string>
-			</array>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>Pods</string>
+			<string>HockeySDKResources.bundle</string>
+			<key>path</key>
+			<string>HockeySDKResources.bundle</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D150B487AF49A40B7C779C1F5110AC5C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>00E77DB586CB18EA7BFAF8B4202BA3FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -1132,7 +2677,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>1F65C4CD40C947C4415F8D28536735CC</string>
+			<string>C4FD0EB08C579237182767C6C745C242</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -1141,8 +2686,43 @@
 			<string></string>
 			<key>targets</key>
 			<array>
-				<string>1BA84416B19DF31967CCD7D02D962E49</string>
+				<string>92BB131FA876445E027D20AE23EA7B5F</string>
+				<string>3C014F737BF0E4D82F49D1E8DBB98C79</string>
+				<string>B9BAF36ABFDD3CF23EBB116A3E65ECF1</string>
 			</array>
+		</dict>
+		<key>D644D81B1B2C564496BBCFE149DEB96D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>016E8A01CAF2ACF56E2C71754D3ADF94</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D68B1CE78674DEFBA5033CF8F79EE8C9</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>HockeySDK.framework</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85D0C32D052557AAED9098655219240</key>
+		<dict>
+			<key>fileRef</key>
+			<string>98C216C617043F0B199516300357CBCB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>DA312349A49333542E6F4B36B329960E</key>
 		<dict>
@@ -1157,45 +2737,64 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E025D73D4B4E83AE017A2CD3C8764EF2</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleSymbolUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E151796BBCB376D96AD1C38DD0B21AC6</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>C2A55B845C7458B88C6A2F519F8BF274</string>
-				<string>A45600AE25D694ADA946D57641D6DF9F</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>E74B4E539866F968CD763FD8ED40E4BF</key>
+		<key>DAA924FE89A3AF9B4A26A9B536917C73</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GAIEcommerceFields.h</string>
+			<string>it.lproj</string>
 			<key>path</key>
-			<string>Sources/GAIEcommerceFields.h</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/it.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DB28BBD5CFB7C1454E5D3147F5B3EFD9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>33B188BA73AC9F9AF06C91314DD4FFAA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DCD8737D8DF3A14F3442F1C3CA835D5C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>075BF982A12CCB85BADD07F3108BAA65</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E0C0FB3FF317B9A48DD1EDC06218F9EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>511F05CCAE8480184F5D8D3ACBD7FCFB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E734D38194FF7C32820D03E55C4C4FE7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F75F40C77D11DDAE033F150691DBE966</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7829AD3096083C983BBEFB9482A9A4D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>0635CB409599626203089CC4A73157D7</string>
+				<string>A6729D4554934C85D36813956E7CC343</string>
+				<string>5707FCC248ECD79082BBF5D0A9986F39</string>
+				<string>15B0EA76A5CEA09D0C0BE60A22C30BFC</string>
+				<string>B8BFBAB5B396535D60CA1A63DFCBFB98</string>
+				<string>069E0A0488C2B9A2553783DF7C754AE3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/GoogleToolboxForMac</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1225,54 +2824,103 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>EBEE243D9D663D6117522C3A251536F6</key>
+		<key>E92AE5CEC8E66FC264BFCEBEB6482786</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>A6729D4554934C85D36813956E7CC343</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/GoogleToolboxForMac/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>GoogleToolboxForMac</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E9B49EA9EF56E0FCEA06A2E9FFF6339C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>buttonRoundedRegularHighlighted.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/buttonRoundedRegularHighlighted.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EA52F66354E9F71BC37B9128BC55EABF</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>CFC181C2C6738083E9DE937FC50FE7FE</string>
+				<string>E92AE5CEC8E66FC264BFCEBEB6482786</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>EB864ADBFCF7E8F1C4D1387974950270</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>GAITrackedViewController.h</string>
+			<string>GGLAnalytics.framework</string>
 			<key>path</key>
-			<string>Sources/GAITrackedViewController.h</string>
+			<string>Frameworks/GGLAnalytics.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>EE56C2466FC4ECFC45596D0611E1A5B2</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>273A602192FDAF6FA13FC3E962C30C82</string>
-				<string>F2F4750DACBFE55A1D207B5B6DD503D7</string>
-				<string>29C5439F80E0EB87DA9EA62B559F9A2C</string>
-				<string>5F0362E17077DA279B7D5407E4114403</string>
-				<string>04A86DE57DBAF520830C0183C5C97C32</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Core</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F20CAB62CD2CF33256F151CE8AAB582F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B53A10ECA455971C571132D1D9607C2D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleUtilities</string>
-			<key>path</key>
-			<string>GoogleUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F2F4750DACBFE55A1D207B5B6DD503D7</key>
+		<key>F00C33733C992DBD035B828E19F08C0B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1287,33 +2935,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F3168C673007601935FDD8CF0A0C1C66</key>
+		<key>F20459413C452339178C8E538AC6BE12</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>4F53192D75EB99D6C9B6BE7F2A55ECD7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>F363D3AF5CB1925DE93CD2FC53C9D76D</key>
-		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>GGLCore.framework</string>
+			<string>iconCamera@2x.png</string>
 			<key>path</key>
-			<string>Frameworks/GGLCore.framework</string>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/iconCamera@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FD2182B9E81A653584B2AAED58CF148F</key>
+		<key>F234E653BF80FEC927D352FAD985848C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1322,9 +2957,163 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GAI.h</string>
+			<string>GAIEcommerceProductAction.h</string>
 			<key>path</key>
-			<string>Sources/GAI.h</string>
+			<string>Sources/GAIEcommerceProductAction.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F46372D08527C9E5B2D9829144388777</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E9B49EA9EF56E0FCEA06A2E9FFF6339C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F5F90CED2E47931BCA3FF426810F55B3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9FD223E7F72DF0CE08258059356A3917</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F640777A57A5A43F6B052F3CB2D1227F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9ED5D68F96A6FE00A05AD29F6D0DA1AD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F6FC1AFC1C93507368BAEFC83CB8510F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GAIEcommerceProduct.h</string>
+			<key>path</key>
+			<string>Sources/GAIEcommerceProduct.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F72DD12B9FD770BD5C61B247C9BB35E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>82A99CB21851D608DF7F7B70FB329EFD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F75F40C77D11DDAE033F150691DBE966</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>nl.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/nl.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F8908151D72A2187F2AE6A0481F8DDBB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Rectangle@2x.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Rectangle@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FA4DC611E350677E1C81744A4385DF99</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>ja.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/ja.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FAC4671714DCA4C45A494D4968E232A9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Arrow.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Arrow.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FAE6961EE701B22DFA08A89E7575DE3E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Cancel.png</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/Cancel.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FDB3A9D29603047D2F26DA0DE5285AF1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4B5C6C907C93931597EB2FD7C142DA6B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FEDF6E6EDEC7D17CA8E2E5D478088D09</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DAA924FE89A3AF9B4A26A9B536917C73</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FEFC9F14769BE1E5C59E8F693CEA893F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>fr.lproj</string>
+			<key>path</key>
+			<string>HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle/fr.lproj</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FFFC8B93CEF84E147AD06EA03BF515B9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C63868EEBC8526F51A0B9DB89B807A1A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
