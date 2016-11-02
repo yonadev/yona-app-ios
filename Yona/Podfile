@@ -5,4 +5,4 @@ use_frameworks!
 
 pod 'R.swift'
 pod 'HockeySDK', '~> 3.8.5'
-pod 'Google/Analytics'
+pod 'GoogleAnalytics'
