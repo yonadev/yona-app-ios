@@ -21,7 +21,7 @@ static NSString * baseUrl;
 
 @implementation EnvironmentManager
 
-
+// changed to set prod as standard 
 + (NSString *)baseUrlString
 {
     
