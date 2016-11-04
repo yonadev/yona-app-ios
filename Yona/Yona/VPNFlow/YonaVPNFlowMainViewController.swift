@@ -129,13 +129,6 @@ class YonaVPNFlowMainViewController: UIViewController {
         if view.frame.size.height < 500 {
             topTitleConstarint.constant = 0
             spacerView1HeightConstraint.constant = 0
-//            var fr = spacerView1.frame
-//            fr.size.height = 0
-//            spacerView1.frame = fr
-//
-//            fr = spacerView2.frame
-//            fr.size.height = 0
-//            spacerView2.frame = fr
             
             spacerView1.layoutIfNeeded()
             spacerView2
