@@ -843,6 +843,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods;
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -857,6 +858,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = HockeySDKResources;
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -866,9 +868,10 @@
 		83B4F31C5FEF07393032C9C822ACF25E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = HockeySDKResources;
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -937,6 +940,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods;
+				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
