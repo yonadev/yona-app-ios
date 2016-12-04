@@ -27,13 +27,16 @@ static NSString * baseUrl;
     
     switch ([[self environment] integerValue]) {
         case DeploymentEnvironmentDev:
-            baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
+            //baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
+            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
             break;
         case DeploymentEnvironmentQA:
-            baseUrl = @"http://85.222.227.84/"; // http://85.222.227.142/
+            //baseUrl = @"http://85.222.227.84/"; // http://85.222.227.142/
+            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
             break;
         default:
-            baseUrl = @"http://85.222.227.84/";
+            //baseUrl = @"http://85.222.227.84/";
+            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
             break;
     }
     return baseUrl;
