@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -68,14 +68,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofH-LR-W23">
-                        <rect key="frame" x="32" y="74" width="312" height="32"/>
+                        <rect key="frame" x="32" y="74" width="312" height="20"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.90588235859999999" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="Ssc-LM-S68"/>
+                            <constraint firstAttribute="height" constant="20" id="Ssc-LM-S68"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJn-uq-xvu">
-                        <rect key="frame" x="76" y="113" width="30" height="14"/>
+                        <rect key="frame" x="76" y="101" width="30" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="dGv-oh-QXx"/>
                             <constraint firstAttribute="height" constant="14" id="mjJ-Hf-yLg"/>
@@ -85,7 +85,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTd-oi-Jlz">
-                        <rect key="frame" x="219" y="113" width="28" height="14"/>
+                        <rect key="frame" x="219" y="101" width="28" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="KDS-6Z-ZxV"/>
                             <constraint firstAttribute="width" constant="28" id="aXO-5j-cdD"/>
@@ -95,7 +95,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x37-mI-luS">
-                        <rect key="frame" x="266" y="113" width="30" height="14"/>
+                        <rect key="frame" x="266" y="101" width="30" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="KP1-3X-bwL"/>
                             <constraint firstAttribute="height" constant="14" id="SQR-ZM-uN2"/>
@@ -105,28 +105,28 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnMoon" translatesAutoresizingMaskIntoConstraints="NO" id="oPC-P6-3Gp">
-                        <rect key="frame" x="32" y="112" width="15" height="15"/>
+                        <rect key="frame" x="32" y="100" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="AcJ-ba-bPq"/>
                             <constraint firstAttribute="height" constant="15" id="DWX-86-4QK"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnSun" translatesAutoresizingMaskIntoConstraints="NO" id="3fL-NV-I6V">
-                        <rect key="frame" x="180" y="111" width="15" height="15"/>
+                        <rect key="frame" x="180" y="99" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="BpM-rc-ajc"/>
                             <constraint firstAttribute="height" constant="15" id="HRT-qO-Psv"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnMoon" translatesAutoresizingMaskIntoConstraints="NO" id="SpK-A8-xhE">
-                        <rect key="frame" x="329" y="111" width="15" height="15"/>
+                        <rect key="frame" x="329" y="99" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="kpm-yn-ERA"/>
                             <constraint firstAttribute="height" constant="15" id="mHJ-Nl-rgu"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgf-kD-SXI">
-                        <rect key="frame" x="126" y="113" width="30" height="14"/>
+                        <rect key="frame" x="126" y="101" width="30" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="MQ2-ep-iaw"/>
                             <constraint firstAttribute="height" constant="14" id="rLP-JV-vC2"/>

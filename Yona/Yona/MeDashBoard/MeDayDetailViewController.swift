@@ -261,11 +261,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
                 if goalType == GoalType.BudgetGoalString.rawValue {
-                    cellHeight = 165
+                    cellHeight = 135
                 } else if goalType == GoalType.NoGoGoalString.rawValue {
                     cellHeight = 85
                 } else if goalType == GoalType.TimeZoneGoalString.rawValue {
-                    cellHeight = 165
+                    cellHeight = 135
                 }
             }
             

@@ -21,6 +21,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         if let navbarColor1 = navbarColor1,
             let navbarColor = navbarColor {
             self.navigationController?.navigationBar.backgroundColor = navbarColor1
@@ -31,6 +32,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "FriendsDayViewController")
         

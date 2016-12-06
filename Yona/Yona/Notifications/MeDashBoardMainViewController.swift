@@ -343,9 +343,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let goaltype = activityGoal.goalType {
 
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
-                return 165
+                return 135
             } else if goaltype == "TimeZoneGoal" {
-                return 165
+                return 135
             } else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 // NoGo Control
                 return 86
