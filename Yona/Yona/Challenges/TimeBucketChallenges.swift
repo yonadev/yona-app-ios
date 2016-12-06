@@ -42,7 +42,9 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     @IBOutlet var nogoViewBottomBorder: UIView!
         
     var selectedCategoryView: UIView!
-    var activityCategoriesArray = [Activities]()
+    var activityCategoriesArrayBudget = [Activities]()
+    var activityCategoriesArrayTimeZone = [Activities]()
+    var activityCategoriesArrayNoGoGoal = [Activities]()
     
     var budgetArray = [Goal]()
     var timeZoneArray = [Goal]()
@@ -118,7 +120,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     }
     
     private func setSelectedCategory(categoryView: UIView) {
-        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+//        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
         self.navigationItem.leftBarButtonItem = nil
 
         selectedCategoryView = categoryView
@@ -128,6 +130,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         switch categoryView {
             
         case budgetView:
+            addNewGoalButton.hidden = !(self.activityCategoriesArrayBudget.count > 0)
             categoryHeader = .BudgetGoal
             self.budgetViewBottomBorder.hidden = false
         
@@ -135,11 +138,13 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
 
             
         case timezoneView:
+            addNewGoalButton.hidden = !(self.activityCategoriesArrayTimeZone.count > 0)
             categoryHeader = .TimeZoneGoal
             self.timezoneViewBottomBorder.hidden = false
             NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.timeZone.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
             
         case nogoView:
+            addNewGoalButton.hidden = !(self.activityCategoriesArrayNoGoGoal.count > 0)
             categoryHeader = .NoGoGoal
             self.nogoViewBottomBorder.hidden = false
             NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.noGo.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
@@ -186,7 +191,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         }
     }
     
-    private func callGoals(activities: [Activities], goals: [Goal]?) {
+//    private func callGoals(activities: [Activities], goals: [Goal]?) {
+        private func callGoals( goals: [Goal]?) {
         #if DEBUG
         print("****** GOALS CALLED ******")
         #endif
@@ -209,12 +215,17 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         #endif
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
             Loader.Show()
-            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, activities, goals, error) in
+            ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, budgetactivities,timezoneactivity,nogogoalactivity, goals, error) in
                 Loader.Hide()
                 if success{
-                    self.activityCategoriesArray = activities!
-                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                    self.activityCategoriesArrayBudget = budgetactivities!
+                    self.activityCategoriesArrayTimeZone = timezoneactivity!
+                    self.activityCategoriesArrayNoGoGoal = nogogoalactivity!
+                    
+//                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+//                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                    self.callGoals( goals)
+                    self.setSelectedCategory(self.selectedCategoryView)
                 } else {
                     if let message = message {
                         self.displayAlertMessage(message, alertDescription: "")
@@ -373,13 +384,13 @@ extension TimeBucketChallenges {
             return self.nogoArray.count
             
         case .BudgetActivity:
-            return self.activityCategoriesArray.count
+            return self.activityCategoriesArrayBudget.count
             
         case .TimeZoneActivity:
-            return self.activityCategoriesArray.count
+            return self.activityCategoriesArrayTimeZone.count
             
         case .NoGoActivity:
-            return self.activityCategoriesArray.count
+            return self.activityCategoriesArrayNoGoGoal.count
         }
     }
     
@@ -399,7 +410,7 @@ extension TimeBucketChallenges {
             }
             
         case .BudgetActivity:
-            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.activityCategoriesArrayBudget[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
             
         case .TimeZoneGoal:
@@ -420,7 +431,7 @@ extension TimeBucketChallenges {
             }
             
         case .TimeZoneActivity:
-            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.activityCategoriesArrayTimeZone[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
             
         case .NoGoGoal:
@@ -434,7 +445,7 @@ extension TimeBucketChallenges {
             }
             
         case .NoGoActivity:
-            cell.textLabel?.text = self.activityCategoriesArray[indexPath.row].activityCategoryName!
+            cell.textLabel?.text = self.activityCategoriesArrayNoGoGoal[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
         }
         
@@ -446,7 +457,7 @@ extension TimeBucketChallenges {
         if categoryHeader == .BudgetGoal || categoryHeader == .BudgetActivity{
             switch categoryHeader {
             case .BudgetActivity:
-                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+                self.activitySelected = self.activityCategoriesArrayBudget[indexPath.row]
             case .BudgetGoal:
                 self.budgetGoalSelected = self.budgetArray[indexPath.row]
             default:
@@ -456,7 +467,7 @@ extension TimeBucketChallenges {
         } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
             switch categoryHeader {
             case .TimeZoneActivity:
-                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+                self.activitySelected = self.activityCategoriesArrayTimeZone[indexPath.row]
             case .TimeZoneGoal:
                 self.budgetGoalSelected = self.timeZoneArray[indexPath.row]
             default:
@@ -466,7 +477,7 @@ extension TimeBucketChallenges {
         } else if categoryHeader == .NoGoGoal  || categoryHeader == .NoGoActivity {
             switch categoryHeader {
             case .NoGoActivity:
-                self.activitySelected = self.activityCategoriesArray[indexPath.row]
+                self.activitySelected = self.activityCategoriesArrayNoGoGoal[indexPath.row]
             case .NoGoGoal:
                 self.budgetGoalSelected = self.nogoArray[indexPath.row]
             default:

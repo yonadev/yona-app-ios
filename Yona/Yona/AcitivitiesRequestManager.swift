@@ -18,7 +18,9 @@ class ActivitiesRequestManager {
     static let sharedInstance = ActivitiesRequestManager()
     
     private var newActivity: Activities?
-    private var activitiesNotGoals: [Activities] = []
+    private var activitiesBudgetGoals: [Activities] = []
+    private var activitiesNoGoGoals: [Activities] = []
+    private var activitiesTimeZoneGoals: [Activities] = []
     private var activities:[Activities] = [] //array containing all the activities returned by getActivities
     
     private var timeLineAcitivityCompletion : APITimeLineUserGoalsRespons?
@@ -31,28 +33,63 @@ class ActivitiesRequestManager {
      
      - parameter APIActivitiesGoalsArrayResponse Completion block returning the activites not yet added as goals and all the goals the user has to use
      */
-    func getActivitiesNotAddedWithTheUsersGoals(onCompletion: APIActivitiesGoalsArrayResponse) {
+    func getActivitiesNotAddedWithTheUsersGoals( onCompletion: APIActivitiesGoalsExcludeArrayResponse) {
         self.getActivityCategories{ (success, serverMessage, serverCode, activities, error) in
             if success{
                 GoalsRequestManager.sharedInstance.getAllTheGoals(activities!, onCompletion: { (success, message, code, nil, goals, error) in
                     if success {
                         if let goalsUnwrap = goals{
-                            self.activitiesNotGoals = []
-                            let goalsActivityLinks : [String] = goalsUnwrap.map({$0.activityCategoryLink!})
+                            self.activitiesBudgetGoals = []
+                            self.activitiesTimeZoneGoals = []
+                            self.activitiesNoGoGoals = []
+                            var goalsActivityLinks : [String] = []
+                            let goaltypearr = ["BudgetGoal","TimeZoneGoal","NoGoGoal"]
+     
+                            
+                            goalsActivityLinks.removeAll()
+                            for goal in goalsUnwrap {
+                                    goalsActivityLinks.append(goal.activityCategoryLink!)
+                            }
                             for activity in activities!{
                                 if !goalsActivityLinks.contains(activity.selfLinks!){
-                                    //You don't have it
-                                    self.activitiesNotGoals.append(activity)
+                                        self.activitiesBudgetGoals.append(activity)
+                                        self.activitiesTimeZoneGoals.append(activity)
+                                        self.activitiesNoGoGoals.append(activity)
                                 }
                             }
+                           
+/*  THIS CAN BE ENABLE WHEN THE SERVER HAS BEEN UPDATED TO ALLOW
+    MORE THAN ONE CHALLENGE PR ACITVITY TYPE
+                             
+                             for str  in goaltypearr {
+                                goalsActivityLinks.removeAll()
+                                for goal in goalsUnwrap {
+                                    if (goal.goalType == str || goal.goalType == "NoGoGoal") || str == "NoGoGoal" {
+                                        goalsActivityLinks.append(goal.activityCategoryLink!)
+                                    }
+                                }
+                                for activity in activities!{
+                                    if !goalsActivityLinks.contains(activity.selfLinks!){
+                                        if str == "BudgetGoal"{
+                                            self.activitiesBudgetGoals.append(activity)
+                                        } else if str == "TimeZoneGoal"{
+                                            self.activitiesTimeZoneGoals.append(activity)
+                                        } else {
+                                            self.activitiesNoGoGoals.append(activity)
+                                        }
+                                    }
+                                }
+                            }
+                            */
+                            
                         }
-                        onCompletion(true, message, code, self.activitiesNotGoals, goals, nil)
+                        onCompletion(true, message, code, self.activitiesBudgetGoals,self.activitiesTimeZoneGoals ,self.activitiesNoGoGoals, goals, nil)
                     } else {
-                        onCompletion(false, message, code, self.activitiesNotGoals, goals, nil)
+                        onCompletion(false, message, code, nil, nil,nil,goals, nil)
                     }
                 })
             }else{
-                onCompletion(false, serverMessage, serverCode, nil, nil, nil)
+                onCompletion(false, serverMessage, serverCode, nil, nil, nil,nil, nil)
             }
         }
     }

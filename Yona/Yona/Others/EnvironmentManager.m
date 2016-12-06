@@ -25,6 +25,17 @@ static NSString * baseUrl;
 + (NSString *)baseUrlString
 {
     
+    
+    NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
+    if (url == nil){
+          url = @"http://85.222.227.142/";
+    //    url = @"https://beta.prd.yona.nu/";
+        [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
+    }
+    baseUrl = url;
+    return baseUrl;
+   
+    /*
     switch ([[self environment] integerValue]) {
         case DeploymentEnvironmentDev:
             //baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
@@ -40,7 +51,7 @@ static NSString * baseUrl;
             break;
     }
     return baseUrl;
-    
+    */
 }
 
 + (NSNumber *)environment

@@ -30,6 +30,20 @@ class LoginViewController: LoginSignupValidationMasterView {
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
         
+        
+        serverHiddenView.alpha = 0.0
+        
+        serverHiddenView.layer.cornerRadius = 5.0
+        serverHiddenView.layer.masksToBounds = true
+        serverHiddenView.layer.borderWidth = 1.0
+        serverHiddenView.layer.borderColor = UIColor.whiteColor().CGColor
+
+        let longPressRec = UILongPressGestureRecognizer()
+        longPressRec.minimumPressDuration = 4.0
+        longPressRec.addTarget(self, action: #selector(longPress))
+        infoLabel.addGestureRecognizer(longPressRec)
+        infoLabel.userInteractionEnabled = true
+        
         if !isFromSettings {
             //Get user call
             Loader.Hide()
@@ -96,6 +110,46 @@ class LoginViewController: LoginSignupValidationMasterView {
         scrollViewInsets.top = 0
         scrollView.contentInset = scrollViewInsets
     }
+
+    
+    //MARK: Server changeView
+    
+    @IBAction func didPresChangeServer() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.serverHiddenView.alpha = 0.0
+        })
+        
+        NSUserDefaults.standardUserDefaults().setObject(serverHiddenTextField.text, forKey: "YONA_URL")
+        serverHiddenTextField.resignFirstResponder()
+        
+        
+    }
+
+    @IBAction func cancelChangeServer() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.serverHiddenView.alpha = 0.0
+            })
+        serverHiddenTextField.resignFirstResponder()
+        codeInputView.becomeFirstResponder()
+    }
+
+    
+    @IBAction func longPress(){
+        if let url = NSUserDefaults.standardUserDefaults().stringForKey("YONA_URL") {
+            serverHiddenTextField.text = url
+        }
+        UIView.animateWithDuration(0.3, animations: {
+            self.serverHiddenView.alpha = 1.0
+            }, completion: { completed in
+            self.serverHiddenTextField.becomeFirstResponder()
+        })
+        
+        //animateWithDuration(0.3, animations: {
+        //
+       // })
+    }
+    
+
 
 }
 

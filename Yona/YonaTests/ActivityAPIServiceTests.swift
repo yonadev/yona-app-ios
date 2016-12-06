@@ -46,7 +46,7 @@ class ActivityAPIServiceTests: XCTestCase {
             //confirm mobile number check, static code
             UserRequestManager.sharedInstance.confirmMobileNumber(["code":YonaConstants.testKeys.otpTestCode]) { success, message, code in
                 if success {
-                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, activities, goals, error) in
+                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, budgetactivities, timezoneactivities, nogoactivities, goals, error) in
                         if success{
                             //we added a social and there is always a gambling goal so only one goal should be passed back
                             for activity in activities! {
@@ -98,7 +98,7 @@ class ActivityAPIServiceTests: XCTestCase {
                             GoalsRequestManager.sharedInstance.postUserGoals(bodyTimeZoneSocialGoal) {
                                 (success, serverMessage, serverCode, goal, nil, err) in
                                 if success {
-                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, activities, goals, error) in
+                                    ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals({ (success, message, code, budgetactivities,timezoneactivities, nogoactivities, goals, error) in
                                         if success{
                                             //we added a social and there is always a gambling goal so only one goal should be passed back
                                             for activity in activities! {

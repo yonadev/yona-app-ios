@@ -43,19 +43,19 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let activityName = self.goalCreated?.GoalName{
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                }
-            })
-        } else if let activityName = self.activitiyToPost?.activityCategoryName {
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                }
-            })
-        }
+//        if let activityName = self.goalCreated?.GoalName{
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                }
+//            })
+//        } else if let activityName = self.activitiyToPost?.activityCategoryName {
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                }
+//            })
+//        }
         
         setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
@@ -68,7 +68,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.budgetLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
-        self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+        //self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
 
         
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
@@ -113,6 +113,9 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     }
     
     override func viewWillAppear(animated: Bool) {
+        if let str = activitiyToPost?.activityDescription {
+            appList.text = str
+        }
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
         

@@ -59,19 +59,19 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let activityName = self.goalCreated?.GoalName{
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                }
-            })
-        } else if let activityName = self.activitiyToPost?.activityCategoryName {
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                }
-            })
-        }
+//        if let activityName = self.goalCreated?.GoalName{
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                }
+//            })
+//        } else if let activityName = self.activitiyToPost?.activityCategoryName {
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                }
+//            })
+//        }
         
         configureView()
         configureDatePickerView()
@@ -79,6 +79,10 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     override func viewWillAppear(animated: Bool) {
+        if let str = activitiyToPost?.activityDescription {
+            appList.text = str
+        }
+
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "TimeFrameTimeZoneChallengeViewController")
         
@@ -131,7 +135,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
         timeZoneInstructions.text = NSLocalizedString("challenges.user.TimeZoneDescription", comment: "")
         
-        bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+       // bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
         
         if isFromActivity == true{
