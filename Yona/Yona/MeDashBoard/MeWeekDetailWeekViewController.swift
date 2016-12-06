@@ -246,9 +246,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 } else if other == otherDate {
                     cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
                 } else {
-                    let dateFormatter : NSDateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd MMM"
-                    cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
+                    cell.headerTextLabel.text = "\(otherDateStart.shortDayMonthDateString()) - \(otherDateStart.dateByAddingTimeInterval(7*60*60*24).shortDayMonthDateString())"
                 }
                 var next = false
                 var prev = false

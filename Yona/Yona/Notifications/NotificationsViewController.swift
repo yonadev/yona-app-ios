@@ -243,15 +243,13 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         let cell: YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         let dateTodate = NSDate()
         let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
-        let dateFormatter : NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
         
         if messages[section].first!.creationTime.isSameDayAs(dateTodate) {
             cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
         } else if messages[section].first!.creationTime.isSameDayAs(yesterDate) {
             cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
         } else {
-            cell.headerTextLabel.text =  dateFormatter.stringFromDate(messages[section].first!.creationTime)
+            cell.headerTextLabel.text =  messages[section].first!.creationTime.fullDayMonthDateString()
         }
         return cell
         

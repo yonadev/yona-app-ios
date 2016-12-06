@@ -156,15 +156,13 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         if selectedTab == .left {
-            let dateFormatter : NSDateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
-            
             if timeLineData[section].date.isToday() {
                 cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
             } else if timeLineData[section].date.isYesterday() {
                 cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
             } else {
-                cell.headerTextLabel.text =  dateFormatter.stringFromDate(timeLineData[section].date)
+                
+                cell.headerTextLabel.text =  timeLineData[section].date.fullDayMonthDateString()
             }
             
         } else {

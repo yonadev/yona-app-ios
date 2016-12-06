@@ -396,7 +396,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             } else if currentDate.isYesterday() {
                 cell.headerTextLabel.text = NSLocalizedString("yesterday", comment: "")
             } else {
-                cell.headerTextLabel.text = currentDate.dayMonthDateString()
+                cell.headerTextLabel.text = currentDate.fullDayMonthDateString()
             }
             
             //if date prievious to that show
