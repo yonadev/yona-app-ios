@@ -123,19 +123,19 @@
                         <constraints>
                             <constraint firstItem="SQ0-Ia-uqY" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="1BG-hO-0iK"/>
                             <constraint firstAttribute="trailing" secondItem="gqN-jl-Gky" secondAttribute="trailing" constant="26" id="3G1-B1-1zL"/>
-                            <constraint firstItem="jLf-Pr-tzS" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="183" id="489-iM-DBF"/>
+                            <constraint firstItem="3UN-p4-Mig" firstAttribute="leading" secondItem="Ko6-Lw-VTN" secondAttribute="leading" constant="28" id="3uF-l5-gAN"/>
                             <constraint firstItem="gqN-jl-Gky" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="9Wl-9E-4Wy"/>
-                            <constraint firstItem="nzN-h7-z3X" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="98" id="A6m-Xv-GkH"/>
-                            <constraint firstItem="SQ0-Ia-uqY" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="230" id="CfA-4p-7aH"/>
                             <constraint firstItem="QTi-qR-sCR" firstAttribute="centerX" secondItem="Qxe-DN-kOu" secondAttribute="centerX" id="DNl-Pb-AUa"/>
+                            <constraint firstItem="nzN-h7-z3X" firstAttribute="leading" secondItem="Ko6-Lw-VTN" secondAttribute="leading" constant="71" id="IPi-YG-USh"/>
                             <constraint firstItem="Ko6-Lw-VTN" firstAttribute="top" secondItem="Qxe-DN-kOu" secondAttribute="top" constant="20" id="Lka-dc-v7c"/>
                             <constraint firstItem="nzN-h7-z3X" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="PEh-dz-pxw"/>
                             <constraint firstItem="3UN-p4-Mig" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="QdJ-U2-XK3"/>
+                            <constraint firstItem="jLf-Pr-tzS" firstAttribute="leading" secondItem="Ko6-Lw-VTN" secondAttribute="leading" constant="156" id="VtF-FL-B4k"/>
                             <constraint firstItem="QTi-qR-sCR" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="YBc-KZ-qrm"/>
                             <constraint firstItem="Ko6-Lw-VTN" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="27" id="agP-bK-yMY"/>
                             <constraint firstItem="dvC-BG-1AT" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="bZE-sn-1tb"/>
                             <constraint firstAttribute="trailing" secondItem="Ko6-Lw-VTN" secondAttribute="trailing" constant="27" id="dpf-H8-gQ2"/>
-                            <constraint firstItem="3UN-p4-Mig" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="55" id="hry-dg-hdh"/>
+                            <constraint firstItem="SQ0-Ia-uqY" firstAttribute="leading" secondItem="Ko6-Lw-VTN" secondAttribute="leading" constant="203" id="o2R-94-hLs"/>
                             <constraint firstItem="jLf-Pr-tzS" firstAttribute="top" secondItem="Ko6-Lw-VTN" secondAttribute="bottom" constant="3" id="uBs-nc-H12"/>
                             <constraint firstItem="dvC-BG-1AT" firstAttribute="leading" secondItem="Qxe-DN-kOu" secondAttribute="leading" constant="28" id="w9Z-Wz-2JG"/>
                         </constraints>
@@ -155,14 +155,14 @@
             <connections>
                 <outlet property="backgroundMinsView" destination="Ko6-Lw-VTN" id="v04-AQ-KZX"/>
                 <outlet property="eightAM" destination="nzN-h7-z3X" id="gnY-kM-eL4"/>
-                <outlet property="eightAmConstraint" destination="A6m-Xv-GkH" id="IFb-fu-68j"/>
+                <outlet property="eightAmConstraint" destination="IPi-YG-USh" id="Qyo-JV-HeN"/>
                 <outlet property="fourAm" destination="3UN-p4-Mig" id="hrX-1n-b7x"/>
-                <outlet property="fourleftConstraint" destination="hry-dg-hdh" id="G5p-gF-rVf"/>
+                <outlet property="fourleftConstraint" destination="3uF-l5-gAN" id="IAB-Kh-163"/>
                 <outlet property="sixteenHundred" destination="jLf-Pr-tzS" id="8gR-6K-QRE"/>
-                <outlet property="sixteenHundredConstraint" destination="489-iM-DBF" id="y7O-cD-YlA"/>
+                <outlet property="sixteenHundredConstraint" destination="VtF-FL-B4k" id="E9E-cx-hZe"/>
                 <outlet property="spacerView" destination="Qxe-DN-kOu" id="KHD-Oq-74W"/>
                 <outlet property="twentyHundred" destination="SQ0-Ia-uqY" id="Abr-jE-UmN"/>
-                <outlet property="twentyHundredConstraint" destination="CfA-4p-7aH" id="R3e-Xe-QEp"/>
+                <outlet property="twentyHundredConstraint" destination="o2R-94-hLs" id="1kp-ZI-lhL"/>
                 <outlet property="userIcon" destination="hc9-ji-HwP" id="c5s-eE-Gnz"/>
                 <outlet property="userInitial" destination="bns-eb-Px0" id="Gu9-BW-DEz"/>
             </connections>
