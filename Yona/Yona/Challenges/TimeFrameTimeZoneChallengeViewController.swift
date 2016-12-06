@@ -98,9 +98,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         picker!.configure(onView:self.view, withCancelListener: {
             self.picker?.hideShowDatePickerView(isToShow: false)
             
-            if self.picker?.cancelButtonTitle.title == "Prev" {
+            if self.picker?.cancelButtonTitle.title == NSLocalizedString("challenge-prev", comment: "") {
                 self.isFromButton = true
-                self.picker?.pickerTitleLabel.title = "From"
+                self.picker?.pickerTitleLabel.title = NSLocalizedString("from", comment: "")
                 
                 if self.activeIndexPath != nil {
                     self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(self.zonesArrayDate[(self.activeIndexPath?.row)!].fromDate)
@@ -109,8 +109,8 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
                         self.picker?.hideShowDatePickerView(isToShow: true).configureWithTime(fromDate)
                     }
                 }
-                self.picker?.cancelButtonTitle.title = "Cancel"
-                self.picker?.okButtonTitle.title = "Next"
+                self.picker?.cancelButtonTitle.title = NSLocalizedString("challenge-cancel", comment: "")
+                self.picker?.okButtonTitle.title = NSLocalizedString("challenge-next", comment: "")
             }
             
         }) { doneValue in
@@ -208,9 +208,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
                 picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
             }
             
-            picker?.pickerTitleLabel("To")
-            picker?.okButtonTitle.title = "Done"
-            picker?.cancelButtonTitle.title = "Prev"
+            picker?.pickerTitleLabel(NSLocalizedString("to", comment: ""))
+            picker?.okButtonTitle.title = NSLocalizedString("challenge-done", comment: "")
+            picker?.cancelButtonTitle.title = NSLocalizedString("challenge-prev", comment: "")
             isFromButton = false
         } else {
             if self.zonesArrayString.count > 0 {
@@ -269,9 +269,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             
             self.activeIndexPath = indexPath
             self.isFromButton = true
-            self.picker?.pickerTitleLabel("From")
-            self.picker?.okButtonTitle.title = "Next"
-            self.picker?.cancelButtonTitle.title = "Cancel"
+            self.picker?.pickerTitleLabel(NSLocalizedString("from", comment: ""))
+            self.picker?.okButtonTitle.title = NSLocalizedString("challenge-next", comment: "")
+            self.picker?.cancelButtonTitle.title = NSLocalizedString("challenge-cancel", comment: "")
             self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             
@@ -279,9 +279,9 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.configureTimeZone(self.picker?.selectedValue)
             
             self.isFromButton = false
-            self.picker?.pickerTitleLabel("To")
-            self.picker?.okButtonTitle.title = "Done"
-            self.picker?.cancelButtonTitle.title = "Prev"
+            self.picker?.pickerTitleLabel(NSLocalizedString("to", comment: ""))
+            self.picker?.okButtonTitle.title = NSLocalizedString("challenge-done", comment: "")
+            self.picker?.cancelButtonTitle.title = NSLocalizedString("challenge-prev", comment: "")
             self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.Delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
         }
         
@@ -329,8 +329,8 @@ extension TimeFrameTimeZoneChallengeViewController {
     @IBAction func addTimeZoneAction(sender: AnyObject) {
         isFromButton = true
         self.isSaved = false
-        picker?.pickerTitleLabel("From")
-        picker?.okButtonTitle.title = "Next"
+        picker?.pickerTitleLabel(NSLocalizedString("from", comment: ""))
+        picker?.okButtonTitle.title = NSLocalizedString("challenge-next", comment: "")
         picker?.hideShowDatePickerView(isToShow: true).configureWithTime(NSDate().dateRoundedDownTo15Minute())
         picker?.datePicker.minuteInterval = timeInterval
         if view.frame.size.height < 570 {
