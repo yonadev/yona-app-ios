@@ -125,6 +125,14 @@
 "requested" = "REQUESTED";
 "accepted" = "ACCEPTED";
 
+//Challenges
+"from" = "From";
+"to" = "To";
+"challenge-next" = "Next";
+"challenge-prev" = "Prev";
+"challenge-cancel" = "Cancel";
+"challenge-done" = "Done";
+
 //Add Friends
 "addfriend" = "ADD FRIEND";
 "invitefriend" = "INVITE FRIEND";

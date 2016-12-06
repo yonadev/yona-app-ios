@@ -262,37 +262,32 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
+        let date: String
         if selectedTab == .left {
-            
-            let dateFormatter : NSDateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
-            
             if leftTabData[section].date.isToday() {
-                cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
+                date = NSLocalizedString("today", comment: "")
             } else if leftTabData[section].date.isYesterday() {
-                cell.headerTextLabel.text =  NSLocalizedString("yesterday", comment: "")
+                date =  NSLocalizedString("yesterday", comment: "")
             } else {
-                cell.headerTextLabel.text =  dateFormatter.stringFromDate(leftTabData[section].date)
+                date =  leftTabData[section].date.fullDayMonthDateString()
             }
-            return cell
-       }
-        // NSDATE has monday as first da
-        let other = rightTabData[section].date.yearWeek
-        
-        let otherDateStart = corretcToday.dateByAddingTimeInterval(-60*60*24*7)
-        let otherDate = otherDateStart.yearWeek
-        
-        if corretcToday.yearWeek == other {
-            cell.headerTextLabel.text = NSLocalizedString("this_week", comment: "")
-        } else if other == otherDate {
-            cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
         } else {
-            let dateFormatter : NSDateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMM"
-            cell.headerTextLabel.text = "\(dateFormatter.stringFromDate(otherDateStart)) - \(dateFormatter.stringFromDate(otherDateStart.dateByAddingTimeInterval(7*60*60*24)))"
+            // NSDATE has monday as first day
+            let other = rightTabData[section].date.yearWeek
+            
+            let otherDateStart = corretcToday.dateByAddingTimeInterval(-60*60*24*7)
+            let otherDate = otherDateStart.yearWeek
+            
+            if corretcToday.yearWeek == other {
+                date = NSLocalizedString("this_week", comment: "")
+            } else if other == otherDate {
+                date =  NSLocalizedString("last_week", comment: "")
+            } else {
+                date = "\(otherDateStart.shortDayMonthDateString()) - \(otherDateStart.dateByAddingTimeInterval(7*60*60*24).shortDayMonthDateString())"
+            }
         }
+        cell.headerTextLabel.text = date.uppercaseString
         return cell
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -348,9 +343,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         if let goaltype = activityGoal.goalType {
 
             if goaltype == "BudgetGoal" && activityGoal.maxDurationMinutes > 0 {
-                return 165
+                return 135
             } else if goaltype == "TimeZoneGoal" {
-                return 165
+                return 135
             } else if goaltype == "NoGoGoal" && activityGoal.maxDurationMinutes == 0  {
                 // NoGo Control
                 return 86

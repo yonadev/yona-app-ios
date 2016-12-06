@@ -13,10 +13,12 @@ extension NSDate {
         return NSCalendar.currentCalendar()
     }
     
-    func dayMonthDateString() -> String { //Woensday, 9 April
-        let dateFormatter : NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "eeee, d MMMM, YYYY "
-        return dateFormatter.stringFromDate(self)
+    func fullDayMonthDateString() -> String { //Woensday, 9 April, 2016
+        return Date.formatterEEEEDMMMMYYYY.stringFromDate(self).uppercaseString
+    }
+    
+    func shortDayMonthDateString() -> String { //9 April
+        return Date.formatterDDMMM.stringFromDate(self).uppercaseString
     }
     
     func isYesterday() -> Bool {
@@ -111,6 +113,18 @@ extension NSDate {
         static let formatterDD: NSDateFormatter = {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "dd"
+            return formatter
+        }()
+        
+        static let formatterDDMMM: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd MMM"
+            return formatter
+        }()
+        
+        static let formatterEEEEDMMMMYYYY: NSDateFormatter = {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "eeee, d MMMM, YYYY"
             return formatter
         }()
 

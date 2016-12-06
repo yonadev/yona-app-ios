@@ -73,16 +73,16 @@ class TimeZoneControlCell : UITableViewCell {
         pxPerSpread = self.backgroundMinsView.frame.size.width / 96
         pxPerMinute = pxPerSpread / 15
         
-        fourleftConstraint.constant = fourLeftIndent * pxPerSpread + self.backgroundMinsView.frame.origin.x - fourAm.frame.size.width/2
+        fourleftConstraint.constant = fourLeftIndent * pxPerSpread - fourAm.frame.size.width/2
         self.fourAm.setNeedsLayout()
         
-        eightAmConstraint.constant = eightLeftIndent * pxPerSpread + self.backgroundMinsView.frame.origin.x - eightAM.frame.size.width/2
+        eightAmConstraint.constant = eightLeftIndent * pxPerSpread - eightAM.frame.size.width/2
         self.eightAM.setNeedsLayout()
         
-        sixteenHundredConstraint.constant = sixteenLeftIndent * pxPerSpread + self.backgroundMinsView.frame.origin.x - sixteenHundred.frame.size.width/2
+        sixteenHundredConstraint.constant = sixteenLeftIndent * pxPerSpread - sixteenHundred.frame.size.width/2
         self.sixteenHundred.setNeedsLayout()
         
-        twentyHundredConstraint.constant = twentyLeftIndent * pxPerSpread + self.backgroundMinsView.frame.origin.x - twentyHundred.frame.size.width/2
+        twentyHundredConstraint.constant = twentyLeftIndent * pxPerSpread - twentyHundred.frame.size.width/2
         self.twentyHundred.setNeedsLayout()
     }
     

@@ -161,6 +161,15 @@
 "requested" = "VERZOEKEN";
 "accepted" = "VERBONDEN";
 
+//Challenges
+"from" = "Van";
+"to" = "Tot";
+"challenge-next" = "Volgend";
+"challenge-prev" = "Vorig";
+"challenge-cancel" = "Cancel";
+"challenge-done" = "Gedaan";
+
+
 //Add Friends
 "addfriend" = "VRIEND TOEVOEGEN";
 "invitefriend" = "VRIEND UITNODIGEN";
