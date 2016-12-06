@@ -23,15 +23,13 @@ protocol TimeZoneChallengeDelegate: class {
     func callGoalsMethod()
 }
 
-class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezoneCellDelegateProtocol,UIAlertViewDelegate {
+class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezoneCellDelegateProtocol, UIAlertViewDelegate {
     
     weak var delegate: TimeZoneChallengeDelegate?
     
     @IBOutlet var headerView: UIView!
     
     @IBOutlet weak var setChallengeButton: UIButton!
-    @IBOutlet weak var timeZoneLabel: UILabel!
-    @IBOutlet weak var timeZoneInstructions: UILabel!
     @IBOutlet weak var timezoneChallengeTitle: UILabel!
     @IBOutlet weak var timezoneChallengeDescription: UILabel!
     @IBOutlet weak var bottomLabelText: UILabel!
@@ -79,6 +77,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "TimeFrameTimeZoneChallengeViewController")
         
@@ -87,6 +86,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         picker?.hideShowDatePickerView(isToShow: false)
     }
     
@@ -129,7 +129,6 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
-        timeZoneInstructions.text = NSLocalizedString("challenges.user.TimeZoneDescription", comment: "")
         
         bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")

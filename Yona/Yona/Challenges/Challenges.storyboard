@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -529,13 +529,13 @@
                                                         <action selector="addTimeZoneAction:" destination="OaK-4S-ODd" eventType="touchUpInside" id="5Hz-PO-7tK"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijdzone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-8c-6az">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges-zone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-8c-6az">
                                                     <rect key="frame" x="30" y="27" width="480" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
                                                     <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waarbinnen gebruik is toegestaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbC-UQ-kyo">
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.user.TimeZoneDescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbC-UQ-kyo">
                                                     <rect key="frame" x="30" y="53" width="251" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="251" id="A30-mo-54e"/>
@@ -837,8 +837,6 @@ onderdeel van deze challenge:</string>
                         <outlet property="scrollView" destination="wSu-Hr-9Ds" id="UWb-JQ-5DB"/>
                         <outlet property="setChallengeButton" destination="Z2j-ti-haz" id="tIH-ck-jc1"/>
                         <outlet property="tableView" destination="9jH-BO-Lpn" id="i9f-48-9AO"/>
-                        <outlet property="timeZoneInstructions" destination="EbC-UQ-kyo" id="zwn-6l-iDZ"/>
-                        <outlet property="timeZoneLabel" destination="mKk-8c-6az" id="RGK-hh-bKn"/>
                         <outlet property="timezoneChallengeDescription" destination="6Em-cj-kPG" id="QfW-eV-caY"/>
                         <outlet property="timezoneChallengeTitle" destination="a6P-sQ-VHj" id="CGL-rK-6Jv"/>
                     </connections>
