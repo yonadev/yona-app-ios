@@ -74,7 +74,7 @@
                             <constraint firstAttribute="height" constant="20" id="Ssc-LM-S68"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJn-uq-xvu">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJn-uq-xvu">
                         <rect key="frame" x="76" y="101" width="30" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="dGv-oh-QXx"/>
@@ -83,6 +83,11 @@
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                         <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dGv-oh-QXx"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTd-oi-Jlz">
                         <rect key="frame" x="219" y="101" width="28" height="14"/>
@@ -93,6 +98,11 @@
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                         <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aXO-5j-cdD"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x37-mI-luS">
                         <rect key="frame" x="266" y="101" width="30" height="14"/>
@@ -103,6 +113,11 @@
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                         <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KP1-3X-bwL"/>
+                            </mask>
+                        </variation>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnMoon" translatesAutoresizingMaskIntoConstraints="NO" id="oPC-P6-3Gp">
                         <rect key="frame" x="32" y="100" width="15" height="15"/>
@@ -134,29 +149,33 @@
                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                         <color key="textColor" red="0.18431372939999999" green="0.18431372939999999" blue="0.18431372939999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MQ2-ep-iaw"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="sbv-Vr-RGw" secondAttribute="trailing" constant="-8" id="3CV-8V-CSq"/>
                     <constraint firstItem="EPo-xQ-Nu1" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="21" id="4J3-ca-bj0"/>
                     <constraint firstItem="4Dm-Zy-EzF" firstAttribute="centerX" secondItem="7rU-t2-PUz" secondAttribute="centerX" id="4L7-41-xlD"/>
+                    <constraint firstItem="sJn-uq-xvu" firstAttribute="leading" secondItem="ofH-LR-W23" secondAttribute="leading" constant="44" id="A3w-pQ-LgJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SpK-A8-xhE" secondAttribute="trailing" constant="23" id="Cm2-ar-B9K"/>
                     <constraint firstItem="ofH-LR-W23" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="24" id="FsV-Z0-FiM"/>
                     <constraint firstItem="sbv-Vr-RGw" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="-8" id="JeF-WV-QJ8"/>
                     <constraint firstItem="4Dm-Zy-EzF" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="3" id="MuX-uP-IoT"/>
                     <constraint firstItem="3fL-NV-I6V" firstAttribute="centerX" secondItem="7rU-t2-PUz" secondAttribute="centerX" id="NQl-9o-BjS"/>
                     <constraint firstItem="SpK-A8-xhE" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="5" id="Rtd-Jj-KCm"/>
+                    <constraint firstItem="x37-mI-luS" firstAttribute="leading" secondItem="ofH-LR-W23" secondAttribute="leading" constant="234" id="Smj-lQ-6gF"/>
                     <constraint firstItem="oPC-P6-3Gp" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="6" id="XaY-nt-QhB"/>
                     <constraint firstItem="iHp-1u-TUE" firstAttribute="leading" secondItem="4Dm-Zy-EzF" secondAttribute="trailing" constant="3" id="Yo7-Pl-56O"/>
                     <constraint firstItem="4Dm-Zy-EzF" firstAttribute="leading" secondItem="EPo-xQ-Nu1" secondAttribute="trailing" id="a0I-hp-T2u"/>
-                    <constraint firstItem="hgf-kD-SXI" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="118" id="bGL-wP-7gJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="iHp-1u-TUE" secondAttribute="trailing" constant="24" id="bKY-X3-WKr"/>
                     <constraint firstItem="EPo-xQ-Nu1" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="24" id="caj-vT-JxM"/>
-                    <constraint firstItem="x37-mI-luS" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="258" id="d40-wv-wVq"/>
-                    <constraint firstItem="MTd-oi-Jlz" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="211" id="duZ-pk-lwF"/>
+                    <constraint firstItem="MTd-oi-Jlz" firstAttribute="leading" secondItem="ofH-LR-W23" secondAttribute="leading" constant="187" id="cxF-eU-TNZ"/>
                     <constraint firstItem="MTd-oi-Jlz" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="fqD-cV-yEJ"/>
                     <constraint firstItem="iHp-1u-TUE" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="20" id="gKe-50-Lk4"/>
-                    <constraint firstItem="sJn-uq-xvu" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="68" id="ga9-5M-gag"/>
                     <constraint firstItem="sJn-uq-xvu" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="jYG-3i-QO5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="sbv-Vr-RGw" secondAttribute="bottom" constant="-8.5" id="m0P-lH-z4c"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ofH-LR-W23" secondAttribute="trailing" constant="23" id="nDi-pa-FGT"/>
@@ -164,6 +183,7 @@
                     <constraint firstItem="x37-mI-luS" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="pJA-u3-auf"/>
                     <constraint firstItem="sbv-Vr-RGw" firstAttribute="top" secondItem="7rU-t2-PUz" secondAttribute="topMargin" constant="-8" id="snm-3h-Fxl"/>
                     <constraint firstItem="3fL-NV-I6V" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="5" id="xeo-rj-LOo"/>
+                    <constraint firstItem="hgf-kD-SXI" firstAttribute="leading" secondItem="ofH-LR-W23" secondAttribute="leading" constant="94" id="zBo-6R-X2K"/>
                     <constraint firstItem="hgf-kD-SXI" firstAttribute="top" secondItem="ofH-LR-W23" secondAttribute="bottom" constant="7" id="zGF-Gb-b8d"/>
                     <constraint firstItem="oPC-P6-3Gp" firstAttribute="leading" secondItem="7rU-t2-PUz" secondAttribute="leadingMargin" constant="24" id="zQK-TE-Gd5"/>
                 </constraints>
@@ -171,17 +191,17 @@
             <connections>
                 <outlet property="backgroundMinsView" destination="ofH-LR-W23" id="KFl-jL-fgT"/>
                 <outlet property="eightAM" destination="hgf-kD-SXI" id="5pz-Om-HZL"/>
-                <outlet property="eightAmConstraint" destination="bGL-wP-7gJ" id="xYA-95-hWt"/>
+                <outlet property="eightAmConstraint" destination="zBo-6R-X2K" id="TQr-Eb-q17"/>
                 <outlet property="fourAm" destination="sJn-uq-xvu" id="QIS-ab-L0t"/>
-                <outlet property="fourleftConstraint" destination="ga9-5M-gag" id="ue4-B3-caX"/>
+                <outlet property="fourleftConstraint" destination="A3w-pQ-LgJ" id="sh0-SH-x3e"/>
                 <outlet property="goalType" destination="EPo-xQ-Nu1" id="1zg-XA-I6I"/>
                 <outlet property="gradientView" destination="sbv-Vr-RGw" id="RnW-lG-gBP"/>
                 <outlet property="message" destination="iHp-1u-TUE" id="mNr-7L-Ncz"/>
                 <outlet property="minutesUsed" destination="4Dm-Zy-EzF" id="vmw-Jk-z0o"/>
                 <outlet property="sixteenHundred" destination="MTd-oi-Jlz" id="kUJ-em-NUg"/>
-                <outlet property="sixteenHundredConstraint" destination="duZ-pk-lwF" id="YHA-ui-rMQ"/>
+                <outlet property="sixteenHundredConstraint" destination="cxF-eU-TNZ" id="IrD-Ek-i9E"/>
                 <outlet property="twentyHundred" destination="x37-mI-luS" id="a9q-hw-kJp"/>
-                <outlet property="twentyHundredConstraint" destination="d40-wv-wVq" id="xhJ-7E-Jtt"/>
+                <outlet property="twentyHundredConstraint" destination="Smj-lQ-6gF" id="V2P-bL-b1T"/>
             </connections>
             <point key="canvasLocation" x="235.5" y="128.5"/>
         </tableViewCell>
