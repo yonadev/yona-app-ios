@@ -670,7 +670,7 @@
 					};
 					B9BAF36ABFDD3CF23EBB116A3E65ECF1 = {
 						DevelopmentTeam = SFWNSYN8YK;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
