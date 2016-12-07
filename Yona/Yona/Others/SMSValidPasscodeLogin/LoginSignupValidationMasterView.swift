@@ -31,6 +31,14 @@ class LoginSignupValidationMasterView: BaseViewController {
     var isFromSettings = false
     var isFromPinReset:Bool?
     
+    
+    @IBOutlet var serverHiddenButton: UIButton!
+    @IBOutlet var serverHiddenText: UILabel!
+    @IBOutlet var serverHiddenTextField: UITextField!
+    @IBOutlet var serverHiddenView : UIView!
+    @IBOutlet var serverHiddenLonPres : UILongPressGestureRecognizer!
+
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)

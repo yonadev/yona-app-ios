@@ -24,6 +24,8 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     
     @IBOutlet var gradientView: GradientView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -108,6 +110,8 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
             }
         }
     }
+
+
 }
 
 extension AddDeviceViewController: UITextFieldDelegate {

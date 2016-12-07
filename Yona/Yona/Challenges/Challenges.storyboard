@@ -2,51 +2,26 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QvV-Rl-xbI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Oswald-Light.ttf">
+        <array key="Oswald-Light.ttf">
             <string>Oswald-Light</string>
-            <string>Oswald-Light</string>
-            <string>Oswald-Light</string>
-        </mutableArray>
-        <mutableArray key="Roboto-Bold.ttf">
+        </array>
+        <array key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
-        </mutableArray>
-        <mutableArray key="Roboto-Regular.ttf">
+        </array>
+        <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
-        </mutableArray>
-        <mutableArray key="SF-UI-Display-Bold.otf">
+        </array>
+        <array key="SF-UI-Display-Bold.otf">
             <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-            <string>SFUIDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SF-UI-Display-Regular.otf">
+        </array>
+        <array key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--CHALLENGES-->
@@ -62,42 +37,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V23-83-bue" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9n2-uU-zvC">
-                                        <rect key="frame" x="0.0" y="9" width="200" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-Li-jFh">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="j2e-PW-wcG">
-                                                        <rect key="frame" x="8" y="8" width="46" height="48"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="7JD-ud-1Ed"/>
                                                             <constraint firstAttribute="width" constant="46" id="m8N-Fj-vQD"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-k5-hDl">
-                                                        <rect key="frame" x="37" y="0.0" width="20" height="20"/>
-                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="d8H-xL-Wlf"/>
                                                             <constraint firstAttribute="width" constant="20" id="je8-08-acF"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="j2e-PW-wcG" firstAttribute="top" secondItem="hqG-Li-jFh" secondAttribute="top" constant="8" id="2bd-eW-BBw"/>
                                                     <constraint firstAttribute="width" constant="60" id="47F-r2-uIJ"/>
@@ -114,20 +84,18 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.budgetGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-1a-SmO">
-                                                <rect key="frame" x="28" y="84" width="144" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BW9-cX-IBl">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="yOG-te-JCC"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="BW9-cX-IBl" firstAttribute="leading" secondItem="9n2-uU-zvC" secondAttribute="leading" id="Zts-C0-ujG"/>
                                             <constraint firstItem="Hw3-1a-SmO" firstAttribute="top" secondItem="hqG-Li-jFh" secondAttribute="bottom" constant="-3" id="cbD-kj-yDQ"/>
@@ -140,39 +108,35 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6Y-AC-ecS">
-                                        <rect key="frame" x="200" y="9" width="200" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4W-2r-SbL">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimezone" translatesAutoresizingMaskIntoConstraints="NO" id="McW-pJ-kx1">
-                                                        <rect key="frame" x="8" y="8" width="46" height="48"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="cM2-pc-vHD"/>
                                                             <constraint firstAttribute="width" constant="46" id="ceX-rx-lWC"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-FY-1gm">
-                                                        <rect key="frame" x="37" y="0.0" width="20" height="20"/>
-                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="Bsv-av-1bg"/>
                                                             <constraint firstAttribute="height" constant="20" id="SkK-lb-wQB"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="McW-pJ-kx1" firstAttribute="top" secondItem="P4W-2r-SbL" secondAttribute="top" constant="8" id="0gI-DJ-zOZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="McW-pJ-kx1" secondAttribute="trailing" constant="6" id="1rq-GT-cEz"/>
@@ -189,20 +153,18 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.timezoneGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZH-AW-9OW">
-                                                <rect key="frame" x="22" y="84" width="154" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yt4-Dg-5ye">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="OrV-Ck-CJf"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="dZH-AW-9OW" firstAttribute="centerX" secondItem="L6Y-AC-ecS" secondAttribute="centerX" constant="-1" id="3j9-jT-Atm"/>
                                             <constraint firstAttribute="trailing" secondItem="Yt4-Dg-5ye" secondAttribute="trailing" id="JXO-ym-BZQ"/>
@@ -215,39 +177,35 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDi-d9-n1S">
-                                        <rect key="frame" x="400" y="9" width="200" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-uP-nTt">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeNogo" translatesAutoresizingMaskIntoConstraints="NO" id="tSA-ii-4f3">
-                                                        <rect key="frame" x="8" y="8" width="46" height="48"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="3l5-MJ-lsH"/>
                                                             <constraint firstAttribute="width" constant="46" id="Ehx-C7-U5c"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-aV-C4T">
-                                                        <rect key="frame" x="37" y="0.0" width="20" height="20"/>
-                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="erT-jJ-Y0n"/>
                                                             <constraint firstAttribute="width" constant="20" id="pf7-Jx-5I0"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="shadowColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="9vI-hd-FI3"/>
                                                     <constraint firstItem="tSA-ii-4f3" firstAttribute="top" secondItem="Olf-uP-nTt" secondAttribute="top" constant="8" id="GbK-Lw-VHA"/>
@@ -264,20 +222,18 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.nogoGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
-                                                <rect key="frame" x="33" y="98" width="133" height="13"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7i9-CW-sSM">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="F3e-rm-msO"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="bxp-De-XRH" firstAttribute="top" secondItem="Olf-uP-nTt" secondAttribute="bottom" constant="11" id="2rF-5C-FHa"/>
                                             <constraint firstAttribute="trailing" secondItem="7i9-CW-sSM" secondAttribute="trailing" id="9cA-WI-htA"/>
@@ -290,7 +246,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.58431372549019611" green="0.75686274509803919" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.58431372549019611" green="0.75686274509803919" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="9n2-uU-zvC" secondAttribute="bottom" id="2nu-ZU-Q5o"/>
                                     <constraint firstItem="L6Y-AC-ecS" firstAttribute="leading" secondItem="9n2-uU-zvC" secondAttribute="trailing" id="9pJ-gb-9nA"/>
@@ -308,27 +264,25 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="438-xm-SYq">
-                                <rect key="frame" x="0.0" y="200" width="600" height="336"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SQq-2J-rok" userLabel="HeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-7P-Xxd">
-                                            <rect key="frame" x="40" y="41" width="444" height="2"/>
+                                            <frame key="frameInset" minX="40" minY="41" width="444" height="2"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
-                                            <rect key="frame" x="514" y="16" width="56" height="49"/>
                                             <state key="normal" image="addCircel"/>
                                             <connections>
                                                 <action selector="addNewGoalbuttonTapped:" destination="QvV-Rl-xbI" eventType="touchUpInside" id="LS0-Dg-9NM"/>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="bDM-lS-sgm" firstAttribute="leading" secondItem="sCh-7P-Xxd" secondAttribute="trailing" constant="30" id="BBY-gs-ki7"/>
                                         <constraint firstAttribute="trailing" secondItem="bDM-lS-sgm" secondAttribute="trailing" constant="30" id="D8c-Hh-yx5"/>
@@ -341,33 +295,33 @@
                                 <view key="tableFooterView" contentMode="scaleToFill" id="f0A-2f-o4g">
                                     <rect key="frame" x="0.0" y="260" width="600" height="137"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="2" indentationWidth="10" reuseIdentifier="challengeCell" textLabel="fnS-Hn-gy6" detailTextLabel="aH3-I2-fwM" style="IBUITableViewCellStyleSubtitle" id="6IM-BH-3BE">
                                         <rect key="frame" x="0.0" y="160" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6IM-BH-3BE" id="7IK-Sg-nWP">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <frame key="frameInset" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fnS-Hn-gy6">
-                                                    <rect key="frame" x="35" y="33" width="30" height="18"/>
+                                                    <frame key="frameInset" minX="35" minY="33" width="30" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="left" text="Je kunt per dag 30 minuten op social media doorbrengen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH3-I2-fwM">
-                                                    <rect key="frame" x="35" y="51" width="357" height="16.5"/>
+                                                    <frame key="frameInset" minX="35" minY="51" width="357" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -376,7 +330,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="V23-83-bue" firstAttribute="leading" secondItem="UEW-nE-2vl" secondAttribute="leadingMargin" constant="-20" id="Bb2-a3-GO0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="438-xm-SYq" secondAttribute="trailing" constant="-20" id="Fud-8j-pGQ"/>
@@ -434,23 +388,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-Hr-9Ds">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="730"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Nb-LNL" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="256"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5j-Dx-cxe">
-                                                <rect key="frame" x="245" y="30" width="110" height="110"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimezone" translatesAutoresizingMaskIntoConstraints="NO" id="N5Z-V7-Xhc">
-                                                        <rect key="frame" x="34" y="33" width="42" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="42" id="0yZ-gC-3Bx"/>
                                                             <constraint firstAttribute="height" constant="44" id="vPG-eI-lT3"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="N5Z-V7-Xhc" firstAttribute="centerY" secondItem="W5j-Dx-cxe" secondAttribute="centerY" id="fFM-NE-4gf"/>
                                                     <constraint firstItem="N5Z-V7-Xhc" firstAttribute="centerX" secondItem="W5j-Dx-cxe" secondAttribute="centerX" id="iLo-x3-LMb"/>
@@ -462,19 +412,17 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-sQ-VHj">
-                                                <rect key="frame" x="15" y="166" width="570" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Bepaal hier wanneer je wel of geen tijd aan social media wilt besteden" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Em-cj-kPG">
-                                                <rect key="frame" x="15" y="198" width="570" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="n0M-wQ-usK"/>
                                                     <constraint firstAttribute="height" constant="35" id="tca-FB-NsH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -483,7 +431,7 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="6Em-cj-kPG" secondAttribute="bottom" constant="32" id="0cE-vR-GXq"/>
                                             <constraint firstItem="6Em-cj-kPG" firstAttribute="leading" secondItem="73d-Nb-LNL" secondAttribute="leading" constant="15" id="0fB-y5-tIR"/>
@@ -512,14 +460,12 @@
                                         </variation>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jH-BO-Lpn">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="430"/>
-                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="36q-b6-Ss1" userLabel="HeaderView">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="86"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlA-3P-HIA">
-                                                    <rect key="frame" x="524" y="10" width="56" height="56"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="1Pz-4n-tqe"/>
                                                         <constraint firstAttribute="width" constant="56" id="he3-UD-xVQ"/>
@@ -532,7 +478,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges-zone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-8c-6az">
                                                     <rect key="frame" x="30" y="27" width="480" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
-                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.user.TimeZoneDescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbC-UQ-kyo">
@@ -542,11 +488,11 @@
                                                         <constraint firstAttribute="height" constant="21" id="p64-ba-1fK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="mKk-8c-6az" firstAttribute="top" secondItem="36q-b6-Ss1" secondAttribute="top" constant="27" id="945-kw-CgS"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZlA-3P-HIA" secondAttribute="trailing" constant="20" id="PTR-m9-peK"/>
@@ -562,34 +508,30 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-fZ-zwR">
-                                                    <rect key="frame" x="0.0" y="90" width="600" height="355"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
-                                                            <rect key="frame" x="50" y="75" width="500" height="34"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-jn-Qwz" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
-                                                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="G8V-ac-6Mh"/>
                                                                 <constraint firstAttribute="height" constant="30" id="hTr-1s-DCw"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
-                                                            <rect key="frame" x="50" y="38" width="500" height="29"/>
                                                             <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="yfN-TY-GOx" firstAttribute="leading" secondItem="zJ5-fZ-zwR" secondAttribute="leading" constant="50" id="3wT-Hl-fVB"/>
                                                         <constraint firstItem="tUC-r3-f9U" firstAttribute="centerX" secondItem="zJ5-fZ-zwR" secondAttribute="centerX" id="E7E-PM-i3V"/>
@@ -605,19 +547,18 @@ onderdeel van deze challenge:</string>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-ti-haz">
-                                                    <rect key="frame" x="30" y="20" width="540" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="l3I-Ai-S91"/>
                                                     </constraints>
                                                     <state key="normal" title="CHALLENGE OPSLAAN">
-                                                        <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="postNewTimeZoneChallengeButtonTapped:" destination="OaK-4S-ODd" eventType="touchUpInside" id="SAw-DB-EEN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="zJ5-fZ-zwR" secondAttribute="bottom" constant="-179" id="6yO-me-sQ4"/>
                                                 <constraint firstItem="Z2j-ti-haz" firstAttribute="centerX" secondItem="qwx-DA-pmH" secondAttribute="centerX" id="B42-Nw-FK0"/>
@@ -634,40 +575,37 @@ onderdeel van deze challenge:</string>
                                                 <rect key="frame" x="0.0" y="114" width="600" height="88"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzG-bm-yd8" id="hky-3O-ibL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                                                    <frame key="frameInset" width="600" height="88"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f3-4G-yVi" userLabel="Left container">
-                                                            <rect key="frame" x="62" y="0.0" width="266" height="88"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sG-V2-oHJ">
-                                                                    <rect key="frame" x="245" y="0.0" width="1" height="85"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <frame key="frameInset" minX="245" width="1" height="85"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-vk-T05">
-                                                                    <rect key="frame" x="8" y="37" width="90" height="47"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="90" id="Bwq-WI-kru"/>
                                                                         <constraint firstAttribute="height" constant="47" id="DTS-xG-h8W"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                                                                     <state key="normal" title="00:00">
-                                                                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
                                                                     <connections>
                                                                         <action selector="frombuttonTapped:" destination="gzG-bm-yd8" eventType="touchUpInside" id="nRm-rm-gBF"/>
                                                                     </connections>
                                                                 </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-SK-elx" userLabel="divider">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="88"/>
-                                                                    <color key="backgroundColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Czf-lk-GTn"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="van" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdD-N9-GNp">
-                                                                    <rect key="frame" x="8" y="14" width="30" height="15"/>
-                                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="6MO-n2-t0S"/>
                                                                         <constraint firstAttribute="width" constant="30" id="BZ9-fZ-SFt"/>
@@ -675,7 +613,7 @@ onderdeel van deze challenge:</string>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="wXM-jE-YRC"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="default">
                                                                         <mask key="constraints">
@@ -685,7 +623,7 @@ onderdeel van deze challenge:</string>
                                                                     </variation>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="c0b-SK-elx" secondAttribute="bottom" id="TrX-g1-GTB"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Me0-vk-T05" secondAttribute="bottom" constant="4" id="Vvl-RY-Hw1"/>
@@ -697,33 +635,29 @@ onderdeel van deze challenge:</string>
                                                             </constraints>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnLock" translatesAutoresizingMaskIntoConstraints="NO" id="aaP-rn-ytS">
-                                                            <rect key="frame" x="21" y="32" width="24" height="24"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="L7V-gV-WmZ"/>
                                                                 <constraint firstAttribute="height" constant="24" id="Y4i-ae-F8E"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKd-p1-n60" userLabel="Right container">
-                                                            <rect key="frame" x="326" y="0.0" width="266" height="88"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrh-tp-jSu" userLabel="divider">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="88"/>
-                                                                    <color key="backgroundColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="688-LW-gfk"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" verticalHuggingPriority="251" text="tot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-3g-JBu">
-                                                                    <rect key="frame" x="7" y="14" width="17" height="17"/>
-                                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="ULO-3W-8Uo"/>
                                                                         <constraint firstAttribute="width" constant="17" id="ZqS-gZ-Mde"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="upR-Kx-Dfq"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="default">
                                                                         <mask key="constraints">
@@ -732,21 +666,20 @@ onderdeel van deze challenge:</string>
                                                                     </variation>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6e-C6-aVM">
-                                                                    <rect key="frame" x="7" y="32" width="70" height="56"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="56" id="3Pb-bh-A44"/>
                                                                         <constraint firstAttribute="width" constant="70" id="kiu-FV-zYL"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                                                                     <state key="normal" title="00:00">
-                                                                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
                                                                     <connections>
                                                                         <action selector="tobuttonTapped:" destination="gzG-bm-yd8" eventType="touchUpInside" id="DDe-fP-sTi"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="hrh-tp-jSu" firstAttribute="top" secondItem="iKd-p1-n60" secondAttribute="top" id="2Po-3b-prE"/>
                                                                 <constraint firstItem="Q6e-C6-aVM" firstAttribute="top" secondItem="2OZ-3g-JBu" secondAttribute="bottom" constant="1" id="AH2-Br-ugn"/>
@@ -783,7 +716,7 @@ onderdeel van deze challenge:</string>
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9jH-BO-Lpn" secondAttribute="trailing" id="36R-Df-NKC"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="top" constant="44" id="65h-ud-DgV"/>
@@ -797,7 +730,7 @@ onderdeel van deze challenge:</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wSu-Hr-9Ds" firstAttribute="leading" secondItem="haG-ns-RC4" secondAttribute="leading" id="ANY-0c-M6C"/>
                             <constraint firstAttribute="trailing" secondItem="wSu-Hr-9Ds" secondAttribute="trailing" id="FqB-U7-mQ6"/>
@@ -858,22 +791,16 @@ onderdeel van deze challenge:</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-1L-Uwf">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-LU-eee">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="602"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3C-hk-9oT" userLabel="TopView">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="236"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
-                                                        <rect key="frame" x="247" y="30" width="110" height="110"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
-                                                                <rect key="frame" x="34" y="34" width="42" height="42"/>
-                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe"/>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="ebb-CO-4xe" firstAttribute="centerX" secondItem="XEI-aB-5HT" secondAttribute="centerX" id="Gu5-Ua-I8W"/>
                                                             <constraint firstAttribute="height" constant="110" id="KVc-vW-Jbb"/>
@@ -885,19 +812,17 @@ onderdeel van deze challenge:</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-ba-ZYU">
-                                                        <rect key="frame" x="15" y="190" width="574" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZg-5a-C9x">
-                                                        <rect key="frame" x="15" y="157" width="574" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="nZg-5a-C9x" secondAttribute="trailing" constant="11" id="90a-z9-htw"/>
                                                     <constraint firstAttribute="height" constant="236" id="OBR-n7-Wkc"/>
@@ -919,36 +844,31 @@ onderdeel van deze challenge:</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0G-at-WY5" userLabel="HeaderView">
-                                                <rect key="frame" x="0.0" y="236" width="600" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tegoed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APG-DO-NcS">
-                                                        <rect key="frame" x="30" y="27" width="484" height="18"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
-                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minuten per dag" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpN-kc-503">
-                                                        <rect key="frame" x="30" y="49" width="484" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
-                                                        <rect key="frame" x="557" y="29" width="30" height="44"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
-                                                        <rect key="frame" x="28" y="70" width="561" height="31"/>
-                                                        <color key="minimumTrackTintColor" red="0.58823529409999997" green="0.74901960779999999" blue="0.1960784314" alpha="1" colorSpace="deviceRGB"/>
-                                                        <color key="thumbTintColor" red="0.58823529411764708" green="0.74901960784313726" blue="0.19607843137254902" alpha="1" colorSpace="deviceRGB"/>
+                                                        <color key="minimumTrackTintColor" red="0.52308160066604614" green="0.7116013765335083" blue="0.15059411525726318" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="thumbTintColor" red="0.52308160066604614" green="0.7116013765335083" blue="0.15059411525726318" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="minutesDidChange:" destination="9hD-qE-oqu" eventType="valueChanged" id="kci-1Y-Zey"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="mpN-kc-503" firstAttribute="leading" secondItem="Z0G-at-WY5" secondAttribute="leading" constant="30" id="1r3-ia-dsY"/>
                                                     <constraint firstAttribute="bottom" secondItem="aht-yC-Voh" secondAttribute="bottom" id="6cw-bZ-OXq"/>
@@ -965,37 +885,32 @@ onderdeel van deze challenge:</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWS-2Z-Kub" userLabel="FooterView">
-                                                <rect key="frame" x="0.0" y="336" width="600" height="266"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
-                                                        <rect key="frame" x="0.0" y="89" width="604" height="345"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-8k-rUN" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="604" height="24"/>
-                                                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="63f-PM-W9d"/>
                                                                     <constraint firstAttribute="height" constant="24" id="bne-J8-rNP"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNz-P2-HmF">
-                                                                <rect key="frame" x="50" y="44" width="504" height="29"/>
                                                                 <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                                                                <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
-                                                                <rect key="frame" x="50" y="88" width="504" height="34"/>
                                                                 <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                                <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="PNz-P2-HmF" firstAttribute="centerX" secondItem="yoa-6t-2LM" secondAttribute="centerX" id="8h1-bh-qkO"/>
                                                             <constraint firstItem="Aje-8k-rUN" firstAttribute="leading" secondItem="yoa-6t-2LM" secondAttribute="leading" id="DVA-hl-Hjm"/>
@@ -1013,20 +928,19 @@ Pinterest, Instagram, Snapchat</string>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-m0-g2j">
-                                                        <rect key="frame" x="30" y="20" width="544" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="e6V-Pt-FZy"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
                                                         <state key="normal" title="CHALLENGE OPSLAAN">
-                                                            <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="postNewBudgetChallengeButtonTapped:" destination="9hD-qE-oqu" eventType="touchUpInside" id="s6n-wy-8Bh"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="CZh-m0-g2j" firstAttribute="top" secondItem="yWS-2Z-Kub" secondAttribute="top" constant="20" id="3Xz-Ws-1XC"/>
                                                     <constraint firstAttribute="height" constant="266" id="FAL-Eh-3Wi"/>
@@ -1045,7 +959,7 @@ Pinterest, Instagram, Snapchat</string>
                                                 </variation>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="E3C-hk-9oT" firstAttribute="top" secondItem="KDC-LU-eee" secondAttribute="top" id="1tw-vc-vpR"/>
                                             <constraint firstItem="yWS-2Z-Kub" firstAttribute="top" secondItem="Z0G-at-WY5" secondAttribute="bottom" id="JEo-jo-uiw"/>
@@ -1060,7 +974,7 @@ Pinterest, Instagram, Snapchat</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="KDC-LU-eee" secondAttribute="bottom" constant="-46" id="5Od-T9-vyB"/>
                                     <constraint firstAttribute="trailing" secondItem="KDC-LU-eee" secondAttribute="trailing" id="IhU-SA-jNw"/>
@@ -1069,7 +983,7 @@ Pinterest, Instagram, Snapchat</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cdb-1L-Uwf" firstAttribute="width" secondItem="EmJ-Eh-oJa" secondAttribute="width" id="1y3-Gl-YWY"/>
                             <constraint firstItem="cdb-1L-Uwf" firstAttribute="leading" secondItem="EmJ-Eh-oJa" secondAttribute="leadingMargin" constant="-20" id="20J-R0-0M4"/>
@@ -1135,26 +1049,21 @@ Pinterest, Instagram, Snapchat</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdq-PV-C5B">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZD-Xm-So9">
-                                        <rect key="frame" x="0.0" y="0.0" width="604" height="544"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olM-AX-pnp" userLabel="TopView">
-                                                <rect key="frame" x="0.0" y="0.0" width="604" height="256"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-dg-Et7">
-                                                        <rect key="frame" x="247" y="26" width="110" height="110"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeNogo" translatesAutoresizingMaskIntoConstraints="NO" id="ube-g2-H23">
-                                                                <rect key="frame" x="31" y="31" width="48" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="73G-HP-HgC"/>
                                                                     <constraint firstAttribute="width" constant="48" id="qdc-Hf-zNE"/>
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.54901960780000003" green="0.72156862749999995" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="ube-g2-H23" firstAttribute="centerX" secondItem="vLg-dg-Et7" secondAttribute="centerX" id="M3D-zr-zf4"/>
                                                             <constraint firstItem="ube-g2-H23" firstAttribute="top" secondItem="vLg-dg-Et7" secondAttribute="top" constant="31" id="QSH-89-tBd"/>
@@ -1166,25 +1075,23 @@ Pinterest, Instagram, Snapchat</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkc-fL-yGV">
-                                                        <rect key="frame" x="15" y="161" width="574" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="fa0-fV-2yc"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-Zu-XzU">
-                                                        <rect key="frame" x="15" y="194" width="574" height="39"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="39" id="skz-F6-aUp"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="4ga-Zu-XzU" secondAttribute="trailing" constant="15" id="0yr-5x-46W"/>
                                                     <constraint firstAttribute="height" constant="256" id="308-rf-8VH"/>
@@ -1206,25 +1113,22 @@ Pinterest, Instagram, Snapchat</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9H-xl-pNz" userLabel="FooterView">
-                                                <rect key="frame" x="0.0" y="256" width="604" height="290"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiI-R9-Lps">
-                                                        <rect key="frame" x="0.0" y="0.0" width="604" height="147"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNe-wI-qBq">
-                                                                <rect key="frame" x="30" y="30" width="544" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="nKp-W1-9tM"/>
                                                                 </constraints>
                                                                 <state key="normal" title="CHALLENGE OPSLAAN">
-                                                                    <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="titleColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="postNewNoGoChallengeButtonTapped:" destination="W2a-kb-DsC" eventType="touchUpInside" id="9IQ-y9-afP"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="nNe-wI-qBq" secondAttribute="trailing" constant="30" id="Ac2-rO-3E3"/>
                                                             <constraint firstItem="nNe-wI-qBq" firstAttribute="top" secondItem="wiI-R9-Lps" secondAttribute="top" constant="30" id="M60-ML-eug"/>
@@ -1232,20 +1136,16 @@ Pinterest, Instagram, Snapchat</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-6Q-RTF" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="146" width="604" height="30"/>
-                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="fCw-Fv-q3N"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-Dh-0Hg">
-                                                        <rect key="frame" x="0.0" y="176" width="604" height="199"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psd-ww-wDc">
-                                                                <rect key="frame" x="0.0" y="8" width="604" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-pc-qS6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="604" height="29"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="29" id="A3q-ud-RNA"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="IxZ-Bz-8sp"/>
@@ -1254,7 +1154,7 @@ Pinterest, Instagram, Snapchat</string>
                                                                         <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1263,7 +1163,6 @@ onderdeel van deze challenge:</string>
                                                                         </variation>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
-                                                                        <rect key="frame" x="70" y="37" width="456" height="51"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="g8S-s9-nVc"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="hY9-9L-7Uv"/>
@@ -1272,7 +1171,7 @@ onderdeel van deze challenge:</string>
                                                                         <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1281,7 +1180,7 @@ Pinterest, Instagram, Snapchat</string>
                                                                         </variation>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="100" id="0sp-BB-iU0"/>
                                                                     <constraint firstItem="Mt9-Rt-DQg" firstAttribute="leading" secondItem="psd-ww-wDc" secondAttribute="leading" constant="70" id="5wn-ok-IiS"/>
@@ -1293,7 +1192,7 @@ Pinterest, Instagram, Snapchat</string>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="psd-ww-wDc" firstAttribute="centerY" secondItem="hFu-Dh-0Hg" secondAttribute="centerY" id="2ah-bo-o9U"/>
                                                             <constraint firstAttribute="trailing" secondItem="psd-ww-wDc" secondAttribute="trailing" id="3l7-zs-FxV"/>
@@ -1308,7 +1207,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         </variation>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="hFu-Dh-0Hg" secondAttribute="trailing" id="F2m-0M-3nA"/>
                                                     <constraint firstItem="hFu-Dh-0Hg" firstAttribute="leading" secondItem="e9H-xl-pNz" secondAttribute="leading" id="JNr-kN-vk8"/>
@@ -1337,7 +1236,7 @@ Pinterest, Instagram, Snapchat</string>
                                                 </variation>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="olM-AX-pnp" firstAttribute="top" secondItem="zZD-Xm-So9" secondAttribute="top" id="82H-Zo-AKn"/>
                                             <constraint firstAttribute="height" constant="544" id="CD8-T8-o8L"/>
@@ -1349,7 +1248,7 @@ Pinterest, Instagram, Snapchat</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="zZD-Xm-So9" firstAttribute="top" secondItem="Pdq-PV-C5B" secondAttribute="top" id="7Ev-W1-5Dy"/>
                                     <constraint firstItem="zZD-Xm-So9" firstAttribute="leading" secondItem="Pdq-PV-C5B" secondAttribute="leading" id="DKN-k6-ZWd"/>
@@ -1370,7 +1269,7 @@ Pinterest, Instagram, Snapchat</string>
                                 </variation>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vka-bA-L1K" firstAttribute="top" secondItem="Pdq-PV-C5B" secondAttribute="bottom" id="7S1-4L-fnU"/>
                             <constraint firstItem="Pdq-PV-C5B" firstAttribute="top" secondItem="QLa-s9-8hR" secondAttribute="bottom" id="7w3-ZN-hqc"/>

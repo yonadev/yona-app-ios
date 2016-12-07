@@ -13,6 +13,7 @@ struct Activities {
     var applicationsStore:[String] = []
     var editLinks: String?
     var selfLinks: String?
+    var activityDescription: String!
     
     init(activityData: BodyDataDictionary) {
         if let activityCategoryName = activityData[YonaConstants.jsonKeys.name] as? String {
@@ -23,6 +24,11 @@ struct Activities {
                 applicationsStore.append(application as! String)
             }
         }
+        activityDescription = ""
+        if let description = activityData[YonaConstants.jsonKeys.description] as? String {
+            activityDescription = description
+        }
+        
         
         if let links = activityData[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
             if let edit = links[YonaConstants.jsonKeys.editLinkKeys] as? [String: AnyObject],
@@ -37,5 +43,6 @@ struct Activities {
                 }
             }
         }
+        
     }
 }

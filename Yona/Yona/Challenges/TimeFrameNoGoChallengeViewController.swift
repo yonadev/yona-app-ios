@@ -39,23 +39,23 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let activityName = self.goalCreated?.GoalName{
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                } else {
-                    self.appList.text = ""
-                }
-            })
-        } else if let activityName = self.activitiyToPost?.activityCategoryName {
-            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
-                if success {
-                    self.appList.text = apps
-                } else {
-                    self.appList.text = ""
-                }
-            })
-        }
+//        if let activityName = self.goalCreated?.GoalName{
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                } else {
+//                    self.appList.text = ""
+//                }
+//            })
+//        } else if let activityName = self.activitiyToPost?.activityCategoryName {
+//            ActivitiesRequestManager.sharedInstance.getActivityApplications(activityName, onCompletion: { (success, message, code, apps, error) in
+//                if success {
+//                    self.appList.text = apps
+//                } else {
+//                    self.appList.text = ""
+//                }
+//            })
+//        }
         
         setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         setChallengeButton.backgroundColor = UIColor.clearColor()
@@ -73,6 +73,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
+            self.navigationItem.rightBarButtonItem = nil
             self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
             self.navigationItem.rightBarButtonItem?.enabled = false
             
@@ -84,6 +85,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
                 self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.whiteColor()
                 self.navigationItem.rightBarButtonItem?.enabled = true
             } else {
+                self.navigationItem.rightBarButtonItem = self.deleteGoalButton
                 self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
                 self.navigationItem.rightBarButtonItem?.enabled = false
             }
@@ -94,11 +96,15 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         }
         
         self.headerImage.image = UIImage(named: "icnChallengeNogo")
-        self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
+        //self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
     
     }
     
     override func viewWillAppear(animated: Bool) {
+        if let str = activitiyToPost?.activityDescription {
+            appList.text = str
+        }
+
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "TimeFrameNoGoChallengeViewController")
         
