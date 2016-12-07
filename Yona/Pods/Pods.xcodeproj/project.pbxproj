@@ -670,7 +670,7 @@
 					};
 					B9BAF36ABFDD3CF23EBB116A3E65ECF1 = {
 						DevelopmentTeam = SFWNSYN8YK;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -854,7 +854,7 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -957,7 +957,7 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
