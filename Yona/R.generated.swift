@@ -32,6 +32,7 @@ struct R {
   struct file {
     static var googleServiceInfoPlist: NSURL? { return _R.hostingBundle?.URLForResource("GoogleService-Info", withExtension: "plist") }
     static var iQKeyboardManagerBundle: NSURL? { return _R.hostingBundle?.URLForResource("IQKeyboardManager", withExtension: "bundle") }
+    static var infoPlistStrings: NSURL? { return _R.hostingBundle?.URLForResource("InfoPlist", withExtension: "strings") }
     static var launchScreenStrings: NSURL? { return _R.hostingBundle?.URLForResource("LaunchScreen", withExtension: "strings") }
     static var mainStrings: NSURL? { return _R.hostingBundle?.URLForResource("Main", withExtension: "strings") }
     static var oswaldBoldItalicTtf: NSURL? { return _R.hostingBundle?.URLForResource("Oswald-BoldItalic", withExtension: "ttf") }
@@ -297,95 +298,96 @@ struct R {
   }
   
   struct image {
-    static var addAvatar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "addAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "addAvatar") } }
-    static var addCircel: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "addCircel", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "addCircel") } }
-    static var adultHappuSmall: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultHappuSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultHappuSmall") } }
-    static var adultHappy: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultHappy", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultHappy") } }
-    static var adultHappyMedium: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultHappyMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultHappyMedium") } }
-    static var adultHappySmall: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultHappySmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultHappySmall") } }
-    static var adultReview: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultReview", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultReview") } }
-    static var adultReviewMedium: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultReviewMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultReviewMedium") } }
-    static var adultReviewSmall: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultReviewSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultReviewSmall") } }
-    static var adultSad: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultSad", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultSad") } }
-    static var adultSadMedium: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultSadMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultSadMedium") } }
-    static var adultSadSmall: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "adultSadSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "adultSadSmall") } }
-    static var bdgEncouragementBestTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgEncouragementBestTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgEncouragementBestTime") } }
-    static var bdgTenDay: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "bdgTenDay", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "bdgTenDay") } }
-    static var brandAssets: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "Brand Assets") } }
-    static var confinesSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "confinesSlide") } }
-    static var first: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "first") } }
-    static var greenNotSelected: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "greenNotSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "greenNotSelected") } }
-    static var greenSelected: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "greenSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "greenSelected") } }
-    static var iQButtonBarArrowLeft: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowLeft", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowLeft") } }
-    static var iQButtonBarArrowRight: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "IQButtonBarArrowRight") } }
-    static var icnAccountCreated: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAccountCreated") } }
-    static var icnAdd: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAdd") } }
-    static var icnAddPicture: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAddPicture", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAddPicture") } }
-    static var icnAvatar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnAvatar") } }
-    static var icnBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnBack") } }
-    static var icnChallengeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeActive") } }
-    static var icnChallengeNogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeNogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeNogo") } }
-    static var icnChallengeTimebucket: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimebucket", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimebucket") } }
-    static var icnChallengeTimezone: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallengeTimezone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallengeTimezone") } }
-    static var icnChallenges: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnChallenges", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnChallenges") } }
-    static var icnComment: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnComment", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnComment") } }
-    static var icnCommentBar: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCommentBar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCommentBar") } }
-    static var icnCreate: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnCreate") } }
-    static var icnDateBack: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateBack") } }
-    static var icnDateForward: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDateForward") } }
-    static var icnDelete: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnDelete", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnDelete") } }
-    static var icnEdit: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnEdit") } }
-    static var icnFriends: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriends") } }
-    static var icnFriendsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnFriendsActive") } }
-    static var icnLock: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnLock", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnLock") } }
-    static var icnMail: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMail", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMail") } }
-    static var icnMe: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMe", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMe") } }
-    static var icnMeActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMeActive") } }
-    static var icnMobile: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMobile", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMobile") } }
-    static var icnMoon: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnMoon") } }
-    static var icnName: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnName", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnName") } }
-    static var icnNext: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNext", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNext") } }
-    static var icnNickname: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNickname", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNickname") } }
-    static var icnNo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNo") } }
-    static var icnNotifications: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnNotifications") } }
-    static var icnOk: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnOk") } }
-    static var icnReminder: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnReminder") } }
-    static var icnSecure: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSecure") } }
-    static var icnSettings: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettings") } }
-    static var icnSettingsActive: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSettingsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSettingsActive") } }
-    static var icnSun: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnSun", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnSun") } }
-    static var icnTrash: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnTrash", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnTrash") } }
-    static var icnY: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icnY", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icnY") } }
-    static var icn_vpn_Alert: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Alert", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Alert") } }
-    static var icn_vpn_OpenVPN: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_OpenVPN", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_OpenVPN") } }
-    static var icn_vpn_Settings: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Settings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Settings") } }
-    static var icn_vpn_Yona: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "icn_vpn_Yona", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "icn_vpn_Yona") } }
-    static var iconMoon: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "iconMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "iconMoon") } }
-    static var imgBorders: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgBorders", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgBorders") } }
-    static var imgShare: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgShare", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgShare") } }
-    static var imgTime: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTime") } }
-    static var imgTransparantie: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "imgTransparantie") } }
-    static var intro1_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro1_1") } }
-    static var intro1_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro1_2") } }
-    static var intro2_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_1") } }
-    static var intro2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro2_2") } }
-    static var intro3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_1") } }
-    static var intro3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro3_2") } }
-    static var intro_setting_1_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_1") } }
-    static var intro_setting_1_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_1_2") } }
-    static var intro_setting_2_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_1") } }
-    static var intro_setting_2_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_2_2") } }
-    static var intro_setting_3_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_1") } }
-    static var intro_setting_3_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_3_2") } }
-    static var intro_setting_4_1: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_1") } }
-    static var intro_setting_4_2: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "intro_setting_4_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "intro_setting_4_2") } }
-    static var second: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "second") } }
-    static var sharingSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "sharingSlide") } }
-    static var timespentSlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "timespentSlide") } }
-    static var transparencySlide: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "transparencySlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "transparencySlide") } }
-    static var walkthroughPage: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "walkthroughPage") } }
-    static var welcomeScreen: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "welcomeScreen") } }
-    static var yonaLogo: UIImage? { if #available(iOS 8.0, *) { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) } else { return UIImage(named: "yonaLogo") } }
+    static var addAvatar: UIImage? { return UIImage(named: "addAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var addCircel: UIImage? { return UIImage(named: "addCircel", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultHappuSmall: UIImage? { return UIImage(named: "adultHappuSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultHappy: UIImage? { return UIImage(named: "adultHappy", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultHappyMedium: UIImage? { return UIImage(named: "adultHappyMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultHappySmall: UIImage? { return UIImage(named: "adultHappySmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultReview: UIImage? { return UIImage(named: "adultReview", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultReviewMedium: UIImage? { return UIImage(named: "adultReviewMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultReviewSmall: UIImage? { return UIImage(named: "adultReviewSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultSad: UIImage? { return UIImage(named: "adultSad", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultSadMedium: UIImage? { return UIImage(named: "adultSadMedium", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var adultSadSmall: UIImage? { return UIImage(named: "adultSadSmall", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var bdgEncouragementBestTime: UIImage? { return UIImage(named: "bdgEncouragementBestTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var bdgTenDay: UIImage? { return UIImage(named: "bdgTenDay", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var brandAssets: UIImage? { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var confinesSlide: UIImage? { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var first: UIImage? { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var greenNotSelected: UIImage? { return UIImage(named: "greenNotSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var greenSelected: UIImage? { return UIImage(named: "greenSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var iQButtonBarArrowLeft: UIImage? { return UIImage(named: "IQButtonBarArrowLeft", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var iQButtonBarArrowRight: UIImage? { return UIImage(named: "IQButtonBarArrowRight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnAccountCreated: UIImage? { return UIImage(named: "icnAccountCreated", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnAdd: UIImage? { return UIImage(named: "icnAdd", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnAddPicture: UIImage? { return UIImage(named: "icnAddPicture", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnAvatar: UIImage? { return UIImage(named: "icnAvatar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnBack: UIImage? { return UIImage(named: "icnBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnChallengeActive: UIImage? { return UIImage(named: "icnChallengeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnChallengeNogo: UIImage? { return UIImage(named: "icnChallengeNogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnChallengeTimebucket: UIImage? { return UIImage(named: "icnChallengeTimebucket", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnChallengeTimezone: UIImage? { return UIImage(named: "icnChallengeTimezone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnChallenges: UIImage? { return UIImage(named: "icnChallenges", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnComment: UIImage? { return UIImage(named: "icnComment", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnCommentBar: UIImage? { return UIImage(named: "icnCommentBar", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnCreate: UIImage? { return UIImage(named: "icnCreate", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnDateBack: UIImage? { return UIImage(named: "icnDateBack", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnDateForward: UIImage? { return UIImage(named: "icnDateForward", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnDelete: UIImage? { return UIImage(named: "icnDelete", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnEdit: UIImage? { return UIImage(named: "icnEdit", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnFriends: UIImage? { return UIImage(named: "icnFriends", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnFriendsActive: UIImage? { return UIImage(named: "icnFriendsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnLock: UIImage? { return UIImage(named: "icnLock", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnMail: UIImage? { return UIImage(named: "icnMail", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnMe: UIImage? { return UIImage(named: "icnMe", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnMeActive: UIImage? { return UIImage(named: "icnMeActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnMobile: UIImage? { return UIImage(named: "icnMobile", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnMoon: UIImage? { return UIImage(named: "icnMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnName: UIImage? { return UIImage(named: "icnName", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnNext: UIImage? { return UIImage(named: "icnNext", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnNickname: UIImage? { return UIImage(named: "icnNickname", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnNo: UIImage? { return UIImage(named: "icnNo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnNotifications: UIImage? { return UIImage(named: "icnNotifications", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnOk: UIImage? { return UIImage(named: "icnOk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnReminder: UIImage? { return UIImage(named: "icnReminder", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnSecure: UIImage? { return UIImage(named: "icnSecure", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnSettings: UIImage? { return UIImage(named: "icnSettings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnSettingsActive: UIImage? { return UIImage(named: "icnSettingsActive", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnSun: UIImage? { return UIImage(named: "icnSun", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnTrash: UIImage? { return UIImage(named: "icnTrash", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icnY: UIImage? { return UIImage(named: "icnY", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icn_vpn_Alert: UIImage? { return UIImage(named: "icn_vpn_Alert", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icn_vpn_OpenVPN: UIImage? { return UIImage(named: "icn_vpn_OpenVPN", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icn_vpn_Settings: UIImage? { return UIImage(named: "icn_vpn_Settings", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var icn_vpn_Yona: UIImage? { return UIImage(named: "icn_vpn_Yona", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var iconMoon: UIImage? { return UIImage(named: "iconMoon", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var imgBorders: UIImage? { return UIImage(named: "imgBorders", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var imgShare: UIImage? { return UIImage(named: "imgShare", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var imgTime: UIImage? { return UIImage(named: "imgTime", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var imgTransparantie: UIImage? { return UIImage(named: "imgTransparantie", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro1_1: UIImage? { return UIImage(named: "intro1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro1_2: UIImage? { return UIImage(named: "intro1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro2_1: UIImage? { return UIImage(named: "intro2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro2_2: UIImage? { return UIImage(named: "intro2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro3_1: UIImage? { return UIImage(named: "intro3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro3_2: UIImage? { return UIImage(named: "intro3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_1_1: UIImage? { return UIImage(named: "intro_setting_1_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_1_2: UIImage? { return UIImage(named: "intro_setting_1_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_2_1: UIImage? { return UIImage(named: "intro_setting_2_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_2_2: UIImage? { return UIImage(named: "intro_setting_2_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_3_1: UIImage? { return UIImage(named: "intro_setting_3_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_3_2: UIImage? { return UIImage(named: "intro_setting_3_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_4_1: UIImage? { return UIImage(named: "intro_setting_4_1", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var intro_setting_4_2: UIImage? { return UIImage(named: "intro_setting_4_2", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var launchImage: UIImage? { return UIImage(named: "LaunchImage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var second: UIImage? { return UIImage(named: "second", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var sharingSlide: UIImage? { return UIImage(named: "sharingSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var timespentSlide: UIImage? { return UIImage(named: "timespentSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var transparencySlide: UIImage? { return UIImage(named: "transparencySlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var walkthroughPage: UIImage? { return UIImage(named: "walkthroughPage", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var welcomeScreen: UIImage? { return UIImage(named: "welcomeScreen", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var yonaLogo: UIImage? { return UIImage(named: "yonaLogo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
   }
   
   struct nib {

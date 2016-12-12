@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Yona
+
+  Created by Anders Liebl on 12/12/2016.
+  Copyright © 2016 Yona. All rights reserved.
+*/
+
+
+NSContactsUsageDescription = "You must allow Yona App to access your contacts, if you whish to add friends from you contacts";

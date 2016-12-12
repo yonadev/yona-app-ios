@@ -115,6 +115,17 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     func configureRightTabBar() {
         MessageRequestManager.sharedInstance.getUnReadMessages({
             (success, message, code, text, theMessages) in
+            if let allMessages = theMessages {
+                for aMessage in allMessages {
+                    MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
+                        if success {
+                                print ("Did process message" )
+                        }
+                        //so not every link will have one, so what now?
+                        print(message)
+                    })
+                }
+            }
             if let count = MessageRequestManager.sharedInstance.totalSize {
                 let txt = "\(count)"
                 let rightBarButton = UIBarButtonItem()
