@@ -1,0 +1,6 @@
+framework module Pods_Yona {
+  umbrella header "Pods-Yona-umbrella.h"
+
+  export *
+  module * { export * }
+}
