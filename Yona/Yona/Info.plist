@@ -35,6 +35,7 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>62</string>
+	<string>67</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>openvpn</string>
@@ -47,6 +48,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSContactsUsageDescription</key>
+	<string>NSContactsUsageDescription</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>NSPhotoLibraryUsageDescription</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-UI-Display-Black.otf</string>

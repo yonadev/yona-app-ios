@@ -21,14 +21,10 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
-  - HockeySDK (3.8.6):
-    - HockeySDK/AllFeaturesLib (= 3.8.6)
-  - HockeySDK/AllFeaturesLib (3.8.6)
   - R.swift (0.13.0)
 
 DEPENDENCIES:
   - Google/Analytics
-  - HockeySDK
   - R.swift
 
 SPEC CHECKSUMS:
@@ -40,7 +36,8 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
-  HockeySDK: ab68303eec6680f6b539de65d747742dd276e934
   R.swift: 07e0796d2b4d50b875eb7de9bd8e6193e15c6434
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: e1c0379fe6b0301a1c1e4ad344698ac444cd8ee6
+
+COCOAPODS: 1.1.1

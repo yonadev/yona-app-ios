@@ -3,6 +3,10 @@ platform :ios, '7.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 
+target 'Yona' do
+   
 pod 'R.swift'
-pod 'HockeySDK'
+#pod 'HockeySDK'
 pod 'Google/Analytics'
+
+end
