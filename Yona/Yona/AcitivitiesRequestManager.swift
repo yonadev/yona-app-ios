@@ -277,12 +277,14 @@ class ActivitiesRequestManager {
                     let aPath = path + "?size=" + String(size) + "&page=" + String(page)
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
                         if let json = json {
+                 //           print (json)
                             guard success == true else {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                 return
                             }
                             var newData : [DayActivityOverview] = []
                             newData = self.getActivtyPrDayhandleActivieResponse( json)
+                      //      print (newData)
                             if newData.count > 0 {
                             
                                 self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
@@ -750,6 +752,7 @@ class ActivitiesRequestManager {
     func getDayActivityDetails(activityLink : String,date :NSDate ,onCompletion: APIActivityDayDetailResponse ){
         self.APIService.callRequestWithAPIServiceResponse(nil, path: activityLink, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
+                print (json)
                 guard success == true else {
                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                     return

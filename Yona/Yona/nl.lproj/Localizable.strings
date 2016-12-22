@@ -314,3 +314,13 @@
 
 "vpnerror.notrunning.title.text" = "De VPN is niet actief";
 "vpnerror.notrunning.message.text" = "De VPN is niet actief. Schakel deze in om je activiteit bij te houden.";
+
+
+"emailsupport.text" = "Alle gegeven zijn encrypted opgeslagen. Om bepaalde problemen op te kunnen lossen moeten we deze decrypten. Gebruik deze optie alleen wanneer het support team hier om vraagt.";
+"emailsupport.title" = "Email to support";
+
+"emailsupport.error.title" = "Could Not Send Email";
+"emailsupport.error.text" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
+
+"emailsupport.finished.title" = "Email send";
+"emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";

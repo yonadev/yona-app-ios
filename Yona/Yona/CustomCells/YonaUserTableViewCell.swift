@@ -85,7 +85,14 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
             self.allowsSwipeAction = false
         }
         
-        boldLineLabel.text = aMessage.simpleDescription()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm"
+        
+        if aMessage.messageType == notificationType.GoalConflictMessage {
+            boldLineLabel.text = aMessage.simpleDescription() + " " + aMessage.activityTypeName + " - " + formatter.stringFromDate(aMessage.creationTime)
+        } else {
+            boldLineLabel.text = aMessage.simpleDescription()
+        }
         normalLineLabel.text = "\(aMessage.nickname)"
      
         var tmpnickname = ""

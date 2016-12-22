@@ -151,22 +151,44 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             case .BuddyConnectResponseMessage:
                 break
             case .GoalConflictMessage:
-                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
-                vc.buddy = self.buddyData
-                vc.goalType = GoalType.NoGoGoalString.rawValue
-                vc.currentDate = aMessage.creationTime
-                vc.initialObjectLink = aMessage.dayDetailsLink
+                var selflink = "hg"
+                var userid = ""
+                if let aUserid = UserRequestManager.sharedInstance.newUser?.userID,
+                    let aSelfLink = aMessage.selfLink
+                {
+                    userid = aUserid
+                    selflink = aSelfLink
+                }
+                if selflink.rangeOfString(userid) != nil{
+                    
+                    let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("MeDayDetailViewController") as! MeDayDetailViewController
+                    vc.goalType = GoalType.NoGoGoalString.rawValue
+                    vc.currentDate = aMessage.creationTime
+                    vc.initialObjectLink = aMessage.dayDetailsLink
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+
+                }  else {
                 
-                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-                let navbar = self.navigationController?.navigationBar as! GradientNavBar
                 
-                vc.navbarColor = navbar.gradientColor
-                navbar.gradientColor = UIColor.yiMidBlueColor()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                return
+                    let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
+                    vc.buddy = self.buddyData
+                    vc.goalType = GoalType.NoGoGoalString.rawValue
+                    vc.currentDate = aMessage.creationTime
+                    vc.initialObjectLink = aMessage.dayDetailsLink
+                    
+                    vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                    self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                    let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                    
+                    vc.navbarColor = navbar.gradientColor
+                    navbar.gradientColor = UIColor.yiMidBlueColor()
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                }
             case .GoalChangeMessage:
                 break
                 // DISABLED AS REQUEST in APPDEV-817

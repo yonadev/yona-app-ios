@@ -32,6 +32,7 @@ struct Message{
     var acceptLink: String?
     var yonaProcessLink: String?
     var markReadLink : String?
+    var activityCategoryLink : String?
     //var creationTime: String?
     var nickname: String
     var message: String
@@ -39,7 +40,7 @@ struct Message{
     var messageType: notificationType
     var creationTime : NSDate
     var change : String?
-    
+    var activityTypeName : String = "noname"
     var isRead : Bool = true
     
     //details of user who made request
@@ -48,7 +49,9 @@ struct Message{
     var UserRequestmobileNumber: String
     var UserRequestSelfLink: String
 
-    init(messageData: BodyDataDictionary) {
+    init(messageData: BodyDataDictionary ) {
+   //     print (messageData)
+        
         message = ""
         UserRequestfirstName = ""
         UserRequestlastName = ""
@@ -146,7 +149,19 @@ struct Message{
                 self.markReadLink = href
             }
 
+            if let activityCategory = links[getMessagesKeys.activityCategory.rawValue],
+                let href = activityCategory[getMessagesKeys.href.rawValue] as? String{
+                self.activityCategoryLink = href
+            }
+
         }
+//        if (activityCategoryLink != nil) {
+//            ActivitiesRequestManager.sharedInstance.getActivityCategoryWithLink(activityCategoryLink!, onCompletion: { result, serverMessage, serverCode, activities, error  in
+//                    print (result)
+//                    print (activities)
+//                
+//                })
+//        }
         
         //store user who made the request
         if let embedded = messageData[getMessagesKeys.embedded.rawValue],

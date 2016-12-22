@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Messages
+import MessageUI
 
 enum  settingsOptions : Int {
     case changepin = 0
     case privacy
     case adddevice
     case unsubscribe
+    case emailSupport
     case configreste
     case lastrow
     
@@ -28,6 +31,8 @@ enum  settingsOptions : Int {
             return NSLocalizedString("delete-user", comment: "")
         case .configreste:
             return NSLocalizedString("RESET", comment: "")
+        case .emailSupport:
+            return NSLocalizedString("Contact Support", comment: "")
         default:
             return NSLocalizedString("no option", comment: "")
         }
@@ -36,7 +41,7 @@ enum  settingsOptions : Int {
 }
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     var gradientView: GradientSmooth!
@@ -210,7 +215,10 @@ extension SettingsViewController:UITableViewDelegate {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
             NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
-            
+        
+        case settingsOptions.emailSupport.rawValue:
+            showAlertForEmailForUser()
+
         default:
             return
         }
@@ -220,4 +228,82 @@ extension SettingsViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70.0
     }
+    
+    //MARK: email thing
+    
+    
+//    "emailsupport.no.email.client" = "You dont have an email configured on this device";
+    
+    func showAlertForEmailForUser() {
+        self.displayAlertOption(NSLocalizedString("emailsupport.title", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("emailsupport.text", comment: ""), onCompletion: { (buttonPressed) in
+            switch buttonPressed {
+            case alertButtonType.OK:
+                self.sendMail()
+            case alertButtonType.cancel:
+                break
+                //do nothing or send back to start of signup?
+            }
+        })
+
+    
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
+
+        
+        if result == .Sent {
+            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.finished.title", comment: ""), message: NSLocalizedString("emailsupport.finished.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+            sendMailErrorAlert.show()
+        } else  if result == .Failed {
+            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.error.title", comment: ""), message: NSLocalizedString("emailsupport.error.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+            sendMailErrorAlert.show()
+        
+        }
+    }
+    
+    func sendMail() {
+        if !MFMailComposeViewController.canSendMail() {
+            showSendMailErrorAlert()
+            return
+        }
+        
+        if let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword(),
+            let userlink = UserRequestManager.sharedInstance.newUser?.getSelfLink {
+        
+            
+            
+            let subject = "Problem with Yona App"
+            let body = userlink + "\n\n" + "Password: '" + yonaPassword + "'"
+            let email = "app@yona.nu"
+        
+        
+            UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
+            UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
+            
+            
+            let picker = MFMailComposeViewController()
+  
+            picker.mailComposeDelegate = self
+            picker.setSubject(subject)
+            picker.setToRecipients([email])
+            picker.setMessageBody(body, isHTML: false)
+        
+
+
+            
+            
+            presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.error.title", comment: ""), message: NSLocalizedString("emailsupport.error.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+        sendMailErrorAlert.show()
+    }
+
 }

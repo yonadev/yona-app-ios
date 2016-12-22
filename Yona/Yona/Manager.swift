@@ -107,7 +107,9 @@ extension Manager {
                 if response != nil{
                     if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
                         do{
+                            
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                            print(jsonData)
                             let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error)
                             let userInfo = [
                                 NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"

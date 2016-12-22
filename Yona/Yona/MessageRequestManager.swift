@@ -28,47 +28,59 @@ class MessageRequestManager {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
                 if success {
-                    self.messages.removeAll()
-                    if let getMessagesLink = user?.messagesLink {
-                        let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page) + "&onlyUnreadMessages="+"\(onlyUnRead)"
-                        self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
-                            if let json = json {
-                                if let data = json[commentKeys.page.rawValue] {
-                                    if let size = data[commentKeys.size.rawValue] as? Int{
-                                        self.currentSize = size
-                                    }
-                                    if let totalSize = data[commentKeys.totalElements.rawValue] as? Int{
-                                        self.totalSize = totalSize
-                                    }
-                                    if let totalPages = data[commentKeys.totalPages.rawValue] as? Int{
-                                        self.totalPages = totalPages
-                                    }
-                                    if let currentPage = data[commentKeys.number.rawValue] as? Int{
-                                        self.currentPage = currentPage
-                                    }
-                                }
-                                if let embedded = json[getMessagesKeys.embedded.rawValue],
-                                let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray {
-                                    
-                                    //iterate messages
-                                    for message in yonaMessages {
-                                        if let message = message as? BodyDataDictionary {
-                                            let aMessage = Message.init(messageData: message)
-                                                self.messages.append(aMessage)
-                                            //}
+                    ActivitiesRequestManager.sharedInstance.getActivityCategories {
+                        bool, serverMessage, serverCode, activities, error in
+                        self.messages.removeAll()
+                        if let getMessagesLink = user?.messagesLink {
+                            let path = getMessagesLink + "?size=" + String(size) + "&page=" + String(page) + "&onlyUnreadMessages="+"\(onlyUnRead)"
+                            self.APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpMethod) { success, json, error in
+                                if let json = json {
+                                    if let data = json[commentKeys.page.rawValue] {
+                                        if let size = data[commentKeys.size.rawValue] as? Int{
+                                            self.currentSize = size
+                                        }
+                                        if let totalSize = data[commentKeys.totalElements.rawValue] as? Int{
+                                            self.totalSize = totalSize
+                                        }
+                                        if let totalPages = data[commentKeys.totalPages.rawValue] as? Int{
+                                            self.totalPages = totalPages
+                                        }
+                                        if let currentPage = data[commentKeys.number.rawValue] as? Int{
+                                            self.currentPage = currentPage
                                         }
                                     }
-                                    onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
+                                    if let embedded = json[getMessagesKeys.embedded.rawValue],
+                                        let yonaMessages = embedded[getMessagesKeys.yonaMessages.rawValue] as? NSArray {
+                                        
+                                        
+                                        //iterate messages
+                                        for message in yonaMessages {
+                                            if let message = message as? BodyDataDictionary {
+                                                var aMessage = Message.init(messageData: message)
+                                                if  let aActivities = activities {
+                                                    for aActivity in aActivities  {
+                                                        if aActivity.selfLinks == aMessage.activityCategoryLink {
+                                                            aMessage.activityTypeName = aActivity.activityCategoryName!
+                                                        }
+                                                    }
+                                                }
+                                                self.messages.append(aMessage)
+                                                //}
+                                            }
+                                        }
+                                        onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
+                                    } else {
+                                        self.message = Message.init(messageData: json)
+                                        onCompletion(success, serverMessage, serverCode, self.message, nil) //failed to get user
+                                    }
                                 } else {
-                                    self.message = Message.init(messageData: json)
-                                    onCompletion(success, serverMessage, serverCode, self.message, nil) //failed to get user
+                                    onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user
                                 }
-                            } else {
-                                onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user
-                            }
+                 
                         }
                     } else {
                         onCompletion(false, YonaConstants.YonaErrorTypes.GetMessagesLinkFail.localizedDescription, self.APIService.determineErrorCode(YonaConstants.YonaErrorTypes.GetMessagesLinkFail), nil, nil)
+                    }
                     }
                 } else {
                     onCompletion(success, serverMessage, serverCode, nil, nil) //failed to get user

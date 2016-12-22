@@ -353,3 +353,13 @@
 
 "vpnerror.notrunning.title.text" = "The VPN is Not Running";
 "vpnerror.notrunning.message.text" = "The VPN is Not Running. You must enable it to track activity";
+
+"emailsupport.text" = "All data is encrypted. To solve some problems we have to decrypt. Only use this option when your support team ask for it.";
+"emailsupport.title" = "Email to support";
+
+"emailsupport.error.title" = "Could Not Send Email";
+"emailsupport.error.text" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
+
+
+"emailsupport.finished.title" = "Email send";
+"emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";

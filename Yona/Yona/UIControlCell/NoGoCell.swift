@@ -42,9 +42,9 @@ class NoGoCell : UITableViewCell {
         } else {
             self.nogoImage.image = R.image.adultSad
             let dateFromat = NSDateFormatter()
-            dateFromat.dateFormat = "hh:mm a"
+            dateFromat.dateFormat = "HH:mm"
             let date = dateFromat.stringFromDate(goalDate)
-            self.nogoMessage.text =  "\(NSLocalizedString("meday.nogo.minutes", comment: ""))"
+            self.nogoMessage.text =  "\(totalMinutesBeyondGoal) " + "\(NSLocalizedString("meday.nogo.minutes", comment: ""))"
         }
     }
     
