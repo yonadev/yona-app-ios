@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Display-Bold.otf">
+            <string>SFUIDisplay-Bold</string>
+        </array>
+        <array key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayViewLinkCell" rowHeight="145" id="eTl-Ev-628" customClass="DayViewLinkCell" customModule="Yona" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTl-Ev-628" id="ccH-47-nKK">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucu-qU-OxY" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7E-20-X9F">
+                        <rect key="frame" x="32" y="29" width="116" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="116" id="WQX-Ik-YEG"/>
+                            <constraint firstAttribute="height" constant="21" id="bru-6c-4Fv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mpU-uE-9lA">
+                        <rect key="frame" x="32" y="71" width="311" height="1"/>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="J4x-t5-cA7"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctJ-Wt-auq">
+                        <rect key="frame" x="301" y="80" width="42" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="0aO-Dh-ax6"/>
+                            <constraint firstAttribute="height" constant="15" id="8ZH-ZY-8Wu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-Vm-QA6">
+                        <rect key="frame" x="32" y="81" width="276" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="F89-PL-4Ge"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Ucu-qU-OxY" secondAttribute="bottom" id="99i-Gu-af8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TZA-Vm-QA6" secondAttribute="trailing" constant="59" id="Af7-fE-zXk"/>
+                    <constraint firstAttribute="trailing" secondItem="Ucu-qU-OxY" secondAttribute="trailing" id="Ezy-Vb-RQd"/>
+                    <constraint firstItem="ctJ-Wt-auq" firstAttribute="top" secondItem="mpU-uE-9lA" secondAttribute="bottom" constant="8" id="NGX-PV-57U"/>
+                    <constraint firstItem="r7E-20-X9F" firstAttribute="leading" secondItem="ccH-47-nKK" secondAttribute="leadingMargin" constant="24" id="Puv-RN-IZq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mpU-uE-9lA" secondAttribute="trailing" constant="24" id="TuT-Oc-Oqz"/>
+                    <constraint firstItem="TZA-Vm-QA6" firstAttribute="leading" secondItem="ccH-47-nKK" secondAttribute="leadingMargin" constant="24" id="XUf-s4-v1q"/>
+                    <constraint firstItem="mpU-uE-9lA" firstAttribute="leading" secondItem="ccH-47-nKK" secondAttribute="leadingMargin" constant="24" id="fyA-iW-LjB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ctJ-Wt-auq" secondAttribute="trailing" constant="24" id="gXc-St-Go7"/>
+                    <constraint firstItem="mpU-uE-9lA" firstAttribute="top" secondItem="r7E-20-X9F" secondAttribute="bottom" constant="21" id="jUg-JS-mzJ"/>
+                    <constraint firstItem="Ucu-qU-OxY" firstAttribute="leading" secondItem="ccH-47-nKK" secondAttribute="leading" id="mgp-a5-rfQ"/>
+                    <constraint firstItem="Ucu-qU-OxY" firstAttribute="top" secondItem="ccH-47-nKK" secondAttribute="top" id="nzY-aR-4E1"/>
+                    <constraint firstItem="TZA-Vm-QA6" firstAttribute="top" secondItem="mpU-uE-9lA" secondAttribute="bottom" constant="9" id="xu5-rk-lYm"/>
+                    <constraint firstItem="r7E-20-X9F" firstAttribute="top" secondItem="ccH-47-nKK" secondAttribute="topMargin" constant="21" id="zde-Oq-SMy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellTitle" destination="r7E-20-X9F" id="pEe-no-fBM"/>
+                <outlet property="gradientView" destination="Ucu-qU-OxY" id="HoI-Pb-Hhp"/>
+                <outlet property="violationLinkURL" destination="TZA-Vm-QA6" id="tqC-AN-ncI"/>
+                <outlet property="violationTime" destination="ctJ-Wt-auq" id="JXr-mL-qRZ"/>
+            </connections>
+            <point key="canvasLocation" x="-68" y="-116"/>
+        </tableViewCell>
+    </objects>
+</document>

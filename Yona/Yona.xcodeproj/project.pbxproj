@@ -21,6 +21,8 @@
 		16142A2C1D2462A40089CB26 /* WeekActivityGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */; };
 		161899671DFF34EF00FDFADD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 161899661DFF34EF00FDFADD /* InfoPlist.strings */; };
 		1637BC521DCC7F3E00D2A8A5 /* SecretKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1637BC511DCC7F3E00D2A8A5 /* SecretKeys.plist */; };
+		1641E41E1E10196F00DD55E6 /* DayViewLinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1641E41D1E10196F00DD55E6 /* DayViewLinkCell.xib */; };
+		1641E4201E10198100DD55E6 /* DayViewLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641E41F1E10198100DD55E6 /* DayViewLinkCell.swift */; };
 		1656A3E61D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */; };
 		1656A3EB1D4A79A500EB288D /* YonaInstructionMobilePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */; };
 		1656A3EC1D4A79A500EB288D /* YonaInstructionMobilePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656A3E81D4A79A500EB288D /* YonaInstructionMobilePage2.swift */; };
@@ -391,6 +393,8 @@
 		16142A2B1D2462A40089CB26 /* WeekActivityGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekActivityGoal.swift; sourceTree = "<group>"; };
 		161899661DFF34EF00FDFADD /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		1637BC511DCC7F3E00D2A8A5 /* SecretKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecretKeys.plist; sourceTree = "<group>"; };
+		1641E41D1E10196F00DD55E6 /* DayViewLinkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayViewLinkCell.xib; sourceTree = "<group>"; };
+		1641E41F1E10198100DD55E6 /* DayViewLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewLinkCell.swift; sourceTree = "<group>"; };
 		164CD1D91D6B86EC004E585B /* Yona.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Yona.entitlements; sourceTree = "<group>"; };
 		1656A3E51D4A78CB00EB288D /* YonaVPNFlowInstructionsMobileConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowInstructionsMobileConfigViewController.swift; sourceTree = "<group>"; };
 		1656A3E71D4A79A500EB288D /* YonaInstructionMobilePage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaInstructionMobilePage1.swift; sourceTree = "<group>"; };
@@ -961,6 +965,8 @@
 				90F123F21D3F6D7E00E2BBBA /* SpreadCell.swift */,
 				90F123F41D3F7DCF00E2BBBA /* SpreadCellCustomView.swift */,
 				90F123F01D3F6D7600E2BBBA /* SpreadCell.xib */,
+				1641E41F1E10198100DD55E6 /* DayViewLinkCell.swift */,
+				1641E41D1E10196F00DD55E6 /* DayViewLinkCell.xib */,
 			);
 			path = UIControlCell;
 			sourceTree = "<group>";
@@ -1891,8 +1897,8 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = SFWNSYN8YK;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = J4QAF6K837;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 0;
@@ -1978,6 +1984,7 @@
 				ADD108231CC78C3B0048852F /* Oswald-Extra-LightItalic.ttf in Resources */,
 				ADD1082A1CC78C3B0048852F /* Oswald-MediumItalic.ttf in Resources */,
 				90F123DB1D2E60F300E2BBBA /* TimeZoneControlCell.xib in Resources */,
+				1641E41E1E10196F00DD55E6 /* DayViewLinkCell.xib in Resources */,
 				D98635621CABF44000A8535C /* SF-UI-Text-Medium.otf in Resources */,
 				D98635531CABF44000A8535C /* SF-UI-Display-Black.otf in Resources */,
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
@@ -2121,6 +2128,7 @@
 				16F7A0E81D2453D800CBB0CB /* WeekSingleActivityGoal.swift in Sources */,
 				AD00DEDE1CD3648F006BBA7E /* IQToolbar.swift in Sources */,
 				1656A5D41D4BEA0B00EB288D /* HTTPAuthenticationRequest.m in Sources */,
+				1641E4201E10198100DD55E6 /* DayViewLinkCell.swift in Sources */,
 				907DA5281CBE5C5D0031850E /* Activities.swift in Sources */,
 				906FED861CEDC72300029845 /* NotificationsViewController.swift in Sources */,
 				90351BF41D101A4C0012E983 /* AdminOverrideValidationVC.swift in Sources */,
@@ -2528,8 +2536,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = SFWNSYN8YK;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = J4QAF6K837;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2541,8 +2549,8 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
-				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2556,7 +2564,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
-				DEVELOPMENT_TEAM = SFWNSYN8YK;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = J4QAF6K837;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2567,8 +2576,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
-				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;

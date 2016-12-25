@@ -41,10 +41,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     var animatedCells : [String] = []
     var scrolling = false
     var leftPage : Int = 0
-    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        isFromfriends = true
         
 //        refreshControl = UIRefreshControl()
 //        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -234,16 +234,39 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if selectedTab == .right {
+
             if indexPath.section == friendsSections.connected.rawValue {
                 performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
             } else {
                 tableView.deselectRowAtIndexPath(indexPath, animated: false)
             }
         } else {
+            
             if timeLineData[indexPath.section].tableViewCells[indexPath.row] is TimeLinedayActivitiesForUsers {
-                performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendsDetailDay, sender: self)
+                let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row] as! TimeLinedayActivitiesForUsers
+                if obj.buddyLink != nil {
+                    performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendsDetailDay, sender: self)
+                } else {
+
+                    let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("MeDayDetailViewController") as! MeDayDetailViewController
+                    vc.goalType = GoalType.NoGoGoalString.rawValue
+                    let activitygoal = ActivitiesGoal(timeLinedayActivitiesForUsers: obj)
+                    vc.activityGoal = activitygoal
+
+                    vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                    self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                    let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                    
+                    vc.navbarColor = navbar.gradientColor
+                    navbar.gradientColor = UIColor.yiMidBlueColor()
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+
+                
+                }
             }
-        
         }
     }
     

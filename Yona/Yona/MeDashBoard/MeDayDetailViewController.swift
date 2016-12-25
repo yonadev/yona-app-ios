@@ -13,6 +13,7 @@ import Foundation
 enum detailDayRows : Int  {
     case activity = 0
     case spreadCell
+    case linkCell
 }
 
 enum detailDayCommentRows : Int  {
@@ -47,6 +48,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     var navbarColor1 : UIColor?
     var navbarColor : UIColor?
+    
+    var violationStartTime : NSDate?
+    var violationEndTime : NSDate?
+    var violationLinkURL : String?
     
     //paging
     var totalSize: Int = 0
@@ -131,7 +136,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         nib = UINib(nibName: "ReplyToComment", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
+
         
+        nib = UINib(nibName: "DayViewLinkCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "DayViewLinkCell")
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -298,6 +307,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         }
         
         var numberOfSections = 2
+        if violationLinkURL != nil {
+            numberOfSections = 3
+        }
+        
         if section == 1 {
             numberOfSections = self.comments.count // number of comments
         } else if section == 2 {
@@ -340,6 +353,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 }
                 
             }
+            
+            if indexPath.row == detailDayRows.linkCell.rawValue {
+                let cell: DayViewLinkCell = tableView.dequeueReusableCellWithIdentifier("DayViewLinkCell", forIndexPath: indexPath) as! DayViewLinkCell
+                cell.setData(violationLinkURL!, startDate: violationStartTime!)
+                return cell
+                
+            
+            }
+            
+            
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
             let currentThreadID = comment.threadHeadMessageID

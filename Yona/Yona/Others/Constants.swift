@@ -109,6 +109,9 @@ struct YonaConstants {
         static let  weekActivityOverviews = "yona:weekActivityOverviews"
         static let  weekActivities = "weekActivities"
         static let  yonaWeekDetails = "yona:weekDetails"
+        static let  violationURL = "url"
+        static let  violationStart = "activityStartTime"
+        static let  violationEnd = "activityEndTime"
         
         static let  page = "page"
         static let  size = "size"

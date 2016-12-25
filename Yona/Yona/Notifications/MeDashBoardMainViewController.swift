@@ -35,8 +35,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let title = NSLocalizedString("DASHBOARD", comment: "")
         navigationItem.title = title.uppercaseString
         configureCorrectToday()
-        
-        
+        isFromfriends = false
+        if let navbar = navigationController?.navigationBar as? GradientNavBar{
+            navbar.backgroundColor = UIColor.yiGrapeColor()
+            navbar.gradientColor = UIColor.yiGrapeTwoColor()
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,13 +52,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
         
-        //make sure we set the nav bar to correct purple colours
-        if let navbar = navigationController?.navigationBar as? GradientNavBar{
-            navbar.backgroundColor = UIColor.yiGrapeColor()
-            navbar.gradientColor = UIColor.yiGrapeTwoColor()
-        }
+        
         configurProfileBarItem()
-        configureRightTabBar()
+        if !isFromfriends {
+            configureRightTabBar()
+        } else {
+            self.navigationItem.rightBarButtonItems = nil
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     

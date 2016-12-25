@@ -24,11 +24,13 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         super.viewWillDisappear(animated)
         if let navbarColor1 = navbarColor1,
             let navbarColor = navbarColor {
-            self.navigationController?.navigationBar.backgroundColor = navbarColor1
+            self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
             let navbar = navigationController?.navigationBar as! GradientNavBar
-            navbar.gradientColor = navbarColor
+            navbar.gradientColor = UIColor.yiMidBlueColor()
         }
         
+        
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -40,12 +42,28 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         tracker.send(builder.build() as [NSObject : AnyObject])
         
         navigationItem.title = NSLocalizedString("friends", comment: "")
-        configurProfileBarItem()
+        
+        
+        if buddyToShow != nil {
+            navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+            self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+            let navbar = self.navigationController?.navigationBar as! GradientNavBar
+            
+            navbarColor = navbar.gradientColor
+            navbar.gradientColor = UIColor.yiMidBlueColor()
+            
+            
+        }
+        navigationItem.rightBarButtonItems = nil
+        navigationItem.rightBarButtonItem = nil
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        rightNavBarItem.addCircle()
+        configurProfileBarItem()
+        //navigationItem.rightBarButtonItems = nil
+        //configurProfileBarItem()
     }
     
     //MARK: - implementations metods
@@ -68,10 +86,29 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     override func configurProfileBarItem () {
         if let name = buddyToShow?.UserRequestfirstName {
+            
             if name.characters.count > 0 {//&& user?.characters.count > 0{
-                self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
-                self.rightNavBarItem.addCircle()
+                let btnName = UIButton()
+                let txt = "\(name.capitalizedString.characters.first!)"
+                btnName.setTitle(txt, forState: .Normal)
+                btnName.frame = CGRectMake(0, 0, 32, 32)
+                btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), forControlEvents: .TouchUpInside)
+                
+                btnName.backgroundColor = UIColor.clearColor()
+                btnName.layer.cornerRadius = btnName.frame.size.width/2
+                btnName.layer.borderWidth = 1
+                btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                let rightBarButton = UIBarButtonItem()
+                rightBarButton.customView = btnName
+                navigationItem.rightBarButtonItems = [rightBarButton]
             }
+
+            
+//            if name.characters.count > 0 {//&& user?.characters.count > 0{
+//                self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
+//                self.rightNavBarItem.addCircle()
+//            }
         }
     }
 

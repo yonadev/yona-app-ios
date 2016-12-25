@@ -395,6 +395,7 @@ struct R {
     static var commentControlCell: _R.nib._CommentControlCell { return _R.nib._CommentControlCell() }
     static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
     static var customDeleteCell: _R.nib._CustomDeleteCell { return _R.nib._CustomDeleteCell() }
+    static var dayViewLinkCell: _R.nib._DayViewLinkCell { return _R.nib._DayViewLinkCell() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
     static var replyToComment: _R.nib._ReplyToComment { return _R.nib._ReplyToComment() }
@@ -423,6 +424,7 @@ struct R {
     static var challengeCell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "challengeCell") }
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
     static var customDeleteCell: ReuseIdentifier<CustomDeleteCell> { return ReuseIdentifier(identifier: "CustomDeleteCell") }
+    static var dayViewLinkCell: ReuseIdentifier<DayViewLinkCell> { return ReuseIdentifier(identifier: "DayViewLinkCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
     static var timeBucketControlCell: ReuseIdentifier<TimeBucketControlCell> { return ReuseIdentifier(identifier: "TimeBucketControlCell") }
@@ -810,6 +812,20 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CustomDeleteCell? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CustomDeleteCell
+      }
+      
+      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
+        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
+      }
+    }
+    
+    struct _DayViewLinkCell: NibResource, Reusable {
+      var instance: UINib { return UINib.init(nibName: "DayViewLinkCell", bundle: _R.hostingBundle) }
+      var name: String { return "DayViewLinkCell" }
+      var reuseIdentifier: ReuseIdentifier<DayViewLinkCell> { return ReuseIdentifier(identifier: "DayViewLinkCell") }
+      
+      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> DayViewLinkCell? {
+        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? DayViewLinkCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {

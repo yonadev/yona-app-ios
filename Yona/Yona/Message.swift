@@ -43,6 +43,11 @@ struct Message{
     var activityTypeName : String = "noname"
     var isRead : Bool = true
     
+    var violationStartTime : NSDate?
+    var violationEndTime : NSDate?
+    var violationLinkURL : String?
+
+    
     //details of user who made request
     var UserRequestfirstName: String
     var UserRequestlastName: String
@@ -102,6 +107,31 @@ struct Message{
             }
         }
         
+        // VILOATION
+        
+        
+        if let violation = messageData[YonaConstants.jsonKeys.violationURL] as? String{
+            violationLinkURL = violation
+        }
+        if let violation = messageData[YonaConstants.jsonKeys.violationStart] as? String{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
+            if let aDate = dateFormatter.dateFromString(violation) {
+                violationStartTime = aDate
+            }
+        }
+        if let violation = messageData[YonaConstants.jsonKeys.violationEnd] as? String{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
+            if let aDate = dateFormatter.dateFromString(violation) {
+                violationEndTime = aDate
+            }
+             
+        }
+        
+        
+
+        
         //get the links
         if let links = messageData[getMessagesKeys.links.rawValue] as? BodyDataDictionary{
             if let linksSelf = links[getMessagesKeys.selfKey.rawValue],
@@ -144,6 +174,7 @@ struct Message{
                 let href = weekDetailsLink[getMessagesKeys.href.rawValue] as? String{
                 self.weekDetailsLink = href
             }
+
             if let markAsRead = links[getMessagesKeys.markRead.rawValue],
                 let href = markAsRead[getMessagesKeys.href.rawValue] as? String{
                 self.markReadLink = href

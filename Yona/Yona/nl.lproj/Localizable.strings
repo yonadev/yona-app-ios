@@ -317,6 +317,8 @@
 
 
 "emailsupport.text" = "Alle gegeven zijn encrypted opgeslagen. Om bepaalde problemen op te kunnen lossen moeten we deze decrypten. Gebruik deze optie alleen wanneer het support team hier om vraagt.";
+"emailsupport.accept" = "Accept";
+"emailsupport.decline" = "Decline";
 "emailsupport.title" = "Email to support";
 
 "emailsupport.error.title" = "Could Not Send Email";
@@ -324,3 +326,6 @@
 
 "emailsupport.finished.title" = "Email send";
 "emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";
+
+
+"link.cell.title" = "inhoud";

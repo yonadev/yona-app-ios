@@ -166,6 +166,11 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     vc.goalType = GoalType.NoGoGoalString.rawValue
                     vc.currentDate = aMessage.creationTime
                     vc.initialObjectLink = aMessage.dayDetailsLink
+                    
+                    vc.violationStartTime = aMessage.violationStartTime
+                    vc.violationEndTime = aMessage.violationEndTime
+                    vc.violationLinkURL = aMessage.violationLinkURL
+                   
                     self.navigationController?.pushViewController(vc, animated: true)
                     return
 

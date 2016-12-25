@@ -235,10 +235,32 @@ extension SettingsViewController:UITableViewDelegate {
 //    "emailsupport.no.email.client" = "You dont have an email configured on this device";
     
     func showAlertForEmailForUser() {
+        
+        let errorAlert = UIAlertController( title: NSLocalizedString("emailsupport.title", comment: ""), message:  NSLocalizedString("emailsupport.text", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        let OKAction = UIAlertAction(title: NSLocalizedString("emailsupport.accept", comment: ""), style: .Default) { (action) in
+            self.sendMail(true)
+            return
+        }
+        errorAlert.addAction(OKAction)
+        
+        let CANCELAction = UIAlertAction(title: NSLocalizedString("emailsupport.decline", comment: ""), style: .Default) { (action) in
+            self.sendMail(false)
+            return
+            }
+        errorAlert.addAction(CANCELAction)
+        
+        
+        
+        self.presentViewController(errorAlert, animated: true) {
+            return
+        }
+
+        
+        
         self.displayAlertOption(NSLocalizedString("emailsupport.title", comment: ""),cancelButton: true, alertDescription: NSLocalizedString("emailsupport.text", comment: ""), onCompletion: { (buttonPressed) in
             switch buttonPressed {
             case alertButtonType.OK:
-                self.sendMail()
+                self.sendMail(true)
             case alertButtonType.cancel:
                 break
                 //do nothing or send back to start of signup?
@@ -267,7 +289,7 @@ extension SettingsViewController:UITableViewDelegate {
         }
     }
     
-    func sendMail() {
+    func sendMail(showPassword : Bool) {
         if !MFMailComposeViewController.canSendMail() {
             showSendMailErrorAlert()
             return
@@ -279,7 +301,10 @@ extension SettingsViewController:UITableViewDelegate {
             
             
             let subject = "Problem with Yona App"
-            let body = userlink + "\n\n" + "Password: '" + yonaPassword + "'"
+            var body = userlink + "\n\n"
+            if (showPassword) {
+                 body = body + "Password: '" + yonaPassword + "'"
+            }
             let email = "app@yona.nu"
         
         
