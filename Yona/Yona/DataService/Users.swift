@@ -65,7 +65,7 @@ struct Users{
                     self.newDeviceRequestsLink = hrefEditLink
                 }
             }
-        } else {
+        //} else {
             
             if let firstName = userData[addUserKeys.firstNameKey.rawValue] as? String {
                 self.firstName = firstName
