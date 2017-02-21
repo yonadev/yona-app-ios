@@ -93,7 +93,7 @@ extension UIColor {
     }
 
     class func yiMessageUnreadColor() -> UIColor {
-        return UIColor(red: 236.0 / 255.0, green: 242.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 228.0 / 255.0, green: 237.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0)
     }
 
 }
