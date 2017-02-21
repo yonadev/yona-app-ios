@@ -110,11 +110,7 @@ extension SendCommentControl: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if (textField == commentTextField) {
-            commentTextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
+        textField.resignFirstResponder()
         return true
     }
     

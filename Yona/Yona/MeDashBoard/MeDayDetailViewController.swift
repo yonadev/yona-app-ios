@@ -502,11 +502,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     // MARK: - SendCommentControlProtocol
     
     func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
-        if textField == commentTextField {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = true
-        } else {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        }
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
     }
     
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
