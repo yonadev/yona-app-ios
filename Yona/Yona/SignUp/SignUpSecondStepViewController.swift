@@ -17,9 +17,10 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     var userFirstName: String?
     var userLastName: String?
         
-    private let nederlandPhonePrefix = "+31 (0) "
+    private let nederlandPhonePrefix = "31"
     
     @IBOutlet var mobileTextField: UITextField!
+    private var mobilePrefixTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
@@ -108,13 +109,28 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
         
-        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
-        label.font = UIFont(name: "SFUIDisplay-Regular", size: 12)
-        label.textColor = UIColor.yiBlackColor()
-        label.contentMode = UIViewContentMode.Center
-        label.textAlignment = NSTextAlignment.Center
-        label.text = nederlandPhonePrefix
-        self.mobileTextField.leftView = label
+        let mobileNumberView = UIView(frame: CGRectMake(0, 0, 50, 50))
+        
+        let plusLabel = UILabel(frame: CGRectMake(0, 0, 10, 50))
+        plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        plusLabel.textColor = UIColor.yiBlackColor()
+        plusLabel.contentMode = UIViewContentMode.Center
+        plusLabel.textAlignment = NSTextAlignment.Center
+        plusLabel.text = "+"
+        
+        let prefixTextField = UITextField(frame: CGRectMake(10, 0, 40, 50))
+        prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        prefixTextField.textColor = UIColor.yiBlackColor()
+        prefixTextField.contentMode = UIViewContentMode.Left
+        prefixTextField.textAlignment = NSTextAlignment.Left
+        prefixTextField.text = nederlandPhonePrefix
+        prefixTextField.leftView = plusLabel
+        prefixTextField.leftViewMode = UITextFieldViewMode.Always
+        prefixTextField.keyboardType = UIKeyboardType.NumberPad
+        mobileNumberView.addSubview(prefixTextField)
+        self.mobilePrefixTextField = prefixTextField
+        self.mobileTextField.leftView = mobileNumberView
+        self.mobilePrefixTextField.delegate = self
         self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
     }
         
@@ -134,7 +150,9 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         
         var number = ""
         if let mobilenum = mobileTextField.text {
-            number = (nederlandPhonePrefix) + mobilenum
+            if let prefix = mobilePrefixTextField.text {
+                number = "+" + prefix + mobilenum
+            }
             
             let trimmedWhiteSpaceString = number.removeWhitespace()
             let trimmedString = trimmedWhiteSpaceString.removeBrackets()
@@ -260,8 +278,14 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
                     textField.text = "\(textField.text!) \(space)"
                 }            }
             previousRange = range
-            
-            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
+            //The size limitation setting is only for Netherland's number, As it was already implemented.. No limit for another country
+            if (mobilePrefixTextField.text == nederlandPhonePrefix) {
+                return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
+            } else {
+                return true
+            }
+        } else if (textField == mobilePrefixTextField) {
+            return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneLength.prefix
         }
         return true
     }
