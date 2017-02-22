@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
-    private var totalAttempts : Int = 5
+    private var totalAttempts : Int = 3
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
@@ -66,7 +66,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         codeView.addSubview(self.codeInputView)
         codeInputView.clear()
         if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) {
-            
+            pinResetButton.hidden = false
             codeInputView.hidden = true
             setCornerRadius()
             errorLabel.hidden = false
@@ -192,6 +192,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 errorLabel.hidden = false
                 self.navigationItem.title = NSLocalizedString("change-pin", comment: "")
                 self.codeInputView.resignFirstResponder()
+                self.pinResetButton.hidden = false
                 self.codeInputView.hidden = true
                 self.accountBlockedTitle?.hidden = false
                 self.infoLabel?.hidden = true
