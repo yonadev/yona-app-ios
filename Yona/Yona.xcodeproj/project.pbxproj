@@ -96,7 +96,6 @@
 		16FDABE91D55FCB700B847DB /* TimeLineTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */; };
 		16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */; };
 		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
-		603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 603CDA9D1CDC8378002A5C46 /* Settings.bundle */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */; };
@@ -493,7 +492,6 @@
 		16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeBucketCell.swift; sourceTree = "<group>"; };
 		16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeZoneCell.swift; sourceTree = "<group>"; };
 		16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeZoneCell.xib; sourceTree = "<group>"; };
-		603CDA9D1CDC8378002A5C46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
@@ -1792,7 +1790,6 @@
 				161899661DFF34EF00FDFADD /* InfoPlist.strings */,
 				9007DD131D9957A10092AA9E /* GoogleService-Info.plist */,
 				D9D54ED31CA28CD2007805F4 /* Assets.xcassets */,
-				603CDA9D1CDC8378002A5C46 /* Settings.bundle */,
 			);
 			path = Yona;
 			sourceTree = "<group>";
@@ -1941,7 +1938,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				603CDA9E1CDC8378002A5C46 /* Settings.bundle in Resources */,
 				165BB1EC1D228A260013A4EF /* TimeBucketControlCell.xib in Resources */,
 				D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */,
 				D98635541CABF44000A8535C /* SF-UI-Display-Bold.otf in Resources */,
