@@ -50,9 +50,9 @@ class LoginViewController: LoginSignupValidationMasterView {
             self.closeButton?.enabled = false
             self.closeButton?.tintColor = UIColor.clearColor()
             checkUserExists()
-            pinResetButton.hidden = false
+            pinResetButton.hidden = true
         } else {
-            pinResetButton.hidden = false
+            pinResetButton.hidden = true
             self.closeButton?.enabled = true
             self.closeButton?.tintColor = UIColor.whiteColor()
             
