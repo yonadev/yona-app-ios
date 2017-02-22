@@ -370,14 +370,18 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             var nextThreadID = ""
 
             if indexPath.row + 1 < self.comments.count {
-                 nextThreadID = self.comments[indexPath.row + 1].threadHeadMessageID!
+                if let nextThreadMessageId = self.comments[indexPath.row + 1].threadHeadMessageID {
+                    nextThreadID = nextThreadMessageId
+                }
             } else {
                 nextThreadID = ""
             }
             //check for a previous row
             if indexPath.row != 0{
                 // then get the thread id of this row
-                previousThreadID = self.comments[indexPath.row - 1].threadHeadMessageID!
+                if let previousThreadMessageId = self.comments[indexPath.row - 1].threadHeadMessageID {
+                    previousThreadID = previousThreadMessageId
+                }
             }
             
             if self.dayData?.messageLink != nil && indexPath.section == 1 {
