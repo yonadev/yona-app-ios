@@ -25,13 +25,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     @IBOutlet var lastnameTextfield: UITextField!
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var mobileTextfield: UITextField!
+    private var mobilePrefixTextField: UITextField!
     @IBOutlet var messageTextfield: UITextField!
     @IBOutlet var inviteFriendButton: UIButton!
     @IBOutlet var screenTitle: UILabel!
     var addressBook: ABAddressBookRef?
     var people = ABPeoplePickerNavigationController()
     var previousRange: NSRange!
-    private let nederlandPhonePrefix = "+31 (0) "
+    private let nederlandPhonePrefix = "31"
 
     // MARK: - View
     override func viewDidLoad() {
@@ -132,13 +133,28 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         messageTextfield.rightView = messageToUser;
         messageTextfield.rightViewMode = UITextFieldViewMode.Always
 
-        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
-        label.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
-        label.textColor = UIColor.yiBlackColor()
-        label.contentMode = UIViewContentMode.Center
-        label.textAlignment = NSTextAlignment.Center
-        label.text = nederlandPhonePrefix
-        self.mobileTextfield.leftView = label
+        let mobileNumberView = UIView(frame: CGRectMake(0, 0, 50, 50))
+        
+        let plusLabel = UILabel(frame: CGRectMake(0, 0, 10, 50))
+        plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        plusLabel.textColor = UIColor.yiBlackColor()
+        plusLabel.contentMode = UIViewContentMode.Center
+        plusLabel.textAlignment = NSTextAlignment.Center
+        plusLabel.text = "+"
+        
+        let prefixTextField = UITextField(frame: CGRectMake(10, 0, 40, 50))
+        prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
+        prefixTextField.textColor = UIColor.yiBlackColor()
+        prefixTextField.contentMode = UIViewContentMode.Left
+        prefixTextField.textAlignment = NSTextAlignment.Left
+        prefixTextField.text = nederlandPhonePrefix
+        prefixTextField.leftView = plusLabel
+        prefixTextField.leftViewMode = UITextFieldViewMode.Always
+        prefixTextField.keyboardType = UIKeyboardType.NumberPad
+        mobileNumberView.addSubview(prefixTextField)
+        self.mobilePrefixTextField = prefixTextField
+        self.mobileTextfield.leftView = mobileNumberView
+        self.mobilePrefixTextField.delegate = self
         self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
         
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
@@ -253,7 +269,9 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             } else {
             var number = ""
             if let mobilenum = mobileTextfield.text {
-                number = (nederlandPhonePrefix) + mobilenum
+                if let prefix = mobilePrefixTextField.text {
+                    number = "+" + prefix + mobilenum
+                }
                 
                 let trimmedWhiteSpaceString = number.removeWhitespace()
                 let trimmedString = trimmedWhiteSpaceString.removeBrackets()
@@ -411,11 +429,18 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 }
                 previousRange = range
                 
-                return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
+                //The size limitation setting is only for Netherland's number, As it was already implemented.. No limit for another country
+                if (mobilePrefixTextField.text == nederlandPhonePrefix) {
+                    return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneSpace.mobileLastSpace
+                } else {
+                    return true
+                }
+            } else if (textField == mobilePrefixTextField) {
+                return (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length <= YonaConstants.mobilePhoneLength.prefix
             }
             return true
         }
-    }
+}
 
     private extension Selector {
         static let dismissKeyboard = #selector(AddFriendsViewController.dismissKeyboard)

@@ -195,6 +195,7 @@ struct YonaConstants {
     
     struct mobilePhoneLength{
         static let netherlands = 11
+        static let prefix = 2
     }
     
     struct mobilePhoneSpace{
