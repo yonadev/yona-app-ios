@@ -15,13 +15,13 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
@@ -37,7 +37,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         serverHiddenView.layer.masksToBounds = true
         serverHiddenView.layer.borderWidth = 1.0
         serverHiddenView.layer.borderColor = UIColor.whiteColor().CGColor
-
+        
         let longPressRec = UILongPressGestureRecognizer()
         longPressRec.minimumPressDuration = 4.0
         longPressRec.addTarget(self, action: #selector(longPress))
@@ -46,7 +46,6 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         if !isFromSettings {
             //Get user call
-            Loader.Hide()
             self.closeButton?.enabled = false
             self.closeButton?.tintColor = UIColor.clearColor()
             checkUserExists()
@@ -79,7 +78,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         }
         
         //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter() 
+        let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -87,9 +86,9 @@ class LoginViewController: LoginSignupValidationMasterView {
     
     
     override func viewDidAppear(animated: Bool) {
-//        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
-//            self.codeInputView.becomeFirstResponder()
-//        }
+        //        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
+        //            self.codeInputView.becomeFirstResponder()
+        //        }
         if isFromSettings {
             codeInputView.becomeFirstResponder()
             closeButton  = UIBarButtonItem(image: UIImage(named: "icnBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(LoginViewController.backToSettings(_:)))
@@ -102,7 +101,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
+    
     override func viewDidLayoutSubviews()
     {
         
@@ -110,7 +109,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         scrollViewInsets.top = 0
         scrollView.contentInset = scrollViewInsets
     }
-
+    
     
     //MARK: Server changeView
     
@@ -124,15 +123,15 @@ class LoginViewController: LoginSignupValidationMasterView {
         
         
     }
-
+    
     @IBAction func cancelChangeServer() {
         UIView.animateWithDuration(0.3, animations: {
             self.serverHiddenView.alpha = 0.0
-            })
+        })
         serverHiddenTextField.resignFirstResponder()
         codeInputView.becomeFirstResponder()
     }
-
+    
     
     @IBAction func longPress(){
         if let url = NSUserDefaults.standardUserDefaults().stringForKey("YONA_URL") {
@@ -141,16 +140,16 @@ class LoginViewController: LoginSignupValidationMasterView {
         UIView.animateWithDuration(0.3, animations: {
             self.serverHiddenView.alpha = 1.0
             }, completion: { completed in
-            self.serverHiddenTextField.becomeFirstResponder()
+                self.serverHiddenTextField.becomeFirstResponder()
         })
         
         //animateWithDuration(0.3, animations: {
         //
-       // })
+        // })
     }
     
-
-
+    
+    
 }
 
 extension LoginViewController: CodeInputViewDelegate {
@@ -215,7 +214,7 @@ extension LoginViewController: CodeInputViewDelegate {
             self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), forState: UIControlState.Normal)
         }
         pinResetButton.layer.cornerRadius = pinResetButton.frame.size.height/2
-//        pinResetButton.layer.borderWidth = 1
+        //        pinResetButton.layer.borderWidth = 1
     }
     
     @IBAction func pinResetTapped(sender: UIButton) {
@@ -238,6 +237,7 @@ extension LoginViewController: CodeInputViewDelegate {
     func checkUserExists() {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
             if code == YonaConstants.serverCodes.errorUserNotFound {
+                Loader.Hide()
                 if let serverMessage = message {
                     self.displayAlertOption("", cancelButton: true, alertDescription: serverMessage, onCompletion: { (buttonPressed) in
                         switch buttonPressed{
@@ -278,7 +278,7 @@ extension LoginViewController: KeyboardProtocol {
             var aRect = self.view.bounds
             aRect.origin.x = 64
             aRect.size.height -= 64
-
+            
             aRect.size.height -= keyboardSize.size.height
             if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
                 var frameToScrollTo = activeField.frame
