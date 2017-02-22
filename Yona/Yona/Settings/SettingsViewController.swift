@@ -11,7 +11,8 @@ import Messages
 import MessageUI
 
 enum  settingsOptions : Int {
-    case privacy = 1
+    case changepin = 0
+    case privacy
     case adddevice
     case unsubscribe
     case emailSupport
@@ -20,6 +21,8 @@ enum  settingsOptions : Int {
     
     func simpleDescription() -> String {
         switch self {
+        case .changepin:
+            return NSLocalizedString("change-pin-settings", comment: "")
         case .privacy:
             return NSLocalizedString("privacy", comment: "")
         case .adddevice:
@@ -182,6 +185,17 @@ extension SettingsViewController:UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
+        case settingsOptions.changepin.rawValue:
+            //change pin
+            if let loginVC = R.storyboard.login.loginViewController { //root view
+                loginVC.isFromSettings = true
+                //make sure the change password is presented as a nav controller else we run into issues when backgrounding the app
+                let navController = R.storyboard.login.initialViewController
+                navController?.pushViewController(loginVC, animated: false)
+                self.view.window?.rootViewController?.presentViewController(navController!, animated: false, completion: nil)
+                
+            }
+
         case settingsOptions.privacy.rawValue:
              performSegueWithIdentifier(R.segue.settingsViewController.privacyStatementSegue, sender: self)
         case settingsOptions.adddevice.rawValue:
