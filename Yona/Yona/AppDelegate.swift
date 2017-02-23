@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         updateEnvironmentSettings()
         //check for goals, no go go
         if BaseTabViewController.userHasGoals() == false {
-            setTimeBucketTabToDisplay(.noGo, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+            setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
         }
         hockeyAppSetup()
 		updateEnvironmentSettings()
