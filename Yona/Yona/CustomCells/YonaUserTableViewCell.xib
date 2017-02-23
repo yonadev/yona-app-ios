@@ -1,29 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-UI-Display-Bold.otf">
+        <mutableArray key="SF-UI-Display-Bold.otf">
             <string>SFUIDisplay-Bold</string>
-        </array>
-        <array key="SF-UI-Display-Regular.otf">
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
-        </array>
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YonaUserTableViewCell" editingAccessoryType="detailButton" rowHeight="44" id="JJX-QR-1hb" customClass="YonaUserTableViewCell" customModule="Yona" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJX-QR-1hb" id="P30-7E-3LL">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-zj-gLf" userLabel="Action View">
@@ -46,11 +44,11 @@
                                     <constraint firstAttribute="height" constant="21" id="SQL-Qr-ID1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90980392694473267" green="0.18823529779911041" blue="0.54117649793624878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.90980392694473267" green="0.18823529779911041" blue="0.54117649793624878" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="O5h-mK-s7f" secondAttribute="trailing" constant="23" id="3Xy-ok-1ag"/>
                             <constraint firstAttribute="bottom" secondItem="O5h-mK-s7f" secondAttribute="bottom" constant="14" id="E9A-7T-5x7"/>
@@ -66,11 +64,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGQ-Jk-BKI" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="2048" height="88"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                        <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -84,13 +82,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ee6-12-OjT">
                                 <rect key="frame" x="84" y="24" width="220" height="18"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ric-Ra-Qlj">
                                 <rect key="frame" x="84" y="47" width="220" height="17"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0W-l2-iHi" userLabel="Status Image View">
@@ -107,11 +105,11 @@
                                     <constraint firstAttribute="height" constant="21" id="gQk-NA-m2K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="X0W-l2-iHi" firstAttribute="leading" secondItem="Ee6-12-OjT" secondAttribute="trailing" constant="15" id="2XV-1M-YIL"/>
                             <constraint firstItem="uCZ-Kg-Seh" firstAttribute="centerY" secondItem="X51-dA-6JH" secondAttribute="centerY" constant="-2" id="6OP-yX-vyk"/>
@@ -121,7 +119,7 @@
                             <constraint firstAttribute="bottom" secondItem="vGQ-Jk-BKI" secondAttribute="bottom" id="Mia-S5-21i"/>
                             <constraint firstItem="uCZ-Kg-Seh" firstAttribute="top" secondItem="9rC-4f-MDB" secondAttribute="bottom" constant="-38" id="Uoq-mJ-JYP"/>
                             <constraint firstItem="Ee6-12-OjT" firstAttribute="top" secondItem="X51-dA-6JH" secondAttribute="top" constant="24" id="WPg-0j-AnQ"/>
-                            <constraint firstAttribute="trailing" secondItem="vGQ-Jk-BKI" secondAttribute="trailing" priority="900" constant="-1673" id="WbY-qJ-3q2"/>
+                            <constraint firstAttribute="trailing" secondItem="vGQ-Jk-BKI" secondAttribute="trailing" priority="900" id="WbY-qJ-3q2"/>
                             <constraint firstItem="9rC-4f-MDB" firstAttribute="leading" secondItem="uCZ-Kg-Seh" secondAttribute="trailing" constant="-39" id="Z11-x4-OPQ"/>
                             <constraint firstAttribute="trailing" secondItem="X0W-l2-iHi" secondAttribute="trailing" constant="16" id="cvY-2S-eVu"/>
                             <constraint firstItem="X0W-l2-iHi" firstAttribute="centerY" secondItem="X51-dA-6JH" secondAttribute="centerY" id="itM-YQ-Jf0"/>
@@ -132,12 +130,12 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="R0w-zj-gLf" firstAttribute="height" secondItem="P30-7E-3LL" secondAttribute="height" id="2h1-8T-w1I"/>
                     <constraint firstItem="R0w-zj-gLf" firstAttribute="centerY" secondItem="P30-7E-3LL" secondAttribute="centerY" id="9fO-43-6Ja"/>
