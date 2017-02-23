@@ -16,9 +16,7 @@ class TimeLineHeaderCell: UITableViewCell {
     @IBOutlet weak var gradientView: GradientSmooth!
     
     override func awakeFromNib() {
-        infoLabel.text = NSLocalizedString("minutes", comment: "")
-        infoLabel.textColor = UIColor.yiGraphBarTwoColor()
-        
+        infoLabel.text = NSLocalizedString("meday.nogo.minutes", comment: "")
         typeTiltle.textColor = UIColor.yiBlackColor()
         
     }
