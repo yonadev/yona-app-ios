@@ -124,10 +124,10 @@
 "challenges-timzoe-subtext" = "Tijdzone tussen %@ en tussen %@";
 "challenges-budget-subtext" = "Je kunt per dag %@ minuten %@";
 
-"challenges.addBudgetGoal.NoGoChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
+"challenges.addBudgetGoal.NoGoChallengeMainTitle" = "NOGO VASTLEGGEN";
 "challenges.addBudgetGoal.NoGoChallengeDescription" = "Hiermee geef je aan dat je op geen enkele manier wilt %@";
 
-"challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "NOGO VASTLEGGEN";
+"challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
 
 "login.user.pinResetRequestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen %@uur %@minute(s) %@seconde(n).";
