@@ -131,6 +131,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
 
 "login.user.pinResetRequestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen %@uur %@minute(s) %@seconde(n).";
+"settings.privacy" = "PRIVACY";
 "userNotFoundAlert" = "Gebruiker niet gevonden";
 "screentitle1" = "Transparantie";
 "screentitle2" = "Delen";
@@ -205,17 +206,17 @@
 "notifications.tabtitle.perday" = "Per dag";
 "notifications.tabtitle.perweek" = "Per week";
 "notifications.maintitle.dashboard" = "DASHBOARD";
-"notifications.messages.title" = "Meldingen";
-"notifications.messages.title" = "Meldingen";
+"notifications.messages.title" = "MELDINGEN";
 "notifications.user.profile" = "Profiel";
 "notifications.user.badges" = "Badges";
 
-"notifications.accept.title" = "Accept request";
+"notifications.accept.title" = "ACCEPT REQUEST";
 "notifications.accept.type"  = "Vriendschapsverzoek";
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "AFWIJZEN";
 "notifications.accept.accept" = "ACCEPTEER";
 "notifications.delete" = "verwijder";
+
 
 // String for Profile
 

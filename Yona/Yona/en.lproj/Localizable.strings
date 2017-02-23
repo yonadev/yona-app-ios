@@ -239,13 +239,12 @@
 "notifications.tabtitle.perday" = "Per Day";
 "notifications.tabtitle.perweek" = "Per Week";
 "notifications.maintitle.dashboard" = "Dashboard";
-"notifications.messages.title" = "Messages";
-"notifications.messages.title" = "Messages";
+"notifications.messages.title" = "MESSAGES";
 "notifications.user.profile" = "Profile";
 "notifications.user.badges" = "Badges";
 
 
-"notifications.accept.title" = "Accept request";
+"notifications.accept.title" = "ACCEPT REQUEST";
 "notifications.accept.type"  = "Vriendschapsverzoek";
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "REJECT";
