@@ -179,7 +179,9 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                     else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
                         Loader.Hide()
                         //alert the user ask if they want to override their account, if ok send back to SMS screen
-                        number = (self.nederlandPhonePrefix) + mobilenum
+                        if  let prefix = self.mobilePrefixTextField.text {
+                            number = "+" + prefix + mobilenum
+                        }
                         
                         let trimmedWhiteSpaceString = number.removeWhitespace()
                         let trimmedString = trimmedWhiteSpaceString.removeBrackets()
