@@ -38,6 +38,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     var activitiyToPost: Activities?
     var goalCreated: Goal?
     var maxDurationMinutes: String = "0"
+    var scaledMinutes: Float = 5
     
     
     override func viewDidLoad() {
@@ -72,7 +73,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
 
         
         if let maxDurationMinutesUnwrapped = goalCreated?.maxDurationMinutes {
-            maxDurationMinutes = String(maxDurationMinutesUnwrapped)
+            maxDurationMinutes = String(Int(Float(maxDurationMinutesUnwrapped) / scaledMinutes))
         }
         
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.budgetChallengeDescription", comment: "")
@@ -127,7 +128,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
    
     func updateValues()
     {
-        self.minutesLabel.text = String(Int(maxDurationMinutes)!)
+        self.minutesLabel.text = String(Int(maxDurationMinutes)! * Int(scaledMinutes))
         self.minutesSlider.value = Float(maxDurationMinutes)!
         if self.minutesSlider.value > 0{
             setChallengeButton.alpha = 1.0
@@ -164,7 +165,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                     "_links": ["yona:activityCategory":
                         ["href": activityCategoryLink]
                     ],
-                    "maxDurationMinutes": String(maxDurationMinutes)
+                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes))
                 ]
                 Loader.Show()
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
@@ -196,7 +197,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                     "_links": ["yona:activityCategory":
                         ["href": activityCategoryLink]
                     ],
-                    "maxDurationMinutes": String(maxDurationMinutes)
+                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes))
                 ]
                 Loader.Show()
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in

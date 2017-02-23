@@ -863,7 +863,7 @@ onderdeel van deze challenge:</string>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1440" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
+                                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
                                                         <color key="minimumTrackTintColor" red="0.45542192459106445" green="0.66857236623764038" blue="0.11630380153656006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="thumbTintColor" red="0.45542192459106445" green="0.66857236623764038" blue="0.11630380153656006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
