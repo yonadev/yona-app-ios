@@ -8,7 +8,7 @@
 
 
 //Signup screens
-"PINCODE" = "Login";
+"PINCODE" = "LOGIN";
 "join" = "JOIN";
 "login" = "LOGIN";
 "first-name" = "FIRST NAME";
