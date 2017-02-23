@@ -164,10 +164,10 @@
 //Challenges
 "from" = "Van";
 "to" = "Tot";
-"challenge-next" = "Volgend";
-"challenge-prev" = "Vorig";
+"challenge-next" = "Volgende";
+"challenge-prev" = "Terug";
 "challenge-cancel" = "Cancel";
-"challenge-done" = "Gedaan";
+"challenge-done" = "Opslaan";
 
 
 //Add Friends
