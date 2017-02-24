@@ -301,9 +301,10 @@ extension SettingsViewController:UITableViewDelegate {
             
             
             let subject = "Problem with Yona App"
-            var body = userlink + "\n\n"
+            var body = ""
             if (showPassword) {
-                 body = body + "Password: '" + yonaPassword + "'"
+                
+                 body = userlink + "\n\n" + "Password: '" + yonaPassword + "'"
             }
             let email = "app@yona.nu"
         
