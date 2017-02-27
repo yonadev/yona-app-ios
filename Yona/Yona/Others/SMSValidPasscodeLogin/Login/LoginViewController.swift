@@ -19,7 +19,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("login", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -189,7 +189,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 defaults.setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
                 defaults.synchronize()
                 errorLabel.hidden = false
-                self.navigationItem.title = NSLocalizedString("change-pin", comment: "")
+                self.navigationItem.title = NSLocalizedString("login", comment: "")
                 self.codeInputView.resignFirstResponder()
                 self.pinResetButton.hidden = false
                 self.codeInputView.hidden = true

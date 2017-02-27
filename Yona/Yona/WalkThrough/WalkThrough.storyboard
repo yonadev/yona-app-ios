@@ -1,21 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zoA-ns-9zv">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zoA-ns-9zv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SF-UI-Display-Light.otf">
+        <array key="SF-UI-Display-Light.otf">
             <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-            <string>SFUIDisplay-Light</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--First Tour Screen-->
@@ -27,23 +24,23 @@
                         <viewControllerLayoutGuide type="bottom" id="6a2-P2-jOK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EuR-UR-Wbu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparencySlide" translatesAutoresizingMaskIntoConstraints="NO" id="7ys-qP-jL2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparencySlide" translatesAutoresizingMaskIntoConstraints="NO" id="7ys-qP-jL2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36g-g3-Xwr">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36g-g3-Xwr">
                                 <rect key="frame" x="0.0" y="140" width="600" height="460"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screendesc1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pm-6E-ybX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screendesc1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pm-6E-ybX">
                                         <rect key="frame" x="50" y="215" width="500" height="29"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="5pm-6E-ybX" firstAttribute="centerX" secondItem="36g-g3-Xwr" secondAttribute="centerX" id="AyY-he-Ypc"/>
                                     <constraint firstAttribute="trailing" secondItem="5pm-6E-ybX" secondAttribute="trailing" constant="50" id="LVi-3m-Tcw"/>
@@ -52,7 +49,7 @@
                                     <constraint firstItem="5pm-6E-ybX" firstAttribute="leading" secondItem="36g-g3-Xwr" secondAttribute="leading" constant="50" id="oHC-Pw-7C7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGp-4Z-Qhc">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGp-4Z-Qhc">
                                 <rect key="frame" x="550" y="550" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HFZ-Q1-iTf"/>
@@ -63,17 +60,17 @@
                                     <action selector="nextAction:" destination="owo-71-flO" eventType="touchUpInside" id="X6B-J7-3Qs"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E1-VW-qL7">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7E1-VW-qL7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screentitle1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT9-Vu-FGf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screentitle1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT9-Vu-FGf">
                                         <rect key="frame" x="224" y="131" width="152" height="39"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="32"/>
-                                        <color key="textColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7E1-VW-qL7" secondAttribute="height" multiplier="3:1.5" id="WyP-rY-TRw"/>
                                     <constraint firstItem="jT9-Vu-FGf" firstAttribute="centerX" secondItem="7E1-VW-qL7" secondAttribute="centerX" id="cav-Jn-fjQ"/>
@@ -81,7 +78,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gGp-4Z-Qhc" secondAttribute="trailing" id="9co-1A-zNi"/>
                             <constraint firstItem="36g-g3-Xwr" firstAttribute="leading" secondItem="EuR-UR-Wbu" secondAttribute="leading" id="DFE-yn-IgG"/>
@@ -118,9 +115,9 @@
                         <viewControllerLayoutGuide type="bottom" id="k69-5m-tGl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gkq-7n-mlE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="unF-Ig-SCK"/>
                     <connections>
@@ -141,40 +138,40 @@
                         <viewControllerLayoutGuide type="bottom" id="5Fk-34-FOJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cdt-Qd-75K">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sharingSlide" translatesAutoresizingMaskIntoConstraints="NO" id="x6P-dg-y6b">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="sharingSlide" translatesAutoresizingMaskIntoConstraints="NO" id="x6P-dg-y6b">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ovi-u5-hee">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ovi-u5-hee">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screentitle2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CV-p8-T13">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screentitle2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CV-p8-T13">
                                         <rect key="frame" x="222" y="131" width="156" height="39"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="32"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ovi-u5-hee" secondAttribute="height" multiplier="3:1.5" id="Qgt-4j-VEv"/>
                                     <constraint firstItem="7CV-p8-T13" firstAttribute="centerY" secondItem="Ovi-u5-hee" secondAttribute="centerY" id="qYu-BZ-cjp"/>
                                     <constraint firstItem="7CV-p8-T13" firstAttribute="centerX" secondItem="Ovi-u5-hee" secondAttribute="centerX" id="zDa-zj-xVz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBt-Pv-4kJ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zBt-Pv-4kJ">
                                 <rect key="frame" x="0.0" y="140" width="600" height="460"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screendesc2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeF-4q-yeP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screendesc2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeF-4q-yeP">
                                         <rect key="frame" x="50" y="215" width="500" height="29"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zBt-Pv-4kJ" secondAttribute="height" multiplier="3:2.3" id="Ozf-Hz-0rE"/>
                                     <constraint firstItem="QeF-4q-yeP" firstAttribute="centerX" secondItem="zBt-Pv-4kJ" secondAttribute="centerX" id="UZN-fF-JOB"/>
@@ -183,7 +180,7 @@
                                     <constraint firstItem="QeF-4q-yeP" firstAttribute="centerY" secondItem="zBt-Pv-4kJ" secondAttribute="centerY" id="rGQ-bo-7aH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Z5-Vl-P5l">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Z5-Vl-P5l">
                                 <rect key="frame" x="550" y="550" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="NAs-CM-NDX"/>
@@ -195,7 +192,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5Fk-34-FOJ" firstAttribute="top" secondItem="x6P-dg-y6b" secondAttribute="bottom" id="3IQ-M2-Xwn"/>
                             <constraint firstItem="zBt-Pv-4kJ" firstAttribute="leading" secondItem="cdt-Qd-75K" secondAttribute="leading" id="JvL-1C-1iB"/>
@@ -228,40 +225,40 @@
                         <viewControllerLayoutGuide type="bottom" id="jff-Rd-VQs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C8p-zX-7Jx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confinesSlide" translatesAutoresizingMaskIntoConstraints="NO" id="A8M-Ur-4kG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="confinesSlide" translatesAutoresizingMaskIntoConstraints="NO" id="A8M-Ur-4kG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmD-sw-XJr">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmD-sw-XJr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screentitle3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPL-QH-mek">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screentitle3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPL-QH-mek">
                                         <rect key="frame" x="221" y="131" width="158" height="39"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="32"/>
-                                        <color key="textColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.1137254902" green="0.4431372549" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="YPL-QH-mek" firstAttribute="centerY" secondItem="nmD-sw-XJr" secondAttribute="centerY" id="FXt-xq-FHN"/>
                                     <constraint firstItem="YPL-QH-mek" firstAttribute="centerX" secondItem="nmD-sw-XJr" secondAttribute="centerX" id="K4d-fe-GFN"/>
                                     <constraint firstAttribute="width" secondItem="nmD-sw-XJr" secondAttribute="height" multiplier="3:1.5" id="aje-xj-lcI"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmU-5y-RwQ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BmU-5y-RwQ">
                                 <rect key="frame" x="0.0" y="140" width="600" height="460"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screendesc3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFH-je-GEp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screendesc3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFH-je-GEp">
                                         <rect key="frame" x="50" y="215" width="500" height="29"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BmU-5y-RwQ" secondAttribute="height" multiplier="3:2.3" id="KIX-8A-jLH"/>
                                     <constraint firstItem="lFH-je-GEp" firstAttribute="centerY" secondItem="BmU-5y-RwQ" secondAttribute="centerY" id="LSh-V3-NXH"/>
@@ -270,7 +267,7 @@
                                     <constraint firstItem="lFH-je-GEp" firstAttribute="centerX" secondItem="BmU-5y-RwQ" secondAttribute="centerX" id="rOe-Vr-lT0"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsG-2Z-nkg">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsG-2Z-nkg">
                                 <rect key="frame" x="550" y="550" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ixl-nt-Fju"/>
@@ -282,7 +279,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NsG-2Z-nkg" secondAttribute="trailing" id="0Xd-hQ-fhs"/>
                             <constraint firstItem="nmD-sw-XJr" firstAttribute="leading" secondItem="C8p-zX-7Jx" secondAttribute="leading" id="7wc-1C-70D"/>
@@ -315,40 +312,40 @@
                         <viewControllerLayoutGuide type="bottom" id="Dwf-64-xQp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8Xe-GX-Jjj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timespentSlide" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-Gy-kJM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="timespentSlide" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-Gy-kJM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-D3-jsq">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-D3-jsq">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screentitle4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Ul-ieh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screentitle4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Ul-ieh">
                                         <rect key="frame" x="221" y="131" width="158" height="39"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="32"/>
-                                        <color key="textColor" red="0.97647058819999999" green="0.69803921570000005" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.97647058819999999" green="0.69803921570000005" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="uq5-Ul-ieh" firstAttribute="centerY" secondItem="REQ-D3-jsq" secondAttribute="centerY" id="DOr-ah-GIV"/>
                                     <constraint firstItem="uq5-Ul-ieh" firstAttribute="centerX" secondItem="REQ-D3-jsq" secondAttribute="centerX" id="aUl-VH-2nT"/>
                                     <constraint firstAttribute="width" secondItem="REQ-D3-jsq" secondAttribute="height" multiplier="3:1.5" id="hDL-zN-hhb"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t00-7a-H6d">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t00-7a-H6d">
                                 <rect key="frame" x="0.0" y="140" width="600" height="460"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screendesc4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQa-AO-q55">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screendesc4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQa-AO-q55">
                                         <rect key="frame" x="50" y="215" width="500" height="29"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="nQa-AO-q55" firstAttribute="centerY" secondItem="t00-7a-H6d" secondAttribute="centerY" id="Sgw-iU-RUS"/>
                                     <constraint firstAttribute="width" secondItem="t00-7a-H6d" secondAttribute="height" multiplier="3:2.3" id="cbQ-SS-5Fn"/>
@@ -357,7 +354,7 @@
                                     <constraint firstAttribute="trailing" secondItem="nQa-AO-q55" secondAttribute="trailing" constant="50" id="vuc-2l-zUj"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTQ-We-77n">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTQ-We-77n">
                                 <rect key="frame" x="550" y="550" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MFS-k6-Yn1"/>
@@ -369,7 +366,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.047058823530000002" green="1" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bVV-Gy-kJM" secondAttribute="trailing" id="4mB-xJ-GJ9"/>
                             <constraint firstAttribute="trailing" secondItem="t00-7a-H6d" secondAttribute="trailing" id="EkV-29-Khx"/>
@@ -402,11 +399,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="55M-R4-tqY" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>

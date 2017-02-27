@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IHY-FI-AIQ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IHY-FI-AIQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -15,11 +19,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJp-9t-hfr" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97647058963775635" green="0.70196080207824707" blue="0.20784313976764679" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.91764706373214722" green="0.63529413938522339" blue="0.12941177189350128" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.91764706373214722" green="0.63529413938522339" blue="0.12941177189350128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
@@ -38,11 +42,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xBy-py-dGd" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.58431375026702881" green="0.75686275959014893" blue="0.12156862765550613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.54117649793624878" green="0.70980393886566162" blue="0.094117648899555206" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.54117649793624878" green="0.70980393886566162" blue="0.094117648899555206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
@@ -61,11 +65,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qLM-LM-5gY" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.21960784494876862" green="0.5058823823928833" blue="0.7450980544090271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.11372549086809158" green="0.44313725829124451" blue="0.72156864404678345" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.11372549086809158" green="0.44313725829124451" blue="0.72156864404678345" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
@@ -82,17 +86,17 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="caN-yz-5ht" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.42352941632270813" green="0.16470588743686676" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="-20"/>
                         </textAttributes>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="darkGradientColor">
-                                <color key="value" red="0.33725490196078434" green="0.11764705882352941" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.33725490196078434" green="0.11764705882352941" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.34509804844856262" green="0.14509804546833038" blue="0.30196079611778259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
@@ -109,10 +113,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P46-oA-9lB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
