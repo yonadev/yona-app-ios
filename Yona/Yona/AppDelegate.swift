@@ -48,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
         //get rid of the pixel line in the nav bar
+        
+        let barAppearace = UIBarButtonItem.appearance()
+        barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:UIBarMetrics.Default)
+        
         UINavigationBar.appearance().setBackgroundImage(
             UIImage(),
             forBarPosition: .Any,
