@@ -359,7 +359,11 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
             }
             Loader.Hide()
-            self.theTableView.reloadData()
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.theTableView.reloadData()
+            })
+            
         })
     }
     
@@ -379,7 +383,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     func loadAllBuddyList(sender:AnyObject) {
-        
         Loader.Show()
         BuddyRequestManager.sharedInstance.getAllbuddies { (success, serverMessage, ServerCode, Buddies, buddies) in
             
@@ -399,10 +402,15 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     }
                     //print(self.AcceptedBuddy)
                     //print(self.RequestedBuddy)
-                    self.theTableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.theTableView.reloadData()
+                    })
+                    
                 } else {
                     print("No buddies")
-                    self.theTableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.theTableView.reloadData()
+                    })
                 }
             } else {
                 if let serverMessage = serverMessage {
