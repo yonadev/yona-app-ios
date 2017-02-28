@@ -435,7 +435,11 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     }
                 }
                 Loader.Hide()
-                self.theTableView.reloadData()
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.theTableView.reloadData()
+                })
+                
                 self.loading = false
             } else {
                 Loader.Hide()
@@ -466,7 +470,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 }
            
             Loader.Hide()
-            self.theTableView.reloadData()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.theTableView.reloadData()
+                })
             self.loading = false
             } else {
                 Loader.Hide()
