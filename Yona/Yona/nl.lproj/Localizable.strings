@@ -48,6 +48,7 @@
 "enter-passcode" = "Je moet een 6 cijferig alfanumeriek code invoeren.";
 "yona-add-device-message" = "Toets deze pincode in op het apparaat waarop je Yona gaat gebruiken.";
 "loggedin-add-device-message" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire apparaat (waarschijnlijk je mobiel), open Yona, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
+"in-loggin" = "LOGIN";
 "user-signup-message" = "We gebruiken je mobiele telefoonnummer voor een veilige registratie. Je nickname is verplicht en zorgt voor een betere privacy.";
 
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
