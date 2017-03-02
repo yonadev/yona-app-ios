@@ -314,6 +314,7 @@ struct R {
     static var bdgTenDay: UIImage? { return UIImage(named: "bdgTenDay", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var brandAssets: UIImage? { return UIImage(named: "Brand Assets", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var confinesSlide: UIImage? { return UIImage(named: "confinesSlide", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var fingerPrint: UIImage? { return UIImage(named: "fingerPrint", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var first: UIImage? { return UIImage(named: "first", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var greenNotSelected: UIImage? { return UIImage(named: "greenNotSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var greenSelected: UIImage? { return UIImage(named: "greenSelected", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
