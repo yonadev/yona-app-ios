@@ -259,6 +259,8 @@
 		ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */; };
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
+		B16C25C31E682C8300BF20AC /* AVTouchIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */; };
+		B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */; };
 		BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */; };
 		BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B02A1CBD6CBF0063802E /* Goal.swift */; };
 		BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */; };
@@ -679,6 +681,8 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTouchIDHelper.swift; sourceTree = "<group>"; };
+		B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAPIServiceTests.swift; sourceTree = "<group>"; };
 		BE03B02A1CBD6CBF0063802E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCommentControl.xib; sourceTree = "<group>"; };
@@ -844,6 +848,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */,
 				1656A5AD1D4BE8D700EB288D /* libxml2.tbd in Frameworks */,
 				DED3113080EBF42B4EBFB1FE /* Pods_Yona.framework in Frameworks */,
 				16B768761E098479009448EB /* HockeySDK.framework in Frameworks */,
@@ -1023,6 +1028,7 @@
 		3B39B85C599061F064F0007D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */,
 				1656A5AC1D4BE8D700EB288D /* libxml2.tbd */,
 				1656A5AA1D4BE8AF00EB288D /* libxml2.2.tbd */,
 				97F4E094BD09171901BB56B3 /* Pods.framework */,
@@ -1517,6 +1523,7 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */,
 				90FF6DFA1D00346100A674C4 /* StringExtensions.swift */,
 				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
 				AD84B7301CDA27820085D5B7 /* Array.swift */,
@@ -2133,6 +2140,7 @@
 				165887931D1919970021DFC4 /* YonaTwoButtonTableViewCell.swift in Sources */,
 				9042C7511CD898E300100306 /* UISearchBar+AGi18n.m in Sources */,
 				AD00DED91CD3648F006BBA7E /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				B16C25C31E682C8300BF20AC /* AVTouchIDHelper.swift in Sources */,
 				1656A5E31D522ACE00EB288D /* FriendsWeekDetailWeekController.swift in Sources */,
 				9042C7541CD898E300100306 /* UITextField+AGi18n.m in Sources */,
 				90F123E11D35431F00E2BBBA /* NoGoCell.swift in Sources */,

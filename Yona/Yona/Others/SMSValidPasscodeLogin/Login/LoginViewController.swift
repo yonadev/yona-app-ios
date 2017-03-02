@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: LoginSignupValidationMasterView {
     var loginAttempts:Int = 1
@@ -16,10 +17,19 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
     
+    let touchIdButton = UIButton(type: UIButtonType.Custom)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("login", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
+        
+        touchIdButton.setImage(UIImage(named: "fingerPrint"), forState: .Normal)
+        touchIdButton.setTitleColor(UIColor.blackColor(), forState: UIControlState())
+        touchIdButton.adjustsImageWhenHighlighted = false
+        touchIdButton.imageView?.contentMode = .ScaleAspectFit
+        touchIdButton.contentHorizontalAlignment = .Center
+        touchIdButton.addTarget(self, action: #selector(touchIdButtonAction), forControlEvents: .TouchUpInside)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,6 +91,26 @@ class LoginViewController: LoginSignupValidationMasterView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func touchIdButtonAction() {
+        AVTouchIDHelper().authenticateUser(withDesc: NSLocalizedString("touchId-alert", comment: ""),
+            success: {
+                
+                self.authenticatedSuccessFully()
+            
+            }) { (error) in
+                
+                self.displayAlertOption("", cancelButton: false, alertDescription: NSLocalizedString("touchId-failure", comment: ""), onCompletion: { _ in })
+                
+                
+//                if error.code == LAError.TouchIDNotEnrolled.rawValue {
+//                    self.displayAlertOption("", cancelButton: false, alertDescription: "TouchId not enrolled", onCompletion: { _ in })
+//                } else {
+//                    self.displayAlertOption("", cancelButton: false, alertDescription: "Authentication Failed", onCompletion: { _ in })
+//                }
+                
+        }
     }
     
     
@@ -153,34 +183,38 @@ class LoginViewController: LoginSignupValidationMasterView {
 }
 
 extension LoginViewController: CodeInputViewDelegate {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let passcode = KeychainManager.sharedInstance.getPINCode()
-        if code ==  passcode {
-            Loader.Show()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
-            UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
-                if success {
-                    Loader.Hide()
-                    self.codeInputView.resignFirstResponder()
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                    if self.isFromSettings {
-                        self.performSegueWithIdentifier(R.segue.loginViewController.transToPasscode, sender: self)
-                    } else {
-                        self.navigationController?.popViewControllerAnimated(false)
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                    
+    
+    func authenticatedSuccessFully() {
+        Loader.Show()
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
+            if success {
+                Loader.Hide()
+                self.codeInputView.resignFirstResponder()
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+                if self.isFromSettings {
+                    self.performSegueWithIdentifier(R.segue.loginViewController.transToPasscode, sender: self)
                 } else {
-                    Loader.Hide()
-                    if let message = message {
-                        self.codeInputView.clear()
-                        self.infoLabel.text = message
-                    }
+                    self.navigationController?.popViewControllerAnimated(false)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+            } else {
+                Loader.Hide()
+                if let message = message {
+                    self.codeInputView.clear()
+                    self.infoLabel.text = message
                 }
             }
         }
-        else {
+    }
+    
+    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+        let passcode = KeychainManager.sharedInstance.getPINCode()
+        if code ==  passcode {
+            authenticatedSuccessFully()
+        } else {
             errorLabel.hidden = false
             self.codeInputView.clear()
             if loginAttempts == totalAttempts {
@@ -271,7 +305,10 @@ private extension Selector {
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (notification: NSNotification) {
         
-        if let activeField = self.pinResetButton, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() else { return }
+        
+        
+        if let activeField = self.pinResetButton {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
@@ -286,12 +323,37 @@ extension LoginViewController: KeyboardProtocol {
                 self.scrollView.scrollRectToVisible(frameToScrollTo, animated: true)
             }
         }
+        
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            if AVTouchIDHelper().isBiometricSupported() {
+                let width = UIScreen.mainScreen().bounds.width
+                let height = CGRectGetHeight(keyboardSize)
+                print(width)
+                let btnHeight = height / 4 - 3
+                let btnWidth = (width / 3) - 2
+                self.touchIdButton.frame = CGRect(x: 0, y: (UIScreen.mainScreen().bounds.height - btnHeight), width: btnWidth, height: btnHeight)
+                
+                self.touchIdButton.hidden = false
+                let keyBoardWindow = UIApplication.sharedApplication().windows.last
+                keyBoardWindow?.addSubview(self.touchIdButton)
+                keyBoardWindow?.bringSubviewToFront(self.touchIdButton)
+            }
+        })
+        
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.touchIdButton.removeFromSuperview()
+        })
+        
         let contentInsets = UIEdgeInsetsZero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
-        
     }
+    
 }

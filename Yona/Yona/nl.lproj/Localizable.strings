@@ -331,3 +331,6 @@
 
 
 "link.cell.title" = "inhoud";
+
+"touchId-failure" = "Authentication Failed";
+"touchId-alert" = "Place your finger on home button to authenticate";
