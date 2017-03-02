@@ -243,6 +243,7 @@
 "message.type.goalchange" = "Challenge aangepast";
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
+"message.type.systemmessage" = "Bericht van Yona";
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
 "meday.message.minutesleft" = "minuten tegoed";
