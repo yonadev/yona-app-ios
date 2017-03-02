@@ -20,6 +20,7 @@ enum notificationType : String {
     case DisclosureRequestMessage = "DisclosureRequestMessage"
     case DisclosureResponseMessage = "DisclosureResponseMessage"
     case SystemMessage = "SystemMessage"
+    case BuddyInfoChangeMessage = "BuddyInfoChangeMessage"
     case NoValue = "Not found"
     
 }
