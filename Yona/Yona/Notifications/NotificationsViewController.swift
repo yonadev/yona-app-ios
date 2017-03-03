@@ -330,7 +330,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 self.totalPages = MessageRequestManager.sharedInstance.totalPages!
                 self.totalSize = MessageRequestManager.sharedInstance.totalSize!
 
-                var allLoadedMessage : [[Message]] = []
+                var allLoadedMessage : [Message] = []
                 var tmpArray: [Message] = []
                 //success so sort by date... and create sub arrays
                 if let data = theMessages   {
@@ -350,13 +350,13 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                             } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
                                 tmpArray.append(aMessage)
                             } else {
-                                allLoadedMessage.append(tmpArray)
+                                allLoadedMessage.appendContentsOf(tmpArray)
                                 tmpArray.removeAll()
                                 tmpArray.append(aMessage)
                             }
                         }
-                        allLoadedMessage.append(tmpArray)
-                        self.messages = allLoadedMessage
+                        allLoadedMessage.appendContentsOf(tmpArray)
+                        self.messages.append(allLoadedMessage)
                     } else {
                         self.messages = []
                     }
