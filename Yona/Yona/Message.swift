@@ -19,6 +19,8 @@ enum notificationType : String {
     case GoalChangeMessage = "GoalChangeMessage"
     case DisclosureRequestMessage = "DisclosureRequestMessage"
     case DisclosureResponseMessage = "DisclosureResponseMessage"
+    case SystemMessage = "SystemMessage"
+    case BuddyInfoChangeMessage = "BuddyInfoChangeMessage"
     case NoValue = "Not found"
     
 }
