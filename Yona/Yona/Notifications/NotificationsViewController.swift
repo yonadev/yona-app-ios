@@ -217,6 +217,12 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             case .DisclosureRequestMessage:
                 //not implemented yet
                 break
+            case .BuddyInfoChangeMessage:
+                // not implemented yet
+                break
+            case .SystemMessage:
+                // not implemented yet
+                break
             case .NoValue:
                 break
                 
@@ -239,21 +245,16 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         switch currentMessage.messageType {
         case .ActivityCommentMessage:
             cell.allowsSwipeAction = false
-        case .BuddyConnectRequestMessage:
-            cell.allowsSwipeAction = true
-        case .BuddyDisconnectMessage:
-            cell.allowsSwipeAction = true
-        case .BuddyConnectResponseMessage:
-            cell.allowsSwipeAction = true
-        case .GoalConflictMessage:
-            cell.allowsSwipeAction = true
-        case .GoalChangeMessage:
-            cell.allowsSwipeAction = true
-        case .DisclosureResponseMessage:
-            cell.allowsSwipeAction = true
-        case .DisclosureRequestMessage:
-            cell.allowsSwipeAction = true
-        case .NoValue:
+        case .BuddyConnectRequestMessage,
+             .BuddyDisconnectMessage,
+             .BuddyConnectResponseMessage,
+             .GoalConflictMessage,
+             .GoalChangeMessage,
+             .DisclosureResponseMessage,
+             .DisclosureRequestMessage,
+             .BuddyInfoChangeMessage,
+             .SystemMessage,
+             .NoValue:
             cell.allowsSwipeAction = true
         }
 
