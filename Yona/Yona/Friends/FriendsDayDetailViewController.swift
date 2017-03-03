@@ -16,7 +16,6 @@ enum DayDetailSecions : Int{
 class FriendsDayDetailViewController : MeDayDetailViewController {
 
     var buddy : Buddies?
-    
     override func registreTableViewCells () {
         super.registreTableViewCells()
         var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
@@ -38,6 +37,38 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         }
     }
     
+    func configureRightButton() {
+        if let name = buddy?.UserRequestfirstName {
+            if name.characters.count > 0 {//&& user?.characters.count > 0{
+                let btnName = UIButton()
+                let txt = "\(name.capitalizedString.characters.first!)"
+                btnName.setTitle(txt, forState: .Normal)
+                btnName.frame = CGRectMake(0, 0, 32, 32)
+                btnName.addTarget(self, action: #selector(showUserProfile(_:)), forControlEvents: .TouchUpInside)
+                
+                btnName.backgroundColor = UIColor.clearColor()
+                btnName.layer.cornerRadius = btnName.frame.size.width/2
+                btnName.layer.borderWidth = 1
+                btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                let rightBarButton = UIBarButtonItem()
+                rightBarButton.customView = btnName
+                self.navigationItem.rightBarButtonItem = rightBarButton
+            }
+        }
+    }
+    
+    func showUserProfile(sender : AnyObject) {
+        performSegueWithIdentifier(r.segue.FriendsDayDetailViewController.friendsProfile, sender: self)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is FriendsProfileViewController {
+            let controller = segue.destinationViewController as! FriendsProfileViewController
+            controller.aUser = buddy
+        }
+    }
     private func shouldAnimate(cell : NSIndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
@@ -53,7 +84,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.comments = []        
+        self.comments = []
+        configureRightButton()
     }
     
     override func viewWillAppear(animated: Bool) {
