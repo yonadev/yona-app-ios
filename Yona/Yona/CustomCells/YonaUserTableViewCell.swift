@@ -63,6 +63,7 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         // When showing the Buddy, we move the status to the right of the cell. Autolayout will then extend the size of the nameLabel as well as the nicknameLabel
         statusImageConstraint.constant = -contentView.frame.size.width
         statusImageView.setNeedsLayout()
+        avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         
         boldLineLabel.text = "\(aBuddie.UserRequestfirstName) \(aBuddie.UserRequestlastName)"
         normalLineLabel.text = aBuddie.buddyNickName

@@ -41,7 +41,7 @@ class CommentControlCell: PKSwipeTableViewCell {
         btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
         btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
         btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), forControlEvents: UIControlEvents.TouchUpInside)
-        
+        avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
         super.addRightOptionsView(viewCall)

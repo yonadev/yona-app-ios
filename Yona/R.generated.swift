@@ -451,6 +451,10 @@ struct R {
       static var transToSetPincode: StoryboardSegueIdentifier<UIStoryboardSegue, ConfirmMobileValidationVC, SetPasscodeViewController> { return StoryboardSegueIdentifier(identifier: "transToSetPincode") }
     }
     
+    struct friendsDayDetailViewController {
+      static var friendsProfile: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayDetailViewController, FriendsProfileViewController> { return StoryboardSegueIdentifier(identifier: "friendsProfile") }
+    }
+    
     struct friendsDayViewController {
       static var showFriendProfile: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsProfileViewController> { return StoryboardSegueIdentifier(identifier: "showFriendProfile") }
       static var showFriendsDetailDay: StoryboardSegueIdentifier<UIStoryboardSegue, FriendsDayViewController, FriendsDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showFriendsDetailDay") }
