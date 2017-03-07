@@ -34,14 +34,12 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "FriendsDayViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
         
-        navigationItem.title = NSLocalizedString("friends", comment: "")
         
         
         if buddyToShow != nil {
@@ -86,6 +84,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     override func configurProfileBarItem () {
         if let name = buddyToShow?.UserRequestfirstName {
+            
+            navigationItem.title = name
             
             if name.characters.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
