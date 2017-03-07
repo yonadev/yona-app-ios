@@ -373,3 +373,6 @@
 
 "touchId-failure" = "Authentication Failed";
 "touchId-alert" = "Place your finger on home button to authenticate";
+
+"dashboard.error.title" = "Error";
+"dashboard.error.button" = "Ok";

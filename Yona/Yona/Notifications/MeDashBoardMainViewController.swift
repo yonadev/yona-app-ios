@@ -444,10 +444,19 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             } else {
                 Loader.Hide()
                 self.loading = false
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
+                        message: err?.description,
+                        delegate: nil,
+                        cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                    alert.show()
+                })
             }
             })
         
     }
+    
     func loadActivitiesForWeek(page : Int = 0) {
         if loading {
             return
@@ -477,6 +486,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             } else {
                 Loader.Hide()
                 self.loading = false
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
+                        message: err?.description,
+                        delegate: nil,
+                        cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                    alert.show()
+                })
             }
         })
         
