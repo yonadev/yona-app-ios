@@ -91,7 +91,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     */
     @available(iOS 8.0, *)
     private func initializeCell() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(PKSwipeTableViewCell.handlePanGesture(_:)))
         self.addGestureRecognizer(panGesture)
         panGesture.delegate = self
         let cellFrame = CGRectMake(0, 0,self.screenBoundsFixedToPortraitOrientation().height, self.frame.size.height)
@@ -112,7 +112,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     @available(iOS 8.0, *)
     func screenBoundsFixedToPortraitOrientation()->CGRect {
         let screen = UIScreen.mainScreen()
-        if screen.respondsToSelector("fixedCoordinateSpace") {
+        if screen.respondsToSelector(Selector("fixedCoordinateSpace")) {
             return screen.coordinateSpace.convertRect(screen.bounds, toCoordinateSpace: screen.fixedCoordinateSpace)
         }
         return screen.bounds
@@ -127,7 +127,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         if isPanEnabled == false{
             return
         }
-        if  ((self.pkdelegate?.respondsToSelector(Selector.init(stringLiteral: "swipeDoneOnPreviousCell"))) != nil) {
+        if  ((self.pkdelegate?.respondsToSelector(#selector(PKSwipeTableViewCell.swipeDoneOnPreviousCell))) != nil) {
             let cell = self.pkdelegate?.swipeDoneOnPreviousCell()
             if cell != self && cell != nil {
                 cell?.resetCellState()

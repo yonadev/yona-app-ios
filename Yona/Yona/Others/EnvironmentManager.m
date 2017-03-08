@@ -24,12 +24,10 @@ static NSString * baseUrl;
 // changed to set prod as standard 
 + (NSString *)baseUrlString
 {
-    
-    
     NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
     if (url == nil){
-      //   url = @"http://85.222.227.142/";
-        url = @"https://beta.prd.yona.nu/";
+//        url = @"https://beta.prd.yona.nu/";
+        url = @"http://mobtest.dev.yona.nu/";
         [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
     }
     baseUrl = url;
