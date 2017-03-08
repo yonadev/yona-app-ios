@@ -41,6 +41,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var nextLink : String?
     var prevLink : String?
     var hideReplyButton : Bool = false
+    var moveToBottomRequired : Bool = false
     var previousThreadID : String = ""
     var page : Int = 1
     var size : Int = 4
@@ -65,6 +66,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             dispatch_async(dispatch_get_main_queue()) {
                 self.previousThreadID = ""
                 self.tableView.reloadData()
+
+                if self.comments.count > 0 && self.moveToBottomRequired {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.comments.count - 1, inSection: 1), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+                }
+                
             }
         }
     }
@@ -510,6 +516,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+        moveToBottomRequired = true
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
         if let commentsLink = self.dayData?.messageLink {
