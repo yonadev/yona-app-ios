@@ -282,14 +282,11 @@ extension LoginViewController: CodeInputViewDelegate {
                             }
                         case alertButtonType.cancel:
                             break
-                            //do nothing or send back to start of signup?
-                            self.codeInputView.becomeFirstResponder()
                         }
                     })
                 }
             } else {
                 if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isBlocked) == false {
-                    print("  ---   SHOW KEYBOARD  ----")
                     self.codeInputView.becomeFirstResponder()
                 }
             }

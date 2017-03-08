@@ -163,18 +163,10 @@ extension Manager {
                 if response != nil{
                     if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
                         let string = NSString(data:data!, encoding:NSUTF8StringEncoding) as String?
-                            let omdbError = requestResult.init(success: true, errorMessage: responseMessages.success.rawValue, errorCode: responseCodes.ok200.rawValue, domain: errorDomains.successDomain.rawValue)
-                            
                             dispatch_async(dispatch_get_main_queue()) {
                                 onCompletion(true, string , "")
                             }
                     } else {
-                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
-                        //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
-                        let userInfo = [
-                            NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
-                        ]
-                        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
                         dispatch_async(dispatch_get_main_queue()) {
                             onCompletion(false, nil, "")
                         }
@@ -182,7 +174,7 @@ extension Manager {
                 }
             })
             task.resume()
-        } catch let error as NSError{
+        } catch _ as NSError{
             dispatch_async(dispatch_get_main_queue()) {
                 onCompletion(false, nil, "")
             }

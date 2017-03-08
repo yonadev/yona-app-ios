@@ -11,11 +11,11 @@ import Foundation
 class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
-
+    
     
     var selectedIndex : NSIndexPath?
     var buddyData : Buddies?
-
+    
     
     var page : Int = 1
     var size : Int = 20
@@ -26,14 +26,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     var aMessage: Message?
     
     //MARK: searchResultMovies hold the movie search results
-    var messages = [[Message]]() {
-        didSet{
-            //everytime savedarticles is added to or deleted from table is refreshed
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var messages = [[Message]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +43,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         tableView.registerNib(nib, forCellReuseIdentifier: "CustomDeleteCell")
         
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
@@ -62,12 +55,15 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiGrapeColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar
         navbar.gradientColor = UIColor.yiGrapeTwoColor()
-
-       loadMessages(self)
+        
+        messages = []
+        page = 1
+        
+        loadMessages()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        
         if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
             let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
             controller.aMessage = self.aMessage
@@ -79,7 +75,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             controller.initialObjectLink = self.aMessage!.weekDetailsLink!
-
+            
         }
         
         if segue.destinationViewController is MeDayDetailViewController {
@@ -94,7 +90,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return messages.count
     }
-
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages.count == 0 {
@@ -144,8 +140,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     showBuddyProfile(aMessage)
                     return
                 }
-
-            
+                
+                
             case .BuddyDisconnectMessage:
                 break
             case .BuddyConnectResponseMessage:
@@ -170,13 +166,13 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     vc.violationStartTime = aMessage.violationStartTime
                     vc.violationEndTime = aMessage.violationEndTime
                     vc.violationLinkURL = aMessage.violationLinkURL
-                   
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                     return
-
+                    
                 }  else {
-                
-                
+                    
+                    
                     let storyboard = UIStoryboard(name: "Friends", bundle: nil)
                     let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
                     vc.buddy = self.buddyData
@@ -197,20 +193,20 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             case .GoalChangeMessage:
                 break
                 // DISABLED AS REQUEST in APPDEV-817
-//                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-//                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
-//                vc.buddyToShow = self.buddyData
-//                
-//                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
-//                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
-//                let navbar = self.navigationController?.navigationBar as! GradientNavBar
-//                
-//                vc.navbarColor = navbar.gradientColor
-//                navbar.gradientColor = UIColor.yiMidBlueColor()
-//                
-//                self.navigationController?.pushViewController(vc, animated: true)
-//                return
-//                break
+                //                let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+                //                let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayViewController") as! FriendsDayViewController
+                //                vc.buddyToShow = self.buddyData
+                //
+                //                vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
+                //                self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
+                //                let navbar = self.navigationController?.navigationBar as! GradientNavBar
+                //
+                //                vc.navbarColor = navbar.gradientColor
+                //                navbar.gradientColor = UIColor.yiMidBlueColor()
+                //
+                //                self.navigationController?.pushViewController(vc, animated: true)
+                //                return
+            //                break
             case .DisclosureResponseMessage:
                 //not implemented yet
                 break
@@ -235,8 +231,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
-        cell.resest()
+        if messages.count == 0 { return cell }
         
+        cell.resest()
+
         cell.setMessage(messages[indexPath.section][indexPath.row])
         
         let currentMessage = messages[indexPath.section][indexPath.row] as Message
@@ -257,11 +255,11 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
              .NoValue:
             cell.allowsSwipeAction = true
         }
-
+        
         cell.yonaUserSwipeDelegate = self
         return cell
     }
-
+    
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
@@ -284,28 +282,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if messages[indexPath.section].count > 0{
-            print(indexPath.row)
-            print(indexPath.section)
-            print(messages[indexPath.section].count)
-
+        if messages.count > 0 && messages[indexPath.section].count > 0{
             if indexPath.row == page * size - 1 && page < self.totalPages {
                 page = page + 1
-                self.loadMessages(self)
-
-//                    if let commentsLink = self.dayData?.messageLink {
-//                        Loader.Show()
-//                        CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
-//                            Loader.Hide()
-//                            if success {
-//                                if let comments = comments {
-//                                    for comment in comments {
-//                                        self.comments.append(comment)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
+                self.loadMessages()
             }
         }
     }
@@ -315,7 +295,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         let aMessage = message as Message
         MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
             if success {
-                self.loadMessages(self)
+                self.loadMessages()
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
             }
@@ -323,15 +303,15 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     // MARK: - server methods
-    func loadMessages(sender:AnyObject) {
+    func loadMessages() {
         Loader.Show()
-        MessageRequestManager.sharedInstance.getMessages(size, page: page - 1, onCompletion: {
-        (success, message, code, text, theMessages) in
+        MessageRequestManager.sharedInstance.getMessages(size, page: page - 1, onCompletion: { [weak self]
+            (success, message, code, text, theMessages) in
             if success {
-                self.totalPages = MessageRequestManager.sharedInstance.totalPages!
-                self.totalSize = MessageRequestManager.sharedInstance.totalSize!
-
-                var allLoadedMessage : [Message] = []
+                self?.totalPages = MessageRequestManager.sharedInstance.totalPages!
+                self?.totalSize = MessageRequestManager.sharedInstance.totalSize!
+                
+                var allLoadedMessage : [[Message]] = []
                 var tmpArray: [Message] = []
                 //success so sort by date... and create sub arrays
                 if let data = theMessages   {
@@ -341,7 +321,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                         for aMessage in sortedArray {
                             MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
                                 if success {
-                                    self.loadMessages(self)
+                                    self?.loadMessages()
                                 }
                                 //so not every link will have one, so what now?
                                 print(message)
@@ -351,30 +331,41 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                             } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
                                 tmpArray.append(aMessage)
                             } else {
-                                allLoadedMessage.appendContentsOf(tmpArray)
+                                allLoadedMessage.append(tmpArray)
                                 tmpArray.removeAll()
                                 tmpArray.append(aMessage)
                             }
                         }
-                        allLoadedMessage.appendContentsOf(tmpArray)
-                        self.messages.append(allLoadedMessage)
+                        allLoadedMessage.append(tmpArray)
+
+                        allLoadedMessage.forEach{self?.messages.append($0)}
+ 
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self?.tableView.reloadData()
+                        }
                     } else {
-                        self.messages = []
+                        self?.messages = []
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self?.tableView.reloadData()
+                        }
                     }
                 } else {
-                    self.messages = []
+                    self?.messages = []
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self?.tableView.reloadData()
+                    }
                 }
                 
             } else {
                 //response from request failed
             }
             Loader.Hide()
-        })
+            })
         
-     }
+    }
     
     func showBuddyProfile(theMessage : Message) {
-  
+        
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
             var countPush = 0
             if succes {
@@ -394,9 +385,9 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 }
             }
         })
-
+        
         
     }
-
+    
     
 }

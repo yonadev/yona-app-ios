@@ -35,7 +35,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     var AcceptedBuddy = [Buddies]()
     var RequestedBuddy = [Buddies]()
-//    var refreshControl: UIRefreshControl!
+    //    var refreshControl: UIRefreshControl!
     
     var timeLineData : [TimeLineDayActivityOverview] = []
     var animatedCells : [String] = []
@@ -46,10 +46,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         super.viewDidLoad()
         isFromfriends = true
         
-//        refreshControl = UIRefreshControl()
-//        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        refreshControl!.addTarget(self, action: #selector(reloadData), forControlEvents: UIControlEvents.ValueChanged)
-//        theTableView.addSubview(refreshControl)
+        //        refreshControl = UIRefreshControl()
+        //        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        //        refreshControl!.addTarget(self, action: #selector(reloadData), forControlEvents: UIControlEvents.ValueChanged)
+        //        theTableView.addSubview(refreshControl)
         //setupUI()
         registreTableViewCells()
         //showLeftTab(leftTabMainView)
@@ -74,7 +74,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
     }
     
-
+    
     
     func setupUI() {
         //Nav bar Back button.
@@ -82,7 +82,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         theTableView.tableFooterView = UIView(frame: CGRectZero)
     }
-
+    
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserTableViewCell", bundle: nil)
         theTableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
@@ -96,9 +96,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineNoGoCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         theTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-    
         
-    
+        
+        
     }
     private func shouldAnimate(cell : NSIndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
@@ -112,8 +112,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         return false
         
     }
-
-     // MARK: - Table view data source
+    
+    // MARK: - Table view data source
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset
@@ -137,19 +137,19 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         scrolling = false
     }
-
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if selectedTab == .left {
             return 44
         }
-
+        
         if friendsSections.connected.rawValue == section && AcceptedBuddy.count == 0 {
             return 0.0
         } else if friendsSections.pending.rawValue == section && RequestedBuddy.count == 0 {
             return 0.0
         }
         return 44
-
+        
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -173,11 +173,11 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             }
             cell.headerTextLabel.text = friendsSections(rawValue: section)?.simpleDescription()
         }
-
+        
         return cell
     }
     
-
+    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if selectedTab == .left {
@@ -219,7 +219,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         if selectedTab == .left {
             return cellForTimeLineView(indexPath)
         } else {
-        
+            
             let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
             cell.allowsSwipeAction = false
             if indexPath.section == friendsSections.connected.rawValue {
@@ -231,10 +231,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             return cell
         }
     }
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if selectedTab == .right {
-
+            
             if indexPath.section == friendsSections.connected.rawValue {
                 performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
             } else {
@@ -247,13 +247,13 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 if obj.buddyLink != nil {
                     performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendsDetailDay, sender: self)
                 } else {
-
+                    
                     let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
                     let vc = storyboard.instantiateViewControllerWithIdentifier("MeDayDetailViewController") as! MeDayDetailViewController
                     vc.goalType = GoalType.NoGoGoalString.rawValue
                     let activitygoal = ActivitiesGoal(timeLinedayActivitiesForUsers: obj)
                     vc.activityGoal = activitygoal
-
+                    
                     vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
                     self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
                     let navbar = self.navigationController?.navigationBar as! GradientNavBar
@@ -263,8 +263,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                     return
-
-                
+                    
+                    
                 }
             }
         }
@@ -298,12 +298,12 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 controller.activityGoal = activitygoal
             }
         }
-
+        
     }
     
     
-// MARK: Touch Event of Custom Segment
-
+    // MARK: Touch Event of Custom Segment
+    
     override func actionsAfterLeftButtonPush() {
         self.navigationItem.rightBarButtonItem = self.addBuddyButton
         //self.navigationItem.rightBarButtonItem = nil
@@ -317,14 +317,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
         }
     }
-
+    
     
     func loadDataForTimeLine(page : Int) {
-    
-//        if timeLineData.count > 0 {
-//            theTableView.reloadData()
-//            return
-//        }
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getTimeLineActivity (3,page: page,onCompletion: {(succes, serverMessage, serverCode, timeLineDayActivityOverview, error) in
             if succes {
@@ -343,20 +338,12 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             } else {
                 Loader.Hide()
                 if  let msg = serverMessage {
-                    if #available(iOS 8, *)  {
-                        let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        
-                    } else {
-                        let alert = UIAlertView(title: NSLocalizedString("WARNING", comment: ""), message: msg, delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-                        
-                        
-                        alert.show()
-                    }
+                    let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
-
-            
+                
+                
             }
             Loader.Hide()
             
@@ -393,12 +380,12 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 self.AcceptedBuddy.removeAll()
                 if (buddies?.count ?? 0) > 0 {
                     self.buddiesOverviewArray = buddies!
-
+                    
                     if let buddies = buddies {
-                    
+                        
                         self.RequestedBuddy = buddies.filter() { $0.sendingStatus == buddyRequestStatus.REQUESTED }
-                    self.AcceptedBuddy = buddies.filter() { $0.sendingStatus == buddyRequestStatus.ACCEPTED }
-                    
+                        self.AcceptedBuddy = buddies.filter() { $0.sendingStatus == buddyRequestStatus.ACCEPTED }
+                        
                     }
                     //print(self.AcceptedBuddy)
                     //print(self.RequestedBuddy)
@@ -417,7 +404,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     self.displayAlertMessage(serverMessage, alertDescription: "")
                 }
             }
-           // self.refreshControl!.endRefreshing()
+            // self.refreshControl!.endRefreshing()
         }
     }
     
@@ -427,7 +414,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
         print(segue.sourceViewController)
     }
-
+    
     
     //MARK: - timeline cells
     func heightForTimeLineCell(indexPath :NSIndexPath) -> CGFloat {
@@ -435,7 +422,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
             return 30
         }
-
+        
         if timeLineData[indexPath.section].tableViewCells[indexPath.row] is TimeLinedayActivitiesForUsers {
             let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row] as! TimeLinedayActivitiesForUsers
             if obj.goalType == "BudgetGoal" {
@@ -446,12 +433,12 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 
             }
             if obj.goalType == "NoGoGoal" {
-                return 50   
+                return 50
                 
             }
             return 30
         }
-
+        
         return 30
     }
     
@@ -468,7 +455,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
             if theObj.goalType == "BudgetGoal" {
                 let cell: TimeLineTimeBucketCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineTimeBucketCell", forIndexPath: indexPath) as! TimeLineTimeBucketCell
-            
+                
                 cell.setData(theObj, animated: shouldAnimate(indexPath))
                 return cell
             }
@@ -484,10 +471,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 cell.setData(theObj)
                 return cell
             }
-      
-        
+            
+            
         }
-    
+        
         return UITableViewCell(frame: CGRectZero)
     }
     

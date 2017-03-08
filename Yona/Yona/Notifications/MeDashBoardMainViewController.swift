@@ -30,7 +30,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registreTableViewCells()
-        setupUI()
+
         self.navigationController?.navigationBarHidden = false
         let title = NSLocalizedString("DASHBOARD", comment: "")
         navigationItem.title = title.uppercaseString
@@ -93,8 +93,6 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func configurProfileBarItem()  {
-        
-        
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
            if let name = user?.firstName {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
@@ -151,15 +149,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func configureCorrectToday() {
-        let userCalendar = NSCalendar.init(calendarIdentifier: NSISO8601Calendar)
+        let userCalendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierISO8601)
         userCalendar?.minimumDaysInFirstWeek = 5
         userCalendar?.firstWeekday = 1
         let formatter = NSDateFormatter()
         formatter.dateFormat = "YYYY-ww"
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-        //formatter.locale = NSLocale.currentLocale()
         formatter.calendar = userCalendar;
-//        let startdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24))
         let startdate = formatter.stringFromDate(NSDate())
         if let aDate = formatter.dateFromString(startdate)  {
             corretcToday = aDate
@@ -177,18 +173,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             showRightTab(rightTabMainView)
         }
         
-    }    // MARK: - private functions
-    private func setupUI() {
-         //  configureLeftBarItem()
-        //showLeftTab(leftTabMainView)
-        //theTableView.alwaysBounceVertical = false
     }
     
     @IBAction func unwindToProfileView(segue: UIStoryboardSegue) {
         print(segue.sourceViewController)
     }
     
-    
+    // MARK: - private functions
     private func shouldAnimate(cell : NSIndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
@@ -418,11 +409,10 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
             return
         }
         loading = true
-        print("Entering day loader :\(leftPage) ")
+
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
-                
                 if let data = activitygoals {
                     if data.count > 0  {
                         self.animatedCells.removeAll()
@@ -434,26 +424,27 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                         self.leftPage += 1
                     }
                 }
+                
                 Loader.Hide()
+                self.loading = false
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.theTableView.reloadData()
                 })
-                
-                self.loading = false
             } else {
                 Loader.Hide()
                 self.loading = false
             }
-            })
+        })
         
     }
+    
     func loadActivitiesForWeek(page : Int = 0) {
         if loading {
             return
         }
+        loading = true
 
-        print("Entering day loader :\(leftPage) ")
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrWeek(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
@@ -468,12 +459,13 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                         self.rightPage += 1
                     }
                 }
-           
-            Loader.Hide()
+                
+                Loader.Hide()
+                self.loading = false
+                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.theTableView.reloadData()
                 })
-            self.loading = false
             } else {
                 Loader.Hide()
                 self.loading = false
