@@ -27,16 +27,18 @@ class APIServiceManager {
      */
     func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
         
-        guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
-            onCompletion(false,nil, YonaConstants.YonaErrorTypes.UserPasswordRequestFail)
-            return
-        }
         
         let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
         let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
         let language = "\(langId)-\(countryId)"
         
-        let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
+        
+        var httpHeader = ["Content-Type": "application/json", "Accept-Language": language]
+        
+        if let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() {
+            httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
+        }
+        
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
     }
 
@@ -106,6 +108,5 @@ class APIServiceManager {
             errorString = responseMessages.success.rawValue
         }
         return errorString
-    }
-    
+    } 
 }

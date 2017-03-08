@@ -56,8 +56,6 @@ class UserRequestManager{
      - parameter onCompletion: APIUserResponse, Responds with the new user body and also server messages and success or fail
      */
     func postUser(body: BodyDataDictionary, confirmCode: String?, onCompletion: APIUserResponse) {
-        //create a password for the user
-        KeychainManager.sharedInstance.createYonaPassword()
         var path = YonaConstants.commands.users //not in user body need to hardcode
         //if user lost phone then we need to set a confirm code
         if let confirmCodeUnwrap = confirmCode {
