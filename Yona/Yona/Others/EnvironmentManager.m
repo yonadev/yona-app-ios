@@ -26,8 +26,8 @@ static NSString * baseUrl;
 {
     NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
     if (url == nil){
-//        url = @"https://beta.prd.yona.nu/";
-        url = @"http://mobtest.dev.yona.nu/";
+        url = @"https://beta.prd.yona.nu/";
+//        url = @"http://mobtest.dev.yona.nu/";
         [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
     }
     baseUrl = url;
