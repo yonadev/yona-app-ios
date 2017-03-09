@@ -100,7 +100,7 @@
     self.badgeTextColor = [UIColor whiteColor];
     [badgeLabel setFont:[UIFont systemFontOfSize:13]];
     CGSize badgeSize = [badgeLabel sizeThatFits:CGSizeMake(320, FLT_MAX)];
-    badgeSize.width = badgeSize.width < 20 ? maxWidth : badgeSize.width + 5;
+    badgeSize.width = badgeSize.width < 19 ? maxWidth : badgeSize.width + 5;
 
     int vertical = self.badgeEdgeInsets.top - self.badgeEdgeInsets.bottom;
     int horizontal = self.badgeEdgeInsets.left - self.badgeEdgeInsets.right;
