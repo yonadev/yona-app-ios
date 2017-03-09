@@ -15,7 +15,7 @@ class GradientSmooth: GradientView {
         self.backgroundColor = UIColor.whiteColor()
         
         // 2
-        gradientLayer.frame = self.bounds
+        gradientLayer.frame = CGRect(origin: self.bounds.origin, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: self.bounds.height))
         
         // 3
         let color1 = color1.CGColor as CGColorRef
