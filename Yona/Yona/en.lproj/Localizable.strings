@@ -362,9 +362,9 @@
 
 "emailsupport.error.title" = "Could Not Send Email";
 "emailsupport.error.text" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
+"emailsupport.subject" = "Problem with Yona App";
 
-
-"emailsupport.finished.title" = "Email send";
+"emailsupport.finished.title" = "Email sent";
 "emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";
 
 
