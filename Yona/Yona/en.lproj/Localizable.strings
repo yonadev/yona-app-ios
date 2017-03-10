@@ -365,7 +365,7 @@
 "emailsupport.subject" = "Problem with Yona App";
 
 "emailsupport.finished.title" = "Email sent";
-"emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";
+"emailsupport.finished.text" = "Your email to support has been sent, we will look into the issue.";
 
 
 "link.cell.title" = "Link";

@@ -327,7 +327,7 @@
 "emailsupport.title" = "E-mail aan support";
 
 "emailsupport.error.title" = "Het is niet gelukt om de e-mail te versturen";
-"emailsupport.error.text" = "Je e-mail aan Support is verstuurd, wij gaan ermee aan de slag.";
+"emailsupport.error.text" = "Je device kon geen e-mail versturen. Controleer je e-mailinstellingen en probeer het opnieuw";
 "emailsupport.subject" = "Probleem met Yona App";
 
 "emailsupport.finished.title" = "E-mail verstuurd";
