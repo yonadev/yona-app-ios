@@ -258,7 +258,9 @@ struct Message{
             } else {
                 return NSLocalizedString("message.type.goalchange", comment: "")
             }
-            
+        case .BuddyInfoChangeMessage:
+            return NSLocalizedString("message.type.buddyInfoChangeMessage", comment: "")
+            break
         default :
             return NSLocalizedString("Error", comment: "")
         }

@@ -82,7 +82,6 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             case ProfileCategoryHeader.NickName:
                 theTextField.text = controller.aUser?.nickname
             case ProfileCategoryHeader.CellNumber:
-                theTextField.formatting = .PhoneNumber
                 theTextField.text = ""
                 theTextField.text = controller.aUser?.formatetMobileNumber
                 //theTextField.text = num?.stringByReplacingOccurrencesOfString("+31", withString: nederlandPhonePrefix)
