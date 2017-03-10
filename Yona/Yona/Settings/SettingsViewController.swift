@@ -300,7 +300,7 @@ extension SettingsViewController:UITableViewDelegate {
         
             
             
-            let subject = "Problem with Yona App"
+            let subject = NSLocalizedString("emailsupport.subject", comment: "")
             var body = ""
             if (showPassword) {
                 

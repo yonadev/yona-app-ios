@@ -324,13 +324,14 @@
 "emailsupport.text" = "Alle gegeven zijn encrypted opgeslagen. Om bepaalde problemen op te kunnen lossen moeten we deze decrypten. Gebruik deze optie alleen wanneer het support team hier om vraagt.";
 "emailsupport.accept" = "Accept";
 "emailsupport.decline" = "Decline";
-"emailsupport.title" = "Email to support";
+"emailsupport.title" = "E-mail aan support";
 
-"emailsupport.error.title" = "Could Not Send Email";
-"emailsupport.error.text" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
+"emailsupport.error.title" = "Het is niet gelukt om de e-mail te versturen";
+"emailsupport.error.text" = "Je e-mail aan Support is verstuurd, wij gaan ermee aan de slag.";
+"emailsupport.subject" = "Probleem met Yona App";
 
-"emailsupport.finished.title" = "Email send";
-"emailsupport.finished.text" = "Your email to support has been send, we will look into the issue.";
+"emailsupport.finished.title" = "E-mail verstuurd";
+"emailsupport.finished.text" = "Je e-mail aan Support is verstuurd, wij gaan ermee aan de slag.";
 
 
 "link.cell.title" = "inhoud";
