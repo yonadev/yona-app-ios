@@ -1899,7 +1899,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = SFWNSYN8YK;
+						DevelopmentTeam = KMR2VE49BG;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
@@ -2539,7 +2539,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = SFWNSYN8YK;
+				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2549,10 +2549,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.yonafoundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
-				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
+				PROVISIONING_PROFILE = "cb5fe8d7-219b-4714-9c7d-b94fee607533";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: nl.yonafoundation.yona";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2567,7 +2567,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xaton B.V. (Ent)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = SFWNSYN8YK;
+				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2576,10 +2576,10 @@
 				INFOPLIST_FILE = Yona/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.yonafoundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
-				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
+				PROVISIONING_PROFILE = "cb5fe8d7-219b-4714-9c7d-b94fee607533";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: nl.yonafoundation.yona";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
 			name = Release;
