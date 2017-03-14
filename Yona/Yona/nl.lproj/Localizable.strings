@@ -341,3 +341,11 @@
 
 "dashboard.error.title" = "Vergissing";
 "dashboard.error.button" = "Gaar";
+
+"lastSeen" = "Laatst gezien";
+"lastSeenOn" = "Laatst gezien op";
+"today" = "vandaag";
+"yesterday" = "gisteren";
+"daysAgo" = "dagen geleden";
+"neverSeenOnline" = "Nooit online gezien";
+
