@@ -221,7 +221,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         } else {
             
             let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
-            cell.allowsSwipeAction = false
+            cell.isPanEnabled = false
             if indexPath.section == friendsSections.connected.rawValue {
                 cell.setBuddie(AcceptedBuddy[indexPath.row])
             } else if indexPath.section == friendsSections.pending.rawValue {

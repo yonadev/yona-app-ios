@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SF-UI-Display-Bold.otf">
+        <array key="SF-UI-Display-Bold.otf">
             <string>SFUIDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SF-UI-Display-Regular.otf">
+        </array>
+        <array key="SF-UI-Display-Regular.otf">
             <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-            <string>SFUIDisplay-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -21,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJX-QR-1hb" id="P30-7E-3LL">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-zj-gLf" userLabel="Action View">
@@ -44,11 +46,11 @@
                                     <constraint firstAttribute="height" constant="21" id="SQL-Qr-ID1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90980392694473267" green="0.18823529779911041" blue="0.54117649793624878" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90980392694473267" green="0.18823529779911041" blue="0.54117649793624878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="O5h-mK-s7f" secondAttribute="trailing" constant="23" id="3Xy-ok-1ag"/>
                             <constraint firstAttribute="bottom" secondItem="O5h-mK-s7f" secondAttribute="bottom" constant="14" id="E9A-7T-5x7"/>
@@ -65,10 +67,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGQ-Jk-BKI" customClass="GradientSmooth" customModule="Yona" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                        <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -82,13 +84,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ee6-12-OjT">
                                 <rect key="frame" x="84" y="24" width="220" height="18"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ric-Ra-Qlj">
                                 <rect key="frame" x="84" y="47" width="220" height="17"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0W-l2-iHi" userLabel="Status Image View">
@@ -105,11 +107,11 @@
                                     <constraint firstAttribute="height" constant="21" id="gQk-NA-m2K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="X0W-l2-iHi" firstAttribute="leading" secondItem="Ee6-12-OjT" secondAttribute="trailing" constant="15" id="2XV-1M-YIL"/>
                             <constraint firstItem="uCZ-Kg-Seh" firstAttribute="centerY" secondItem="X51-dA-6JH" secondAttribute="centerY" constant="-2" id="6OP-yX-vyk"/>
@@ -130,12 +132,12 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                                <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="value" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="R0w-zj-gLf" firstAttribute="height" secondItem="P30-7E-3LL" secondAttribute="height" id="2h1-8T-w1I"/>
                     <constraint firstItem="R0w-zj-gLf" firstAttribute="centerY" secondItem="P30-7E-3LL" secondAttribute="centerY" id="9fO-43-6Ja"/>
@@ -157,7 +159,6 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="actionViewWidthConstraint" destination="LFg-eH-Rt2" id="8Yj-DH-5NM"/>
                 <outlet property="avatarImageView" destination="uCZ-Kg-Seh" id="eEa-6L-evz"/>
                 <outlet property="avatarNameLabel" destination="9rC-4f-MDB" id="cCD-e0-Uqh"/>
                 <outlet property="boldLineLabel" destination="Ee6-12-OjT" id="IbS-eM-cgO"/>
@@ -165,8 +166,6 @@
                 <outlet property="normalLineLabel" destination="Ric-Ra-Qlj" id="d73-UA-GdG"/>
                 <outlet property="statusImageConstraint" destination="cvY-2S-eVu" id="TOh-zf-2x8"/>
                 <outlet property="statusImageView" destination="X0W-l2-iHi" id="Bju-YT-FXh"/>
-                <outlet property="swipableContent" destination="X51-dA-6JH" id="jNx-3K-NgH"/>
-                <outlet property="swipableContentHorizontalConstraint" destination="tHf-L3-APw" id="4Rt-Ef-cNy"/>
             </connections>
             <point key="canvasLocation" x="218.5" y="271"/>
         </tableViewCell>
