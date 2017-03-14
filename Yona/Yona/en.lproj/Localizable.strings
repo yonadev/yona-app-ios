@@ -376,3 +376,11 @@
 
 "dashboard.error.title" = "Error";
 "dashboard.error.button" = "Ok";
+
+"lastSeen" = "Last Seen";
+"lastSeenOn" = "Last Seen on";
+"today" = "Today";
+"yesterday" = "Yesterday";
+"daysAgo" = "days ago";
+"neverSeenOnline" = "Never seen online";
+

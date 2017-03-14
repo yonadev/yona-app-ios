@@ -33,7 +33,11 @@ class BuddyRequestManager {
                                             //iterate messages
                                             for buddy in yonaBuddies {
                                                 if let buddy = buddy as? BodyDataDictionary {
-                                                    self.buddy = Buddies.init(buddyData: buddy, allActivity: activities!)
+                                                    if let allActivities = activities {
+                                                        self.buddy = Buddies.init(buddyData: buddy, allActivity: allActivities)
+                                                    } else {
+                                                        self.buddy = Buddies.init(buddyData: buddy, allActivity: [])
+                                                    }
                                                     
                                                     if let buddy = self.buddy {
                                                         if buddy.UserRequestmobileNumber.characters.count > 0 {

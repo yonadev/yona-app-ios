@@ -260,7 +260,6 @@ struct Message{
             }
         case .BuddyInfoChangeMessage:
             return NSLocalizedString("message.type.buddyInfoChangeMessage", comment: "")
-            break
         default :
             return NSLocalizedString("Error", comment: "")
         }

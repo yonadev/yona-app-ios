@@ -192,6 +192,7 @@ enum getMessagesKeys : String {
     case dateFormatSimple = "YYYY-MM-dd"
     case dateFormatWeek = "yyyy'-W'w"
     case isRead = "isRead"
+    case lastMonitoredActivityDate = "lastMonitoredActivityDate"
 }
 
 enum addUserKeys : String {

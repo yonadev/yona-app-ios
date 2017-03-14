@@ -88,7 +88,16 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         
         boldLineLabel.text = "\(aBuddie.UserRequestfirstName) \(aBuddie.UserRequestlastName)"
-        normalLineLabel.text = aBuddie.buddyNickName
+        let dateString = aBuddie.lastMonitoredActivityDate // change to your date format
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if let convertedDate = dateFormatter.dateFromString(dateString!) {
+            normalLineLabel.text = timeAgoSinceDate(convertedDate, numericDates: false)
+        } else {
+            normalLineLabel.text = NSLocalizedString("neverSeenOnline", comment: "")
+        }
+        
 
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
         avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
@@ -143,5 +152,31 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         // do nothing
     }
     
+    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
+        let calendar = NSCalendar.currentCalendar()
+        let now = NSDate()
+        let earliest = now.earlierDate(date)
+        let latest = (earliest == now) ? date : now
+        let components:NSDateComponents = calendar.components([NSCalendarUnit.Minute , NSCalendarUnit.Hour , NSCalendarUnit.Day , NSCalendarUnit.WeekOfYear , NSCalendarUnit.Month , NSCalendarUnit.Year , NSCalendarUnit.Second], fromDate: earliest, toDate: latest, options: NSCalendarOptions())
+        
+        if (components.day >= 2 && components.day < 5) {
+            let lastSeenText = String(format: "%@ %d %@", NSLocalizedString("lastSeen", comment: ""), components.day, NSLocalizedString("daysAgo", comment: ""))
+            return lastSeenText
+        } else if (components.day == 1){
+            let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeen", comment: ""),NSLocalizedString("yesterday", comment: ""))
+            return lastSeenText
+        }else if (components.day < 1){
+            let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeen", comment: ""),NSLocalizedString("today", comment: ""))
+            return lastSeenText
+        }  else {
+            //Last seen on February 15, 2017
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMMM dd, yyyy"
+            let dateString = dateFormatter.stringFromDate(date)
+            let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeenOn", comment: ""),dateString)
+            return lastSeenText
+        }
+        
+    }
 }
 

@@ -14,6 +14,7 @@ struct Buddies{
     var weeklyActivityReports : String?
     var sendingStatus: buddyRequestStatus?
     var receivingStatus: buddyRequestStatus?
+    var lastMonitoredActivityDate: String?
 
     //details of user who made request
     var UserRequestfirstName: String
@@ -31,6 +32,7 @@ struct Buddies{
         UserRequestSelfLink = ""
         buddyNickName = ""
         formattetMobileNumber = UserRequestmobileNumber
+        lastMonitoredActivityDate = ""
         if let sendingStatusFeed = buddyData[postBuddyBodyKeys.sendingStatus.rawValue] as? String{
             switch sendingStatusFeed {
             case buddyRequestStatus.ACCEPTED.rawValue:
@@ -86,7 +88,9 @@ struct Buddies{
             buddyNickName = txt
         }
         
-        
+        if let activityDate = buddyData[getMessagesKeys.lastMonitoredActivityDate.rawValue] as? String {
+            lastMonitoredActivityDate = activityDate
+        }
         //store user who made the request
         if let embedded = buddyData[postBuddyBodyKeys.embedded.rawValue],
             let userDetails = embedded[postBuddyBodyKeys.yonaUser.rawValue] as? BodyDataDictionary{
