@@ -196,6 +196,7 @@ extension LoginViewController: CodeInputViewDelegate {
                 if self.isFromSettings {
                     self.performSegueWithIdentifier(R.segue.loginViewController.transToPasscode, sender: self)
                 } else {
+                    UserRequestManager.sharedInstance.informServerAppIsOpen(user!, success: { })
                     self.navigationController?.popViewControllerAnimated(false)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
