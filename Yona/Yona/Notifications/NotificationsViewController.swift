@@ -39,9 +39,6 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
-        nib = UINib(nibName: "CustomDeleteCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "CustomDeleteCell")
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -233,7 +230,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
         if messages.count == 0 { return cell }
         
-        cell.resest()
+        cell.resetCellState()
 
         cell.setMessage(messages[indexPath.section][indexPath.row])
         
@@ -242,7 +239,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         //cannot swithc on a optional type so have
         switch currentMessage.messageType {
         case .ActivityCommentMessage:
-            cell.allowsSwipeAction = false
+            cell.isPanEnabled = false
         case .BuddyConnectRequestMessage,
              .BuddyDisconnectMessage,
              .BuddyConnectResponseMessage,
@@ -253,7 +250,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
              .BuddyInfoChangeMessage,
              .SystemMessage,
              .NoValue:
-            cell.allowsSwipeAction = true
+            cell.isPanEnabled = true
         }
         
         cell.yonaUserSwipeDelegate = self

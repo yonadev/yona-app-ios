@@ -12,7 +12,7 @@ protocol YonaUserSwipeCellDelegate {
     func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
 }
 
-class YonaUserTableViewCell: SHSwippableTableViewCell {
+class YonaUserTableViewCell: PKSwipeTableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
@@ -45,8 +45,30 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
 
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         gradientView.setGradientSmooth(UIColor.yiBgGradientTwoColor(), color2: UIColor.yiBgGradientOneColor())
-
+        self.addRightViewInCell()
     }
+    
+    
+    func addRightViewInCell() {
+        
+        //Create a view that will display when user swipe the cell in right
+        let viewCall = UIView()
+        viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
+        viewCall.frame = CGRectMake(0,0, self.frame.size.height, self.frame.size.height)
+        //Add a button to perform the action when user will tap on call and add a image to display
+        let btnCall = UIButton(type: UIButtonType.Custom)
+        btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
+        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
+        btnCall.addTarget(self, action: #selector(self.deleteMessage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        viewCall.addSubview(btnCall)
+        //Call the super addRightOptions to set the view that will display while swiping
+        super.addRightOptionsView(viewCall)
+        self.addSubview(gradientView)
+        self.sendSubviewToBack(gradientView)
+        
+    }
+    
     
     @IBAction func deleteMessage(sender: UIButton){
         weak var tracker = GAI.sharedInstance().defaultTracker
@@ -81,9 +103,9 @@ class YonaUserTableViewCell: SHSwippableTableViewCell {
         
         //if the messsage has been accepted can we delete so disable pan
         if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
-            self.allowsSwipeAction = true
+            self.isPanEnabled = true
         } else {
-            self.allowsSwipeAction = false
+            self.isPanEnabled = false
         }
         
         let formatter = NSDateFormatter()

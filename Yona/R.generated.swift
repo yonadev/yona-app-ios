@@ -394,7 +394,6 @@ struct R {
   struct nib {
     static var commentControlCell: _R.nib._CommentControlCell { return _R.nib._CommentControlCell() }
     static var commentTableHeader: _R.nib._CommentTableHeader { return _R.nib._CommentTableHeader() }
-    static var customDeleteCell: _R.nib._CustomDeleteCell { return _R.nib._CustomDeleteCell() }
     static var dayViewLinkCell: _R.nib._DayViewLinkCell { return _R.nib._DayViewLinkCell() }
     static var noGoCell: _R.nib._NoGoCell { return _R.nib._NoGoCell() }
     static var noGoCellFriends: _R.nib._NoGoCellFriends { return _R.nib._NoGoCellFriends() }
@@ -423,7 +422,6 @@ struct R {
     static var cell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "cell") }
     static var challengeCell: ReuseIdentifier<UITableViewCell> { return ReuseIdentifier(identifier: "challengeCell") }
     static var commentControlCell: ReuseIdentifier<CommentControlCell> { return ReuseIdentifier(identifier: "CommentControlCell") }
-    static var customDeleteCell: ReuseIdentifier<CustomDeleteCell> { return ReuseIdentifier(identifier: "CustomDeleteCell") }
     static var dayViewLinkCell: ReuseIdentifier<DayViewLinkCell> { return ReuseIdentifier(identifier: "DayViewLinkCell") }
     static var replyToComment: ReuseIdentifier<ReplyToComment> { return ReuseIdentifier(identifier: "ReplyToComment") }
     static var spreadCell: ReuseIdentifier<SpreadCell> { return ReuseIdentifier(identifier: "SpreadCell") }
@@ -802,20 +800,6 @@ struct _R {
       
       func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CommentTableHeader? {
         return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CommentTableHeader
-      }
-      
-      func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
-        return instance.instantiateWithOwner(ownerOrNil, options: optionsOrNil)
-      }
-    }
-    
-    struct _CustomDeleteCell: NibResource, Reusable {
-      var instance: UINib { return UINib.init(nibName: "CustomDeleteCell", bundle: _R.hostingBundle) }
-      var name: String { return "CustomDeleteCell" }
-      var reuseIdentifier: ReuseIdentifier<CustomDeleteCell> { return ReuseIdentifier(identifier: "CustomDeleteCell") }
-      
-      func firstView(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> CustomDeleteCell? {
-        return instantiateWithOwner(ownerOrNil, options: optionsOrNil)[0] as? CustomDeleteCell
       }
       
       func instantiateWithOwner(ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]?) -> [AnyObject] {
