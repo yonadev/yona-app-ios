@@ -64,6 +64,15 @@ class UserRequestManager{
         genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: body, onCompletion: onCompletion)
     }
     
+    
+    func informServerAppIsOpen(user: Users, success: () -> Void) {
+        let path = YonaConstants.commands.appOpened.stringByReplacingOccurrencesOfString("{id}", withString: user.userID)
+        print(path)
+        genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: BodyDataDictionary(), onCompletion: { _ in
+            success()
+        })
+    }
+    
     /**
      Updates the user by getting the current user, then passing in the edit link for that user with the new body of details to update
      
