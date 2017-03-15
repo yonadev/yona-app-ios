@@ -258,6 +258,8 @@
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
 		B16C25C31E682C8300BF20AC /* AVTouchIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */; };
 		B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */; };
+		B1E55D261E7812CA00EE924A /* RootRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */; };
+		B1E55D2A1E781EDC00EE924A /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = B1E55D291E781EDC00EE924A /* style.css */; };
 		BE03B0281CBD4A420063802E /* GoalAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */; };
 		BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B02A1CBD6CBF0063802E /* Goal.swift */; };
 		BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */; };
@@ -676,6 +678,8 @@
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTouchIDHelper.swift; sourceTree = "<group>"; };
 		B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRequestHelper.swift; sourceTree = "<group>"; };
+		B1E55D291E781EDC00EE924A /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAPIServiceTests.swift; sourceTree = "<group>"; };
 		BE03B02A1CBD6CBF0063802E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCommentControl.xib; sourceTree = "<group>"; };
@@ -868,6 +872,7 @@
 		160571561D460C8900E86CC2 /* VPNFlow */ = {
 			isa = PBXGroup;
 			children = (
+				B1E55D291E781EDC00EE924A /* style.css */,
 				160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */,
 				1605715D1D475F9200E86CC2 /* YonaVPNFlowInstructionsVPNViewController.swift */,
 				1605715B1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift */,
@@ -1524,6 +1529,7 @@
 				D9C7902C1CC2E989007DDF46 /* Extensions.swift */,
 				90E81BAC1D4FDE77000413C7 /* CGFloatExtension.swift */,
 				167C51491D5CB32600222EF8 /* BarButtonItemExtensions.swift */,
+				B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1982,6 +1988,7 @@
 				906FED911CEE23CE00029845 /* MeDashBoard.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
+				B1E55D2A1E781EDC00EE924A /* style.css in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				166CB84E1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib in Resources */,
@@ -2282,6 +2289,7 @@
 				AD84B72F1CD8E65D0085D5B7 /* AddDeviceViewController.swift in Sources */,
 				166CB8461D250BCE008B425D /* WeekCircleView.swift in Sources */,
 				165BB1EA1D228A010013A4EF /* TimeBucketControlCell.swift in Sources */,
+				B1E55D261E7812CA00EE924A /* RootRequestHelper.swift in Sources */,
 				160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */,
 				1656A5D51D4BEA0B00EB288D /* HTTPConnection.m in Sources */,
 				16FDABDE1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift in Sources */,

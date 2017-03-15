@@ -165,11 +165,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
-        print("handleMobileconfigRootRequest");
-        let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script type=\"text/javascript\">window.addEventListener(\"focus\", function(evt){load()},false);window.addEventListener(\"blur\", function(evt) {console.log('hide');}, false);</script><script type=\"text/javascript\">function load() {clearInterval(int);window.location.href='http://localhost:8089/load/';}var int=self.setInterval(function(){load()},200);</script><BODY></BODY></HTML>"
+        RootRequestHelper().handleMobileconfigRootRequest(request, response: response)
         
-        
-        response.respondWithString(txt)
     }
     
     /** Catches first and second attempts to load config file, and then inserts an address into safari to switch back to the app
