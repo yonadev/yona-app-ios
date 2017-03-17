@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: NSTimer?
-    static let sharedApp = UIApplication.sharedApplication().delegate as? AppDelegate
-    
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -108,6 +106,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
+        doTestCycleForVPN()
+        
     }
     
     private func hockeyAppSetup() {
