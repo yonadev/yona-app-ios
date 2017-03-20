@@ -65,7 +65,7 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
         userIcon.layer.borderWidth = 0.0
         userIcon.layer.masksToBounds = true
         userIcon.layer.cornerRadius = userIcon.frame.size.width/2
-        userIcon.backgroundColor = UIColor.yiGrapeColor()
+        
 
     }
 
@@ -85,10 +85,12 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
             firstName = bud.UserRequestfirstName
             lastName = bud.UserRequestlastName
             nickname = bud.buddyNickName
+            userIcon.backgroundColor = UIColor.yiWindowsBlueColor()
         } else if let theUser = timelineDayActivity.user {
             firstName = theUser.firstName
             lastName = theUser.lastName
             nickname = theUser.nickname
+            userIcon.backgroundColor = UIColor.yiGrapeColor()
         }
 
     }

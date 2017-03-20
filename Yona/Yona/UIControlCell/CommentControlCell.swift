@@ -9,13 +9,14 @@
 import Foundation
 
 class CommentControlCell: PKSwipeTableViewCell {
-    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var replyToComment: UIButton!
     @IBOutlet weak var name: UILabel!
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var avatarNameLabel: UILabel!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var replyButtonHeightConstraint: NSLayoutConstraint!
     var comment: Comment?
     var indexPath: NSIndexPath?
 
@@ -57,19 +58,29 @@ class CommentControlCell: PKSwipeTableViewCell {
     
     func setBuddyCommentData(comment: Comment) {
         self.comment = comment
-        self.commentTextView.text = comment.message
+        self.commentLabel.text = comment.message
         self.name.text = comment.nickname
         
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
         if let nickname = comment.nickname {
             avatarNameLabel.text = "\(nickname.capitalizedString.characters.first!)"
+            if nickname.containsString("(me)") {
+                avatarImageView.backgroundColor = UIColor.yiGrapeColor()
+            } else {
+                avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
+            }
         }
+        
+        
         
     }
 
     func hideShowReplyButton(hide: Bool) {
         self.replyToComment.hidden = hide
         self.separator.hidden = hide
+        if hide {
+            replyButtonHeightConstraint.constant = -80
+        }
     }
     
     @IBAction func replyToCommentButton(sender: UIButton) {

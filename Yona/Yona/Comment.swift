@@ -12,7 +12,7 @@ enum commentKeys : String {
     case embedded = "_embedded"
     case creationTime = "creationTime"
     case message = "message"
-    case threadHeadMessageID = "threadHeadMessageID"
+    case threadHeadMessageID = "threadHeadMessageId"
     case nickname = "nickname"
     case links = "_links"
     case _self = "self"
@@ -85,6 +85,10 @@ struct Comment{
         }
         if let threadHeadMessageID = commentData[commentKeys.threadHeadMessageID.rawValue] as? String{
             self.threadHeadMessageID = threadHeadMessageID
+        }
+        
+        if let threadHeadMessageID = commentData[commentKeys.threadHeadMessageID.rawValue] as? Int {
+            self.threadHeadMessageID = "\(threadHeadMessageID)"
         }
         
         //get the links

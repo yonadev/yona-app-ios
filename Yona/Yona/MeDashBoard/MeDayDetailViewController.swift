@@ -288,6 +288,29 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
+            return UITableViewAutomaticDimension
+        }
+        
+        return CGFloat(cellHeight)
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var cellHeight = 165
+        if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 135
+                } else if goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 135
+                }
+            }
+            
+            if indexPath.row == detailDayRows.spreadCell.rawValue{
+                cellHeight = 165
+            }
+        } else if indexPath.section == detailDaySections.comment.rawValue {
             cellHeight = 165
         }
         

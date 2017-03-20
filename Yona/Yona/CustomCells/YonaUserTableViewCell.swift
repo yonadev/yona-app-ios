@@ -85,7 +85,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         // When showing the Buddy, we move the status to the right of the cell. Autolayout will then extend the size of the nameLabel as well as the nicknameLabel
         statusImageConstraint.constant = -contentView.frame.size.width
         statusImageView.setNeedsLayout()
-        avatarImageView.backgroundColor = UIColor.yiGrapeColor()
+        statusImageView.backgroundColor = UIColor.yiGrapeColor()
         
         boldLineLabel.text = "\(aBuddie.UserRequestfirstName) \(aBuddie.UserRequestlastName)"
         let dateString = aBuddie.lastMonitoredActivityDate // change to your date format
@@ -98,7 +98,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             normalLineLabel.text = NSLocalizedString("neverSeenOnline", comment: "")
         }
         
-
+        avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
         avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
 
@@ -143,7 +143,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             
             
         }
-        
+        avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         statusImageView.image = aMessage.iconForStatus()
     }
 

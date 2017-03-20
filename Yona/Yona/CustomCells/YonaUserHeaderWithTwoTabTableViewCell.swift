@@ -72,12 +72,13 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         if isBuddy {
             self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().CGColor
             self.avatarImageView.layer.borderWidth = 1.0
-            self.avatarImageView.backgroundColor = UIColor.yiGrapeColor()
+            self.avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
             contentView.backgroundColor = UIColor.yiWindowsBlueColor()
             profileTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
             badgesTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
         } else {
             avatarImageView.layer.borderColor = UIColor.yiGrapeTwoColor().CGColor
+            self.avatarImageView.backgroundColor = UIColor.yiGrapeColor()
             contentView.backgroundColor = UIColor.yiGrapeColor()
             profileTabMainView.backgroundColor = UIColor.yiGrapeColor()
             badgesTabMainView.backgroundColor = UIColor.yiGrapeColor()

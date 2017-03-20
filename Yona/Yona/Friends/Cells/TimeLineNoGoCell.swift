@@ -69,6 +69,7 @@ class TimeLineNoGoCell : UITableViewCell {
 //            }
         if let txt =  timelineData.user?.nickname {
                 personName.text = txt
+            
         } else if let txt = timelineData.buddy?.buddyNickName {
             personName.text = txt
         }

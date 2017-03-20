@@ -50,7 +50,6 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                 btnName.layer.cornerRadius = btnName.frame.size.width/2
                 btnName.layer.borderWidth = 1
                 btnName.layer.borderColor = UIColor.whiteColor().CGColor
-                
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 self.navigationItem.rightBarButtonItem = rightBarButton
@@ -124,12 +123,35 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
+            return UITableViewAutomaticDimension
+        }
+
+        return CGFloat(cellHeight)
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var cellHeight = 165
+        if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
+            if indexPath.row == detailDayRows.activity.rawValue {
+                if goalType == GoalType.BudgetGoalString.rawValue {
+                    cellHeight = 135
+                } else if goalType == GoalType.NoGoGoalString.rawValue {
+                    cellHeight = 85
+                } else if goalType == GoalType.TimeZoneGoalString.rawValue {
+                    cellHeight = 135
+                }
+            }
+            
+            if indexPath.row == detailDayRows.spreadCell.rawValue{
+                cellHeight = 165
+            }
+        } else if indexPath.section == detailDaySections.comment.rawValue {
             cellHeight = 165
         }
         
         return CGFloat(cellHeight)
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
 
@@ -167,24 +189,59 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             }
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
             let comment = self.comments[indexPath.row]
-            if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
-                cell.setBuddyCommentData(comment)
-                cell.indexPath = indexPath
-                cell.commentDelegate = self
-                if self.dayData?.commentLink != nil {
-                    cell.replyToComment.hidden = true
-                    self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                } else if comment.replyLink != nil {
-                    cell.replyToComment.hidden = false
-                    self.sendCommentFooter!.postReplyLink = comment.replyLink
+            let currentThreadID = comment.threadHeadMessageID
+            var previousThreadID = ""
+            var nextThreadID = ""
+            
+            if indexPath.row + 1 < self.comments.count {
+                if let nextThreadMessageId = self.comments[indexPath.row + 1].threadHeadMessageID {
+                    nextThreadID = nextThreadMessageId
                 }
-                return cell
+            } else {
+                nextThreadID = ""
             }
+            //check for a previous row
+            if indexPath.row != 0{
+                // then get the thread id of this row
+                if let previousThreadMessageId = self.comments[indexPath.row - 1].threadHeadMessageID {
+                    previousThreadID = previousThreadMessageId
+                }
+            }
+            
+            if self.dayData?.messageLink != nil && indexPath.section == 1 {
+                //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
+                if currentThreadID != previousThreadID {
+                    if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                        cell.setBuddyCommentData(comment)
+                        cell.indexPath = indexPath
+                        cell.commentDelegate = self
+                        if self.dayData?.commentLink != nil {
+                            cell.replyToComment.hidden = true
+                            self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                        } else if comment.replyLink != nil {
+                            cell.replyToComment.hidden = false
+                            self.sendCommentFooter!.postReplyLink = comment.replyLink
+                        }
+                        return cell
+                    }
+                } else {
+                    // if the thread id is the same then show the reply to comment cell
+                    if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                        cell.setBuddyCommentData(comment)
+                        cell.indexPath = indexPath
+                        cell.commentDelegate = self
+                        cell.hideShowReplyButton(comment.replyLink == nil)
+                        self.sendCommentFooter?.alpha = 0
+                        return cell
+                    }
+                }
+            }
+            
         }
         return UITableViewCell(frame: CGRectZero)
     }
-    
-    
+
+
     override func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()
@@ -213,8 +270,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                             }
                         }
                         
-                        Loader.Hide()
+                        
                         self.tableView.reloadData()
+                        Loader.Hide()
                         
                     } else {
                         Loader.Hide()

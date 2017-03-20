@@ -84,7 +84,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
         userIcon.layer.borderWidth = 0.0
         userIcon.layer.masksToBounds = true
         userIcon.layer.cornerRadius = userIcon.frame.size.width/2
-        userIcon.backgroundColor = UIColor.yiGrapeColor()
+        //userIcon.backgroundColor = UIColor.yiGrapeColor()
     }
 
     private func dravTheUser () {
@@ -210,10 +210,12 @@ class TimeLineTimeBucketCell : UITableViewCell {
             firstName = bud.UserRequestfirstName
             lastName = bud.UserRequestlastName
             nickName = bud.buddyNickName
+            userIcon.backgroundColor = UIColor.yiWindowsBlueColor()
         } else if let theUser = timeline.user {
             firstName = theUser.firstName
             lastName = theUser.lastName
             nickName = theUser.nickname
+            userIcon.backgroundColor = UIColor.yiGrapeColor()
         }
 
         

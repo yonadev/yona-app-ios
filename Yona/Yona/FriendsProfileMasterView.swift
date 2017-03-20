@@ -223,7 +223,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
             cell.isPanEnabled = false
             if indexPath.section == friendsSections.connected.rawValue {
-                cell.setBuddie(AcceptedBuddy[indexPath.row])
+                    cell.setBuddie(AcceptedBuddy[indexPath.row])
             } else if indexPath.section == friendsSections.pending.rawValue {
                 cell.setBuddie(RequestedBuddy[indexPath.row])
             }
@@ -372,8 +372,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     func loadAllBuddyList(sender:AnyObject) {
         Loader.Show()
         BuddyRequestManager.sharedInstance.getAllbuddies { (success, serverMessage, ServerCode, Buddies, buddies) in
-            
-            Loader.Hide()
             if success{
                 self.buddiesOverviewArray.removeAll()
                 self.RequestedBuddy.removeAll()
@@ -391,18 +389,21 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     //print(self.RequestedBuddy)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.theTableView.reloadData()
+                        Loader.Hide()
                     })
                     
                 } else {
                     print("No buddies")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.theTableView.reloadData()
+                        Loader.Hide()
                     })
                 }
             } else {
                 if let serverMessage = serverMessage {
                     self.displayAlertMessage(serverMessage, alertDescription: "")
                 }
+                Loader.Hide()
             }
             // self.refreshControl!.endRefreshing()
         }
