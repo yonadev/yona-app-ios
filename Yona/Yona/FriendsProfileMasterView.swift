@@ -321,9 +321,16 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     func loadDataForTimeLine(page : Int) {
         Loader.Show()
+        //Not sure why but the completion block is called twice
+        // Once empty and once filled, So taking the boolean to reload table and hide loader,
+        // So that nothing is broken by this change
+        var isFirstCompletionCall: Bool = false
         ActivitiesRequestManager.sharedInstance.getTimeLineActivity (3,page: page,onCompletion: {(succes, serverMessage, serverCode, timeLineDayActivityOverview, error) in
             if succes {
                 print("Success \(succes)")
+                
+                isFirstCompletionCall = !isFirstCompletionCall
+                
                 if timeLineDayActivityOverview != nil {
                     if self.leftPage == 0 {
                         self.timeLineData = timeLineDayActivityOverview!
@@ -345,10 +352,13 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 
                 
             }
-            Loader.Hide()
+            //Loader.Hide()
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.theTableView.reloadData()
+                if  isFirstCompletionCall == false {
+                    self.theTableView.reloadData()
+                    Loader.Hide()
+                }
             })
             
         })
