@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pXf-zS-frR" id="dmG-R4-dEj">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="200.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jE-y0-ol7">
@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" constant="171" id="PDC-Iq-zdO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="Beantwoorden">
+                                <state key="normal" title="commenting.replyToComment">
                                     <color key="titleColor" red="0.1137254909" green="0.4431372583" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
