@@ -12,7 +12,7 @@ class TimeZoneCustomView: UIView {
     
     var spreadX : CGFloat = 0
     var spreadWidth : CGFloat?
-    var spreadHeight : CGFloat = 32
+    var spreadHeight : CGFloat = 20
     var timeZoneColour : UIColor?
     var animated : Bool?
 
