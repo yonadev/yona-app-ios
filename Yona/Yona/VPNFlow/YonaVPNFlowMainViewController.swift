@@ -186,7 +186,12 @@ class YonaVPNFlowMainViewController: UIViewController {
             tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as [NSObject : AnyObject])
             
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
-            self.dismissViewControllerAnimated(true, completion: {})
+//            self.dismissViewControllerAnimated(true, completion: {})
+            
+            if UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! ) {
+                UIApplication.sharedApplication().openURL(NSURL(string: "openvpn://")!)
+            }
+            
             return
         }
 
