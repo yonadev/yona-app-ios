@@ -260,10 +260,37 @@ struct Message{
             }
         case .BuddyInfoChangeMessage:
             return NSLocalizedString("message.type.buddyInfoChangeMessage", comment: "")
+        case .SystemMessage:
+            return NSLocalizedString("message.type.systemMessage", comment: "")
         default :
             return NSLocalizedString("Error", comment: "")
         }
         return NSLocalizedString("Error", comment: "")
+    }
+    
+    func checkIfMessageTypeSupported() -> Bool {
+        var isSupported = false
+        switch messageType {
+        case .BuddyConnectRequestMessage:
+            isSupported = true
+        case .BuddyConnectResponseMessage:
+            isSupported = true
+        case .BuddyDisconnectMessage:
+            isSupported = true
+        case .GoalConflictMessage:
+            isSupported = true
+        case .ActivityCommentMessage:
+            isSupported = true
+        case .GoalChangeMessage:
+            isSupported = true
+        case .BuddyInfoChangeMessage:
+            isSupported = true
+        case .SystemMessage:
+            isSupported = true
+        default :
+            isSupported = false
+        }
+        return isSupported
     }
     
     func iconForStatus() -> UIImage {

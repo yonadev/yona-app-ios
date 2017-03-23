@@ -54,6 +54,7 @@ class MessageRequestManager {
                                         
                                         
                                         //iterate messages
+                                        var totalUnread = 0
                                         for message in yonaMessages {
                                             if let message = message as? BodyDataDictionary {
                                                 var aMessage = Message.init(messageData: message)
@@ -64,10 +65,14 @@ class MessageRequestManager {
                                                         }
                                                     }
                                                 }
-                                                self.messages.append(aMessage)
+                                                if aMessage.checkIfMessageTypeSupported() == true {
+                                                    self.messages.append(aMessage)
+                                                    totalUnread = totalUnread + 1
+                                                }
                                                 //}
                                             }
                                         }
+                                        self.totalSize = totalUnread
                                         onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
                                     } else {
                                         self.message = Message.init(messageData: json)

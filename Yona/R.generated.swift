@@ -479,6 +479,7 @@ struct R {
     }
     
     struct notificationsViewController {
+      static var notificationDetailSegue: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, NotificationDetailViewController> { return StoryboardSegueIdentifier(identifier: "notificationDetailSegue") }
       static var showAcceptFriend: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, YonaNotificationAcceptFriendRequestViewController> { return StoryboardSegueIdentifier(identifier: "showAcceptFriend") }
       static var showDayDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeDayDetailViewController> { return StoryboardSegueIdentifier(identifier: "showDayDetailMessage") }
       static var showWeekDetailMessage: StoryboardSegueIdentifier<UIStoryboardSegue, NotificationsViewController, MeWeekDetailWeekViewController> { return StoryboardSegueIdentifier(identifier: "showWeekDetailMessage") }

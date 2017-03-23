@@ -276,7 +276,7 @@
 "message.type.message" = "Message";
 "message.type.disclosureresponse" = "Review accepted";
 "message.type.disclosurerequest" = "Review requested";
-"message.type.systemmessage" = "Message from Yona";
+"message.type.systemMessage" = "Message from Yona";
 "message.type.buddyInfoChangeMessage" = "Buddy info change (TBD)";
 
 //me day cells
@@ -385,4 +385,5 @@
 "neverSeenOnline" = "Never seen online";
 
 "sendButton" = "SEND";
+"yonaAdministrator" = "Yona administrator";
 

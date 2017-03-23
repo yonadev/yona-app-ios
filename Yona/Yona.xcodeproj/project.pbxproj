@@ -96,6 +96,7 @@
 		16FDABE91D55FCB700B847DB /* TimeLineTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */; };
 		16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */; };
 		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
+		2CB60BC01E839D8F0073E4D9 /* NotificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */; };
@@ -493,6 +494,7 @@
 		16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeBucketCell.swift; sourceTree = "<group>"; };
 		16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeZoneCell.swift; sourceTree = "<group>"; };
 		16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeZoneCell.xib; sourceTree = "<group>"; };
+		2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailViewController.swift; sourceTree = "<group>"; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
@@ -1182,6 +1184,7 @@
 				16F9519F1D173FD000EA8A6F /* YonaNotificationAcceptFriendRequestViewController.swift */,
 				16F951A11D174E0900EA8A6F /* YonaNotificationsAccessTypeTableViewCell.swift */,
 				16F951A31D1751D400EA8A6F /* YonaNotificationsAccessTextTableViewCell.swift */,
+				2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */,
 			);
 			name = Notifications;
 			path = ../Notifications;
@@ -2276,6 +2279,7 @@
 				AD3931E21CEB311900605FBA /* BaseTabViewController.swift in Sources */,
 				1656A5D91D4BEA0B00EB288D /* HTTPMessage.m in Sources */,
 				90E81BAD1D4FDE77000413C7 /* CGFloatExtension.swift in Sources */,
+				2CB60BC01E839D8F0073E4D9 /* NotificationDetailViewController.swift in Sources */,
 				AD291DA41CAAA7AB008CAFB1 /* UIColor+YIColors.swift in Sources */,
 				9042C7531CD898E300100306 /* UITabBarItem+AGi18n.m in Sources */,
 				AD00DED71CD3648F006BBA7E /* IQKeyboardManagerConstantsInternal.swift in Sources */,
