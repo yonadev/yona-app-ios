@@ -243,7 +243,7 @@
 "message.type.goalchange" = "Challenge aangepast";
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
-"message.type.systemmessage" = "Bericht van Yona";
+"message.type.systemMessage" = "Bericht van Yona";
 "message.type.buddyInfoChangeMessage" = "Vrienden informatie verandering (TBD)";
 
 //me day cells
@@ -350,3 +350,4 @@
 "neverSeenOnline" = "Nooit online gezien";
 
 "sendButton" = "VERSTUREN";
+"yonaAdministrator" = "Yona administrator";

@@ -109,7 +109,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     
     func setMessage(aMessage : Message) {
         self.aMessage = aMessage
-        
+        avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         //if the messsage has been accepted can we delete so disable pan
         if aMessage.status == buddyRequestStatus.ACCEPTED || aMessage.status == buddyRequestStatus.REJECTED {
             self.isPanEnabled = true
@@ -135,7 +135,10 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             avatarNameLabel.text = ""
         }
         
-
+        if aMessage.messageType == notificationType.SystemMessage {
+            avatarImageView.backgroundColor = UIColor.yiMango95Color()
+            normalLineLabel.text = "\(aMessage.message)"
+        }
         if aMessage.isRead {
             gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         } else {
@@ -143,7 +146,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             
             
         }
-        avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
+        
         statusImageView.image = aMessage.iconForStatus()
     }
 

@@ -67,17 +67,16 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             controller.aBuddy = self.buddyData
             self.selectedIndex = nil
             self.tableView.reloadData()
-        }
-        
-        if segue.destinationViewController is MeWeekDetailWeekViewController {
+        } else if segue.destinationViewController is MeWeekDetailWeekViewController {
             let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
             controller.initialObjectLink = self.aMessage!.weekDetailsLink!
             
-        }
-        
-        if segue.destinationViewController is MeDayDetailViewController {
+        } else if segue.destinationViewController is MeDayDetailViewController {
             let controller = segue.destinationViewController as! MeDayDetailViewController
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
+        } else if segue.destinationViewController is NotificationDetailViewController {
+            let controller = segue.destinationViewController as! NotificationDetailViewController
+            controller.aMessage = self.aMessage
         }
         
     }
@@ -215,6 +214,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 break
             case .SystemMessage:
                 // not implemented yet
+                self.performSegueWithIdentifier(R.segue.notificationsViewController.notificationDetailSegue, sender: self)
                 break
             case .NoValue:
                 break
@@ -323,17 +323,21 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                                 //so not every link will have one, so what now?
                                 print(message)
                             })
-                            if tmpArray.count == 0 {
-                                tmpArray.append(aMessage)
-                            } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
-                                tmpArray.append(aMessage)
-                            } else {
-                                allLoadedMessage.append(tmpArray)
-                                tmpArray.removeAll()
-                                tmpArray.append(aMessage)
+                            if  aMessage.checkIfMessageTypeSupported() == true {
+                                if tmpArray.count == 0 {
+                                    tmpArray.append(aMessage)
+                                } else if tmpArray[0].creationTime.isSameDayAs(aMessage.creationTime) {
+                                    tmpArray.append(aMessage)
+                                } else {
+                                    allLoadedMessage.append(tmpArray)
+                                    tmpArray.removeAll()
+                                    tmpArray.append(aMessage)
+                                }
                             }
                         }
-                        allLoadedMessage.append(tmpArray)
+                        if tmpArray.count > 0 {
+                            allLoadedMessage.append(tmpArray)
+                        }
 
                         allLoadedMessage.forEach{self?.messages.append($0)}
  
@@ -361,6 +365,9 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         
     }
     
+    @IBAction func unwindToNotificationView(segue: UIStoryboardSegue) {
+        print(segue.sourceViewController)
+    }
     func showBuddyProfile(theMessage : Message) {
         
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
