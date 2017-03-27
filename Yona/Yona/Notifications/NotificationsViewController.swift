@@ -309,12 +309,23 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 self?.totalSize = MessageRequestManager.sharedInstance.totalSize!
                 
                 var allLoadedMessage : [[Message]] = []
+                var oldMessages: [Message] = []
+                if  ((self?.messages.count) > 0) {
+                    for sectionArray in (self?.messages)! {
+                        for mainArray in sectionArray {
+                            oldMessages.append(mainArray)
+                        }
+                    }
+                    self?.messages.removeAll()
+                }
                 var tmpArray: [Message] = []
+                
                 //success so sort by date... and create sub arrays
                 if let data = theMessages   {
                     
                     if data.count > 0 {
-                        let sortedArray  = data.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
+                        let allMessages = oldMessages + data
+                        let sortedArray  = allMessages.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
                         for aMessage in sortedArray {
                             MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
                                 if success {

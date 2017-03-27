@@ -65,14 +65,10 @@ class MessageRequestManager {
                                                         }
                                                     }
                                                 }
-                                                if aMessage.checkIfMessageTypeSupported() == true {
-                                                    self.messages.append(aMessage)
-                                                    totalUnread = totalUnread + 1
-                                                }
+                                                self.messages.append(aMessage)
                                                 //}
                                             }
                                         }
-                                        self.totalSize = totalUnread
                                         onCompletion(success, serverMessage, serverCode, nil, self.messages) //failed to get user
                                     } else {
                                         self.message = Message.init(messageData: json)
