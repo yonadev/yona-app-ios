@@ -13,7 +13,7 @@ import HockeySDK
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var firstTime = true
+    static var firstTime = true
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: NSTimer?
@@ -172,9 +172,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /** Catches first and second attempts to load config file, and then inserts an address into safari to switch back to the app
      */
     func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
-        if firstTime  {
+        if AppDelegate.firstTime  {
             print("handleMobileconfigLoadRequest, first time")
-            firstTime = false
+            AppDelegate.firstTime = false
             let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
             let mobileconfigData = NSData(contentsOfFile: resourceDocPath)
             
