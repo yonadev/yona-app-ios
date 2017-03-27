@@ -140,6 +140,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey:  YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
                 NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalledStep3.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                AppDelegate.firstTime = true
                 
                 if let welcome = R.storyboard.welcome.initialViewController {
                     self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
