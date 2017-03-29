@@ -100,10 +100,6 @@ class LoginViewController: LoginSignupValidationMasterView {
                 self.authenticatedSuccessFully()
             
             }) { (error) in
-                
-                self.displayAlertOption("", cancelButton: false, alertDescription: NSLocalizedString("touchId-failure", comment: ""), onCompletion: { _ in })
-                
-                
 //                if error.code == LAError.TouchIDNotEnrolled.rawValue {
 //                    self.displayAlertOption("", cancelButton: false, alertDescription: "TouchId not enrolled", onCompletion: { _ in })
 //                } else {
@@ -338,6 +334,8 @@ extension LoginViewController: KeyboardProtocol {
                 let keyBoardWindow = UIApplication.sharedApplication().windows.last
                 keyBoardWindow?.addSubview(self.touchIdButton)
                 keyBoardWindow?.bringSubviewToFront(self.touchIdButton)
+                
+                self.touchIdButtonAction()
             }
         })
         
