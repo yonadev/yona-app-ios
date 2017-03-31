@@ -35,7 +35,7 @@ struct Users{
     var buddiesLink: String?
     var getAllGoalsLink: String?
     var timeLineLink : String?
-
+    var foundIncludeLink: Bool = false
     var formatetMobileNumber : String!
     
     var mobilConfigFileURL: String = ""
@@ -58,6 +58,7 @@ struct Users{
                     let hrefyonaUserSelfLink = yonaUserSelfLink?[YonaConstants.jsonKeys.hrefKey] as? String {
                     self.getSelfLink = hrefyonaUserSelfLink
                     KeychainManager.sharedInstance.saveUserSelfLink(hrefyonaUserSelfLink)
+                    foundIncludeLink = true
                 }
                 
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
@@ -96,12 +97,14 @@ struct Users{
                 }
                 
                 
-//                if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-//                    let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
-//                    self.getSelfLink = hrefSelfLinks
-//                    print(self.getSelfLink)
-//                    KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
-//                }
+                if !foundIncludeLink {
+                    if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
+                        let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                        self.getSelfLink = hrefSelfLinks
+                        print(self.getSelfLink)
+                        KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
+                    }
+                }
                 
                 if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
                     let confirmLinksHref = confirmLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
