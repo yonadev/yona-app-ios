@@ -334,7 +334,7 @@
 "emailsupport.finished.text" = "Je e-mail aan Support is verstuurd, wij gaan ermee aan de slag.";
 
 
-"link.cell.title" = "inhoud";
+"link.cell.title" = "Inhoud";
 
 "touchId-failure" = "Authentication Failed";
 "touchId-alert" = "Place your finger on home button to authenticate";
