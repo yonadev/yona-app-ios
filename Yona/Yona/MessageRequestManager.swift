@@ -113,7 +113,7 @@ class MessageRequestManager {
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveDeleteLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(responseCodes.internalErrorCode))
         }
     }
 
