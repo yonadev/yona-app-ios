@@ -61,14 +61,16 @@ class CommentControlCell: PKSwipeTableViewCell {
         self.commentLabel.text = comment.message
         self.name.text = comment.nickname
         
+        if self.isKindOfClass(ReplyToComment) {
+            avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
+        } else {
+            avatarImageView.backgroundColor = UIColor.yiGrapeColor()
+        }
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
+        
+        
         if let nickname = comment.nickname {
             avatarNameLabel.text = "\(nickname.capitalizedString.characters.first!)"
-            if nickname.containsString("(me)") {
-                avatarImageView.backgroundColor = UIColor.yiGrapeColor()
-            } else {
-                avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
-            }
         }
         
         
