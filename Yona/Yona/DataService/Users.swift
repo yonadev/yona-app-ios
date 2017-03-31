@@ -95,11 +95,13 @@ struct Users{
                     }
                 }
                 
-                if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-                    let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
-                    self.getSelfLink = hrefSelfLinks
-                    KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
-                }
+                
+//                if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
+//                    let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+//                    self.getSelfLink = hrefSelfLinks
+//                    print(self.getSelfLink)
+//                    KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
+//                }
                 
                 if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
                     let confirmLinksHref = confirmLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
