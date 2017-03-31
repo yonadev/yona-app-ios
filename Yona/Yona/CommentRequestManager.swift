@@ -106,7 +106,7 @@ class CommentRequestManager {
                 onCompletion(success , error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveDeleteLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(responseCodes.internalErrorCode))
         }
     }
     

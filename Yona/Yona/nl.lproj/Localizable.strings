@@ -351,3 +351,5 @@
 
 "sendButton" = "VERSTUREN";
 "yonaAdministrator" = "Yona administrator";
+
+"failed-to-retrieve-delete-link" = "TBD";

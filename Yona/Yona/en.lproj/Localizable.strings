@@ -387,3 +387,5 @@
 "sendButton" = "SEND";
 "yonaAdministrator" = "Yona administrator";
 
+
+"failed-to-retrieve-delete-link" = "Can not delete unread messages";
