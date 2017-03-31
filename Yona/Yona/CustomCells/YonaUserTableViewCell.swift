@@ -63,10 +63,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
-        super.addRightOptionsView(viewCall)
-        self.addSubview(gradientView)
-        self.sendSubviewToBack(gradientView)
-        
+        super.addRightOptionsView(viewCall)        
     }
     
     
