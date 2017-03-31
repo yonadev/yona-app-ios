@@ -292,6 +292,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         let aMessage = message as Message
         MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
             if success {
+                self.messages.removeAll()
                 self.loadMessages()
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
