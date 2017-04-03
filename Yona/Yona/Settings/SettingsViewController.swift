@@ -143,7 +143,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 AppDelegate.firstTime = true
                 
                 if let welcome = R.storyboard.welcome.initialViewController {
-                    self.view.window?.rootViewController?.presentViewController(welcome, animated: true, completion: nil)
+                    self.view.window?.rootViewController?.presentViewController(welcome, animated: true) {
+                        let viewController = welcome.viewControllers.first as? WelcomeViewController
+                        viewController?.turnOffVPN()
+                    }
                 }
             }
             else {
