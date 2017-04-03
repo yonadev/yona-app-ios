@@ -389,3 +389,6 @@
 
 
 "failed-to-retrieve-delete-link" = "Can not delete unread messages";
+"turn-off-vpn-alert" = "Turn off your vpn";
+"turn-off-vpn-alert-cancel-action" = "Cancel";
+"turn-off-vpn-alert-action" = "OpenVPN";
