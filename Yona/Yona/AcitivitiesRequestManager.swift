@@ -43,7 +43,7 @@ class ActivitiesRequestManager {
                             self.activitiesTimeZoneGoals = []
                             self.activitiesNoGoGoals = []
                             var goalsActivityLinks : [String] = []
-                            let goaltypearr = ["BudgetGoal","TimeZoneGoal","NoGoGoal"]
+//                            let goaltypearr = ["BudgetGoal","TimeZoneGoal","NoGoGoal"]
      
                             
                             goalsActivityLinks.removeAll()
@@ -112,6 +112,18 @@ class ActivitiesRequestManager {
                 }
             }
         })
+    }
+    
+    func getActivityName(fromLink link: String) -> String {
+        if self.activities.count > 0 {
+            for activity in self.activities {
+                if let selfLink = activity.selfLinks {
+                    if selfLink == link { return activity.activityCategoryName! }
+                }
+            }
+        }
+        
+        return ""
     }
     
     func listActivities(activities: [String]) -> String{
