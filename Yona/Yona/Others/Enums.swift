@@ -172,6 +172,7 @@ enum getMessagesKeys : String {
     case process =  "yona:process"
     case markRead = "yona:markRead"
     case activityCategory = "yona:activityCategory"
+    case relatedCategory = "related"
     case selfKey = "self"
     case links = "_links"
     case edit = "edit"

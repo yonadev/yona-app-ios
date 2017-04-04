@@ -239,8 +239,8 @@
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
-"message.type.goalchange.add" = "Challenge toegevoegd";
-"message.type.goalchange" = "Challenge aangepast";
+"message.type.goalchange.add" = "Challenge %@ toegevoegd";
+"message.type.goalchange" = "Challenge %@ aangepast";
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
 "message.type.systemMessage" = "Bericht van Yona";

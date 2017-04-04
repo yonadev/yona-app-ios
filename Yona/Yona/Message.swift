@@ -35,10 +35,12 @@ struct Message{
     var yonaProcessLink: String?
     var markReadLink : String?
     var activityCategoryLink : String?
+    var relatedCategoryLink : String?
     //var creationTime: String?
     var nickname: String
     var message: String
     var status: buddyRequestStatus?
+    var category: String!
     var messageType: notificationType
     var creationTime : NSDate
     var change : String?
@@ -57,7 +59,7 @@ struct Message{
     var UserRequestSelfLink: String
 
     init(messageData: BodyDataDictionary ) {
-   //     print (messageData)
+        print (messageData)
         
         message = ""
         UserRequestfirstName = ""
@@ -186,15 +188,16 @@ struct Message{
                 let href = activityCategory[getMessagesKeys.href.rawValue] as? String{
                 self.activityCategoryLink = href
             }
+            
+            if let related = links[getMessagesKeys.relatedCategory.rawValue],
+                let href = related[getMessagesKeys.href.rawValue] as? String{
+                self.relatedCategoryLink = href
+            }
 
         }
-//        if (activityCategoryLink != nil) {
-//            ActivitiesRequestManager.sharedInstance.getActivityCategoryWithLink(activityCategoryLink!, onCompletion: { result, serverMessage, serverCode, activities, error  in
-//                    print (result)
-//                    print (activities)
-//                
-//                })
-//        }
+        if (relatedCategoryLink != nil) {
+            self.category = ActivitiesRequestManager.sharedInstance.getActivityName(fromLink: relatedCategoryLink!)
+        }
         
         //store user who made the request
         if let embedded = messageData[getMessagesKeys.embedded.rawValue],
@@ -254,9 +257,9 @@ struct Message{
             return NSLocalizedString("message.type.message", comment: "")
         case .GoalChangeMessage:
             if change == "GOAL_ADDED" {
-                return NSLocalizedString("message.type.goalchange.add", comment: "")
+                return NSLocalizedString("message.type.goalchange.add", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
             } else {
-                return NSLocalizedString("message.type.goalchange", comment: "")
+                return NSLocalizedString("message.type.goalchange", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
             }
         case .BuddyInfoChangeMessage:
             return NSLocalizedString("message.type.buddyInfoChangeMessage", comment: "")
