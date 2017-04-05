@@ -76,7 +76,12 @@ class BuddyRequestManager {
                                 onCompletion(success, serverMessage, serverCode, nil, nil) //failed json response
                             }
                         } else {
-                            onCompletion(success, serverMessage, serverCode, nil, nil)
+                            if let json = json {
+                                guard let message = json["message"] else { return }
+                                onCompletion(success, message as? ServerMessage, serverCode, nil, nil)
+                            } else {
+                                onCompletion(success, serverMessage, serverCode, nil, nil)
+                            }
                         }
                     }
                 } else {
