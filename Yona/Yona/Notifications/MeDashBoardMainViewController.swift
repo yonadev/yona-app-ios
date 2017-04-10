@@ -437,7 +437,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                        message: err?.description,
+                        message: err?.localizedDescription,
                         delegate: nil,
                         cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                     alert.show()
@@ -480,7 +480,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                        message: err?.description,
+                        message: err?.localizedDescription,
                         delegate: nil,
                         cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                     alert.show()
