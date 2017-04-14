@@ -27,7 +27,7 @@ platform :ios do
       hockey(
         ipa:"../build/Yona-Prodtest-2-iOS.ipa",
         dsym: "../build/Yona-Prodtest-2-iOS-dSYM.zip",
-        api_token: "285395d7501f449a9aa8441bec14813c",
+        api_token: "f6fbdc691783468081083de9b1e0090d",
         notify: "0",
         release_type: "0",
         status: "2",
