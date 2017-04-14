@@ -273,6 +273,7 @@
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.goalchange.add" = "Challenge %@ added";
 "message.type.goalchange" = "Challenge %@ changed";
+"message.type.goaldeleted" = "Challenge %@ deleted";
 "message.type.message" = "Message";
 "message.type.disclosureresponse" = "Review accepted";
 "message.type.disclosurerequest" = "Review requested";
