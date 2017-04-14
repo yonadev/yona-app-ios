@@ -241,6 +241,7 @@
 "message.type.message" = "Bericht";
 "message.type.goalchange.add" = "Challenge %@ toegevoegd";
 "message.type.goalchange" = "Challenge %@ aangepast";
+"message.type.goaldeleted" = "Challenge %@ verwijderd";
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
 "message.type.systemMessage" = "Bericht van Yona";
