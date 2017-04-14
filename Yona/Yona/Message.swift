@@ -258,6 +258,8 @@ struct Message{
         case .GoalChangeMessage:
             if change == "GOAL_ADDED" {
                 return NSLocalizedString("message.type.goalchange.add", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
+            } else if change == "GOAL_DELETED" {
+                return NSLocalizedString("message.type.goaldeleted", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
             } else {
                 return NSLocalizedString("message.type.goalchange", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
             }
