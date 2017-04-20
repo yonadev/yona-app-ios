@@ -9,19 +9,18 @@
 import UIKit
 import LocalAuthentication
 
-class LoginViewController: LoginSignupValidationMasterView {
+class LoginViewController: LoginSignupValidationMasterView, AppLifeCylcleConsumer {
     var loginAttempts:Int = 1
     private var totalAttempts : Int = 3
     @IBOutlet weak var bottomSpaceContraint: NSLayoutConstraint!
     @IBOutlet var pinResetButton: UIButton!
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
-    
     let touchIdButton = UIButton(type: UIButtonType.Custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        AppDelegate.instance = self
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("login", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure)
         
         touchIdButton.setImage(UIImage(named: "fingerPrint"), forState: .Normal)
@@ -30,6 +29,10 @@ class LoginViewController: LoginSignupValidationMasterView {
         touchIdButton.imageView?.contentMode = .ScaleAspectFit
         touchIdButton.contentHorizontalAlignment = .Center
         touchIdButton.addTarget(self, action: #selector(touchIdButtonAction), forControlEvents: .TouchUpInside)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,6 +95,26 @@ class LoginViewController: LoginSignupValidationMasterView {
         notificationCenter.addObserver(self, selector: Selector.keyboardWasShown , name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    func appDidEnterForeground() {
+        if Reachability.isNetworkReachable() {
+            dispatch_async(dispatch_get_main_queue(), {
+                print(self.infoLabel.text)
+                let text = NSLocalizedString("connection-not-available", comment: "")
+                
+                if self.infoLabel.text == text {
+                    self.infoLabel.text = NSLocalizedString("passcode-title", comment: "")
+                }
+                
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.infoLabel.text = NSLocalizedString("connection-not-available", comment: "")
+            })
+        }
+    }
+    
+    
     
     func touchIdButtonAction() {
         AVTouchIDHelper().authenticateUser(withDesc: NSLocalizedString("touchId-alert", comment: ""),
