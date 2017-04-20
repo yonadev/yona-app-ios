@@ -30,7 +30,7 @@
 "passcode-step2-desc" = "Vul je pincode nog een keer in ter bevestiging.";
 "msg-block-user" = "Om veiligheidsredenen is je account geblokkeerd. Gebruik de ‘PIN reset’ knop hieronder om je account opnieuw te activeren.";
 //Pending
-"connection-not-available" = "OEPS! Geen internetverbinding beschikbaar, maak opnieuw verbinding en probeer opnieuw.";
+"connection-not-available" = "De internetverbinding is offline";
 
 "smsvalidation.user.resendAdminCodeButtonTitle" = "Resend Lost Device Code";
 "smsvalidation.user.errormessage" = "De code is niet correct. Probeer nog een keer";
