@@ -9,6 +9,10 @@
 import UIKit
 import HockeySDK
 
+protocol AppLifeCylcleConsumer: UIApplicationDelegate {
+    func appDidEnterForeground()
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -17,10 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: NSTimer?
-    
+    static var instance: AppLifeCylcleConsumer!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -107,6 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
         doTestCycleForVPN()
+        
+        AppDelegate.instance.appDidEnterForeground()
         
     }
     
