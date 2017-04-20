@@ -257,6 +257,7 @@
 		ADEF8F0B1CADFD0C001D5EED /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */; };
 		ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */; };
 		ADEF8F0D1CADFD0C001D5EED /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */; };
+		B144E1E11EA8CE740090C953 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B144E1E01EA8CE740090C953 /* Reachability.swift */; };
 		B16C25C31E682C8300BF20AC /* AVTouchIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */; };
 		B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */; };
 		B1E55D261E7812CA00EE924A /* RootRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */; };
@@ -678,6 +679,7 @@
 		ADEF8EFC1CADFD0C001D5EED /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		ADEF8EFD1CADFD0C001D5EED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		ADEF8EFE1CADFD0C001D5EED /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		B144E1E01EA8CE740090C953 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTouchIDHelper.swift; sourceTree = "<group>"; };
 		B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRequestHelper.swift; sourceTree = "<group>"; };
@@ -1520,6 +1522,7 @@
 		D94A93C11CB27ACB00ABE0F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B144E1E01EA8CE740090C953 /* Reachability.swift */,
 				B16C25C21E682C8300BF20AC /* AVTouchIDHelper.swift */,
 				90FF6DFA1D00346100A674C4 /* StringExtensions.swift */,
 				903D7C8B1CDAC3DD0086803C /* HTTPStatusCodes.swift */,
@@ -2309,6 +2312,7 @@
 				167C514A1D5CB32600222EF8 /* BarButtonItemExtensions.swift in Sources */,
 				BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */,
 				9042C7551CD898E300100306 /* UITextView+AGi18n.m in Sources */,
+				B144E1E11EA8CE740090C953 /* Reachability.swift in Sources */,
 				1656A5D11D4BEA0B00EB288D /* DDRange.m in Sources */,
 				1605715C1D46C7FE00E86CC2 /* YonaVPNProgressIconView.swift in Sources */,
 				90F123DF1D34EE6F00E2BBBA /* TimeZoneCustomView.swift in Sources */,
