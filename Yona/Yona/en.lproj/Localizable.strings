@@ -44,7 +44,7 @@
 "change-pin-settings" = "Change pin";
 "privacy" = "Privacy";
 
-"connection-not-available" = "OOPS! No Internet Connection Available";
+"connection-not-available" = "The internet connection appears to be offline";
 
 
 
