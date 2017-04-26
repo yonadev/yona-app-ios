@@ -230,8 +230,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
-                        cell.hideShowReplyButton(comment.replyLink == nil)
-                        self.sendCommentFooter?.alpha = 0
+                        //cell.hideShowReplyButton(comment.replyLink == nil)
+                        //self.sendCommentFooter?.alpha = 0
                         return cell
                     }
                 }
