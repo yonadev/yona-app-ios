@@ -254,6 +254,16 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         }
         
         cell.yonaUserSwipeDelegate = self
+        
+        if indexPath.section == self.messages.count - 1 {
+            if indexPath.row == self.messages[indexPath.section].count - 1 {
+                if page < self.totalPages {
+                    page = page + 1
+                    loadMessages()
+                }
+            }
+        }
+        
         return cell
     }
     
@@ -276,15 +286,6 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         }
         return cell
         
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if messages.count > 0 && messages[indexPath.section].count > 0{
-            if indexPath.row == page * size - 1 && page < self.totalPages {
-                page = page + 1
-                self.loadMessages()
-            }
-        }
     }
     
     // MARK: - YonaUserCellDelegate
