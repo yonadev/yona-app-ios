@@ -172,6 +172,23 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         loadData(.next)
     }
     
+    func noGoalTypeInResponse() {
+        let alert = UIAlertController(title: NSLocalizedString("nogo-data-not-found-title", comment: ""),
+                                      message: NSLocalizedString("nogo-data-not-found-description", comment: ""),
+                                      preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .Default, handler: { action in
+            switch action.style {
+            case .Default:
+                self.navigationController?.popViewControllerAnimated(true)
+            default:
+                break
+            }
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func loadData (typeToLoad : loadType = .own) {
         
         Loader.Show()
@@ -200,7 +217,12 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         }
                         
                         Loader.Hide()
-                        self.tableView.reloadData()
+                        if let _ = self.dayData?.goalType {
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            self.noGoalTypeInResponse()
+                        }
                         
                     } else {
                         Loader.Hide()
