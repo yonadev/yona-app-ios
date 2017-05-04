@@ -394,7 +394,8 @@
 "turn-off-vpn-alert-cancel-action" = "Cancel";
 "turn-off-vpn-alert-action" = "OpenVPN";
 
-
+"nogo-data-not-found-title" = "Sorry";
+"nogo-data-not-found-description" = "No data found";
 
 
 /*
