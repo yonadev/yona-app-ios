@@ -68,6 +68,7 @@ class SendCommentControl : UIView {
     }
     
     @IBAction func sendComment(sender: UIButton) {
+        
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendComment", label: "Send comment button pressed", value: nil).build() as [NSObject : AnyObject])
         
@@ -75,13 +76,21 @@ class SendCommentControl : UIView {
             if commentText.characters.count == 0 {
                 return
             }
+            
+            sender.enabled = false
             var messageBody: [String:AnyObject]
             if let postCommentLink = postCommentLink {
                 messageBody = [
                     "message": commentText
                 ]
                 CommentRequestManager.sharedInstance.postComment(postCommentLink, messageBody: messageBody) { (success, comment, nil, message, code) in
+                    
+                    if let _ = message {
+                        sender.enabled = true
+                    }
+                    
                     if success {
+                        sender.enabled = true
                         self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
@@ -93,7 +102,13 @@ class SendCommentControl : UIView {
                     ]
                 ]
                 CommentRequestManager.sharedInstance.postReply(postReplyLink, messageBody: messageBody) { (success, comment, comments, message, code) in
+                    
+                    if let _ = message {
+                        sender.enabled = true
+                    }
+                    
                     if success {
+                        sender.enabled = true
                         self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
