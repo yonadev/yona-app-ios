@@ -389,7 +389,7 @@
 "yonaAdministrator" = "Yona administrator";
 
 
-"failed-to-retrieve-delete-link" = "Can not delete unread messages";
+"failed-to-retrieve-delete-link" = "Please read the notification before deleting it!";
 "turn-off-vpn-alert" = "Turn off your vpn";
 "turn-off-vpn-alert-cancel-action" = "Cancel";
 "turn-off-vpn-alert-action" = "OpenVPN";

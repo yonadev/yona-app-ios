@@ -353,7 +353,7 @@
 "sendButton" = "VERSTUREN";
 "yonaAdministrator" = "Yona administrator";
 
-"failed-to-retrieve-delete-link" = "TBD";
+"failed-to-retrieve-delete-link" = "Lees alsjeblieft het bericht voordat je deze verwijdert!";
 "turn-off-vpn-alert" = "Turn off your vpn";
 "turn-off-vpn-alert-cancel-action" = "Cancel";
 "turn-off-vpn-alert-action" = "OpenVPN";
