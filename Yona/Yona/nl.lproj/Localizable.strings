@@ -37,7 +37,7 @@
 "smsvalidation.user.infomessage" = "Als extra beveiliging ontvang je een code per SMS, graag deze code hieronder invullen.";
 "smsvalidation.user.countdownmessage" = "Om veiligheidsredenen is je account geblokkeerd. Activeren kan 24 urr nadat je een nieuwe PIN code hebt aangevraagd.";
 "smsvalidation.button.resendCode" = "Stuur code opnieuw";
-"smsvalidation.user.headerTitle" = "Account wordt aangemaakt";
+"smsvalidation.user.headerTitle" = "Voer de bevestigingscode in";
 "smsvalidation.user.pincodeattempted5times" = "Te veel verkeerde pogingen";
 
 "smsvalidation.wait.headerTitle" = "Je moet even wachten";
