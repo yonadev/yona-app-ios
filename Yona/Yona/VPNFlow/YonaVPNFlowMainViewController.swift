@@ -547,12 +547,13 @@ class YonaVPNFlowMainViewController: UIViewController {
                 UserRequestManager.sharedInstance.getMobileConfigFile() { (succes,data,code) in
                     print("Came here")
                     
-                    if let file = data {
+                    if data != nil {
                         let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
                         unlink(resourceDocPath)
 
                         do {
-                            try file.writeToFile(resourceDocPath, atomically: false, encoding: NSUTF8StringEncoding)
+                            //try userMobileConfig.writeToFile(resourceDocPath, atomically: false, encoding: NSUTF8StringEncoding)
+                            data?.writeToFile(resourceDocPath, atomically: true)
                         }
                         catch {
                             // MUST DO SOME GARCEFULLY EXIT.....
