@@ -28,35 +28,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyX-cw-4r8">
-                        <color key="backgroundColor" red="0.90980392160000001" green="0.14901960780000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="D69-9W-cfM"/>
                         </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="25"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <state key="normal" title="Button"/>
                         <connections>
                             <action selector="leftButtonAction:" destination="Ceu-6Q-NQ5" eventType="touchUpInside" id="5l6-sH-0ok"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMw-yN-iob">
-                        <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="eYJ-AO-WfO"/>
                         </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="25"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <state key="normal" title="Button"/>
                         <connections>
                             <action selector="rightButtonAction:" destination="Ceu-6Q-NQ5" eventType="touchUpInside" id="d5n-BN-q1V"/>
                         </connections>
@@ -114,54 +98,5 @@
             </connections>
             <point key="canvasLocation" x="275" y="205"/>
         </tableViewCell>
-        <view contentMode="scaleToFill" id="ITy-O2-dUB" userLabel="ButtonView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAO-05-M9t">
-                    <frame key="frameInset" minX="52" minY="9" width="127" height="50"/>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.14901960780000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="ZIO-tJ-aX7"/>
-                    </constraints>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="25"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="leftButtonAction:" destination="Ceu-6Q-NQ5" eventType="touchUpInside" id="hnb-wk-4Y1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4n-FH-KwJ">
-                    <frame key="frameInset" minX="197" minY="9" width="127" height="50"/>
-                    <color key="backgroundColor" red="0.58431372550000005" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="WAg-P1-THL"/>
-                    </constraints>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="25"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="rightButtonAction:" destination="Ceu-6Q-NQ5" eventType="touchUpInside" id="cg4-hU-EM3"/>
-                    </connections>
-                </button>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="sAO-05-M9t" firstAttribute="width" secondItem="w4n-FH-KwJ" secondAttribute="width" id="Uuw-EO-KKS"/>
-                <constraint firstItem="w4n-FH-KwJ" firstAttribute="leading" secondItem="sAO-05-M9t" secondAttribute="trailing" constant="18" id="gRg-dD-b0V"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="163" y="631"/>
-        </view>
     </objects>
 </document>
