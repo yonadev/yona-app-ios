@@ -15,7 +15,7 @@ protocol AppLifeCylcleConsumer: UIApplicationDelegate {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+    static let sharedApp = UIApplication.sharedApplication().delegate as! AppDelegate
     var window: UIWindow?
     static var firstTime = true
     var httpServer : RoutingHTTPServer?
@@ -79,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print ("STARTING BACKGROUND TASK")
             self.doBackgroundTask()
         }
+        
+        doTestCycleForVPN()
 
     }
     
@@ -273,7 +275,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if (arch(i386) || arch(x86_64))
             print("On simulator we don't test...")
         #else
-            if let url = NSURL(string: "https://10.96.169.12:442/cgi-bin/login.cgi") {
+            if let url = NSURL(string: "https://10.110.0.1:442") {
                 let request:NSURLRequest = NSURLRequest(URL:url)
                 let config = NSURLSessionConfiguration.defaultSessionConfiguration()
                 config.timeoutIntervalForRequest = 10

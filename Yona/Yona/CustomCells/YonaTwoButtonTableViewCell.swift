@@ -36,17 +36,17 @@ class YonaTwoButtonTableViewCell : UITableViewCell {
         
         headerLabel.text =  NSLocalizedString("notifications.accept.type", comment: "")
         
-        leftButton.layer.cornerRadius = leftButton.frame.size.height/2
+        /*leftButton.layer.cornerRadius = leftButton.frame.size.height/2
         leftButton.layer.masksToBounds = true
         leftButton.backgroundColor = UIColor.yiDarkishPinkColor()
-        leftButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal)
+        leftButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
         
         leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), forState: UIControlState.Normal)
         
-        rightButton.layer.cornerRadius = rightButton.frame.size.height/2
+       /* rightButton.layer.cornerRadius = rightButton.frame.size.height/2
         rightButton.layer.masksToBounds = true
         rightButton.backgroundColor = UIColor.yiPeaColor()
-        rightButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal)
+        rightButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
     
         rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), forState: UIControlState.Normal)
     }

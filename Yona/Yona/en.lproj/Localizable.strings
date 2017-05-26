@@ -159,7 +159,7 @@
 "smsvalidation.user.infomessage" = "As additional security , you will receive a code by SMS , like this code, enter it below.";
 "smsvalidation.user.countdownmessage" = "Your request for reset has been received. You will receive an text message with a PIN reset confirmation code within 24 hours.";
 "smsvalidation.button.resendCode" = "Send code again";
-"smsvalidation.user.headerTitle" = "Account Login";
+"smsvalidation.user.headerTitle" = "Enter confirmation code";
 "smsvalidation.user.pincodeattempted5times" = "Too many wrong attempts";
 
 "smsvalidation.wait.headerTitle" = "You have to wait";

@@ -174,7 +174,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
 
 #endif
     
-        
+       /*
         UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
         UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
@@ -192,8 +192,13 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
                 })
             }
             })
+        */
+        
+        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!) {
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!)
+        }
+        
 
-    
     }
     func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()

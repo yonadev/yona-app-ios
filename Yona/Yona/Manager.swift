@@ -13,7 +13,7 @@ typealias timezoneGoals = Array<Goal>?
 typealias nogoGoals = Array<Goal>?
 
 
-typealias APIMobileConfigResponse = (Bool, String?, ServerCode?) -> Void
+typealias APIMobileConfigResponse = (Bool, NSData?, ServerCode?) -> Void
 
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
@@ -149,7 +149,9 @@ extension Manager {
 
 
     func makeFileRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+        
     {
+        
         do{
             let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
             let session = NSURLSession.sharedSession()
@@ -162,10 +164,9 @@ extension Manager {
                 }
                 if response != nil{
                     if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
-                        let string = NSString(data:data!, encoding:NSUTF8StringEncoding) as String?
                             dispatch_async(dispatch_get_main_queue()) {
-                                onCompletion(true, string , "")
-                            }
+                                onCompletion(true, data , "")
+                        }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
                             onCompletion(false, nil, "")
