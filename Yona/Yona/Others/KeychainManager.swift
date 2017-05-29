@@ -22,10 +22,10 @@ extension KeychainManager {
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
     }
     
-    func createYonaPassword() {
+   /* func createYonaPassword() {
         let password = NSUUID().UUIDString
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
-    }
+    } */
     
     func getYonaPassword() -> String? {
         guard let password = keychain.get(YonaConstants.keychain.yonaPassword) else { return nil }

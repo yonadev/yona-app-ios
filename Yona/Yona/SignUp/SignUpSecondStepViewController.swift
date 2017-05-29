@@ -171,7 +171,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                      "lastName": userLastName!,
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
-                
+                KeychainManager.sharedInstance.clearKeyChain()
                 UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
