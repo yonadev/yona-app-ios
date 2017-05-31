@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.doBackgroundTask()
         }
         
-        doTestCycleForVPN()
+        //doTestCycleForVPN()
 
     }
     
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         updateEnvironmentSettings()
-        doTestCycleForVPN()
+       // doTestCycleForVPN()
         
         AppDelegate.instance.appDidEnterForeground()
         
