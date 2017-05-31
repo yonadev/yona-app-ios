@@ -30,7 +30,7 @@
 "passcode-step2-desc" = "Vul je pincode nog een keer in ter bevestiging.";
 "msg-block-user" = "Om veiligheidsredenen is je account geblokkeerd. Gebruik de ‘PIN reset’ knop hieronder om je account opnieuw te activeren.";
 //Pending
-"connection-not-available" = "De internetverbinding is offline";
+"connection-not-available" = "OEPS! Geen internetverbinding beschikbaar";
 
 "smsvalidation.user.resendAdminCodeButtonTitle" = "Resend Lost Device Code";
 "smsvalidation.user.errormessage" = "De code is niet correct. Probeer nog een keer";
@@ -53,22 +53,22 @@
 
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
 
-"user-override" = "Dit mobiele nummer %@ is al geregistreerd bij Yona. Wil je hetzelfde nummer opnieuw registreren? (Let op: Alle gegevens behorend bij dit nummer zullen worden verwijderd. Als je een ander apparaat wilt toevoegen kun je teruggaan en klik op ‘Inloggen’ klikken.)";
+"user-override" = "Dit mobiele nummer %@ is al geregistreerd bij Yona. Wil je hetzelfde nummer opnieuw registreren? (Let op: Alle gegevens behorend bij dit nummer zullen worden verwijderd. Als je een ander apparaat wilt toevoegen kun je teruggaan en op â€˜Inloggenâ€™ klikken.)";
 
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
-"passcode.user.UnlockPincode" = "Ontgrendeld PIN";
-"passcode.user.infomessage" = "Voor een goede beveiliging is het verplicht om de Yona app te voorzien van een pincode. Stel je pincode hieronder in.";
+"passcode.user.UnlockPincode" = "Ontgrendelde PIN";
+"passcode.user.infomessage" = "Voor een goede beveiliging is het verplicht om Yona te voorzien van een pincode. Stel je pincode hieronder in.";
 
 "confirmpasscode.user.headerTitle" = "Bevestig pincode";
 "confirmpasscode.user.infomessage" = "Vul je pincode nog een keer in ter bevestiging.";
 
 "adddevice.user.mobileNumber" = "MOBIEL TELEFOONNUMMER";
-"adddevice.user.passcode" = "PASSCODE";
-"adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire device (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op ‘apparaat toevoegen’. Vul vervolgens onderstaande velden in.";
+"adddevice.user.passcode" = "WACHTWOORD";
+"adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire apparaat (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op â€˜apparaat toevoegenâ€™. Vul vervolgens onderstaande velden in.";
 "adddevice.user.InputPassCode" = "Voer geldig wachtwoord in";
 "adddevice.user.InputValidCode" = "Voer geldig telefoonnummer in";
-"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in te voer op uw andere apparaat";
+"adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in te voeren op uw andere apparaat";
 
 "login.user.errorinfoText" = "Jouw account is geblokkeerd om veiligheidsredenen, gebruik de optie reset-toegangscode om jouw account te activeren.";
 
@@ -79,8 +79,8 @@
 "challenges-zone" = "TIJDZONE";
 "challenges-no-go" = "NO GO";
 
-"challenges.user.budgetCategoryHeader" = "Kies een categorie waar je een tegoed voor wilt vastleggen";
-"challenges.user.timezoneCategoryHeader" = "Kies een categorie waar je een tijdzone voor wilt instellen";
+"challenges.user.budgetCategoryHeader" = "Kies een categorie waarvoor je een tegoed wilt vastleggen";
+"challenges.user.timezoneCategoryHeader" = "Kies een categorie waarvoor je een tijdzone wilt instellen";
 "challenges.user.nogoCategoryHeader" = "Kies een categorie waar je een no go voor wilt instellen";
 
 "challenges.user.budgetGoalDescriptionText" = "Je kunt per dag %@ minuten op %@ doorbrengen";
@@ -105,16 +105,15 @@
 "challenges.addBudgetGoal.budgetChallengeDescription" = "Bepaal hier hoeveel tijd je aan %@ wilt besteden";
 "challenges.addBudgetGoal.bottomLabelText" = "De volgende apps zijn onderdeel van deze challenge:";
 "challenges.addBudgetGoal.deletedGoalMessage" = "Verwijder challenge";
-"challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
-"challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuw challenge toegevoegd";
+"challenges.addBudgetGoal.cannotDeleteMandatoryGoalMessage" = "Kan verplicht doel niet verwijderen";
+"challenges.addBudgetGoal.goalAddedSuccessfully" = "Nieuwe challenge toegevoegd";
 "challenges.addBudgetGoal.newPinCode" = "Nieuwe PIN-code";
-"challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Kan verplichte doel niet verwijderen";
-"challenges-nogo-header" = "Hier leg je vast waar je helemaal niet wilt komen.";
+"challenges-addBudgetGoal-cannotDeleteMandatoryGoalMessage" = "Kan verplicht doel niet verwijderen";
 
-"challenges-tijdzone-header" = "Kies een categorie waar je een tijdzone voor wilt instellen";
-"challenges-tegoed-header" = "Kies een categorie waar je een tegoed voor wilt vastleggen";
+"challenges-tijdzone-header" = "Kies een categorie waarvoor je een tijdzone wilt instellen";
+"challenges-tegoed-header" = "Kies een categorie waarvoor je een tegoed wilt vastleggen";
 "challenges-footer" = "De volgende apps zijn \nonderdeel van deze challenge:";
-"challenges-goal-create-button" = "CHALLENGE OPSLAAN";
+"challenges-goal-create-button" = "DOEL OPSLAAN;";
 "budget-goal-desc" = "minuten per dag";
 "budget-goal-title" = "Tegoed";
 "timezone-goal-header-subtext" = "Bepaal hier wanneer je wel of geen tijd aan %1$s wilt besteden";
@@ -122,8 +121,8 @@
 "timezone" = "Tijdzone";
 "url-not-found" = "Url Not found.";
 "challenges-nogo-subText" = "Vermijd %1$s gerelateerde content";
-"challenges-timzoe-subtext" = "Tijdzone tussen %@ en tussen %@";
-"challenges-budget-subtext" = "Je kunt per dag %@ minuten %@";
+"challenges-timzoe-subtext" = "Toegestaan tussen %@ en tussen %@";
+"challenges-budget-subtext" = "Je kunt per dag %@ minuten %@ aan deze categorie besteden";
 
 "challenges.addBudgetGoal.NoGoChallengeMainTitle" = "NOGO VASTLEGGEN";
 "challenges.addBudgetGoal.NoGoChallengeDescription" = "Hiermee geef je aan dat je op geen enkele manier wilt %@";
@@ -131,7 +130,7 @@
 "challenges.addBudgetGoal.TimeZoneChallengeMainTitle" = "TIJDZONE VASTLEGGEN";
 "challenges.addBudgetGoal.TimeZoneChallengeDescription" = "Bepaal hier wanneer je wel of geen tijd aan %@ wilt besteden";
 
-"login.user.pinResetRequestAlert" = "Uw aanvraag voor reset is ontvangen . U ontvangt een sms met een PIN- reset bevestigingscode binnen %@uur %@minute(s) %@seconde(n).";
+"login.user.pinResetRequestAlert" = "Je aanvraag voor reset is ontvangen . Je ontvangt een sms met een PIN-reset bevestigingscode binnen %@uur %@minute(s) %@seconde(n).";
 "settings.privacy" = "PRIVACY";
 "userNotFoundAlert" = "Gebruiker niet gevonden";
 "screentitle1" = "Transparantie";
@@ -177,15 +176,15 @@
 "invitefriend" = "VRIEND UITNODIGEN";
 "addfriendmanually" = "Handmatig";
 "addfriendcontacts" = "Uit adresboek";
-"enteremailvalidation" = "Je moet het e-mailadres van de vriend in te voeren.";
+"enteremailvalidation" = "Je moet een e-mailadres van je vriend invoeren.";
 "addBuddyMessage" = "Hoi, wil jij mijn buddy worden?";
 "email" = "EMAIL";
 
-"enter-first-name-validation" = "Je moet een voornaam invullen";
-"enter-nickname-validation"  = "Een nickname is verplicht";
+"enter-first-name-validation" = "Je moet een naam invullen";
+"enter-nickname-validation"  = "Je moet een nick name invullen";
 "enter-last-name-validation"  = "Je moet een achternaam invullen";
 "enter-number-validation" = "Nummer moet 9 cijfers bevatten";
-"loading" = "Loading";
+"loading" = "Laden";
 "invalid-otp" = "Ongeldige toegangcode";
 
 //ChangePin
@@ -206,12 +205,12 @@
 "notifications.day.sunday" = "Zondag";
 "notifications.tabtitle.perday" = "Per dag";
 "notifications.tabtitle.perweek" = "Per week";
-"notifications.maintitle.dashboard" = "DASHBOARD";
+"notifications.maintitle.dashboard" = "Dashboard";
 "notifications.messages.title" = "MELDINGEN";
 "notifications.user.profile" = "Profiel";
 "notifications.user.badges" = "Badges";
 
-"notifications.accept.title" = "ACCEPT REQUEST";
+"notifications.accept.title" = "ACCEPTEER VERZOEK";
 "notifications.accept.type"  = "Vriendschapsverzoek";
 "notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
 "notifications.accept.reject" = "AFWIJZEN";
@@ -227,7 +226,7 @@
 "profile.user.data.nickname" = "NICKNAME";
 "profile.user.data.mobilenumber" = "MOBIEL NUMMER";
 
-"profile.tab.profile" = "Profiel";
+"profile.tab.profile" = "profiel";
 "profile.tab.badges" = "Badges";
 "profile.tab.editaccounttitle" = "BEWERK ACCOUNT";
 
@@ -239,8 +238,8 @@
 "message.type.friendremoved" = "Je bent verwijderd als vriend";
 "message.type.nogoalert" = "NoGo Alert";
 "message.type.message" = "Bericht";
-"message.type.goalchange.add" = "Challenge %@ toegevoegd";
-"message.type.goalchange" = "Challenge %@ aangepast";
+"message.type.goalchange.add" = "Doel %@ toegevoegd";
+"message.type.goalchange" = "Doel %@ aangepast";
 "message.type.goaldeleted" = "Challenge %@ verwijderd";
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
@@ -252,8 +251,8 @@
 "meday.message.minutesleft" = "minuten tegoed";
 "meday.message.timezone" = "minuten buiten tijd";
 "meday.spreadcontrol.title" = "Spreiding";
-"meday.spreadcontrol.minutestotal" = "Minuten Totaal";
-"meday.nogo.message" = "geen hits, hou vol";
+"meday.spreadcontrol.minutestotal" = "minuten totaal";
+"meday.nogo.message" = "geen hits, houd vol!";
 "meday.nogo.minutes" = "minuten";
 
 //Friends Profile Button text
@@ -266,9 +265,9 @@
 
 
 // VPN setup text
-"vpnflowmainscreen.title.text" = "SIGN UP";
+"vpnflowmainscreen.title.text" = "INSCHRIJVEN";
 
-"vpnflowmainscreen.appinstalled.progress.text" = "BEDANKT\nvoor je inschrijving!";
+"vpnflowmainscreen.appinstalled.progress.text" = "Bedankt\nvoor je inschrijving!";
 "vpnflowmainscreen.appinstalled.info.text" = "Laten we je jouw Yona instellen";
 "vpnflowmainscreen.button.next" = "VOLGENDE";
 
@@ -288,9 +287,9 @@
 "vpnflowmainscreen.button2.text" = "DOWNLOAD OPENVPN";
 
 "vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nDe app is nu geïnstalleerd";
-"vpnflowmainscreen.appinstalled.info2.text" = "Almost there ;)";
+"vpnflowmainscreen.appinstalled.info2.text" = "Bijna klaar :-)";
 
-"vpnflowmainscreen.appinstalled.progress3.text" = "Nog een stap te gaan…";
+"vpnflowmainscreen.appinstalled.progress3.text" = "Nog één stap te gaanâ€¦;";
 "vpnflowmainscreen.appinstalled.info3.text" = "Installeer en accepteer Yona profiel";
 "vpnflowmainscreen.button3.next" = "INSTALLEER EN ACCEPT PROFIEL";
 
@@ -301,41 +300,41 @@
 "vpnflowintro2.title2.text" = "Daarna moet je je PIN invoeren";
 "vpnflowintro2.title3.text" = "Deze waarschuwing wordt getoond\r Klik 'install'";
 "vpnflowintro2.title4.text" = "Druk op 'OK' je bent klaar";
-"vpnflowintro2.rerun.text" = "laat de instructies normaal zien";
+"vpnflowintro2.rerun.text" = "laat de instructies nogmaals zien";
 "vpnflowintro2.button2.text" = "INSTALLEER EN ACCEPTEER PROFIEL";
 
 
-"vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\n Ready to go!";
+"vpnflowmainscreen.appinstalled.progress4.text" = "Goed gedaan!\n Klaar om te starten!";
 "vpnflowmainscreen.appinstalled.info4.text" = "Gefeliciteerd! We zijn er. Tijd om je eerste challenge in te voeren!";
 "vpnflowmainscreen.button4.next" = "VPN aansluiten";
 
 //Commenting
-"commenting.sendComment" = "Vesturen";
+"commenting.sendComment" = "Versturen";
 "commenting.replyToComment" = "Beantwoorden";
 
 "addfriend.alert.title.text" = "Waarschuwing";
 "addfriend.alert.text" = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren";
 "addfriend.alert.nosettings.text"  = "Je moet Yona toegang geven tot je contacten om vrienden te kunnen selecteren. Graag aanvingen in de settings";
-"addfriend.alert.settings.text" = "INSTELLINGEN";
+"addfriend.alert.settings.text" = "Instellingen";
 
 "vpnerror.notrunning.title.text" = "De VPN is niet actief";
 "vpnerror.notrunning.message.text" = "De VPN is niet actief. Schakel deze in om je activiteit bij te houden.";
 
 
 "emailsupport.text" = "Alle gegeven zijn encrypted opgeslagen. Om bepaalde problemen op te kunnen lossen moeten we deze decrypten. Gebruik deze optie alleen wanneer het support team hier om vraagt.";
-"emailsupport.accept" = "Accept";
-"emailsupport.decline" = "Decline";
-"emailsupport.title" = "E-mail aan support";
+"emailsupport.accept" = "Accepteer";
+"emailsupport.decline" = "Wijs af";
+"emailsupport.title" = "E-mail aan Support";
 
-"emailsupport.error.title" = "Het is niet gelukt om de e-mail te versturen";
-"emailsupport.error.text" = "Je device kon geen e-mail versturen. Controleer je e-mailinstellingen en probeer het opnieuw";
+"emailsupport.error.title" = "Kon geen e-mail verzenden";
+"emailsupport.error.text" = "Je apparaat kon geen e-mail verzenden. Check je e-mailconfiguratie en probeer opnieuw";
 "emailsupport.subject" = "Probleem met Yona App";
 
-"emailsupport.finished.title" = "E-mail verstuurd";
-"emailsupport.finished.text" = "Je e-mail aan Support is verstuurd, wij gaan ermee aan de slag.";
+"emailsupport.finished.title" = "E-mail verzonden";
+"emailsupport.finished.text" = "Je e-mail is naar Support verstuurd, we gaan ernaar kijken.";
 
 
-"link.cell.title" = "Inhoud";
+"link.cell.title" = "Link";
 
 "touchId-failure" = "Authentication Failed";
 "touchId-alert" = "Place your finger on home button to authenticate";
