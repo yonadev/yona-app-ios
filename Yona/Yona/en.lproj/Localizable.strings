@@ -376,7 +376,7 @@
 "touchId-alert" = "Place your finger on home button to authenticate";
 
 "dashboard.error.title" = "Error";
-"dashboard.error.button" = "Ok";
+"dashboard.error.button" = "OK";
 
 "lastSeen" = "Last Seen";
 "lastSeenOn" = "Last Seen on";
