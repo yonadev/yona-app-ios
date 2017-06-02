@@ -186,12 +186,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as [NSObject : AnyObject])
             
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
-//            self.dismissViewControllerAnimated(true, completion: {})
-            
-            if UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! ) {
-                UIApplication.sharedApplication().openURL(NSURL(string: "openvpn://")!)
-            }
-            
+            self.dismissViewControllerAnimated(true, completion: {})
             return
         }
 
@@ -457,9 +452,9 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.nextButton.enabled = false
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress4.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
+
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Normal)
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Disabled)
-
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
         profileStatusView.confugureView(progressIconEnum.profile, completed: true)

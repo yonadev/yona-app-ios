@@ -342,7 +342,7 @@
 
 "vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\nYour ready to go!";
 "vpnflowmainscreen.appinstalled.info4.text" = "Congratulations. You made it. Now continue and set your first challenge.";
-"vpnflowmainscreen.button4.next" = "Connect VPN";
+"vpnflowmainscreen.button4.next" = "Done";
 
 //Commenting
 "commenting.sendComment" = "Send Comment";
