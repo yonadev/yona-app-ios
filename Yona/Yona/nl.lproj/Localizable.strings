@@ -306,7 +306,7 @@
 
 "vpnflowmainscreen.appinstalled.progress4.text" = "Goed gedaan!\n Klaar om te starten!";
 "vpnflowmainscreen.appinstalled.info4.text" = "Gefeliciteerd! We zijn er. Tijd om je eerste challenge in te voeren!";
-"vpnflowmainscreen.button4.next" = "VPN aansluiten";
+"vpnflowmainscreen.button4.next" = "Opslaan";
 
 //Commenting
 "commenting.sendComment" = "Versturen";
