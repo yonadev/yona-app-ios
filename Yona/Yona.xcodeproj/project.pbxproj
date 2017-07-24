@@ -2582,7 +2582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaton.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ad27251-aeb8-42a8-9025-bb0e4574147c";
+				PROVISIONING_PROFILE = "9abc0e9e-93f6-400e-b4af-6a273acb78d7";
 				PROVISIONING_PROFILE_SPECIFIER = "Xaton Wildcard Provisioning Profile 2018";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 			};
