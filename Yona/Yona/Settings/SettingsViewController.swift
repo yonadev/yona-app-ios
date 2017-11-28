@@ -172,7 +172,7 @@ extension SettingsViewController:UITableViewDelegate {
 //        #if DEBUG
 //            return settingsOptions.lastrow.rawValue
 //        #else            
-            return (settingsOptions.lastrow.rawValue - 1)
+            return (settingsOptions.lastrow.rawValue-1 )
 //        #endif
     }
     

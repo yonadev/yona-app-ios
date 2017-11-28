@@ -270,6 +270,7 @@
 "vpnflowmainscreen.appinstalled.progress.text" = "Bedankt\nvoor je inschrijving!";
 "vpnflowmainscreen.appinstalled.info.text" = "Laten we je jouw Yona instellen";
 "vpnflowmainscreen.button.next" = "VOLGENDE";
+"vpnflowmainscreen.button.later" = "NIET NU";
 
 "YonaVPNProgressView.yonaapp.text" = "Yona is geïnstalleerd op je telefoon…";
 "YonaVPNProgressView.openvpn.text" = "Je moet een veilige\nverbinding naar je telefoon maken";

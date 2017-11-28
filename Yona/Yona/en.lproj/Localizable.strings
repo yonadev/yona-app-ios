@@ -304,6 +304,8 @@
 "vpnflowmainscreen.appinstalled.progress.text" = "Thank you\nfor signing up!";
 "vpnflowmainscreen.appinstalled.info.text" = "Let's get Yona up and running";
 "vpnflowmainscreen.button.next" = "NEXT";
+"vpnflowmainscreen.button.later" = "LATER";
+
 
 "YonaVPNProgressView.yonaapp.text" = "Yona is installed on your phone...";
 "YonaVPNProgressView.openvpn.text" = "You need to make a safe\nconnection to your phone";

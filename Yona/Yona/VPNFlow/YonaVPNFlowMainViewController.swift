@@ -34,9 +34,17 @@ class YonaVPNFlowMainViewController: UIViewController {
 
     @IBOutlet weak var finalShowInstructionsButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var laterButton: UIButton!
+    
+    @IBOutlet weak var nextLaterButtonWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var nextButtonLaterSpace: NSLayoutConstraint!
     
     @IBOutlet weak var topTitleConstarint: NSLayoutConstraint!
     @IBOutlet weak var spacerView1HeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var spacerView1 : UIView!
     @IBOutlet weak var spacerView2 : UIView!
     var demoCounter = 0
@@ -81,6 +89,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         profileStatusView.hidden = false
 
         nextButton.alpha = 0.0
+        laterButton.alpha = 0.0
         progressView.alpha = 0.0
         
         finalShowInstructionsButton.alpha = 0.0
@@ -122,6 +131,11 @@ class YonaVPNFlowMainViewController: UIViewController {
         nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Normal)
         nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Disabled)
 
+        laterButton.backgroundColor = UIColor.yiDarkishPinkColor()
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), forState: UIControlState.Normal)
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), forState: UIControlState.Disabled)
+
+        
         openVPNStatusView.hidden = true
         profileStatusView.hidden = true
         nextButton.alpha = 0.0
@@ -156,6 +170,19 @@ class YonaVPNFlowMainViewController: UIViewController {
         })
 
         
+    }
+    
+    @IBAction func laterAction (sender :UIButton) {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        
+        NSUserDefaults.standardUserDefaults().setBool(true,   forKey: "SIMULATOR_OPENVPN")
+        
+
+        
+        self.dismissViewControllerAnimated(true, completion: {})
+        return
+
     }
     
     @IBAction func buttonAction (sender :UIButton) {
@@ -272,6 +299,10 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         progressView.alpha = 1.0
         
+        var frame = nextButton.frame
+        frame.size.width = view.frame.size.width/2
+        nextButton.frame=frame
+
         
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         yonaAppStatusView.alpha = 1.0
@@ -294,6 +325,7 @@ class YonaVPNFlowMainViewController: UIViewController {
                         completed   in
                         UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.nextButton.alpha = 1.0
+                            self.laterButton.alpha = 1.0
                             }, completion:  {
                                 completed   in
                                 
@@ -310,6 +342,7 @@ class YonaVPNFlowMainViewController: UIViewController {
                 self.progressLabel.alpha = 0.0
                 self.infoLabel.alpha = 0.0
                 self.nextButton.titleLabel?.alpha = 0.0
+                self.laterButton.titleLabel?.alpha = 0.0
                 self.yonaAppStatusView.alpha = 0.4
                 self.openVPNStatusView.alpha = 0.4
                 self.profileStatusView.alpha = 0.4
@@ -340,6 +373,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
+            self.laterButton.titleLabel?.alpha = 1.0
             self.yonaAppStatusView.alpha = 0.4
             self.openVPNStatusView.alpha = 1.0
             self.profileStatusView.alpha = 0.4
@@ -383,6 +417,7 @@ class YonaVPNFlowMainViewController: UIViewController {
                         completed   in
                         UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.nextButton.alpha = 1.0
+                            self.laterButton.alpha = 1.0
                             }, completion:  {
                                 completed   in
                                 self.nextButton.enabled = true
@@ -401,6 +436,8 @@ class YonaVPNFlowMainViewController: UIViewController {
             self.progressLabel.alpha = 0.0
             self.infoLabel.alpha = 0.0
             self.nextButton.titleLabel?.alpha = 0.0
+            self.laterButton.titleLabel?.alpha = 0.0
+
             self.yonaAppStatusView.alpha = 0.4
             self.openVPNStatusView.alpha = 0.4
             self.profileStatusView.alpha = 0.4
@@ -429,10 +466,16 @@ class YonaVPNFlowMainViewController: UIViewController {
 
         self.nextButton.enabled = false
         
+        var frame = nextButton.frame
+        frame.size.width = view.frame.size.width/2
+        nextButton.frame=frame
+
+        
         UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
+            self.laterButton.titleLabel?.alpha = 1.0
             self.yonaAppStatusView.alpha = 0.4
             self.openVPNStatusView.alpha = 0.4
             self.profileStatusView.alpha = 1.0
@@ -448,7 +491,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         let viewWidth = self.progressView.frame.size.width
         customView.frame =  CGRectMake(0, 0, viewWidth, 2)
         progressView.alpha = 1.0
-
+        self.laterButton.alpha = 0.0
         self.nextButton.enabled = false
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress4.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
@@ -458,11 +501,16 @@ class YonaVPNFlowMainViewController: UIViewController {
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
         profileStatusView.confugureView(progressIconEnum.profile, completed: true)
-
+        
+        nextButton.setNeedsLayout()
+        nextButtonConstraint.constant = view.frame.size.width
+        nextButton.setNeedsLayout()
+        
         UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.alpha = 1.0
+            self.laterButton.alpha = 1.0
             self.yonaAppStatusView.alpha = 1.0
             self.openVPNStatusView.alpha = 1.0
             self.profileStatusView.alpha = 1.0
