@@ -326,12 +326,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func testForOpenVPNInstalled () -> Bool {
-        #if (arch(i386) || arch(x86_64))
-            return NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN")
-            
-        #else
-            let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
-            return installed
-        #endif
+        return true
+// this has been changed.  We will no longer force the user to install OPENVPN, only warn if its not runing
+        
+//        #if (arch(i386) || arch(x86_64))
+//            return NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN")
+//            
+//        #else
+//            let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
+//            return installed
+//        #endif
     }
 }
