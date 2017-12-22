@@ -287,11 +287,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let session = NSURLSession(configuration: config)
                 
                 let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+                    
+                    
                     if let aError = error {
                         print (" No access through vpn \(aError.code), \(aError.localizedDescription)")
                         if #available(iOS 8.0, *) {
-                            
-                            let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: NSLocalizedString("vpnerror.notrunning.message.text", comment:""), preferredStyle: .Alert)
+                            let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message:NSLocalizedString("vpnerror.notrunning.message.text", comment:"") , preferredStyle: .Alert)
                             let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
                                 void in
                                 self.handleOpenVPNNotRuning()

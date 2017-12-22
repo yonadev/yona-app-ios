@@ -400,6 +400,8 @@
 "nogo-data-not-found-description" = "No data found";
 
 
+"Install VPN" = "Install VPN";
+
 /*
  
  This base64 string image is shown when user is redirected to safari for installing certificate, but as we need localized image, we need to put base64 string here
