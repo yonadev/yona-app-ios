@@ -16,7 +16,7 @@ enum validateError {
     case none
 }
 
-class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol {
+class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rightSideButton : UIBarButtonItem!
@@ -274,4 +274,70 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     
         return .none
     }
+    
+    func didAskToAddProfileImage() {
+        chooseImage(self)
+    }
+    
+    
+    func chooseImage(sender: Any) {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .ActionSheet)
+        
+        let act = UIAlertAction(title: "Camera", style: .Default, handler: {(action:UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                imagePickerController.sourceType = .Camera
+                self.presentViewController(imagePickerController, animated: true, completion: nil)
+            }else{
+                print("Camera not available")
+            }
+            
+            
+        })
+        actionSheet.addAction(act)
+        
+        
+        let act1 = UIAlertAction(title: "Photo Library", style: .Default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .PhotoLibrary
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        })
+        
+        actionSheet.addAction(act1)
+
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+        
+        
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        var image : UIImage!
+        
+        if let img = info[UIImagePickerControllerEditedImage] as? UIImage
+        {
+            image = img
+            
+        }
+        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            image = img
+        }
+        aUser?.avatarImg = image
+               
+        picker.dismissViewControllerAnimated( true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated( true, completion: nil)
+    }
+    // Saves the User singleton object onto the device
+//    static func saveData() {
+//        let savedData = NSKeyedArchiver.archivedData(withRootObject: User.sharedUser)
+//        UserDefaults.standard.set(savedData, forKey: "user")
+//    }
 }

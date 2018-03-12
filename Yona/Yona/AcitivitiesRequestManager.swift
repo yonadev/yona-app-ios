@@ -803,7 +803,15 @@ class ActivitiesRequestManager {
                 if let aLink = user?.timeLineLink {
                     link = aLink
                 }
-                let aPath = link + "?size=" + String(size) + "&page=" + String(page)
+                
+                var aPath = link
+                if  aPath.containsString("?") {
+                    aPath += "&size=" + String(size) + "&page=" + String(page)
+                }
+                else {
+                    aPath += "?size=" + String(size) + "&page=" + String(page)
+                }
+                
                 self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
                     if let json = json {
                         guard success == true else {

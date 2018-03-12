@@ -9,6 +9,7 @@
 import Foundation
 
 struct Users{
+    var avatarImg: UIImage?
     var userID: String!
     var firstName: String!
     var lastName: String!

@@ -99,6 +99,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         tableView.reloadData()
     }
     
+    func didAskToAddProfileImage() {}
     
     // MARK: - tableView methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
