@@ -14,7 +14,7 @@ protocol AppLifeCylcleConsumer: UIApplicationDelegate {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
     static let sharedApp = UIApplication.sharedApplication().delegate as! AppDelegate
     var window: UIWindow?
     static var firstTime = true
@@ -79,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        Loader.Hide()
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
         if  !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
             print ("STARTING BACKGROUND TASK")
@@ -101,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
  
     func doBackgroundTask() {
+        Loader.Hide()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             self.beginBackgroundUpdateTask()
             
@@ -115,10 +117,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        Loader.Hide()
         updateEnvironmentSettings()
        // doTestCycleForVPN()
         
-        AppDelegate.instance.appDidEnterForeground()
+        //AppDelegate.instance.appDidEnterForeground()
         
     }
     
@@ -153,6 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      * Starts the local host for making the safari browser return to the application
      **/
     func startServer() {
+        AppDelegate.firstTime = true
         self.httpServer = RoutingHTTPServer()
         self.httpServer?.setPort(8089)
         
@@ -186,15 +190,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      */
     func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
         if AppDelegate.firstTime  {
-            print("handleMobileconfigLoadRequest, first time")
+//            NSLog("handleMobileconfigLoadRequest, first time")
+//            NSLog("request %@", request.url())
             AppDelegate.firstTime = false
             let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
-            let mobileconfigData = NSData(contentsOfFile: resourceDocPath)
+            let mobileconfigData: NSData? = NSData(contentsOfFile: resourceDocPath)
+
             
+//            NSLog("----------------------------")
+//            NSLog("                            ")
+//            NSLog("                            ")
+//            NSLog("                            ")
+//            NSLog(" size of file \(mobileconfigData?.length)")
+//            NSLog("                            ")
+//            NSLog("                            ")
+//            NSLog("                            ")
+//            NSLog("----------------------------")
             response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
             response.respondWithData(mobileconfigData)
         } else {
-            print("handleMobileconfigLoadRequest, NOT first time")
+            NSLog("handleMobileconfigLoadRequest, NOT first time")
             response.statusCode = 302
             //TODO: must change yonaApp: to the id choosen by Yona and add a path to override pincode.... (security???)
             //response.setHeader("Location", value: "yonaApp://")
@@ -278,42 +293,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func testForVpnEnabled() {
-        #if (arch(i386) || arch(x86_64))
-            print("On simulator we don't test...")
-        #else
             if let url = NSURL(string: "https://10.110.0.1:442") {
                 let request:NSURLRequest = NSURLRequest(URL:url)
                 let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-                config.timeoutIntervalForRequest = 10
-                let session = NSURLSession(configuration: config)
-                
+                let que = NSOperationQueue()
+                config.timeoutIntervalForResource = 5
+                let session = NSURLSession(configuration: config, delegate: self, delegateQueue: que)
                 let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-                    
-                    
                     if let aError = error {
-                        print (" No access through vpn \(aError.code), \(aError.localizedDescription)")
-                        if #available(iOS 8.0, *) {
-                            let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message:NSLocalizedString("vpnerror.notrunning.message.text", comment:"") , preferredStyle: .Alert)
-                            let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
-                                void in
-                                self.handleOpenVPNNotRuning()
-                            })
-                            alert.addAction(cancelAction)
-                            self.window?.rootViewController!.presentViewController(alert, animated: true, completion:nil )
-                            
-                        }
-                        else {
-                            
-                            UIAlertView(title:  NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: NSLocalizedString("vpnerror.notrunning.message.text", comment:""), delegate: self, cancelButtonTitle: "OK").show()
-                        }
+                        Loader.Hide()
+                        let trxt = " No access through vpn \(aError.code), \(aError.localizedDescription)"
+                        let xtx = NSLocalizedString("vpnerror.notrunning.message.text",comment:"")
                         
+                        let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: xtx, preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
+                            void in
+                            self.handleOpenVPNNotRuning()
+                        })
+                        alert.addAction(cancelAction)
+                        var rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+                        if let navigationController = rootViewController as? UINavigationController {
+                            rootViewController = navigationController.viewControllers.first
+                        }
+                        if let tabBarController = rootViewController as? UITabBarController {
+                            rootViewController = tabBarController.selectedViewController
+                        }
+                        rootViewController?.presentViewController(alert, animated: true, completion: nil)
                         
                     }
                 });
                 
                 task.resume()
             }
-        #endif
     }
     func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
         
@@ -322,21 +333,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if challenge.protectionSpace.host == "10.110.0.1" {
+                if let trus = challenge.protectionSpace.serverTrust {
+                        let cred = NSURLCredential(forTrust: trus)
+                        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,cred)
+                } else {
+                    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
+                }
+            } else {
+                completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
+            }
+        }
+    }
     
     func handleOpenVPNNotRuning() {
-        print("I came here")
+       // print("I came here")
     }
     
     func testForOpenVPNInstalled () -> Bool {
         return true
-// this has been changed.  We will no longer force the user to install OPENVPN, only warn if its not runing
-        
-//        #if (arch(i386) || arch(x86_64))
-//            return NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN")
-//            
-//        #else
-//            let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
-//            return installed
-//        #endif
     }
 }

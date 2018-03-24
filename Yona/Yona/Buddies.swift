@@ -23,6 +23,7 @@ struct Buddies{
     var UserRequestSelfLink: String
     var formattetMobileNumber : String
     var buddyNickName : String
+    var buddyAvatarURL: String?
     
     var buddyGoals : [Goal] = []
     init(buddyData: BodyDataDictionary, allActivity: [Activities]) {
@@ -82,6 +83,8 @@ struct Buddies{
                 let editLinkHref = weekly[postBuddyBodyKeys.href.rawValue] as? String{
                 self.weeklyActivityReports = editLinkHref
             }
+
+
         }
         //store nickname 
         if let txt = buddyData[getMessagesKeys.nickname.rawValue] as? String {

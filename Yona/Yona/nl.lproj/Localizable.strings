@@ -53,7 +53,7 @@
 
 "privacy-policy" = "Yona respecteert en beschermt je privacy. Alle gevoelige informatie is beveiligd met encryptie.";
 
-"user-override" = "Dit mobiele nummer %@ is al geregistreerd bij Yona. Wil je hetzelfde nummer opnieuw registreren? (Let op: Alle gegevens behorend bij dit nummer zullen worden verwijderd. Als je een ander apparaat wilt toevoegen kun je teruggaan en op â€˜Inloggenâ€™ klikken.)";
+"user-override" = "Dit mobiele nummer %@ is al geregistreerd bij Yona. Wil je hetzelfde nummer opnieuw registreren? (Let op: Alle gegevens behorend bij dit nummer zullen worden verwijderd. Als je een ander apparaat wilt toevoegen kun je teruggaan en op Inloggen klikken.)";
 
 
 "passcode.user.headerTitle" = "Account is aangemaakt";
@@ -65,7 +65,7 @@
 
 "adddevice.user.mobileNumber" = "MOBIEL TELEFOONNUMMER";
 "adddevice.user.passcode" = "WACHTWOORD";
-"adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire apparaat (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op â€˜apparaat toevoegenâ€™. Vul vervolgens onderstaande velden in.";
+"adddevice.user.infoText" = "Je hebt nog niet eerder ingelogd op dit apparaat. Ga naar je primaire apparaat (waarschijnlijk je mobiel), open de Yona app, vervolgens naar instellingen en klik op apparaat toevoegen. Vul vervolgens onderstaande velden in.";
 "adddevice.user.InputPassCode" = "Voer geldig wachtwoord in";
 "adddevice.user.InputValidCode" = "Voer geldig telefoonnummer in";
 "adddevice.user.AddDevicePasscodeMessage" = "Gelieve deze code %@ in te voeren op uw andere apparaat";
@@ -290,9 +290,9 @@
 "vpnflowmainscreen.appinstalled.progress2.text" = "Cool!\nDe app is nu geïnstalleerd";
 "vpnflowmainscreen.appinstalled.info2.text" = "Bijna klaar :-)";
 
-"vpnflowmainscreen.appinstalled.progress3.text" = "Nog één stap te gaanâ€¦;";
+"vpnflowmainscreen.appinstalled.progress3.text" = "Nog een stap te gaan";
 "vpnflowmainscreen.appinstalled.info3.text" = "Installeer en accepteer Yona profiel";
-"vpnflowmainscreen.button3.next" = "INSTALLEER EN ACCEPT PROFIEL";
+"vpnflowmainscreen.button3.next" = "INSTALLEER PROFIEL";
 
 "vpnflowmainscreen.finalInstructions.button" = "laat instructies zien";
 
@@ -302,7 +302,7 @@
 "vpnflowintro2.title3.text" = "Deze waarschuwing wordt getoond\r Klik 'install'";
 "vpnflowintro2.title4.text" = "Druk op 'OK' je bent klaar";
 "vpnflowintro2.rerun.text" = "laat de instructies nogmaals zien";
-"vpnflowintro2.button2.text" = "INSTALLEER EN ACCEPTEER PROFIEL";
+"vpnflowintro2.button2.text" = "INSTALLEER PROFIEL";
 
 
 "vpnflowmainscreen.appinstalled.progress4.text" = "Goed gedaan!\n Klaar om te starten!";

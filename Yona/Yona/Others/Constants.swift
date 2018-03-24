@@ -86,6 +86,8 @@ struct YonaConstants {
         static let  yonaPinVerify = "yona:verifyPinReset"
         static let  yonaPinClear = "yona:clearPinReset"
         static let  yonaDailyActivityReportsWithBuddies = "yona:dailyActivityReportsWithBuddies"
+        static let  yonaEditUserPhoto = "yona:editUserPhoto"
+        static let  yonaUserPhoto = "yona:userPhoto"
         static let  hrefKey = "href"
 
         

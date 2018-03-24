@@ -38,12 +38,12 @@
  * static const int httpLogLevel = HTTP_LOG_LEVEL_INFO | HTTP_LOG_FLAG_TRACE;
  * 
  * Step 3:
- * Replace your NSLog statements with HTTPLog statements according to the severity of the message.
+ * Replace your //NSLog statements with HTTPLog statements according to the severity of the message.
  * 
- * NSLog(@"Fatal error, no dohickey found!"); -> HTTPLogError(@"Fatal error, no dohickey found!");
+ * //NSLog(@"Fatal error, no dohickey found!"); -> HTTPLogError(@"Fatal error, no dohickey found!");
  * 
- * HTTPLog works exactly the same as NSLog.
- * This means you can pass it multiple variables just like NSLog.
+ * HTTPLog works exactly the same as //NSLog.
+ * This means you can pass it multiple variables just like //NSLog.
 **/
 
 #import "DDLog.h"

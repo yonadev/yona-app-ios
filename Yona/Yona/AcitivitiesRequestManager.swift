@@ -171,7 +171,7 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivitiesArrayResponse, Returns and array of activities and success or fail and server messages
      */
     func getActivityCategories(onCompletion: APIActivitiesArrayResponse){
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
             if success {
                 if let path = user?.activityCategoryLink {
                     if self.activities.count == 0 {
@@ -281,12 +281,15 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
      */
     func getActivityPrDay(size : Int, page : Int,onCompletion: APIActivityGoalResponse){
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+
             if success {
+                print("getActivityPrDay %@",user!)
                 if let path = user?.dailyActivityReportsLink {
                     //if the newActivites object has been filled then we can get the link to display activity
                     
                     let aPath = path + "?size=" + String(size) + "&page=" + String(page)
+//                    NSLog("getActivityPrDay %@",aPath)
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
                         if let json = json {
                  //           print (json)

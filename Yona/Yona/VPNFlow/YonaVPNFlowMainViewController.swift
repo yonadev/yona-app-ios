@@ -524,20 +524,10 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     //MARK: - mobilconfigurationfile
     func serverSetup() {
-        
-//        httpServer = RoutingHTTPServer()
-//        httpServer?.setPort(8089)
-//        
-//        httpServer?.handleMethod("GET", withPath: "/start", target: self, selector: #selector(handleMobileconfigRootRequest))
-//        httpServer?.handleMethod("GET", withPath: "/load", target: self, selector: #selector(handleMobileconfigLoadRequest))
+        Loader.Show()
         let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
         mobileconfigData = NSData(contentsOfFile: resourceDocPath)
-
-        
-        
-        
-           (UIApplication.sharedApplication().delegate as! AppDelegate).startServer()
-            print("SERVER STARTET in VPN")
+        (UIApplication.sharedApplication().delegate as! AppDelegate).startServer()
     }
     
     func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
@@ -550,7 +540,9 @@ class YonaVPNFlowMainViewController: UIViewController {
         if firstTime  {
             print("handleMobileconfigLoadRequest, first time")
             firstTime = false
-        
+            let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+            mobileconfigData = NSData(contentsOfFile: resourceDocPath)
+
             response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
             response.respondWithData(mobileconfigData)
         } else {
@@ -572,46 +564,76 @@ class YonaVPNFlowMainViewController: UIViewController {
     
     func downloadFileFromServer() {
         Loader.Show()
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+        
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+//            NSLog("-------------------------YONA")
+//            NSLog("UserRequestManager.sharedInstance.getUser: %@",success)
+//            NSLog("UserRequestManager.sharedInstance.getUser: %@",message!)
+//            NSLog("UserRequestManager.sharedInstance.getUser: %f",code!)
+//            NSLog("UserRequestManager.sharedInstance.getUser: %@",user!.mobilConfigFileURL)
             if success {
                 
-//                #if (arch(i386) || arch(x86_64))
-//                    self.currentProgress = .configurationInstalled
-//                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        Loader.Hide()
-//                        self.dispatcher()
-//                    })
-//                    
-//                    return
-//                #endif
-                
                 UserRequestManager.sharedInstance.getMobileConfigFile() { (succes,data,code) in
-                    print("Came here")
+                    
+                    Loader.Hide()
+                    
+//                    NSLog("-------------------------YONA")
+//                    NSLog("UserRequestManager.sharedInstance.getMobileConfigFile: %@",succes)
                     
                     if data != nil {
                         let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+//                        NSLog("BEFORE: %@",resourceDocPath)
                         unlink(resourceDocPath)
+//                        NSLog("AFTER: %@",resourceDocPath)
+//                        NSLog("DATA: %f",data!.length)
 
                         do {
                             //try userMobileConfig.writeToFile(resourceDocPath, atomically: false, encoding: NSUTF8StringEncoding)
                             data?.writeToFile(resourceDocPath, atomically: true)
+//                            NSLog("-------------------------YONA")
+//                            NSLog("WRITING FILE, SUCESS")
                         }
                         catch {
-                            // MUST DO SOME GARCEFULLY EXIT.....
+//                            NSLog("-------------------------YONA")
+//                            NSLog("ERROR WRITING FILE")
+//                            // MUST DO SOME GARCEFULLY EXIT.....
                         }
+//                            let url = NSURL(fileURLWithPath: resourceDocPath)
+//                            UIApplication.sharedApplication().openURL(url)
+                        //"http://liebl.dk/mobile.php")!)
                             self.serverSetup()
                             self.testForServerAndContinue()
+//                            self.currentProgress = .configurationInstalled
+//                            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+//                        
+//                            dispatch_async(dispatch_get_main_queue(), {
+//                            self.dispatcher()
+//                        })
 
+
+                    } else {
+                        var co = ""
+                        if code != nil {co = code!}
+                        let txt = "Error getting the mobile.config file from server: '\(co)'"
+                        let alertController = UIAlertController(title: "ERROR", message: txt, preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
+                            void in
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.dispatcher()
+                            })
+                            
+                        })
+                        alertController.addAction(cancelAction)
+
+                        var rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+                        if let navigationController = rootViewController as? UINavigationController {
+                            rootViewController = navigationController.viewControllers.first
+                        }
+                        if let tabBarController = rootViewController as? UITabBarController {
+                            rootViewController = tabBarController.selectedViewController
+                        }
+                        rootViewController?.presentViewController(alertController, animated: true, completion: nil)
                     }
-                    self.currentProgress = .configurationInstalled
-                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                       // Loader.Hide()
-                        self.dispatcher()
-                    })
 
                 }
 //                if   let configfile = NSData(contentsOfURL: url) {
@@ -638,11 +660,19 @@ class YonaVPNFlowMainViewController: UIViewController {
             
             if let running = (UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning() {
                 if  running {
-                    Loader.Hide()
                     print("SERVER IS STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
                     if let url = NSURL(string:"http://localhost:8089/start/") {
                         UIApplication.sharedApplication().openURL(url)
                     }
+                    // new
+                    self.currentProgress = .configurationInstalled
+                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    return
+                        
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.dispatcher()
+                    })
+                    // end
                 } else {
                     print("SERVER IS NOT STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
                     print("re-trying")

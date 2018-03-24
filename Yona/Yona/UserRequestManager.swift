@@ -88,6 +88,12 @@ class UserRequestManager{
     
     
     func updateUser(body: BodyDataDictionary, onCompletion: APIUserResponse) {
+//        NSLog("----------------------- YONA")
+//        NSLog("----------------------- updateUser")
+//        NSLog("           ")
+//        NSLog("           ")
+//        NSLog("self.newUser? %@",self.newUser!.firstName)
+
             if let editLink = self.newUser?.editLink {
                 ///now post updated user data
                 genericUserRequest(httpMethods.put, path: editLink, userRequestType: userRequestTypes.updateUser, body: body, onCompletion: onCompletion)
@@ -199,20 +205,8 @@ class UserRequestManager{
     }
     
     func getMobileConfigFile( onCompletion: APIMobileConfigResponse) {
-        if let mobileConfigURL = self.newUser?.mobilConfigFileURL {
+       if let mobileConfigURL = self.newUser?.mobilConfigFileURL {
            APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL, httpMethod: httpMethods.get, onCompletion: onCompletion)
-            
-//            Manager.sharedInstance.makeFileRequest(mobileConfigURL, body: nil, httpMethod: httpMethods.get
-//                , httpHeader: <#T##[String : String]#>, onCompletion: <#T##APIMobileConfigResponse##APIMobileConfigResponse##(Bool, String?, ServerCode?) -> Void#>)
-//            
-//            genericUserRequest(httpMethods.get, path:mobileConfigURL, userRequestType: userRequestTypes.getConfigFile, body: ["":""], onCompletion: { (success, message, code, user) in
-//                if success {
-//                    onCompletion(success, nil, code)
-//                }
-//                else {
-//                    onCompletion(success, nil, code)
-//                }
-//            })
-        }
+            }
     }
 }

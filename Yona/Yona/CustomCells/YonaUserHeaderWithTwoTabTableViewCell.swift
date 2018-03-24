@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 protocol YonaUserHeaderTabProtocol {
     func didSelectProfileTab()
@@ -119,13 +120,13 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             nicknameLabel.text = txt
         }
    
-        if userModel.avatarImg == nil {
-            //will crash if empty
+        if let link = userModel.userAvatarLink,
+            let URL = NSURL(string: link) {
+            avatarImageView.kf_setImageWithURL(URL)
+        } else {
             if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
                 avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
             }
-        } else {
-            avatarImageView.image = userModel.avatarImg
         }
         
     }

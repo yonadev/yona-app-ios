@@ -77,7 +77,33 @@ class Manager: NSObject {
         
         return request
     }
+
     
+    /**
+     Helper method to create an NSURLRequest with it's required httpHeader, httpBody and the httpMethod request and return it to be executed
+     
+     - parameter path: String,
+     - parameter body: NSData,
+     - parameter httpHeader: [String:String],
+     - parameter httpMethod: httpMethods
+     - parameter NSURLRequest, the request created to be executed by makeRequest
+     */
+    func setupDataRequest(path: String, body: NSData?, httpHeader: [String:String], httpMethod: httpMethods) throws -> NSURLRequest {
+        let urlString = path.hasPrefix(EnvironmentManager.baseUrlString()) ? path : EnvironmentManager.baseUrlString() + path
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
+        
+        if let body = body {
+            request.HTTPBody = body
+        }
+        
+        request.timeoutInterval = 30
+        
+        request.HTTPMethod = httpMethod.rawValue
+        
+        return request
+    }
+
 }
 
 //MARK: - User Manager methods
@@ -148,12 +174,19 @@ extension Manager {
     }
 
 
-    func makeFileRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+    func makeFileUpload(path: String, file: UIImage, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
         
     {
         
         do{
-            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+            
+            var headers: [String: String] = [:]
+            headers["Content-Type"] = "multipart/form-data; boundary=\(generateBoundaryString())"
+            
+            httpHeader.forEach { (k,v) in headers[k] = v }
+            
+            let data = multipartDataFromFile(file)
+            let request = try setupDataRequest(path, body: data, httpHeader: headers, httpMethod: httpMethod)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
                 if error != nil{
@@ -164,8 +197,8 @@ extension Manager {
                 }
                 if response != nil{
                     if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onCompletion(true, data , "")
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onCompletion(true, data , "")
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
@@ -181,6 +214,77 @@ extension Manager {
             }
             
         }
+    }
+
+    
+    
+    func makeFileRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+        
+    {
+        
+        do{
+            let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                if error != nil{
+                    dispatch_async(dispatch_get_main_queue()) {
+                            onCompletion(false, nil, error?.localizedDescription)
+                        return
+                    }
+                }
+                if response != nil{
+                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
+                            dispatch_async(dispatch_get_main_queue()) {
+//                                NSLog("-----------------------------YONA")
+//                                NSLog("makeFileRequest : data size %f", data!.length)
+
+//                                onCompletion(true, data , "")
+                        onCompletion(true, data , "")
+
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                                onCompletion(false, nil, "File downloaded was empty")
+                            
+                        }
+                    }
+                }
+            })
+            task.resume()
+        } catch _ as NSError{
+            dispatch_async(dispatch_get_main_queue()) {
+                onCompletion(false, nil, "")
+            }
+            
+        }
+    }
+
+    private func multipartDataFromFile(img: UIImage) -> NSData {
+        let body = NSMutableData()
+        
+
+        let mimetype = "image/*"
+        let boundary = generateBoundaryString()
+        guard let image_data = UIImagePNGRepresentation(img) else {
+            return NSData()
+        }
+        
+        //define the data post parameter
+        
+        body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData("Content-Type: \(mimetype)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(image_data)
+        body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        body.appendData("--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+
+        return body
+    }
+    
+    func generateBoundaryString() -> String
+    {
+        return "--gc0p4Jq0M2Yt08jU534c0p--"
     }
 
 }
