@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
@@ -26,6 +27,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     var size : Int = 3
     var loading = false
     var scrolling = false
+    var avtarImg : UIImageView = UIImageView()
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        loading = false
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "MeDashBoardMainViewController")
         
@@ -94,7 +96,30 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     
     func configurProfileBarItem()  {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
-           if let name = user?.firstName {
+            if let link = user?.userAvatarLink,
+                let URL = NSURL(string: link) {
+                
+                self.avtarImg.kf_setImageWithURL(URL, placeholderImage: nil,
+                                            optionsInfo: nil,
+                                            progressBlock: nil,
+                                            completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                                    let btnName = UIButton()
+                                                    btnName.frame = CGRectMake(0, 0, 32, 32)
+                                                    btnName.setImage(image, forState: UIControlState.Normal)
+                                                    btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), forControlEvents: .TouchUpInside)
+
+                                                    btnName.backgroundColor = UIColor.clearColor()
+                                                    btnName.layer.cornerRadius = btnName.frame.size.width/2
+                                                    btnName.layer.borderWidth = 1
+                                                    btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                                                    btnName.clipsToBounds = true
+                                                    let rightBarButton = UIBarButtonItem()
+                                                    rightBarButton.customView = btnName
+                                                    self.navigationItem.leftBarButtonItem = rightBarButton
+
+                    }
+                )
+            } else if let name = user?.firstName {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
                     let btnName = UIButton()
                     let txt = "\(name.capitalizedString.characters.first!)"
@@ -111,7 +136,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                     rightBarButton.customView = btnName
                     self.navigationItem.leftBarButtonItem = rightBarButton
                 }
-            }            
+            }
+            
         }
     }
 
@@ -405,6 +431,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     }
     
     func loadActivitiesForDay(page : Int = 0) {
+//        NSLog("loadActivitiesForDay %f", loading)
         if loading {
             return
         }

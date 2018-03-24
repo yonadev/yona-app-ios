@@ -16,7 +16,7 @@ enum validateError {
     case none
 }
 
-class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol {
+class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rightSideButton : UIBarButtonItem!
@@ -26,12 +26,14 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     var aUser : Users?
     var isShowingProfile = true
     var rightSideButtonItems : [UIBarButtonItem]?
+    var currentImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         registreTableViewCells()
         dataLoading()
+        currentImage = nil
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,6 +63,9 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             //success so get the user?
             if success {
                 self.aUser = user
+                if let img = self.currentImage {
+                    self.aUser?.avatarImg = img
+                }
                 //success so get the user
               //  self.setData()
                 self.tableView.reloadData()
@@ -169,6 +174,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 topCell?.delegate = self
             }
             if let theUser = aUser {
+                topCell!.avatarImageView.image = currentImage
                 topCell!.setUser(theUser)
             }
             return topCell!
@@ -182,6 +188,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         } else {
         // must be changed to show badges
             let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
+            
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
 
@@ -211,6 +218,40 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             return
         }
         Loader.Show()
+//        NSLog("----------------------- YONA")
+//        NSLog("----------------------- updateUser")
+//        NSLog(" ")
+//        NSLog("           ")
+//        NSLog("updateUser user %@",aUser!.userDataDictionaryForServer())
+        
+        UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
+            if success {
+                //self.aUser = user
+                if self.currentImage != nil {
+                    self.uploadImg()
+                } else {
+                    self.uploadUserData()
+                }
+            }}
+        
+
+    
+    }
+    func uploadImg(){
+        
+        guard let img = currentImage,
+            let editlink = aUser?.editUserAvatar else {
+        return
+        }
+
+            APIServiceManager.sharedInstance.uploadPhoto(img, path: editlink, httpMethod: httpMethods.put, onCompletion: {(success, imgdata, code) in
+                
+                self.uploadUserData()
+            })
+        
+    }
+    
+    func uploadUserData() {
          UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
             //success so get the user?
                 if success {
@@ -225,6 +266,12 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     self.tableView.reloadData()
                 } else {
+//                    NSLog("----------------------- YONA")
+//                    NSLog("----------------------- uploadUserData")
+//                    NSLog(" ")
+//                    NSLog("           ")
+//                    NSLog("message %@",message!)
+
                     Loader.Hide()
                     if let alertMessage = message,
                         let code = code {
@@ -273,5 +320,103 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
 
     
         return .none
+    }
+    
+    func didAskToAddProfileImage() {
+        chooseImage(self)
+    }
+    
+    
+    func chooseImage(sender: Any) {
+        
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.navigationBar.translucent = false
+        imagePickerController.navigationBar.barTintColor = .yiGrapeTwoColor() // Background color
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .ActionSheet)
+        
+        let act = UIAlertAction(title: "Camera", style: .Default, handler: {(action:UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                imagePickerController.sourceType = .Camera
+                self.presentViewController(imagePickerController, animated: true, completion: nil)
+            }else{
+                print("Camera not available")
+            }
+            
+            
+        })
+        actionSheet.addAction(act)
+        
+        
+        let act1 = UIAlertAction(title: "Photo Library", style: .Default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .PhotoLibrary
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        })
+        
+        actionSheet.addAction(act1)
+
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+        
+        
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        var image : UIImage!
+        
+        if let img = info[UIImagePickerControllerEditedImage] as? UIImage
+        {
+            image = img
+            
+        }
+        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            image = img
+        }
+        currentImage =  resizeImage(image, targetSize: CGSize(width:200, height: 200))
+        topCell!.avatarImageView.image = currentImage
+        topCell!.avatraInitialsLabel.text = ""
+        picker.dismissViewControllerAnimated( true, completion: nil)
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated( true, completion: nil)
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
+                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
+        
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+        } else {
+            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }

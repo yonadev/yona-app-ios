@@ -142,12 +142,12 @@ static CCIStepsManager * instance = nil;
     }
     CCIAssert(implementation != nil, errorMessage);
     if(step.keyword.length > 0){
-        NSLog(@"Currently executing: \"%@ %@\"", step.keyword, step.text);
+        //NSLog(@"Currently executing: \"%@ %@\"", step.keyword, step.text);
     }
     
     implementation.body(implementation.matchedValues, implementation.additionalContent);
     if(step.keyword.length > 0){
-        NSLog(@"Step: \"%@ %@\" passed", step.keyword, step.text);
+        //NSLog(@"Step: \"%@ %@\" passed", step.keyword, step.text);
     }
 }
 

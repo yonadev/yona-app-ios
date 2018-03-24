@@ -304,6 +304,8 @@
 "vpnflowmainscreen.appinstalled.progress.text" = "Thank you\nfor signing up!";
 "vpnflowmainscreen.appinstalled.info.text" = "Let's get Yona up and running";
 "vpnflowmainscreen.button.next" = "NEXT";
+"vpnflowmainscreen.button.later" = "LATER";
+
 
 "YonaVPNProgressView.yonaapp.text" = "Yona is installed on your phone...";
 "YonaVPNProgressView.openvpn.text" = "You need to make a safe\nconnection to your phone";
@@ -327,7 +329,7 @@
 
 "vpnflowmainscreen.appinstalled.progress3.text" = "One step to go...";
 "vpnflowmainscreen.appinstalled.info3.text" = "Install and accept Yona profile";
-"vpnflowmainscreen.button3.next" = "INSTALL AND ACCEPT PROFILE";
+"vpnflowmainscreen.button3.next" = "INSTALL PROFILE";
 
 "vpnflowmainscreen.finalInstructions.button" = "show instructions";
 
@@ -337,7 +339,7 @@
 "vpnflowintro2.title3.text" = "This warning will be shown.\r Click 'install'";
 "vpnflowintro2.title4.text" = "After 'OK' you are ready";
 "vpnflowintro2.rerun.text" = "show instructions again";
-"vpnflowintro2.button2.text" = "INSTALL AND ACCEPT PROFILE";
+"vpnflowintro2.button2.text" = "INSTALL PROFILE";
 
 
 "vpnflowmainscreen.appinstalled.progress4.text" = "Good job!\nYour ready to go!";
@@ -397,6 +399,8 @@
 "nogo-data-not-found-title" = "Sorry";
 "nogo-data-not-found-description" = "No data found";
 
+
+"Install VPN" = "Install VPN";
 
 /*
  

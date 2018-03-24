@@ -16,6 +16,36 @@ class APIServiceManager {
     
     private init() {}
     
+    
+    /**
+     Calls the manager to make a standard http request using the httpHeader json type, this requires the users password that is stored in the keychain:
+     ["Content-Type": "application/json", "Yona-Password": yonaPassword]
+     
+     - parameter body: BodyDataDictionary?, the body of the req uest required by some calls, can be nil
+     - parameter path: String, the path to the API service call
+     - parameter httpMethod: httpMethods, the httpmethod enum (post, get , put, delete)
+     - parameter onCompletion:APIMobileConfigResponse The response from the API service, giving success or fail, dictionary response and any error
+     */
+    func uploadPhoto(img: UIImage, path: String, httpMethod: httpMethods, onCompletion:APIMobileConfigResponse){
+        
+        
+        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let language = "\(langId)-\(countryId)"
+        
+        
+        var httpHeader = ["Accept-Language": language]
+        
+        if let yonaPassword = KeychainManager.sharedInstance.getYonaPassword() {
+            httpHeader = ["Accept-Language": language, "Yona-Password": yonaPassword]
+        }
+        
+        
+        Manager.sharedInstance.makeFileUpload(path, file: img, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
+    }
+
+    
+    
     /**
      Calls the manager to make a standard http request using the httpHeader json type, this requires the users password that is stored in the keychain:
         ["Content-Type": "application/json", "Yona-Password": yonaPassword]
@@ -45,6 +75,8 @@ class APIServiceManager {
     func callRequestWithAPIMobileConfigResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIMobileConfigResponse){
         
         guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
+//            NSLog("-----------------------------YONA")
+//            NSLog("callRequestWithAPIMobileConfigResponse : NO USER PASSWORD")
             onCompletion(false,nil, "")
             return
         }

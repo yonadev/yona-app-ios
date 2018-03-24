@@ -36,9 +36,10 @@ class NewDeviceRequestManager {
                             } else {
                                 onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
                             }
-                        } else {
-                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
                         }
+//                        else {
+//                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
+//                        }
                     }
                 case httpMethods.get:
                     let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String

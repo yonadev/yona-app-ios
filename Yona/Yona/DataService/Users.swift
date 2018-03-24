@@ -9,6 +9,7 @@
 import Foundation
 
 struct Users{
+    var avatarImg: UIImage?
     var userID: String!
     var firstName: String!
     var lastName: String!
@@ -37,6 +38,8 @@ struct Users{
     var timeLineLink : String?
     var foundIncludeLink: Bool = false
     var formatetMobileNumber : String!
+    var editUserAvatar: String?
+    var userAvatarLink: String?
     
     var mobilConfigFileURL: String = ""
     init(userData: BodyDataDictionary) {
@@ -172,9 +175,16 @@ struct Users{
                     let mobilconfig  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
                     mobilConfigFileURL = mobilconfig
                 }
-                
-                
-                
+
+                if let yonaEditPhotoLink = links[YonaConstants.jsonKeys.yonaEditUserPhoto],
+                    let href  = yonaEditPhotoLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    editUserAvatar = href
+                }
+                if let yonaPhotoLink = links[YonaConstants.jsonKeys.yonaUserPhoto],
+                    let href = yonaPhotoLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    userAvatarLink = href
+                }
+
             }
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="17D102" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -141,6 +141,17 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-Ne-0jN">
+                        <rect key="frame" x="277" y="40" width="46" height="49"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="49" id="Shb-bv-3Zu"/>
+                            <constraint firstAttribute="width" constant="46" id="uF8-AZ-F0n"/>
+                        </constraints>
+                        <connections>
+                            <action selector="addProfileImage:" destination="Bc4-Wl-ZFM" eventType="touchUpInside" id="fvx-Er-8jj"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.42352941179999998" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -155,7 +166,9 @@
                     <constraint firstItem="62z-M1-1qt" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="1" id="Jg7-j5-Epe"/>
                     <constraint firstItem="HGy-Mn-r9R" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="26" id="O6l-be-YhP"/>
                     <constraint firstItem="9Ho-3J-yNH" firstAttribute="leading" secondItem="BaQ-Uo-jjA" secondAttribute="leadingMargin" constant="-8" id="OE0-FL-Rnu"/>
+                    <constraint firstItem="7IM-Ne-0jN" firstAttribute="centerX" secondItem="BaQ-Uo-jjA" secondAttribute="centerX" id="Ufe-Yh-U5q"/>
                     <constraint firstItem="9Ho-3J-yNH" firstAttribute="top" secondItem="62z-M1-1qt" secondAttribute="bottom" constant="84" id="WAG-zg-kEK"/>
+                    <constraint firstItem="7IM-Ne-0jN" firstAttribute="bottom" secondItem="62z-M1-1qt" secondAttribute="bottom" id="WbL-mn-ZZJ"/>
                     <constraint firstItem="ryB-Lf-FQa" firstAttribute="top" secondItem="BaQ-Uo-jjA" secondAttribute="topMargin" constant="101" id="Zhw-o9-jHi"/>
                     <constraint firstItem="3WI-l9-AD2" firstAttribute="top" secondItem="ryB-Lf-FQa" secondAttribute="bottom" constant="5" id="aUo-fM-akq"/>
                     <constraint firstItem="3WI-l9-AD2" firstAttribute="leading" secondItem="BaQ-Uo-jjA" secondAttribute="leadingMargin" constant="14" id="b74-Da-IHX"/>
@@ -176,6 +189,7 @@
                 <outlet property="badgesTabLabel" destination="j4i-iR-NaK" id="fvS-fr-wRx"/>
                 <outlet property="badgesTabMainView" destination="ehV-oV-g5b" id="hRK-dx-YzT"/>
                 <outlet property="badgesTabSelectionsView" destination="mrt-3W-OaL" id="ti5-ZX-Jzb"/>
+                <outlet property="iconAddAvatarButton" destination="7IM-Ne-0jN" id="lFN-H2-0cX"/>
                 <outlet property="iconAddAvatarImageView" destination="dur-iy-XeQ" id="9GX-4k-8SM"/>
                 <outlet property="nameLabel" destination="ryB-Lf-FQa" id="xZn-wN-Nue"/>
                 <outlet property="nicknameLabel" destination="3WI-l9-AD2" id="49Y-aj-G3z"/>
@@ -183,6 +197,7 @@
                 <outlet property="profileTabMainView" destination="9Ho-3J-yNH" id="Ijw-bg-ClC"/>
                 <outlet property="profileTabSelcetionView" destination="kNb-L6-R9U" id="vLN-eo-eqe"/>
             </connections>
+            <point key="canvasLocation" x="34" y="54.5"/>
         </tableViewCell>
     </objects>
     <resources>

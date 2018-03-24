@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Kingfisher
 
 protocol YonaUserHeaderTabProtocol {
     func didSelectProfileTab()
     func didSelectBadgesTab()
+    func didAskToAddProfileImage()
 }
 
 class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
@@ -20,6 +22,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var iconAddAvatarImageView: UIImageView!
+    @IBOutlet weak var iconAddAvatarButton: UIButton!
     @IBOutlet weak var avatraInitialsLabel: UILabel!
     
     @IBOutlet weak var profileTabMainView: UIView!
@@ -53,7 +56,9 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
         
-        
+        self.iconAddAvatarButton.frame = avatarImageView.frame
+        self.iconAddAvatarButton.enabled = false
+
         iconAddAvatarImageView.alpha = 0.0
         configureColors(isBuddy: false)
         showProfileTab()
@@ -115,10 +120,15 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             nicknameLabel.text = txt
         }
    
-        //will crash if empty
-        if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
-            avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
+        if let link = userModel.userAvatarLink,
+            let URL = NSURL(string: link) {
+            avatarImageView.kf_setImageWithURL(URL)
+        } else {
+            if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
+                avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
+            }
         }
+        
     }
 
     
@@ -160,6 +170,13 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         delegate?.didSelectBadgesTab()
     }
 
+    @IBAction func addProfileImage (sender : AnyObject) {
+        //if self.badgesTabMainView.hidden == true {
+            delegate?.didAskToAddProfileImage()
+        //}
+    }
+
+    
     
     // MARK: - hide both tabs
     
@@ -185,6 +202,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         
         UIView.animateWithDuration(0.2, animations: {
             self.avatarImageView.frame = avatarframe
+            self.iconAddAvatarButton.frame = avatarframe
+            self.iconAddAvatarButton.enabled = true
             self.avatarImageView.alpha = 0.3
             self.nameLabel.alpha = 0.0
             self.nicknameLabel.alpha = 0.0
@@ -220,6 +239,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         UIView.animateWithDuration(0.2, animations: {
             self.avatarImageView.frame = avatarframe
             self.avatarImageView.alpha = 1.0
+            self.iconAddAvatarButton.frame = avatarframe
+            self.iconAddAvatarButton.enabled = false
             self.nameLabel.alpha = 1.0
             self.nicknameLabel.alpha = 1.0
             self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2
@@ -236,5 +257,5 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
      
      }
     
-
+    
 }

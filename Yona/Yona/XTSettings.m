@@ -88,8 +88,8 @@
 + (void)listFonts {
     NSArray *fonts = [UIFont familyNames];
     for (NSString *fName in fonts) {
-        NSLog(@"---> %@ :", fName);
-        NSLog(@"\n%@", [UIFont fontNamesForFamilyName:fName]);
+        //NSLog(@"---> %@ :", fName);
+        //NSLog(@"\n%@", [UIFont fontNamesForFamilyName:fName]);
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PNY-eg-Y3c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="17D102" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PNY-eg-Y3c">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,7 +30,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Fpm-v2-kz6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AMf-oz-gSu">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-r1-XJQ">
@@ -81,7 +81,7 @@
         <scene sceneID="3W6-0E-bH4">
             <objects>
                 <navigationController storyboardIdentifier="DashBoardMainNavigationController" id="PNY-eg-Y3c" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIh-nU-FnZ" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIh-nU-FnZ" customClass="GradientNavBar" customModule="Yona" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.42352941630000002" green="0.1647058874" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -275,7 +275,7 @@
                         <viewControllerLayoutGuide type="bottom" id="z4e-qq-zf6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u93-o7-Obw">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yFv-JC-3KO">
@@ -599,7 +599,7 @@
         <image name="icnReminder" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i6A-dg-q6c"/>
-        <segue reference="rQa-zh-Tis"/>
+        <segue reference="KjT-n8-LgP"/>
+        <segue reference="8eJ-V0-7GW"/>
     </inferredMetricsTieBreakers>
 </document>

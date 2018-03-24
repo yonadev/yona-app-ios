@@ -20,14 +20,18 @@ class Loader:  NSObject {
     }
     
     class func Show(message:String = "loading..."){
-
-        SVProgressHUD.showWithStatus(message)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        dispatch_async(dispatch_get_main_queue(), {
+            SVProgressHUD.showWithStatus(message)
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        })
+        
         
     }
     
     class func Hide(){
-        SVProgressHUD.dismiss()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        dispatch_async(dispatch_get_main_queue(), {
+            SVProgressHUD.dismiss()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
     }
 }

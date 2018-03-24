@@ -30,7 +30,7 @@ enum  settingsOptions : Int {
         case .unsubscribe:
             return NSLocalizedString("delete-user", comment: "")
         case .configreste:
-            return NSLocalizedString("RESET", comment: "")
+            return NSLocalizedString("Install VPN", comment: "")
         case .emailSupport:
             return NSLocalizedString("Contact Support", comment: "")
         default:
@@ -172,7 +172,7 @@ extension SettingsViewController:UITableViewDelegate {
 //        #if DEBUG
 //            return settingsOptions.lastrow.rawValue
 //        #else            
-            return (settingsOptions.lastrow.rawValue - 1)
+            return (settingsOptions.lastrow.rawValue )
 //        #endif
     }
     
@@ -221,6 +221,15 @@ extension SettingsViewController:UITableViewDelegate {
             NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
         
+            if let navController : UINavigationController = R.storyboard.vPNFlow.vpnNavigationController {
+                navController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.presentViewController(navController, animated: false, completion: nil)
+                })
+            }
+            
+
+            
         case settingsOptions.emailSupport.rawValue:
             showAlertForEmailForUser()
 
