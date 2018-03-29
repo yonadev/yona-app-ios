@@ -218,12 +218,6 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             return
         }
         Loader.Show()
-//        NSLog("----------------------- YONA")
-//        NSLog("----------------------- updateUser")
-//        NSLog(" ")
-//        NSLog("           ")
-//        NSLog("updateUser user %@",aUser!.userDataDictionaryForServer())
-        
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
             if success {
                 //self.aUser = user

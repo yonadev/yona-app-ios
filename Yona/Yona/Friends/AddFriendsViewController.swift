@@ -1,3 +1,4 @@
+
 //
 //  AddFriendsViewController.swift
 //  Yona
@@ -175,7 +176,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                                                             NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
 
-        
+
         
         let multiValue: ABMultiValueRef = ABRecordCopyValue(person, property).takeRetainedValue()
         let index = ABMultiValueGetIndexForIdentifier(multiValue, identifier)
@@ -213,8 +214,12 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             print(phoneNumber)
             if let strippedPhoneNumber = phoneNumber {
                 let tempNumber = strippedPhoneNumber.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
-                
-                phoneNumber = tempNumber.substringFromIndex(tempNumber.endIndex.advancedBy(-9))
+                var index = 9
+                if tempNumber.characters.count < 9 {
+                    index = tempNumber.characters.count
+                }
+                index *= -1
+                phoneNumber = tempNumber.substringFromIndex(tempNumber.endIndex.advancedBy(index))
             }
             
             mobileTextfield.text = phoneNumber;
@@ -321,15 +326,13 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             createAddressBook()
             people.peoplePickerDelegate = self
             dispatch_async(dispatch_get_main_queue(), {
+                self.people.topViewController?.view.backgroundColor = .yiMidBlueColor()
                 UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
                 UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
-                
                 self.presentViewController(self.people, animated: true, completion: nil)
             })
             /* Access the address book */
         case .Denied:
-            if #available(iOS 8.0, *) {
-            
                 let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.text", comment:""), preferredStyle: .Alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
@@ -340,13 +343,6 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 })
                 alert.addAction(settingsAction)
                 presentViewController(alert, animated: true, completion:nil )
-                
-            }
-            else {
-                
-                UIAlertView(title:  NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.nosettings.text", comment:""), delegate: self, cancelButtonTitle: "OK").show()
-            }
-            
         case .NotDetermined:
             createAddressBook()
             if let theBook: ABAddressBookRef = addressBook{
@@ -358,7 +354,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                                                                 self.people.peoplePickerDelegate = self
                                                                 UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
                                                                 UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
-                                                                
+
                                                                 dispatch_async(dispatch_get_main_queue(), {
                                                                     self.presentViewController(self.people, animated: true, completion: nil)
                                                                 })
