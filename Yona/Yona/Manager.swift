@@ -235,10 +235,6 @@ extension Manager {
                 if response != nil{
                     if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
                             dispatch_async(dispatch_get_main_queue()) {
-//                                NSLog("-----------------------------YONA")
-//                                NSLog("makeFileRequest : data size %f", data!.length)
-
-//                                onCompletion(true, data , "")
                         onCompletion(true, data , "")
 
                         }

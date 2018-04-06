@@ -278,7 +278,8 @@
 "message.type.disclosureresponse" = "Review accepted";
 "message.type.disclosurerequest" = "Review requested";
 "message.type.systemMessage" = "Message from Yona";
-"message.type.buddyInfoChangeMessage" = "Buddy info change (TBD)";
+"message.type.buddyInfoChangeMessage" = "Friend profile updated";
+
 
 //me day cells
 "meday.message.minutesover" = "minutes over your limit";

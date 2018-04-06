@@ -244,7 +244,7 @@
 "message.type.disclosureresponse" = "Reviewverzoek geaccepteerd";
 "message.type.disclosurerequest" = "Verzoek om review";
 "message.type.systemMessage" = "Bericht van Yona";
-"message.type.buddyInfoChangeMessage" = "Vrienden informatie verandering (TBD)";
+"message.type.buddyInfoChangeMessage" = "Vriend profiel bijgewerkt";
 
 //me day cells
 "meday.message.minutesover" = "minuten over je limiet";
