@@ -131,8 +131,8 @@ struct Buddies{
 
     }
     
-    private func formatMobileNumber() -> String {
-        let num = UserRequestmobileNumber.stringByReplacingOccurrencesOfString("+31", withString: "+310")
+    fileprivate func formatMobileNumber() -> String {
+        let num = UserRequestmobileNumber.replacingOccurrences(of: "+31", with: "+310")
         return num
     }
 

@@ -5,8 +5,9 @@ use_frameworks!
 
 target 'Yona' do
    
-pod 'R.swift'
-#pod 'HockeySDK'
-pod 'Google/Analytics'
-pod 'Kingfisher', '~> 2.4'
+   pod 'R.swift'
+   #pod 'HockeySDK'
+   pod 'Google/Analytics'
+   pod 'Kingfisher', '~> 4.0'
+   pod 'IQKeyboardManagerSwift'
 end

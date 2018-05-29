@@ -34,30 +34,30 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     }
 
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
+        tracker?.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             
         })
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupUI()
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.addScrollViews(1)
             
             
         })
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
+        let delayTime = DispatchTime.now() + Double(Int64(NSEC_PER_SEC * 1)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime){
             self.page1?.startAnimation()
             //            self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
@@ -68,12 +68,12 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
         
         view.backgroundColor = UIColor.yiGrapeColor()
         //navigationItem.title = NSLocalizedString("vpnflowmainscreen.title.text", comment: "")
-        actionButton.setTitle(NSLocalizedString("vpnflowintro2.button2.text", comment: ""), forState: UIControlState.Normal)
+        actionButton.setTitle(NSLocalizedString("vpnflowintro2.button2.text", comment: ""), for: UIControlState())
         actionButton.backgroundColor = UIColor.yiDarkishPinkColor()
         actionButton.alpha = 0.0
     }
     
-    func addScrollViews(page : Int) {
+    func addScrollViews(_ page : Int) {
         let width = view.frame.size.width
         
         switch page {
@@ -81,7 +81,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
             if page1 != nil {
                 return
             }
-            page1 = R.storyboard.vPNFlow.yonaInstructionMobilePage1!
+            page1 = R.storyboard.vpnFlow.yonaInstructionMobilePage1(())
             
             if var fr = page1?.view.frame {
                 fr.size.width = width
@@ -90,12 +90,12 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
                 page1?.delegate = self
                 scrollView.addSubview(page1!.view!)
             }
-            scrollView.contentSize = CGSizeMake(width, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width, height: scrollView.frame.size.height)
         case 2:
             if page2 != nil {
                 return
             }
-            page2 = R.storyboard.vPNFlow.yonaInstructionMobilePage2!
+            page2 = R.storyboard.vpnFlow.yonaInstructionMobilePage2(())
             if var fr = page2?.view.frame {
                 fr.size.width = width
                 fr.size.height = scrollView.frame.size.height
@@ -103,13 +103,13 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
                 page2?.view.frame = fr
                 page2?.delegate = self
                 scrollView.addSubview(page2!.view!)
-                scrollView.contentSize = CGSizeMake(width*2, scrollView.frame.size.height)
+                scrollView.contentSize = CGSize(width: width*2, height: scrollView.frame.size.height)
             }
         case 3:
             if page3 != nil {
                 return
             }
-            page3 = R.storyboard.vPNFlow.yonaInstructionMobilePage3!
+            page3 = R.storyboard.vpnFlow.yonaInstructionMobilePage3(())
             if var fr = page3?.view.frame {
                 fr.size.width = width
                 fr.size.height = scrollView.frame.size.height
@@ -119,12 +119,12 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
                 scrollView.addSubview(page3!.view!)
                 
             }
-            scrollView.contentSize = CGSizeMake(width*3, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width*3, height: scrollView.frame.size.height)
         case 4:
             if page4 != nil {
                 return
             }
-            page4 = R.storyboard.vPNFlow.yonaInstructionMobilePage4!
+            page4 = R.storyboard.vpnFlow.yonaInstructionMobilePage4(())
 
             if var fr = page4?.view.frame {
                 fr.size.width = width
@@ -135,7 +135,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
                 scrollView.addSubview(page4!.view!)
                 
             }
-            scrollView.contentSize = CGSizeMake(width*4, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width*4, height: scrollView.frame.size.height)
 
         default:
             return
@@ -147,7 +147,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     //MARK: Protocol implementation
     
     
-    func didFinishAnimations(sender : AnyObject) {
+    func didFinishAnimations(_ sender : AnyObject) {
         if sender is YonaInstructionMobilePage1 {
             addScrollViews(2)
             scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
@@ -168,7 +168,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
             page4?.startAnimation()
         }
         if sender is YonaInstructionMobilePage4{
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.actionButton.alpha = 1.0
             })
             
@@ -179,7 +179,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     func didRequestReRun() {
         scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
         progressPageControl.currentPage = 0
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.actionButton.alpha = 0.0
         })
         page1?.startAnimation()
@@ -190,11 +190,11 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     // Mark: - buttons actions
     
-    @IBAction func installMobilConfigFile(sender : UIButton) {
+    @IBAction func installMobilConfigFile(_ sender : UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as! [AnyHashable: Any])
         
-        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        UserDefaults.standard.set(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         delegate?.installMobileProfile()
         
         

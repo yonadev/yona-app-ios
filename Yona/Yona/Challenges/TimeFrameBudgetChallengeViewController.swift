@@ -59,14 +59,14 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
 //        }
         
         setTimeBucketTabToDisplay(.budget, key: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-        setChallengeButton.backgroundColor = UIColor.clearColor()
+        setChallengeButton.backgroundColor = UIColor.clear
         setChallengeButton.layer.cornerRadius = 25.0
         setChallengeButton.layer.borderWidth = 1.5
-        setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
+        setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
 
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
         
-        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercaseString, forState: UIControlState.Normal)
+        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercased(), for: UIControlState())
         self.timeZoneLabel.text = NSLocalizedString("challenges.addBudgetGoal.budgetLabel", comment: "")
         self.minutesPerDayLabel.text = NSLocalizedString("challenges.addBudgetGoal.minutesPerDayLabel", comment: "")
         //self.bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
@@ -84,15 +84,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
             if let activityName = activitiyToPost?.activityCategoryName {
                 self.budgetChallengeDescription.text = String(format: localizedString, activityName)
             }
-            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clear
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
             self.updateValues()
         } else {
             if ((goalCreated?.editLinks?.isEmpty) != nil) {
                 self.navigationItem.rightBarButtonItem = self.deleteGoalButton
             } else {
-                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clearColor()
-                self.navigationItem.rightBarButtonItem?.enabled = false
+                self.navigationItem.rightBarButtonItem?.tintColor? = UIColor.clear
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
             }
             
             self.budgetChallengeTitle.text = goalCreated?.GoalName
@@ -104,7 +104,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.updateValues()
     }
     
-    func listActivities(activities: [String]){
+    func listActivities(_ activities: [String]){
         let activityApps = activities
         var appString = ""
         for activityApp in activityApps as [String] {
@@ -113,15 +113,15 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.appList.text = appString
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let str = activitiyToPost?.activityDescription {
             appList.text = str
         }
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
+        tracker?.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
     // MARK: - functions
@@ -132,40 +132,40 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         self.minutesSlider.value = Float(maxDurationMinutes)!
         if self.minutesSlider.value > 0{
             setChallengeButton.alpha = 1.0
-            self.setChallengeButton.enabled = true
+            self.setChallengeButton.isEnabled = true
         }else{
             setChallengeButton.alpha = 0.0
-            self.setChallengeButton.enabled = false
+            self.setChallengeButton.isEnabled = false
         }
     }
     
     // MARK: - Actions
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil).build() as! [AnyHashable: Any])
         
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @IBAction func minutesDidChange(sender: AnyObject) {
+    @IBAction func minutesDidChange(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "minutesDidChange", label: "Change minutes", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "minutesDidChange", label: "Change minutes", value: nil).build() as! [AnyHashable: Any])
         
         maxDurationMinutes = String(Int(minutesSlider.value))
         self.updateValues()
     }
-    @IBAction func postNewBudgetChallengeButtonTapped(sender: AnyObject) {
+    @IBAction func postNewBudgetChallengeButtonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil).build() as! [AnyHashable: Any])
         
         if isFromActivity == true {
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
                 let bodyBudgetGoal: [String: AnyObject] = [
-                    "@type": "BudgetGoal",
+                    "@type": "BudgetGoal" as AnyObject,
                     "_links": ["yona:activityCategory":
                         ["href": activityCategoryLink]
-                    ],
-                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes))
+                    ] as AnyObject,
+                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes)) as AnyObject
                 ]
                 Loader.Show()
                 GoalsRequestManager.sharedInstance.postUserGoals(bodyBudgetGoal) { (success, serverMessage, serverCode, goal, nil, err) in
@@ -177,10 +177,10 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                             self.goalCreated = goalUnwrap
                         }
                         self.navigationItem.rightBarButtonItem = self.deleteGoalButton
-                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.navigationController?.popToRootViewController(animated: true)
                         YonaConstants.nsUserDefaultsKeys.isGoalsAdded
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
-                        NSUserDefaults.standardUserDefaults().synchronize()
+                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                        UserDefaults.standard.synchronize()
                         
                     } else {
                         if let message = serverMessage {
@@ -193,11 +193,11 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
             //EDIT Implementation
             if let activityCategoryLink = goalCreated?.activityCategoryLink! {
                 let bodyBudgetGoal: [String: AnyObject] = [
-                    "@type": "BudgetGoal",
+                    "@type": "BudgetGoal" as AnyObject,
                     "_links": ["yona:activityCategory":
                         ["href": activityCategoryLink]
-                    ],
-                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes))
+                    ] as AnyObject,
+                    "maxDurationMinutes": String(Int(Float(maxDurationMinutes)! * scaledMinutes)) as AnyObject
                 ]
                 Loader.Show()
                 GoalsRequestManager.sharedInstance.updateUserGoal(goalCreated?.editLinks, body: bodyBudgetGoal, onCompletion: { (success, serverMessage, server, goal, goals, error) in
@@ -208,7 +208,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                         if let goalUnwrap = goal {
                             self.goalCreated = goalUnwrap
                         }
-                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.navigationController?.popToRootViewController(animated: true)
                         
                     } else {
                         if let message = serverMessage {
@@ -221,17 +221,17 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     }
   
     
-    @IBAction func deletebuttonTapped(sender: AnyObject) {
+    @IBAction func deletebuttonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil).build() as! [AnyHashable: Any])
         
         if #available(iOS 8, *)  {
-            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: {void in
+            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: {void in
                 self.deleteGoal()
             }))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             
         } else {
             let alert = UIAlertView(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("cancel", comment: ""), otherButtonTitles: NSLocalizedString("OK", comment: "") )
@@ -241,7 +241,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     
     }
     
-    func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
+    func alertView( _ alertView: UIAlertView,clickedButtonAt buttonIndex: Int){
         
         if buttonIndex == 1 {
             deleteGoal()
@@ -256,10 +256,10 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                 
                 if success {
                     if goals?.count == 1 {
-                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+                        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                     }
                     self.delegate?.callGoalsMethod()
-                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    self.navigationController?.popToRootViewController(animated: true)
                     
                 } else {
                     if let message = serverMessage {

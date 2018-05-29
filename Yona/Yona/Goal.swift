@@ -29,7 +29,7 @@ struct Goal {
                 if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? [String:AnyObject],
                     let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
                     self.selfLinks = href
-                    if let lastPath = NSURL(string: href)?.lastPathComponent {
+                    if let lastPath = URL(string: href)?.lastPathComponent {
                         self.goalID = lastPath
                     }
                 }
@@ -38,8 +38,7 @@ struct Goal {
                     self.activityCategoryLink = href
                     
                     for activity in activities {
-                        if let activityCategoryLink = activity.selfLinks
-                            where self.activityCategoryLink == activityCategoryLink {
+                        if let activityCategoryLink = activity.selfLinks, self.activityCategoryLink == activityCategoryLink {
                             self.GoalName = activity.activityCategoryName
                         }
                     }

@@ -22,14 +22,14 @@ class GoalAPIServiceTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testGetGoalsOfTypeNoGo(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -62,13 +62,13 @@ class GoalAPIServiceTests: XCTestCase {
 
 
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
         
     }
     
     func testGetGoalsOfTypeBudgetGoal(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -138,13 +138,13 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
 
     }
     
     func testGetGoalsOfTypeTimeZone(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
 
         let body =
@@ -212,13 +212,13 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
         
     }
     
     func testGetUserGoal(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -260,13 +260,13 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
         
     }
     
     func testUpdateUserGoal(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -325,13 +325,13 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
         
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
         
     }
     
     func testPostUserGoal(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -394,13 +394,13 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
 
     }
     
     func testPostSameGoalTwiceCheckCorrectServerResponse() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -443,12 +443,12 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testPostNewsGoalAsNoGo() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -497,12 +497,12 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testDeleteAMandatoryGoal() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -546,14 +546,14 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
         
     }
     
     
     func testGetGoalWithID() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         let body =
             ["firstName": "Richard",
@@ -602,13 +602,13 @@ class GoalAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
 
     }
     
     func testDeleteGoal() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999)) //phone number mustbe unique
         
         let body =
@@ -652,7 +652,7 @@ class GoalAPIServiceTests: XCTestCase {
             }
         }
         
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
         
     }
 

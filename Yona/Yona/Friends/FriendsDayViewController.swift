@@ -20,7 +20,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         navigationItem.title = NSLocalizedString("", comment: "")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navbarColor1 = navbarColor1,
             let navbarColor = navbarColor {
@@ -33,12 +33,12 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "FriendsDayViewController")
+        tracker?.set(kGAIScreenName, value: "FriendsDayViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         
         
@@ -57,7 +57,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configurProfileBarItem()
         //navigationItem.rightBarButtonItems = nil
@@ -71,10 +71,10 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         
     }
     //MARK: - week delegate methods
-    override func didSelectDayInWeek(goal: SingleDayActivityGoal, aDate : NSDate) {
+    override func didSelectDayInWeek(_ goal: SingleDayActivityGoal, aDate : Date) {
         
         weekDayDetailLink = goal.yonadayDetails
-        performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+        performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
     }
 
     override func actionsAfterRightButtonPush() {
@@ -89,15 +89,15 @@ class FriendsDayViewController: MeDashBoardMainViewController {
             
             if name.characters.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
-                let txt = "\(name.capitalizedString.characters.first!)"
-                btnName.setTitle(txt, forState: .Normal)
-                btnName.frame = CGRectMake(0, 0, 32, 32)
-                btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), forControlEvents: .TouchUpInside)
+                let txt = "\(name.capitalized.characters.first!)"
+                btnName.setTitle(txt, for: UIControlState())
+                btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+                btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
                 
-                btnName.backgroundColor = UIColor.clearColor()
+                btnName.backgroundColor = UIColor.clear
                 btnName.layer.cornerRadius = btnName.frame.size.width/2
                 btnName.layer.borderWidth = 1
-                btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                btnName.layer.borderColor = UIColor.white.cgColor
                 
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
@@ -114,19 +114,19 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     
     // MARK: - ACTION
-    @IBAction func didChooseUserProfile(sender : AnyObject) {
+    @IBAction func didChooseUserProfile(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as [NSObject : AnyObject])
-        performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendProfile, sender: self)
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as! [AnyHashable: Any])
+        performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendProfile, sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is FriendsProfileViewController {
-            let controller = segue.destinationViewController as! FriendsProfileViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendsProfileViewController {
+            let controller = segue.destination as! FriendsProfileViewController
             controller.aUser = buddyToShow
         }
-        if segue.destinationViewController is FriendsDayDetailViewController {
-            let controller = segue.destinationViewController as! FriendsDayDetailViewController
+        if segue.destination is FriendsDayDetailViewController {
+            let controller = segue.destination as! FriendsDayDetailViewController
             
             if let path = weekDayDetailLink {
                 controller.initialObjectLink = path
@@ -138,8 +138,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                 controller.buddy = buddyToShow
             }
         }
-        if segue.destinationViewController is FriendsWeekDetailWeekController {
-            let controller = segue.destinationViewController as! FriendsWeekDetailWeekController
+        if segue.destination is FriendsWeekDetailWeekController {
+            let controller = segue.destination as! FriendsWeekDetailWeekController
             if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
                 controller.initialObject = data
@@ -150,20 +150,20 @@ class FriendsDayViewController: MeDashBoardMainViewController {
 
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
 //        if selectedTab == .right {
 //            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
 //        }
         
         if selectedTab == .left {
-            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+            performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
         }
     }
 
     
     // MARK: - Data loaders
     
-    override func loadActivitiesForDay(page : Int = 0) {
+    override func loadActivitiesForDay(_ page : Int = 0) {
         print("Entering day loader")
         if let buddy = buddyToShow  {
             Loader.Show()
@@ -184,7 +184,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
     }
 
-    override func loadActivitiesForWeek(page : Int = 0) {
+    override func loadActivitiesForWeek(_ page : Int = 0) {
         if let buddy = buddyToShow  {
             Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in

@@ -85,21 +85,21 @@ class SpreadCell : UITableViewCell {
         for currentSpread in spreadCells {
             let spreadX = CGFloat(spreadCellsValue) * CGFloat(pxWidthPerSpread + pxGap) //value int
             print("This is my x \(spreadX)")
-            let spreadCellView = SpreadCellCustomView.init(frame: CGRectMake(spreadX, spreadY - self.pxSpreadHeight,pxWidthPerSpread,0), colour: UIColor.clearColor())
+            let spreadCellView = SpreadCellCustomView.init(frame: CGRect(x: spreadX, y: spreadY - self.pxSpreadHeight,width: pxWidthPerSpread,height: 0), colour: UIColor.clear)
             determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
             
             if isAnimated {
-                UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut,
+                UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(),
                                            animations: {
                                             spreadCellView.frame = spreadCellView.frame
                     }, completion: {finished in
-                        UIView.animateWithDuration(0.9, animations: {
+                        UIView.animate(withDuration: 0.9, animations: {
                             if currentSpread > 0 {
                                 self.pxSpreadHeight = self.pxPerMinute * CGFloat(currentSpread)
-                                spreadCellView.frame = CGRectMake(spreadX, spreadY - self.pxSpreadHeight, self.pxWidthPerSpread, self.pxSpreadHeight)
+                                spreadCellView.frame = CGRect(x: spreadX, y: spreadY - self.pxSpreadHeight, width: self.pxWidthPerSpread, height: self.pxSpreadHeight)
                             } else {
                                 self.pxSpreadHeight = self.pxWidthPerSpread
-                                spreadCellView.frame = CGRectMake(spreadX, spreadY - self.pxSpreadHeight, self.pxWidthPerSpread, self.pxSpreadHeight)
+                                spreadCellView.frame = CGRect(x: spreadX, y: spreadY - self.pxSpreadHeight, width: self.pxWidthPerSpread, height: self.pxSpreadHeight)
                             }
                         })
                         
@@ -107,10 +107,10 @@ class SpreadCell : UITableViewCell {
             } else {
                 if currentSpread > 0 {
                     pxSpreadHeight = pxPerMinute * CGFloat(currentSpread)
-                    spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
+                    spreadCellView.frame = CGRect(x: spreadX, y: spreadY - pxSpreadHeight, width: pxWidthPerSpread, height: pxSpreadHeight)
                 } else {
                     pxSpreadHeight = pxWidthPerSpread
-                    spreadCellView.frame = CGRectMake(spreadX, spreadY - pxSpreadHeight, pxWidthPerSpread, pxSpreadHeight)
+                    spreadCellView.frame = CGRect(x: spreadX, y: spreadY - pxSpreadHeight, width: pxWidthPerSpread, height: pxSpreadHeight)
                 }
             }
             
@@ -128,7 +128,7 @@ class SpreadCell : UITableViewCell {
         
     }
     
-    func determineCellColour(spreadCellView: SpreadCellCustomView, spreadCellsValue: Int, currentSpread: Int){
+    func determineCellColour(_ spreadCellView: SpreadCellCustomView, spreadCellsValue: Int, currentSpread: Int){
         if currentSpread > 0 {
             if activitySpread.count == 0 {
                 if totalMinutesBeyondGoal > 0 {
@@ -152,7 +152,7 @@ class SpreadCell : UITableViewCell {
         backgroundMinsView.subviews.forEach({ $0.removeFromSuperview() })
     }
     
-    func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
+    func setWeekActivityDetailForView (_ weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
         self.isAnimated = animated
         self.totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
         self.totalActivityDurationMinutes = weekActivityDetail.totalActivityDurationMinutes
@@ -160,7 +160,7 @@ class SpreadCell : UITableViewCell {
         self.activitySpread = weekActivityDetail.spreadCells
     }
 
-    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+    func setDayActivityDetailForView (_ dayActivity: DaySingleActivityDetail, animated: Bool) {
         self.isAnimated = animated
         self.totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         self.totalActivityDurationMinutes = dayActivity.totalActivityDurationMinutes

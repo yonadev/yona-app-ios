@@ -24,14 +24,14 @@ class NotificationDetailViewController: UIViewController {
     
     func setUpLabels() {
         nameLabel.text = NSLocalizedString("yonaAdministrator", comment: "")
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        let txt = formatter.stringFromDate((aMessage?.creationTime)!)
+        let txt = formatter.string(from: (aMessage?.creationTime)! as Date)
         timeLabel.text = txt
         self.title = ""
         
         if let nickname = aMessage?.nickname {
-            avatarLabel.text = "\(nickname.capitalizedString.characters.first!)"
+            avatarLabel.text = "\(nickname.capitalized.characters.first!)"
         }
         titleLabel.text = NSLocalizedString("message.type.systemMessage", comment: "")
         descriptionLabel.text = aMessage?.message

@@ -22,7 +22,7 @@ class YonaVPNProgressIconView: UIView {
     @IBOutlet var statusView :UIImageView!
 
     
-    func confugureView (type : progressIconEnum, completed : Bool) {
+    func confugureView (_ type : progressIconEnum, completed : Bool) {
         switch type {
         case .yonaApp:
             infoLabel.text = NSLocalizedString("YonaVPNProgressView.yonaapp.text", comment: "")
@@ -42,7 +42,7 @@ class YonaVPNProgressIconView: UIView {
         }
     }
 
-    func setText (aString : String ) {
+    func setText (_ aString : String ) {
         infoLabel.text = aString
     }
 }

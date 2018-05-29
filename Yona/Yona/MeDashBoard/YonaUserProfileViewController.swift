@@ -22,7 +22,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var rightSideButton : UIBarButtonItem!
 
     var topCell : YonaUserHeaderWithTwoTabTableViewCell?
-    private let nederlandPhonePrefix = "+31 (0) "
+    fileprivate let nederlandPhonePrefix = "+31 (0) "
     var aUser : Users?
     var isShowingProfile = true
     var rightSideButtonItems : [UIBarButtonItem]?
@@ -30,25 +30,25 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         registreTableViewCells()
         dataLoading()
         currentImage = nil
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaUserProfileViewController")
+        tracker?.set(kGAIScreenName, value: "YonaUserProfileViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
 
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserDisplayTableViewCell")
+        tableView.register(nib, forCellReuseIdentifier: "YonaUserDisplayTableViewCell")
         nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
+        tableView.register(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
     }
 
     
@@ -95,11 +95,11 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         tableView.reloadData()
     }
 
-    @IBAction func userDidSelectEdit(sender: AnyObject) {
+    @IBAction func userDidSelectEdit(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as! [AnyHashable: Any])
 
-        if tableView.editing {
+        if tableView.isEditing {
             self.navigationItem.title = ""
             let result = isUserDataValid()
             if  result == .none {
@@ -110,16 +110,16 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             } else {
                 switch result {
                 case .firstname:
-                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! YonaUserDisplayTableViewCell
                     cell.setActive()
                 case .lastname:
-                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! YonaUserDisplayTableViewCell
                     cell.setActive()
                 case .nickname:
-                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as! YonaUserDisplayTableViewCell
                     cell.setActive()
                 case .phone:
-                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! YonaUserDisplayTableViewCell
+                    let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as! YonaUserDisplayTableViewCell
                     cell.setActive()
                 default:
                     return
@@ -147,11 +147,11 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: - tableView methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
@@ -163,14 +163,14 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nil
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if topCell == nil {
-                topCell = (tableView.dequeueReusableCellWithIdentifier("YonaUserHeaderWithTwoTabTableViewCell", forIndexPath: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell)
+                topCell = (tableView.dequeueReusableCell(withIdentifier: "YonaUserHeaderWithTwoTabTableViewCell", for: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell)
                 topCell?.delegate = self
             }
             if let theUser = aUser {
@@ -182,12 +182,12 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         }
         
         if isShowingProfile {
-            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
+            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserDisplayTableViewCell", for: indexPath) as! YonaUserDisplayTableViewCell
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
         } else {
         // must be changed to show badges
-            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserDisplayTableViewCell", forIndexPath: indexPath) as! YonaUserDisplayTableViewCell
+            let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserDisplayTableViewCell", for: indexPath) as! YonaUserDisplayTableViewCell
             
             cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
@@ -196,16 +196,16 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 221
         }
         return 87
     }
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.None
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.none
     }
-    func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
 
@@ -252,7 +252,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                     Loader.Hide()
                     self.aUser = user
                     if let _ = user?.confirmMobileLink {
-                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController {
+                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
                             controller.isFromUserProfile = true
                         
                             self.navigationController?.pushViewController(controller, animated: true)
@@ -306,7 +306,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                         NSLocalizedString("enter-number-validation", comment: ""))
                     return .phone
                 } else {
-                aUser?.mobileNumber = trimmedString.stringByReplacingOccurrencesOfString("310", withString: "+31")
+                aUser?.mobileNumber = trimmedString.replacingOccurrences(of: "310", with: "+31")
                 }
                 
             }
@@ -321,21 +321,21 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     
-    func chooseImage(sender: Any) {
+    func chooseImage(_ sender: Any) {
         
         let imagePickerController = UIImagePickerController()
         
-        imagePickerController.navigationBar.translucent = false
+        imagePickerController.navigationBar.isTranslucent = false
         imagePickerController.navigationBar.barTintColor = .yiGrapeTwoColor() // Background color
         imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
-        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         
-        let act = UIAlertAction(title: "Camera", style: .Default, handler: {(action:UIAlertAction) in
+        let act = UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
             
-            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-                imagePickerController.sourceType = .Camera
-                self.presentViewController(imagePickerController, animated: true, completion: nil)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
             }else{
                 print("Camera not available")
             }
@@ -345,19 +345,19 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         actionSheet.addAction(act)
         
         
-        let act1 = UIAlertAction(title: "Photo Library", style: .Default, handler: { (action:UIAlertAction) in
-            imagePickerController.sourceType = .PhotoLibrary
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        let act1 = UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
         })
         
         actionSheet.addAction(act1)
 
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
         
         
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var image : UIImage!
         
@@ -373,22 +373,22 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         currentImage =  resizeImage(image, targetSize: CGSize(width:200, height: 200))
         topCell!.avatarImageView.image = currentImage
         topCell!.avatraInitialsLabel.text = ""
-        picker.dismissViewControllerAnimated( true, completion: nil)
+        picker.dismiss( animated: true, completion: nil)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [kCTForegroundColorAttributeName as NSAttributedStringKey : UIColor.white,
+                                                            kCTFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!] as? [NSAttributedStringKey : Any]
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated( true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss( animated: true, completion: nil)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
     }
     
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+    func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
         let size = image.size
         
         let widthRatio  = targetSize.width  / size.width
@@ -397,17 +397,17 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
-            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
         } else {
-            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
         
         // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
         
         // Actually do the resizing to the rect using the ImageContext stuff
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.drawInRect(rect)
+        image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

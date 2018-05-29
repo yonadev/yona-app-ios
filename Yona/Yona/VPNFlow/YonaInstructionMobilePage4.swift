@@ -15,30 +15,30 @@ class YonaInstructionMobilePage4 : YonaVPNInstructionsViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         textLabel.text = NSLocalizedString("vpnflowintro2.title4.text", comment: "")
-        actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), forState: UIControlState.Normal)
+        actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), for: UIControlState())
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaInstructionMobilePage4")
+        tracker?.set(kGAIScreenName, value: "YonaInstructionMobilePage4")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
 
-    @IBAction func requestReRun(sender: AnyObject){
+    @IBAction func requestReRun(_ sender: AnyObject){
         delegate?.didRequestReRun()
     }
     
     override func startAnimation(){
         
         overlayImage.alpha = 0.0
-        overlayImage.hidden = false
-        UIView.animateWithDuration(animationDuration, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn,animations: {
+        overlayImage.isHidden = false
+        UIView.animate(withDuration: animationDuration, delay: 0.5, options: UIViewAnimationOptions.curveEaseIn,animations: {
             self.overlayImage.alpha = 1.0
             }, completion: {
                 completed in
-                UIView.animateWithDuration(0.0  , delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn,animations: {
+                UIView.animate(withDuration: 0.0  , delay: 0.5, options: UIViewAnimationOptions.curveEaseIn,animations: {
                     
                     }, completion: {
                         completed in

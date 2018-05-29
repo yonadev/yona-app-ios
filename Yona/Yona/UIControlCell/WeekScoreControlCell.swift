@@ -54,12 +54,12 @@ class WeekScoreControlCell: UITableViewCell {
     }
 
     
-    func setSingleActivity(theActivityGoal : WeekSingleActivityGoal, isScore :Bool = false) {
+    func setSingleActivity(_ theActivityGoal : WeekSingleActivityGoal, isScore :Bool = false) {
         aActivityGoal = theActivityGoal
         self.goalMessage.text = NSLocalizedString("meweek.message.timescompleted", comment: "")
         
-        let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
-        userCalendar?.firstWeekday = 1
+        var userCalendar = Calendar.init(identifier: .gregorian)
+        userCalendar.firstWeekday = 1
         scoreLabel.text = "\(aActivityGoal.numberOfDaysGoalWasReached)"
         if !isScore {
             goalTypeLabel.text = aActivityGoal.goalName
@@ -67,17 +67,17 @@ class WeekScoreControlCell: UITableViewCell {
             goalTypeLabel.text = NSLocalizedString("meweek.message.score", comment: "")
         }
         for index in 0...6 {
-            let periodComponents = NSDateComponents()
+            var periodComponents = DateComponents()
             periodComponents.weekday = index-1
-            let aDate = userCalendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: aActivityGoal.date,
+            let aDate = (userCalendar as NSCalendar).date(
+                byAdding: periodComponents,
+                to: aActivityGoal.date,
                 options: [])!
 
             
             
             //let aDate = theActivityGoal.date.dateByAddingTimeInterval(-Double(index)*60*60*24)
-            let obje :  WeekCircleView = self.valueForKey("day\(index+1)CircelView") as! WeekCircleView
+            let obje :  WeekCircleView = self.value(forKey: "day\(index+1)CircelView") as! WeekCircleView
             var tempStatus : circleViewStatus = circleViewStatus.noData
             for dayActivity in aActivityGoal.activity {
                 if dayActivity.dayofweek.rawValue == getDayOfWeek(aDate) {
@@ -95,39 +95,39 @@ class WeekScoreControlCell: UITableViewCell {
         }
     }
     
-    func getDayOfWeek(theDate:NSDate)->Int {
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    func getDayOfWeek(_ theDate:Date)->Int {
+        var myCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
         myCalendar.firstWeekday = 1
         
-        let myComponents = myCalendar.components(.Weekday, fromDate: theDate)
+        let myComponents = (myCalendar as NSCalendar).components(.weekday, from: theDate)
         let weekDay = myComponents.weekday
-        return weekDay
+        return weekDay!
     }
 
-    @IBAction func singeldayAction(sender : UIButton){
-        var aDate : NSDate?
+    @IBAction func singeldayAction(_ sender : UIButton){
+        var aDate : Date?
         var aActivity : SingleDayActivityGoal?
         switch sender.tag {
         case 1:
-            aDate = day1CircelView.theData
+            aDate = day1CircelView.theData as Date?
             aActivity = day1CircelView.activity
         case 2:
-            aDate = day2CircelView.theData
+            aDate = day2CircelView.theData as Date?
             aActivity = day2CircelView.activity
         case 3:
-            aDate = day3CircelView.theData
+            aDate = day3CircelView.theData as Date?
             aActivity = day3CircelView.activity
         case 4:
-            aDate = day4CircelView.theData
+            aDate = day4CircelView.theData as Date?
             aActivity = day4CircelView.activity
         case 5:
-            aDate = day5CircelView.theData
+            aDate = day5CircelView.theData as Date?
             aActivity = day5CircelView.activity
         case 6:
-            aDate = day6CircelView.theData
+            aDate = day6CircelView.theData as Date?
             aActivity = day6CircelView.activity
         case 7:
-            aDate = day7CircelView.theData
+            aDate = day7CircelView.theData as Date?
             aActivity = day7CircelView.activity
         default:
             return

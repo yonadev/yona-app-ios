@@ -77,17 +77,17 @@ class TimeLinedayActivitiesForUsers : NSObject {
         
     }
     
-    func setGoalData(goals : [Goal]) {
+    func setGoalData(_ goals : [Goal]) {
         
-        let range1 =  goalLink?.rangeOfString("goals/")?.startIndex
+        let range1 =  goalLink?.range(of: "goals/")?.lowerBound
         var goal1ID = ""
-        if let txt = goalLink?.substringFromIndex(range1!) {
+        if let txt = goalLink?.substring(from: range1!) {
             goal1ID = txt
         }
         for goal in goals {
-            let range1 =  goal.selfLinks?.rangeOfString("goals/")?.startIndex
+            let range1 =  goal.selfLinks?.range(of: "goals/")?.lowerBound
             var goal2ID = ""
-            if let txt = goal.selfLinks?.substringFromIndex(range1!) {
+            if let txt = goal.selfLinks?.substring(from: range1!) {
                 goal2ID = txt
             }
             if goal1ID == goal2ID {
@@ -102,7 +102,7 @@ class TimeLinedayActivitiesForUsers : NSObject {
 
     }
 
-    func setBuddyOrUser(buddies : [Buddies], aUser : Users) {
+    func setBuddyOrUser(_ buddies : [Buddies], aUser : Users) {
         
         if userLink == aUser.getSelfLink {
             user = aUser

@@ -23,14 +23,14 @@ class ActivityAPIServiceTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testGetActivitiesNotAddedAfterAddingNoGoalsOtherThanMandatoryOne() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         let body =
             ["firstName": "Richard",
@@ -60,12 +60,12 @@ class ActivityAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testGetActivitiesNotAddedArrayMethodAfterAddingSocial() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         let body =
             ["firstName": "Richard",
@@ -117,13 +117,13 @@ class ActivityAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
 
     
     func testGetActivityCategories() {
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         let body =
             ["firstName": "Richard",
@@ -150,13 +150,13 @@ class ActivityAPIServiceTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testGetActivityCategoryWithID() {
         
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         let body =
             ["firstName": "Richard",
@@ -189,12 +189,12 @@ class ActivityAPIServiceTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testGetActivityLinkForSocialActivityName() {
         let socialActivityCategoryLink = "http://85.222.227.142/activityCategories/27395d17-7022-4f71-9daf-f431ff4f11e8" // hard code this for now for test
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -224,6 +224,6 @@ class ActivityAPIServiceTests: XCTestCase {
         }
         
 
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
 }

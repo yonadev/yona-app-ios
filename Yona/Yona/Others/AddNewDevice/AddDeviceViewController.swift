@@ -8,16 +8,42 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     var activeField : UITextField?
     var colorX : UIColor = UIColor.yiWhiteColor()
     var previousRange: NSRange!
     
-    private let nederlandPhonePrefix = "31"
+    fileprivate let nederlandPhonePrefix = "31"
     
     @IBOutlet var mobileTextField: UITextField!
-    private var mobilePrefixTextField: UITextField!
+    fileprivate var mobilePrefixTextField: UITextField!
     @IBOutlet var passcodeTextField: UITextField!
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
@@ -33,15 +59,15 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "AddDeviceViewController")
+        tracker?.set(kGAIScreenName, value: "AddDeviceViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         // Text Delegates
         if var label = previousRange {
             label.length = 1
@@ -51,47 +77,47 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         passcodeTextField.delegate = self
         
         // Adding right mode image to text fields
-        let mobileImage = UIImageView(image: R.image.icnMobile)
-        mobileImage.frame = CGRectMake(0.0, 0.0, mobileImage.image!.size.width+10.0, mobileImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.Center
+        let mobileImage = UIImageView(image: R.image.icnMobile())
+        mobileImage.frame = CGRect(x: 0.0, y: 0.0, width: mobileImage.image!.size.width+10.0, height: mobileImage.image!.size.height);
+        mobileImage.contentMode = UIViewContentMode.center
         self.mobileTextField.rightView = mobileImage;
-        self.mobileTextField.rightViewMode = UITextFieldViewMode.Always
+        self.mobileTextField.rightViewMode = UITextFieldViewMode.always
         
-        let passcodeImage = UIImageView(image: R.image.icnName)
-        passcodeImage.frame = CGRectMake(0.0, 0.0, passcodeImage.image!.size.width+10.0, passcodeImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.Center
+        let passcodeImage = UIImageView(image: R.image.icnName())
+        passcodeImage.frame = CGRect(x: 0.0, y: 0.0, width: passcodeImage.image!.size.width+10.0, height: passcodeImage.image!.size.height);
+        mobileImage.contentMode = UIViewContentMode.center
         self.passcodeTextField.rightView = passcodeImage;
-        self.passcodeTextField.rightViewMode = UITextFieldViewMode.Always
+        self.passcodeTextField.rightViewMode = UITextFieldViewMode.always
         
-        let mobileNumberView = UIView(frame: CGRectMake(0, 0, 50, 50))
+        let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
-        let plusLabel = UILabel(frame: CGRectMake(0, 0, 10, 50))
+        let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.Center
-        plusLabel.textAlignment = NSTextAlignment.Center
+        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
-        let prefixTextField = UITextField(frame: CGRectMake(10, 0, 40, 50))
+        let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.Left
-        prefixTextField.textAlignment = NSTextAlignment.Left
+        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.Always
-        prefixTextField.keyboardType = UIKeyboardType.NumberPad
+        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextField.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
+        self.mobileTextField.leftViewMode = UITextFieldViewMode.always
     }
     
     // Go To Another ViewController
-    @IBAction func loginPressed(sender: UIButton) {
+    @IBAction func loginPressed(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as! [AnyHashable: Any])
         
         var number = ""
         if let mobilenum = mobileTextField.text {
@@ -117,7 +143,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
                         //Update flag
                         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
                             setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                            if let passcode = R.storyboard.login.passcodeViewController {
+                            if let passcode = R.storyboard.login.passcodeViewController(()) {
                                 self.navigationController?.pushViewController(passcode, animated: false)
                             }
                         })
@@ -134,15 +160,15 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
 
 extension AddDeviceViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == mobileTextField {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+            IQKeyboardManager.shared.enableAutoToolbar = true
         } else {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+            IQKeyboardManager.shared.enableAutoToolbar = false
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
             passcodeTextField.becomeFirstResponder()
         } else {
@@ -151,7 +177,7 @@ extension AddDeviceViewController: UITextFieldDelegate {
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
@@ -179,7 +205,7 @@ extension AddDeviceViewController: UITextFieldDelegate {
     }
     
     //Calls this function when the tap is recognized.
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
 }

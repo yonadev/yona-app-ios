@@ -9,7 +9,7 @@
 import Foundation
 
 class WeekSingleActivityGoal: NSObject {
-    var date : NSDate  = NSDate()
+    var date : Date  = Date()
     var activity : [SingleDayActivityGoal] = []
     var goalLinks: String?
     var goalName: String?

@@ -1,4 +1,4 @@
-//
+ //
 //  Manager.swift
 //  Yona
 //
@@ -7,13 +7,37 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 typealias budgetGoals = Array<Goal>?
 typealias timezoneGoals = Array<Goal>?
 typealias nogoGoals = Array<Goal>?
 
 
-typealias APIMobileConfigResponse = (Bool, NSData?, ServerCode?) -> Void
+typealias APIMobileConfigResponse = (Bool, Data?, ServerCode?) -> Void
 
 typealias APIServiceResponse = (Bool, BodyDataDictionary?, NSError?) -> Void
 typealias APIResponse = (Bool, ServerMessage?, ServerCode?) -> Void
@@ -38,7 +62,7 @@ typealias APIActivitiesGoalsExcludeArrayResponse = (Bool, ServerMessage?, Server
 
 typealias APIMessageResponse = (Bool, ServerMessage?, ServerCode?, Message?, Array<Message>?) -> Void
 typealias APIBuddiesResponse = (Bool, ServerMessage?, ServerCode?, Buddies?, Array<Buddies>?) -> Void
-typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, NSURLRequest?, NSError?) -> Void
+typealias NSURLRequestResponse = (Bool, ServerMessage?, ServerCode?, URLRequest?, NSError?) -> Void
 typealias SortedGoals = (Bool, budgetGoals , timezoneGoals, nogoGoals) -> Void
 
 typealias APIActivityTimeLineResponse = (Bool, ServerMessage?, ServerCode?, [TimeLineDayActivityOverview]?, NSError?) -> Void
@@ -50,7 +74,7 @@ class Manager: NSObject {
     static let sharedInstance = Manager()
     var userInfo:BodyDataDictionary = [:]
 
-    private override init() {
+    fileprivate override init() {
         print("Only initialised once only")
     }
     /**
@@ -62,20 +86,20 @@ class Manager: NSObject {
      - parameter httpMethod: httpMethods
      - parameter NSURLRequest, the request created to be executed by makeRequest
      */
-    func setupRequest(path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: httpMethods) throws -> NSURLRequest {
+    func setupRequest(_ path: String, body: BodyDataDictionary?, httpHeader: [String:String], httpMethod: httpMethods) throws -> URLRequest {
         let urlString = path.hasPrefix(EnvironmentManager.baseUrlString()) ? path : EnvironmentManager.baseUrlString() + path
-        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        let request = NSMutableURLRequest(url: URL(string: urlString)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
 
         if let body = body {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: JSONSerialization.WritingOptions(rawValue: 0))
         }
     
         request.timeoutInterval = 30
         
-        request.HTTPMethod = httpMethod.rawValue
+        request.httpMethod = httpMethod.rawValue
         
-        return request
+        return request as URLRequest
     }
 
     
@@ -88,20 +112,20 @@ class Manager: NSObject {
      - parameter httpMethod: httpMethods
      - parameter NSURLRequest, the request created to be executed by makeRequest
      */
-    func setupDataRequest(path: String, body: NSData?, httpHeader: [String:String], httpMethod: httpMethods) throws -> NSURLRequest {
+    func setupDataRequest(_ path: String, body: Data?, httpHeader: [String:String], httpMethod: httpMethods) throws -> URLRequest {
         let urlString = path.hasPrefix(EnvironmentManager.baseUrlString()) ? path : EnvironmentManager.baseUrlString() + path
-        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        let request = NSMutableURLRequest(url: URL(string: urlString)!)
         request.allHTTPHeaderFields = httpHeader //["Content-Type": "application/json", "Yona-Password": password]
         
         if let body = body {
-            request.HTTPBody = body
+            request.httpBody = body
         }
         
         request.timeoutInterval = 30
         
-        request.HTTPMethod = httpMethod.rawValue
+        request.httpMethod = httpMethod.rawValue
         
-        return request
+        return request as URLRequest
     }
 
 }
@@ -118,47 +142,47 @@ extension Manager {
      - parameter httpHeader:[String:String], the header set to a JSON type
      - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
-    func makeRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIServiceResponse)
+    func makeRequest(_ path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: @escaping APIServiceResponse)
     {
         do{
             let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
                 if error != nil{
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onCompletion(false, nil, error)
+                    DispatchQueue.main.async {
+                        onCompletion(false, nil, error as NSError?)
                         return
                     }
                 }
                 if response != nil{
-                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
+                    if data != nil && data?.count > 0{ //don't try to parse 0 data, even tho it isn't nil
                         do{
                             
-                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                            let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
                             print(jsonData)
-                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error)
+                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error as NSError?)
                             let userInfo = [
                                 NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
                             ]
                             let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
                             
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
                             }
                         } catch let error as NSError{
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 onCompletion(false, nil, error)
                                 return
                             }
                         }
                     } else {
-                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error)
+                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error as NSError?)
                         //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
                         let userInfo = [
                             NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
                         ]
                         let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             onCompletion(requestResult.success, nil, omdbError)
                         }
                     }
@@ -166,7 +190,7 @@ extension Manager {
             })
             task.resume()
         } catch let error as NSError{
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 onCompletion(false, nil, error)
             }
             
@@ -174,7 +198,7 @@ extension Manager {
     }
 
 
-    func makeFileUpload(path: String, file: UIImage, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+    func makeFileUpload(_ path: String, file: UIImage, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: @escaping APIMobileConfigResponse)
         
     {
         
@@ -187,21 +211,21 @@ extension Manager {
             
             let data = multipartDataFromFile(file)
             let request = try setupDataRequest(path, body: data, httpHeader: headers, httpMethod: httpMethod)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
                 if error != nil{
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         onCompletion(false, nil, "")
                         return
                     }
                 }
                 if response != nil{
-                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
-                        dispatch_async(dispatch_get_main_queue()) {
+                    if data != nil && data?.count > 0{ //don't try to parse 0 data, even tho it isn't nil
+                        DispatchQueue.main.async {
                             onCompletion(true, data , "")
                         }
                     } else {
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             onCompletion(false, nil, "")
                         }
                     }
@@ -209,7 +233,7 @@ extension Manager {
             })
             task.resume()
         } catch _ as NSError{
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 onCompletion(false, nil, "")
             }
             
@@ -218,28 +242,32 @@ extension Manager {
 
     
     
-    func makeFileRequest(path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: APIMobileConfigResponse)
+    func makeFileRequest(_ path: String, body: BodyDataDictionary?, httpMethod: httpMethods, httpHeader:[String:String], onCompletion: @escaping APIMobileConfigResponse)
         
     {
         
         do{
             let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
                 if error != nil{
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                             onCompletion(false, nil, error?.localizedDescription)
                         return
                     }
                 }
                 if response != nil{
-                    if data != nil && data?.length > 0{ //don't try to parse 0 data, even tho it isn't nil
-                            dispatch_async(dispatch_get_main_queue()) {
+                    if data != nil && data?.count > 0{ //don't try to parse 0 data, even tho it isn't nil
+                            DispatchQueue.main.async {
+//                                NSLog("-----------------------------YONA")
+//                                NSLog("makeFileRequest : data size %f", data!.length)
+
+//                                onCompletion(true, data , "")
                         onCompletion(true, data , "")
 
                         }
                     } else {
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                                 onCompletion(false, nil, "File downloaded was empty")
                             
                         }
@@ -248,34 +276,34 @@ extension Manager {
             })
             task.resume()
         } catch _ as NSError{
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 onCompletion(false, nil, "")
             }
             
         }
     }
 
-    private func multipartDataFromFile(img: UIImage) -> NSData {
+    fileprivate func multipartDataFromFile(_ img: UIImage) -> Data {
         let body = NSMutableData()
         
 
         let mimetype = "image/*"
         let boundary = generateBoundaryString()
         guard let image_data = UIImagePNGRepresentation(img) else {
-            return NSData()
+            return Data()
         }
         
         //define the data post parameter
         
-        body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData("Content-Type: \(mimetype)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData(image_data)
-        body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(image_data)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
         
-        body.appendData("--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
 
-        return body
+        return body as Data
     }
     
     func generateBoundaryString() -> String

@@ -49,19 +49,19 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBOutlet weak var spacerView2 : UIView!
     var demoCounter = 0
 
-    var mobileconfigData : NSData?
+    var mobileconfigData : Data?
     var currentProgress : VPNSetupStatus = .yonaAppInstalled
-    var customView : UIView  = UIView(frame: CGRectZero)
+    var customView : UIView  = UIView(frame: CGRect.zero)
     var firstTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeScreen), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeScreen), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
 
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         resetAllViews()
         dispatcher()
@@ -71,8 +71,8 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
 
         progressLabel.text = ""
@@ -80,41 +80,41 @@ class YonaVPNFlowMainViewController: UIViewController {
         
 
         yonaAppStatusView.alpha = 0.0
-        yonaAppStatusView.hidden = false
+        yonaAppStatusView.isHidden = false
         
         openVPNStatusView.alpha = 0.0
-        openVPNStatusView.hidden = false
+        openVPNStatusView.isHidden = false
         
         profileStatusView.alpha = 0.0
-        profileStatusView.hidden = false
+        profileStatusView.isHidden = false
 
         nextButton.alpha = 0.0
         laterButton.alpha = 0.0
         progressView.alpha = 0.0
         
         finalShowInstructionsButton.alpha = 0.0
-        let  cur = NSUserDefaults.standardUserDefaults().integerForKey(YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        let  cur = UserDefaults.standard.integer(forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         currentProgress = VPNSetupStatus(rawValue: cur)!
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
+        tracker?.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    func removeScreen() {
+    @objc func removeScreen() {
         //TODO: NEXT 2 LINES TO BE REMOVED AFTER CODE COMPLETIONS
         
         if currentProgress != VPNSetupStatus.configurationInstalled {
-            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.yonaAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            UserDefaults.standard.set(VPNSetupStatus.yonaAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             currentProgress = .yonaAppInstalled
         }
-        dismissViewControllerAnimated(false, completion: {})
+        dismiss(animated: false, completion: {})
     }
     
     func setupUI() {
@@ -123,21 +123,21 @@ class YonaVPNFlowMainViewController: UIViewController {
         navigationItem.title = NSLocalizedString("vpnflowmainscreen.title.text", comment: "")
     
         let viewWidth = self.view.frame.size.width
-        customView.frame = CGRectMake(0, 0, (viewWidth-60)/4, 2)
+        customView.frame = CGRect(x: 0, y: 0, width: (viewWidth-60)/4, height: 2)
         customView.backgroundColor = UIColor.yiDarkishPinkColor()
         progressView.addSubview(customView)
     
         nextButton.backgroundColor = UIColor.yiDarkishPinkColor()
-        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Normal)
-        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Disabled)
+        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState())
+        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
 
         laterButton.backgroundColor = UIColor.yiDarkishPinkColor()
-        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), forState: UIControlState.Normal)
-        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), forState: UIControlState.Disabled)
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControlState())
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControlState.disabled)
 
         
-        openVPNStatusView.hidden = true
-        profileStatusView.hidden = true
+        openVPNStatusView.isHidden = true
+        profileStatusView.isHidden = true
         nextButton.alpha = 0.0
     
         if view.frame.size.height < 500 {
@@ -152,68 +152,68 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
 
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is YonaVPNFlowInstructionsMobileConfigViewController {
-            let controller = segue.destinationViewController as! YonaVPNFlowInstructionsMobileConfigViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is YonaVPNFlowInstructionsMobileConfigViewController {
+            let controller = segue.destination as! YonaVPNFlowInstructionsMobileConfigViewController
             controller.delegate = self
         }
     }
     
     
-    @IBAction func finalInstrucsionsButtonAction (sender :UIButton) {
+    @IBAction func finalInstrucsionsButtonAction (_ sender :UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil).build() as! [AnyHashable: Any])
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.navigationItem.hidesBackButton = true
-            self.performSegueWithIdentifier(R.segue.yonaVPNFlowMainViewController.mobileInstruction, sender: self)
+            self.performSegue(withIdentifier: R.segue.yonaVPNFlowMainViewController.mobileInstruction, sender: self)
         })
 
         
     }
     
-    @IBAction func laterAction (sender :UIButton) {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+    @IBAction func laterAction (_ sender :UIButton) {
+        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+        UserDefaults.standard.set(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         
-        NSUserDefaults.standardUserDefaults().setBool(true,   forKey: "SIMULATOR_OPENVPN")
+        UserDefaults.standard.set(true,   forKey: "SIMULATOR_OPENVPN")
         
 
         
-        self.dismissViewControllerAnimated(true, completion: {})
+        self.dismiss(animated: true, completion: {})
         return
 
     }
     
-    @IBAction func buttonAction (sender :UIButton) {
+    @IBAction func buttonAction (_ sender :UIButton) {
 
         
         if currentProgress == .openVPNAppNotInstalledShow {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil).build() as! [AnyHashable: Any])
             
-            dispatch_async(dispatch_get_main_queue(), {
-                NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            DispatchQueue.main.async(execute: {
+                UserDefaults.standard.set(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                 self.currentProgress = .openVPNAppNotInstalledSetup
             
                 self.navigationItem.hidesBackButton = true
-                self.performSegueWithIdentifier(R.segue.yonaVPNFlowMainViewController.showVPNInstructions, sender: self)
+                self.performSegue(withIdentifier: R.segue.yonaVPNFlowMainViewController.showVPNInstructions, sender: self)
                 })
             return
         }
         if currentProgress == .openVPNAppInstalledStep3 {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil).build() as! [AnyHashable: Any])
             
             downloadFileFromServer()
             return
         }
         if currentProgress == .configurationInstalled {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as! [AnyHashable: Any])
             
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
-            self.dismissViewControllerAnimated(true, completion: {})
+            UserDefaults.standard.set(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
+            self.dismiss(animated: true, completion: {})
             return
         }
 
@@ -230,11 +230,11 @@ class YonaVPNFlowMainViewController: UIViewController {
             handleyonaAppInstalled()
 
         case .openVPNAppNotInstalledSetup:
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.handleOpenVPNAppNotInstalledSetup()
             })
         case .openVPNAppNotInstalledShow:
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.handleOpenVPNAppNotInstalledShow()
             })
         case .openVPNAppInstalled:
@@ -248,7 +248,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         case .configurationInstalled:
             handleConfigurationInstalled()
         default:
-            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            UserDefaults.standard.set(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             currentProgress = .yonaAppInstalled
 
             resetAllViews()
@@ -260,12 +260,12 @@ class YonaVPNFlowMainViewController: UIViewController {
     func testForOpenVPN() {
         
         #if (arch(i386) || arch(x86_64))
-            if NSUserDefaults.standardUserDefaults().boolForKey( "SIMULATOR_OPENVPN"){
+            if UserDefaults.standard.bool( forKey: "SIMULATOR_OPENVPN"){
                 if currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
-                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                     
                     currentProgress = .openVPNAppInstalled
-                    NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    UserDefaults.standard.set(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                     
                 }
             }
@@ -274,17 +274,17 @@ class YonaVPNFlowMainViewController: UIViewController {
 
         
         
-        let installed = UIApplication.sharedApplication().canOpenURL( NSURL(string: "openvpn://")! )
-        
-
-        if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
-            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-
-            currentProgress = .openVPNAppInstalled
-            NSUserDefaults.standardUserDefaults().setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-
-        }
-        
+//        let installed = UIApplication.shared.canOpenURL( NSURL(string: "openvpn://")! as URL )
+//        
+//
+//        if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
+//            UserDefaults.standardUserDefaults.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+//
+//            currentProgress = .openVPNAppInstalled
+//            UserDefaults.standardUserDefaults.setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+//
+//        }
+//        
         #endif
 
         
@@ -309,21 +309,21 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: false)
         openVPNStatusView.alpha = 0.0
-        openVPNStatusView.hidden = false
+        openVPNStatusView.isHidden = false
         
         profileStatusView.confugureView(progressIconEnum.profile, completed: false)
         profileStatusView.alpha = 0.0
-        profileStatusView.hidden = false
+        profileStatusView.isHidden = false
         
-        UIView.animateWithDuration(0.6, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.openVPNStatusView.alpha = 1.0
             }, completion:  {
                 completed   in
-                UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
                     self.profileStatusView.alpha = 1.0
                     }, completion:  {
                         completed   in
-                        UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
                             self.nextButton.alpha = 1.0
                             self.laterButton.alpha = 1.0
                             }, completion:  {
@@ -333,12 +333,12 @@ class YonaVPNFlowMainViewController: UIViewController {
                 })
         })
         
-        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        UserDefaults.standard.set(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         currentProgress = .openVPNAppNotInstalledSetup
     }
     
     func handleOpenVPNAppNotInstalledSetup() {
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
                 self.progressLabel.alpha = 0.0
                 self.infoLabel.alpha = 0.0
                 self.nextButton.titleLabel?.alpha = 0.0
@@ -349,7 +349,7 @@ class YonaVPNFlowMainViewController: UIViewController {
 
             }, completion: {
             completed in
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.handleOpenVPNAppNotInstalledShow()
                 })
 
@@ -359,17 +359,17 @@ class YonaVPNFlowMainViewController: UIViewController {
     func handleOpenVPNAppNotInstalledShow () {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress1.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info1.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), forState: UIControlState.Normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), forState: UIControlState.Disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControlState.disabled)
 
-        self.nextButton.enabled = false
+        self.nextButton.isEnabled = false
 
         self.openVPNStatusView.setText(NSLocalizedString("YonaVPNProgressView.openvpn1.text", comment: ""))
         
-        NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        UserDefaults.standard.set(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         currentProgress = .openVPNAppNotInstalledShow
         
-        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
@@ -379,21 +379,21 @@ class YonaVPNFlowMainViewController: UIViewController {
             self.profileStatusView.alpha = 0.4
             }, completion: {
                 completed in
-                self.nextButton.enabled = true
+                self.nextButton.isEnabled = true
         })
     }
 
 
     func handleOpenVPNAppInstalled () {
         let viewWidth = self.progressView.frame.size.width
-        customView.frame =  CGRectMake(0, 0, (viewWidth-60), 2)
+        customView.frame =  CGRect(x: 0, y: 0, width: (viewWidth-60), height: 2)
         progressView.alpha = 1.0
         
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress2.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info2.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), forState: UIControlState.Disabled)
-        self.nextButton.enabled = false
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
+        self.nextButton.isEnabled = false
         self.openVPNStatusView.setText(NSLocalizedString("YonaVPNProgressView.openvpn.text", comment: ""))
         
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
@@ -401,28 +401,28 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
         openVPNStatusView.alpha = 0.0
-        openVPNStatusView.hidden = false
+        openVPNStatusView.isHidden = false
         
         profileStatusView.confugureView(progressIconEnum.profile, completed: false)
         profileStatusView.alpha = 0.0
-        profileStatusView.hidden = false
+        profileStatusView.isHidden = false
         
-        UIView.animateWithDuration(0.6, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.openVPNStatusView.alpha = 1.0
             }, completion:  {
                 completed   in
-                UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
                     self.profileStatusView.alpha = 1.0
                     }, completion:  {
                         completed   in
-                        UIView.animateWithDuration(0.6, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
                             self.nextButton.alpha = 1.0
                             self.laterButton.alpha = 1.0
                             }, completion:  {
                                 completed   in
-                                self.nextButton.enabled = true
+                                self.nextButton.isEnabled = true
                                 self.currentProgress = .openVPNAppInstalledStep2
-                                NSUserDefaults.standardUserDefaults().setInteger(self.currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                                UserDefaults.standard.set(self.currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
 
 
                         })
@@ -432,7 +432,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     }
   
     func handleOpenVPNAppInstalledStep2 () {
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.progressLabel.alpha = 0.0
             self.infoLabel.alpha = 0.0
             self.nextButton.titleLabel?.alpha = 0.0
@@ -445,9 +445,9 @@ class YonaVPNFlowMainViewController: UIViewController {
             }, completion: {
                 completed in
                 self.currentProgress = .openVPNAppInstalledStep3
-                NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalledStep3.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalledStep3.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.handleOpenVPNAppInstalledStep3()
                 })
                 
@@ -458,20 +458,20 @@ class YonaVPNFlowMainViewController: UIViewController {
     func handleOpenVPNAppInstalledStep3 () {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress3.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info3.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), forState: UIControlState.Normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), forState: UIControlState.Disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControlState.disabled)
 
-        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), forState: UIControlState.Normal)
-        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), forState: UIControlState.Disabled)
+        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControlState())
+        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControlState.disabled)
 
-        self.nextButton.enabled = false
+        self.nextButton.isEnabled = false
         
         var frame = nextButton.frame
         frame.size.width = view.frame.size.width/2
         nextButton.frame=frame
 
         
-        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
@@ -482,22 +482,22 @@ class YonaVPNFlowMainViewController: UIViewController {
             self.finalShowInstructionsButton.alpha = 1.0
             }, completion: {
                 completed in
-                self.nextButton.enabled = true
+                self.nextButton.isEnabled = true
         })
     }
 
     
     func handleConfigurationInstalled() {
         let viewWidth = self.progressView.frame.size.width
-        customView.frame =  CGRectMake(0, 0, viewWidth, 2)
+        customView.frame =  CGRect(x: 0, y: 0, width: viewWidth, height: 2)
         progressView.alpha = 1.0
         self.laterButton.alpha = 0.0
-        self.nextButton.enabled = false
+        self.nextButton.isEnabled = false
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress4.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
 
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), forState: UIControlState.Disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControlState.disabled)
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
         profileStatusView.confugureView(progressIconEnum.profile, completed: true)
@@ -506,7 +506,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         nextButtonConstraint.constant = view.frame.size.width
         nextButton.setNeedsLayout()
         
-        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.alpha = 1.0
@@ -517,7 +517,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             self.finalShowInstructionsButton.alpha = 0.0
             }, completion: {
                 completed in
-                self.nextButton.enabled = true
+                self.nextButton.isEnabled = true
         })
    
     }
@@ -525,26 +525,26 @@ class YonaVPNFlowMainViewController: UIViewController {
     //MARK: - mobilconfigurationfile
     func serverSetup() {
         Loader.Show()
-        let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
-        mobileconfigData = NSData(contentsOfFile: resourceDocPath)
-        (UIApplication.sharedApplication().delegate as! AppDelegate).startServer()
+        let resourceDocPath = NSHomeDirectory() + "/Documents/user.mobileconfig"
+        mobileconfigData = try? Data(contentsOf: URL(fileURLWithPath: resourceDocPath))
+        (UIApplication.shared.delegate as! AppDelegate).startServer()
     }
     
-    func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
+    func handleMobileconfigRootRequest (_ request :RouteRequest,  response :RouteResponse ) {
         print("handleMobileconfigRootRequest");
         let txt = "<HTML><HEAD><title>Profile Install</title></HEAD><script>function load() { window.location.href='http://localhost:8089/load/'; }var int=self.setInterval(function(){load()},2000);</script><BODY></BODY></HTML>"
-        response.respondWithString(txt)
+        response.respond(with: txt)
     }
 
-    func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
+    func handleMobileconfigLoadRequest (_ request : RouteRequest ,response : RouteResponse ) {
         if firstTime  {
             print("handleMobileconfigLoadRequest, first time")
             firstTime = false
-            let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
-            mobileconfigData = NSData(contentsOfFile: resourceDocPath)
+            let resourceDocPath = NSHomeDirectory() + "/Documents/user.mobileconfig"
+            mobileconfigData = try? Data(contentsOf: URL(fileURLWithPath: resourceDocPath))
 
             response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
-            response.respondWithData(mobileconfigData)
+            response.respond(with: mobileconfigData)
         } else {
             print("handleMobileconfigLoadRequest, NOT first time")
             response.statusCode = 302
@@ -556,7 +556,7 @@ class YonaVPNFlowMainViewController: UIViewController {
             }
             
             currentProgress = .configurationInstalled
-            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            UserDefaults.standard.set(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
 
         }
     }
@@ -581,7 +581,7 @@ class YonaVPNFlowMainViewController: UIViewController {
 //                    NSLog("UserRequestManager.sharedInstance.getMobileConfigFile: %@",succes)
                     
                     if data != nil {
-                        let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
+                        let resourceDocPath = NSHomeDirectory() + "/Documents/user.mobileconfig"
 //                        NSLog("BEFORE: %@",resourceDocPath)
                         unlink(resourceDocPath)
 //                        NSLog("AFTER: %@",resourceDocPath)
@@ -589,7 +589,7 @@ class YonaVPNFlowMainViewController: UIViewController {
 
                         do {
                             //try userMobileConfig.writeToFile(resourceDocPath, atomically: false, encoding: NSUTF8StringEncoding)
-                            data?.writeToFile(resourceDocPath, atomically: true)
+                            try? data?.write(to: URL(fileURLWithPath: resourceDocPath), options: [.atomic])
 //                            NSLog("-------------------------YONA")
 //                            NSLog("WRITING FILE, SUCESS")
                         }
@@ -615,24 +615,24 @@ class YonaVPNFlowMainViewController: UIViewController {
                         var co = ""
                         if code != nil {co = code!}
                         let txt = "Error getting the mobile.config file from server: '\(co)'"
-                        let alertController = UIAlertController(title: "ERROR", message: txt, preferredStyle: .Alert)
-                        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
+                        let alertController = UIAlertController(title: "ERROR", message: txt, preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: {
                             void in
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 self.dispatcher()
                             })
                             
                         })
                         alertController.addAction(cancelAction)
 
-                        var rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+                        var rootViewController = UIApplication.shared.keyWindow?.rootViewController
                         if let navigationController = rootViewController as? UINavigationController {
                             rootViewController = navigationController.viewControllers.first
                         }
                         if let tabBarController = rootViewController as? UITabBarController {
                             rootViewController = tabBarController.selectedViewController
                         }
-                        rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                        rootViewController?.present(alertController, animated: true, completion: nil)
                     }
 
                 }
@@ -655,26 +655,26 @@ class YonaVPNFlowMainViewController: UIViewController {
 
 
     func testForServerAndContinue () {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 4))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
+        let delayTime = DispatchTime.now() + Double(Int64(NSEC_PER_SEC * 4)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime){
             
-            if let running = (UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning() {
+            if let running = (UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning() {
                 if  running {
-                    print("SERVER IS STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
-                    if let url = NSURL(string:"http://localhost:8089/start/") {
-                        UIApplication.sharedApplication().openURL(url)
+                    print("SERVER IS STARTED : \((UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning())")
+                    if let url = URL(string:"http://localhost:8089/start/") {
+                        UIApplication.shared.openURL(url)
                     }
                     // new
                     self.currentProgress = .configurationInstalled
-                    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                    UserDefaults.standard.set(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                     return
                         
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.dispatcher()
                     })
                     // end
                 } else {
-                    print("SERVER IS NOT STARTED : \((UIApplication.sharedApplication().delegate as! AppDelegate).httpServer?.isRunning())")
+                    print("SERVER IS NOT STARTED : \((UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning())")
                     print("re-trying")
                     self.testForServerAndContinue()
                 }
@@ -686,7 +686,7 @@ class YonaVPNFlowMainViewController: UIViewController {
 
     // called from instructions view
     func installMobileProfile() {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
         downloadFileFromServer()
     }
 

@@ -71,21 +71,21 @@ class TimeBucketControlCell : UITableViewCell {
     }
 
     //MARK: - private methods
-    private func setUpView() {
+    fileprivate func setUpView() {
         
-        var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , backgroundMinsView.frame.height))
+        var aView  = UIView(frame:CGRect( x: 0, y: 0, width: backgroundMinsView.frame.size.width , height: backgroundMinsView.frame.height))
         
         positiveView = aView
         backgroundMinsView.addSubview(positiveView)
         
         
-        aView  = UIView(frame:CGRectMake(10, 0, 0, backgroundMinsView.frame.height))
+        aView  = UIView(frame:CGRect(x: 10, y: 0, width: 0, height: backgroundMinsView.frame.height))
         negativeView = aView
         backgroundMinsView.addSubview(negativeView)
 
     }
     
-    private func doInitialSetup() {
+    fileprivate func doInitialSetup() {
     
         var fra = backgroundMinsView.frame
         fra.size.width = frame.size.width-64
@@ -106,10 +106,10 @@ class TimeBucketControlCell : UITableViewCell {
         if totalMinutes > 0 {
             pxPrMinute = (backgroundMinsView.frame.size.width) / CGFloat(totalMinutes)
         }
-        var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , backgroundMinsView.frame.height)
+        var aViewframe = CGRect( x: CGFloat(negative) * pxPrMinute, y: 0, width: (backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , height: backgroundMinsView.frame.height)
         positiveView.frame = aViewframe
         
-        aViewframe  = CGRectMake(CGFloat(negative) * pxPrMinute, 0, 0, backgroundMinsView.frame.height)
+        aViewframe  = CGRect(x: CGFloat(negative) * pxPrMinute, y: 0, width: 0, height: backgroundMinsView.frame.height)
         negativeView.frame = aViewframe
 
         negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
@@ -124,7 +124,7 @@ class TimeBucketControlCell : UITableViewCell {
         
         //set beyond goal label minutes
         if negative == 0 {
-            self.minutesBeyondGoal.hidden = true
+            self.minutesBeyondGoal.isHidden = true
         }
         self.minutesBeyondGoal.text = "-\(negative)"
         
@@ -151,7 +151,7 @@ class TimeBucketControlCell : UITableViewCell {
     }
     
     
-    private func drawTheCell (animated: Bool) {
+    fileprivate func drawTheCell (_ animated: Bool) {
         let negative = totalMinutesBeyondGoal
         
         var positive = maxDurationMinutes - totalActivityDurationMinutes
@@ -185,11 +185,11 @@ class TimeBucketControlCell : UITableViewCell {
         negativeFrame.size.width = CGFloat(negative) * pxPrMinute
         
         if animated {
-            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut,
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseOut,
                                        animations: {
                                         self.positiveView.frame = positiveFrame
                 }, completion: {finished in
-                    UIView.animateWithDuration(0.3, animations: {
+                    UIView.animate(withDuration: 0.3, animations: {
                         self.negativeView.frame = negativeFrame
                     })
                     
@@ -203,7 +203,7 @@ class TimeBucketControlCell : UITableViewCell {
     
     
 //MARK: - cell setter methods
-    func setDataForView (activityGoal : ActivitiesGoal,animated: Bool) {
+    func setDataForView (_ activityGoal : ActivitiesGoal,animated: Bool) {
         totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
         maxDurationMinutes = activityGoal.maxDurationMinutes
         totalActivityDurationMinutes = activityGoal.totalActivityDurationMinutes
@@ -214,7 +214,7 @@ class TimeBucketControlCell : UITableViewCell {
         shouldAnimate = animated
     }
 
-    func setWeekActivityDetailForView (weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
+    func setWeekActivityDetailForView (_ weekActivityDetail: WeekSingleActivityDetail,animated: Bool) {
         totalMinutesBeyondGoal = weekActivityDetail.totalMinutesBeyondGoal
         maxDurationMinutes = weekActivityDetail.maxDurationMinutes
         averageActivityDurationMinutes = weekActivityDetail.averageActivityDurationMinutes
@@ -227,7 +227,7 @@ class TimeBucketControlCell : UITableViewCell {
         shouldAnimate = animated
     }
 
-    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+    func setDayActivityDetailForView (_ dayActivity: DaySingleActivityDetail, animated: Bool) {
         isWeek = false
         totalMinutesBeyondGoal = dayActivity.totalMinutesBeyondGoal
         maxDurationMinutes = dayActivity.maxDurationMinutes

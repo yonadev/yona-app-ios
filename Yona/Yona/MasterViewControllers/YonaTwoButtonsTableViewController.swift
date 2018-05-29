@@ -40,32 +40,32 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaTwoButtonsTableViewController")
+        tracker?.set(kGAIScreenName, value: "YonaTwoButtonsTableViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
       print("ERROR 'numberOfSectionsInTableView' has not been overiden")
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("ERROR 'numberOfRowsInSection' has not been overiden")
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         print("ERROR 'cellForRowAtIndexPath' has not been overiden")
         
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return cell
         
     }
@@ -73,21 +73,21 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
     
     
 // MARK: TabButtons Actions
-    @IBAction func showLeftTab (sender : AnyObject) {
+    @IBAction func showLeftTab (_ sender : AnyObject) {
         leftTabLabel.alpha = 1.0
-        leftTabSelcetionView.hidden = false
+        leftTabSelcetionView.isHidden = false
         
-        rightTabSelectionsView.hidden = true
+        rightTabSelectionsView.isHidden = true
         rightTabLabel.alpha = 0.5
         
         selectedTab = .left
         actionsAfterLeftButtonPush()
     }
-    @IBAction func showRightTab (sender : AnyObject) {
+    @IBAction func showRightTab (_ sender : AnyObject) {
         leftTabLabel.alpha = 0.5
-        leftTabSelcetionView.hidden = true
+        leftTabSelcetionView.isHidden = true
         
-        rightTabSelectionsView.hidden = false
+        rightTabSelectionsView.isHidden = false
         rightTabLabel.alpha = 1.0
         
         selectedTab = .right

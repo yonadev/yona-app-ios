@@ -15,7 +15,7 @@ class GoalsRequestManager {
     var timezoneGoals:[Goal] = [] //Array returning timezone goals
     var noGoGoals:[Goal] = [] //Array returning no go goals
     
-    private var newGoal: Goal?
+    fileprivate var newGoal: Goal?
     var allTheGoals:[Goal] = [] //Array returning all the goals returned by getGoals
 
     let APIService = APIServiceManager.sharedInstance
@@ -23,7 +23,7 @@ class GoalsRequestManager {
     
     static let sharedInstance = GoalsRequestManager()
     
-    private init() {}
+    fileprivate init() {}
     
     /**
      Helper method for UI to returns the size of the goals arrays, so challenges know how many goals there
@@ -31,7 +31,7 @@ class GoalsRequestManager {
      - parameter goalType: GoalType, goal type that we want array size for
      - parameter  onCompletion: APIGoalSizeResponse, returns server response messages, and goal array size
      */
-    func getGoalsSizeOfGoalType(goalType: GoalType, onCompletion: APIGoalSizeResponse) {
+    func getGoalsSizeOfGoalType(_ goalType: GoalType, onCompletion: APIGoalSizeResponse) {
         
         switch goalType {
         case GoalType.BudgetGoalString:
@@ -62,7 +62,7 @@ class GoalsRequestManager {
      - parameter onCompletion: APIGoalResponse, Returns the array of goals, and success or fail and server messages
      - return [Goal] and array of goals
      */
-     func sortGoalsIntoArray(goalType: GoalType, goals: [Goal]) -> [Goal]{
+     func sortGoalsIntoArray(_ goalType: GoalType, goals: [Goal]) -> [Goal]{
         budgetGoals = []
         timezoneGoals = []
         noGoGoals = []
@@ -99,7 +99,7 @@ class GoalsRequestManager {
      - parameter body: BodyDataDictionary?, body that is needed in a POST call, can be nil
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
-    private func goalsHelper(httpmethodParam: httpMethods, body: BodyDataDictionary?, goalLinkAction: String?, onCompletion: APIGoalResponse) {
+    fileprivate func goalsHelper(_ httpmethodParam: httpMethods, body: BodyDataDictionary?, goalLinkAction: String?, onCompletion: @escaping APIGoalResponse) {
         //success get our activities
         ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, serverCode, activities, error) in
             if success {
@@ -149,7 +149,7 @@ class GoalsRequestManager {
     
     
     
-    func getAllTheBuddyGoals(path : String, onCompletion: APIGoalResponse) {
+    func getAllTheBuddyGoals(_ path : String, onCompletion: @escaping APIGoalResponse) {
         
         
         self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: path) { (success, message, server, goal, goals, error) in
@@ -163,7 +163,7 @@ class GoalsRequestManager {
 
     
     
-    func getAllTheBuddyGoals(buddy : Buddies, activities: [Activities], onCompletion: APIGoalResponse) {
+    func getAllTheBuddyGoals(_ buddy : Buddies, activities: [Activities], onCompletion: @escaping APIGoalResponse) {
         if let buddypath = buddy.selfLink {
             let path = "\(buddypath)/goals/"
             
@@ -188,7 +188,7 @@ class GoalsRequestManager {
      - parameter activities: [Activities], goals need to know about all the activities so they can ID them and set their activity name in the goal (Social, News etc.)
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
-    func getAllTheGoals(activities: [Activities], onCompletion: APIGoalResponse) {
+    func getAllTheGoals(_ activities: [Activities], onCompletion: @escaping APIGoalResponse) {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             //success so get the user?
             if success {
@@ -220,7 +220,7 @@ class GoalsRequestManager {
      - parameter body: BodyDataDictionary, the body of the goal that needs to be posted, example below:
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
-    func postUserGoals(body: BodyDataDictionary, onCompletion: APIGoalResponse) {
+    func postUserGoals(_ body: BodyDataDictionary, onCompletion: @escaping APIGoalResponse) {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
             //success so get the user?
             if success {
@@ -246,7 +246,7 @@ class GoalsRequestManager {
      - parameter body: BodyDataDictionary, the body of the goal that needs to be updated, example above in post user goal
      - parameter onCompletion: APIGoalResponse, returns either an array of goals, or a goal, also success or fail, server messages and
      */
-    func updateUserGoal(goalEditLink: String?, body: BodyDataDictionary, onCompletion: APIGoalResponse) {
+    func updateUserGoal(_ goalEditLink: String?, body: BodyDataDictionary, onCompletion: @escaping APIGoalResponse) {
         self.goalsHelper(httpMethods.put, body: body, goalLinkAction: goalEditLink) { (success, message, server, goal, goals, error) in
             if success {
                 onCompletion(true, message, server, goal, nil, error)
@@ -262,7 +262,7 @@ class GoalsRequestManager {
      - parameter goalSelfLink: String, the self link for the goal that we require
      - parameter onCompletion: APIGoalResponse, gives response messages and the goal requested
      */
-    func getUsersGoalWithSelfLinkID(goalSelfLink: String, onCompletion: APIGoalResponse) {
+    func getUsersGoalWithSelfLinkID(_ goalSelfLink: String, onCompletion: @escaping APIGoalResponse) {
         self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: goalSelfLink) { (success, message, server, goal, goals, error) in
             if success {
                 onCompletion(true, message, server, goal, nil, error)
@@ -278,7 +278,7 @@ class GoalsRequestManager {
      - parameter goalEditLink: String?, If a goal is not mandatory then it will have and edit link and we will beable to delete it
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
-    func deleteUserGoal(goalEditLink: String?, onCompletion: APIGoalResponse) {
+    func deleteUserGoal(_ goalEditLink: String?, onCompletion: @escaping APIGoalResponse) {
         
         self.goalsHelper(httpMethods.delete, body: nil, goalLinkAction: goalEditLink) { (success, message, serverCode, goal, goals, error) in
             if success {

@@ -25,26 +25,26 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaVPNFlowInstructionsVPNViewController")
+        tracker?.set(kGAIScreenName, value: "YonaVPNFlowInstructionsVPNViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
  
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
 //            self.setupUI()
             self.addScrollViews(1)
             
             
         })
 
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
+        let delayTime = DispatchTime.now() + Double(Int64(NSEC_PER_SEC * 1)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime){
             self.page1?.startAnimation()
         }
     }
@@ -53,17 +53,17 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     func setupUI() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
-        actionButton.setTitle(NSLocalizedString("vpnflowmainscreen.button2.text", comment: ""), forState: UIControlState.Normal)
+        actionButton.setTitle(NSLocalizedString("vpnflowmainscreen.button2.text", comment: ""), for: UIControlState())
         actionButton.backgroundColor = UIColor.yiDarkishPinkColor()
         actionButton.alpha = 0.0
     }
     
-    func addScrollViews(page : Int) {
+    func addScrollViews(_ page : Int) {
         let width = view.frame.size.width
         
         switch page {
         case 1:
-            page1 = R.storyboard.vPNFlow.yonaInstructionPage1!
+            page1 = R.storyboard.vpnFlow.yonaInstructionPage1(())
             if var fr = page1?.view.frame {
                 fr.size.width = width
                 fr.size.height = scrollView.frame.size.height
@@ -71,12 +71,12 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
                 page1?.delegate = self
                 scrollView.addSubview(page1!.view!)
             }
-            scrollView.contentSize = CGSizeMake(width, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width, height: scrollView.frame.size.height)
         case 2:
             if page2 != nil {
                 return
             }
-            page2 = R.storyboard.vPNFlow.yonaInstructionPage2!
+            page2 = R.storyboard.vpnFlow.yonaInstructionPage2(())
             if var fr = page2?.view.frame {
                 fr.size.width = width
                 fr.size.height = scrollView.frame.size.height
@@ -85,12 +85,12 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
                 page2?.delegate = self
                 scrollView.addSubview(page2!.view!)
             }
-            scrollView.contentSize = CGSizeMake(width*2, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width*2, height: scrollView.frame.size.height)
         case 3:
             if page3 != nil {
                 return
             }
-            page3 = R.storyboard.vPNFlow.yonaInstructionPage3!
+            page3 = R.storyboard.vpnFlow.yonaInstructionPage3(())
             if var fr = page3?.view.frame {
                 fr.size.width = width
                 fr.size.height = scrollView.frame.size.height
@@ -100,7 +100,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
                 scrollView.addSubview(page3!.view!)
                 
             }
-            scrollView.contentSize = CGSizeMake(width*3, scrollView.frame.size.height)
+            scrollView.contentSize = CGSize(width: width*3, height: scrollView.frame.size.height)
         default:
             return
         }
@@ -112,7 +112,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     //MARK: Protocol implementation
     
     
-    func didFinishAnimations(sender : AnyObject) {
+    func didFinishAnimations(_ sender : AnyObject) {
         if sender is YonaInstructionPage1 {
             addScrollViews(2)
             scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
@@ -127,7 +127,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         }
 
         if sender is YonaInstructionPage3{
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.actionButton.alpha = 1.0
             })
             
@@ -138,7 +138,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     func didRequestReRun() {
         scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
         progressPageControl.currentPage = 0
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.actionButton.alpha = 0.0
         })
         page1?.startAnimation()
@@ -149,9 +149,9 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     
     // Mark: - buttons actions
     
-    @IBAction func downloadOpenVPNAction(sender : UIButton) {
+    @IBAction func downloadOpenVPNAction(_ sender : UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "downloadOpenVPNAction", label: "Download VPN action button pressed to go to appstore", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "downloadOpenVPNAction", label: "Download VPN action button pressed to go to appstore", value: nil).build() as! [AnyHashable: Any])
         
         appStoreCall()
     
@@ -160,16 +160,16 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     func appStoreCall() {
         
 #if (arch(i386) || arch(x86_64))   // IN ORDER TO TEST ON SIMULATOR, THIS HAS TO BE DONE
-    NSUserDefaults.standardUserDefaults().setBool(true,   forKey: "SIMULATOR_OPENVPN")
-    NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+    UserDefaults.standard.set(true,   forKey: "SIMULATOR_OPENVPN")
+    UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
     
     UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                        NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                        NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
     
-    dismissViewControllerAnimated(true, completion: {
-        self.navigationController?.popViewControllerAnimated(true)
+    dismiss(animated: true, completion: {
+        self.navigationController?.popViewController(animated: true)
     })
 
 #endif
@@ -194,20 +194,20 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
             })
         */
         
-        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!) {
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!)
+        if UIApplication.shared.canOpenURL(URL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!) {
+            UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8")!)
         }
         
 
     }
-    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
+    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
-        dismissViewControllerAnimated(true, completion: {
-            self.navigationController?.popViewControllerAnimated(true)
+        dismiss(animated: true, completion: {
+            self.navigationController?.popViewController(animated: true)
         })
     }
 }

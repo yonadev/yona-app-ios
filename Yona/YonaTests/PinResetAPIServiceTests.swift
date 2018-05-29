@@ -23,13 +23,13 @@ class PinResetAPIServiceTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testUserRequestPinReset() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -54,11 +54,11 @@ class PinResetAPIServiceTests: XCTestCase {
 
             
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
     
     func testUserRequestPinVerify() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -91,11 +91,11 @@ class PinResetAPIServiceTests: XCTestCase {
             }
             
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
     
     func testUserRequestPinClear() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -134,7 +134,7 @@ class PinResetAPIServiceTests: XCTestCase {
             }
             
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
 
 }

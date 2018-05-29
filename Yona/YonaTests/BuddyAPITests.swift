@@ -24,13 +24,13 @@ class BuddyAPITests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
 
     func testPostBuddy(){
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         
         var randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
@@ -67,6 +67,6 @@ class BuddyAPITests: XCTestCase {
                     })
             })
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
 }

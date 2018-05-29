@@ -17,57 +17,57 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         super.viewDidLoad()
         
         let viewWidth = self.view.frame.size.width
-        let customView=UIView(frame: CGRectMake(0, 0, ((viewWidth-60)/3)*2, 2))
+        let customView=UIView(frame: CGRect(x: 0, y: 0, width: ((viewWidth-60)/3)*2, height: 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         self.progressView.addSubview(customView)
         
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
 
-        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        self.navigationItem.setLeftBarButton(nil, animated: false)
         self.navigationItem.setHidesBackButton(true, animated: false)
-        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated)
+        setupPincodeScreenDifferentlyWithText(NSLocalizedString("change-pin", comment: ""), headerTitleLabelText: NSLocalizedString("settings_new_pincode", comment: ""), errorLabelText: nil, infoLabelText: NSLocalizedString("settings_new_pin_message", comment: ""), avtarImageName: R.image.icnAccountCreated())
 
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "SetPasscodeViewController")
+        tracker?.set(kGAIScreenName, value: "SetPasscodeViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         codeInputView.delegate = self
         codeInputView.secure = true
         codeView.addSubview(codeInputView)
         
         //keyboard functions
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIKeyboardWillHideNotification, object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.clear()
         codeInputView.becomeFirstResponder()
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewDidLayoutSubviews()
     {
 
-        var scrollViewInsets = UIEdgeInsetsZero
+        var scrollViewInsets = UIEdgeInsets.zero
         scrollViewInsets.top = 0
         scrollView.contentInset = scrollViewInsets
     }
     
     // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func back(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
 
 }
@@ -75,9 +75,9 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
 
 
 extension SetPasscodeViewController: CodeInputViewDelegate {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String) {
+    func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
         passcodeString = code
-        performSegueWithIdentifier(R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
+        performSegue(withIdentifier: R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
         self.codeInputView.clear()
     }
 }
@@ -88,9 +88,9 @@ private extension Selector {
 
 
 extension SetPasscodeViewController: KeyboardProtocol {
-    func keyboardWasShown (notification: NSNotification) {
+    func keyboardWasShown (_ notification: Notification) {
         
-        if let activeField = self.codeView, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let activeField = self.codeView, let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
@@ -98,7 +98,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
             aRect.origin.x = 64
             aRect.size.height -= 64
             aRect.size.height -= keyboardSize.size.height
-            if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
+            if (!aRect.contains(activeField.frame.origin)) {
                 var frameToScrollTo = activeField.frame
                 frameToScrollTo.size.height += 30
                 self.scrollView.scrollRectToVisible(frameToScrollTo, animated: true)
@@ -106,8 +106,8 @@ extension SetPasscodeViewController: KeyboardProtocol {
         }
     }
     
-    func keyboardWillBeHidden(notification: NSNotification) {
-        let contentInsets = UIEdgeInsetsZero
+    func keyboardWillBeHidden(_ notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
         

@@ -13,7 +13,7 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBarHidden(false, animated: false)
-        let storyboard = UIStoryboard(name: self.title!, bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: self.title!, bundle: Bundle.main)
         self.viewControllers = [storyboard.instantiateInitialViewController()!]
     }
     
@@ -22,7 +22,7 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         // Dispose of any resources that can be recreated.
     }
     
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print(item)
     }
 

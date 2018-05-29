@@ -42,13 +42,13 @@ struct Message{
     var status: buddyRequestStatus?
     var category: String!
     var messageType: notificationType
-    var creationTime : NSDate
+    var creationTime : Date
     var change : String?
     var activityTypeName : String = "noname"
     var isRead : Bool = true
     
-    var violationStartTime : NSDate?
-    var violationEndTime : NSDate?
+    var violationStartTime : Date?
+    var violationEndTime : Date?
     var violationLinkURL : String?
 
     
@@ -69,16 +69,16 @@ struct Message{
         nickname = ""
         messageType = .NoValue
         
-        creationTime = NSDate.init()
+        creationTime = Date.init()
         if let data = messageData[getMessagesKeys.messageType.rawValue] as? String{
             if let type  = notificationType(rawValue:data) {
                 messageType = type
             }
         }
         if let aCreationTime = messageData[getMessagesKeys.creationTime.rawValue] as? String{
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
-            if let aDate = dateFormatter.dateFromString(aCreationTime) {
+            if let aDate = dateFormatter.date(from: aCreationTime) {
                 creationTime = aDate
             }
         }
@@ -118,16 +118,16 @@ struct Message{
             violationLinkURL = violation
         }
         if let violation = messageData[YonaConstants.jsonKeys.violationStart] as? String{
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
-            if let aDate = dateFormatter.dateFromString(violation) {
+            if let aDate = dateFormatter.date(from: violation) {
                 violationStartTime = aDate
             }
         }
         if let violation = messageData[YonaConstants.jsonKeys.violationEnd] as? String{
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
-            if let aDate = dateFormatter.dateFromString(violation) {
+            if let aDate = dateFormatter.date(from: violation) {
                 violationEndTime = aDate
             }
              
@@ -231,7 +231,7 @@ struct Message{
         body["lastName"] = UserRequestlastName
         body["mobileNumber"] = UserRequestmobileNumber
         body["nickname"] = nickname
-        return body
+        return body as BodyDataDictionary
     }
 
     
@@ -257,11 +257,11 @@ struct Message{
             return NSLocalizedString("message.type.message", comment: "")
         case .GoalChangeMessage:
             if change == "GOAL_ADDED" {
-                return NSLocalizedString("message.type.goalchange.add", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
+                return NSLocalizedString("message.type.goalchange.add", comment: "").replacingOccurrences(of: "%@", with: self.category)
             } else if change == "GOAL_DELETED" {
-                return NSLocalizedString("message.type.goaldeleted", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
+                return NSLocalizedString("message.type.goaldeleted", comment: "").replacingOccurrences(of: "%@", with: self.category)
             } else {
-                return NSLocalizedString("message.type.goalchange", comment: "").stringByReplacingOccurrencesOfString("%@", withString: self.category)
+                return NSLocalizedString("message.type.goalchange", comment: "").replacingOccurrences(of: "%@", with: self.category)
             }
         case .BuddyInfoChangeMessage:
             return NSLocalizedString("message.type.buddyInfoChangeMessage", comment: "")

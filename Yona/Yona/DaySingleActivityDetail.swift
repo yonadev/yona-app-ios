@@ -14,7 +14,7 @@ class DaySingleActivityDetail: NSObject {
     var spreadCells : [Int] = []
     var dayActivity  : Int = 0
     var zones : [String] = []
-    var date : NSDate?
+    var date : Date?
     var dayOfWeek : String?
 
     var selfLink : String?
@@ -34,14 +34,14 @@ class DaySingleActivityDetail: NSObject {
     init(data : BodyDataDictionary, allGoals : [Goal]) {
         dayOfWeek = ""
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
-            let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
-            userCalendar?.firstWeekday = 1
-            let formatter = NSDateFormatter()
+            var userCalendar = Calendar.init(identifier: .gregorian)
+            userCalendar.firstWeekday = 1
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
-            formatter.locale = NSLocale.currentLocale()
+            formatter.locale = Locale.current
             formatter.calendar = userCalendar;
             
-            if let startdate = formatter.dateFromString(adDate) {
+            if let startdate = formatter.date(from: adDate) {
                 date = startdate
                 dayOfWeek = date?.dayOfTheWeek()
             }
@@ -103,15 +103,15 @@ class DaySingleActivityDetail: NSObject {
             
         }
         
-        let range1 =  goalLinks?.rangeOfString("goals/")?.startIndex
+        let range1 =  goalLinks?.range(of: "goals/")?.lowerBound
         var goal1ID = ""
-        if let txt = goalLinks?.substringFromIndex(range1!) {
+        if let txt = goalLinks?.substring(from: range1!) {
             goal1ID = txt
         }
         for goal in allGoals {
-            let range1 =  goal.selfLinks?.rangeOfString("goals/")?.startIndex
+            let range1 =  goal.selfLinks?.range(of: "goals/")?.lowerBound
             var goal2ID = ""
-            if let txt = goal.selfLinks?.substringFromIndex(range1!) {
+            if let txt = goal.selfLinks?.substring(from: range1!) {
                 goal2ID = txt
             }
             if goal1ID == goal2ID {

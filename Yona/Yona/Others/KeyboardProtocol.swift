@@ -12,6 +12,6 @@ import UIKit
 protocol KeyboardProtocol:class {
     var posi:CGFloat {get set}
     
-    func keyboardWasShown(notification: NSNotification)
-    func keyboardWillBeHidden(notification: NSNotification)
+    func keyboardWasShown(_ notification: Notification)
+    func keyboardWillBeHidden(_ notification: Notification)
 }

@@ -16,7 +16,7 @@ class NoGoCell : UITableViewCell {
     @IBOutlet weak var gradientView: GradientSmooth!
     var goalAccomplished: Bool = false
     var goalName: String = NSLocalizedString("meday.nogo.message", comment: "")
-    var goalDate: NSDate = NSDate()
+    var goalDate: Date = Date()
     var totalMinutesBeyondGoal: Int = 0
     
     override func layoutSubviews() {
@@ -38,35 +38,35 @@ class NoGoCell : UITableViewCell {
         nogoType.text = goalName
         if goalAccomplished {
             self.nogoMessage.text = NSLocalizedString("meday.nogo.message", comment: "")
-            self.nogoImage.image = R.image.adultHappy
+            self.nogoImage.image = R.image.adultHappy()
         } else {
-            self.nogoImage.image = R.image.adultSad
-            let dateFromat = NSDateFormatter()
+            self.nogoImage.image = R.image.adultSad()
+            let dateFromat = DateFormatter()
             dateFromat.dateFormat = "HH:mm"
-            let date = dateFromat.stringFromDate(goalDate)
+            let date = dateFromat.string(from: goalDate)
             self.nogoMessage.text =  "\(totalMinutesBeyondGoal) " + "\(NSLocalizedString("meday.nogo.minutes", comment: ""))"
         }
     }
     
-    func setDataForView(activityGoal : ActivitiesGoal) {
+    func setDataForView(_ activityGoal : ActivitiesGoal) {
         goalAccomplished = activityGoal.goalAccomplished
-        self.goalDate = activityGoal.date
+        self.goalDate = activityGoal.date as Date
         self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
         if let goalName = activityGoal.goalName{
             self.goalName = goalName
         }
     }
     
-    func setDayActivityDetailForView(activityGoal : DaySingleActivityDetail) {
+    func setDayActivityDetailForView(_ activityGoal : DaySingleActivityDetail) {
         goalAccomplished = activityGoal.goalAccomplished
         if let goalDate = activityGoal.date {
-            self.goalDate = goalDate
+            self.goalDate = goalDate as Date
         }
         self.goalName = NSLocalizedString("meweek.message.score", comment: "")
         self.totalMinutesBeyondGoal = activityGoal.totalMinutesBeyondGoal
     }
     
-    func setDataForWeekDetailView(activityGoal : WeekSingleActivityDetail) {
+    func setDataForWeekDetailView(_ activityGoal : WeekSingleActivityDetail) {
         if activityGoal.totalMinutesBeyondGoal > 0 {
             self.goalAccomplished = false
         }

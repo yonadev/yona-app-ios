@@ -7,22 +7,46 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 class TimeLineDayActivityOverview: NSObject {
     
-    var date : NSDate
+    var date : Date
     var timezone :String
     var activites : [TimeLineDayActivities] = []
     var tableViewCells : [AnyObject] = []
     var rowCount = 0
     init(jsonData: BodyDataDictionary, activities : [Activities]) {
-        date = NSDate()
+        date = Date()
         var storage : [TimeLineDayActivities] = []
         tableViewCells = []
         if let activityDate = jsonData[YonaConstants.jsonKeys.date] as? String {
             
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = getMessagesKeys.dateFormatSimple.rawValue
-            if let aDate = dateFormatter.dateFromString(activityDate) {
+            if let aDate = dateFormatter.date(from: activityDate) {
                 date = aDate
             }
         }
@@ -45,10 +69,10 @@ class TimeLineDayActivityOverview: NSObject {
             
         }
         
-        activites = storage.sort({$0.activityCategoryLink > $1.activityCategoryLink})
+        activites = storage.sorted(by: {$0.activityCategoryLink > $1.activityCategoryLink})
     }
     
-    func configureForTableView(allBuddies :[Buddies], aUser : Users) {
+    func configureForTableView(_ allBuddies :[Buddies], aUser : Users) {
         tableViewCells = []
         for obj in activites{
             var cat = ""
@@ -72,7 +96,7 @@ class TimeLineDayActivityOverview: NSObject {
 
             if validData {
                 if let txt = obj.activityCategoryName {
-                    tableViewCells.append(txt)
+                    tableViewCells.append(txt as AnyObject)
                 }
                 for row in obj.userData {
                     tableViewCells.append(row)

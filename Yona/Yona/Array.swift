@@ -10,24 +10,24 @@ import Foundation
 
 extension Array {
     func converToDate() -> [ToFromDate]{
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         var finalZoneArray = [ToFromDate]()
         for arr in self {
-            let bifurcateArray = String(arr).dashRemoval()
-            finalZoneArray.append(ToFromDate(fromDate: dateFormatter.dateFromString(bifurcateArray[0])!, toDate: dateFormatter.dateFromString(bifurcateArray[1])!))
+            let bifurcateArray = String(describing: arr).dashRemoval()
+            finalZoneArray.append(ToFromDate(fromDate: dateFormatter.date(from: bifurcateArray[0])!, toDate: dateFormatter.date(from: bifurcateArray[1])!))
         }
         return finalZoneArray
     }
     
     func convertToString() -> [String] {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         var finalZoneArray = [String]()
         for arr in self {
             let bifurcateArray = (arr as! ToFromDate)
-            finalZoneArray.append("\(dateFormatter.stringFromDate(bifurcateArray.fromDate))-\(dateFormatter.stringFromDate(bifurcateArray.toDate))")
+            finalZoneArray.append("\(dateFormatter.string(from: bifurcateArray.fromDate as Date))-\(dateFormatter.string(from: bifurcateArray.toDate as Date))")
         }
         
         

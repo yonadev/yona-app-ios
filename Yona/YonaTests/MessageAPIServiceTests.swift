@@ -24,14 +24,14 @@ class MessageAPIServiceTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     //this is a bit of a fake unit test and only works if the account with mobile number +31623434234234234 and user ID 8f548970-a9e0-46ec-9f0f-84249d60466d exists ....
     func testGetMessages() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         
         let randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
@@ -96,6 +96,6 @@ class MessageAPIServiceTests: XCTestCase {
                 })
             })
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
 }

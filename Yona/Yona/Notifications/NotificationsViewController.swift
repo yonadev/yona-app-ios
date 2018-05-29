@@ -7,13 +7,37 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
     
     @IBOutlet weak var tableHeaderView: UIView!
     
     
-    var selectedIndex : NSIndexPath?
+    var selectedIndex : IndexPath?
     var buddyData : Buddies?
     
     
@@ -30,24 +54,24 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         registreTableViewCells()
     }
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserTableViewCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
+        tableView.register(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "NotificationsViewController")
+        tracker?.set(kGAIScreenName, value: "NotificationsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiGrapeColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar
@@ -59,23 +83,23 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         loadMessages()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.destinationViewController is YonaNotificationAcceptFriendRequestViewController {
-            let controller = segue.destinationViewController as! YonaNotificationAcceptFriendRequestViewController
+        if segue.destination is YonaNotificationAcceptFriendRequestViewController {
+            let controller = segue.destination as! YonaNotificationAcceptFriendRequestViewController
             controller.aMessage = self.aMessage
             controller.aBuddy = self.buddyData
             self.selectedIndex = nil
             self.tableView.reloadData()
-        } else if segue.destinationViewController is MeWeekDetailWeekViewController {
-            let controller = segue.destinationViewController as! MeWeekDetailWeekViewController
+        } else if segue.destination is MeWeekDetailWeekViewController {
+            let controller = segue.destination as! MeWeekDetailWeekViewController
             controller.initialObjectLink = self.aMessage!.weekDetailsLink!
             
-        } else if segue.destinationViewController is MeDayDetailViewController {
-            let controller = segue.destinationViewController as! MeDayDetailViewController
+        } else if segue.destination is MeDayDetailViewController {
+            let controller = segue.destination as! MeDayDetailViewController
             controller.initialObjectLink = self.aMessage!.dayDetailsLink!
-        } else if segue.destinationViewController is NotificationDetailViewController {
-            let controller = segue.destinationViewController as! NotificationDetailViewController
+        } else if segue.destination is NotificationDetailViewController {
+            let controller = segue.destination as! NotificationDetailViewController
             controller.aMessage = self.aMessage
         }
         
@@ -83,19 +107,19 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     
     //MARK: - tableview methods
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return messages.count
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages.count == 0 {
             return 0
         }
         return messages[section].count
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = indexPath
         aMessage = messages[(selectedIndex?.section)!][(selectedIndex?.row)!] as Message
         
@@ -121,15 +145,15 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             switch aMessage.messageType {
             case .ActivityCommentMessage:
                 if aMessage.dayDetailsLink != nil {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+                    self.performSegue(withIdentifier: R.segue.notificationsViewController.showDayDetailMessage, sender: self)
                     return
                 } else if aMessage.weekDetailsLink != nil {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                    self.performSegue(withIdentifier: R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
                     return
                 }
             case .BuddyConnectRequestMessage:
                 if aMessage.status == buddyRequestStatus.REQUESTED {
-                    self.performSegueWithIdentifier(R.segue.notificationsViewController.showAcceptFriend, sender: self)
+                    self.performSegue(withIdentifier: R.segue.notificationsViewController.showAcceptFriend, sender: self)
                     return
                 }
                 if aMessage.status == buddyRequestStatus.ACCEPTED {
@@ -151,10 +175,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     userid = aUserid
                     selflink = aSelfLink
                 }
-                if selflink.rangeOfString(userid) != nil{
+                if selflink.range(of: userid) != nil{
                     
                     let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("MeDayDetailViewController") as! MeDayDetailViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "MeDayDetailViewController") as! MeDayDetailViewController
                     vc.goalType = GoalType.NoGoGoalString.rawValue
                     vc.currentDate = aMessage.creationTime
                     vc.initialObjectLink = aMessage.dayDetailsLink
@@ -170,7 +194,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     
                     
                     let storyboard = UIStoryboard(name: "Friends", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("FriendsDayDetailViewController") as! FriendsDayDetailViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "FriendsDayDetailViewController") as! FriendsDayDetailViewController
                     vc.buddy = self.buddyData
                     vc.goalType = GoalType.NoGoGoalString.rawValue
                     vc.currentDate = aMessage.creationTime
@@ -214,20 +238,20 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 break
             case .SystemMessage:
                 // not implemented yet
-                self.performSegueWithIdentifier(R.segue.notificationsViewController.notificationDetailSegue, sender: self)
+                self.performSegue(withIdentifier: R.segue.notificationsViewController.notificationDetailSegue, sender: self)
                 break
             case .NoValue:
                 break
                 
             }
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: YonaUserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserTableViewCell", for: indexPath) as! YonaUserTableViewCell
         if messages.count == 0 { return cell }
         
         cell.resetCellState()
@@ -268,14 +292,14 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell: YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
-        let dateTodate = NSDate()
-        let yesterDate = dateTodate.dateByAddingTimeInterval(-60*60*24)
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell: YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
+        let dateTodate = Date()
+        let yesterDate = dateTodate.addingTimeInterval(-60*60*24)
         
         if messages[section].first!.creationTime.isSameDayAs(dateTodate) {
             cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
@@ -289,7 +313,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     // MARK: - YonaUserCellDelegate
-    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message) {
+    func messageNeedToBeDeleted(_ cell: YonaUserTableViewCell, message: Message) {
         let aMessage = message as Message
         MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
             if success {
@@ -327,7 +351,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                     
                     if data.count > 0 {
                         let allMessages = oldMessages + data
-                        let sortedArray  = allMessages.sort({ $0.creationTime.compare( $1.creationTime) == .OrderedDescending })
+                        let sortedArray  = allMessages.sorted(by: { $0.creationTime.compare( $1.creationTime) == .orderedDescending })
                         for aMessage in sortedArray {
                             MessageRequestManager.sharedInstance.postProcessLink(aMessage, onCompletion: { (success, message, code) in
                                 if success {
@@ -354,18 +378,18 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
 
                         allLoadedMessage.forEach{self?.messages.append($0)}
  
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             self?.tableView.reloadData()
                         }
                     } else {
                         self?.messages = []
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             self?.tableView.reloadData()
                         }
                     }
                 } else {
                     self?.messages = []
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
                 }
@@ -378,10 +402,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         
     }
     
-    @IBAction func unwindToNotificationView(segue: UIStoryboardSegue) {
-        print(segue.sourceViewController)
+    @IBAction func unwindToNotificationView(_ segue: UIStoryboardSegue) {
+        print(segue.source)
     }
-    func showBuddyProfile(theMessage : Message) {
+    func showBuddyProfile(_ theMessage : Message) {
         
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
             var countPush = 0
@@ -389,8 +413,8 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 if let user = aUser {
                     for aBuddies in user.buddies {
                         if aBuddies.UserRequestSelfLink == theMessage.UserRequestSelfLink {
-                            let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: NSBundle.mainBundle())
-                            let controller = storyBoard.instantiateViewControllerWithIdentifier("FriendsProfileViewController") as! FriendsProfileViewController
+                            let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
+                            let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
                             controller.aUser = aBuddies
                             //Make sure it only pushes once!
                             if countPush <= 0 {

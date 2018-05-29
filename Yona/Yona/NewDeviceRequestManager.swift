@@ -15,9 +15,9 @@ class NewDeviceRequestManager {
     let APIUserRequestManager = UserRequestManager.sharedInstance
     static let sharedInstance = NewDeviceRequestManager()
 
-    private init() {}
+    fileprivate init() {}
 
-    func genericHelper(httpMethod: httpMethods, addDeviceCode: String?, mobileNumber: String?, onCompletion: APIUserResponse) {
+    func genericHelper(_ httpMethod: httpMethods, addDeviceCode: String?, mobileNumber: String?, onCompletion: @escaping APIUserResponse) {
 
                 switch httpMethod {
                 case httpMethods.put:
@@ -27,14 +27,14 @@ class NewDeviceRequestManager {
                             if let path = user?.newDeviceRequestsLink{
                                 var bodyNewDevice: BodyDataDictionary?
                                 if let password = addDeviceCode {
-                                    bodyNewDevice = ["newDeviceRequestPassword": password]
+                                    bodyNewDevice = ["newDeviceRequestPassword": password] as BodyDataDictionary
                                 }
                                 self.APIService.callRequestWithAPIServiceResponse(bodyNewDevice, path: path, httpMethod: httpMethods.put, onCompletion: { (success, json, error) in
                                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
                                     
                                 })
                             } else {
-                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
+                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode.rawValue), nil)
                             }
                         }
 //                        else {
@@ -42,8 +42,8 @@ class NewDeviceRequestManager {
 //                        }
                     }
                 case httpMethods.get:
-                    let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-                    let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+                    let langId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+                    let countryId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as! String
                     let language = "\(langId)-\(countryId)"
                     //need to call manager directly because of different response header
                     if let password = addDeviceCode {
@@ -75,10 +75,10 @@ class NewDeviceRequestManager {
                                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
                                 })
                             } else {
-                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode), nil)
+                                onCompletion(false, YonaConstants.serverMessages.FailedToGetDeviceRequestLink, String(responseCodes.internalErrorCode.rawValue), nil)
                             }
                         }  else {
-                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode), nil)
+                            onCompletion(false , YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(responseCodes.internalErrorCode.rawValue), nil)
                         }
                     }
                 default:
@@ -92,7 +92,7 @@ class NewDeviceRequestManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      - return none
      */
-    func putNewDevice(onCompletion: APIGetDeviceResponse) {
+    func putNewDevice(_ onCompletion: @escaping APIGetDeviceResponse) {
         let addDevicePassCode = String().randomAlphaNumericString() //generate random alphanumeric code
         self.genericHelper(httpMethods.put, addDeviceCode: addDevicePassCode, mobileNumber: nil) { (success, message, code, nil) in
             if success {
@@ -110,7 +110,7 @@ class NewDeviceRequestManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      - return none
      */
-    func getNewDevice(password: String, mobileNumber: String, onCompletion: APIUserResponse) {
+    func getNewDevice(_ password: String, mobileNumber: String, onCompletion: @escaping APIUserResponse) {
         //create a password for the user
         self.genericHelper(httpMethods.get, addDeviceCode: password, mobileNumber: mobileNumber) { (success, message, code, user) in
             if success {
@@ -127,7 +127,7 @@ class NewDeviceRequestManager {
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      - return none
      */
-    func deleteNewDevice(onCompletion: APIResponse) {
+    func deleteNewDevice(_ onCompletion: @escaping APIResponse) {
         self.genericHelper(httpMethods.delete, addDeviceCode: nil, mobileNumber: nil) { (success, message, code, nil) in
             if success {
                 onCompletion(true, message, code)

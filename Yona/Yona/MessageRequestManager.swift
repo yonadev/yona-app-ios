@@ -21,9 +21,9 @@ class MessageRequestManager {
     
     static let sharedInstance = MessageRequestManager()
     
-    private init() {}
+    fileprivate init() {}
     
-    private func genericMessageRequest(httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int, page: Int, onlyUnRead : Bool = false, onCompletion: APIMessageResponse) {
+    fileprivate func genericMessageRequest(_ httpMethod: httpMethods, body: BodyDataDictionary?, messageAction: String?, messageID: String?, size: Int, page: Int, onlyUnRead : Bool = false, onCompletion: @escaping APIMessageResponse) {
         switch httpMethod {
         case .get:
             UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
@@ -97,42 +97,42 @@ class MessageRequestManager {
         }
     }
     
-    func getMessages(size: Int, page: Int, onCompletion: APIMessageResponse){
+    func getMessages(_ size: Int, page: Int, onCompletion: @escaping APIMessageResponse){
         self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: size, page: page, onCompletion: onCompletion)
     }
 
-    func getUnReadMessages(onCompletion: APIMessageResponse){
+    func getUnReadMessages(_ onCompletion: @escaping APIMessageResponse){
         self.genericMessageRequest(httpMethods.get, body: nil, messageAction: nil, messageID: nil, size: 3  , page: 0,onlyUnRead: true, onCompletion: onCompletion)
     }
 
-    func deleteMessage(aMessage : Message, onCompletion: APIResponse ){
+    func deleteMessage(_ aMessage : Message, onCompletion: @escaping APIResponse ){
         if let deleteLink = aMessage.editLink {
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
                 print("how did we do \(success)")
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(responseCodes.internalErrorCode))
+            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(describing: responseCodes.internalErrorCode))
         }
     }
 
-    func postRejectMessage(aMesage : Message, onCompletion: APIResponse ){
+    func postRejectMessage(_ aMesage : Message, onCompletion: @escaping APIResponse ){
         if let rejectLink = aMesage.rejectLink {
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: rejectLink, httpMethod: .post, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: rejectLink, httpMethod: .post, onCompletion: {success, json, error in
                 print("how did we do \(success)")
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveRejectLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveRejectLink, String(describing: responseCodes.internalErrorCode))
         }
     }
     
-    func postAcceptMessage(aMesage : Message, onCompletion: APIResponse ){
+    func postAcceptMessage(_ aMesage : Message, onCompletion: @escaping APIResponse ){
         if let acceptLink = aMesage.acceptLink {        
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: acceptLink, httpMethod: .post, onCompletion: {success, json, error in
                 print("how did we do \(success)")
                 UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed, onCompletion:{(success, servermessage, servercode, users) in
                     print("user updated")
@@ -140,27 +140,27 @@ class MessageRequestManager {
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(describing: responseCodes.internalErrorCode))
         }
     }
     
-    func postProcessLink(aMesage : Message, onCompletion: APIResponse ){
+    func postProcessLink(_ aMesage : Message, onCompletion: @escaping APIResponse ){
         if let processLink = aMesage.yonaProcessLink {
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: processLink, httpMethod: .post, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: processLink, httpMethod: .post, onCompletion: {success, json, error in
                 print("how did we do \(success)")
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveProcessLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveProcessLink, String(describing: responseCodes.internalErrorCode))
         }
     }
 
     
-    func postReadMessage(aMesage : Message, onCompletion: APIResponse ){
+    func postReadMessage(_ aMesage : Message, onCompletion: @escaping APIResponse ){
         if let markAsRead = aMesage.markReadLink {
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: markAsRead, httpMethod: .post, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: markAsRead, httpMethod: .post, onCompletion: {success, json, error in
                 print("how did we do \(success)")
                 UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed, onCompletion:{(success, servermessage, servercode, users) in
                     print("user updated")
@@ -168,7 +168,7 @@ class MessageRequestManager {
                 onCompletion(success , "", "")
             })
         } else {
-            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(responseCodes.internalErrorCode))
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveAcceptLink, String(describing: responseCodes.internalErrorCode))
         }
     }
 

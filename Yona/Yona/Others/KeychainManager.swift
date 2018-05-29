@@ -11,14 +11,14 @@ import Foundation
 final class KeychainManager {
     static let sharedInstance = KeychainManager()
     
-    private let keychain = KeychainSwift()
+    fileprivate let keychain = KeychainSwift()
     
-    private init() {}
+    fileprivate init() {}
 }
 
 //MARK: - getYonaPassword
 extension KeychainManager {
-    func setPassword(password: String) {
+    func setPassword(_ password: String) {
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
     }
     
@@ -36,7 +36,7 @@ extension KeychainManager {
 
 //MARK: - PIN Code
 extension KeychainManager {
-    func savePINCode(pinCode: String) {
+    func savePINCode(_ pinCode: String) {
         keychain.set(pinCode, forKey: YonaConstants.keychain.PINCode)
     }
     
@@ -48,7 +48,7 @@ extension KeychainManager {
 
 //MARK: - USER ID
 extension KeychainManager {
-    func saveUserID(userID: String) {
+    func saveUserID(_ userID: String) {
         keychain.set(userID, forKey: YonaConstants.keychain.userID)
     }
     
@@ -61,14 +61,14 @@ extension KeychainManager {
 
 //MARK: - UserSelfLink, so that we can always get the user from the server
 extension KeychainManager {
-    func saveUserSelfLink(userSelfLink: String) {
+    func saveUserSelfLink(_ userSelfLink: String) {
         // WARNING this should be removed!
         var link = userSelfLink
         if link.hasPrefix(EnvironmentManager.baseUrlString()){
             let length = EnvironmentManager.baseUrlString().characters.count
-            let range = link.startIndex ..< link.startIndex.advancedBy(length)
+            let range = link.startIndex ..< link.characters.index(link.startIndex, offsetBy: length)
             
-            link.removeRange(range)
+            link.removeSubrange(range)
         }
         
         

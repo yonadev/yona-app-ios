@@ -14,7 +14,7 @@ public typealias BodyDataDictionary = [String: AnyObject]
 class APIServiceManager {
     static let sharedInstance = APIServiceManager()
     
-    private init() {}
+    fileprivate init() {}
     
     
     /**
@@ -26,11 +26,11 @@ class APIServiceManager {
      - parameter httpMethod: httpMethods, the httpmethod enum (post, get , put, delete)
      - parameter onCompletion:APIMobileConfigResponse The response from the API service, giving success or fail, dictionary response and any error
      */
-    func uploadPhoto(img: UIImage, path: String, httpMethod: httpMethods, onCompletion:APIMobileConfigResponse){
+    func uploadPhoto(_ img: UIImage, path: String, httpMethod: httpMethods, onCompletion:@escaping APIMobileConfigResponse){
         
         
-        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let langId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+        let countryId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as! String
         let language = "\(langId)-\(countryId)"
         
         
@@ -55,11 +55,11 @@ class APIServiceManager {
      - parameter httpMethod: httpMethods, the httpmethod enum (post, get , put, delete)
      - parameter onCompletion:APIServiceResponse The response from the API service, giving success or fail, dictionary response and any error
      */
-    func callRequestWithAPIServiceResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIServiceResponse){
+    func callRequestWithAPIServiceResponse(_ body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:@escaping APIServiceResponse){
         
         
-        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let langId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+        let countryId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as! String
         let language = "\(langId)-\(countryId)"
         
         
@@ -72,7 +72,7 @@ class APIServiceManager {
         Manager.sharedInstance.makeRequest(path, body: body, httpMethod: httpMethod, httpHeader: httpHeader, onCompletion: onCompletion)
     }
 
-    func callRequestWithAPIMobileConfigResponse(body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:APIMobileConfigResponse){
+    func callRequestWithAPIMobileConfigResponse(_ body: BodyDataDictionary?, path: String, httpMethod: httpMethods, onCompletion:@escaping APIMobileConfigResponse){
         
         guard let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword() else {
 //            NSLog("-----------------------------YONA")
@@ -81,8 +81,8 @@ class APIServiceManager {
             return
         }
         
-        let langId = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
-        let countryId = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let langId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+        let countryId = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as! String
         let language = "\(langId)-\(countryId)"
         
         let httpHeader = ["Content-Type": "application/json", "Accept-Language": language, "Yona-Password": yonaPassword]
@@ -97,7 +97,7 @@ class APIServiceManager {
      - parameter error: NSError?, the http response code we need to check (200-204 success, other is fail
      - return requestResult A struct used for error requests containing our codes and messages of the error
      */
-    func setServerCodeMessage(json:BodyDataDictionary?, error: NSError?) -> requestResult{
+    func setServerCodeMessage(_ json:BodyDataDictionary?, error: NSError?) -> requestResult{
         //If there is a json response and we have the key Error then we know there is and
         if let jsonUnwrapped = json,
             let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
@@ -125,7 +125,7 @@ class APIServiceManager {
      - parameter error: NSError? the error object
      - return The error string from the error code, this will either be a Yona error, so something failed on their side to do with the requets or a network problem
      */
-    func determineErrorCode(error: NSError?) -> String {
+    func determineErrorCode(_ error: NSError?) -> String {
         var errorString = ""
         if case responseCodes.yonaErrorCode.rawValue = error!.code {
             //if we have a yona error then it's error code string will be it's domain which is passed back from YONA and is used to determine how UI works

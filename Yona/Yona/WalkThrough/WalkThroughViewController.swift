@@ -8,47 +8,47 @@
 
 import UIKit
 
-public class WalkThroughViewController: UIViewController, ButtonEvents {
+open class WalkThroughViewController: UIViewController, ButtonEvents {
     @IBOutlet var pageController: AVPageViewController!
         
     var allControllers = [UIViewController]()
     let margin: CGFloat = 0.0
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "WalkThroughViewController")
+        tracker?.set(kGAIScreenName, value: "WalkThroughViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
     
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         for i in 1..<5 {
             let ide = "WalkThrough" + "\(i)"
-            let vc: TourScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(ide) as! TourScreenViewController
+            let vc: TourScreenViewController = self.storyboard!.instantiateViewController(withIdentifier: ide) as! TourScreenViewController
             vc.delegate = self
             allControllers.append(vc)
         }
         
-        self.pageController?.setupControllers(allControllers, viewControllerFrameRect: CGRectMake(margin, margin, self.view.frame.size.width - 2 * margin, self.view.frame.size.height ), withPresentingViewControllerIndex: 0)
+        self.pageController?.setupControllers(allControllers, viewControllerFrameRect: CGRect(x: margin, y: margin, width: self.view.frame.size.width - 2 * margin, height: self.view.frame.size.height ), withPresentingViewControllerIndex: 0)
         self.addChildViewController(self.pageController!)
         self.view.addSubview(self.pageController!.view)
-        self.pageController!.didMoveToParentViewController(self)
+        self.pageController!.didMove(toParentViewController: self)
     }
     
-    func buttonAction(presentViewControllerIndex: Int) {
+    func buttonAction(_ presentViewControllerIndex: Int) {
         if presentViewControllerIndex < self.allControllers.count - 1 {
             self.pageController!.gotoNextViewController(presentViewControllerIndex + 1)
         } else {
             // last index
             print("welcome")
             setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if let welcome = R.storyboard.welcome.welcomeViewController {
+            if let welcome = R.storyboard.welcome.welcomeViewController(()) {
                 self.navigationController?.pushViewController(welcome, animated: false)
             }
         }
@@ -58,15 +58,15 @@ public class WalkThroughViewController: UIViewController, ButtonEvents {
 
 
 protocol ButtonEvents: class {
-    func buttonAction(index: Int)
+    func buttonAction(_ index: Int)
 }
 
 
 enum TourScreen: Int {
-    case FirstScreen = 0
-    case SecondScreen
-    case ThirdScreen
-    case FourthScreen
+    case firstScreen = 0
+    case secondScreen
+    case thirdScreen
+    case fourthScreen
 }
 
 class TourScreenViewController: AVPageContentViewController {
@@ -75,13 +75,13 @@ class TourScreenViewController: AVPageContentViewController {
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var descLabel: UILabel?
     
-    @IBAction func nextAction(sender: UIButton) {
+    @IBAction func nextAction(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextActionWalkthrough", label: "Go to next walkthrough", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextActionWalkthrough", label: "Go to next walkthrough", value: nil).build() as! [AnyHashable: Any])
         delegate?.buttonAction(self.viewControllerIndex)
         
         setViewControllerToDisplay(ViewControllerTypeString.welcome, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-        if let welcome = R.storyboard.welcome.welcomeViewController {
+        if let welcome = R.storyboard.welcome.welcomeViewController(()) {
             self.navigationController?.pushViewController(welcome, animated: false)
         }
     }

@@ -20,7 +20,7 @@ class ActivitiesGoal : NSObject{
     var goalName: String?
     var goalType: String?
     var maxDurationMinutes: Int = 0
-    var date : NSDate  = NSDate()
+    var date : Date  = Date()
     var goalAccomplished : Bool = false
     var totalActivityDurationMinutes : Int = 0
     var totalMinutesBeyondGoal : Int = 0
@@ -46,7 +46,7 @@ class ActivitiesGoal : NSObject{
 
      */
     init(timeLinedayActivitiesForUsers: TimeLinedayActivitiesForUsers) {
-    date = NSDate()
+    date = Date()
         goalLinks = timeLinedayActivitiesForUsers.goalLink
         goalName = timeLinedayActivitiesForUsers.goalName
         goalType = timeLinedayActivitiesForUsers.goalType
@@ -62,7 +62,7 @@ class ActivitiesGoal : NSObject{
         dayDetailLinks = timeLinedayActivitiesForUsers.dayDetailLink
     }
     
-    init(activityData: AnyObject, date theDate: NSDate) {
+    init(activityData: AnyObject, date theDate: Date) {
         
         date = theDate
                 if let totalMinutesBeyondGoal = activityData[YonaConstants.jsonKeys.totalMinutesBeyondGoal] as? Int {
@@ -90,14 +90,14 @@ class ActivitiesGoal : NSObject{
             if let selfLink = links[YonaConstants.jsonKeys.yonaDayDetails] as? [String: AnyObject],
                 let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
                 self.dayDetailLinks = href
-                if let lastPath = NSURL(string: href)?.lastPathComponent {
+                if let lastPath = URL(string: href)?.lastPathComponent {
                     self.activityID = lastPath
                 }
             }
         }
     }
     
-    func addGoalsAndActivity(goals : [Goal],  activities : [Activities]){
+    func addGoalsAndActivity(_ goals : [Goal],  activities : [Activities]){
         for goal in goals {
             if goalLinks == goal.selfLinks {
                 maxDurationMinutes = goal.maxDurationMinutes

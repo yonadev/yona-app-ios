@@ -64,15 +64,15 @@ class TimeLineTimeBucketCell : UITableViewCell {
     }
     
     //MARK: - private methods
-    private func setUpView() {
+    fileprivate func setUpView() {
         
-        var aView  = UIView(frame:CGRectMake( 0, 0, backgroundMinsView.frame.size.width , backgroundMinsView.frame.height))
+        var aView  = UIView(frame:CGRect( x: 0, y: 0, width: backgroundMinsView.frame.size.width , height: backgroundMinsView.frame.height))
         
         positiveView = aView
         backgroundMinsView.addSubview(positiveView)
         
         
-        aView  = UIView(frame:CGRectMake(10, 0, 0, backgroundMinsView.frame.height))
+        aView  = UIView(frame:CGRect(x: 10, y: 0, width: 0, height: backgroundMinsView.frame.height))
         negativeView = aView
         backgroundMinsView.addSubview(negativeView)
         
@@ -87,19 +87,19 @@ class TimeLineTimeBucketCell : UITableViewCell {
         //userIcon.backgroundColor = UIColor.yiGrapeColor()
     }
 
-    private func dravTheUser () {
+    fileprivate func dravTheUser () {
     
         //will crash if empty
 //        if firstName.characters.count > 0 && lastName.characters.count > 0{
 //            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
 //        }
         if nickName.characters.count > 0 {
-            userInitial.text = "\(nickName.capitalizedString.characters.first!)"
+            userInitial.text = "\(nickName.capitalized.characters.first!)"
         }
         
     }
     
-    private func doInitialSetup() {
+    fileprivate func doInitialSetup() {
         
 //        var fra = backgroundMinsView.frame
 //        fra.size.width = frame.size.width-64
@@ -120,10 +120,10 @@ class TimeLineTimeBucketCell : UITableViewCell {
         if totalMinutes > 0 {
             pxPrMinute = (backgroundMinsView.frame.size.width) / CGFloat(totalMinutes)
         }
-        var aViewframe = CGRectMake( CGFloat(negative) * pxPrMinute, 0, (backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , backgroundMinsView.frame.height)
+        var aViewframe = CGRect( x: CGFloat(negative) * pxPrMinute, y: 0, width: (backgroundMinsView.frame.size.width) - CGFloat(negative) * pxPrMinute , height: backgroundMinsView.frame.height)
         positiveView.frame = aViewframe
         
-        aViewframe  = CGRectMake(CGFloat(negative) * pxPrMinute, 0, 0, backgroundMinsView.frame.height)
+        aViewframe  = CGRect(x: CGFloat(negative) * pxPrMinute, y: 0, width: 0, height: backgroundMinsView.frame.height)
         negativeView.frame = aViewframe
         
         negativeView.backgroundColor = UIColor.yiDarkishPinkColor()
@@ -138,7 +138,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
         
         //set beyond goal label minutes
         if negative == 0 {
-            self.minutesBeyondGoal.hidden = true
+            self.minutesBeyondGoal.isHidden = true
         }
         self.minutesBeyondGoal.text = "-\(negative)"
         
@@ -151,7 +151,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
     }
     
     
-    private func drawTheCell (animated: Bool) {
+    fileprivate func drawTheCell (_ animated: Bool) {
         let negative = totalMinutesBeyondGoal
         
         var positive = maxDurationMinutes - totalActivityDurationMinutes
@@ -185,11 +185,11 @@ class TimeLineTimeBucketCell : UITableViewCell {
         negativeFrame.size.width = CGFloat(negative) * pxPrMinute
         
         if animated {
-            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut,
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseOut,
                                        animations: {
                                         self.positiveView.frame = positiveFrame
                 }, completion: {finished in
-                    UIView.animateWithDuration(0.3, animations: {
+                    UIView.animate(withDuration: 0.3, animations: {
                         self.negativeView.frame = negativeFrame
                     })
                     
@@ -201,7 +201,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
         
     }
     
-    func setData(timeline : TimeLinedayActivitiesForUsers,animated: Bool) {
+    func setData(_ timeline : TimeLinedayActivitiesForUsers,animated: Bool) {
     
         totalMinutesBeyondGoal = timeline.totalMinutesBeyondGoal
         maxDurationMinutes = timeline.maxDurationMinutes

@@ -25,8 +25,8 @@ class BaseTabViewController: UITabBarController {
         //DashBoard
         
         var  controller = viewControllers
-        let storyBoard: UIStoryboard = UIStoryboard(name:"MeDashBoard", bundle: NSBundle.mainBundle())
-        let navi = storyBoard.instantiateViewControllerWithIdentifier("DashBoardMainNavigationController") as! UINavigationController
+        let storyBoard: UIStoryboard = UIStoryboard(name:"MeDashBoard", bundle: Bundle.main)
+        let navi = storyBoard.instantiateViewController(withIdentifier: "DashBoardMainNavigationController") as! UINavigationController
         navi.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "icnMe"),
@@ -38,19 +38,19 @@ class BaseTabViewController: UITabBarController {
 
         
         updateSelectedIndex()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         self.presentView()
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.presentView()
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
-            if let navController : UINavigationController = R.storyboard.vPNFlow.vpnNavigationController {
-                navController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.presentViewController(navController, animated: false, completion: nil)
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn) && !UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted) {
+            if let navController : UINavigationController = R.storyboard.vpnFlow.vpnNavigationController(()) {
+                navController.modalPresentationStyle = UIModalPresentationStyle.currentContext
+                DispatchQueue.main.async(execute: {
+                    self.present(navController, animated: false, completion: nil)
                 })
                 
             }
@@ -64,9 +64,9 @@ class BaseTabViewController: UITabBarController {
             let viewControllerToShow = getScreen(viewControllerName)
             
             //if the user is not logged in then show login window
-            if !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+            if !UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
 
-                self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false, completion: nil)
+                self.view.window?.rootViewController?.present(viewControllerToShow, animated: false, completion: nil)
             }
         }
 
@@ -81,42 +81,42 @@ class BaseTabViewController: UITabBarController {
      - parameter viewControllerName: String, this is the name the view controller we want to display
      - return UIViewController, UIViewController instance returned according to the parameter passed in
      */
-    func getScreen(viewControllerName: String) -> UIViewController{
+    func getScreen(_ viewControllerName: String) -> UIViewController{
         var navController: UINavigationController?
         var rootController: UIViewController?
 
         switch viewControllerName {
         case ViewControllerTypeString.confirmMobileValidation.rawValue:
-            rootController = R.storyboard.login.confirmPasscodeViewController
-            navController = R.storyboard.login.initialViewController
+            rootController = R.storyboard.login.confirmPasscodeViewController(())
+            navController = R.storyboard.login.instantiateInitialViewController()
             
         case ViewControllerTypeString.pinResetValidation.rawValue:
-            rootController = R.storyboard.login.pinResetValidationController
-            navController = R.storyboard.login.initialViewController
+            rootController = R.storyboard.login.pinResetValidationController(())
+            navController = R.storyboard.login.instantiateInitialViewController()
             
         case ViewControllerTypeString.adminOverrideValidation.rawValue:
-            rootController = R.storyboard.login.adminOverrideValidationViewController
-            navController = R.storyboard.login.initialViewController
+            rootController = R.storyboard.login.adminOverrideValidationViewController(())
+            navController = R.storyboard.login.instantiateInitialViewController()
             
         case ViewControllerTypeString.passcode.rawValue:
-            rootController = R.storyboard.login.passcodeViewController
-            navController = R.storyboard.login.initialViewController
+            rootController = R.storyboard.login.passcodeViewController(())
+            navController = R.storyboard.login.instantiateInitialViewController()
 
         case ViewControllerTypeString.login.rawValue:
-            rootController = R.storyboard.login.loginViewController
-            navController = R.storyboard.login.initialViewController
+            rootController = R.storyboard.login.loginViewController(())
+            navController = R.storyboard.login.instantiateInitialViewController()
             
         case ViewControllerTypeString.welcome.rawValue:
-            rootController = R.storyboard.welcome.welcomeViewController
-            navController = R.storyboard.welcome.initialViewController
+            rootController = R.storyboard.welcome.welcomeViewController(())
+            navController = R.storyboard.welcome.instantiateInitialViewController()
 
         case ViewControllerTypeString.walkThrough.rawValue:
-            rootController = R.storyboard.walkThrough.walkThroughViewController
-            navController = R.storyboard.walkThrough.initialViewController
+            rootController = R.storyboard.walkThrough.walkThroughViewController(())
+            navController = R.storyboard.walkThrough.instantiateInitialViewController()
             
         default:
-            rootController = R.storyboard.welcome.welcomeViewController
-            navController = R.storyboard.welcome.initialViewController
+            rootController = R.storyboard.welcome.welcomeViewController(())
+            navController = R.storyboard.welcome.instantiateInitialViewController()
             
         }
         
@@ -126,9 +126,9 @@ class BaseTabViewController: UITabBarController {
         return navController ?? rootController!
     }
 
-    func presentLoginScreen() {
+    @objc func presentLoginScreen() {
         let viewControllerToShow = getScreen(ViewControllerTypeString.login.rawValue)
-        self.view.window?.rootViewController?.presentViewController(viewControllerToShow, animated: false) {
+        self.view.window?.rootViewController?.present(viewControllerToShow, animated: false) {
         }
     }
     
@@ -147,10 +147,10 @@ class BaseTabViewController: UITabBarController {
     }
     
     class func userHasGoals() -> Bool {
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.fromAddressBook) {
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook) {
             return true
         }
-        return NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+        return UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
     }
 
 }

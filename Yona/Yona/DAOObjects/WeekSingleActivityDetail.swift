@@ -28,14 +28,14 @@ class WeekSingleActivityDetail: WeekSingleActivityGoal {
         super.init(data: data, allGoals: allGoals)
         
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
-            let userCalendar = NSCalendar.init(calendarIdentifier: NSGregorianCalendar)
-            userCalendar?.firstWeekday = 1
-            let formatter = NSDateFormatter()
+            var userCalendar = Calendar.init(identifier: .gregorian)
+            userCalendar.firstWeekday = 1
+            let formatter = DateFormatter()
             formatter.dateFormat = "YYYY'-W'ww"
-            formatter.locale = NSLocale.currentLocale()
+            formatter.locale = Locale.current
             formatter.calendar = userCalendar;
             
-            if let startdate = formatter.dateFromString(adDate) {
+            if let startdate = formatter.date(from: adDate) {
                 date = startdate
             }
         }

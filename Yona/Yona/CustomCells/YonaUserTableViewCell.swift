@@ -9,7 +9,7 @@
 import Foundation
 
 protocol YonaUserSwipeCellDelegate {
-    func messageNeedToBeDeleted(cell: YonaUserTableViewCell, message: Message);
+    func messageNeedToBeDeleted(_ cell: YonaUserTableViewCell, message: Message);
 }
 
 class YonaUserTableViewCell: PKSwipeTableViewCell {
@@ -54,12 +54,12 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
-        viewCall.frame = CGRectMake(0,0, self.frame.size.height, self.frame.size.height)
+        viewCall.frame = CGRect(x: 0,y: 0, width: self.frame.size.height, height: self.frame.size.height)
         //Add a button to perform the action when user will tap on call and add a image to display
-        let btnCall = UIButton(type: UIButtonType.Custom)
-        btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
-        btnCall.addTarget(self, action: #selector(self.deleteMessage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let btnCall = UIButton(type: UIButtonType.custom)
+        btnCall.frame = CGRect(x: 0,y: 0,width: viewCall.frame.size.width,height: viewCall.frame.size.height)
+        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControlState())
+        btnCall.addTarget(self, action: #selector(self.deleteMessage(_:)), for: UIControlEvents.touchUpInside)
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
@@ -67,9 +67,9 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     }
     
     
-    @IBAction func deleteMessage(sender: UIButton){
+    @IBAction func deleteMessage(_ sender: UIButton){
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as! [AnyHashable: Any])
         
         if let yonaUserSwipeDelegate = yonaUserSwipeDelegate,
             let aMessage = aMessage{
@@ -77,7 +77,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         }
     }
     
-    func setBuddie(aBuddie : Buddies) {
+    func setBuddie(_ aBuddie : Buddies) {
         
         // When showing the Buddy, we move the status to the right of the cell. Autolayout will then extend the size of the nameLabel as well as the nicknameLabel
         statusImageConstraint.constant = -contentView.frame.size.width
@@ -86,10 +86,10 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         boldLineLabel.text = "\(aBuddie.UserRequestfirstName) \(aBuddie.UserRequestlastName)"
         let dateString = aBuddie.lastMonitoredActivityDate // change to your date format
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        if let convertedDate = dateFormatter.dateFromString(dateString!) {
+        if let convertedDate = dateFormatter.date(from: dateString!) {
             normalLineLabel.text = timeAgoSinceDate(convertedDate, numericDates: false)
         } else {
             normalLineLabel.text = NSLocalizedString("neverSeenOnline", comment: "")
@@ -97,14 +97,14 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+        avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalized.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
 
 //        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
     }
     
     // MARK: using cell as Message
     
-    func setMessage(aMessage : Message) {
+    func setMessage(_ aMessage : Message) {
         self.aMessage = aMessage
         avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         //if the messsage has been accepted can we delete so disable pan
@@ -114,11 +114,11 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             self.isPanEnabled = false
         }
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         
         if aMessage.messageType == notificationType.GoalConflictMessage {
-            boldLineLabel.text = aMessage.simpleDescription() + " " + aMessage.activityTypeName + " - " + formatter.stringFromDate(aMessage.creationTime)
+            boldLineLabel.text = aMessage.simpleDescription() + " " + aMessage.activityTypeName + " - " + formatter.string(from: aMessage.creationTime as Date)
         } else {
             boldLineLabel.text = aMessage.simpleDescription()
         }
@@ -127,7 +127,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         var tmpnickname = ""
         tmpnickname = aMessage.nickname
         if tmpnickname.characters.count > 0 {
-            avatarNameLabel.text = "\(tmpnickname.capitalizedString.characters.first!)"
+            avatarNameLabel.text = "\(tmpnickname.capitalized.characters.first!)"
         } else {
             avatarNameLabel.text = ""
         }
@@ -152,27 +152,27 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         // do nothing
     }
     
-    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
-        let calendar = NSCalendar.currentCalendar()
-        let now = NSDate()
-        let earliest = now.earlierDate(date)
+    func timeAgoSinceDate(_ date:Date, numericDates:Bool) -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        let earliest = (now as NSDate).earlierDate(date)
         let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components([NSCalendarUnit.Minute , NSCalendarUnit.Hour , NSCalendarUnit.Day , NSCalendarUnit.WeekOfYear , NSCalendarUnit.Month , NSCalendarUnit.Year , NSCalendarUnit.Second], fromDate: earliest, toDate: latest, options: NSCalendarOptions())
+        let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
         
-        if (components.day >= 2 && components.day < 5) {
-            let lastSeenText = String(format: "%@ %d %@", NSLocalizedString("lastSeen", comment: ""), components.day, NSLocalizedString("daysAgo", comment: ""))
+        if (components.day! >= 2 && components.day! < 5) {
+            let lastSeenText = String(format: "%@ %d %@", NSLocalizedString("lastSeen", comment: ""), components.day!, NSLocalizedString("daysAgo", comment: ""))
             return lastSeenText
         } else if (components.day == 1){
             let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeen", comment: ""),NSLocalizedString("yesterday", comment: ""))
             return lastSeenText
-        }else if (components.day < 1){
+        }else if (components.day! < 1){
             let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeen", comment: ""),NSLocalizedString("today", comment: ""))
             return lastSeenText
         }  else {
             //Last seen on February 15, 2017
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM dd, yyyy"
-            let dateString = dateFormatter.stringFromDate(date)
+            let dateString = dateFormatter.string(from: date)
             let lastSeenText = String(format: "%@ %@", NSLocalizedString("lastSeenOn", comment: ""),dateString)
             return lastSeenText
         }

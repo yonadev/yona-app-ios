@@ -25,13 +25,13 @@ class AdminOverrideRequestTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testAdminRequestOverride() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         
         let body =
             ["firstName": "Ben",
@@ -58,7 +58,7 @@ class AdminOverrideRequestTests: XCTestCase {
                 }
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
         
     }
 }

@@ -9,8 +9,11 @@
 import Foundation
 
 extension CGFloat {
-    func roundNearest(nearest: CGFloat) -> CGFloat {
+    mutating func roundNearest(_ nearest: CGFloat) -> CGFloat {
         let n = 1/nearest
-        return round(self * n) / n
+        //return round(self * n) / n
+        let a = self * n
+        return Darwin.round(a) / n
     }
 }
+

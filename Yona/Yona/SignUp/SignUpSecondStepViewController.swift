@@ -8,6 +8,32 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     var activeField : UITextField?
@@ -17,10 +43,10 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     var userFirstName: String?
     var userLastName: String?
         
-    private let nederlandPhonePrefix = "31"
+    fileprivate let nederlandPhonePrefix = "31"
     
     @IBOutlet var mobileTextField: UITextField!
-    private var mobilePrefixTextField: UITextField!
+    fileprivate var mobilePrefixTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
@@ -37,53 +63,53 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "SignUpSecondStepViewController")
+        tracker?.set(kGAIScreenName, value: "SignUpSecondStepViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
-        IQKeyboardManager.sharedManager().enable = false
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        IQKeyboardManager.shared.enable = false
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        IQKeyboardManager.sharedManager().enable = true
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        IQKeyboardManager.shared.enable = true
+        NotificationCenter.default.removeObserver(self)
     }
 
     
-    func keyboardWillShow(notification: NSNotification)
+    @objc func keyboardWillShow(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 96;
-        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
-        UIView.animateWithDuration(animationDiration) {
+        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
-        }
+        }) 
         
         
         
     }
-    func keyboardWillHiden(notification: NSNotification)
+    @objc func keyboardWillHiden(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 210;
-        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
-        UIView.animateWithDuration(animationDiration) {
+        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         // Text Delegates
         if var label = previousRange {
             label.length = 1
@@ -97,56 +123,56 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.view.addGestureRecognizer(tap)
         
         // Adding right mode image to text fields
-        let mobileImage = UIImageView(image: R.image.icnMobile)
-        mobileImage.frame = CGRectMake(0.0, 0.0, mobileImage.image!.size.width+10.0, mobileImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.Center
+        let mobileImage = UIImageView(image: R.image.icnMobile())
+        mobileImage.frame = CGRect(x: 0.0, y: 0.0, width: mobileImage.image!.size.width+10.0, height: mobileImage.image!.size.height);
+        mobileImage.contentMode = UIViewContentMode.center
         self.mobileTextField.rightView = mobileImage;
-        self.mobileTextField.rightViewMode = UITextFieldViewMode.Always
+        self.mobileTextField.rightViewMode = UITextFieldViewMode.always
         
-        let nicknameImage = UIImageView(image: R.image.icnNickname)
-        nicknameImage.frame = CGRectMake(0.0, 0.0, nicknameImage.image!.size.width, nicknameImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.Center
+        let nicknameImage = UIImageView(image: R.image.icnNickname())
+        nicknameImage.frame = CGRect(x: 0.0, y: 0.0, width: nicknameImage.image!.size.width, height: nicknameImage.image!.size.height);
+        mobileImage.contentMode = UIViewContentMode.center
         self.nicknameTextField.rightView = nicknameImage;
-        self.nicknameTextField.rightViewMode = UITextFieldViewMode.Always
+        self.nicknameTextField.rightViewMode = UITextFieldViewMode.always
         
-        let mobileNumberView = UIView(frame: CGRectMake(0, 0, 50, 50))
+        let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
-        let plusLabel = UILabel(frame: CGRectMake(0, 0, 10, 50))
+        let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.Center
-        plusLabel.textAlignment = NSTextAlignment.Center
+        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
-        let prefixTextField = UITextField(frame: CGRectMake(10, 0, 40, 50))
+        let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.Left
-        prefixTextField.textAlignment = NSTextAlignment.Left
+        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.Always
-        prefixTextField.keyboardType = UIKeyboardType.NumberPad
+        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextField.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextField.leftViewMode = UITextFieldViewMode.Always
+        self.mobileTextField.leftViewMode = UITextFieldViewMode.always
     }
         
     // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as! [AnyHashable: Any])
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     // Go To Another ViewController
-    @IBAction func nextPressed(sender: UIButton) {
+    @IBAction func nextPressed(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as! [AnyHashable: Any])
         
         var number = ""
         if let mobilenum = mobileTextField.text {
@@ -172,7 +198,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                      "mobileNumber": trimmedString,
                      "nickname": nicknameTextField.text ?? ""]
                 KeychainManager.sharedInstance.clearKeyChain()
-                UserRequestManager.sharedInstance.postUser(body, confirmCode: nil, onCompletion: { (success, message, code, user) in
+                UserRequestManager.sharedInstance.postUser(body as BodyDataDictionary, confirmCode: nil, onCompletion: { (success, message, code, user) in
                     if success {
                         self.sendToSMSValidation()
                     } //if the user already exists asks to override
@@ -187,17 +213,17 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                         let trimmedString = trimmedWhiteSpaceString.removeBrackets()
                         
                         let localizedString = NSLocalizedString("user-override", comment: "")
-                        let title = NSString(format: localizedString, String(trimmedString))
+                        let title = NSString(format: localizedString as NSString, String(trimmedString))
                         
                         
                         self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
                             switch buttonPressed{
-                            case alertButtonType.OK:
+                            case alertButtonType.ok:
                                 AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
                                     //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
                                     if success {
-                                        NSUserDefaults.standardUserDefaults().setObject(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
-                                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                                        UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
+                                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                                         self.sendToAdminOverrideValidation()
                                     } else {
                                         if let message = message,
@@ -230,7 +256,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
-        if let smsValidation = R.storyboard.login.confirmPinValidationViewController {
+        if let smsValidation = R.storyboard.login.confirmPinValidationViewController(()) {
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }
     }
@@ -240,7 +266,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         setViewControllerToDisplay(ViewControllerTypeString.adminOverrideValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
-        if let adminOverrideVC = R.storyboard.login.adminOverrideValidationViewController {
+        if let adminOverrideVC = R.storyboard.login.adminOverrideValidationViewController(()) {
             self.navigationController?.pushViewController(adminOverrideVC, animated: false)
         }
         
@@ -249,15 +275,15 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
 
 extension SignUpSecondStepViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == mobileTextField {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = true
+            IQKeyboardManager.shared.enableAutoToolbar = true
         } else {
-            IQKeyboardManager.sharedManager().enableAutoToolbar = false
+            IQKeyboardManager.shared.enableAutoToolbar = false
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField == mobileTextField) {
             nicknameTextField.becomeFirstResponder()
         } else {
@@ -266,7 +292,7 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
@@ -293,7 +319,7 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
     }
     
     //Calls this function when the tap is recognized.
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
 }

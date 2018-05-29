@@ -18,9 +18,9 @@ class CommentRequestManager {
 
     static let sharedInstance = CommentRequestManager()
     
-    private init() {}
+    fileprivate init() {}
     
-    func postComment(postGoalMessageLink: String, messageBody: BodyDataDictionary, onCompletion: APICommentResponse){
+    func postComment(_ postGoalMessageLink: String, messageBody: BodyDataDictionary, onCompletion: @escaping APICommentResponse){
         self.APIService.callRequestWithAPIServiceResponse(messageBody, path: postGoalMessageLink, httpMethod: httpMethods.post) { (success, json, error) in
             if success {
                 if let json = json {
@@ -35,7 +35,7 @@ class CommentRequestManager {
         }
     }
     
-    func postReply(postReplyLink: String, messageBody: BodyDataDictionary, onCompletion: APICommentResponse){
+    func postReply(_ postReplyLink: String, messageBody: BodyDataDictionary, onCompletion: @escaping APICommentResponse){
         self.APIService.callRequestWithAPIServiceResponse(messageBody, path: postReplyLink, httpMethod: httpMethods.post) { (success, json, error) in
             if success {
                 if let json = json {
@@ -61,7 +61,7 @@ class CommentRequestManager {
     }
     
     
-    func getComments(getCommentsLink: String, size: Int, page: Int, onCompletion: APICommentResponse){
+    func getComments(_ getCommentsLink: String, size: Int, page: Int, onCompletion: @escaping APICommentResponse){
         let path = getCommentsLink + "?size=" + String(size) + "&page=" + String(page-1)
         self.APIService.callRequestWithAPIServiceResponse(nil, path: path, httpMethod: httpMethods.get) { success, json, error in
             if let json = json {
@@ -99,19 +99,19 @@ class CommentRequestManager {
         }
     }
     
-    func deleteComment(aComment : Comment, onCompletion: APIResponse ){
+    func deleteComment(_ aComment : Comment, onCompletion: @escaping APIResponse ){
         if let deleteLink = aComment.editLink {
             let body = ["properties":[:]]
-            self.APIService.callRequestWithAPIServiceResponse(body, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
+            self.APIService.callRequestWithAPIServiceResponse(body as BodyDataDictionary, path: deleteLink, httpMethod: .delete, onCompletion: {success, json, error in
                 onCompletion(success , error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
             })
         } else {
-            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(responseCodes.internalErrorCode))
+            onCompletion(false, NSLocalizedString("failed-to-retrieve-delete-link", comment: ""), String(describing: responseCodes.internalErrorCode))
         }
     }
     
     // MARK: - get replies data and filter
-    func getRepliesToThreadID(commentLink: String?, threadID: String?, size: Int, page: Int, onCompletion: APICommentResponse) {
+    func getRepliesToThreadID(_ commentLink: String?, threadID: String?, size: Int, page: Int, onCompletion: @escaping APICommentResponse) {
         CommentRequestManager.sharedInstance.getComments(commentLink!, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 if let comments = comments {

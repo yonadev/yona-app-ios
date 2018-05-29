@@ -8,65 +8,65 @@
 
 import Foundation
 
-extension NSDate {
-    private var calendar : NSCalendar {
-        return NSCalendar.currentCalendar()
+extension Foundation.Date {
+    fileprivate var calendar : Calendar {
+        return Calendar.current
     }
     
     func fullDayMonthDateString() -> String { //Woensday, 9 April, 2016
-        return Date.formatterEEEEDMMMMYYYY.stringFromDate(self).uppercaseString
+        return Date.formatterEEEEDMMMMYYYY.string(from: self).uppercased()
     }
     
     func shortDayMonthDateString() -> String { //9 April
-        return Date.formatterDDMMM.stringFromDate(self).uppercaseString
+        return Date.formatterDDMMM.string(from: self).uppercased()
     }
     
     func isYesterday() -> Bool {
-        let today = NSDate()
-        let yesterday = today.dateByAddingTimeInterval(-86400.0)
+        let today = Foundation.Date()
+        let yesterday = today.addingTimeInterval(-86400.0)
         return self.isSameDayAs(yesterday)
     }
     
     func isToday() -> Bool {
-        let today = NSDate()
+        let today = Foundation.Date()
         return self.isSameDayAs(today)
     }
     
     func monthNameFromDate() -> String {
-        return NSDateFormatter().monthSymbols[self.months - 1]
+        return DateFormatter().monthSymbols[self.months - 1]
     }
     
     public var years: Int {
-        return self.calendar.components(.Year, fromDate: self).year
+        return (self.calendar as NSCalendar).components(.year, from: self).year!
     }
     
     public var months: Int {
-        return self.calendar.components(.Month, fromDate: self).month
+        return (self.calendar as NSCalendar).components(.month, from: self).month!
     }
     
     public var weeks: Int {
-        return self.calendar.components(.WeekOfYear, fromDate: self).weekOfYear
+        return (self.calendar as NSCalendar).components(.weekOfYear, from: self).weekOfYear!
     }
     
     public var days: Int {
-        return self.calendar.components(.Day, fromDate: self).day
+        return (self.calendar as NSCalendar).components(.day, from: self).day!
     }
     
     public var hours: Int {
-        return self.calendar.components(.Hour, fromDate: self).hour
+        return (self.calendar as NSCalendar).components(.hour, from: self).hour!
     }
     
     public var minutes: Int {
-        return self.calendar.components(.Minute, fromDate: self).minute
+        return (self.calendar as NSCalendar).components(.minute, from: self).minute!
     }
     
     public var seconds: Int {
-        return self.calendar.components(.Second, fromDate: self).second
+        return (self.calendar as NSCalendar).components(.second, from: self).second!
     }
     
-    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+    func isGreaterThanDate(_ dateToCompare: Foundation.Date) -> Bool {
         var isGreater = false
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
+        if self.compare(dateToCompare) == ComparisonResult.orderedDescending {
             isGreater = true
         }
         return isGreater
@@ -78,52 +78,52 @@ extension NSDate {
      - parameter none
      - return Rounded value of object NSDate in HH:mm format
      */
-    func dateRoundedDownTo15Minute() -> NSDate {
+    func dateRoundedDownTo15Minute() -> Foundation.Date {
         let referenceTime = self.timeIntervalSinceReferenceDate
-        let remainingSeconds = referenceTime % 900
-        var timeRound15 = referenceTime - (referenceTime % 900)
+        let remainingSeconds = referenceTime.truncatingRemainder(dividingBy: 900)
+        var timeRound15 = referenceTime - (referenceTime.truncatingRemainder(dividingBy: 900))
         
         if timeRound15 > 450 {
             timeRound15 = referenceTime + (900 - remainingSeconds)
         }
         
-        let date = NSDate.init(timeIntervalSinceReferenceDate: timeRound15)
+        let date = Foundation.Date.init(timeIntervalSinceReferenceDate: timeRound15)
         return date
     }
     
     struct Date {
-        static let formatterYYYYMMDD: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterYYYYMMDD: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyyMMdd"
             return formatter
         }()
 
-        static let formatterYYYYWW: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterYYYYWW: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-'W'ww"
             return formatter
         }()
         
-        static let formatterMMDD: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterMMDD: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "MMdd"
             return formatter
         }()
         
-        static let formatterDD: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterDD: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "dd"
             return formatter
         }()
         
-        static let formatterDDMMM: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterDDMMM: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "dd MMM"
             return formatter
         }()
         
-        static let formatterEEEEDMMMMYYYY: NSDateFormatter = {
-            let formatter = NSDateFormatter()
+        static let formatterEEEEDMMMMYYYY: DateFormatter = {
+            let formatter = DateFormatter()
             formatter.dateFormat = "eeee, d MMMM, YYYY"
             return formatter
         }()
@@ -131,21 +131,21 @@ extension NSDate {
     }
     
     var MonthDay: String {
-        return Date.formatterMMDD.stringFromDate(self)
+        return Date.formatterMMDD.string(from: self)
     }
     
     var Day: String {
-        return Date.formatterDD.stringFromDate(self)
+        return Date.formatterDD.string(from: self)
     }
     
     var yearWeek : String {
-        return Date.formatterYYYYWW.stringFromDate(self)
+        return Date.formatterYYYYWW.string(from: self)
     }
     
     var yearMonthDay: String {
-        return Date.formatterYYYYMMDD.stringFromDate(self)
+        return Date.formatterYYYYMMDD.string(from: self)
     }
-    func isSameDayAs(date:NSDate) -> Bool {
+    func isSameDayAs(_ date:Foundation.Date) -> Bool {
         return yearMonthDay == date.yearMonthDay
     }
     
@@ -160,9 +160,9 @@ extension NSDate {
             NSLocalizedString("notifications.day.saturday", comment: "")
         ]
         
-        let calendar: NSCalendar = NSCalendar.currentCalendar()
-        let components: NSDateComponents = calendar.components(.Weekday, fromDate: self)
-        return weekdays[components.weekday - 1]
+        let calendar: Calendar = Calendar.current
+        let components: DateComponents = (calendar as NSCalendar).components(.weekday, from: self)
+        return weekdays[components.weekday! - 1]
     }
 }
 // NSCalendar+Swift.swift
@@ -171,53 +171,47 @@ extension NSDate {
 // (c) 2015 Nate Cook, licensed under the MIT license
 
 @available(iOS 8.0, *)
-extension NSCalendar {
+extension Calendar {
     /// Returns the hour, minute, second, and nanoseconds of a given date.
     @available(iOS 8.0, *)
-    func getTimeFromDate(date: NSDate) -> (hour: Int, minute: Int, second: Int, nanosecond: Int) {
-        var (hour, minute, second, nanosecond) = (0, 0, 0, 0)
-        getHour(&hour, minute: &minute, second: &second, nanosecond: &nanosecond, fromDate: date)
-        return (hour, minute, second, nanosecond)
+    /// Returns the hour, minute, second, and nanoseconds of a given date.
+    func getTimeFromDate(_ date: Date) -> (hour: Int, minute: Int, second: Int, nanosecond: Int) {
+        let components = dateComponents([.hour, .minute, .second, .nanosecond], from: date)
+        return (components.hour ?? 0, components.minute ?? 0, components.second ?? 0, components.nanosecond ?? 0)
     }
     
     /// Returns the era, year, month, and day of a given date.
-    func getDateItemsFromDate(date: NSDate) -> (era: Int, year: Int, month: Int, day: Int) {
-        var (era, year, month, day) = (0, 0, 0, 0)
-        getEra(&era, year: &year, month: &month, day: &day, fromDate: date)
-        return (era, year, month, day)
+    func getDateItemsFromDate(_ date: Date) -> (era: Int, year: Int, month: Int, day: Int) {
+        let components = dateComponents([.era, .year, .month, .day], from: date)
+        return (components.era ?? 0, components.year ?? 0, components.month ?? 0, components.day ?? 0)
     }
     
     /// Returns the era, year for week-of-year calculations, week of year, and weekday of a given date.
-    func getWeekItemsFromDate(date: NSDate) -> (era: Int, yearForWeekOfYear: Int, weekOfYear: Int, weekday: Int) {
-        var (era, yearForWeekOfYear, weekOfYear, weekday) = (0, 0, 0, 0)
-        getEra(&era, yearForWeekOfYear: &yearForWeekOfYear, weekOfYear: &weekOfYear, weekday: &weekday, fromDate: date)
-        return (era, yearForWeekOfYear, weekOfYear, weekday)
+    func getWeekItemsFromDate(_ date: Date) -> (era: Int, yearForWeekOfYear: Int, weekOfYear: Int, weekday: Int) {
+        let components = dateComponents([.era, .yearForWeekOfYear, .weekOfYear, .weekday], from: date)
+        return (components.era ?? 0, components.yearForWeekOfYear ?? 0, components.weekOfYear ?? 0, components.weekday ?? 0)
     }
     
-    /// Returns the5 start and length of the next weekend after the given date. Returns nil if the
+    /// Returns the start and length of the next weekend after the given date. Returns nil if the
     /// calendar or locale don't support weekends.
-//    func nextWeekendAfterDate(date: NSDate) -> (startDate: NSDate, interval: NSTimeInterval)? {
-//        var startDate: NSDate?
-//        var interval: NSTimeInterval = 0
-//        
-//        if nextWeekendStartDate(&startDate, interval: &interval, options: NSCalendarWrapComponents, afterDate: date),
-//            let startDate = startDate
-//        {
-//            return (startDate, interval)
-//        }
-//        
-//        return nil
-//    }
+    func nextWeekendAfterDate(_ date: Date) -> (startDate: Date, interval: TimeInterval)? {
+        var startDate: Date = .distantFuture
+        var interval: TimeInterval = 0
+        
+        if nextWeekend(startingAfter: date, start: &startDate, interval: &interval, direction: .forward) {
+            return (startDate, interval)
+        }
+        
+        return nil
+    }
     
     /// Returns the start and length of the weekend before the given date. Returns nil if the
     /// calendar or locale don't support weekends.
-    func nextWeekendBeforeDate(date: NSDate) -> (startDate: NSDate, interval: NSTimeInterval)? {
-        var startDate: NSDate?
-        var interval: NSTimeInterval = 0
+    func nextWeekendBeforeDate(_ date: Date) -> (startDate: Date, interval: TimeInterval)? {
+        var startDate: Date = .distantPast
+        var interval: TimeInterval = 0
         
-        if nextWeekendStartDate(&startDate, interval: &interval, options: .SearchBackwards, afterDate: date),
-            let startDate = startDate
-        {
+        if nextWeekend(startingAfter: date, start: &startDate, interval: &interval, direction: .backward) {
             return (startDate, interval)
         }
         
@@ -226,17 +220,15 @@ extension NSCalendar {
     
     /// Returns the start and length of the weekend containing the given date. Returns nil if the
     /// given date isn't in a weekend or if the calendar or locale don't support weekends.
-    func rangeOfWeekendContainingDate(date: NSDate) -> (startDate: NSDate, interval: NSTimeInterval)? {
-        var startDate: NSDate?
-        var interval: NSTimeInterval = 0
+    func rangeOfWeekendContainingDate(_ date: Date) -> (startDate: Date, interval: TimeInterval)? {
+        var startDate: Date = .distantPast
+        var interval: TimeInterval = 0
         
-        if rangeOfWeekendStartDate(&startDate, interval: &interval, containingDate: date),
-            let startDate = startDate
+        if dateIntervalOfWeekend(containing: date, start: &startDate, interval: &interval)
         {
             return (startDate, interval)
         }
         
         return nil
     }
-    
 }

@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import IQKeyboardManagerSwift
 
 
 enum detailDayRows : Int  {
@@ -29,14 +30,14 @@ enum detailDaySections : Int  {
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate  {
  
     @IBOutlet weak var tableView : UITableView!
-    var correctToday = NSDate()
+    var correctToday = Date()
     var singleDayData : [String: DaySingleActivityDetail] = [:]
     var dayData : DaySingleActivityDetail?
     var activityGoal : ActivitiesGoal?
     var initialObjectLink : String?
     var goalName : String?
     var goalType : String?
-    var currentDate : NSDate = NSDate()
+    var currentDate : Date = Date()
     var currentDay : String?
     var nextLink : String?
     var prevLink : String?
@@ -50,8 +51,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var navbarColor1 : UIColor?
     var navbarColor : UIColor?
     
-    var violationStartTime : NSDate?
-    var violationEndTime : NSDate?
+    var violationStartTime : Date?
+    var violationEndTime : Date?
     var violationLinkURL : String?
     
     //paging
@@ -63,12 +64,12 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var comments = [Comment]() {
         didSet{
             //everytime savedarticles is added to or deleted from table is refreshed
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.previousThreadID = ""
                 self.tableView.reloadData()
 
                 if self.comments.count > 0 && self.moveToBottomRequired {
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.comments.count - 1, inSection: 1), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+                    self.tableView.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 1), at: UITableViewScrollPosition.bottom, animated: false)
                 }
                 
             }
@@ -80,7 +81,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         self.comments = []
         if let activityGoal = activityGoal {
             initialObjectLink = activityGoal.dayDetailLinks
-            currentDate = activityGoal.date
+            currentDate = activityGoal.date as Date
             goalName = activityGoal.goalName
             goalType = activityGoal.goalType
             
@@ -91,20 +92,20 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
     }
     
-    @IBAction func backAction(sender : AnyObject) {
-        dispatch_async(dispatch_get_main_queue(), {
+    @IBAction func backAction(_ sender : AnyObject) {
+        DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as! [AnyHashable: Any])
 
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         })
         
     }
     
-    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+    fileprivate func shouldAnimate(_ cell : IndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
-        if animatedCells.indexOf(txt) == nil {
+        if animatedCells.index(of: txt) == nil {
             print("Animated \(txt)")
             animatedCells.append(txt)
             return true
@@ -117,47 +118,47 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func registreTableViewCells () {
         
         var nib = UINib(nibName: "SpreadCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
+        tableView.register(nib, forCellReuseIdentifier: "SpreadCell")
         
         nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
         nib = UINib(nibName: "NoGoCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
+        tableView.register(nib, forCellReuseIdentifier: "NoGoCell")
         
         nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "TimeZoneControlCell")
         
         nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
         
         nib = UINib(nibName: "CommentTableHeader", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
         
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
         
 //        nib = UINib(nibName: "SendCommentControl", bundle: nil)
 //        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
         
         nib = UINib(nibName: "ReplyToComment", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
+        tableView.register(nib, forCellReuseIdentifier: "ReplyToComment")
 
         
         nib = UINib(nibName: "DayViewLinkCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "DayViewLinkCell")
+        tableView.register(nib, forCellReuseIdentifier: "DayViewLinkCell")
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "MeDayDetailViewController")
+        tracker?.set(kGAIScreenName, value: "MeDayDetailViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
-        correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
+        correctToday = Date().addingTimeInterval(60*60*24)
         self.loadData(.own)
 
     }
@@ -175,21 +176,21 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func noGoalTypeInResponse() {
         let alert = UIAlertController(title: NSLocalizedString("nogo-data-not-found-title", comment: ""),
                                       message: NSLocalizedString("nogo-data-not-found-description", comment: ""),
-                                      preferredStyle: UIAlertControllerStyle.Alert)
+                                      preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .Default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .default, handler: { action in
             switch action.style {
-            case .Default:
-                self.navigationController?.popViewControllerAnimated(true)
+            case .default:
+                self.navigationController?.popViewController(animated: true)
             default:
                 break
             }
         }))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func loadData (typeToLoad : loadType = .own) {
+    func loadData (_ typeToLoad : loadType = .own) {
         
         Loader.Show()
 //        size = 4
@@ -204,7 +205,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
                             self.goalType = data.goalType
-                            self.navigationItem.title = self.dayData?.goalName.uppercaseString //only need to do this in the first original data
+                            self.navigationItem.title = self.dayData?.goalName.uppercased() //only need to do this in the first original data
 
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
@@ -293,7 +294,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
 // MARK: - tableview Override
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -316,7 +317,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return CGFloat(cellHeight)
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -339,7 +340,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return CGFloat(cellHeight)
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 44.0
         } else if section == 1 && self.comments.count > 0{
@@ -348,11 +349,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return 0.0
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  dayData == nil {
             return 0
         }
@@ -370,11 +371,11 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return numberOfSections
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
             if indexPath.row == detailDayRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
                 if let data = dayData  {
                     cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
@@ -384,19 +385,19 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             if indexPath.row == detailDayRows.activity.rawValue {
 
                 if goalType == GoalType.BudgetGoalString.rawValue {
-                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if goalType == GoalType.TimeZoneGoalString.rawValue {
-                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeZoneControlCell", for: indexPath) as! TimeZoneControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if goalType == GoalType.NoGoGoalString.rawValue {
-                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    let cell: NoGoCell = tableView.dequeueReusableCell(withIdentifier: "NoGoCell", for: indexPath) as! NoGoCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data)
                     }
@@ -406,7 +407,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
             
             if indexPath.row == detailDayRows.linkCell.rawValue {
-                let cell: DayViewLinkCell = tableView.dequeueReusableCellWithIdentifier("DayViewLinkCell", forIndexPath: indexPath) as! DayViewLinkCell
+                let cell: DayViewLinkCell = tableView.dequeueReusableCell(withIdentifier: "DayViewLinkCell", for: indexPath) as! DayViewLinkCell
                 cell.setData(violationLinkURL!, startDate: violationStartTime!)
                 return cell
                 
@@ -438,7 +439,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             if self.dayData?.messageLink != nil && indexPath.section == 1 {
                 //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
                 if currentThreadID != previousThreadID {
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as? CommentControlCell {
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
@@ -448,7 +449,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     }
                 } else {
                     // if the thread id is the same then show the reply to comment cell
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyToComment", for: indexPath) as? ReplyToComment {
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
@@ -460,13 +461,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
             
         }
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(frame: CGRect.zero)
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
+            let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
             cell.delegate = self
 
             if currentDate.isToday() {
@@ -498,13 +499,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             
             return cell
         } else if section == 1 && self.comments.count > 0{
-            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentTableHeader") as! CommentTableHeader
             return cell
         }
         return nil
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
         if self.comments.count > 0{
             if indexPath.section == 1 {
                 print(indexPath.row)
@@ -532,23 +533,23 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     // MARK: - CommentCellDelegate
-    func deleteComment(cell: CommentControlCell, comment: Comment){
+    func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
             if success {
-                self.comments.removeAtIndex((cell.indexPath?.row)!)
+                self.comments.remove(at: (cell.indexPath?.row)!)
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
             }
         })
     }
     
-    func showSendComment(comment: Comment?) {
+    func showSendComment(_ comment: Comment?) {
         self.comments = []
         if let comment = comment {
             self.comments.append(comment)
         }
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.sendCommentFooter!.alpha = 1
         })
 
@@ -556,11 +557,12 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     // MARK: - SendCommentControlProtocol
     
-    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
-        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+    func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
+       // IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
-    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+    func textFieldEndEdit(_ commentTextField: UITextField, comment: Comment?){
         moveToBottomRequired = true
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
@@ -572,7 +574,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     // MARK: - get comment data
-    func getComments(commentLink: String) {
+    func getComments(_ commentLink: String) {
         CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []

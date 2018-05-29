@@ -17,7 +17,7 @@ class ValidationMasterView: LoginSignupValidationMasterView {
         self.navigationItem.hidesBackButton = true
         
         let viewWidth = self.view.frame.size.width
-        let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/2, 2))
+        let customView=UIView(frame: CGRect(x: 0, y: 0, width: (viewWidth-60)/2, height: 2))
         customView.backgroundColor=UIColor.yiDarkishPinkColor()
         
         self.progressView.addSubview(customView)
@@ -29,22 +29,22 @@ class ValidationMasterView: LoginSignupValidationMasterView {
         #endif
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "ValidationMasterView")
+        tracker?.set(kGAIScreenName, value: "ValidationMasterView")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.codeInputView.becomeFirstResponder()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLayoutSubviews()
@@ -54,15 +54,15 @@ class ValidationMasterView: LoginSignupValidationMasterView {
 //        scrollView.contentInset = scrollViewInsets
     }
     
-    func checkCodeMessageShowAlert(message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
+    func checkCodeMessageShowAlert(_ message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
         if let codeMessage = serverMessageCode,
             let serverMessage = message {
             if codeMessage == YonaConstants.serverCodes.tooManyFailedConfirmOTPAttemps {
-                self.codeInputView.userInteractionEnabled = false
+                self.codeInputView.isUserInteractionEnabled = false
                 self.infoLabel.text = serverMessage
             }//too many pin verify attempts so we need to clear and the user needs to request another one
             else if codeMessage == YonaConstants.serverCodes.tooManyPinResetAttemps {
-                self.codeInputView.userInteractionEnabled = false
+                self.codeInputView.isUserInteractionEnabled = false
                 self.infoLabel.text = message
                 PinResetRequestManager.sharedInstance.pinResetClear({ (success, pincode, message, servercode) in
                     

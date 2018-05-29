@@ -13,25 +13,25 @@ class Loader:  NSObject {
     
     class func setup()
     {
-        SVProgressHUD.setDefaultMaskType(.Black)
+        SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.setBackgroundColor(UIColor(white: 0, alpha: 0.7))
         SVProgressHUD.setForegroundColor(UIColor(white: 1, alpha: 1))
         
     }
     
-    class func Show(message:String = "loading..."){
-        dispatch_async(dispatch_get_main_queue(), {
-            SVProgressHUD.showWithStatus(message)
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    class func Show(_ message:String = "loading..."){
+        DispatchQueue.main.async(execute: {
+            SVProgressHUD.show(withStatus: message)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         })
         
         
     }
     
     class func Hide(){
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             SVProgressHUD.dismiss()
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         })
     }
 }

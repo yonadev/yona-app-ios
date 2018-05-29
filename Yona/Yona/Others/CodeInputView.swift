@@ -7,7 +7,7 @@ class CodeInputView: UIView, UIKeyInput {
     var secure:Bool = false
     // MARK: - UIResponder
 
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder : Bool {
         return true
     }
 
@@ -20,11 +20,11 @@ class CodeInputView: UIView, UIKeyInput {
         var frame = CGRect(x: 5, y: 0, width: 55, height: 55)
         for index in 1...4 {
             let digitLabel = UILabel(frame: frame)
-            digitLabel.font = UIFont.systemFontOfSize(42)
+            digitLabel.font = UIFont.systemFont(ofSize: 42)
             digitLabel.backgroundColor = UIColor.yiWhiteColor()
             digitLabel.tag = index
             digitLabel.text = " "
-            digitLabel.textAlignment = .Center
+            digitLabel.textAlignment = .center
             self.addSubview(digitLabel)
             frame.origin.x += 55 + 10
         }
@@ -36,11 +36,11 @@ class CodeInputView: UIView, UIKeyInput {
 
     // MARK: - UIKeyInput
 
-    func hasText() -> Bool {
+    var hasText : Bool {
         return nextTag > 1 ? true : false
     }
 
-    func insertText(text: String) {
+    func insertText(_ text: String) {
         
         if nextTag < 5 {
             (self.viewWithTag(nextTag) as! UILabel).text = text
@@ -80,10 +80,10 @@ class CodeInputView: UIView, UIKeyInput {
 
     // MARK: - UITextInputTraits
 
-    var keyboardType: UIKeyboardType { get { return .NumberPad } set { } }
+    var keyboardType: UIKeyboardType { get { return .numberPad } set { } }
 }
 
 protocol CodeInputViewDelegate: class {
-    func codeInputView(codeInputView: CodeInputView, didFinishWithCode code: String)
+    func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String)
 
 }

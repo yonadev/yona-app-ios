@@ -39,37 +39,37 @@ class LoginSignupValidationMasterView: BaseViewController {
     @IBOutlet var serverHiddenLonPres : UILongPressGestureRecognizer!
 
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - display methods
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         setBackgroundColour()
         
-        if let confirmPasscodeVC = segue.destinationViewController as? ConfirmPasscodeViewController {
+        if let confirmPasscodeVC = segue.destination as? ConfirmPasscodeViewController {
             confirmPasscodeVC.isFromSettings = isFromSettings
             confirmPasscodeVC.isFromPinReset = isFromPinReset
             confirmPasscodeVC.passcode = passcodeString
-        } else if let passcodeVC = segue.destinationViewController as? SetPasscodeViewController {
+        } else if let passcodeVC = segue.destination as? SetPasscodeViewController {
             passcodeVC.isFromPinReset = isFromPinReset
             passcodeVC.isFromSettings = isFromSettings
 
-        } else if let confirmMobile = segue.destinationViewController as? ConfirmMobileValidationVC {
+        } else if let confirmMobile = segue.destination as? ConfirmMobileValidationVC {
             confirmMobile.isFromPinReset = isFromPinReset
             confirmMobile.isFromSettings = isFromSettings
             if confirmMobile.isFromSettings {
                 self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
             }
-        } else if let pinReset = segue.destinationViewController as? PinResetValidationVC {
+        } else if let pinReset = segue.destination as? PinResetValidationVC {
             pinReset.isFromPinReset = isFromPinReset
             pinReset.isFromSettings = isFromSettings
             if pinReset.isFromSettings {
                 self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
             }
-        }else if let adminOverride = segue.destinationViewController as? AdminOverrideValidationVC {
+        }else if let adminOverride = segue.destination as? AdminOverrideValidationVC {
             adminOverride.isFromPinReset = isFromPinReset
             adminOverride.isFromSettings = isFromSettings
             if adminOverride.isFromSettings {
@@ -101,16 +101,16 @@ extension LoginSignupValidationMasterView {
      - parameter screenNameText: String, Screen name title
      - parameter infoLabelText: String lable on the information to the user
      */
-    func setupPincodeScreenDifferentlyWithText(screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?, avtarImageName: UIImage?) {
+    func setupPincodeScreenDifferentlyWithText(_ screenNameLabelText: String?, headerTitleLabelText: String?, errorLabelText: String?, infoLabelText: String?, avtarImageName: UIImage?) {
         setBackgroundColour()
         if isFromSettings {
             //Nav bar Back button.
             self.navigationItem.title = screenNameLabelText
             let viewWidth = self.view.frame.size.width
-            let customView=UIView(frame: CGRectMake(0, 0, (viewWidth-60)/3, 2))
+            let customView=UIView(frame: CGRect(x: 0, y: 0, width: (viewWidth-60)/3, height: 2))
             customView.backgroundColor=UIColor.yiDarkishPinkColor()
             self.progressView.addSubview(customView)
-            self.progressView.hidden = false
+            self.progressView.isHidden = false
             avtarImage.image = avtarImageName
             if let headerTitleLabelText = headerTitleLabelText{
                 headerTitleLabel.text = headerTitleLabelText
@@ -118,7 +118,7 @@ extension LoginSignupValidationMasterView {
             infoLabel.text = infoLabelText
             if let errorLabelText = errorLabelText {
                 errorLabel.text = errorLabelText
-                errorLabel.hidden = false
+                errorLabel.isHidden = false
             }
             
         } else {
@@ -132,31 +132,34 @@ extension LoginSignupValidationMasterView {
 extension LoginSignupValidationMasterView {
     func pinResetTapped() {
         isFromPinReset = true
-        view.userInteractionEnabled = false
+        view.isUserInteractionEnabled = false
         Loader.Show()
         PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
             if success {
                 Loader.Hide()
-                self.view.userInteractionEnabled = true
+                self.view.isUserInteractionEnabled = true
                 if let timeISOCode = pincode {
                     //we need to store this incase the app is backgrounded
-                    NSUserDefaults.standardUserDefaults().setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
-                    NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: YonaConstants.nsUserDefaultsKeys.timeToPinResetInitialRequestTime)
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard.setValue(timeISOCode, forKeyPath: YonaConstants.nsUserDefaultsKeys.timeToPinReset)
+                    UserDefaults.standard.setValue(Date(), forKey: YonaConstants.nsUserDefaultsKeys.timeToPinResetInitialRequestTime)
+                    UserDefaults.standard.synchronize()
                     self.displayPincodeRemainingMessage()
                     
                     setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
+                  //  self.performSegue(withIdentifier: R.segue.loginViewController.transToPinResetValidation, sender: self)
+                    self.performSegue(withIdentifier: "transToPinResetValidation", sender: self)
                 }
             } else {
                 PinResetRequestManager.sharedInstance.pinResendResetRequest({ (success, pincode, message, code) in
                     Loader.Hide()
-                    self.view.userInteractionEnabled = true
+                    self.view.isUserInteractionEnabled = true
 
                     if success {
                         
                         setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        self.performSegueWithIdentifier(R.segue.loginViewController.transToPinResetValidation, sender: self)
+                        //self.performSegue(withIdentifier:R.segue.loginViewController.transToPinResetValidation, sender: self)
+                        self.performSegue(withIdentifier: "transToPinResetValidation", sender: self)
+
                     } else {
                         //TODO: Will change this after this build
                         if let message = message {
@@ -170,12 +173,12 @@ extension LoginSignupValidationMasterView {
     }
 
     func displayPincodeRemainingMessage(){
-        guard let timeISOCode = NSUserDefaults.standardUserDefaults().valueForKey(YonaConstants.nsUserDefaultsKeys.timeToPinReset) as? String else {
+        guard let timeISOCode = UserDefaults.standard.value(forKey: YonaConstants.nsUserDefaultsKeys.timeToPinReset) as? String else {
             return
         }
         let (hour, minute, seconds) = timeISOCode.convertFromISO8601Duration()
         let localizedString = NSLocalizedString("login.user.pinResetRequestAlert", comment: "")
-        let alert = NSString(format: localizedString, String(hour), String(minute), String(seconds))
+        let alert = NSString(format: localizedString as NSString, String(hour), String(minute), String(seconds))
         if let infolabelText = self.infoLabel {
             infolabelText.text = String(alert)
         }

@@ -17,7 +17,7 @@ class AdminRequestManager {
     
     static let sharedInstance = AdminRequestManager()
     
-    private init() {}
+    fileprivate init() {}
     
     /**
      Creates an admin request, if the user tries to create an account with same mobile number because they have lost their phone but what to retrieve the account
@@ -25,7 +25,7 @@ class AdminRequestManager {
      - parameter userBody: BodyDataDictionary Dictionary of user details for the admin request, we need the mobile from here
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
-    func adminRequestOverride(mobileNumber: String?, onCompletion: APIResponse) {
+    func adminRequestOverride(_ mobileNumber: String?, onCompletion: @escaping APIResponse) {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
             if let mobileNumber = user?.mobileNumber {
                 let path = YonaConstants.commands.adminRequestOverride + mobileNumber.replacePlusSign()
