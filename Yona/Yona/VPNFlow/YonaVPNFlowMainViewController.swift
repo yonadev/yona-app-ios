@@ -128,11 +128,11 @@ class YonaVPNFlowMainViewController: UIViewController {
         progressView.addSubview(customView)
     
         nextButton.backgroundColor = UIColor.yiDarkishPinkColor()
-        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState())
+        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: .normal)
         nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
 
         laterButton.backgroundColor = UIColor.yiDarkishPinkColor()
-        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControlState())
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: .normal)
         laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControlState.disabled)
 
         
@@ -274,17 +274,17 @@ class YonaVPNFlowMainViewController: UIViewController {
 
         
         
-//        let installed = UIApplication.shared.canOpenURL( NSURL(string: "openvpn://")! as URL )
-//        
-//
-//        if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
-//            UserDefaults.standardUserDefaults.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//
-//            currentProgress = .openVPNAppInstalled
-//            UserDefaults.standardUserDefaults.setInteger(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//
-//        }
-//        
+        let installed = UIApplication.shared.canOpenURL( NSURL(string: "openvpn://")! as URL )
+        
+
+        if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
+            UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+
+            currentProgress = .openVPNAppInstalled
+            UserDefaults.standard.set(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+
+        }
+        
         #endif
 
         
@@ -359,7 +359,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     func handleOpenVPNAppNotInstalledShow () {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress1.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info1.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: .normal)
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControlState.disabled)
 
         self.nextButton.isEnabled = false
@@ -391,7 +391,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress2.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info2.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: .normal)
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
         self.nextButton.isEnabled = false
         self.openVPNStatusView.setText(NSLocalizedString("YonaVPNProgressView.openvpn.text", comment: ""))
@@ -458,10 +458,10 @@ class YonaVPNFlowMainViewController: UIViewController {
     func handleOpenVPNAppInstalledStep3 () {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress3.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info3.text", comment: "")
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: .normal)
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControlState.disabled)
 
-        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControlState())
+        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: .normal)
         self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControlState.disabled)
 
         self.nextButton.isEnabled = false
@@ -496,7 +496,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress4.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
 
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControlState())
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: .normal)
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControlState.disabled)
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)

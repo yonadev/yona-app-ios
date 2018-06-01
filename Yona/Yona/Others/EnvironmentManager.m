@@ -25,10 +25,10 @@ static NSString * baseUrl;
 + (NSString *)baseUrlString
 {
     NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
-    if (url == nil){
-//        url = @"https://beta.prd.yona.nu/";
-       // url = @"https://app.prd.yona.nu/";
-        url = @"https://app.beta.yona.nu/";
+        if (url == nil || [url isEqual:@""]){
+            url = @"https://app.beta.yona.nu/";   // test enviroment
+            // url = @"https://app.prd.yona.nu/"; // Production enviroment
+        //url = @"https://app.beta.yona.nu/";
 //        url = @"http://mobtest.dev.yona.nu/";
         [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
     }
@@ -90,4 +90,11 @@ static NSString * baseUrl;
     }
     return changed;
 }
+
++(void)updateEnvironmentWithURLString:(NSString*)environmentURLString{
+    [[NSUserDefaults standardUserDefaults] setObject:environmentURLString forKey:@"YONA_URL"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 @end

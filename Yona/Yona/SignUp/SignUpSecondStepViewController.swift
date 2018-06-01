@@ -135,6 +135,11 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.nicknameTextField.rightView = nicknameImage;
         self.nicknameTextField.rightViewMode = UITextFieldViewMode.always
         
+       // self.mobilePrefixTextField.text = "91";
+        self.mobileTextField.text = "9738086629";
+        self.nicknameTextField.text = "VR";
+
+        
         let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
         let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))

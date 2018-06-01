@@ -157,7 +157,7 @@ extension LoginSignupValidationMasterView {
                     if success {
                         
                         setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        //self.performSegue(withIdentifier:R.segue.loginViewController.transToPinResetValidation, sender: self)
+                       // self.performSegue(withIdentifier:R.segue.loginViewController.transToPinResetValidation, sender: self)
                         self.performSegue(withIdentifier: "transToPinResetValidation", sender: self)
 
                     } else {

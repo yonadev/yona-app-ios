@@ -12,4 +12,5 @@
 @interface EnvironmentManager : NSObject
 + (NSString *)baseUrlString;
 + (BOOL)updateEnvironment;
++(void)updateEnvironmentWithURLString:(NSString*)environmentURLString;
 @end
