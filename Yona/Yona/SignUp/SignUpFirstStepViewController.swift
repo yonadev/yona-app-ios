@@ -104,10 +104,6 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         self.lastnameTextField.rightView = lastname;
         self.lastnameTextField.rightViewMode = UITextFieldViewMode.always
         
-        self.firstnameTextField.text = "Vishal";
-        self.lastnameTextField.text = "Revdiwala";
-
-        
     }
     
     // Go Back To Previous VC
