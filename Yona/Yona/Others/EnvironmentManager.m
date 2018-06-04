@@ -25,33 +25,30 @@ static NSString * baseUrl;
 + (NSString *)baseUrlString
 {
     NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
-        if (url == nil || [url isEqual:@""]){
-            url = @"https://app.beta.yona.nu/";   // test enviroment
-            // url = @"https://app.prd.yona.nu/"; // Production enviroment
-        //url = @"https://app.beta.yona.nu/";
-//        url = @"http://mobtest.dev.yona.nu/";
+    if (url == nil || [url isEqual:@""]){
+        url = @"https://app.prd.yona.nu/"; // Production Enviroment
         [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
     }
     baseUrl = url;
     return baseUrl;
-   
+    
     /*
-    switch ([[self environment] integerValue]) {
-        case DeploymentEnvironmentDev:
-            //baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-        case DeploymentEnvironmentQA:
-            //baseUrl = @"http://85.222.227.84/"; // http://85.222.227.142/
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-        default:
-            //baseUrl = @"http://85.222.227.84/";
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-    }
-    return baseUrl;
-    */
+     switch ([[self environment] integerValue]) {
+     case DeploymentEnvironmentDev:
+     //baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
+     baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
+     break;
+     case DeploymentEnvironmentQA:
+     //baseUrl = @"http://85.222.227.84/"; // http://85.222.227.142/
+     baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
+     break;
+     default:
+     //baseUrl = @"http://85.222.227.84/";
+     baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
+     break;
+     }
+     return baseUrl;
+     */
 }
 
 + (NSNumber *)environment

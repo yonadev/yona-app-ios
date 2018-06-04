@@ -260,36 +260,25 @@ class YonaVPNFlowMainViewController: UIViewController {
     func testForOpenVPN() {
         
         #if (arch(i386) || arch(x86_64))
-            if UserDefaults.standard.bool( forKey: "SIMULATOR_OPENVPN"){
-                if currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
-                    UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-                    
-                    currentProgress = .openVPNAppInstalled
-                    UserDefaults.standard.set(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-                    
-                }
+        if UserDefaults.standard.bool( forKey: "SIMULATOR_OPENVPN"){
+            if currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
+                UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+                
+                currentProgress = .openVPNAppInstalled
+                UserDefaults.standard.set(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             }
-            return
+        }
+        return
         #else
-
-        
-        
         let installed = UIApplication.shared.canOpenURL( NSURL(string: "openvpn://")! as URL )
-        
-
         if installed && currentProgress.rawValue < VPNSetupStatus.openVPNAppInstalledStep2.rawValue {
             UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-
+            
             currentProgress = .openVPNAppInstalled
             UserDefaults.standard.set(currentProgress.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-
         }
-        
         #endif
-
-        
     }
-
     
     //MARK: - each step animator
     

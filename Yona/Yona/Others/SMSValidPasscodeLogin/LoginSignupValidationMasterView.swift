@@ -146,7 +146,6 @@ extension LoginSignupValidationMasterView {
                     self.displayPincodeRemainingMessage()
                     
                     setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                  //  self.performSegue(withIdentifier: R.segue.loginViewController.transToPinResetValidation, sender: self)
                     self.performSegue(withIdentifier: "transToPinResetValidation", sender: self)
                 }
             } else {
@@ -157,7 +156,6 @@ extension LoginSignupValidationMasterView {
                     if success {
                         
                         setViewControllerToDisplay(ViewControllerTypeString.pinResetValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                       // self.performSegue(withIdentifier:R.segue.loginViewController.transToPinResetValidation, sender: self)
                         self.performSegue(withIdentifier: "transToPinResetValidation", sender: self)
 
                     } else {
