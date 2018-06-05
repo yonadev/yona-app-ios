@@ -6,6 +6,11 @@
  Copyright © 2016 Yona. All rights reserved.
  */
 
+//Switch UI
+"environment-alert-title" = "Voer hieronder de URL van de omgeving in:";
+"environment-success" = "U bevindt zich nu in:";
+"environment-failure" = "Omgevingsschakelaar Fout. Teruggekeerd naar:";
+"environment-same" = "Je bevindt je in dezelfde omgeving";
 
 //Signup screens
 "PINCODE" = "INLOGGEN";

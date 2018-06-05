@@ -2244,7 +2244,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 286 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 290 localization keys.
     struct localizable {
       /// en translation: Account be created
       /// 
@@ -2694,6 +2694,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let messageTypeFriendremoved = Rswift.StringResource(key: "message.type.friendremoved", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Je bevindt je in dezelfde omgeving
+      /// 
+      /// Locales: nl, en
+      static let environmentSame = Rswift.StringResource(key: "environment-same", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Je doelen delen met de persoon die je vertrouwt
       /// 
       /// Locales: nl, en
@@ -2934,6 +2938,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let msgBlockUser = Rswift.StringResource(key: "msg-block-user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Omgevingsschakelaar Fout. Teruggekeerd naar:
+      /// 
+      /// Locales: nl, en
+      static let environmentFailure = Rswift.StringResource(key: "environment-failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Ongeldige toegangcode
       /// 
       /// Locales: nl, en
@@ -3098,6 +3106,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let turnOffVpnAlert = Rswift.StringResource(key: "turn-off-vpn-alert", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: U bevindt zich nu in:
+      /// 
+      /// Locales: nl, en
+      static let environmentSuccess = Rswift.StringResource(key: "environment-success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Uit adresboek
       /// 
       /// Locales: nl, en
@@ -3210,6 +3222,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let adddeviceUserInputPassCode = Rswift.StringResource(key: "adddevice.user.InputPassCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Voer hieronder de URL van de omgeving in:
+      /// 
+      /// Locales: nl, en
+      static let environmentAlertTitle = Rswift.StringResource(key: "environment-alert-title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Volgende
       /// 
       /// Locales: nl, en
@@ -4175,6 +4191,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("message.type.friendremoved", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: Je bevindt je in dezelfde omgeving
+      /// 
+      /// Locales: nl, en
+      static func environmentSame(_: Void = ()) -> String {
+        return NSLocalizedString("environment-same", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Je doelen delen met de persoon die je vertrouwt
       /// 
       /// Locales: nl, en
@@ -4595,6 +4618,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("msg-block-user", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: Omgevingsschakelaar Fout. Teruggekeerd naar:
+      /// 
+      /// Locales: nl, en
+      static func environmentFailure(_: Void = ()) -> String {
+        return NSLocalizedString("environment-failure", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Ongeldige toegangcode
       /// 
       /// Locales: nl, en
@@ -4882,6 +4912,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("turn-off-vpn-alert", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: U bevindt zich nu in:
+      /// 
+      /// Locales: nl, en
+      static func environmentSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("environment-success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Uit adresboek
       /// 
       /// Locales: nl, en
@@ -5076,6 +5113,13 @@ struct R: Rswift.Validatable {
       /// Locales: nl, en
       static func adddeviceUserInputPassCode(_: Void = ()) -> String {
         return NSLocalizedString("adddevice.user.InputPassCode", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// nl translation: Voer hieronder de URL van de omgeving in:
+      /// 
+      /// Locales: nl, en
+      static func environmentAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("environment-alert-title", bundle: R.hostingBundle, comment: "")
       }
       
       /// nl translation: Volgende

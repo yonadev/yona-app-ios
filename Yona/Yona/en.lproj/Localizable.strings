@@ -6,6 +6,11 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
+//Switch UI
+"environment-alert-title" = "Enter Environment URL Below:";
+"environment-success" = "You are now in: ";
+"environment-failure" = "Environment Switch Error. Reverted to: ";
+"environment-same" = "You are in the same Environment";
 
 //Signup screens
 "PINCODE" = "LOGIN";
