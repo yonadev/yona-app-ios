@@ -7,10 +7,10 @@
 */
 
 //Switch UI
-"environment-alert-title" = "Enter Environment URL Below:";
-"environment-success" = "You are now in: ";
-"environment-failure" = "Environment Switch Error. Reverted to: ";
-"environment-same" = "You are in the same Environment";
+"environment-alert-title" = "Enter server URL:";
+"environment-success" = "You are now using: ";
+"environment-failure" = "Failed to switch server. Reverted to: ";
+"environment-same" = "Server URL not changed";
 
 //Signup screens
 "PINCODE" = "LOGIN";

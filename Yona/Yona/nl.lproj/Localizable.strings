@@ -7,10 +7,10 @@
  */
 
 //Switch UI
-"environment-alert-title" = "Voer hieronder de URL van de omgeving in:";
-"environment-success" = "U bevindt zich nu in:";
-"environment-failure" = "Omgevingsschakelaar Fout. Teruggekeerd naar:";
-"environment-same" = "Je bevindt je in dezelfde omgeving";
+"environment-alert-title" = "Voer de server URL in:";
+"environment-success" = "Je gebruikt nu: ";
+"environment-failure" = "Wisselen van server mislukt. Teruggekeerd naar: ";
+"environment-same" = "Server URL niet veranderd";
 
 //Signup screens
 "PINCODE" = "INLOGGEN";

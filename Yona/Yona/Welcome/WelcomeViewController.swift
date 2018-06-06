@@ -83,7 +83,7 @@ class WelcomeViewController: BaseViewController {
     
     fileprivate func processEnvironmentURL(newEnvironmentURL:String, currentEnvironmentURL:String) {
         EnvironmentManager.updateEnvironment(withURLString: newEnvironmentURL)
-        if (currentEnvironmentURL != newEnvironmentURL) {
+        if currentEnvironmentURL != newEnvironmentURL {
             ActivitiesRequestManager.sharedInstance.getActivityDefaultCategories(onCompletion: { (success, message, code, activitiesReturned, error) in
                 if success {
                     EnvironmentManager.updateEnvironment(withURLString: newEnvironmentURL)
@@ -93,10 +93,8 @@ class WelcomeViewController: BaseViewController {
                     self.showEnvironmentChangedAlert(message: NSLocalizedString("environment-failure", comment: "") + currentEnvironmentURL)
                 }
             })
-        } else if (self.didEditTextField) {
+        } else if self.didEditTextField {
             self.showSameEnvironmentURLAlert()
-        } else {
-            // do nothing
         }
     }
     
