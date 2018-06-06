@@ -68,7 +68,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
         
         view.backgroundColor = UIColor.yiGrapeColor()
         //navigationItem.title = NSLocalizedString("vpnflowmainscreen.title.text", comment: "")
-        actionButton.setTitle(NSLocalizedString("vpnflowintro2.button2.text", comment: ""), for: UIControlState())
+        actionButton.setTitle(NSLocalizedString("vpnflowintro2.button2.text", comment: ""), for: .normal)
         actionButton.backgroundColor = UIColor.yiDarkishPinkColor()
         actionButton.alpha = 0.0
     }

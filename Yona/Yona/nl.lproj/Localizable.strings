@@ -6,6 +6,11 @@
  Copyright © 2016 Yona. All rights reserved.
  */
 
+//Switch UI
+"environment-alert-title" = "Voer de server URL in:";
+"environment-success" = "Je gebruikt nu: ";
+"environment-failure" = "Wisselen van server mislukt. Teruggekeerd naar: ";
+"environment-same" = "Server URL niet veranderd";
 
 //Signup screens
 "PINCODE" = "INLOGGEN";

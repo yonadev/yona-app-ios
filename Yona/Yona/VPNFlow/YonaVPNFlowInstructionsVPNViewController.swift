@@ -53,7 +53,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     func setupUI() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
-        actionButton.setTitle(NSLocalizedString("vpnflowmainscreen.button2.text", comment: ""), for: UIControlState())
+        actionButton.setTitle(NSLocalizedString("vpnflowmainscreen.button2.text", comment: ""), for: .normal)
         actionButton.backgroundColor = UIColor.yiDarkishPinkColor()
         actionButton.alpha = 0.0
     }

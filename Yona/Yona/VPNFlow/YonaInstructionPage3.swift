@@ -15,7 +15,7 @@ class YonaInstructionPage3 : YonaVPNInstructionsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textLabel.text = NSLocalizedString("vpnflowintro1.title3.text", comment: "")
-        actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), for: UIControlState())
+        actionButton.setTitle(NSLocalizedString("vpnflowintro1.rerun.text", comment: ""), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

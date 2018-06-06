@@ -2244,7 +2244,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 286 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 290 localization keys.
     struct localizable {
       /// en translation: Account be created
       /// 
@@ -2702,6 +2702,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let emailsupportFinishedText = Rswift.StringResource(key: "emailsupport.finished.text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Je gebruikt nu: 
+      /// 
+      /// Locales: nl, en
+      static let environmentSuccess = Rswift.StringResource(key: "environment-success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Je hebt je wijzigingen nog niet opgeslagen
       /// 
       /// Locales: nl, en
@@ -3006,6 +3010,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let meweekMessageScore = Rswift.StringResource(key: "meweek.message.score", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Server URL niet veranderd
+      /// 
+      /// Locales: nl, en
+      static let environmentSame = Rswift.StringResource(key: "environment-same", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Sorry
       /// 
       /// Locales: nl, en
@@ -3202,6 +3210,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let smsvalidationUserHeaderTitle = Rswift.StringResource(key: "smsvalidation.user.headerTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Voer de server URL in:
+      /// 
+      /// Locales: nl, en
+      static let environmentAlertTitle = Rswift.StringResource(key: "environment-alert-title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Voer geldig telefoonnummer in
       /// 
       /// Locales: nl, en
@@ -3294,6 +3306,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: nl, en
       static let changePinSettings = Rswift.StringResource(key: "change-pin-settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
+      /// nl translation: Wisselen van server mislukt. Teruggekeerd naar: 
+      /// 
+      /// Locales: nl, en
+      static let environmentFailure = Rswift.StringResource(key: "environment-failure", tableName: "Localizable", bundle: R.hostingBundle, locales: ["nl", "en"], comment: nil)
       /// nl translation: Woensdag
       /// 
       /// Locales: nl, en
@@ -4189,6 +4205,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("emailsupport.finished.text", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: Je gebruikt nu: 
+      /// 
+      /// Locales: nl, en
+      static func environmentSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("environment-success", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Je hebt je wijzigingen nog niet opgeslagen
       /// 
       /// Locales: nl, en
@@ -4721,6 +4744,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("meweek.message.score", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: Server URL niet veranderd
+      /// 
+      /// Locales: nl, en
+      static func environmentSame(_: Void = ()) -> String {
+        return NSLocalizedString("environment-same", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Sorry
       /// 
       /// Locales: nl, en
@@ -5064,6 +5094,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("smsvalidation.user.headerTitle", bundle: R.hostingBundle, comment: "")
       }
       
+      /// nl translation: Voer de server URL in:
+      /// 
+      /// Locales: nl, en
+      static func environmentAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("environment-alert-title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// nl translation: Voer geldig telefoonnummer in
       /// 
       /// Locales: nl, en
@@ -5223,6 +5260,13 @@ struct R: Rswift.Validatable {
       /// Locales: nl, en
       static func changePinSettings(_: Void = ()) -> String {
         return NSLocalizedString("change-pin-settings", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// nl translation: Wisselen van server mislukt. Teruggekeerd naar: 
+      /// 
+      /// Locales: nl, en
+      static func environmentFailure(_: Void = ()) -> String {
+        return NSLocalizedString("environment-failure", bundle: R.hostingBundle, comment: "")
       }
       
       /// nl translation: Woensdag

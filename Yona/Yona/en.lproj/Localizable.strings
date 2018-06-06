@@ -6,6 +6,11 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
+//Switch UI
+"environment-alert-title" = "Enter server URL:";
+"environment-success" = "You are now using: ";
+"environment-failure" = "Failed to switch server. Reverted to: ";
+"environment-same" = "Server URL not changed";
 
 //Signup screens
 "PINCODE" = "LOGIN";
