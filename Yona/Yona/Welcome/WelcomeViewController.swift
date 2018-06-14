@@ -18,7 +18,7 @@ class WelcomeViewController: BaseViewController {
     var didEditTextField = false
     
     // MARK: - UIViewController
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
@@ -58,8 +58,8 @@ class WelcomeViewController: BaseViewController {
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment:""), style: .default, handler: {[weak alert] (action) -> Void in
             let textField = alert!.textFields![0] as UITextField
-            let strURL = textField.text?.replacingOccurrences(of: " ", with: "")
-            self.processEnvironmentURL(newEnvironmentURL: strURL!, currentEnvironmentURL: currentBaseURLString!)
+            let strURL = self.removeWhitespaceFromURL(url: textField.text!)
+            self.processEnvironmentURL(newEnvironmentURL: strURL, currentEnvironmentURL: currentBaseURLString!)
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -117,5 +117,10 @@ class WelcomeViewController: BaseViewController {
         })
         environmentChangedAlert.addAction(cancelAction)
         self.present(environmentChangedAlert, animated: true, completion: nil)
+    }
+    
+    func removeWhitespaceFromURL(url: String) -> String {
+        let newURL = url.replacingOccurrences(of: " ", with: "")
+        return newURL
     }
 }
