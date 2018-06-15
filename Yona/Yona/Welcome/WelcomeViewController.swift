@@ -56,12 +56,16 @@ class WelcomeViewController: BaseViewController {
             textField.text = currentBaseURLString
             textField.addTarget(self, action: #selector(WelcomeViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
         })
+        addAlertAction(alert, currentBaseURLString)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func addAlertAction(_ alert: UIAlertController, _ currentBaseURLString: String?) {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment:""), style: .default, handler: {[weak alert] (action) -> Void in
             let textField = alert!.textFields![0] as UITextField
             let strURL = self.removeWhitespaceFromURL(url: textField.text!)
             self.processEnvironmentURL(newEnvironmentURL: strURL, currentEnvironmentURL: currentBaseURLString!)
         }))
-        self.present(alert, animated: true, completion: nil)
     }
     
     func turnOffVPN() {
@@ -120,7 +124,6 @@ class WelcomeViewController: BaseViewController {
     }
     
     func removeWhitespaceFromURL(url: String) -> String {
-        let newURL = url.replacingOccurrences(of: " ", with: "")
-        return newURL
+         return url.replacingOccurrences(of: " ", with: "")
     }
 }
