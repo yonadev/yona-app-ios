@@ -18,7 +18,7 @@ class WelcomeViewController: BaseViewController {
     var didEditTextField = false
     
     // MARK: - UIViewController
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         //Nav bar Back button.
         self.navigationItem.hidesBackButton = true
@@ -56,12 +56,16 @@ class WelcomeViewController: BaseViewController {
             textField.text = currentBaseURLString
             textField.addTarget(self, action: #selector(WelcomeViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
         })
+        addAlertAction(alert, currentBaseURLString)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func addAlertAction(_ alert: UIAlertController, _ currentBaseURLString: String?) {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment:""), style: .default, handler: {[weak alert] (action) -> Void in
             let textField = alert!.textFields![0] as UITextField
-            let strURL = textField.text?.replacingOccurrences(of: " ", with: "")
-            self.processEnvironmentURL(newEnvironmentURL: strURL!, currentEnvironmentURL: currentBaseURLString!)
+            let strURL = self.removeWhitespaceFromURL(url: textField.text!)
+            self.processEnvironmentURL(newEnvironmentURL: strURL, currentEnvironmentURL: currentBaseURLString!)
         }))
-        self.present(alert, animated: true, completion: nil)
     }
     
     func turnOffVPN() {
@@ -117,5 +121,9 @@ class WelcomeViewController: BaseViewController {
         })
         environmentChangedAlert.addAction(cancelAction)
         self.present(environmentChangedAlert, animated: true, completion: nil)
+    }
+    
+    func removeWhitespaceFromURL(url: String) -> String {
+         return url.replacingOccurrences(of: " ", with: "")
     }
 }

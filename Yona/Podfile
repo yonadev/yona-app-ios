@@ -10,4 +10,8 @@ target 'Yona' do
    pod 'Google/Analytics'
    pod 'Kingfisher', '~> 4.0'
    pod 'IQKeyboardManagerSwift'
+   
+   target 'YonaTests' do
+       inherit! :search_paths
+   end
 end
