@@ -320,7 +320,7 @@ extension SettingsViewController:UITableViewDelegate {
                 
                  body = userlink + "\n\n" + "Password: '" + yonaPassword + "'"
             }
-            let email = "app@yona.nu"
+            let email = "support@yona.nu"
         
         
             UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
