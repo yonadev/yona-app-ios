@@ -278,7 +278,6 @@
 		D98635661CABF44000A8535C /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635511CABF44000A8535C /* SF-UI-Text-Semibold.otf */; };
 		D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98635521CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf */; };
 		D98635791CAD62B100A8535C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D986357B1CAD62B100A8535C /* Localizable.strings */; };
-		D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744E71CB3CA7B008E463A /* KeychainTests.swift */; };
 		D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C91CB2B1A700ABE0F8 /* KeychainSwiftDistrib.swift */; };
 		D9C744EB1CB3CBC6008E463A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A93C41CB291FC00ABE0F8 /* Constants.swift */; };
 		D9C744EE1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744ED1CB3DFF8008E463A /* KeyboardProtocol.swift */; };
@@ -289,6 +288,7 @@
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		DED3113080EBF42B4EBFB1FE /* Pods_Yona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7004D2F71D45D64C2A11D5E0 /* Pods_Yona.framework */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
+		E562CEDB20E102CE0066E557 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D54EE31CA28CD2007805F4 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1866,6 +1866,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E562CEDB20E102CE0066E557 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2141,7 +2142,6 @@
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */,
 				90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */,
-				D9C744E81CB3CA7B008E463A /* KeychainTests.swift in Sources */,
 				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
