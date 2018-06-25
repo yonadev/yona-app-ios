@@ -288,7 +288,6 @@
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		DED3113080EBF42B4EBFB1FE /* Pods_Yona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7004D2F71D45D64C2A11D5E0 /* Pods_Yona.framework */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
-		E562CEDB20E102CE0066E557 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D54EE31CA28CD2007805F4 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1588,7 +1587,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E562CEDB20E102CE0066E557 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
