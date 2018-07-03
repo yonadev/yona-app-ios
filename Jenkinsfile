@@ -9,8 +9,6 @@ pipeline {
     stage('Build and Test') {
       steps {
         sh '''cd Yona
-C:\\Ruby25-x64\\bin\\pod deintegrate
-C:\\Ruby25-x64\\bin\\pod install
 xcodebuild -workspace "Yona.xcworkspace" -scheme "Yona" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4"'''
         sh '''-enableCodeCoverage YES | /usr/local/bin/xcpretty -r junit
 '''
