@@ -8,9 +8,9 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        powershell 'cd Yona xcodebuild -workspace "Yona.xcworkspace" -scheme "Yona" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4"'
-        powershell '-enableCodeCoverage YES | /usr/local/bin/xcpretty -r junit'
-        powershell '[$class: \'JUnitResultArchiver\', allowEmptyResults: true, testResults: \'build/reports/junit.xml\']'
+        powershell(script: 'cd Yona xcodebuild -workspace "Yona.xcworkspace" -scheme "Yona" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4"', returnStatus: true, returnStdout: true)
+        powershell(script: '-enableCodeCoverage YES | /usr/local/bin/xcpretty -r junit', returnStatus: true, returnStdout: true)
+        powershell(script: '[$class: \'JUnitResultArchiver\', allowEmptyResults: true, testResults: \'build/reports/junit.xml\']', returnStatus: true, returnStdout: true)
       }
     }
   }
