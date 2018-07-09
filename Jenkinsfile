@@ -9,6 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git(url: 'https://github.com/yonadev/yona-app-ios.git', credentialsId: 'yonabuild', branch: 'feature/APPDEV-1123-build-up-on-jenkins')
+        echo 'echo sh(script: \'env|sort\', returnStdout: true)'
       }
     }
     stage('Build and Test') {
