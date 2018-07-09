@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(url: 'https://github.com/yonadev/yona-app-ios.git', credentialsId: 'yonabuild')
+        git(url: 'https://github.com/yonadev/yona-app-ios.git', credentialsId: 'yonabuild', branch: 'feature/APPDEV-1123-build-up-on-jenkins')
       }
     }
     stage('Build and Test') {
