@@ -15,9 +15,9 @@ pipeline {
       steps {
         dir ('Yona') {
     sh '/usr/local/bin/pod deintegrate'
-    sh '/usr/local/bin/pod repo update
-    sh '/usr/local/bin/pod install
-    sh 'mkdir -p output # this directory will contain the output of the tests
+    sh '/usr/local/bin/pod repo update'
+    sh '/usr/local/bin/pod install'
+    sh 'mkdir -p output' # this directory will contain the output of the tests
     sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4" -derivedDataPath "./output" test'
 }
       }
