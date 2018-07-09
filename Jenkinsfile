@@ -13,12 +13,11 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh '''cd Yona
-/usr/local/bin/pod deintegrate
-/usr/local/bin/pod repo update
-/usr/local/bin/pod install
-mkdir -p output # this directory will contain the output of the tests
-xcrun xcodebuild -workspace Yona.xcworkspace \\
+        sh 'cd Yona'
+        sh '/usr/local/bin/pod deintegrate'
+        sh '/usr/local/bin/pod repo update'
+        sh '/usr/local/bin/pod install'
+        sh '''xcrun xcodebuild -workspace Yona.xcworkspace \\
     -scheme Yona \\
     -sdk iphonesimulator \\
     -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' \\
