@@ -6,25 +6,21 @@ pipeline {
     
   }
   stages {
-    stage('Checkout') {
-      steps {
-        git(url: 'https://github.com/yonadev/yona-app-ios.git', credentialsId: 'yonabuild', branch: 'feature/APPDEV-1123-build-up-on-jenkins')
-        script {
-          echo sh(script: 'env|sort', returnStdout: true)
-        }
-        
+    stage('Build and test') {
+      environment {
+        GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
       }
-    }
-    stage('Build and Test') {
       steps {
+        checkout scm
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           sh 'mkdir -p output'
           sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4" -derivedDataPath "./output" test'
+          sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
+          sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
-        
       }
     }
   }
