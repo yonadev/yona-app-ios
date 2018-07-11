@@ -16,7 +16,7 @@ pipeline {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
-          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -configuration Debug -derivedDataPath "./BuildOutput"'
+          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -configuration Debug -allowProvisioningUpdates -derivedDataPath "./BuildOutput"'
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
