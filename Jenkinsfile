@@ -16,7 +16,7 @@ pipeline {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
-          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona  -buildIpa: true -buildDir: \'${WORKSPACE}/build\' -derivedDataPath "./output" test'
+          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -derivedDataPath "./output"'
         }
         
       }
