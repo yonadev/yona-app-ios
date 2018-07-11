@@ -1444,7 +1444,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KMR2VE49BG;
+						DevelopmentTeam = BWQ59SYA4Y;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2030,7 +2030,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
-				DEVELOPMENT_TEAM = KMR2VE49BG;
+				DEVELOPMENT_TEAM = BWQ59SYA4Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2063,7 +2063,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: COMAKEIT SOFTWARE PRIVATE LIMITED (BWQ59SYA4Y)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
-				DEVELOPMENT_TEAM = KMR2VE49BG;
+				DEVELOPMENT_TEAM = BWQ59SYA4Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
