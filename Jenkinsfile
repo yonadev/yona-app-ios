@@ -14,7 +14,7 @@ pipeline {
       steps {
         checkout scm
         sh 'security list-keychains -s  "~/Library/Keychains/login.keychain"'
-        sh '$ security import $appleCert -k login.keychain -P coe -A'
+        sh ' security import $appleCert -k login.keychain -P coe -A'
       }
     }
   }
