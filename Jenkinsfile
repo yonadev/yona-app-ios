@@ -16,8 +16,7 @@ pipeline {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
-          sh '''xcrun xcodeBuild allowFailingBuildResults: false, appURL: \'\', assetPackManifestURL: \'\', buildDir: \'${WORKSPACE}/build\', buildIpa: true, bundleID: \'\', bundleIDInfoPlistPath: \'\', cfBundleShortVersionStringValue: \'\', cfBundleVersionValue: \'\', changeBundleID: false, cleanBeforeBuild: true, cleanTestReports: false, compileBitcode: true, configuration: \'Debug\', developmentTeamID: \'\', developmentTeamName: \'\', displayImageURL: \'\', embedOnDemandResourcesAssetPacksInBundle: true, fullSizeImageURL: \'\', generateArchive: false, interpretTargetAsRegEx: false, ipaExportMethod: \'development\', ipaName: \'\', ipaOutputDirectory: \'\', keychainName: \'\', keychainPath: \'\', keychainPwd: \'\', logfileOutputDirectory: \'\', manualSigning: false, noConsoleLog: false, onDemandResourcesAssetPacksBaseURL: \'\', provideApplicationVersion: true, provisioningProfiles: [[provisioningProfileAppId: \'com.yona.cmi\', provisioningProfileUUID: \'\']], sdk: \'\', symRoot: \'\', target: \'Yona\', thinning: \'\', unlockKeychain: false, uploadBitcode: true, uploadSymbols: true, xcodeProjectFile: \'\', xcodeProjectPath: \'\', xcodeSchema: \'Yona\', xcodeWorkspaceFile: \'Yona.xcworkspace\', xcodebuildArguments: \'\'
-'''
+          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona  -buildIpa: true -buildDir: \'${WORKSPACE}/build\' -derivedDataPath "./output" test'
         }
         
       }
