@@ -1326,6 +1326,7 @@
 			children = (
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
+				E5C2F77620F606CC004F71DB /* BuildOutput */,
 				D9D54EC81CA28CD2007805F4 /* Products */,
 				3B39B85C599061F064F0007D /* Frameworks */,
 				ABF070875AFC9CAF67B0A5B1 /* Pods */,
@@ -1388,6 +1389,13 @@
 				E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */,
 			);
 			path = YonaTests;
+			sourceTree = "<group>";
+		};
+		E5C2F77620F606CC004F71DB /* BuildOutput */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuildOutput;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
