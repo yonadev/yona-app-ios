@@ -16,11 +16,10 @@ pipeline {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
-          step([$class: 'XCodeBuilder', allowFailingBuildResults: true, buildDir: '', buildIpa: true, bundleID: '', bundleIDInfoPlistPath: '', cfBundleShortVersionStringValue: 	'', cfBundleVersionValue: '', changeBundleID: false, cleanBeforeBuild: false, cleanTestReports: false, configuration: 'Debug', developmentTeamID: '', 			developmentTeamName: 'none (specify one below)', generateArchive: false, interpretTargetAsRegEx: false, ipaExportMethod: 'development', ipaManifestPlistUrl: '', 	ipaName: 'Yona', ipaOutputDirectory: '', keychainName: 'none (specify one below)', keychainPath: '', keychainPwd: '', provideApplicationVersion: false, sdk: 		iphonesimulator, symRoot: '', target: 'all', unlockKeychain: false, xcodeProjectFile: '', xcodeProjectPath: '', xcodeSchema: 'Yona', xcodeWorkspaceFile: 	'Yona.xcworkspace', xcodebuildArguments: ''])
-          sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
-          sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
         
+        sh '''xcodeBuild allowFailingBuildResults: false, appURL: \'\', assetPackManifestURL: \'\', buildDir: \'${WORKSPACE}/build\', buildIpa: true, bundleID: \'\', bundleIDInfoPlistPath: \'\', cfBundleShortVersionStringValue: \'\', cfBundleVersionValue: \'\', changeBundleID: false, cleanBeforeBuild: true, cleanTestReports: false, compileBitcode: true, configuration: \'Debug\', developmentTeamID: \'\', developmentTeamName: \'\', displayImageURL: \'\', embedOnDemandResourcesAssetPacksInBundle: true, fullSizeImageURL: \'\', generateArchive: false, interpretTargetAsRegEx: false, ipaExportMethod: \'development\', ipaName: \'\', ipaOutputDirectory: \'\', keychainName: \'\', keychainPath: \'\', keychainPwd: \'\', logfileOutputDirectory: \'\', manualSigning: false, noConsoleLog: false, onDemandResourcesAssetPacksBaseURL: \'\', provideApplicationVersion: true, provisioningProfiles: [[provisioningProfileAppId: \'com.yona.cmi\', provisioningProfileUUID: \'\']], sdk: \'\', symRoot: \'\', target: \'Yona\', thinning: \'\', unlockKeychain: false, uploadBitcode: true, uploadSymbols: true, xcodeProjectFile: \'\', xcodeProjectPath: \'\', xcodeSchema: \'Yona\', xcodeWorkspaceFile: \'Yona.xcworkspace\', xcodebuildArguments: \'\'
+'''
       }
     }
   }
