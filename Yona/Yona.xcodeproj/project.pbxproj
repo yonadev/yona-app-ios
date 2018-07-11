@@ -1326,6 +1326,7 @@
 			children = (
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
+				E5C2F77620F606CC004F71DB /* BuildOutput */,
 				D9D54EC81CA28CD2007805F4 /* Products */,
 				3B39B85C599061F064F0007D /* Frameworks */,
 				ABF070875AFC9CAF67B0A5B1 /* Pods */,
@@ -1390,6 +1391,13 @@
 			path = YonaTests;
 			sourceTree = "<group>";
 		};
+		E5C2F77620F606CC004F71DB /* BuildOutput */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuildOutput;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1444,7 +1452,7 @@
 				TargetAttributes = {
 					D9D54EC61CA28CD2007805F4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = BWQ59SYA4Y;
+						DevelopmentTeam = KMR2VE49BG;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2030,7 +2038,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
-				DEVELOPMENT_TEAM = BWQ59SYA4Y;
+				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2063,7 +2071,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: COMAKEIT SOFTWARE PRIVATE LIMITED (BWQ59SYA4Y)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
-				DEVELOPMENT_TEAM = BWQ59SYA4Y;
+				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
