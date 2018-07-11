@@ -12,7 +12,9 @@ pipeline {
       }
       steps {
         checkout scm
-        sh 'security list-keychains'
+        sh '''security list-keychains
+'''
+        sh 'security unlock-keychain -p Abc@123 System.keychain'
       }
     }
   }
