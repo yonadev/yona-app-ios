@@ -17,10 +17,11 @@ pipeline {
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           sh 'mkdir -p output'
-          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6,OS=11.4" -derivedDataPath "./output" test'
+          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -derivedDataPath "./output"'
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
+        
       }
     }
   }
