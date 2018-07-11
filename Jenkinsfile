@@ -13,6 +13,7 @@ pipeline {
       steps {
         checkout scm
         sh 'security list-keychains -s  "~/Library/Keychains/login.keychain"'
+        sh '$ security import credentials(\'yona-app-ios-creds\') -k login.keychain -P coe -A'
       }
     }
   }
