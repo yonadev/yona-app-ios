@@ -1,4 +1,4 @@
-node Any {
+node  {
     checkout scm
     stage ("Build"){
         dir ('Yona') { 
