@@ -15,6 +15,7 @@ pipeline {
       steps {
         checkout scm
         dir(path: 'Yona') {
+          echo "Hello ${params.PERSON}"
           sh 'echo "Hello ${params.PERSON}"'
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
