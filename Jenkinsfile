@@ -22,7 +22,7 @@ pipeline {
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
         
-        archiveArtifacts(artifacts: 'BuildOutput/**/*.ipa', allowEmptyArchive: true)
+        archiveArtifacts(artifacts: './BuildOutput/*.ipa', allowEmptyArchive: true)
       }
     }
   }
