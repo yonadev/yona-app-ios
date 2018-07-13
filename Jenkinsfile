@@ -20,7 +20,7 @@ pipeline {
             xcodeBuild allowFailingBuildResults: false,
             appURL: '',
             assetPackManifestURL: '',
-            buildDir: '/BuildOutput',
+            buildDir: './BuildOutput',
             buildIpa: true,
             bundleID: '',
             bundleIDInfoPlistPath: '',
