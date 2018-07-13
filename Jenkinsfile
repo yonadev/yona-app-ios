@@ -10,14 +10,45 @@ node('mac-os')  {
         }
         }
     stage ("Build"){
+        require 'rubygems' require 'xcodebuilder
+         xCodeBuilder = XcodeBuilder::XcodeBuilder.new do |config|
+    config.app_name = "Yona"
+  end
         dir ('Yona') {
-            xcodebuild 'archive', [
-                workspace: 'Yona.xcworkspace',
-                scheme: 'Yona', 
-                archivePath: 'Yona.xcarchive',
-                derivedDataPath: './BuildOutput'
-            ]
-            archive 'Yona.xcarchive/**' 
+           
+             xCodeBuilder {
+      buildIpa(true)
+      generateArchive(true)
+      cleanBeforeBuild(true)      
+      cleanTestReports(true)
+      configuration('')
+      target('Yona')
+      sdk('')
+      xcodeProjectPath('')
+      xcodeProjectFile('')
+      xcodebuildArguments('')
+      embeddedProfileFile('')
+      cfBundleVersionValue('')
+      cfBundleShortVersionStringValue('')
+      unlockKeychain(true)
+      keychainName('')
+      keychainPath('')
+      keychainPwd('')
+      symRoot('')
+      xcodeWorkspaceFile('Yona')
+      xcodeSchema('Yona')
+      configurationBuildDir('')
+      codeSigningIdentity('')
+      allowFailingBuildResults(true)
+      ipaName('')
+      provideApplicationVersion(true)
+      ipaOutputDirectory('')
+      changeBundleID(true)
+      bundleID('')
+      bundleIDInfoPlistPath('')
+      ipaManifestPlistUrl('')
+      interpretTargetAsRegEx(true)
+    }
         }
     }
 }
