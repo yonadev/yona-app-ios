@@ -833,6 +833,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3D8E396420F8FB5700980293 /* BuildOutput */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuildOutput;
+			sourceTree = "<group>";
+		};
 		603CDA9F1CDC9115002A5C46 /* XTSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1328,6 +1335,7 @@
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
+				3D8E396420F8FB5700980293 /* BuildOutput */,
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
 				E5C2F77620F606CC004F71DB /* BuildOutput */,
