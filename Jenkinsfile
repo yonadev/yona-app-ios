@@ -42,7 +42,7 @@ pipeline {
             ipaName: 'Yona',
             ipaOutputDirectory: '',
             keychainName: 'login.keychain-db',
-            keychainPath: '${HOME}/Library/Keychains/',
+            keychainPath: '${HOME}/Library/Keychains/login.keychain-db',
             keychainPwd: 'Abc@123',
             logfileOutputDirectory: '',
             manualSigning: false,
