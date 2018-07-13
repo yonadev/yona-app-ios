@@ -61,7 +61,7 @@ pipeline {
             xcodeProjectFile: '',
             xcodeProjectPath: '',
             xcodeSchema: 'Yona',
-            xcodeWorkspaceFile: 'Yona',
+            xcodeWorkspaceFile: './Yona.xcworkspace',
             xcodebuildArguments: '',
             stripSwiftSymbols: true
           }
