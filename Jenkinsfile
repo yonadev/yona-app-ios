@@ -17,39 +17,53 @@ pipeline {
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           script {
-            xcodeBuild {
-              buildIpa(true)
-              generateArchive(true)
-              cleanBeforeBuild(true)      
-              cleanTestReports(true)
-              configuration('')
-              target('')
-              sdk('')
-              xcodeProjectPath('')
-              xcodeProjectFile('')
-              xcodebuildArguments('')
-              embeddedProfileFile('')
-              cfBundleVersionValue('')
-              cfBundleShortVersionStringValue('')
-              unlockKeychain(true)
-              keychainName('')
-              keychainPath('')
-              keychainPwd('')
-              symRoot('')
-              xcodeWorkspaceFile('Yona.xcworkspace')
-              xcodeSchema('Yona ')
-              configurationBuildDir('')
-              codeSigningIdentity('')
-              allowFailingBuildResults(true)
-              ipaName('')
-              provideApplicationVersion(true)
-              ipaOutputDirectory('')
-              changeBundleID(true)
-              bundleID('')
-              bundleIDInfoPlistPath('')
-              ipaManifestPlistUrl('')
-              interpretTargetAsRegEx(true)
-            }
+            xcodeBuild
+              allowFailingBuildResults: false,
+              appURL: ''
+              assetPackManifestURL: ''
+              buildDir: ''
+              buildIpa: false
+              bundleID: ''
+              bundleIDInfoPlistPath: ''
+              cfBundleShortVersionStringValue: ''
+              cfBundleVersionValue: ''
+              changeBundleID: false
+              cleanBeforeBuild: false
+              cleanTestReports: false
+              compileBitcode: true
+              configuration: 'Release'
+              developmentTeamID: ''
+              developmentTeamName: ''
+              displayImageURL: ''
+              embedOnDemandResourcesAssetPacksInBundle: true
+              fullSizeImageURL: ''
+              generateArchive: false
+              interpretTargetAsRegEx: false
+              ipaExportMethod: 'ad-hoc'
+              ipaName: ''
+              ipaOutputDirectory: ''
+              keychainName: ''
+              keychainPath: ''
+              keychainPwd: ''
+              logfileOutputDirectory: ''
+              manualSigning: false
+              noConsoleLog: false
+              onDemandResourcesAssetPacksBaseURL: ''
+              provideApplicationVersion: false
+              provisioningProfiles: [[provisioningProfileAppId: ''
+              provisioningProfileUUID: '']]
+              sdk: ''
+              symRoot: ''
+              target: ''
+              thinning: ''
+              unlockKeychain: false
+              uploadBitcode: true
+              uploadSymbols: true
+              xcodeProjectFile: ''
+              xcodeProjectPath: ''
+              xcodeSchema: ''
+              xcodeWorkspaceFile: ''
+              xcodebuildArguments: ''
 		  }
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
