@@ -97,6 +97,7 @@
 		16FDABEB1D57830300B847DB /* TimeLineTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */; };
 		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
 		2CB60BC01E839D8F0073E4D9 /* NotificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */; };
+		3D8E396620F936A000980293 /* ExportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E396520F936A000980293 /* ExportOptions.plist */; };
 		45FCA4805F51FC014B4FC16A /* Pods_YonaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6404BDF31C7D2ECCEFF4E489 /* Pods_YonaTests.framework */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
@@ -418,6 +419,7 @@
 		16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeZoneCell.swift; sourceTree = "<group>"; };
 		16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeZoneCell.xib; sourceTree = "<group>"; };
 		2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailViewController.swift; sourceTree = "<group>"; };
+		3D8E396520F936A000980293 /* ExportOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptions.plist; sourceTree = "<group>"; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 		3D8E396420F8FB5700980293 /* BuildOutput */ = {
 			isa = PBXGroup;
 			children = (
+				3D8E396520F936A000980293 /* ExportOptions.plist */,
 			);
 			path = BuildOutput;
 			sourceTree = "<group>";
@@ -1338,7 +1341,6 @@
 				3D8E396420F8FB5700980293 /* BuildOutput */,
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
-				E5C2F77620F606CC004F71DB /* BuildOutput */,
 				D9D54EC81CA28CD2007805F4 /* Products */,
 				3B39B85C599061F064F0007D /* Frameworks */,
 				ABF070875AFC9CAF67B0A5B1 /* Pods */,
@@ -1401,13 +1403,6 @@
 				E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */,
 			);
 			path = YonaTests;
-			sourceTree = "<group>";
-		};
-		E5C2F77620F606CC004F71DB /* BuildOutput */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BuildOutput;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1528,6 +1523,7 @@
 				90F123F11D3F6D7600E2BBBA /* SpreadCell.xib in Resources */,
 				D98635591CABF44000A8535C /* SF-UI-Display-Semibold.otf in Resources */,
 				16B1CD331D16F63D00A1ABA7 /* YonaDefaultTableHeaderView.xib in Resources */,
+				3D8E396620F936A000980293 /* ExportOptions.plist in Resources */,
 				ADD108271CC78C3B0048852F /* Oswald-Light.ttf in Resources */,
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
@@ -2088,7 +2084,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stichting Yona Foundation (KMR2VE49BG)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = KMR2VE49BG;
