@@ -17,8 +17,7 @@ pipeline {
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           script {
-            xcodeBuild  export_xcargs: '-allowProvisioningUpdates',
-            allowFailingBuildResults: false,
+            xcodeBuild  allowFailingBuildResults: false,
             appURL: '',
             assetPackManifestURL: '',
             buildDir: './BuildOutput',
@@ -46,7 +45,7 @@ pipeline {
             keychainPath: '${HOME}/Library/Keychains/login.keychain-db',
             keychainPwd: 'HPyQ2Cf9*Clh2p',
             logfileOutputDirectory: '',
-            manualSigning: true,
+            manualSigning: false,
             noConsoleLog: false,
             onDemandResourcesAssetPacksBaseURL: '',
             provideApplicationVersion: false,
