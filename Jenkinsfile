@@ -17,7 +17,7 @@ pipeline {
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           script {
-            xCodeBuilder {
+            xcodeBuild {
               buildIpa(true)
               generateArchive(true)
               cleanBeforeBuild(true)      
