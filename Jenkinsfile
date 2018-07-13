@@ -9,19 +9,14 @@ node  {
             sh '/usr/local/bin/pod install'
         }
         }
-    stage ("Build"){
-        require 'rubygems' require 'xcodebuilder
-         xCodeBuilder = XcodeBuilder::XcodeBuilder.new do |config|
-    config.app_name = "Yona"
-  end
-        dir ('Yona') {
-           
-             xCodeBuilder {
+    stage ("Build") {
+        dir ('Yona') { 
+            xCodeBuilder {
       buildIpa(true)
       generateArchive(true)
       cleanBeforeBuild(true)      
       cleanTestReports(true)
-      configuration('')
+      configuration('Yona')
       target('Yona')
       sdk('')
       xcodeProjectPath('')
@@ -49,6 +44,6 @@ node  {
       ipaManifestPlistUrl('')
       interpretTargetAsRegEx(true)
     }
-        }
+      }
     }
 }
