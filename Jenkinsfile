@@ -16,11 +16,44 @@ pipeline {
           sh '/usr/local/bin/pod deintegrate'
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
-          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -configuration Debug -derivedDataPath "./BuildOutput" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+          script {
+            xCodeBuilder {
+              buildIpa(true)
+              generateArchive(true)
+              cleanBeforeBuild(true)      
+              cleanTestReports(true)
+              configuration('Debug ')
+              target('')
+              sdk('')
+              xcodeProjectPath('')
+              xcodeProjectFile('')
+              xcodebuildArguments('')
+              embeddedProfileFile('')
+              cfBundleVersionValue('')
+              cfBundleShortVersionStringValue('')
+              unlockKeychain(true)
+              keychainName('')
+              keychainPath('')
+              keychainPwd('')
+              symRoot('')
+              xcodeWorkspaceFile('Yona.xcworkspace')
+              xcodeSchema('Yona ')
+              configurationBuildDir('')
+              codeSigningIdentity('')
+              allowFailingBuildResults(true)
+              ipaName('')
+              provideApplicationVersion(true)
+              ipaOutputDirectory('')
+              changeBundleID(true)
+              bundleID('')
+              bundleIDInfoPlistPath('')
+              ipaManifestPlistUrl('')
+              interpretTargetAsRegEx(true)
+            }
+		  }
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
-        
       }
     }
   }
