@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>method</key>
-	<string>ad-hoc</string>
+	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>nl.yonafoundation.yona</key>
-		<string>XC iOS: nl.yonafoundation.yona</string>
+		<string>Yona App Distribution</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>iPhone Distribution</string>
