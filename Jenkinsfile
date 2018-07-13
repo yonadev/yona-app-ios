@@ -17,7 +17,8 @@ pipeline {
           sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
           script {
-            xcodeBuild allowFailingBuildResults: false,
+            xcodeBuild -allowProvisioningUpdates
+            [allowFailingBuildResults: false,
             appURL: '',
             assetPackManifestURL: '',
             buildDir: './BuildOutput',
@@ -62,7 +63,7 @@ pipeline {
             xcodeProjectPath: '',
             xcodeSchema: 'Yona',
             xcodeWorkspaceFile: 'Yona',
-            xcodebuildArguments: ''
+            xcodebuildArguments: '']
           }
           
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
