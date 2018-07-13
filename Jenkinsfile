@@ -1,9 +1,23 @@
 node  {
-    checkout scm
-    stage ("Build"){
+    stage('checkout') { 
+            checkout scm 
+        }
+    stage('cocoapods') {
         dir ('Yona') { 
-            sh 'xcodebuild -list' 
-            sh 'xcodeBuild buildDir: 'BuildOutput', buildIpa: true, bundleID: '', bundleIDInfoPlistPath: '', cfBundleShortVersionStringValue: '', cfBundleVersionValue: '', changeBundleID: false, cleanBeforeBuild: true, cleanTestReports: false, compileBitcode: true, configuration: 'Release', developmentTeamID: 'KMR2VE49BG', developmentTeamName: '', displayImageURL: '', embedOnDemandResourcesAssetPacksInBundle: true, fullSizeImageURL: '', generateArchive: true, interpretTargetAsRegEx: false, ipaExportMethod: 'app-store', ipaName: '${VERSION}-${BUILD_DATE}', ipaOutputDirectory: 'BuildOutput', logfileOutputDirectory: '', manualSigning: true, noConsoleLog: false, onDemandResourcesAssetPacksBaseURL: '', provideApplicationVersion: false, provisioningProfiles: [[provisioningProfileAppId: 'nl.yonafoundation.yona', provisioningProfileUUID: 'af203df1-1b65-4526-b60c-205737697b0a']], sdk: '', symRoot: '', target: 'Yona', thinning: '', unlockKeychain: true, uploadBitcode: false, uploadSymbols: true, xcodeProjectFile: '', xcodeProjectPath: '', xcodeSchema: 'Yona', xcodeWorkspaceFile: 'Yona', xcodebuildArguments: '''
+            sh '/usr/local/bin/pod deintegrate'
+            sh '/usr/local/bin/pod repo update'
+            sh '/usr/local/bin/pod install'
+        }
+        }
+    stage ("Build"){
+        dir ('Yona') {
+            xcodebuild 'archive', [
+                workspace: 'Yona.xcworkspace',
+                scheme: 'Yona', 
+                archivePath: 'Yona.xcarchive',
+                derivedDataPath: './BuildOutput'
+            ]
+            archive 'Yona.xcarchive/**' 
         }
     }
 }
