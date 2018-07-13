@@ -22,7 +22,7 @@ pipeline {
               generateArchive(true)
               cleanBeforeBuild(true)      
               cleanTestReports(true)
-              configuration('Debug ')
+              configuration('')
               target('')
               sdk('')
               xcodeProjectPath('')
