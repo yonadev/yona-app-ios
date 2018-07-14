@@ -27,7 +27,7 @@ pipeline {
             cfBundleShortVersionStringValue: '',
             cfBundleVersionValue: '',
             changeBundleID: false,
-            cleanBeforeBuild: false,
+            cleanBeforeBuild: true,
             cleanTestReports: false,
             compileBitcode: true,
             configuration: 'Release',
