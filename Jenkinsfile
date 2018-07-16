@@ -59,7 +59,7 @@ pipeline {
             uploadBitcode: false,
             uploadSymbols: true,
             xcodeProjectFile: '',
-            xcodeProjectPath: '',
+            xcodeProjectPath: '${WORK_SPACE}/Yona',
             xcodeSchema: 'Yona',
             xcodeWorkspaceFile: './Yona',
             xcodebuildArguments: '',
