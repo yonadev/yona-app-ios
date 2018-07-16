@@ -59,11 +59,10 @@ pipeline {
             uploadBitcode: false,
             uploadSymbols: true,
             xcodeProjectFile: '',
-            xcodeProjectPath: '${WORK_SPACE}/Yona',
+            xcodeProjectPath: '',
             xcodeSchema: 'Yona',
             xcodeWorkspaceFile: './Yona',
-            xcodebuildArguments: '',
-            stripSwiftSymbols: true
+            xcodebuildArguments: ''
           }
           
           sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
