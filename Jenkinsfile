@@ -36,7 +36,7 @@ pipeline {
             displayImageURL: '',
             embedOnDemandResourcesAssetPacksInBundle: true,
             fullSizeImageURL: '',
-            generateArchive: false,
+            generateArchive: true,
             interpretTargetAsRegEx: false,
             ipaExportMethod: 'app-store',
             ipaName: 'Yona',
