@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
-        //get rid of the pixel line in the nav bar
         
         let barAppearace = UIBarButtonItem.appearance()
         barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
