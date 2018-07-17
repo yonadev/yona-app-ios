@@ -20,8 +20,6 @@ pipeline {
       steps {
         checkout scm
         dir(path: 'Yona') {
-          sh '/usr/local/bin/pod deintegrate'
-          sh '/usr/local/bin/pod repo update'
           sh '/usr/local/bin/pod install'
 	  sh 'xcrun agvtool new-marketing-version 1.1'
 	  sh 'xcrun agvtool next-version -all'
