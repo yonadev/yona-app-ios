@@ -1,1 +1,4 @@
 Pods/
+
+# VIM temp files
+*.sw*
