@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CE86DEB0A50952D24E005BE /* Pods_Yona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96A01827A243F17998DC35A /* Pods_Yona.framework */; };
 		160571521D3EC51700E86CC2 /* VSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571511D3EC51700E86CC2 /* VSTextField.swift */; };
 		160571581D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */; };
 		1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160571591D460D5500E86CC2 /* VPNFlow.storyboard */; };
@@ -98,7 +99,6 @@
 		16FDABED1D57830F00B847DB /* TimeLineTimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */; };
 		2CB60BC01E839D8F0073E4D9 /* NotificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */; };
 		3D8E396620F936A000980293 /* ExportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E396520F936A000980293 /* ExportOptions.plist */; };
-		45FCA4805F51FC014B4FC16A /* Pods_YonaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6404BDF31C7D2ECCEFF4E489 /* Pods_YonaTests.framework */; };
 		603CDAA21CDC9129002A5C46 /* XTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA11CDC9129002A5C46 /* XTSettings.m */; };
 		603CDAA61CDC91B3002A5C46 /* EnvironmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 603CDAA51CDC91B3002A5C46 /* EnvironmentManager.m */; };
 		604282991D0ADA4600F5543C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604282911D0ADA4600F5543C /* SVIndefiniteAnimatedView.m */; };
@@ -242,6 +242,7 @@
 		B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */; };
 		B1E55D261E7812CA00EE924A /* RootRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */; };
 		B1E55D2A1E781EDC00EE924A /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = B1E55D291E781EDC00EE924A /* style.css */; };
+		B99E9A20D48E343288743830 /* Pods_YonaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26C17F6D0067257FAE70D37 /* Pods_YonaTests.framework */; };
 		BE03B02B1CBD6CBF0063802E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B02A1CBD6CBF0063802E /* Goal.swift */; };
 		BE0FE69E1D65C4FB00AE6B5A /* SendCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */; };
 		BE0FE69F1D65C4FB00AE6B5A /* SendCommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FE69D1D65C4FB00AE6B5A /* SendCommentControl.swift */; };
@@ -287,7 +288,6 @@
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
-		DED3113080EBF42B4EBFB1FE /* Pods_Yona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7004D2F71D45D64C2A11D5E0 /* Pods_Yona.framework */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
 		E57D6CD620F78EF60004B853 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E57D6CD520F78EF60004B853 /* GameKit.framework */; };
 /* End PBXBuildFile section */
@@ -303,7 +303,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0378C8F921DFDF6919839C88 /* Pods-YonaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YonaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YonaTests/Pods-YonaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		160571511D3EC51700E86CC2 /* VSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VSTextField.swift; path = Yona/CustomSubclasses/VSTextField.swift; sourceTree = SOURCE_ROOT; };
 		160571571D460CA900E86CC2 /* YonaVPNFlowMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaVPNFlowMainViewController.swift; sourceTree = "<group>"; };
 		160571591D460D5500E86CC2 /* VPNFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VPNFlow.storyboard; sourceTree = "<group>"; };
@@ -418,8 +417,10 @@
 		16FDABE81D55FCB700B847DB /* TimeLineTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeBucketCell.swift; sourceTree = "<group>"; };
 		16FDABEA1D57830300B847DB /* TimeLineTimeZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTimeZoneCell.swift; sourceTree = "<group>"; };
 		16FDABEC1D57830F00B847DB /* TimeLineTimeZoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTimeZoneCell.xib; sourceTree = "<group>"; };
+		232942759D312A5555C97231 /* Pods-Yona.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.release.xcconfig"; sourceTree = "<group>"; };
 		2CB60BBF1E839D8F0073E4D9 /* NotificationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailViewController.swift; sourceTree = "<group>"; };
 		3D8E396520F936A000980293 /* ExportOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptions.plist; sourceTree = "<group>"; };
+		53294CD5667D6D82CF16224F /* Pods-YonaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YonaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YonaTests/Pods-YonaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		603CDAA01CDC9129002A5C46 /* XTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSettings.h; sourceTree = "<group>"; };
 		603CDAA11CDC9129002A5C46 /* XTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSettings.m; sourceTree = "<group>"; };
 		603CDAA41CDC91B3002A5C46 /* EnvironmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentManager.h; sourceTree = "<group>"; };
@@ -434,10 +435,6 @@
 		604282971D0ADA4600F5543C /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		604282981D0ADA4600F5543C /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		60E5B5BE1CE612E80090E593 /* DashboardNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationViewController.swift; sourceTree = "<group>"; };
-		63BACD487EBAE11A5D5D5EFA /* Pods-YonaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YonaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YonaTests/Pods-YonaTests.release.xcconfig"; sourceTree = "<group>"; };
-		6404BDF31C7D2ECCEFF4E489 /* Pods_YonaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YonaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7004D2F71D45D64C2A11D5E0 /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8ED026D5FF4B0C58AF1225B2 /* Pods-Yona.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.release.xcconfig"; sourceTree = "<group>"; };
 		9007DD131D9957A10092AA9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		900972B31CC7B77000EEB7E7 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		90351BF31D101A4C0012E983 /* AdminOverrideValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOverrideValidationVC.swift; sourceTree = "<group>"; };
@@ -525,7 +522,6 @@
 		90FF6DFA1D00346100A674C4 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		90FF6E001D01D73000A674C4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		97F4E094BD09171901BB56B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A249C91DAD8300DD85EAC77 /* Pods-Yona.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.debug.xcconfig"; sourceTree = "<group>"; };
 		AD01F7211CBCC560006E6157 /* TimeBucketChallenges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBucketChallenges.swift; sourceTree = "<group>"; };
 		AD2263251CD2656200AD4AB1 /* Yona-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yona-Bridging-Header.h"; path = "Others/Yona-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD22632A1CD2672F00AD4AB1 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -592,6 +588,7 @@
 		B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		B1E55D251E7812CA00EE924A /* RootRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRequestHelper.swift; sourceTree = "<group>"; };
 		B1E55D291E781EDC00EE924A /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		B26C17F6D0067257FAE70D37 /* Pods_YonaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YonaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE03B0271CBD4A420063802E /* GoalAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAPIServiceTests.swift; sourceTree = "<group>"; };
 		BE03B02A1CBD6CBF0063802E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		BE0FE69C1D65C4FB00AE6B5A /* SendCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCommentControl.xib; sourceTree = "<group>"; };
@@ -600,6 +597,7 @@
 		BEB0CDFA1CEA4E9B0056280A /* MessageRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRequestManager.swift; sourceTree = "<group>"; };
 		BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPIServiceTests.swift; sourceTree = "<group>"; };
 		BEEDBF851D0FFA6100ED8AD1 /* PinResetValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResetValidationVC.swift; sourceTree = "<group>"; };
+		D1109935054E2BA37B2C94A4 /* Pods-YonaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YonaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YonaTests/Pods-YonaTests.release.xcconfig"; sourceTree = "<group>"; };
 		D94A93B61CB26E1C00ABE0F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D94A93B91CB26E3A00ABE0F8 /* APIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServiceManager.swift; path = DataService/APIServiceManager.swift; sourceTree = "<group>"; };
 		D94A93BC1CB26E3A00ABE0F8 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Users.swift; path = DataService/Users.swift; sourceTree = "<group>"; };
@@ -643,8 +641,10 @@
 		D9D54EDD1CA28CD2007805F4 /* YonaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YonaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIServiceTests.swift; sourceTree = "<group>"; };
 		D9D54EE31CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.debug.xcconfig"; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
 		E57D6CD520F78EF60004B853 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -654,9 +654,9 @@
 			files = (
 				B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */,
 				1656A5AD1D4BE8D700EB288D /* libxml2.tbd in Frameworks */,
-				DED3113080EBF42B4EBFB1FE /* Pods_Yona.framework in Frameworks */,
 				16B768761E098479009448EB /* HockeySDK.framework in Frameworks */,
 				E57D6CD620F78EF60004B853 /* GameKit.framework in Frameworks */,
+				0CE86DEB0A50952D24E005BE /* Pods_Yona.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +664,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FCA4805F51FC014B4FC16A /* Pods_YonaTests.framework in Frameworks */,
+				B99E9A20D48E343288743830 /* Pods_YonaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,8 +829,8 @@
 				1656A5AC1D4BE8D700EB288D /* libxml2.tbd */,
 				1656A5AA1D4BE8AF00EB288D /* libxml2.2.tbd */,
 				97F4E094BD09171901BB56B3 /* Pods.framework */,
-				7004D2F71D45D64C2A11D5E0 /* Pods_Yona.framework */,
-				6404BDF31C7D2ECCEFF4E489 /* Pods_YonaTests.framework */,
+				F96A01827A243F17998DC35A /* Pods_Yona.framework */,
+				B26C17F6D0067257FAE70D37 /* Pods_YonaTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1077,17 +1077,6 @@
 			name = LoginSignUpFlow;
 			sourceTree = "<group>";
 		};
-		ABF070875AFC9CAF67B0A5B1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9A249C91DAD8300DD85EAC77 /* Pods-Yona.debug.xcconfig */,
-				8ED026D5FF4B0C58AF1225B2 /* Pods-Yona.release.xcconfig */,
-				0378C8F921DFDF6919839C88 /* Pods-YonaTests.debug.xcconfig */,
-				63BACD487EBAE11A5D5D5EFA /* Pods-YonaTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		AD291CE01CA90202008CAFB1 /* DashBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1255,6 +1244,17 @@
 			path = "Fonts/Roboto Fonts";
 			sourceTree = "<group>";
 		};
+		C834B99FAE82C8E4DCB8CBEA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */,
+				232942759D312A5555C97231 /* Pods-Yona.release.xcconfig */,
+				53294CD5667D6D82CF16224F /* Pods-YonaTests.debug.xcconfig */,
+				D1109935054E2BA37B2C94A4 /* Pods-YonaTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D94A93B81CB26E2D00ABE0F8 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1343,7 +1343,7 @@
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
 				D9D54EC81CA28CD2007805F4 /* Products */,
 				3B39B85C599061F064F0007D /* Frameworks */,
-				ABF070875AFC9CAF67B0A5B1 /* Pods */,
+				C834B99FAE82C8E4DCB8CBEA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1412,11 +1412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9D54EF11CA28CD2007805F4 /* Build configuration list for PBXNativeTarget "Yona" */;
 			buildPhases = (
-				C1D13FC1469E47F7C1EA3AE0 /* [CP] Check Pods Manifest.lock */,
+				E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */,
 				D9D54EFC1CA565B7007805F4 /* R.swift */,
 				D9D54EC31CA28CD2007805F4 /* Sources */,
 				D9D54EC41CA28CD2007805F4 /* Frameworks */,
 				D9D54EC51CA28CD2007805F4 /* Resources */,
+				913D40C87D61DA38D5CAF5E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1431,7 +1432,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9D54EF41CA28CD2007805F4 /* Build configuration list for PBXNativeTarget "YonaTests" */;
 			buildPhases = (
-				C261F22B7D50FB76D99E1B7B /* [CP] Check Pods Manifest.lock */,
+				4F695F357E7BB515D272FA33 /* [CP] Check Pods Manifest.lock */,
 				D9D54ED91CA28CD2007805F4 /* Sources */,
 				D9D54EDA1CA28CD2007805F4 /* Frameworks */,
 				D9D54EDB1CA28CD2007805F4 /* Resources */,
@@ -1614,25 +1615,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C1D13FC1469E47F7C1EA3AE0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Yona-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C261F22B7D50FB76D99E1B7B /* [CP] Check Pods Manifest.lock */ = {
+		4F695F357E7BB515D272FA33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1650,6 +1633,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		913D40C87D61DA38D5CAF5E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Yona/Pods-Yona-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Yona/Pods-Yona-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D9D54EFC1CA565B7007805F4 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1663,6 +1670,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yona-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1936,7 +1961,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1998,7 +2023,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2022,7 +2047,7 @@
 		};
 		D9D54EF21CA28CD2007805F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A249C91DAD8300DD85EAC77 /* Pods-Yona.debug.xcconfig */;
+			baseConfigurationReference = E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2031,7 +2056,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2056,7 +2081,7 @@
 		};
 		D9D54EF31CA28CD2007805F4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8ED026D5FF4B0C58AF1225B2 /* Pods-Yona.release.xcconfig */;
+			baseConfigurationReference = 232942759D312A5555C97231 /* Pods-Yona.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2065,7 +2090,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2088,7 +2113,7 @@
 		};
 		D9D54EF51CA28CD2007805F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0378C8F921DFDF6919839C88 /* Pods-YonaTests.debug.xcconfig */;
+			baseConfigurationReference = 53294CD5667D6D82CF16224F /* Pods-YonaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2109,7 +2134,7 @@
 		};
 		D9D54EF61CA28CD2007805F4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63BACD487EBAE11A5D5D5EFA /* Pods-YonaTests.release.xcconfig */;
+			baseConfigurationReference = D1109935054E2BA37B2C94A4 /* Pods-YonaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
