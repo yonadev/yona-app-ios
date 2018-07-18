@@ -33,6 +33,7 @@ pipeline {
         }
         
         archiveArtifacts(artifacts: 'Yona/BuildOutput/**/*.ipa', allowEmptyArchive: true)
+        deleteDir()
       }
     }
   }
