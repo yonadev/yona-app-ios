@@ -10,7 +10,7 @@
 		<string>Yona App Developement</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>iPhone Development</string>
+	<string>iPhone Developer</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
