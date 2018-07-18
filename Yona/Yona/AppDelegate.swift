@@ -85,9 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             print ("STARTING BACKGROUND TASK")
             self.doBackgroundTask()
         }
-        
-        //doTestCycleForVPN()
-
     }
     
     func beginBackgroundUpdateTask() {
