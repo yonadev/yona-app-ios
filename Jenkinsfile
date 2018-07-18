@@ -19,6 +19,7 @@ pipeline {
       }
       steps {
         dir(path: 'Yona') {
+	  sh 'git pull'
           sh '/usr/local/bin/pod install'
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
