@@ -20,6 +20,7 @@ pipeline {
       steps {
         deleteDir()
         checkout scm
+        importDeveloperProfile 'YonaVishalDeveloperProfile'
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod install'
           sh 'xcrun agvtool new-marketing-version 1.1'
