@@ -23,7 +23,7 @@ pipeline {
         importDeveloperProfile 'YonaVishalDeveloperProfile'
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod install'
-          sh 'security unlock-keychain -p "HPyQ2Cf9*Clh2p" "${HOME}/Library/Keychains/login.keychain-db.keychain"'
+          sh 'security unlock-keychain -p "HPyQ2Cf9*Clh2p" "${HOME}/Library/Keychains/login.keychain-db"'
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive'
