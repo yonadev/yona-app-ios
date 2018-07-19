@@ -22,10 +22,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 57 files.
+  /// This `R.file` struct is generated, and contains static references to 58 files.
   struct file {
-    /// Resource file `ExportOptions.plist`.
-    static let exportOptionsPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "ExportOptions", pathExtension: "plist")
+    /// Resource file `ExportOptionsDebug.plist`.
+    static let exportOptionsDebugPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "ExportOptionsDebug", pathExtension: "plist")
+    /// Resource file `ExportOptionsRelease.plist`.
+    static let exportOptionsReleasePlist = Rswift.FileResource(bundle: R.hostingBundle, name: "ExportOptionsRelease", pathExtension: "plist")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
     /// Resource file `HockeySDKResources.bundle`.
@@ -139,9 +141,15 @@ struct R: Rswift.Validatable {
     /// Resource file `style.css`.
     static let styleCss = Rswift.FileResource(bundle: R.hostingBundle, name: "style", pathExtension: "css")
     
-    /// `bundle.url(forResource: "ExportOptions", withExtension: "plist")`
-    static func exportOptionsPlist(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.exportOptionsPlist
+    /// `bundle.url(forResource: "ExportOptionsDebug", withExtension: "plist")`
+    static func exportOptionsDebugPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.exportOptionsDebugPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "ExportOptionsRelease", withExtension: "plist")`
+    static func exportOptionsReleasePlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.exportOptionsReleasePlist
       return fileResource.bundle.url(forResource: fileResource)
     }
     
