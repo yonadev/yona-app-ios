@@ -24,8 +24,6 @@ pipeline {
           sh '/usr/local/bin/pod install'
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
-          sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive'
-          sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Release-$BUILD_NUMBER.ipa -exportOptionsPlist ./BuildOutput/ExportOptionsRelease.plist'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive'
           sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.ipa -exportOptionsPlist ./BuildOutput/ExportOptionsDebug.plist'
           sh 'git checkout $BRANCH_NAME'
