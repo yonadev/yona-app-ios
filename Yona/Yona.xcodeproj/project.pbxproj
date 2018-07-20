@@ -840,8 +840,6 @@
 		3D8E396420F8FB5700980293 /* BuildOutput */ = {
 			isa = PBXGroup;
 			children = (
-				3D8E396520F936A000980293 /* ExportOptionsRelease.plist */,
-				E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */,
 			);
 			path = BuildOutput;
 			sourceTree = "<group>";
@@ -1341,6 +1339,7 @@
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
+				E59CDAB72101C52A0023B282 /* ExportOptions */,
 				3D8E396420F8FB5700980293 /* BuildOutput */,
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
@@ -1406,6 +1405,15 @@
 				E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */,
 			);
 			path = YonaTests;
+			sourceTree = "<group>";
+		};
+		E59CDAB72101C52A0023B282 /* ExportOptions */ = {
+			isa = PBXGroup;
+			children = (
+				3D8E396520F936A000980293 /* ExportOptionsRelease.plist */,
+				E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */,
+			);
+			path = ExportOptions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -23,9 +23,9 @@ pipeline {
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive'
-          sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.ipa -exportOptionsPlist ./BuildOutput/ExportOptionsDebug.plist'
+          sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive'
-          sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Release-$BUILD_NUMBER.ipa -exportOptionsPlist ./BuildOutput/ExportOptionsRelease.plist'
+          sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Release-$BUILD_NUMBER.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
           sh 'git checkout $BRANCH_NAME'
           sh 'git add -u'
           sh 'git commit -m "Updated versionCode for build $BUILD_NUMBER [ci skip]"'
@@ -34,7 +34,7 @@ pipeline {
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
         
-        archiveArtifacts(artifacts: 'Yona/BuildOutput/**/*.ipa', allowEmptyArchive: true)
+        archiveArtifacts(artifacts: 'Yona/BuildOutput/**/*.ipa', allowEmptyArchive: false)
       }
     }
   }
