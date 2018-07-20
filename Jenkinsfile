@@ -26,7 +26,6 @@ pipeline {
           sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive'
           sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release-$BUILD_NUMBER.xcarchive -exportPath ./BuildOutput/Yona-Release-$BUILD_NUMBER.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
-          sh 'git checkout $BRANCH_NAME'
           sh 'git add -u'
           sh 'git commit -m "Updated versionCode for build $BUILD_NUMBER [ci skip]"'
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git'
