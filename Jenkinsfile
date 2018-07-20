@@ -18,7 +18,6 @@ pipeline {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
       }
       steps {
-        sh 'git status'
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod install'
           sh 'xcrun agvtool new-marketing-version 1.1'
