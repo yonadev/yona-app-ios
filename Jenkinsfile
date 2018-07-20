@@ -20,7 +20,7 @@ pipeline {
       steps {
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod install'
-	  sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination "platform:iOS Simulator, id:9FB85FE5-0496-41CE-BC4B-3DBB83BA400A, OS:11.4", name:iPhone 6  -derivedDataPath ./BuildOutput test | xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
+          sh 'xcrun xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination "platform:iOS Simulator, OS:11.4, name:iPhone 6" -derivedDataPath ./BuildOutput test | xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive'
@@ -34,7 +34,7 @@ pipeline {
           sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
         }
         
-        archiveArtifacts(artifacts: 'Yona/BuildOutput/**/*.ipa', allowEmptyArchive: false)
+        archiveArtifacts 'Yona/BuildOutput/**/*.ipa'
       }
     }
   }
