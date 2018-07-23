@@ -16,6 +16,7 @@ pipeline {
       }
       environment {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
+        LC_CTYPE = 'en_US.UTF-8'
       }
       steps {
         dir(path: 'Yona') {
@@ -36,15 +37,11 @@ pipeline {
         
         archiveArtifacts 'Yona/BuildOutput/**/*.ipa'
       }
+      post {
+        always {
+          junit 'Yona/BuildOutput/**/*.xml'
+        }
+      }
     }
-
-  }
-	post {
-      	   always {
-             junit 'Yona/BuildOutput/**/*.xml'
-      	}
-   }
-  environment {
-    LC_CTYPE = 'en_US.UTF-8'
   }
 }
