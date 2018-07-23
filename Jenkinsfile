@@ -20,8 +20,7 @@ pipeline {
       steps {
         dir(path: 'Yona') {
           sh '/usr/local/bin/pod install'
-          sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
-          junit './BuildOutput/Report/testreport.xml'
+          sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml' 
           sh 'xcrun agvtool new-marketing-version 1.1'
           sh 'xcrun agvtool next-version -all'
           sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug-$BUILD_NUMBER.xcarchive'
@@ -38,7 +37,13 @@ pipeline {
         archiveArtifacts 'Yona/BuildOutput/**/*.ipa'
       }
     }
+
   }
+	post {
+      	   always {
+             junit 'Yona/BuildOutput/**/*.xml'
+      	}
+   }
   environment {
     LC_CTYPE = 'en_US.UTF-8'
   }
