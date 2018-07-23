@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
-        //get rid of the pixel line in the nav bar
         
         let barAppearace = UIBarButtonItem.appearance()
         barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
@@ -72,9 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     }
         
     func applicationWillResignActive(_ application: UIApplication) {
-        
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -86,9 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             print ("STARTING BACKGROUND TASK")
             self.doBackgroundTask()
         }
-        
-        //doTestCycleForVPN()
-
     }
     
     func beginBackgroundUpdateTask() {

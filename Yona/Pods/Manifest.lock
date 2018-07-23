@@ -16,8 +16,8 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - IQKeyboardManagerSwift (6.0.2)
-  - Kingfisher (4.7.0)
+  - IQKeyboardManagerSwift (6.1.0)
+  - Kingfisher (4.8.0)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
@@ -48,8 +48,8 @@ SPEC CHECKSUMS:
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
-  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  IQKeyboardManagerSwift: f5004f5860d9a8ed23a7ef7a156ae168828eb018
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
 
