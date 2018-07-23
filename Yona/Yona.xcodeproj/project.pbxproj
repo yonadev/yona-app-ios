@@ -290,7 +290,6 @@
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		E515AA6220FF6702005DE550 /* ExportOptionsDebug.plist in Resources */ = {isa = PBXBuildFile; fileRef = E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
-		E57D6CD620F78EF60004B853 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E57D6CD520F78EF60004B853 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -645,7 +644,6 @@
 		E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.debug.xcconfig"; sourceTree = "<group>"; };
 		E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptionsDebug.plist; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
-		E57D6CD520F78EF60004B853 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -657,7 +655,6 @@
 				B16C25C51E682C9800BF20AC /* LocalAuthentication.framework in Frameworks */,
 				1656A5AD1D4BE8D700EB288D /* libxml2.tbd in Frameworks */,
 				16B768761E098479009448EB /* HockeySDK.framework in Frameworks */,
-				E57D6CD620F78EF60004B853 /* GameKit.framework in Frameworks */,
 				0CE86DEB0A50952D24E005BE /* Pods_Yona.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,7 +823,6 @@
 		3B39B85C599061F064F0007D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E57D6CD520F78EF60004B853 /* GameKit.framework */,
 				B16C25C41E682C9800BF20AC /* LocalAuthentication.framework */,
 				1656A5AC1D4BE8D700EB288D /* libxml2.tbd */,
 				1656A5AA1D4BE8AF00EB288D /* libxml2.2.tbd */,
@@ -1475,7 +1471,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.GameCenter.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
