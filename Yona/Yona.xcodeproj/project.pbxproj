@@ -1425,6 +1425,7 @@
 				D9D54EC41CA28CD2007805F4 /* Frameworks */,
 				D9D54EC51CA28CD2007805F4 /* Resources */,
 				913D40C87D61DA38D5CAF5E6 /* [CP] Embed Pods Frameworks */,
+				E5058E482106FF2F00525220 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1678,6 +1679,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		E5058E482106FF2F00525220 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1b30b6855885b6c0d1b05b34efcf5d6cbe2a5f13 45c4dd8cdf908a4f3772388400ad807b7dba783ce83ef8a9e897583655b9e4d7";
 		};
 		E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2065,6 +2079,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sivateja B (5JXR9QWHSA)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

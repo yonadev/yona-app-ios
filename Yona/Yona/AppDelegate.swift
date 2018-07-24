@@ -9,6 +9,8 @@
 import UIKit
 import HockeySDK
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 protocol AppLifeCylcleConsumer: UIApplicationDelegate {
     func appDidEnterForeground()
@@ -66,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         Loader.setup()
+        Fabric.with([Crashlytics.self])
         return true
         
     }
