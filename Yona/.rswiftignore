@@ -1,0 +1,4 @@
+# Fabric and Crashlytics files
+fabric.apikey
+fabric.buildsecret
+fabric_script.sh

@@ -68,9 +68,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         Loader.setup()
-        Fabric.with([Crashlytics.self])
+        initializeCrashlytics()
         return true
         
+    }
+    
+    func initializeCrashlytics(){
+        var fabricAPIKey: String? = nil
+        if let filepath = Bundle.main.path(forResource: "fabric.apikey", ofType: nil) {
+            do {
+                fabricAPIKey = try String(contentsOfFile: filepath)
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("File not found")
+        }
+        let whitespaceToTrim = CharacterSet.whitespacesAndNewlines
+        let fabricAPIKeyTrimmed = fabricAPIKey?.trimmingCharacters(in: whitespaceToTrim)
+        Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed!)
     }
         
     func applicationWillResignActive(_ application: UIApplication) {
