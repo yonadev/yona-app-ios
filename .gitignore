@@ -5,4 +5,3 @@ BuildOutput/
 
 # Fabric and Crashlytics files
 fabric.apikey
-fabric.buildsecret
