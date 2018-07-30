@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'mac-os'
+    }
+    
+  }
   stages {
     stage('Build and test') {
       when {
@@ -7,18 +12,11 @@ pipeline {
           result = sh (script: "git log -1 | grep '.*\\[ci skip\\].*'", returnStatus: true) // Check if commit message contains skip ci label
           result != 0 // Evaluate the result
         }
-
+        
       }
       environment {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
         LC_CTYPE = 'en_US.UTF-8'
-      }
-      post {
-        always {
-          junit 'Yona/BuildOutput/**/*.xml'
-
-        }
-
       }
       steps {
         dir(path: 'Yona') {
@@ -41,10 +39,17 @@ pipeline {
             sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
           }
-
+          
         }
-
+        
         archiveArtifacts 'Yona/BuildOutput/**/*.ipa'
+      }
+      post {
+        always {
+          junit 'Yona/BuildOutput/**/*.xml'
+          
+        }
+        
       }
     }
   }
