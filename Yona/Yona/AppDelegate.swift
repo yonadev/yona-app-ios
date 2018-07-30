@@ -68,7 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         Loader.setup()
-        initializeCrashlytics()
+       //initializeCrashlytics()
+       // Fabric.with([Crashlytics.self])
         return true
         
     }
