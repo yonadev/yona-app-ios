@@ -288,8 +288,6 @@
 		D9D54ECB1CA28CD2007805F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D54ECA1CA28CD2007805F4 /* AppDelegate.swift */; };
 		D9D54ED41CA28CD2007805F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED31CA28CD2007805F4 /* Assets.xcassets */; };
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
-		E50F4FE5210B14720008FE74 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = E50F4FE4210B14720008FE74 /* fabric.apikey */; };
-		E50F4FEB210B24140008FE74 /* fabric_script.sh in Resources */ = {isa = PBXBuildFile; fileRef = E50F4FEA210B24140008FE74 /* fabric_script.sh */; };
 		E515AA6220FF6702005DE550 /* ExportOptionsDebug.plist in Resources */ = {isa = PBXBuildFile; fileRef = E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
 /* End PBXBuildFile section */
@@ -644,9 +642,6 @@
 		D9D54EE11CA28CD2007805F4 /* UserAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIServiceTests.swift; sourceTree = "<group>"; };
 		D9D54EE31CA28CD2007805F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.debug.xcconfig"; sourceTree = "<group>"; };
-		E50F4FE4210B14720008FE74 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
-		E50F4FE6210B14BE0008FE74 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = "<group>"; };
-		E50F4FEA210B24140008FE74 /* fabric_script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fabric_script.sh; sourceTree = "<group>"; };
 		E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptionsDebug.plist; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1345,9 +1340,6 @@
 				D9D54EC91CA28CD2007805F4 /* Yona */,
 				D9D54EE01CA28CD2007805F4 /* YonaTests */,
 				D9D54EC81CA28CD2007805F4 /* Products */,
-				E50F4FEA210B24140008FE74 /* fabric_script.sh */,
-				E50F4FE6210B14BE0008FE74 /* fabric.buildsecret */,
-				E50F4FE4210B14720008FE74 /* fabric.apikey */,
 				3B39B85C599061F064F0007D /* Frameworks */,
 				C834B99FAE82C8E4DCB8CBEA /* Pods */,
 			);
@@ -1572,7 +1564,6 @@
 				906FED911CEE23CE00029845 /* MeDashBoard.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
-				E50F4FEB210B24140008FE74 /* fabric_script.sh in Resources */,
 				B1E55D2A1E781EDC00EE924A /* style.css in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
 				D98635671CABF44000A8535C /* SF-UI-Text-SemiboldItalic.otf in Resources */,
@@ -1604,7 +1595,6 @@
 				906FED8A1CEE23B800029845 /* Challenges.storyboard in Resources */,
 				ADEF8F021CADFD0C001D5EED /* Roboto-BoldCondensed.ttf in Resources */,
 				1605715A1D460D5500E86CC2 /* VPNFlow.storyboard in Resources */,
-				E50F4FE5210B14720008FE74 /* fabric.apikey in Resources */,
 				9007DD141D9957A10092AA9E /* GoogleService-Info.plist in Resources */,
 				ADD1082B1CC78C3B0048852F /* Oswald-Regular.ttf in Resources */,
 				160BF93D1D5B712800AF9EF4 /* TimeLineNoGoCell.xib in Resources */,
