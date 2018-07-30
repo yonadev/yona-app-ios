@@ -1428,7 +1428,6 @@
 				D9D54EC41CA28CD2007805F4 /* Frameworks */,
 				D9D54EC51CA28CD2007805F4 /* Resources */,
 				913D40C87D61DA38D5CAF5E6 /* [CP] Embed Pods Frameworks */,
-				E5B93780210F3B4F00B5413B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1683,19 +1682,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
-		};
-		E5B93780210F3B4F00B5413B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 		E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
