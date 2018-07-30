@@ -4,5 +4,4 @@ BuildOutput/
 *.sw*
 
 # Fabric and Crashlytics files
-fabric.apikey
 fabric.buildsecret

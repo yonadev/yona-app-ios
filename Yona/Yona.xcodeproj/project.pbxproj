@@ -291,6 +291,7 @@
 		E515AA6220FF6702005DE550 /* ExportOptionsDebug.plist in Resources */ = {isa = PBXBuildFile; fileRef = E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
 		E5B9377F210F3B2500B5413B /* fabric_script.sh in Resources */ = {isa = PBXBuildFile; fileRef = E5B9377E210F3B2500B5413B /* fabric_script.sh */; };
+		E5B93782210F42CC00B5413B /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = E5B93781210F42CC00B5413B /* fabric.apikey */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -646,6 +647,7 @@
 		E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptionsDebug.plist; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
 		E5B9377E210F3B2500B5413B /* fabric_script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fabric_script.sh; sourceTree = "<group>"; };
+		E5B93781210F42CC00B5413B /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1337,6 +1339,7 @@
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
+				E5B93781210F42CC00B5413B /* fabric.apikey */,
 				E5B9377E210F3B2500B5413B /* fabric_script.sh */,
 				E59CDAB72101C52A0023B282 /* ExportOptions */,
 				3D8E396420F8FB5700980293 /* BuildOutput */,
@@ -1539,6 +1542,7 @@
 				D986355B1CABF44000A8535C /* SF-UI-Display-Ultralight.otf in Resources */,
 				D986355F1CABF44000A8535C /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				D986355A1CABF44000A8535C /* SF-UI-Display-Thin.otf in Resources */,
+				E5B93782210F42CC00B5413B /* fabric.apikey in Resources */,
 				9054D5481D65EB9D0060D22E /* ReplyToComment.xib in Resources */,
 				165887951D1919A40021DFC4 /* YonaTwoButtonTableViewCell.xib in Resources */,
 				ADD108251CC78C3B0048852F /* Oswald-Heavy.ttf in Resources */,
