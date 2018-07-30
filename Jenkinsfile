@@ -23,9 +23,8 @@ pipeline {
           withCredentials(bindings: [string(credentialsId: 'FabricApiKey', variable: 'FABRIC_API_KEY'), string(credentialsId: 'FabricBuildSecret', variable: 'FABRIC_BUILD_SECRET')]) {
             sh '/usr/local/bin/pod install'
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
-            sh '''set +x
-"Pods/Fabric/run" "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"
- 			   '''
+            sh 'set +x'
+            sh '"./Pods/Fabric/run" "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"'
             sh 'xcrun agvtool new-marketing-version 1.1'
             sh 'xcrun agvtool next-version -all'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug.xcarchive'
