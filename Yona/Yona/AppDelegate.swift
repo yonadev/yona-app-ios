@@ -27,11 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     static var instance: AppLifeCylcleConsumer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-//        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-//        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//        NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
-//       
+        initializeCrashlytics()
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -68,8 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         Loader.setup()
-       //initializeCrashlytics()
-       // Fabric.with([Crashlytics.self])
         return true
         
     }
