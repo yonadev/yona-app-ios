@@ -1,2 +1,3 @@
-echo sh(script: 'env', returnStdout: true)
+echo 'test'
+'printenv'
 ./Pods/Fabric/run "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"
