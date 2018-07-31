@@ -6,10 +6,11 @@ use_frameworks!
 target 'Yona' do
    
    pod 'R.swift'
-   #pod 'HockeySDK'
    pod 'Google/Analytics'
    pod 'Kingfisher', '~> 4.0'
    pod 'IQKeyboardManagerSwift'
+   pod 'Fabric'
+   pod 'Crashlytics'
    
    target 'YonaTests' do
        inherit! :search_paths

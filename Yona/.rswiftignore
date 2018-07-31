@@ -1,8 +1,4 @@
-Pods/
-BuildOutput/
-# VIM temp files
-*.sw*
-
 # Fabric and Crashlytics files
 fabric.apikey
 fabric.buildsecret
+fabric_script.sh

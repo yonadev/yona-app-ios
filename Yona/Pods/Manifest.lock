@@ -1,4 +1,7 @@
 PODS:
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
+  - Fabric (1.7.9)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -23,6 +26,8 @@ PODS:
   - R.swift.Library (4.0.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - Google/Analytics
   - IQKeyboardManagerSwift
   - Kingfisher (~> 4.0)
@@ -30,6 +35,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
@@ -42,6 +49,8 @@ SPEC REPOS:
     - R.swift.Library
 
 SPEC CHECKSUMS:
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
@@ -53,6 +62,6 @@ SPEC CHECKSUMS:
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
 
-PODFILE CHECKSUM: 0886fc8f67d6ebfe3e73914d78ba898fcff8d250
+PODFILE CHECKSUM: d1a81d30045898dbeca999cfa5cda4215b70bcb1
 
 COCOAPODS: 1.5.3

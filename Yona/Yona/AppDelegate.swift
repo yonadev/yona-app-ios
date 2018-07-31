@@ -9,6 +9,8 @@
 import UIKit
 import HockeySDK
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 protocol AppLifeCylcleConsumer: UIApplicationDelegate {
     func appDidEnterForeground()
@@ -25,11 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     static var instance: AppLifeCylcleConsumer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-//        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-//        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//        NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
-//       
+        initializeCrashlytics()
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -68,6 +66,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         Loader.setup()
         return true
         
+    }
+    
+    func initializeCrashlytics(){
+        var fabricAPIKey: String? = nil
+        if let filepath = Bundle.main.path(forResource: "fabric.apikey", ofType: nil) {
+            do {
+                fabricAPIKey = try String(contentsOfFile: filepath)
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("File not found")
+        }
+        let whitespaceToTrim = CharacterSet.whitespacesAndNewlines
+        let fabricAPIKeyTrimmed = fabricAPIKey?.trimmingCharacters(in: whitespaceToTrim)
+        Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed!)
     }
         
     func applicationWillResignActive(_ application: UIApplication) {
