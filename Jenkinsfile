@@ -17,6 +17,7 @@ pipeline {
       environment {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
         LC_CTYPE = 'en_US.UTF-8'
+        KEYCHAIN = '/Users/yonabuild/Library/Keychains/login.keychain-db'
       }
       steps {
         dir(path: 'Yona') {
@@ -29,11 +30,12 @@ echo "$FABRIC_BUILD_SECRET" >"fabric.buildsecret"
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
             sh 'xcrun agvtool new-marketing-version 1.1'
             sh 'xcrun agvtool next-version -all'
+            sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k ${GIT_PSW} ${KEYCHAIN}'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug.xcarchive -exportPath ./BuildOutput/Yona-Debug.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release.xcarchive -exportPath ./BuildOutput/Yona-Release.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
-			sh './Pods/Fabric/run "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"' 
+            sh './Pods/Fabric/run "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"'
             sh 'git add -u'
             sh 'git commit -m "Updated versionCode for build $BUILD_NUMBER [ci skip]"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git'
