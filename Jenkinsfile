@@ -35,7 +35,6 @@ echo "$FABRIC_BUILD_SECRET" >"fabric.buildsecret"
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug.xcarchive -exportPath ./BuildOutput/Yona-Debug.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release.xcarchive -exportPath ./BuildOutput/Yona-Release.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
-            sh './Pods/Fabric/run "$FABRIC_API_KEY" "$FABRIC_BUILD_SECRET"'
             sh 'git add -u'
             sh 'git commit -m "Updated versionCode for build $BUILD_NUMBER [ci skip]"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git'
