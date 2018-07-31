@@ -22,9 +22,7 @@ pipeline {
       steps {
         dir(path: 'Yona') {
           withCredentials(bindings: [string(credentialsId: 'FabricApiKey', variable: 'FABRIC_API_KEY'), string(credentialsId: 'FabricBuildSecret', variable: 'FABRIC_BUILD_SECRET'), string(credentialsId: 'KeychainPass', variable: 'KEYCHAIN_PASS')]) {
-            sh '''set +x
-            echo "$FABRIC_API_KEY" >"fabric.apikey"		
-            '''
+            writeFile file: "fabric.apikey" text: "$FABRIC_API_KEY"
             sh '/usr/local/bin/pod install'
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
             sh 'xcrun agvtool new-marketing-version 1.1'
