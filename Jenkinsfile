@@ -21,7 +21,7 @@ pipeline {
       }
       steps {
         dir(path: 'Yona') {
-          withCredentials(bindings: [string(credentialsId: 'FabricApiKey', variable: 'FABRIC_API_KEY'), string(credentialsId: 'FabricBuildSecret', variable: 'FABRIC_BUILD_SECRET')]) {
+          withCredentials(bindings: [string(credentialsId: 'FabricApiKey', variable: 'FABRIC_API_KEY'), string(credentialsId: 'FabricBuildSecret', variable: 'FABRIC_BUILD_SECRET'), string(credentialsId: 'KeychainPass', variable: 'KEYCHAIN_PASS')]) {
             sh '''set +x
 echo "$FABRIC_API_KEY" >"fabric.apikey"
 echo "$FABRIC_BUILD_SECRET" >"fabric.buildsecret"
@@ -30,7 +30,7 @@ echo "$FABRIC_BUILD_SECRET" >"fabric.buildsecret"
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
             sh 'xcrun agvtool new-marketing-version 1.1'
             sh 'xcrun agvtool next-version -all'
-            sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k ${GIT_PSW} ${KEYCHAIN}'
+            sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_PASS ${KEYCHAIN}'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug.xcarchive -exportPath ./BuildOutput/Yona-Debug.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
