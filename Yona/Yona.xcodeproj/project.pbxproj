@@ -1699,7 +1699,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/fabric_script.sh";
+			shellScript = "echo 'yona build test cmi'\n${SRCROOT}/fabric_script.sh";
 		};
 		E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
