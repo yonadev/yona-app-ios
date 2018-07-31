@@ -290,6 +290,7 @@
 		D9D54ED71CA28CD2007805F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D54ED51CA28CD2007805F4 /* LaunchScreen.storyboard */; };
 		E515AA6220FF6702005DE550 /* ExportOptionsDebug.plist in Resources */ = {isa = PBXBuildFile; fileRef = E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
+		E55BC485211091D90023FA43 /* fabric_script.sh in Resources */ = {isa = PBXBuildFile; fileRef = E55BC484211091D90023FA43 /* fabric_script.sh */; };
 		E5B93782210F42CC00B5413B /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = E5B93781210F42CC00B5413B /* fabric.apikey */; };
 /* End PBXBuildFile section */
 
@@ -645,6 +646,7 @@
 		E25C0A6638718DCA5423142D /* Pods-Yona.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yona.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yona/Pods-Yona.debug.xcconfig"; sourceTree = "<group>"; };
 		E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptionsDebug.plist; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
+		E55BC484211091D90023FA43 /* fabric_script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fabric_script.sh; sourceTree = "<group>"; };
 		E5B93781210F42CC00B5413B /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1337,6 +1339,7 @@
 		D9D54EBE1CA28CD2007805F4 = {
 			isa = PBXGroup;
 			children = (
+				E55BC484211091D90023FA43 /* fabric_script.sh */,
 				E5B93781210F42CC00B5413B /* fabric.apikey */,
 				E59CDAB72101C52A0023B282 /* ExportOptions */,
 				3D8E396420F8FB5700980293 /* BuildOutput */,
@@ -1428,6 +1431,7 @@
 				D9D54EC41CA28CD2007805F4 /* Frameworks */,
 				D9D54EC51CA28CD2007805F4 /* Resources */,
 				913D40C87D61DA38D5CAF5E6 /* [CP] Embed Pods Frameworks */,
+				E55BC483211091500023FA43 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1567,6 +1571,7 @@
 				ADD108211CC78C3B0048852F /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				906FED911CEE23CE00029845 /* MeDashBoard.storyboard in Resources */,
 				ADEF8F0C1CADFD0C001D5EED /* Roboto-Regular.ttf in Resources */,
+				E55BC485211091D90023FA43 /* fabric_script.sh in Resources */,
 				D98635791CAD62B100A8535C /* Localizable.strings in Resources */,
 				B1E55D2A1E781EDC00EE924A /* style.css in Resources */,
 				ADEF8F041CADFD0C001D5EED /* Roboto-BoldItalic.ttf in Resources */,
@@ -1682,6 +1687,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		E55BC483211091500023FA43 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "{SRCROOT}/fabric_script.sh";
 		};
 		E7BAEE5BD21FCD2C185B4454 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
