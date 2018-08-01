@@ -25,7 +25,7 @@ open class WalkThroughViewController: UIViewController, ButtonEvents {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        if !(AppDelegate.sharedApp.isFabricFilePresent) {
+        if !(AppDelegate.sharedApp.isCrashlyticsInitialized) {
             showAlert()
         }
         self.navigationController?.setNavigationBarHidden(true, animated: false)

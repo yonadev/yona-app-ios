@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: Timer?
-    var isFabricFilePresent = false
+    var isCrashlyticsInitialized = false
     static var instance: AppLifeCylcleConsumer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -75,8 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             let fabricAPIKey = try String(contentsOf: fabricResourceFile!)
             let fabricAPIKeyTrimmed = fabricAPIKey.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if !(fabricAPIKeyTrimmed.isEmpty) {
-                isFabricFilePresent = true
                 Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed)
+                isCrashlyticsInitialized = true
             }
         }catch{
             print(error.localizedDescription);

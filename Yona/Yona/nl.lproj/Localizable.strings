@@ -8,7 +8,7 @@
 
 //Fabric API key file
 "fabric-alert-title" = "Intialisatiefout";
-"fabric-failure" = "Ontbrekende Fabric API-sleutel";
+"fabric-failure" = "Ontbrekende Fabric API-key";
 
 //Switch UI
 "environment-alert-title" = "Voer de server URL in:";

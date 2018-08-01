@@ -7,7 +7,7 @@
 */
 
 //Fabric API key file
-"fabric-alert-title" = "Intialization Error";
+"fabric-alert-title" = "Intialization error";
 "fabric-failure" = "Fabric API key missing";
 
 //Switch UI
