@@ -6,6 +6,10 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
+//Fabric API key file
+"fabric-alert-title" = "Intialization error";
+"fabric-failure" = "Fabric API key missing";
+
 //Switch UI
 "environment-alert-title" = "Enter server URL:";
 "environment-success" = "You are now using: ";

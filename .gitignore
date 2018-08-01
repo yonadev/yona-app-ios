@@ -2,3 +2,8 @@ Pods/
 BuildOutput/
 # VIM temp files
 *.sw*
+
+# Fabric and Crashlytics files
+fabric.apikey
+#We can ignore this file as this is generated on every build.
+R.generated.swift

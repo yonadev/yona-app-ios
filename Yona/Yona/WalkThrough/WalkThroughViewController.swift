@@ -23,10 +23,11 @@ open class WalkThroughViewController: UIViewController, ButtonEvents {
         tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    
-    
     override open func viewDidLoad() {
         super.viewDidLoad()
+        if !(AppDelegate.sharedApp.isCrashlyticsInitialized) {
+            showAlert()
+        }
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         for i in 1..<5 {
             let ide = "WalkThrough" + "\(i)"
@@ -39,6 +40,11 @@ open class WalkThroughViewController: UIViewController, ButtonEvents {
         self.addChildViewController(self.pageController!)
         self.view.addSubview(self.pageController!.view)
         self.pageController!.didMove(toParentViewController: self)
+    }
+    
+    func showAlert(){
+        let alert = UIAlertController(title: NSLocalizedString("fabric-alert-title", comment:""), message: NSLocalizedString("fabric-failure", comment:""), preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func buttonAction(_ presentViewControllerIndex: Int) {

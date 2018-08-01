@@ -9,6 +9,8 @@
 import UIKit
 import HockeySDK
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 protocol AppLifeCylcleConsumer: UIApplicationDelegate {
     func appDidEnterForeground()
@@ -22,14 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: Timer?
+    var isCrashlyticsInitialized = false
     static var instance: AppLifeCylcleConsumer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-//        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-//        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//        NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
-//       
+        initializeCrashlytics()
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -69,7 +68,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         return true
         
     }
-        
+    
+    func initializeCrashlytics(){
+        do{
+            let fabricResourceFile = R.file.fabricApikey()
+            let fabricAPIKey = try String(contentsOf: fabricResourceFile!)
+            let fabricAPIKeyTrimmed = fabricAPIKey.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if !(fabricAPIKeyTrimmed.isEmpty) {
+                Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed)
+                isCrashlyticsInitialized = true
+            }
+        }catch{
+            print(error.localizedDescription);
+        }
+    }
+
     func applicationWillResignActive(_ application: UIApplication) {
     
     }
