@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     var timer: Timer?
+    var isFabricFilePresent = false
     static var instance: AppLifeCylcleConsumer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -69,21 +70,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     }
     
     func initializeCrashlytics(){
-        var fabricAPIKey: String? = nil
-        if let filepath = Bundle.main.path(forResource: "fabric.apikey", ofType: nil) {
-            do {
-                fabricAPIKey = try String(contentsOfFile: filepath)
-            } catch {
-                print(error.localizedDescription)
+        do{
+            let fabricResourceFile = R.file.fabricApikey()
+            let fabricAPIKey = try String(contentsOf: fabricResourceFile!)
+            let fabricAPIKeyTrimmed = fabricAPIKey.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if !(fabricAPIKeyTrimmed.isEmpty) {
+                isFabricFilePresent = true
+                Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed)
             }
-        } else {
-            print("File not found")
+        }catch{
+            print(error.localizedDescription);
         }
-        let whitespaceToTrim = CharacterSet.whitespacesAndNewlines
-        let fabricAPIKeyTrimmed = fabricAPIKey?.trimmingCharacters(in: whitespaceToTrim)
-        Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed!)
     }
-        
+
     func applicationWillResignActive(_ application: UIApplication) {
     
     }
