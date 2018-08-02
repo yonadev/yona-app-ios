@@ -102,7 +102,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
                     let btnName = UIButton()
                     btnName.frame = CGRect(x:0, y:0, width:32, height:32)
-                    btnName.setImage(image, for: .normal)
+                    btnName.setImage(image?.resizeTo(newWidth: 32, newHeight: 32), for: .normal)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
                     
                     btnName.backgroundColor = UIColor.clear
@@ -563,4 +563,14 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
     }
     
+}
+
+extension UIImage {
+    func resizeTo(newWidth: CGFloat, newHeight: CGFloat ) -> UIImage? {
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }
