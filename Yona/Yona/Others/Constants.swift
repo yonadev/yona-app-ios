@@ -29,12 +29,10 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
-        static let appOpened = "users/{id}/openApp/"
         static let adminRequestOverride = "admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
         static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
-
     }
 
     struct keychain {
@@ -69,7 +67,7 @@ struct YonaConstants {
         static let  yonaActivityCategories = "yona:activityCategories"
         //links
         static let  yonaUserSelfLink = "yona:user"
-//        static let  yonaUserSelfLink = "self"//"yona:user"
+        static let  yonaOpenAppEventLink = "yona:postOpenAppEvent"
         static let  linksKeys = "_links"
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"

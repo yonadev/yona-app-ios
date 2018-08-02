@@ -65,15 +65,16 @@ class UserRequestManager{
     }
     
     
-    func informServerAppIsOpen(_ user: Users, success: @escaping () -> Void) {
-        let path = YonaConstants.commands.appOpened.replacingOccurrences(of: "{id}", with: user.userID)
-        print(path)
-        genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: BodyDataDictionary(), onCompletion: { _,_,_,_  in
-            success()
-        })
+    func postOpenAppEvent(_ user: Users, success: @escaping () -> Void) {
+        if let path = user.openAppEventLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String {
+            let bodyForOpenAppEvent = ["operatingSystem": "IOS", "appVersion": appVersion] as BodyDataDictionary
+            genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { _,_,_,_  in
+                success()
+            })
+        }
     }
     
-    /**
+    /**users
      Updates the user by getting the current user, then passing in the edit link for that user with the new body of details to update
      
      - parameter body: BodyDataDictionary, pass in the body as below on how you want to update the user

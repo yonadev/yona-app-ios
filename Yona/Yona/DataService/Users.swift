@@ -40,6 +40,7 @@ struct Users{
     var formatetMobileNumber : String!
     var editUserAvatar: String?
     var userAvatarLink: String?
+    var openAppEventLink: String?
     
     var mobilConfigFileURL: String = ""
     init(userData: BodyDataDictionary) {
@@ -62,6 +63,11 @@ struct Users{
                     self.getSelfLink = hrefyonaUserSelfLink
                     KeychainManager.sharedInstance.saveUserSelfLink(hrefyonaUserSelfLink)
                     foundIncludeLink = true
+                }
+                
+                if let yonaOpenAppEventLink = links[YonaConstants.jsonKeys.yonaOpenAppEventLink],
+                    let hrefyonaOpenAppEventLink = (yonaOpenAppEventLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                    self.openAppEventLink = hrefyonaOpenAppEventLink
                 }
                 
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
