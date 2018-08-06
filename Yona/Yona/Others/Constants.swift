@@ -14,6 +14,9 @@ typealias PinCode = String
 typealias AddDeviceCode = String
 
 struct YonaConstants {
+    static let profileImageWidth = 32
+    static let profileImageHeight = 32
+    
     struct urlLinks {
         static let privacyStatementURLString = "http://www.yona.nu/app/privacy"
     }

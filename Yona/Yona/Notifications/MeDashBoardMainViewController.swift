@@ -100,9 +100,8 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 let URL = URL(string: link) {
                 
                 self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
-                    let btnName = UIButton()
-                    btnName.frame = CGRect(x:0, y:0, width:32, height:32)
-                    let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:32,height:32))
+                    let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                    let btnName = UIButton.init(frame: CGRect(x:0, y:0, width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
                     btnName.setImage(resizedImage, for: .normal)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
                     
