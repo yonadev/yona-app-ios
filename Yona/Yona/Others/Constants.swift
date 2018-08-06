@@ -208,7 +208,8 @@ struct YonaConstants {
     }
     
     struct mobileDucthPrefix {
-        static let txt = "+31 (0)"
+        static let generalPrefix = "310"
+        static let desiredPrefix = "+31"
     }
     struct testKeys{
         static let otpTestCode = "1234"

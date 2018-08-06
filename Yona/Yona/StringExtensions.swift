@@ -53,6 +53,19 @@ extension String {
         }
     }
     
+    func formatDutchCountryCodePrefix()->String{
+        var mobileNumber = self
+        if self.hasPrefix(YonaConstants.mobileDucthPrefix.generalPrefix) == true {
+            mobileNumber = mobileNumber.deletePrefix(YonaConstants.mobileDucthPrefix.generalPrefix)
+            mobileNumber = YonaConstants.mobileDucthPrefix.desiredPrefix + mobileNumber
+        }
+        return mobileNumber
+    }
+    
+    func deletePrefix(_ prefix: String) -> String {
+        return String(self.dropFirst(prefix.count))
+    }
+    
     func randomAlphaNumericString() -> String {
         let length = 6
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

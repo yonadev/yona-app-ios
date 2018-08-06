@@ -1,4 +1,4 @@
-//
+ //
 //  ProfileViewController.swift
 //  Yona
 //
@@ -289,11 +289,13 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-nickname-validation", comment: ""))
             return .nickname
         } else {
-            if let mobilenum = aUser?.mobileNumber {
-                if mobilenum.removeWhitespace().removeBrackets().validateMobileNumber() == false {
+            if var mobilenum = aUser?.mobileNumber {
+                mobilenum = mobilenum.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+                if mobilenum.validateMobileNumber() == false {
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-number-validation", comment: ""))
                     return .phone
                 }
+                aUser?.mobileNumber = mobilenum
             }
         }
         return .none
