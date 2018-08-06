@@ -66,8 +66,8 @@ struct Users{
                 }
                 
                 if let yonaOpenAppEventLink = links[YonaConstants.jsonKeys.yonaOpenAppEventLink],
-                    let hrefyonaOpenAppEventLink = (yonaOpenAppEventLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
-                    self.openAppEventLink = hrefyonaOpenAppEventLink
+                    let hrefYonaOpenAppEventLink = (yonaOpenAppEventLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                    self.openAppEventLink = hrefYonaOpenAppEventLink
                 }
                 
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
