@@ -100,9 +100,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 let URL = URL(string: link) {
                 
                 self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
-                    let btnName = UIButton()
-                    btnName.frame = CGRect(x:0, y:0, width:32, height:32)
-                    btnName.setImage(image, for: .normal)
+                    let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                    let btnName = UIButton.init(frame: CGRect(x:0, y:0, width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                    btnName.setImage(resizedImage, for: .normal)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
                     
                     btnName.backgroundColor = UIColor.clear
@@ -563,4 +563,33 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
     }
     
+}
+
+extension UIImage {
+    static func resizeImage(image:UIImage, targetSize:CGSize) -> UIImage{
+        let newSize = CGSize.calculateRelativeNewSize(currentSize: image.size, targetSize: targetSize)
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+}
+
+extension CGSize {
+    static func calculateRelativeNewSize(currentSize:CGSize, targetSize:CGSize) -> CGSize{
+        let widthRatio  = targetSize.width  / currentSize.width
+        let heightRatio = targetSize.height / currentSize.height
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: currentSize.width * heightRatio, height: currentSize.height * heightRatio)
+        } else {
+            newSize = CGSize(width: currentSize.width * widthRatio,  height: currentSize.height * widthRatio)
+        }
+        return newSize
+    }
 }
