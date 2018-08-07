@@ -84,7 +84,7 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             case ProfileCategoryHeader.cellNumber:
                 theTextField.text = ""
                 theTextField.text = controller.aUser?.formatetMobileNumber
-                theTextField.placeholder = "+31123456789"
+                theTextField.placeholder = "+31612345678"
                 theTextField.keyboardType = UIKeyboardType.phonePad
             }
         }
