@@ -306,7 +306,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 let trimmedWhiteSpaceString = number.removeWhitespace()
                 let trimmedString = trimmedWhiteSpaceString.removeBrackets()
                 
-                if trimmedString.validateMobileNumber() == false {
+                if !trimmedString.isValidMobileNumber(){
                     self.displayAlertMessage("", alertDescription:
                         NSLocalizedString("enter-number-validation", comment: ""))
                     

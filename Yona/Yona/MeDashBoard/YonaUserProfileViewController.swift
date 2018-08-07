@@ -289,13 +289,13 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-nickname-validation", comment: ""))
             return .nickname
         } else {
-            if var mobilenum = aUser?.mobileNumber {
-                mobilenum = mobilenum.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
-                if mobilenum.validateMobileNumber() == false {
+            if var mobileNumber = aUser?.mobileNumber {
+                mobileNumber = mobileNumber.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+                if !mobileNumber.isValidMobileNumber() {
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-number-validation", comment: ""))
                     return .phone
                 }
-                aUser?.mobileNumber = mobilenum
+                aUser?.mobileNumber = mobileNumber
             }
         }
         return .none

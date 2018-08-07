@@ -192,7 +192,7 @@
 "enter-first-name-validation" = "Je moet een naam invullen";
 "enter-nickname-validation"  = "Je moet een nick name invullen";
 "enter-last-name-validation"  = "Je moet een achternaam invullen";
-"enter-number-validation" = "Nummer moet 9 cijfers bevatten";
+"enter-number-validation" = "Nummer moet 9 cijfers bevatten. Het moet beginnen met een + -teken, zonder spaties tussen de cijfers";
 "loading" = "Laden";
 "invalid-otp" = "Ongeldige toegangcode";
 

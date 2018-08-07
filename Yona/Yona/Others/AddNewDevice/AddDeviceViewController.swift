@@ -128,7 +128,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
             let trimmedWhiteSpaceString = number.removeWhitespace()
             let trimmedString = trimmedWhiteSpaceString.removeBrackets()
             
-            if trimmedString.validateMobileNumber() == false {
+            if !trimmedString.isValidMobileNumber(){
                 let localizedString = NSLocalizedString("adddevice.user.InputValidCode", comment: "")
                 self.displayAlertMessage("", alertDescription:
                     localizedString)

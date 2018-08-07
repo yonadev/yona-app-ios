@@ -41,23 +41,18 @@ extension String {
         
     }
     
-    func validateMobileNumber() -> Bool {
-        let character  = CharacterSet(charactersIn: "+0123456789").inverted
-        let inputString:NSArray = self.components(separatedBy: character) as NSArray
-        let filtered = inputString.componentsJoined(by: "")
-        
-        if (self != filtered || self.characters.count == 0 || self.characters.count <= YonaConstants.mobilePhoneLength.netherlands || self == "+31") {
-            return false
-        } else {
-            return true
-        }
+    func isValidMobileNumber() -> Bool {
+        let PHONE_REGEX = "^(\\+)[0-9]{6,20}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        return phoneTest.evaluate(with: self)
     }
     
     func formatDutchCountryCodePrefix()->String{
         var mobileNumber = self
-        if self.hasPrefix(YonaConstants.mobileDucthPrefix.generalPrefix) == true {
-            mobileNumber = mobileNumber.deletePrefix(YonaConstants.mobileDucthPrefix.generalPrefix)
-            mobileNumber = YonaConstants.mobileDucthPrefix.desiredPrefix + mobileNumber
+        let wrongDutchPrefix = "+310"
+        if mobileNumber.hasPrefix(wrongDutchPrefix) {
+            mobileNumber = mobileNumber.deletePrefix(wrongDutchPrefix)
+            mobileNumber = "+31" + mobileNumber
         }
         return mobileNumber
     }

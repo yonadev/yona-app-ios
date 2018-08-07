@@ -84,12 +84,10 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             case ProfileCategoryHeader.cellNumber:
                 theTextField.text = ""
                 theTextField.text = controller.aUser?.formatetMobileNumber
-                //theTextField.text = num?.stringByReplacingOccurrencesOfString("+31", withString: nederlandPhonePrefix)
+                theTextField.placeholder = "+31123456789"
                 theTextField.keyboardType = UIKeyboardType.phonePad
             }
         }
-
-    
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
