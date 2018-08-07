@@ -27,7 +27,7 @@ pipeline {
               def release = '1.1'
 
               def versionPropsFile = file("version.properties")
-              def Properties versionProps = new Properties()
+              def versionProps = new Properties()
 
               versionProps.load(new FileInputStream(versionPropsFile))
 
