@@ -32,7 +32,7 @@ pipeline {
               def toKeyValue = {
                 it.collect { /$it.key="$it.value"/ } join "\n"
               }
-              versionPropsString += toKeyValue(fields)
+              versionPropsString += toKeyValue(versionProps)
               writeFile file: "version.properties", text: versionPropsString
 
               def release = '1.1'
