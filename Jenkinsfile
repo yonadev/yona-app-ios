@@ -24,18 +24,13 @@ pipeline {
             sh '/usr/local/bin/pod install'
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
             script {
-              def release = '1.1'
-
-              def versionPropsFile = file("version.properties")
-              def versionProps = new Properties()
-
-              versionProps.load(new FileInputStream(versionPropsFile))
-
+              def versionPropsFileName = "version.properties"
+              def versionProps = readProperties file: versionPropsFileName
               def newVersionCode = versionProps['VERSION_CODE'].toInteger() + 1
-
               versionProps['VERSION_CODE']=newVersionCode.toString()
-              versionProps.store(versionPropsFile.newWriter(), null)
+              writeProperties file: versionPropsFileName, data: versionProps
 
+              def release = '1.1'
               def technicalVersion = "${release}.${newVersionCode}"
               def marketingVersion = "${release}.${env.BUILD_NUMBER}" + (env.BRANCH_NAME == "master" ? "" : ".${env.BRANCH_NAME.length()}")
               sh "xcrun agvtool new-version -all ${technicalVersion}"
