@@ -28,7 +28,9 @@ pipeline {
               def versionProps = readProperties file: versionPropsFileName
               def newVersionCode = versionProps['VERSION_CODE'].toInteger() + 1
               versionProps['VERSION_CODE']=newVersionCode.toString()
-              versionProps.store(new FileWriter("version.properties"), null)
+              def stringWriter = new StringWriter()
+              versionProps.store(stringWriter, null)
+              writeFile file: "version.properties", text: stringWriter.toString()
 
               def release = '1.1'
               def technicalVersion = "${release}.${newVersionCode}"
