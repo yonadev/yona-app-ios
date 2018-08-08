@@ -30,7 +30,12 @@ pipeline {
               versionProps['VERSION_CODE']=newVersionCode.toString()
               def stringWriter = new StringWriter()
               versionProps.store(stringWriter, null)
-              writeFile file: "version.properties", text: stringWriter.toString()
+              def versionPropsString = "#" + Calendar.getInstance ().getTime () + "\n";
+              def toKeyValue = {
+                it.collect { /$it.key="$it.value"/ } join "\n"
+              }
+              versionPropsString += toKeyValue(fields)
+              writeFile file: "version.properties", text: versionPropsString
 
               def release = '1.1'
               def technicalVersion = "${release}.${newVersionCode}"
