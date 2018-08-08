@@ -1,4 +1,4 @@
-//
+ //
 //  ProfileViewController.swift
 //  Yona
 //
@@ -276,43 +276,28 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
      }
     
     func isUserDataValid() -> validateError {
-        if aUser?.firstName.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-first-name-validation", comment: ""))
+        if aUser?.firstName.count == 0 {
+            self.displayAlertMessage("", alertDescription:NSLocalizedString("enter-first-name-validation", comment: ""))
             return .firstname
-        }
-        else if aUser?.lastName.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-last-name-validation", comment: ""))
+        } else if aUser?.lastName.count == 0 {
+            self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-last-name-validation", comment: ""))
             return .lastname
-        } else if aUser?.mobileNumber.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-number-validation", comment: ""))
+        } else if aUser?.mobileNumber.count == 0 {
+            self.displayAlertMessage("", alertDescription:NSLocalizedString("enter-number-validation", comment: ""))
             return .phone
-        } else if aUser?.nickname.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-nickname-validation", comment: ""))
+        } else if aUser?.nickname.count == 0 {
+            self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-nickname-validation", comment: ""))
             return .nickname
         } else {
-            var number = ""
-            if let mobilenum = aUser?.mobileNumber {
-                number =  mobilenum
-                
-                let trimmedWhiteSpaceString = number.removeWhitespace()
-                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                
-                if trimmedString.validateMobileNumber() == false {
-                    self.displayAlertMessage("", alertDescription:
-                        NSLocalizedString("enter-number-validation", comment: ""))
+            if var mobileNumber = aUser?.mobileNumber {
+                mobileNumber = mobileNumber.formatNumber(prefix: "")
+                if !mobileNumber.isValidMobileNumber() {
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-number-validation", comment: ""))
                     return .phone
-                } else {
-                aUser?.mobileNumber = trimmedString.replacingOccurrences(of: "310", with: "+31")
                 }
-                
+                aUser?.mobileNumber = mobileNumber
             }
         }
-
-    
         return .none
     }
     

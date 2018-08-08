@@ -41,16 +41,32 @@ extension String {
         
     }
     
-    func validateMobileNumber() -> Bool {
-        let character  = CharacterSet(charactersIn: "+0123456789").inverted
-        let inputString:NSArray = self.components(separatedBy: character) as NSArray
-        let filtered = inputString.componentsJoined(by: "")
-        
-        if (self != filtered || self.characters.count == 0 || self.characters.count <= YonaConstants.mobilePhoneLength.netherlands || self == "+31") {
-            return false
-        } else {
-            return true
+    func formatNumber(prefix: String) -> String {
+        var number = self
+        if !prefix.isEmpty && !prefix.hasPrefix("+")  {
+            number = "+" + number
         }
+        return number.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+    }
+    
+    func isValidMobileNumber() -> Bool {
+        let phoneNumberRegex = "^\\+[0-9]{6,20}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex)
+        return phoneTest.evaluate(with: self)
+    }
+    
+    func formatDutchCountryCodePrefix()->String{
+        var mobileNumber = self
+        let wrongDutchPrefix = "+310"
+        if mobileNumber.hasPrefix(wrongDutchPrefix) {
+            mobileNumber = mobileNumber.deletePrefix(wrongDutchPrefix)
+            mobileNumber = "+31" + mobileNumber
+        }
+        return mobileNumber
+    }
+    
+    func deletePrefix(_ prefix: String) -> String {
+        return String(self.dropFirst(prefix.count))
     }
     
     func randomAlphaNumericString() -> String {
