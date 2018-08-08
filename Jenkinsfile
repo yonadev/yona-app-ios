@@ -28,8 +28,6 @@ pipeline {
               def versionProps = readProperties file: versionPropsFileName
               def newVersionCode = versionProps['VERSION_CODE'].toInteger() + 1
               versionProps['VERSION_CODE']=newVersionCode.toString()
-              def stringWriter = new StringWriter()
-              versionProps.store(stringWriter, null)
               def versionPropsString = "#" + Calendar.getInstance ().getTime () + "\n";
               def toKeyValue = {
                 it.collect { /$it.key="$it.value"/ } join "\n"
