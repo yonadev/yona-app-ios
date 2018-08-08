@@ -43,8 +43,8 @@ extension String {
     
     func formatNumber(prefix: String) -> String {
         var number = self
-        if !prefix.isEmpty && !prefix.hasPrefix("+")  {
-            number = "+" + number
+        if !prefix.isEmpty && !number.hasPrefix("+") {
+            number = "+" + prefix + number
         }
         return number.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
     }
