@@ -290,7 +290,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
             return .nickname
         } else {
             if var mobileNumber = aUser?.mobileNumber {
-                mobileNumber = mobileNumber.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+                mobileNumber = mobileNumber.formatNumber(prefix: "")
                 if !mobileNumber.isValidMobileNumber() {
                     self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-number-validation", comment: ""))
                     return .phone

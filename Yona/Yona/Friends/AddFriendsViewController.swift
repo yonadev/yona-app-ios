@@ -280,11 +280,11 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as! [AnyHashable: Any])
         
-        if firstnameTextfield.text!.characters.count == 0 {
+        if firstnameTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-first-name-validation", comment: ""))
         }
-        else if lastnameTextfield.text!.characters.count == 0 {
+        else if lastnameTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-last-name-validation", comment: ""))
             
@@ -292,26 +292,20 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enteremailvalidation", comment: ""))
             
-        } else if mobileTextfield.text!.characters.count == 0 {
+        } else if mobileTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-number-validation", comment: ""))
             
             } else {
             var number = ""
-            if let mobilenum = mobileTextfield.text {
-                if let prefix = mobilePrefixTextField.text {
-                    number = "+" + prefix + mobilenum
-                }
-                
-                let trimmedWhiteSpaceString = number.removeWhitespace()
-                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                
-                if !trimmedString.isValidMobileNumber(){
-                    self.displayAlertMessage("", alertDescription:
-                        NSLocalizedString("enter-number-validation", comment: ""))
+                if let mobileNum = mobileTextfield.text, let prefix = mobilePrefixTextField.text {
+                    number = mobileNum.formatNumber(prefix: prefix)
                     
-                }
-
+                    if !number.isValidMobileNumber(){
+                        self.displayAlertMessage("", alertDescription:
+                            NSLocalizedString("enter-number-validation", comment: ""))
+                        return
+                    }
                 
                     let postBuddyBody: [String:AnyObject] = [
                         postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue as AnyObject,
@@ -322,7 +316,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                                 addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",
                                 addUserKeys.firstNameKey.rawValue: firstnameTextfield.text ?? "",
                                 addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text ?? "",
-                                addUserKeys.mobileNumberKeys.rawValue: trimmedString //this is the number of the person you are adding as a buddy
+                                addUserKeys.mobileNumberKeys.rawValue: number //this is the number of the person you are adding as a buddy
                             ]
                         ]as AnyObject
                     ]

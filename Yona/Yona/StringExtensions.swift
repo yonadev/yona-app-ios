@@ -41,9 +41,17 @@ extension String {
         
     }
     
+    func formatNumber(prefix: String) -> String {
+        var number = self
+        if !prefix.isEmpty && !prefix.hasPrefix("+")  {
+            number = "+" + number
+        }
+        return number.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+    }
+    
     func isValidMobileNumber() -> Bool {
-        let PHONE_REGEX = "^(\\+)[0-9]{6,20}$"
-        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let phoneNumberRegex = "^\\+[0-9]{6,20}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex)
         return phoneTest.evaluate(with: self)
     }
     

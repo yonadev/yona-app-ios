@@ -120,25 +120,20 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as! [AnyHashable: Any])
         
         var number = ""
-        if let mobilenum = mobileTextField.text {
-            if let prefix = mobilePrefixTextField.text {
-                number = "+" + prefix + mobilenum
-            }
+        if let mobileNum = mobileTextField.text, let prefix = mobilePrefixTextField.text {
+            number = mobileNum.formatNumber(prefix: prefix)
             
-            let trimmedWhiteSpaceString = number.removeWhitespace()
-            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-            
-            if !trimmedString.isValidMobileNumber(){
+            if !number.isValidMobileNumber(){
                 let localizedString = NSLocalizedString("adddevice.user.InputValidCode", comment: "")
                 self.displayAlertMessage("", alertDescription:
                     localizedString)
-            } else if self.passcodeTextField.text!.characters.count == 0 {
+            } else if self.passcodeTextField.text!.count == 0 {
                 let localizedString = NSLocalizedString("adddevice.user.InputPassCode", comment: "")
                 self.displayAlertMessage("", alertDescription:
                     localizedString)
                 
             } else {
-                NewDeviceRequestManager.sharedInstance.getNewDevice(self.passcodeTextField.text!, mobileNumber: trimmedString) { (success, message, server, user) in
+                NewDeviceRequestManager.sharedInstance.getNewDevice(self.passcodeTextField.text!, mobileNumber: number) { (success, message, server, user) in
                     if success {
                         //Update flag
                         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
