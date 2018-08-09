@@ -30,7 +30,7 @@ pipeline {
               versionProps['VERSION_CODE']=newVersionCode.toString()
               def versionPropsString = "#" + new Date() + "\n";
               def toKeyValue = {
-                it.collect { /$it.key="$it.value"/ } join "\n"
+                it.collect { "$it.key=$it.value" } join "\n"
               }
               versionPropsString += toKeyValue(versionProps)
               writeFile file: "version.properties", text: versionPropsString
