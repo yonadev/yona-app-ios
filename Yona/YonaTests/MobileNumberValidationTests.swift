@@ -50,27 +50,30 @@ class MobileNumberValidationTests: XCTestCase {
     }
     
     func testMobileNumberWithoutPrefixAndPlusSign(){
+        let prefix = ""
         let mobileNumber = "(0)612345678"
         let expectedResult = "612345678"
-        XCTAssertEqual(mobileNumber.formatNumber(prefix: ""), expectedResult)
+        XCTAssertEqual(mobileNumber.formatNumber(prefix: prefix), expectedResult)
     }
     
     func testMobileNumberWithPlusSignAndPrefix(){
+        let prefix = "31"
         let mobileNumber = "+31(0)612345678"
         let expectedResult = "+31612345678"
-        XCTAssertEqual(mobileNumber.formatNumber(prefix: "31"), expectedResult)
+        XCTAssertEqual(mobileNumber.formatNumber(prefix: prefix), expectedResult)
     }
     
     func testMobileNumberWithPlusSignAndWithoutPrefix(){
+        let prefix = ""
         let mobileNumber = "+31(0)612345678"
         let expectedResult = "+31612345678"
-        XCTAssertEqual(mobileNumber.formatNumber(prefix: ""), expectedResult)
+        XCTAssertEqual(mobileNumber.formatNumber(prefix: prefix), expectedResult)
     }
     
     func testMobileNumberWithPrefixWithoutPlusSign(){
+        let prefix = "31"
         let mobileNumber = "(0)612345678"
         let expectedResult = "+31612345678"
-        XCTAssertEqual(mobileNumber.formatNumber(prefix: "31"), expectedResult)
+        XCTAssertEqual(mobileNumber.formatNumber(prefix: prefix), expectedResult)
     }
-
 }
