@@ -35,10 +35,8 @@ pipeline {
               versionPropsString += toKeyValue(versionProps)
               writeFile file: "version.properties", text: versionPropsString
 
-              def release = '1.1'
-              def technicalVersion = "${release}.${newVersionCode}"
-              def marketingVersion = "${release}.${env.BUILD_NUMBER}" + (env.BRANCH_NAME == "master" ? "" : ".${env.BRANCH_NAME.length()}")
-              sh "xcrun agvtool new-version -all ${technicalVersion}"
+              def marketingVersion = "1.1.${env.BUILD_NUMBER}" + (env.BRANCH_NAME == "master" ? "" : ".${env.BRANCH_NAME.length()}")
+              sh "xcrun agvtool new-version -all ${newVersionCode}"
               sh "xcrun agvtool new-marketing-version ${marketingVersion}"
             }
             sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_PASS ${KEYCHAIN}'
