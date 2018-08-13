@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Build and test') {
       when {
-        not { changelog '.*^\\[ci skip\\] .+$' }
+        not { changelog '.*\\[ci skip\\].*' }
       }
       environment {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
