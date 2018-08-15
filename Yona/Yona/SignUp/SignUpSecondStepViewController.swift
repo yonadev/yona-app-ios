@@ -199,6 +199,9 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                      "nickname": nicknameTextField.text ?? ""]
                 KeychainManager.sharedInstance.clearKeyChain()
                 UserRequestManager.sharedInstance.postUser(body as BodyDataDictionary, confirmCode: nil, onCompletion: { (success, message, code, user) in
+                    if let _ = user?.confirmMobileLink {
+                        UserDefaults.standard.set(user?.confirmMobileLink, forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileLink)
+                    }
                     if success {
                         self.sendToSMSValidation()
                     } //if the user already exists asks to override

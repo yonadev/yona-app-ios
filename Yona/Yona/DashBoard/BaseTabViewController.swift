@@ -87,7 +87,7 @@ class BaseTabViewController: UITabBarController {
 
         switch viewControllerName {
         case ViewControllerTypeString.confirmMobileValidation.rawValue:
-            rootController = R.storyboard.login.confirmPasscodeViewController(())
+            rootController = R.storyboard.login.confirmPinValidationViewController(())
             navController = R.storyboard.login.instantiateInitialViewController()
             
         case ViewControllerTypeString.pinResetValidation.rawValue:

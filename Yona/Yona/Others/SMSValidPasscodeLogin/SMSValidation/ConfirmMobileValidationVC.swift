@@ -24,7 +24,7 @@ class ConfirmMobileValidationVC: ValidationMasterView {
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
-        
+        self.navigationController?.isNavigationBarHidden = false
         setBackgroundColour()
         
         self.codeInputView.delegate = self
@@ -57,39 +57,35 @@ class ConfirmMobileValidationVC: ValidationMasterView {
             }
         }
     }
-
+    
+    // Go Back To Previous VC
+    @IBAction func back(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension ConfirmMobileValidationVC: CodeInputViewDelegate {
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-
-        let body =
-            [
-                YonaConstants.jsonKeys.bodyCode: code
-            ]
+        
+        let body = [YonaConstants.jsonKeys.bodyCode: code]
         Loader.Show()
         UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary) { success, message, serverCode in
             Loader.Hide()
             if (success) {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
-                
                 if self.isFromUserProfile {
                     self.navigationController?.popToRootViewController(animated: true)
-                
                 } else {
-                
                     setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
                 }
                 self.codeInputView.clear()
-                
             } else {
                 self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
                 self.codeInputView.clear()
             }
         }
-        
     }
 }
 

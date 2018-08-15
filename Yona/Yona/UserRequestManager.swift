@@ -199,7 +199,18 @@ class UserRequestManager{
                     onCompletion(success, message, code)
                 }
             })
-        } else {
+        } else if let confirmMobileLink = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.confirmMobileLink) {
+            genericUserRequest(httpMethods.post, path: confirmMobileLink as! String, userRequestType: userRequestTypes.confirmMobile, body: body, onCompletion: { (success, message, code, user) in
+                if success {
+                    //if we confirmed successfully get the user as new links need to be parsed
+                    self.genericUserRequest(httpMethods.get, path: KeychainManager.sharedInstance.getUserSelfLink()!, userRequestType: userRequestTypes.getUser, body: nil) { (success, message, code, user) in
+                        onCompletion(success, message, code)
+                    }
+                } else {
+                    onCompletion(success, message, code)
+                }
+            })
+        }else {
             //Failed to retrive details for confirm mobile request
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(describing: responseCodes.internalErrorCode))
         }
