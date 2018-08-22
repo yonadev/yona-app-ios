@@ -75,9 +75,8 @@ pipeline {
       }
       steps {
         dir(path: 'Yona') {
-          sh 'bundle install'
           withCredentials(bindings: [string(credentialsId: 'YonaBuildApplePassword', variable: 'FASTLANE_PASSWORD')]) {
-            sh 'bundle exec fastlane --verbose alpha'
+            sh '/usr/local/bin/bundle exec fastlane --verbose alpha'
           }
         }
       }
