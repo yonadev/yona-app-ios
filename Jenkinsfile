@@ -63,7 +63,7 @@ def incrementVersion(release) {
   versionPropsString += toKeyValue(versionProps)
   writeFile file: "version.properties", text: versionPropsString
 
-  def marketingVersion = "${release}.${env.BUILD_NUMBER}" + (env.BRANCH_NAME == "master" ? "" : ".${env.BRANCH_NAME.length()}")
+  def marketingVersion = "${release}.${env.BUILD_NUMBER}"
   sh "xcrun agvtool new-version -all ${newVersionCode}"
   sh "xcrun agvtool new-marketing-version ${marketingVersion}"
 }
