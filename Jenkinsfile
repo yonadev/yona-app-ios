@@ -17,14 +17,18 @@ pipeline {
       }
       steps {
         dir(path: 'Yona') {
-          def enReleaseNotes = input message: 'User input required',
-              submitter: 'authenticated',
-              parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the English release notes', name: 'English']]
-          enReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
-          def nlReleaseNotes = input message: 'User input required',
-              submitter: 'authenticated',
-              parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the Dutch release notes', name: 'Dutch']]
-          nlReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
+          script {
+            def enReleaseNotes = input message: 'User input required',
+                submitter: 'authenticated',
+                parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the English release notes', name: 'English']]
+            enReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
+            def nlReleaseNotes = input message: 'User input required',
+                submitter: 'authenticated',
+                parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the Dutch release notes', name: 'Dutch']]
+            nlReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
+            writeFile file: "fastlane/metadata/en-US/release_notes.txt", text: "${enReleaseNotes}"
+            writeFile file: "fastlane/metadata/nl-NL/release_notes.txt", text: "${nlReleaseNotes}"
+          }
           withCredentials(bindings: [string(credentialsId: 'FabricApiKey', variable: 'FABRIC_API_KEY'),
               string(credentialsId: 'FabricBuildSecret', variable: 'FABRIC_BUILD_SECRET'),
               string(credentialsId: 'KeychainPass', variable: 'KEYCHAIN_PASS')]) {
@@ -32,8 +36,6 @@ pipeline {
             sh '/usr/local/bin/pod install'
             sh 'set -o pipefail && xcodebuild -workspace Yona.xcworkspace -scheme Yona -sdk iphonesimulator -destination \'platform=iOS Simulator,name=iPhone 6,OS=11.4\' -derivedDataPath ./BuildOutput clean build test | /usr/local/bin/xcpretty --report junit --output ./BuildOutput/Report/testreport.xml'
             incrementVersion("1.1")
-            writeFile file: "fastlane/metadata/en-US/release_notes.txt", text: "${enReleaseNotes}"
-            writeFile file: "fastlane/metadata/nl-NL/release_notes.txt", text: "${nlReleaseNotes}"
             sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_PASS ${KEYCHAIN}'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug.xcarchive -exportPath ./BuildOutput/Yona-Debug.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
