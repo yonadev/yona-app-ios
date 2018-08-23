@@ -69,7 +69,6 @@ pipeline {
           anyOf {
             branch 'develop'
             branch 'master'
-            branch 'feature/appdev-1153-fastlane-deployment'
           }
         }
       }
