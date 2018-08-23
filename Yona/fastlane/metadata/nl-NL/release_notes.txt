@@ -1,3 +1,3 @@
-Proberen een build op TestFlight te krijgen
+De eerste build die automatisch wordt gedistribueerd.
 
-Met een meerregelig bericht
+Alle 1.1 wijzigingen tot nu toe zijn er in opgenomen.
