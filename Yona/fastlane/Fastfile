@@ -22,7 +22,7 @@ platform :ios do
     pilot(
       distribute_external:false,
       ipa: "BuildOutput/Yona-Release.ipa/Yona.ipa",
-      changelog: File.read("fastlane/metadata/en-US/release_notes.txt"),
+      changelog: File.read("metadata/en-US/release_notes.txt"),
       groups: ["Alpha"]
     )
   end
