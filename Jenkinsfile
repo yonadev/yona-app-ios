@@ -11,8 +11,7 @@ pipeline {
       }
       environment {
         GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
-        LC_ALL = 'en_US.UTF-8'
-        LANG = 'en_US.UTF-8'
+        LC_TYPE = 'en_US.UTF-8'
         KEYCHAIN = '/Users/yonabuild/Library/Keychains/login.keychain-db'
       }
       steps {
@@ -72,6 +71,10 @@ pipeline {
             branch 'feature/appdev-1153-fastlane-deployment'
           }
         }
+      }
+      environment {
+        LC_ALL = 'en_US.UTF-8'
+        LANG = 'en_US.UTF-8'
       }
       steps {
         dir(path: 'Yona') {
