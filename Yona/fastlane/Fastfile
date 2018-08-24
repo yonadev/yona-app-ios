@@ -23,7 +23,7 @@ platform :ios do
       distribute_external:false,
       ipa: "BuildOutput/Yona-Release.ipa/Yona.ipa",
       changelog: File.read("metadata/en-US/release_notes.txt"),
-      groups: ["Alpha"]
+      groups: ["Alpha testers"]
     )
   end
 end
