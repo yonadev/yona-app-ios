@@ -245,35 +245,33 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    fileprivate func navigateToConfirmMobileNumberVC(_ user: Users?) {
+        self.aUser = user
+        if let _ = user?.confirmMobileNumberLink{ 
+            //Update flag
+            setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
+                controller.isFromUserProfile = true
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
     func uploadUserData() {
-         UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
+        UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
             //success so get the user?
-                if success {
-                    Loader.Hide()
-                    self.aUser = user
-                    if let _ = user?.confirmMobileLink {
-                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
-                            controller.isFromUserProfile = true
-                        
-                            self.navigationController?.pushViewController(controller, animated: true)
-                        }
-                    }
-                    self.tableView.reloadData()
-                } else {
-//                    NSLog("----------------------- YONA")
-//                    NSLog("----------------------- uploadUserData")
-//                    NSLog(" ")
-//                    NSLog("           ")
-//                    NSLog("message %@",message!)
-
-                    Loader.Hide()
-                    if let alertMessage = message,
-                        let code = code {
-                        self.displayAlertMessage(code, alertDescription: alertMessage)
-                    }
+            Loader.Hide()
+            if success {
+                self.navigateToConfirmMobileNumberVC(user)
+            } else {
+                if let alertMessage = message,
+                    let code = code {
+                    self.displayAlertMessage(code, alertDescription: alertMessage)
                 }
-            })
-     }
+            }
+        })
+    }
     
     func isUserDataValid() -> validateError {
         if aUser?.firstName.count == 0 {

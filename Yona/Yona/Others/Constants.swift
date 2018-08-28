@@ -226,5 +226,6 @@ struct YonaConstants {
         static let vpncompleted = "vpncompleted"
         static let vpnSetupStatus = "vpnSetupStatus"
         static let fromAddressBook = "fromAddressBook"
-    }   
+        static let savedUser = "savedUser"
+    }
 }

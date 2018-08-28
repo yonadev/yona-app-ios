@@ -253,7 +253,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
         if let smsValidation = R.storyboard.login.confirmPinValidationViewController(()) {
