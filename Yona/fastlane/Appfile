@@ -1,5 +1,6 @@
-app_identifier "com.xaton.yona" # The bundle identifier of your app
-apple_id "aroberto@mobiquityinc.com" # Your Apple email address
+#app_identifier "com.xaton.yona" # The bundle identifier of your app
+app_identifier "nl.yonafoundation.yona" # The bundle identifier of your app
+apple_id "dev@yona.nu" # Your Apple email address
 
 team_id "SFWNSYN8YK"  # Developer Portal Team ID
 
