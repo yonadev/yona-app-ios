@@ -1,3 +1,1 @@
-First build that is automatically released.
-
-It accumulates all changes accumulated to date.
+No changes to the app behavior

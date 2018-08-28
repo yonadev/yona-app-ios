@@ -1,3 +1,1 @@
-De eerste build die automatisch wordt gedistribueerd.
-
-Alle 1.1 wijzigingen tot nu toe zijn er in opgenomen.
+Geen wijzigingen in het gedrag van de app.
