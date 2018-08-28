@@ -69,7 +69,7 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
         
         let body = [YonaConstants.jsonKeys.bodyCode: code]
         Loader.Show()
-        UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary) { success, message, serverCode in
+        UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary,onCompletion: { (success, message, serverCode )in
             Loader.Hide()
             if (success) {
                 self.codeInputView.resignFirstResponder()
@@ -85,7 +85,7 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
                 self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
                 self.codeInputView.clear()
             }
-        }
+        })
     }
 }
 
