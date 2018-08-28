@@ -42,7 +42,7 @@ pipeline {
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release.xcarchive -exportPath ./BuildOutput/Yona-Release.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
             sh 'git add -u'
-            sh 'git commit -m "Build $BUILD_NUMBER updated versionCode to ${env.NEW_VERSION_CODE}" -m "[ci skip]"'
+            sh 'git commit -m "Build $BUILD_NUMBER updated versionCode to ${env.NEW_VERSION_CODE} [ci skip]"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git'
             sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
