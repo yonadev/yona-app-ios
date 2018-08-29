@@ -1,1 +1,1 @@
-APPDEV-1161 Als je een fout hebt gemaakt tijdens het aanpassen van je mobiele nummer kan je die nu corrigeren.
+APPDEV-1158 App store icon toegevoegd (niet zichtbaar in de app)

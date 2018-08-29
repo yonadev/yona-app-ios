@@ -1,1 +1,1 @@
-APPDEV-1161 If you made a mistake while updating your mobile number, you can now correct it.
+APPDEV-1158 Added app store icon (not visible in the app)
