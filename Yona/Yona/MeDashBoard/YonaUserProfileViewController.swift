@@ -66,6 +66,9 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
                 if let img = self.currentImage {
                     self.aUser?.avatarImg = img
                 }
+                if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
+                    self.navigateToConfirmMobileNumberVC(self.aUser);
+                }
                 //success so get the user
               //  self.setData()
                 self.tableView.reloadData()
@@ -248,11 +251,11 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     fileprivate func navigateToConfirmMobileNumberVC(_ user: Users?) {
         self.aUser = user
         if let _ = user?.confirmMobileNumberLink{ 
-            //Update flag
-            setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            setViewControllerToDisplay(ViewControllerTypeString.userProfile, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
                 controller.isFromUserProfile = true
-                self.navigationController?.pushViewController(controller, animated: true)
+                UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
+                self.navigationController?.pushViewController(controller, animated: false)
             }
         }
         self.tableView.reloadData()

@@ -71,19 +71,23 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
         Loader.Show()
         UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary,onCompletion: { (success, message, serverCode )in
             Loader.Hide()
+            self.codeInputView.clear()
             if (success) {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
                 if self.isFromUserProfile {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
+                        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
+                        setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+                    }
+                    self.navigationController?.popToRootViewController(animated: false)
                 } else {
                     setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
                 }
-                self.codeInputView.clear()
             } else {
                 self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
-                self.codeInputView.clear()
             }
         })
     }
