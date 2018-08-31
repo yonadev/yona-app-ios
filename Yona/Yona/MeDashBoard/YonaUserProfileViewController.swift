@@ -42,15 +42,24 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
+        
+        let backBtn:UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "icnBack"), style: UIBarButtonItemStyle.plain, target:self, action:#selector(self.backBtnAction))
+        self.navigationItem.leftBarButtonItems = [backBtn]
+        
     }
-
+    
+    @objc func backBtnAction(){
+        if !UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "YonaUserDisplayTableViewCell")
         nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,6 +69,7 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     
     func dataLoading () {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed) { (success, message, code, user) in
+            Loader.Hide()
             //success so get the user?
             if success {
                 self.aUser = user
