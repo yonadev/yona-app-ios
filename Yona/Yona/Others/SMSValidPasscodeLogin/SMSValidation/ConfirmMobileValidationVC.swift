@@ -83,6 +83,7 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
                     }
                     self.navigationController?.popToRootViewController(animated: false)
                 } else {
+                    UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
                     setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
                 }

@@ -118,6 +118,10 @@ class BaseTabViewController: UITabBarController {
             rootController = R.storyboard.meDashBoard.profileStoryboard(())
             navController = R.storyboard.login.instantiateInitialViewController()
             
+        case ViewControllerTypeString.signUp.rawValue:
+            rootController = R.storyboard.welcome.signUpSecondStepViewController(())
+            navController = R.storyboard.welcome.instantiateInitialViewController()
+            
         default:
             rootController = R.storyboard.welcome.welcomeViewController(())
             navController = R.storyboard.welcome.instantiateInitialViewController()

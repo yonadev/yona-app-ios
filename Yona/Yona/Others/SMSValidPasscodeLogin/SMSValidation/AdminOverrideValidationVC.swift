@@ -37,7 +37,7 @@ class AdminOverrideValidationVC: ValidationMasterView {
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil).build() as! [AnyHashable: Any])
         
         Loader.Show()
-        if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
+        if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
             if let mobileNumber = userBody["mobileNumber"] as? String {
                 AdminRequestManager.sharedInstance.adminRequestOverride(mobileNumber){ (success, message, code) in
                     Loader.Hide()
@@ -67,21 +67,21 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
 
         if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.adminOverride) {
             //if the admin override flag is true, then we need to post the users new details (passed from signup2 controller) with the confirm code they entered, necessary to use userdefaults incase the user  closes app during the override process and has to complete the process
-            if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userToOverride) as? BodyDataDictionary {
+            if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
                 Loader.Show()
                 UserRequestManager.sharedInstance.postUser(userBody, confirmCode: code){ (success, message, serverCode, user) in
                     Loader.Hide()
+                    self.codeInputView.clear()
                     if success {
                         //reset our userdefaults to store the new user body
                         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                         self.codeInputView.resignFirstResponder()
                         //Update flag
+                        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         self.performSegue(withIdentifier: R.segue.adminOverrideValidationVC.transToSetPincode, sender: self)
-                        self.codeInputView.clear()
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
-                        self.codeInputView.clear()
                     }
                 }
             }
