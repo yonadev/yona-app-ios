@@ -39,19 +39,24 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "YonaUserProfileViewController")
-        
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
         
-        let backBtn:UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "icnBack"), style: UIBarButtonItemStyle.plain, target:self, action:#selector(self.backBtnAction))
-        self.navigationItem.leftBarButtonItems = [backBtn]
-        
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile) {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem()
+            self.navigationItem.hidesBackButton = true
+            self.tabBarController?.tabBar.isHidden = true
+        } else {
+            let backBtn:UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "icnBack"), style: UIBarButtonItemStyle.plain, target:self, action:#selector(self.backBtnAction))
+            self.navigationItem.setLeftBarButtonItems([backBtn], animated: true)
+            self.navigationItem.hidesBackButton = false
+            self.tabBarController?.tabBar.isHidden = false
+        }
     }
     
     @objc func backBtnAction(){
-        if !UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func registreTableViewCells () {
