@@ -42,7 +42,7 @@ pipeline {
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release.xcarchive -exportPath ./BuildOutput/Yona-Release.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
             sh 'git add -u'
-            sh 'git commit -m "Updated versionCode for build $BUILD_NUMBER [ci skip]"'
+            sh 'git commit -m "Build $BUILD_NUMBER updated versionCode to $NEW_VERSION_CODE [ci skip]"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git'
             sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
@@ -98,8 +98,8 @@ pipeline {
 def incrementVersion(release) {
   def versionPropsFileName = "version.properties"
   def versionProps = readProperties file: versionPropsFileName
-  def newVersionCode = versionProps['VERSION_CODE'].toInteger() + 1
-  versionProps['VERSION_CODE']=newVersionCode.toString()
+  env.NEW_VERSION_CODE = versionProps['VERSION_CODE'].toInteger() + 1
+  versionProps['VERSION_CODE']=env.NEW_VERSION_CODE
   def versionPropsString = "#" + new Date() + "\n";
   def toKeyValue = {
     it.collect { "$it.key=$it.value" } join "\n"
@@ -108,6 +108,6 @@ def incrementVersion(release) {
   writeFile file: "version.properties", text: versionPropsString
 
   def marketingVersion = "${release}.${env.BUILD_NUMBER}"
-  sh "xcrun agvtool new-version -all ${newVersionCode}"
+  sh "xcrun agvtool new-version -all ${env.NEW_VERSION_CODE}"
   sh "xcrun agvtool new-marketing-version ${marketingVersion}"
 }

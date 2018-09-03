@@ -1,1 +1,1 @@
-Geen wijzigingen in het gedrag van de app.
+APPDEV-1158 App store icon toegevoegd (niet zichtbaar in de app)
