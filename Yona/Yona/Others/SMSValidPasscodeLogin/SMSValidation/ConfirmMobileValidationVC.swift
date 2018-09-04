@@ -65,25 +65,38 @@ class ConfirmMobileValidationVC: ValidationMasterView {
 }
 
 extension ConfirmMobileValidationVC: CodeInputViewDelegate {
+    
+    func handleNavigationFromProfileView() {
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
+            UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+        }
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+    
+    func handleNavigationFromSignUpView() {
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
+        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
+    }
+    
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        
         let body = [YonaConstants.jsonKeys.bodyCode: code]
         Loader.Show()
         UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary,onCompletion: { (success, message, serverCode )in
             Loader.Hide()
+            self.codeInputView.clear()
             if (success) {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
                 if self.isFromUserProfile {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    self.handleNavigationFromProfileView()
                 } else {
-                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
+                    self.handleNavigationFromSignUpView()
                 }
-                self.codeInputView.clear()
             } else {
                 self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
-                self.codeInputView.clear()
             }
         })
     }

@@ -1,1 +1,1 @@
-APPDEV-1158 Added app store icon (not visible in the app)
+APPDEV-1130 Even after closing the app, it is still possible to enter the mobile number verification code and correct the phone number, if required
