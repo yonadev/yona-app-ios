@@ -35,7 +35,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
-        
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
         IQKeyboardManager.shared.enable = false
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

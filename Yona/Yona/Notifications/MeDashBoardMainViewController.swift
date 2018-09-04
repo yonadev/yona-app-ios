@@ -53,7 +53,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
-        
+        self.tabBarController?.tabBar.isHidden = false
         
         configurProfileBarItem()
         if !isFromfriends {

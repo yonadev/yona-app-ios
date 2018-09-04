@@ -33,6 +33,8 @@ enum ViewControllerTypeString: String {
     case passcode = "Passcode"
     case login = "Login"
     case dashboard = "Dashboard"
+    case userProfile = "ProfileStoryboard"
+    case signUp = "SignUpSecondStepViewController"
 }
 
 enum GoalType: String {

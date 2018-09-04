@@ -221,11 +221,13 @@ struct YonaConstants {
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
         static let adminOverride = "adminOverride"
-        static let userToOverride = "userToOverride"
+        static let userBody = "userBody"
         static let isGoalsAdded = "isGoalsAdded"
         static let vpncompleted = "vpncompleted"
         static let vpnSetupStatus = "vpnSetupStatus"
         static let fromAddressBook = "fromAddressBook"
         static let savedUser = "savedUser"
+        static let confirmPinFromProfile = "ConfirmPinFromProfile"
+        static let confirmPinFromSignUp = "confirmPinFromSignUp"
     }
 }

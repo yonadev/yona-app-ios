@@ -52,26 +52,21 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var previousButton: UIButton!
-    
-    
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupUI()
+        checkUserEnteredPin()
     }
-    
-    
-    
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "SignUpSecondStepViewController")
-        
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
-        
         IQKeyboardManager.shared.enable = false
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -83,7 +78,6 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         IQKeyboardManager.shared.enable = true
         NotificationCenter.default.removeObserver(self)
     }
-
     
     @objc func keyboardWillShow(_ notification: Notification)
     {
@@ -93,11 +87,9 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
-        }) 
-        
-        
-        
+        })
     }
+    
     @objc func keyboardWillHiden(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 210;
@@ -159,90 +151,57 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.mobilePrefixTextField.delegate = self
         self.mobileTextField.leftViewMode = UITextFieldViewMode.always
     }
+    
+    func checkUserEnteredPin() {
+        if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
+            self.userFirstName = userBody["firstName"] as? String
+            self.userLastName = userBody["lastName"] as? String
+        }
+        
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp) {
+            if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.adminOverride) {
+                self.sendToAdminOverrideValidation()
+            } else {
+                self.sendToSMSValidation()
+            }
+        }
+    }
         
     // Go Back To Previous VC
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as! [AnyHashable: Any])
-        
         self.navigationController?.popViewController(animated: true)
     }
-    
     
     // Go To Another ViewController
     @IBAction func nextPressed(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as! [AnyHashable: Any])
-        
         var number = ""
         if let mobilenum = mobileTextField.text {
             if let prefix = mobilePrefixTextField.text {
                 number = "+" + prefix + mobilenum
             }
-            
-            let trimmedWhiteSpaceString = number.removeWhitespace()
-            let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-            
+            let trimmedString = number.removeWhitespace().removeBrackets()
             if !trimmedString.isValidMobileNumber(){
-                self.displayAlertMessage("", alertDescription:
-                    "Please input valid Phone number.")
-            } else if self.nicknameTextField.text!.characters.count == 0 {
-                self.displayAlertMessage("", alertDescription:
-                    "Please input Nickname.")
-                
+                self.displayAlertMessage("", alertDescription: "Please input valid Phone number.")
+            } else if self.nicknameTextField.text!.count == 0 {
+                self.displayAlertMessage("", alertDescription: "Please input Nickname.")
             } else {
                 Loader.Show()
-                let body =
-                    ["firstName": userFirstName!,
-                     "lastName": userLastName!,
-                     "mobileNumber": trimmedString,
-                     "nickname": nicknameTextField.text ?? ""]
+                let body = ["firstName": userFirstName!, "lastName": userLastName!, "mobileNumber": trimmedString, "nickname": nicknameTextField.text ?? ""]
+                UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userBody)
                 KeychainManager.sharedInstance.clearKeyChain()
                 UserRequestManager.sharedInstance.postUser(body as BodyDataDictionary, confirmCode: nil, onCompletion: { (success, message, code, user) in
+                    Loader.Hide()
                     if success {
                         self.sendToSMSValidation()
                     } //if the user already exists asks to override
                     else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
-                        Loader.Hide()
-                        //alert the user ask if they want to override their account, if ok send back to SMS screen
-                        if  let prefix = self.mobilePrefixTextField.text {
-                            number = "+" + prefix + mobilenum
-                        }
-                        
-                        let trimmedWhiteSpaceString = number.removeWhitespace()
-                        let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                        
-                        let localizedString = NSLocalizedString("user-override", comment: "")
-                        let title = NSString(format: localizedString as NSString, String(trimmedString))
-                        
-                        
-                        self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
-                            switch buttonPressed{
-                            case alertButtonType.ok:
-                                AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
-                                    //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
-                                    if success {
-                                        UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userToOverride)
-                                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                                        self.sendToAdminOverrideValidation()
-                                    } else {
-                                        if let message = message,
-                                            let code = code {
-                                            self.displayAlertMessage(code, alertDescription: message)
-                                        }
-                                    }
-                                }
-                                
-                            case alertButtonType.cancel:
-                                break
-                                //do nothing or send back to start of signup?
-                            }
-                        })
-                        
+                        self.showUserOverrideAlert(formattedMobileNumber: trimmedString, body: body)
                     } else {
-                        Loader.Hide()
-                        if let alertMessage = message,
-                            let code = code {
+                        if let alertMessage = message, let code = code {
                             self.displayAlertMessage(code, alertDescription: alertMessage)
                         }
                     }
@@ -251,25 +210,54 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         }
     }
     
+    func showUserOverrideAlert(formattedMobileNumber:String, body:Dictionary<String, String>) {
+        //alert the user ask if they want to override their account, if ok send back to SMS screen
+        let localizedString = NSLocalizedString("user-override", comment: "")
+        let title = NSString(format: localizedString as NSString, String(formattedMobileNumber))
+        self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
+            switch buttonPressed{
+            case alertButtonType.ok:
+                self.handleOkButtonAction(body: body)
+            case alertButtonType.cancel:
+                break
+                //do nothing or send back to start of signup?
+            }
+        })
+    }
+    
+    func handleOkButtonAction(body:Dictionary<String, String>) {
+        AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
+            if success { //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userBody)
+                UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                self.sendToAdminOverrideValidation()
+            } else {
+                if let message = message,
+                    let code = code {
+                    self.displayAlertMessage(code, alertDescription: message)
+                }
+            }
+        }
+    }
+    
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.signUp, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
-        Loader.Hide()
         if let smsValidation = R.storyboard.login.confirmPinValidationViewController(()) {
+            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }
     }
     
     func sendToAdminOverrideValidation(){
         //Update flag
-        setViewControllerToDisplay(ViewControllerTypeString.adminOverrideValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.signUp, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
-        Loader.Hide()
         if let adminOverrideVC = R.storyboard.login.adminOverrideValidationViewController(()) {
+            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
             self.navigationController?.pushViewController(adminOverrideVC, animated: false)
         }
-        
     }
 }
 
