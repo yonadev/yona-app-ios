@@ -58,7 +58,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupUI()
-        checkForUserHavePin()
+        checkUserEnteredPin()
     }
    
     override func viewWillAppear(_ animated: Bool) {
@@ -152,7 +152,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         self.mobileTextField.leftViewMode = UITextFieldViewMode.always
     }
     
-    func checkForUserHavePin() {
+    func checkUserEnteredPin() {
         if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
             self.userFirstName = userBody["firstName"] as? String
             self.userLastName = userBody["lastName"] as? String
@@ -199,7 +199,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
                         self.sendToSMSValidation()
                     } //if the user already exists asks to override
                     else if code == YonaConstants.serverCodes.errorUserExists || code == YonaConstants.serverCodes.errorAddBuddyUserExists {
-                        self.userOverrideAction(formattedMobileNumber: trimmedString, body: body)
+                        self.showUserOverrideAlert(formattedMobileNumber: trimmedString, body: body)
                     } else {
                         if let alertMessage = message, let code = code {
                             self.displayAlertMessage(code, alertDescription: alertMessage)
@@ -210,30 +210,34 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         }
     }
     
-    func userOverrideAction(formattedMobileNumber:String, body:Dictionary<String, String>) {
+    func showUserOverrideAlert(formattedMobileNumber:String, body:Dictionary<String, String>) {
         //alert the user ask if they want to override their account, if ok send back to SMS screen
         let localizedString = NSLocalizedString("user-override", comment: "")
         let title = NSString(format: localizedString as NSString, String(formattedMobileNumber))
         self.displayAlertOption(title as String, cancelButton: true, alertDescription: "", onCompletion: { (buttonPressed) in
             switch buttonPressed{
             case alertButtonType.ok:
-                AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
-                    if success { //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
-                        UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userBody)
-                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
-                        self.sendToAdminOverrideValidation()
-                    } else {
-                        if let message = message,
-                            let code = code {
-                            self.displayAlertMessage(code, alertDescription: message)
-                        }
-                    }
-                }
+                self.handleOkButtonAction(body: body)
             case alertButtonType.cancel:
                 break
                 //do nothing or send back to start of signup?
             }
         })
+    }
+    
+    func handleOkButtonAction(body:Dictionary<String, String>) {
+        AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
+            if success { //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userBody)
+                UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
+                self.sendToAdminOverrideValidation()
+            } else {
+                if let message = message,
+                    let code = code {
+                    self.displayAlertMessage(code, alertDescription: message)
+                }
+            }
+        }
     }
     
     func sendToSMSValidation(){

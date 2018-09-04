@@ -65,8 +65,23 @@ class ConfirmMobileValidationVC: ValidationMasterView {
 }
 
 extension ConfirmMobileValidationVC: CodeInputViewDelegate {
+    
+    func handleNavigtaionFromProfileView() {
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
+            UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
+            setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+        }
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+    
+    func handleNavigationFromSignUpView() {
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
+        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
+    }
+    
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        
         let body = [YonaConstants.jsonKeys.bodyCode: code]
         Loader.Show()
         UserRequestManager.sharedInstance.confirmMobileNumber(body as BodyDataDictionary,onCompletion: { (success, message, serverCode )in
@@ -76,16 +91,9 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
                 if self.isFromUserProfile {
-                    if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
-                        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
-                        setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
-                    }
-                    self.navigationController?.popToRootViewController(animated: false)
+                    self.handleNavigtaionFromProfileView()
                 } else {
-                    UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
-                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                    self.performSegue(withIdentifier: R.segue.confirmMobileValidationVC.transToSetPincode, sender: self)
+                    self.handleNavigationFromSignUpView()
                 }
             } else {
                 self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
