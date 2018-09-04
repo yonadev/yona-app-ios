@@ -11,70 +11,20 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.104.0"
+fastlane_version "2.102.0"
 
 default_platform :ios
 
 platform :ios do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    # increment_build_number
-  end
-
-  desc "Submit to HockeyApp"
-  # Download status: "1" = No user can download; "2" = Available for download
-  lane :hockeyApp do
-      hockey(
-        ipa:"../build/YONA-CI-IOS.ipa",
-        dsym: "../build/YONA-CI-IOS-dSYM.zip",
-        api_token: "0840764dbf6641d79b61e39a5656d2e5",
-        notify: "0",
-        release_type: "0",
-        status: "2",
-        notes: "New build"
-      )
-    end
-
-  desc "Runs all the tests"
-  lane :test do
-    scan
-  end
-
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "Yona") # Build your app - more options available
-    pilot
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
-  end
-
-  desc "Deploy a new version to the App Store"
-  lane :release do
-    # match(type: "appstore")
-    # snapshot
-    gym(scheme: "Yona") # Build your app - more options available
-    deliver(force: true)
-    # frameit
-  end
-
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+  lane :alpha do
+    pilot(
+      distribute_external:false,
+      ipa: "BuildOutput/Yona-Release.ipa/Yona.ipa",
+      changelog: File.read("metadata/en-US/release_notes.txt"),
+      groups: ["Alpha testers"]
+    )
   end
 end
 

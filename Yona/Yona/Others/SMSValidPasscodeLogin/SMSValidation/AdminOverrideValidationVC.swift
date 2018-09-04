@@ -21,7 +21,7 @@ class AdminOverrideValidationVC: ValidationMasterView {
         tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         setBackgroundColour()
-        
+        self.navigationController?.isNavigationBarHidden = false
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
         codeView.addSubview(self.codeInputView)
@@ -54,6 +54,11 @@ class AdminOverrideValidationVC: ValidationMasterView {
         }
 
     }
+    
+    // Go Back To Previous VC
+    @IBAction func back(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 }
 
@@ -72,10 +77,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
                         self.codeInputView.resignFirstResponder()
                         //Update flag
                         setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                      //  self.performSegue(withIdentifier: R.segue.pinResetValidationVC.transToSetPincode, sender: self)
-                       self.performSegue(withIdentifier: "transToSetPincode", sender: self)
-
-    
+                        self.performSegue(withIdentifier: R.segue.adminOverrideValidationVC.transToSetPincode, sender: self)
                         self.codeInputView.clear()
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)

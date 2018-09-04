@@ -183,7 +183,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
             let trimmedWhiteSpaceString = number.removeWhitespace()
             let trimmedString = trimmedWhiteSpaceString.removeBrackets()
             
-            if trimmedString.validateMobileNumber() == false {
+            if !trimmedString.isValidMobileNumber(){
                 self.displayAlertMessage("", alertDescription:
                     "Please input valid Phone number.")
             } else if self.nicknameTextField.text!.characters.count == 0 {
@@ -253,7 +253,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     func sendToSMSValidation(){
         //Update flag
-        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
         Loader.Hide()
         if let smsValidation = R.storyboard.login.confirmPinValidationViewController(()) {

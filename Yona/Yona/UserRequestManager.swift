@@ -20,8 +20,18 @@ class UserRequestManager{
     
     fileprivate init() {}
     
+    fileprivate func saveUserDetail(_ json: BodyDataDictionary) {
+        do {
+            let userData =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let userDataString = String(data: userData, encoding: String.Encoding.utf8)
+            UserDefaults.standard.set(userDataString, forKey: YonaConstants.nsUserDefaultsKeys.savedUser)
+        } catch let jsonError {
+            print(jsonError)
+        }
+        self.newUser = Users.init(userData: json)
+    }
+    
     fileprivate func genericUserRequest(_ httpmethodParam: httpMethods, path: String, userRequestType: userRequestTypes, body: BodyDataDictionary?, onCompletion: @escaping APIUserResponse){
-        
         ///now post updated user data
         APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
             if let json = json {
@@ -29,12 +39,11 @@ class UserRequestManager{
                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
                     return
                 }
-                //only update our user body on get, post or update
-                if userRequestType == userRequestTypes.getUser || userRequestType == userRequestTypes.postUser || userRequestType == userRequestTypes.updateUser {
-                    self.newUser = Users.init(userData: json)
+                //only update our user body on get, post, update or confirm mobile number
+                if userRequestType == userRequestTypes.getUser || userRequestType == userRequestTypes.postUser || userRequestType == userRequestTypes.updateUser || userRequestType == userRequestTypes.confirmMobile {
+                    self.saveUserDetail(json)
                 }
                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), self.newUser)
-                
             } else {
                 //response from request failed
                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil)
@@ -188,18 +197,19 @@ class UserRequestManager{
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
     func confirmMobileNumber(_ body: BodyDataDictionary?, onCompletion: @escaping APIResponse) {
-        if let confirmMobileLink = self.newUser?.confirmMobileLink {
+        if let confirmMobileLink = self.newUser?.confirmMobileNumberLink {
             genericUserRequest(httpMethods.post, path: confirmMobileLink, userRequestType: userRequestTypes.confirmMobile, body: body, onCompletion: { (success, message, code, user) in
-                if success {
-                    //if we confirmed successfully get the user as new links need to be parsed
-                    self.genericUserRequest(httpMethods.get, path: KeychainManager.sharedInstance.getUserSelfLink()!, userRequestType: userRequestTypes.getUser, body: nil) { (success, message, code, user) in
-                        onCompletion(success, message, code)
-                    }
-                } else {
-                    onCompletion(success, message, code)
-                }
+                onCompletion(success, message, code)
             })
-        } else {
+        } else if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) {
+            let user = convertToDictionary(text: savedUser as! String)
+            self.newUser = Users.init(userData: user! as BodyDataDictionary)
+            if let confirmMobileLink = self.newUser?.confirmMobileNumberLink {
+                genericUserRequest(httpMethods.post, path: confirmMobileLink , userRequestType: userRequestTypes.confirmMobile, body: body, onCompletion: { (success, message, code, user) in
+                    onCompletion(success, message, code)
+                })
+            }
+        }else {
             //Failed to retrive details for confirm mobile request
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(describing: responseCodes.internalErrorCode))
         }
@@ -209,5 +219,16 @@ class UserRequestManager{
        if let mobileConfigURL = self.newUser?.mobilConfigFileURL {
            APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL, httpMethod: httpMethods.get, onCompletion: onCompletion)
             }
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 }

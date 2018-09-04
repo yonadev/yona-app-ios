@@ -14,6 +14,9 @@ typealias PinCode = String
 typealias AddDeviceCode = String
 
 struct YonaConstants {
+    static let profileImageWidth = 32
+    static let profileImageHeight = 32
+    
     struct urlLinks {
         static let privacyStatementURLString = "http://www.yona.nu/app/privacy"
     }
@@ -204,10 +207,7 @@ struct YonaConstants {
         static let mobileMiddleSpace = 9
         static let mobileLastSpace = 13
     }
-    
-    struct mobileDucthPrefix {
-        static let txt = "+31 (0)"
-    }
+  
     struct testKeys{
         static let otpTestCode = "1234"
     }
@@ -226,5 +226,6 @@ struct YonaConstants {
         static let vpncompleted = "vpncompleted"
         static let vpnSetupStatus = "vpnSetupStatus"
         static let fromAddressBook = "fromAddressBook"
-    }   
+        static let savedUser = "savedUser"
+    }
 }

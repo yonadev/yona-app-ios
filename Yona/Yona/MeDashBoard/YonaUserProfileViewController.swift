@@ -1,4 +1,4 @@
-//
+ //
 //  ProfileViewController.swift
 //  Yona
 //
@@ -245,74 +245,57 @@ class YonaUserProfileViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
-    func uploadUserData() {
-         UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
-            //success so get the user?
-                if success {
-                    Loader.Hide()
-                    self.aUser = user
-                    if let _ = user?.confirmMobileLink {
-                        if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
-                            controller.isFromUserProfile = true
-                        
-                            self.navigationController?.pushViewController(controller, animated: true)
-                        }
-                    }
-                    self.tableView.reloadData()
-                } else {
-//                    NSLog("----------------------- YONA")
-//                    NSLog("----------------------- uploadUserData")
-//                    NSLog(" ")
-//                    NSLog("           ")
-//                    NSLog("message %@",message!)
-
-                    Loader.Hide()
-                    if let alertMessage = message,
-                        let code = code {
-                        self.displayAlertMessage(code, alertDescription: alertMessage)
-                    }
-                }
-            })
-     }
-    
-    func isUserDataValid() -> validateError {
-        if aUser?.firstName.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-first-name-validation", comment: ""))
-            return .firstname
-        }
-        else if aUser?.lastName.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-last-name-validation", comment: ""))
-            return .lastname
-        } else if aUser?.mobileNumber.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-number-validation", comment: ""))
-            return .phone
-        } else if aUser?.nickname.characters.count == 0 {
-            self.displayAlertMessage("", alertDescription:
-                NSLocalizedString("enter-nickname-validation", comment: ""))
-            return .nickname
-        } else {
-            var number = ""
-            if let mobilenum = aUser?.mobileNumber {
-                number =  mobilenum
-                
-                let trimmedWhiteSpaceString = number.removeWhitespace()
-                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                
-                if trimmedString.validateMobileNumber() == false {
-                    self.displayAlertMessage("", alertDescription:
-                        NSLocalizedString("enter-number-validation", comment: ""))
-                    return .phone
-                } else {
-                aUser?.mobileNumber = trimmedString.replacingOccurrences(of: "310", with: "+31")
-                }
-                
+    fileprivate func navigateToConfirmMobileNumberVC(_ user: Users?) {
+        self.aUser = user
+        if let _ = user?.confirmMobileNumberLink{ 
+            //Update flag
+            setViewControllerToDisplay(ViewControllerTypeString.confirmMobileNumberValidation, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
+                controller.isFromUserProfile = true
+                self.navigationController?.pushViewController(controller, animated: true)
             }
         }
-
+        self.tableView.reloadData()
+    }
     
+    func uploadUserData() {
+        UserRequestManager.sharedInstance.updateUser((aUser?.userDataDictionaryForServer())!, onCompletion: {(success, message, code, user) in
+            //success so get the user?
+            Loader.Hide()
+            if success {
+                self.navigateToConfirmMobileNumberVC(user)
+            } else {
+                if let alertMessage = message,
+                    let code = code {
+                    self.displayAlertMessage(code, alertDescription: alertMessage)
+                }
+            }
+        })
+    }
+    
+    func isUserDataValid() -> validateError {
+        if aUser?.firstName.count == 0 {
+            self.displayAlertMessage("", alertDescription:NSLocalizedString("enter-first-name-validation", comment: ""))
+            return .firstname
+        } else if aUser?.lastName.count == 0 {
+            self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-last-name-validation", comment: ""))
+            return .lastname
+        } else if aUser?.mobileNumber.count == 0 {
+            self.displayAlertMessage("", alertDescription:NSLocalizedString("enter-number-validation", comment: ""))
+            return .phone
+        } else if aUser?.nickname.count == 0 {
+            self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-nickname-validation", comment: ""))
+            return .nickname
+        } else {
+            if var mobileNumber = aUser?.mobileNumber {
+                mobileNumber = mobileNumber.formatNumber(prefix: "")
+                if !mobileNumber.isValidMobileNumber() {
+                    self.displayAlertMessage("", alertDescription: NSLocalizedString("enter-number-validation", comment: ""))
+                    return .phone
+                }
+                aUser?.mobileNumber = mobileNumber
+            }
+        }
         return .none
     }
     

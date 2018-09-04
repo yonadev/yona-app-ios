@@ -1,0 +1,1 @@
+APPDEV-1158 App store icon toegevoegd (niet zichtbaar in de app)

@@ -291,6 +291,7 @@
 		E515AA6220FF6702005DE550 /* ExportOptionsDebug.plist in Resources */ = {isa = PBXBuildFile; fileRef = E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */; };
 		E5548BAE20CFCD5E00DD4F46 /* EnvironmentSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */; };
 		E55BC485211091D90023FA43 /* fabric_script.sh in Resources */ = {isa = PBXBuildFile; fileRef = E55BC484211091D90023FA43 /* fabric_script.sh */; };
+		E58A11342119B2C2004E8086 /* MobileNumberValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A11332119B2C2004E8086 /* MobileNumberValidationTests.swift */; };
 		E5B93782210F42CC00B5413B /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = E5B93781210F42CC00B5413B /* fabric.apikey */; };
 /* End PBXBuildFile section */
 
@@ -647,6 +648,7 @@
 		E515AA6120FF6702005DE550 /* ExportOptionsDebug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportOptionsDebug.plist; sourceTree = "<group>"; };
 		E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSwitchTests.swift; sourceTree = "<group>"; };
 		E55BC484211091D90023FA43 /* fabric_script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fabric_script.sh; sourceTree = "<group>"; };
+		E58A11332119B2C2004E8086 /* MobileNumberValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNumberValidationTests.swift; sourceTree = "<group>"; };
 		E5B93781210F42CC00B5413B /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1405,6 +1407,7 @@
 				BEB0CE001CEA81ED0056280A /* MessageAPIServiceTests.swift */,
 				9054CC8B1CE3882600F575E2 /* BuddyAPITests.swift */,
 				E5548BAD20CFCD5D00DD4F46 /* EnvironmentSwitchTests.swift */,
+				E58A11332119B2C2004E8086 /* MobileNumberValidationTests.swift */,
 			);
 			path = YonaTests;
 			sourceTree = "<group>";
@@ -1913,6 +1916,7 @@
 				90C5B5361CE4F00F00D87BFF /* EnvironmentManager.m in Sources */,
 				D9C744EF1CB3DFF8008E463A /* KeyboardProtocol.swift in Sources */,
 				BEB0CDF91CEA3BFB0056280A /* KeychainManager.swift in Sources */,
+				E58A11342119B2C2004E8086 /* MobileNumberValidationTests.swift in Sources */,
 				90FF6DFE1D016E3300A674C4 /* Enums.swift in Sources */,
 				D9C744EA1CB3CB9A008E463A /* KeychainSwiftDistrib.swift in Sources */,
 			);
@@ -1991,7 +1995,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 128;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2053,7 +2057,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 128;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2086,7 +2090,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sivateja B (5JXR9QWHSA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sivateja B (5JXR9QWHSA)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 128;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
@@ -2121,7 +2125,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = KMR2VE49BG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
