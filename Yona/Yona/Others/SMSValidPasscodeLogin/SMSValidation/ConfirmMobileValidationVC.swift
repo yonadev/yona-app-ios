@@ -66,7 +66,7 @@ class ConfirmMobileValidationVC: ValidationMasterView {
 
 extension ConfirmMobileValidationVC: CodeInputViewDelegate {
     
-    func handleNavigtaionFromProfileView() {
+    func handleNavigationFromProfileView() {
         if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile){
             UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
             setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
@@ -91,7 +91,7 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
                 self.codeInputView.resignFirstResponder()
                 //Update flag
                 if self.isFromUserProfile {
-                    self.handleNavigtaionFromProfileView()
+                    self.handleNavigationFromProfileView()
                 } else {
                     self.handleNavigationFromSignUpView()
                 }
