@@ -1,1 +1,1 @@
-APPDEV-1158 App store icon toegevoegd (niet zichtbaar in de app)
+APPDEV-1130 Ook na het sluiten en weer openen van de app is het nu mogelijk de verificatiecode van het mobiele nummer in te voeren en zo nodig het mobiele nummer aan te passen.
