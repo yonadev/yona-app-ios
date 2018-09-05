@@ -11,6 +11,8 @@ import UIKit
 final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 
     var passcode: String?
+    var newUser: Users?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                         
@@ -69,16 +71,28 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
 }
 
 extension ConfirmPasscodeViewController: CodeInputViewDelegate {
+    //post open app event after successfully signup
+    func postOpenAppEvent() {
+        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) {
+            let user = UserRequestManager.sharedInstance.convertToDictionary(text: savedUser as! String)
+            self.newUser = Users.init(userData: user! as BodyDataDictionary)
+            UserRequestManager.sharedInstance.postOpenAppEvent(self.newUser!, onCompletion: { (success, message, code) in
+                if !success{
+                    self.displayAlertMessage(code!, alertDescription: message!)
+                }
+            })
+        }
+    }
+    
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
         if (passcode == code) {
-            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
             codeInputView.resignFirstResponder()
-            
             KeychainManager.sharedInstance.savePINCode(code)
+            UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+            postOpenAppEvent()
             //Update flag
             setViewControllerToDisplay(ViewControllerTypeString.login, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
             self.navigationController?.dismiss(animated: true, completion: nil)
-
         } else {
             codeInputView.clear()
             navigationController?.popViewController(animated: true)
