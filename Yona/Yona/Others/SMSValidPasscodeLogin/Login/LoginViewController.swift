@@ -203,33 +203,43 @@ class LoginViewController: LoginSignupValidationMasterView, AppLifeCylcleConsume
 }
 
 extension LoginViewController: CodeInputViewDelegate {
+   
+    fileprivate func handleGetUserSuccess(_ user: Users?) {
+        self.codeInputView.resignFirstResponder()
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
+        if self.isFromSettings {
+            self.performSegue(withIdentifier: R.segue.loginViewController.transToPasscode, sender: self)
+        } else {
+            self.postOpenAppEvent(user)
+            AppDelegate.sharedApp.doTestCycleForVPN()
+            self.navigationController?.popViewController(animated: false)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     func authenticatedSuccessFully() {
         Loader.Show()
         UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed){ (success, message, code, user) in
+            Loader.Hide()
             if success {
-                Loader.Hide()
-                self.codeInputView.resignFirstResponder()
-                let defaults = UserDefaults.standard
-                defaults.set(false, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
-                if self.isFromSettings {
-                    self.performSegue(withIdentifier: R.segue.loginViewController.transToPasscode, sender: self)
-                } else {
-                    UserRequestManager.sharedInstance.postOpenAppEvent(user!, success: { })
-                    AppDelegate.sharedApp.doTestCycleForVPN()
-                    self.navigationController?.popViewController(animated: false)
-                    self.dismiss(animated: true, completion: nil)
-                }
-                
+                self.handleGetUserSuccess(user)
             } else {
-                Loader.Hide()
                 if let message = message {
                     self.codeInputView.clear()
                     self.infoLabel.text = message
                 }
             }
-        }
+        }      
+    }
+    
+    //post open app event on every launch of app
+    func postOpenAppEvent(_ user: Users?) {
+        UserRequestManager.sharedInstance.postOpenAppEvent(user!, onCompletion: { (success, message, code) in
+            if !success{
+                self.displayAlertMessage(code!, alertDescription: message!)
+            }
+        })
     }
     
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {

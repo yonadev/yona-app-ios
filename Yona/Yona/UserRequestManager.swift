@@ -74,12 +74,15 @@ class UserRequestManager{
     }
     
     
-    func postOpenAppEvent(_ user: Users, success: @escaping () -> Void) {
-        if let path = user.openAppEventLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String {
-            let bodyForOpenAppEvent = ["operatingSystem": "IOS", "appVersion": appVersion] as BodyDataDictionary
-            genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { _,_,_,_  in
-                success()
+    func postOpenAppEvent(_ user: Users, onCompletion: @escaping APIResponse) {
+        if let path = user.openAppEventLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
+            let bodyForOpenAppEvent = ["operatingSystem": "IOS", "appVersion": appVersion, "appVersionCode":appVersionCode] as BodyDataDictionary
+            genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { (success, message, code, nil) in
+                onCompletion(success, message, code)
             })
+        } else {
+            //Failed to retrive details for open app event
+            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(describing: responseCodes.internalErrorCode))
         }
     }
     
