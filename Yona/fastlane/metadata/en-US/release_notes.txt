@@ -1,1 +1,1 @@
-APPDEV-1130 Even after closing the app, it is still possible to enter the mobile number verification code and correct the phone number, if required
+APPDEV-1106 Now informs the server when the user opens the app
