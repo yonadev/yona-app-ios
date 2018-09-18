@@ -17,7 +17,7 @@ pipeline {
       }
       steps {
         dir(path: 'Yona') {
-	  slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
+          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
           script {
             def enReleaseNotes = input message: 'User input required',
                 submitter: 'authenticated',
