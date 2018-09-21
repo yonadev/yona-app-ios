@@ -48,6 +48,9 @@ pipeline {
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git HEAD:$BRANCH_NAME'
             sh 'git tag -a $BRANCH_NAME-build-$BUILD_NUMBER -m "Jenkins"'
             sh 'git push https://${GIT_USR}:${GIT_PSW}@github.com/yonadev/yona-app-ios.git --tags'
+            script {
+              env.BUILD_NUMBER_TO_DEPLOY = env.BUILD_NUMBER
+            }
           }
         }
         archiveArtifacts 'Yona/BuildOutput/**/*.ipa'
@@ -87,10 +90,10 @@ pipeline {
       }
       post {
         success {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
+          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
         }
         failure {
-          slackSend color: 'bad', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} failed to upload to TestFlight"
+          slackSend color: 'bad', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} failed to upload to TestFlight"
         }
       }
     }
