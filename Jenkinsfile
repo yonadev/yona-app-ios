@@ -16,9 +16,9 @@ pipeline {
         KEYCHAIN = '/Users/yonabuild/Library/Keychains/login.keychain-db'
       }
       steps {
+        checkout scm
         dir(path: 'Yona') {
           slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
-          checkout scm
           script {
             def enReleaseNotes = input message: 'User input required',
                 submitter: 'authenticated',
