@@ -1,1 +1,1 @@
-APPDEV-1106 Now informs the server when the user opens the app
+APPDEV-1178 No changes in the app
