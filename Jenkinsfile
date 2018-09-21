@@ -10,7 +10,7 @@ pipeline {
         not { changelog '.*\\[ci skip\\].*' }
       }
       environment {
-        GIT = credentials('65325e52-5ec0-46a7-a937-f81f545f3c1b')
+        GIT = credentials('github-yonabuild')
         LC_ALL = 'en_US.UTF-8'
         LANG = 'en_US.UTF-8'
         KEYCHAIN = '/Users/yonabuild/Library/Keychains/login.keychain-db'
