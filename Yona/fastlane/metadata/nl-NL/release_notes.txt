@@ -1,1 +1,1 @@
-APPDEV-1106 De server wordt nu geïnformeerd als de gebruiker de app opent
+APPDEV-1178 Geen wijzigingen in de app
