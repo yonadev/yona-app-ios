@@ -1,1 +1,1 @@
-APPDEV-1178 No changes in the app
+APPDEV-1178 No changes to the app
