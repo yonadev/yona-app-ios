@@ -26,12 +26,20 @@ class DaySingleActivityDetail: NSObject {
     var goalName : String = ""
     var goalType: String?
     
-    var totalActivityDurationMinutes : Int
-    var goalAccomplished : Bool
-    var totalMinutesBeyondGoal : Int
+    var totalActivityDurationMinutes : Int = 0
+    var goalAccomplished : Bool = false
+    var totalMinutesBeyondGoal : Int = 0
     var maxDurationMinutes: Int = 0
     
     init(data : BodyDataDictionary, allGoals : [Goal]) {
+        super.init()
+        retrieveDayofWeekFromDate(data)
+        retrieveActivityDetail(data)
+        retrieveUserLinks(data)
+        retrieveGoalDetails(allGoals)
+    }
+
+    fileprivate func retrieveDayofWeekFromDate(_ data: BodyDataDictionary) {
         dayOfWeek = ""
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
             var userCalendar = Calendar.init(identifier: .gregorian)
@@ -46,7 +54,9 @@ class DaySingleActivityDetail: NSObject {
                 dayOfWeek = date?.dayOfTheWeek()
             }
         }
-        
+    }
+    
+    fileprivate func retrieveActivityDetail(_ data: BodyDataDictionary) {
         if let total = data[YonaConstants.jsonKeys.goalAccomplished] as? Bool {
             goalAccomplished = total
         } else {
@@ -65,7 +75,6 @@ class DaySingleActivityDetail: NSObject {
             totalMinutesBeyondGoal = 0
         }
         
-        
         if let allSpread = data[YonaConstants.jsonKeys.spread] as? [Int] {
             daySpread = allSpread
         }
@@ -73,13 +82,14 @@ class DaySingleActivityDetail: NSObject {
         if let aDayActivity = data[YonaConstants.jsonKeys.totalActivityDurationMinutes] as? Int {
             dayActivity = aDayActivity
         }
-        
+    }
+    
+    fileprivate func retrieveUserLinks(_ data: BodyDataDictionary) {
         if let links = data[YonaConstants.jsonKeys.linksKeys] as? [String: AnyObject]{
             if let linksSelf = links[YonaConstants.jsonKeys.selfLinkKeys],
                 let linksSelfHref = linksSelf[YonaConstants.jsonKeys.hrefKey] as? String{
                 self.selfLink = linksSelfHref
             }
-            
             if let link = links[YonaConstants.jsonKeys.yonaMessages] as? [String: AnyObject],
                 let messagelink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 messageLink = messagelink
@@ -100,33 +110,17 @@ class DaySingleActivityDetail: NSObject {
                 let aCommentLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 commentLink = aCommentLink
             }
-            
         }
-        
-        let range1 =  goalLinks?.range(of: "goals/")?.lowerBound
-        var goal1ID = ""
-        if let txt = goalLinks?.substring(from: range1!) {
-            goal1ID = txt
-        }
+    }
+    
+    fileprivate func retrieveGoalDetails(_ allGoals: [Goal]) {
         for goal in allGoals {
-            let range1 =  goal.selfLinks?.range(of: "goals/")?.lowerBound
-            var goal2ID = ""
-            if let txt = goal.selfLinks?.substring(from: range1!) {
-                goal2ID = txt
-            }
-            if goal1ID == goal2ID {
-                
-        
-//        for goal in allGoals {
-//            if goalLinks == goal.selfLinks {
-                goalType = goal.goalType
-                zones = goal.zones
-                spreadCells = goal.spreadCells
-                maxDurationMinutes = goal.maxDurationMinutes
-                if let txt = goal.GoalName {
-                    goalName = txt
-                }
-                
+            goalType = goal.goalType
+            zones = goal.zones
+            spreadCells = goal.spreadCells
+            maxDurationMinutes = goal.maxDurationMinutes
+            if let txt = goal.GoalName {
+                goalName = txt
             }
         }
     }
