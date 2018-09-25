@@ -33,13 +33,13 @@ class DaySingleActivityDetail: NSObject {
     
     init(data : BodyDataDictionary, allGoals : [Goal]) {
         super.init()
-        retrieveDayofWeekFromDate(data)
+        retrieveDayOfWeekFromDate(data)
         retrieveActivityDetail(data)
         retrieveUserLinks(data)
         retrieveGoalDetails(allGoals)
     }
 
-    fileprivate func retrieveDayofWeekFromDate(_ data: BodyDataDictionary) {
+    fileprivate func retrieveDayOfWeekFromDate(_ data: BodyDataDictionary) {
         dayOfWeek = ""
         if let adDate = data[YonaConstants.jsonKeys.date] as? String {
             var userCalendar = Calendar.init(identifier: .gregorian)
