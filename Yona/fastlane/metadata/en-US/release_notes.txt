@@ -1,1 +1,1 @@
-APPDEV-1178 No changes to the app
+APPDEV-1176 Fixed issue that caused "No data found" alert when opening no-go alert

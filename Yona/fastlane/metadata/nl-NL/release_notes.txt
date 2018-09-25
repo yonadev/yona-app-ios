@@ -1,1 +1,1 @@
-APPDEV-1178 Geen wijzigingen in de app
+APPDEV-1176 Bij het openen van een no-go melding werd er een "Geen data gevonden" melding gegeven. Dit is nu opgelost.
