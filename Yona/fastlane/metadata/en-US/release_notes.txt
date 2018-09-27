@@ -1,1 +1,2 @@
-APPDEV-1176 Fixed issue that caused "No data found" alert when opening no-go alert
+APPDEV-1195 Fixed iOS app crash on accessing Privacy data(Face ID) without usage description in iPhone X
+APPDEV-1180 Fixed iOS app crashing due to privacy violation
