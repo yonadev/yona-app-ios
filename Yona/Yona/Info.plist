@@ -50,11 +50,15 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>NSCameraUsageDescription</string>
+	<string>Please allow access to your Camera to take photos</string>
 	<key>NSContactsUsageDescription</key>
-	<string>NSContactsUsageDescription</string>
+	<string>Please allow access to your Contacts to add friends</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>NSPhotoLibraryUsageDescription</string>
+	<string>Please allow access to your Photo Library to add photos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Please allow access to your Photo Library to add photos</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Enabling Face ID allows you quick and secure access to Yona application.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-UI-Display-Black.otf</string>
