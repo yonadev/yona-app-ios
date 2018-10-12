@@ -338,7 +338,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return 0.0
     }
     
-    fileprivate func designSpreadCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func getSpreadCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
         if let data = dayData  {
             cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
@@ -346,7 +346,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    fileprivate func designTimeBucketControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func getTimeBucketControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
         if let data = dayData  {
             cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
@@ -354,7 +354,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    fileprivate func designTimeZoneControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func getTimeZoneControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell: TimeZoneControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeZoneControlCell", for: indexPath) as! TimeZoneControlCell
         if let data = dayData  {
             cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
@@ -362,7 +362,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    fileprivate func designNoGoCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func getNoGoCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell: NoGoCell = tableView.dequeueReusableCell(withIdentifier: "NoGoCell", for: indexPath) as! NoGoCell
         if let data = dayData  {
             cell.setDayActivityDetailForView(data)
@@ -370,13 +370,13 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    fileprivate func designDayViewLinkCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func getDayViewLinkCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell: DayViewLinkCell = tableView.dequeueReusableCell(withIdentifier: "DayViewLinkCell", for: indexPath) as! DayViewLinkCell
         cell.setData(violationLinkURL!, startDate: violationStartTime!)
         return cell
     }
     
-    fileprivate func designCommentControlCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
+    fileprivate func getCommentControlCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
         let cell: CommentControlCell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as! CommentControlCell
         cell.setBuddyCommentData(comment)
         cell.indexPath = indexPath
@@ -386,7 +386,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    fileprivate func designReplyToCommentCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
+    fileprivate func getReplyToCommentCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
         let cell: ReplyToComment = tableView.dequeueReusableCell(withIdentifier: "ReplyToComment", for: indexPath) as! ReplyToComment
         cell.setBuddyCommentData(comment)
         cell.indexPath = indexPath
@@ -396,21 +396,21 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return cell
     }
     
-    func designCellForSectionZero(indexPath: IndexPath) -> UITableViewCell {
+    func getCellForSectionZero(indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == detailDayRows.spreadCell.rawValue {
-            return designSpreadCell(tableView, indexPath)
+            return getSpreadCell(tableView, indexPath)
         }
         if indexPath.row == detailDayRows.activity.rawValue {
             if goalType == GoalType.BudgetGoalString.rawValue {
-                return designTimeBucketControlCell(tableView, indexPath)
+                return getTimeBucketControlCell(tableView, indexPath)
             } else if goalType == GoalType.TimeZoneGoalString.rawValue {
-                return designTimeZoneControlCell(tableView, indexPath)
+                return getTimeZoneControlCell(tableView, indexPath)
             } else if goalType == GoalType.NoGoGoalString.rawValue {
-                return designNoGoCell(tableView, indexPath)
+                return getNoGoCell(tableView, indexPath)
             }
         }
         if indexPath.row == detailDayRows.linkCell.rawValue {
-            return designDayViewLinkCell(tableView, indexPath)
+            return getDayViewLinkCell(tableView, indexPath)
         }
         return UITableViewCell(frame: CGRect.zero)
     }
@@ -432,7 +432,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         }
     }
     
-    func designCellForSectionOne(indexPath: IndexPath) -> UITableViewCell {
+    func getCellForSectionOne(indexPath: IndexPath) -> UITableViewCell {
         let comment = self.comments[indexPath.row]
         let currentThreadID = comment.threadHeadMessageID
         var previousThreadID = ""
@@ -442,9 +442,9 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         
         if self.dayData?.messageLink != nil && indexPath.section == 1 {
             if currentThreadID != previousThreadID { //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
-                return designCommentControlCell(tableView, indexPath, comment)
+                return getCommentControlCell(tableView, indexPath, comment)
             } else {  // if the thread id is the same then show the reply to comment cell
-                return designReplyToCommentCell(tableView, indexPath, comment)
+                return getReplyToCommentCell(tableView, indexPath, comment)
             }
         }
         return UITableViewCell(frame: CGRect.zero)
@@ -452,9 +452,9 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return designCellForSectionZero(indexPath: indexPath)
+            return getCellForSectionZero(indexPath: indexPath)
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
-            return designCellForSectionOne(indexPath: indexPath)
+            return getCellForSectionOne(indexPath: indexPath)
         }
         return UITableViewCell(frame: CGRect.zero)
     }

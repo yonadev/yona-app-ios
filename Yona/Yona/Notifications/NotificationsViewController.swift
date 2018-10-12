@@ -52,7 +52,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        registreTableViewCells()
+        registerTableViewCells()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +70,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         loadMessages()
     }
     
-    func registreTableViewCells () {
+    func registerTableViewCells () {
         var nib = UINib(nibName: "YonaUserTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
