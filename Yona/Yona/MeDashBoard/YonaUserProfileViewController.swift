@@ -32,7 +32,7 @@ enum validateError {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        registreTableViewCells()
+        registerTableViewCells()
         dataLoading()
         currentImage = nil
     }
@@ -55,7 +55,7 @@ enum validateError {
         }
     }
     
-    func registreTableViewCells () {
+    func registerTableViewCells () {
         var nib = UINib(nibName: "YonaUserDisplayTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "YonaUserDisplayTableViewCell")
         nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
@@ -276,8 +276,8 @@ enum validateError {
  extension YonaUserProfileViewController: YonaUserHeaderTabProtocol {
     func didSelectProfileTab() {
         isShowingProfile = true
-        if let itmes = rightSideButtonItems {
-            self.navigationItem.rightBarButtonItems = itmes
+        if let items = rightSideButtonItems {
+            self.navigationItem.rightBarButtonItems = items
         }
         tableView.reloadData()
     }
@@ -297,17 +297,17 @@ enum validateError {
  //MARK: UITableViewDelegate and UITableViewDataSource
  extension YonaUserProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 2 // return 2 section, one for user avatar image, profile tab and badge tab and other section for user info(firstName, lastname, nickname and mobile number)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return 1 // For section 0, return only 1 row for user avatar image, profile tab and badge tab --> YonaUserHeaderWithTwoTabTableViewCell
         }
         if isShowingProfile {
-            return 4
+            return 4 //if profile tab selected, return 4 rows for firstName, lastname, nickname and mobile number --> YonaUserDisplayTableViewCell
         } else {
-            return 0
+            return 0 // if badge tab selected return 0
         }
     }
     
@@ -341,9 +341,9 @@ enum validateError {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 221
+            return 221 // section 0 , YonaUserHeaderWithTwoTabTableViewCell height which is fixed in xib(cell UI design)
         }
-        return 87
+        return 87 // section 1 , YonaUserDisplayTableViewCell height which is fixed in xib(cell UI design)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
