@@ -1,1 +1,1 @@
-APPDEV-1180 APPDEV-1195 Probleem opgelost waarbij de app crashte bij het benaderen van Face ID of  bij de fotobibliotheek
+APPDEV-1190 Probleem opgelost waarbij de kleur van de kop veranderde bij het aanpassen van de profielfoto

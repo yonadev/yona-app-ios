@@ -1,2 +1,1 @@
-APPDEV-1195 Fixed iOS app crash on accessing Privacy data(Face ID) without usage description in iPhone X
-APPDEV-1180 Fixed iOS app crashing due to privacy violation
+APPDEV-1190 Fixed change in navigation title color upon profile picture update
