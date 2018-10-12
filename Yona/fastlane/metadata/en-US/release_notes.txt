@@ -1,1 +1,1 @@
-APPDEV-1190 Fixed change in navigation title color upon profile picture update
+APPDEV-1184 Now shows right goal name in notification detail header

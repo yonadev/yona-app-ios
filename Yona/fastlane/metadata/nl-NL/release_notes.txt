@@ -1,1 +1,1 @@
-APPDEV-1190 Probleem opgelost waarbij de kleur van de kop veranderde bij het aanpassen van de profielfoto
+APPDEV-1184 Toont nu de naam van de juiste challenge in de kop van de berichtdetails
