@@ -1,1 +1,1 @@
-APPDEV-1184 Now shows right goal name in notification detail header
+APPDEV-1199 Performance optimization
