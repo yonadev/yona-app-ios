@@ -17,7 +17,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var accountBlockedTitle: UILabel?
     
     var loginAttempts:Int = 1
-    var totalAttempts : Int = 3
+    var maxAttempts : Int = 3
     
     let touchIdButton = UIButton(type: UIButtonType.custom)
     
@@ -186,7 +186,7 @@ extension LoginViewController: CodeInputViewDelegate {
         })
     }
     
-    fileprivate func allowedNumberOfLoginAttemptsFailed() {
+    fileprivate func showMaxLoginAttemptsReachedScreen() {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
         defaults.synchronize()
@@ -209,8 +209,8 @@ extension LoginViewController: CodeInputViewDelegate {
         } else {
             errorLabel.isHidden = false
             self.codeInputView.clear()
-            if loginAttempts == totalAttempts {
-                allowedNumberOfLoginAttemptsFailed()
+            if loginAttempts == maxAttempts {
+                showMaxLoginAttemptsReachedScreen()
             }
             else {
                 errorLabel.text = NSLocalizedString("passcode-tryagain", comment: "")
