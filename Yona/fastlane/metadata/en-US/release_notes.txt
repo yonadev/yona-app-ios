@@ -1,1 +1,1 @@
-APPDEV-1199 Performance optimization
+APPDEV-1198 Added profile picture and smiley to notification list

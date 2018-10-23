@@ -1,1 +1,1 @@
-APPDEV-1199 Performance optimalisatie
+APPDEV-1198 Profielfoto en smiley toegevoegd aan berichtenlijst
