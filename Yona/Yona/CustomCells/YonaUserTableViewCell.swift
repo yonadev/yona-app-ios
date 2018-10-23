@@ -15,22 +15,17 @@ protocol YonaUserSwipeCellDelegate {
 class YonaUserTableViewCell: PKSwipeTableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
-    
     @IBOutlet weak var avatarNameLabel: UILabel!
-    
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var boldLineLabel: UILabel!
     @IBOutlet weak var normalLineLabel: UILabel!
-
     @IBOutlet weak var statusImageConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var gradientView: GradientSmooth!
+
     var aMessage : Message?
     internal var yonaUserSwipeDelegate:YonaUserSwipeCellDelegate?
 
-    @IBOutlet weak var gradientView: GradientSmooth!
-
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         boldLineLabel.text = ""
         boldLineLabel.adjustsFontSizeToFitWidth = true
@@ -48,9 +43,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         self.addRightViewInCell()
     }
     
-    
     func addRightViewInCell() {
-        
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
@@ -66,7 +59,6 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         super.addRightOptionsView(viewCall)        
     }
     
-    
     @IBAction func deleteMessage(_ sender: UIButton){
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as! [AnyHashable: Any])
@@ -78,7 +70,6 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     }
     
     func setBuddie(_ aBuddie : Buddies) {
-        
         // When showing the Buddy, we move the status to the right of the cell. Autolayout will then extend the size of the nameLabel as well as the nicknameLabel
         statusImageConstraint.constant = -contentView.frame.size.width
         statusImageView.setNeedsLayout()
@@ -94,12 +85,9 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         } else {
             normalLineLabel.text = NSLocalizedString("neverSeenOnline", comment: "")
         }
-        
         avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         // AVATAR NOT Implemented - must check for avatar image when implemented on server
-        avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalized.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
-
-//        avatarNameLabel.text = "\(aBuddie.UserRequestfirstName.capitalizedString.characters.first!)"// \(aBuddie.UserRequestlastName.capitalizedString.characters.first!)"
+        avatarNameLabel.text = "\(aBuddie.buddyNickName.capitalized.first!)"
     }
     
     // MARK: using cell as Message
@@ -116,18 +104,23 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        
         if aMessage.messageType == notificationType.GoalConflictMessage {
             boldLineLabel.text = aMessage.simpleDescription() + " " + aMessage.activityTypeName + " - " + formatter.string(from: aMessage.creationTime as Date)
+            avatarImageView.image = R.image.adultSad()
         } else {
             boldLineLabel.text = aMessage.simpleDescription()
+            if let link = aMessage.userPhotoLink,
+                let URL = URL(string: link) {
+                avatarImageView.kf.setImage(with: URL)
+            } else {
+                avatarImageView.image = nil
+            }
         }
+        
         normalLineLabel.text = "\(aMessage.nickname)"
      
-        var tmpnickname = ""
-        tmpnickname = aMessage.nickname
-        if tmpnickname.characters.count > 0 {
-            avatarNameLabel.text = "\(tmpnickname.capitalized.characters.first!)"
+        if aMessage.nickname.count > 0 && aMessage.userPhotoLink == nil {
+            avatarNameLabel.text = "\(aMessage.nickname.capitalized.first!)"
         } else {
             avatarNameLabel.text = ""
         }
@@ -136,12 +129,11 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
             avatarImageView.backgroundColor = UIColor.yiMango95Color()
             normalLineLabel.text = "\(aMessage.message)"
         }
+        
         if aMessage.isRead {
             gradientView.setGradientSmooth(UIColor.yiBgGradientOneColor(), color2: UIColor.yiBgGradientTwoColor())
         } else {
             gradientView.setSolid(UIColor.yiMessageUnreadColor())
-            
-            
         }
         
         statusImageView.image = aMessage.iconForStatus()

@@ -33,10 +33,10 @@ struct Message{
     var rejectLink: String?
     var acceptLink: String?
     var yonaProcessLink: String?
-    var markReadLink : String?
-    var activityCategoryLink : String?
-    var relatedCategoryLink : String?
-    //var creationTime: String?
+    var markReadLink: String?
+    var activityCategoryLink: String?
+    var relatedCategoryLink: String?
+    var userPhotoLink: String?
     var nickname: String
     var message: String
     var status: buddyRequestStatus?
@@ -193,7 +193,11 @@ struct Message{
                 let href = related[getMessagesKeys.href.rawValue] as? String{
                 self.relatedCategoryLink = href
             }
-
+            
+            if let userPhoto = links[getMessagesKeys.userPhoto.rawValue],
+                let href = userPhoto[getMessagesKeys.href.rawValue] as? String{
+                self.userPhotoLink = href
+            }
         }
         if (relatedCategoryLink != nil) {
             self.category = ActivitiesRequestManager.sharedInstance.getActivityName(fromLink: relatedCategoryLink!)
