@@ -157,8 +157,12 @@ enum validateError {
             if success {
                 if self.currentImage != nil {
                     self.uploadImg()
-                } else {
+                }
+                // check for is any update in user info
+                if user?.firstName != self.aUser?.firstName || user?.lastName != self.aUser?.lastName || user?.nickname != self.aUser?.nickname || user?.mobileNumber != self.aUser?.mobileNumber {
                     self.uploadUserData()
+                } else {
+                    Loader.Hide() // no update in info, just remove loader
                 }
             }
         }
@@ -169,7 +173,7 @@ enum validateError {
             return
         }
         APIServiceManager.sharedInstance.uploadPhoto(img, path: editlink, httpMethod: httpMethods.put, onCompletion: {(success, imgdata, code) in
-            self.uploadUserData()
+            Loader.Hide()
         })
     }
     
