@@ -1,1 +1,1 @@
-APPDEV-1198 Profielfoto en smiley toegevoegd aan berichtenlijst
+APPDEV-1191 Bij het aanpassen van de foto kwamen er een dubbele melding. Dit is nu opgelost

@@ -1,1 +1,1 @@
-APPDEV-1198 Added profile picture and smiley to notification list
+APPDEV-1191 Updating the photo resulted in two notifications. This is resolved now.
