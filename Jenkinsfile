@@ -65,7 +65,7 @@ pipeline {
           slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} succeeded"
         }
         failure {
-          slackSend color: 'bad', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} failed"
+          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} failed"
         }
       }
     }
@@ -95,7 +95,7 @@ pipeline {
           slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
         }
         failure {
-          slackSend color: 'bad', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} failed to upload to TestFlight"
+          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} failed to upload to TestFlight"
         }
       }
     }
