@@ -229,5 +229,6 @@ struct YonaConstants {
         static let savedUser = "savedUser"
         static let confirmPinFromProfile = "ConfirmPinFromProfile"
         static let confirmPinFromSignUp = "confirmPinFromSignUp"
+        static let numberOfLoginAttempts = "numberOfLoginAttempts"
     }
 }

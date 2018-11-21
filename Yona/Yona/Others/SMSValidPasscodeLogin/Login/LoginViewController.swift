@@ -16,9 +16,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
     
-    var loginAttempts:Int = 1
-    var maxAttempts : Int = 3
-    
+    var maxAttempts : Int = 4
     let touchIdButton = UIButton(type: UIButtonType.custom)
     
     //MARK: - view life cycle
@@ -206,15 +204,17 @@ extension LoginViewController: CodeInputViewDelegate {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             authenticatedSuccessFully()
+            UserDefaults.standard.set(0, forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts) // resetting number of login attempts to 0
         } else {
             errorLabel.isHidden = false
             self.codeInputView.clear()
-            if loginAttempts == maxAttempts {
+            var loginAttempts:Int = UserDefaults.standard.integer(forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts)
+            if  loginAttempts == maxAttempts {
                 showMaxLoginAttemptsReachedScreen()
-            }
-            else {
+            } else {
                 errorLabel.text = NSLocalizedString("passcode-tryagain", comment: "")
                 loginAttempts += 1
+                UserDefaults.standard.set(loginAttempts, forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts)
             }
         }
     }
