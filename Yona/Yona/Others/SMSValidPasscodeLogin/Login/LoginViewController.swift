@@ -16,7 +16,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
     
-    var maxAttempts : Int = 4
+    var maxAttempts : Int = 5
     let touchIdButton = UIButton(type: UIButtonType.custom)
     
     //MARK: - view life cycle
@@ -188,6 +188,7 @@ extension LoginViewController: CodeInputViewDelegate {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
         defaults.synchronize()
+        setFailedLoginAttempts(0)
         errorLabel.isHidden = false
         self.navigationItem.title = NSLocalizedString("login", comment: "")
         self.codeInputView.resignFirstResponder()
@@ -200,21 +201,27 @@ extension LoginViewController: CodeInputViewDelegate {
         errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
     }
     
+    func setFailedLoginAttempts(_ attempts:Int){
+        UserDefaults.standard.set(attempts, forKey: YonaConstants.nsUserDefaultsKeys.numberOfFailedLoginAttempts)
+    }
+    
+    func getFailedLoginAttempts() -> Int {
+        return UserDefaults.standard.integer(forKey: YonaConstants.nsUserDefaultsKeys.numberOfFailedLoginAttempts)
+    }
+    
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             authenticatedSuccessFully()
-            UserDefaults.standard.set(0, forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts) // resetting number of login attempts to 0
+            setFailedLoginAttempts(0)
         } else {
             errorLabel.isHidden = false
             self.codeInputView.clear()
-            var loginAttempts:Int = UserDefaults.standard.integer(forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts)
-            if  loginAttempts == maxAttempts {
+            if  getFailedLoginAttempts()+1 == maxAttempts {
                 showMaxLoginAttemptsReachedScreen()
             } else {
                 errorLabel.text = NSLocalizedString("passcode-tryagain", comment: "")
-                loginAttempts += 1
-                UserDefaults.standard.set(loginAttempts, forKey: YonaConstants.nsUserDefaultsKeys.numberOfLoginAttempts)
+                setFailedLoginAttempts(getFailedLoginAttempts()+1)
             }
         }
     }
