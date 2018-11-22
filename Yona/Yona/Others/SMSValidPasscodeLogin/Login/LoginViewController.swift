@@ -16,9 +16,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var closeButton: UIBarButtonItem?
     @IBOutlet var accountBlockedTitle: UILabel?
     
-    var loginAttempts:Int = 1
-    var maxAttempts : Int = 3
-    
+    var maxAttempts : Int = 5
     let touchIdButton = UIButton(type: UIButtonType.custom)
     
     //MARK: - view life cycle
@@ -190,6 +188,7 @@ extension LoginViewController: CodeInputViewDelegate {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isBlocked)
         defaults.synchronize()
+        setFailedLoginAttempts(0)
         errorLabel.isHidden = false
         self.navigationItem.title = NSLocalizedString("login", comment: "")
         self.codeInputView.resignFirstResponder()
@@ -202,19 +201,27 @@ extension LoginViewController: CodeInputViewDelegate {
         errorLabel.text = NSLocalizedString("login.user.errorinfoText", comment: "")
     }
     
+    func setFailedLoginAttempts(_ attempts:Int){
+        UserDefaults.standard.set(attempts, forKey: YonaConstants.nsUserDefaultsKeys.numberOfFailedLoginAttempts)
+    }
+    
+    func getFailedLoginAttempts() -> Int {
+        return UserDefaults.standard.integer(forKey: YonaConstants.nsUserDefaultsKeys.numberOfFailedLoginAttempts)
+    }
+    
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
         let passcode = KeychainManager.sharedInstance.getPINCode()
         if code ==  passcode {
             authenticatedSuccessFully()
+            setFailedLoginAttempts(0)
         } else {
             errorLabel.isHidden = false
             self.codeInputView.clear()
-            if loginAttempts == maxAttempts {
+            if  getFailedLoginAttempts()+1 == maxAttempts {
                 showMaxLoginAttemptsReachedScreen()
-            }
-            else {
+            } else {
                 errorLabel.text = NSLocalizedString("passcode-tryagain", comment: "")
-                loginAttempts += 1
+                setFailedLoginAttempts(getFailedLoginAttempts()+1)
             }
         }
     }
