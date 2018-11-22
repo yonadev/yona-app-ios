@@ -1,1 +1,1 @@
-APPDEV-1191 Bij het aanpassen van de foto kwamen er een dubbele melding. Dit is nu opgelost
+APPDEV-1200 Maximum aantal PIN-login pogingen verhoogd tot 5

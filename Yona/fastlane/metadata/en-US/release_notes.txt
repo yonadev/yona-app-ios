@@ -1,1 +1,1 @@
-APPDEV-1191 Updating the photo resulted in two notifications. This is resolved now.
+APPDEV-1200 Maximum number of PIN login requests increased to 5
