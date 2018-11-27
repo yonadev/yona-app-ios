@@ -37,6 +37,7 @@ struct Message{
     var activityCategoryLink: String?
     var relatedCategoryLink: String?
     var userPhotoLink: String?
+    var yonaUserLink: String?
     var nickname: String
     var message: String
     var status: buddyRequestStatus?
@@ -46,11 +47,9 @@ struct Message{
     var change : String?
     var activityTypeName : String = "noname"
     var isRead : Bool = true
-    
     var violationStartTime : Date?
     var violationEndTime : Date?
     var violationLinkURL : String?
-
     
     //details of user who made request
     var UserRequestfirstName: String
@@ -60,7 +59,6 @@ struct Message{
 
     init(messageData: BodyDataDictionary ) {
         print (messageData)
-        
         message = ""
         UserRequestfirstName = ""
         UserRequestlastName = ""
@@ -68,8 +66,8 @@ struct Message{
         UserRequestSelfLink = ""
         nickname = ""
         messageType = .NoValue
-        
         creationTime = Date.init()
+
         if let data = messageData[getMessagesKeys.messageType.rawValue] as? String{
             if let type  = notificationType(rawValue:data) {
                 messageType = type
@@ -88,7 +86,7 @@ struct Message{
         if let aChange = messageData[getMessagesKeys.change.rawValue] as? String{
             self.change = aChange
         }
-
+        
         if let aBool = messageData[getMessagesKeys.isRead.rawValue] as? Bool{
             isRead = aBool
         }
@@ -112,8 +110,6 @@ struct Message{
         }
         
         // VILOATION
-        
-        
         if let violation = messageData[YonaConstants.jsonKeys.violationURL] as? String{
             violationLinkURL = violation
         }
@@ -130,12 +126,9 @@ struct Message{
             if let aDate = dateFormatter.date(from: violation) {
                 violationEndTime = aDate
             }
-             
+            
         }
-        
-        
 
-        
         //get the links
         if let links = messageData[getMessagesKeys.links.rawValue] as? BodyDataDictionary{
             if let linksSelf = links[getMessagesKeys.selfKey.rawValue],
@@ -178,12 +171,12 @@ struct Message{
                 let href = weekDetailsLink[getMessagesKeys.href.rawValue] as? String{
                 self.weekDetailsLink = href
             }
-
+            
             if let markAsRead = links[getMessagesKeys.markRead.rawValue],
                 let href = markAsRead[getMessagesKeys.href.rawValue] as? String{
                 self.markReadLink = href
             }
-
+            
             if let activityCategory = links[getMessagesKeys.activityCategory.rawValue],
                 let href = activityCategory[getMessagesKeys.href.rawValue] as? String{
                 self.activityCategoryLink = href
@@ -197,6 +190,11 @@ struct Message{
             if let userPhoto = links[getMessagesKeys.userPhoto.rawValue],
                 let href = userPhoto[getMessagesKeys.href.rawValue] as? String{
                 self.userPhotoLink = href
+            }
+            
+            if let yonaUserLink = links[getMessagesKeys.yonaUser.rawValue],
+                let href = yonaUserLink[getMessagesKeys.href.rawValue] as? String{
+                self.yonaUserLink = href
             }
         }
         if (relatedCategoryLink != nil) {
@@ -215,13 +213,13 @@ struct Message{
             if let mobileNumber = userDetails[getMessagesKeys.UserRequestmobileNumber.rawValue] as? String {
                 self.UserRequestmobileNumber = mobileNumber
             }
-
+            
             if let linksRequest = userDetails[getMessagesKeys.links.rawValue] as? BodyDataDictionary,
                 let linksRequestSelf = linksRequest[getMessagesKeys.selfKey.rawValue] as? BodyDataDictionary,
                 let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue] as? String {
                 self.UserRequestSelfLink = linksRequestSelfHref
             }
-
+            
         }
     }
     
@@ -230,18 +228,14 @@ struct Message{
                     "lastName": "",
                     "mobileNumber": "",
                     "nickname": ""]
-        
         body["firstName"] = UserRequestfirstName
         body["lastName"] = UserRequestlastName
         body["mobileNumber"] = UserRequestmobileNumber
         body["nickname"] = nickname
         return body as BodyDataDictionary
     }
-
-    
     
     // MARK: - Icon and message methods
-    
     func simpleDescription() -> String {
         switch messageType {
         case .BuddyConnectRequestMessage:
@@ -328,6 +322,4 @@ struct Message{
         }
         return UIImage.init()
     }
-
-    
 }

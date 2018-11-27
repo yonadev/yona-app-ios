@@ -218,7 +218,7 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
                 //not implemented yet
                 break
             case .BuddyInfoChangeMessage:
-                // not implemented yet
+                showBuddyProfile(aMessage)
                 break
             case .SystemMessage:
                 // not implemented yet
@@ -377,24 +377,22 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     func showBuddyProfile(_ theMessage : Message) {
-        UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed, onCompletion: {(succes, serverMessage, serverCode, aUser) in
+        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) {
+            let user = UserRequestManager.sharedInstance.convertToDictionary(text: savedUser as! String)
+            let newUser = Users.init(userData: user! as BodyDataDictionary)
             var countPush = 0
-            if succes {
-                if let user = aUser {
-                    for aBuddies in user.buddies {
-                        if aBuddies.UserRequestSelfLink == theMessage.UserRequestSelfLink {
-                            let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
-                            let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
-                            controller.aUser = aBuddies
-                            //Make sure it only pushes once!
-                            if countPush <= 0 {
-                                self.navigationController?.pushViewController(controller, animated: true)
-                            }
-                            countPush += 1
-                        }
+            for aBuddies in newUser.buddies {
+                if aBuddies.UserRequestSelfLink == theMessage.yonaUserLink {
+                    let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
+                    let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
+                    controller.aUser = aBuddies
+                    //Make sure it only pushes once!
+                    if countPush <= 0 {
+                        self.navigationController?.pushViewController(controller, animated: true)
                     }
+                    countPush += 1
                 }
             }
-        })
+        }
     }
 }
