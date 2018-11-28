@@ -377,22 +377,16 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
     }
     
     func showBuddyProfile(_ theMessage : Message) {
-        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) {
-            let user = UserRequestManager.sharedInstance.convertToDictionary(text: savedUser as! String)
-            let newUser = Users.init(userData: user! as BodyDataDictionary)
-            var countPush = 0
-            for aBuddies in newUser.buddies {
-                if aBuddies.UserRequestSelfLink == theMessage.yonaUserLink {
-                    let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
-                    let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
-                    controller.aUser = aBuddies
-                    //Make sure it only pushes once!
-                    if countPush <= 0 {
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    }
-                    countPush += 1
-                }
-            }
+        guard let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) else {
+            return
+        }
+        let user = UserRequestManager.sharedInstance.convertToDictionary(text: savedUser as! String)
+        let newUser = Users.init(userData: user! as BodyDataDictionary)
+        if let aBuddies = newUser.buddies.first(where: { $0.UserRequestSelfLink == theMessage.yonaUserLink }) {
+            let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
+            let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
+            controller.aUser = aBuddies
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
