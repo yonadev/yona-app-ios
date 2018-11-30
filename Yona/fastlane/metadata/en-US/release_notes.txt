@@ -1,1 +1,1 @@
-APPDEV-1200 Maximum number of PIN login requests increased to 5
+APPDEV-1192 It's no possible to go from buddy info change message to buddy details screen

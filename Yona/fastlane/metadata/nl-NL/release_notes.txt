@@ -1,1 +1,1 @@
-APPDEV-1200 Maximum aantal PIN-login pogingen verhoogd tot 5
+APPDEV-1192 Het is nu mogelijk om van een wijzigingsbericht van een vriend naar het overzichtsscherm van hem/haar te gaan
