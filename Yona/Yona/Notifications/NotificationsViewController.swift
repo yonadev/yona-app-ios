@@ -382,10 +382,10 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         }
         let user = UserRequestManager.sharedInstance.convertToDictionary(text: savedUser as! String)
         let newUser = Users.init(userData: user! as BodyDataDictionary)
-        if let aBuddies = newUser.buddies.first(where: { $0.UserRequestSelfLink == theMessage.yonaUserLink }) {
+        if let buddy = newUser.buddies.first(where: { $0.UserRequestSelfLink == theMessage.yonaUserLink }) {
             let storyBoard: UIStoryboard = UIStoryboard(name:"Friends", bundle: Bundle.main)
             let controller = storyBoard.instantiateViewController(withIdentifier: "FriendsProfileViewController") as! FriendsProfileViewController
-            controller.aUser = aBuddies
+            controller.aUser = buddy
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
