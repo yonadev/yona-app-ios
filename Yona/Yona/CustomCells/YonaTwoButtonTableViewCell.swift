@@ -41,14 +41,14 @@ class YonaTwoButtonTableViewCell : UITableViewCell {
         leftButton.backgroundColor = UIColor.yiDarkishPinkColor()
         leftButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
         
-        leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), for: UIControlState())
+        leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), for: UIControl.State())
         
        /* rightButton.layer.cornerRadius = rightButton.frame.size.height/2
         rightButton.layer.masksToBounds = true
         rightButton.backgroundColor = UIColor.yiPeaColor()
         rightButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
     
-        rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), for: UIControlState())
+        rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), for: UIControl.State())
     }
     
     func setNumber(_ message: Message){

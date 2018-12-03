@@ -68,9 +68,8 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
         IQKeyboardManager.shared.enable = false
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWasShown , name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,8 +81,8 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     @objc func keyboardWillShow(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 96;
-        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        let animationDiration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIView.AnimationCurve.init(rawValue: Int((notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
         UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
@@ -93,8 +92,8 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     @objc func keyboardWillHiden(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 210;
-        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        let animationDiration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIView.AnimationCurve.init(rawValue: Int((notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
         UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
@@ -117,39 +116,39 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         // Adding right mode image to text fields
         let mobileImage = UIImageView(image: R.image.icnMobile())
         mobileImage.frame = CGRect(x: 0.0, y: 0.0, width: mobileImage.image!.size.width+10.0, height: mobileImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.center
+        mobileImage.contentMode = UIView.ContentMode.center
         self.mobileTextField.rightView = mobileImage;
-        self.mobileTextField.rightViewMode = UITextFieldViewMode.always
+        self.mobileTextField.rightViewMode = UITextField.ViewMode.always
         
         let nicknameImage = UIImageView(image: R.image.icnNickname())
         nicknameImage.frame = CGRect(x: 0.0, y: 0.0, width: nicknameImage.image!.size.width, height: nicknameImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.center
+        mobileImage.contentMode = UIView.ContentMode.center
         self.nicknameTextField.rightView = nicknameImage;
-        self.nicknameTextField.rightViewMode = UITextFieldViewMode.always
+        self.nicknameTextField.rightViewMode = UITextField.ViewMode.always
         
         let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
         let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.contentMode = UIView.ContentMode.center
         plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
         let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.contentMode = UIView.ContentMode.left
         prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.leftViewMode = UITextField.ViewMode.always
         prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextField.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextField.leftViewMode = UITextFieldViewMode.always
+        self.mobileTextField.leftViewMode = UITextField.ViewMode.always
     }
     
     func checkUserEnteredPin() {

@@ -37,9 +37,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         tracker?.send(builder?.build() as! [AnyHashable: Any])
         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
         IQKeyboardManager.shared.enable = false
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWasShown , name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,8 +61,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     @objc func keyboardWillShow(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 96;
-        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        let animationDiration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIView.AnimationCurve.init(rawValue: Int((notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
         UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
@@ -73,8 +72,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     @objc func keyboardWillHiden(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 210;
-        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        let animationDiration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIView.AnimationCurve.init(rawValue: Int((notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
         UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
@@ -93,16 +92,16 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         // Adding right mode image to text fields
         let firstname = UIImageView(image: R.image.icnName())
         firstname.frame = CGRect(x: 0.0, y: 0.0, width: firstname.image!.size.width+10.0, height: firstname.image!.size.height);
-        firstname.contentMode = UIViewContentMode.center
+        firstname.contentMode = UIView.ContentMode.center
         self.firstnameTextField.rightView = firstname;
-        self.firstnameTextField.rightViewMode = UITextFieldViewMode.always
+        self.firstnameTextField.rightViewMode = UITextField.ViewMode.always
         
         
         let lastname = UIImageView(image: R.image.icnName())
         lastname.frame = CGRect(x: 0.0, y: 0.0, width: lastname.image!.size.width+10.0, height: lastname.image!.size.height);
-        lastname.contentMode = UIViewContentMode.center
+        lastname.contentMode = UIView.ContentMode.center
         self.lastnameTextField.rightView = lastname;
-        self.lastnameTextField.rightViewMode = UITextFieldViewMode.always
+        self.lastnameTextField.rightViewMode = UITextField.ViewMode.always
         
     }
     

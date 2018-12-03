@@ -185,7 +185,7 @@ class TimeLineTimeBucketCell : UITableViewCell {
         negativeFrame.size.width = CGFloat(negative) * pxPrMinute
         
         if animated {
-            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseOut,
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut,
                                        animations: {
                                         self.positiveView.frame = positiveFrame
                 }, completion: {finished in

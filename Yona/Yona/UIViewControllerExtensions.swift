@@ -43,7 +43,7 @@ extension UIViewController {
      */
     func displayAlertOption(_ alertTitle:String, cancelButton: Bool, alertDescription:String, onCompletion: @escaping DisplayAlertResponse) -> Void {
         if #available(iOS 8.0, *) {
-            let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.alert)
+            let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertController.Style.alert)
             let OKAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) in
                 onCompletion(alertButtonType.ok)
                 return

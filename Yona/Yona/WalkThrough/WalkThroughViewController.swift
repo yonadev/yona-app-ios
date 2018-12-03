@@ -37,9 +37,9 @@ open class WalkThroughViewController: UIViewController, ButtonEvents {
         }
         
         self.pageController?.setupControllers(allControllers, viewControllerFrameRect: CGRect(x: margin, y: margin, width: self.view.frame.size.width - 2 * margin, height: self.view.frame.size.height ), withPresentingViewControllerIndex: 0)
-        self.addChildViewController(self.pageController!)
+        self.addChild(self.pageController!)
         self.view.addSubview(self.pageController!.view)
-        self.pageController!.didMove(toParentViewController: self)
+        self.pageController!.didMove(toParent: self)
     }
     
     func showAlert(){

@@ -82,8 +82,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
 //        UIToolbar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().barTintColor = UIColor.yellowColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,15 +91,15 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
 //        UIToolbar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
 //        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     
         
     //This is an ugly hack to handle the situation where the app returns from the Addresbook, and BaseTabViewController kicks in
@@ -130,58 +130,58 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         // Adding right mode image to text fields
         let firstname = UIImageView(image: R.image.icnName())
         firstname.frame = CGRect(x: 0.0, y: 0.0, width: firstname.image!.size.width+10.0, height: firstname.image!.size.height);
-        firstname.contentMode = UIViewContentMode.center
+        firstname.contentMode = UIView.ContentMode.center
         firstnameTextfield.rightView = firstname;
-        firstnameTextfield.rightViewMode = UITextFieldViewMode.always
+        firstnameTextfield.rightViewMode = UITextField.ViewMode.always
        
         let lastname = UIImageView(image: R.image.icnName())
         lastname.frame = CGRect(x: 0.0, y: 0.0, width: lastname.image!.size.width+10.0, height: lastname.image!.size.height);
-        lastname.contentMode = UIViewContentMode.center
+        lastname.contentMode = UIView.ContentMode.center
         lastnameTextfield.rightView = lastname;
-        lastnameTextfield.rightViewMode = UITextFieldViewMode.always
+        lastnameTextfield.rightViewMode = UITextField.ViewMode.always
         
         let email = UIImageView(image: R.image.icnMail())
         email.frame = CGRect(x: 0.0, y: 0.0, width: email.image!.size.width+10.0, height: email.image!.size.height);
-        email.contentMode = UIViewContentMode.center
+        email.contentMode = UIView.ContentMode.center
         emailTextfield.rightView = email;
-        emailTextfield.rightViewMode = UITextFieldViewMode.always
+        emailTextfield.rightViewMode = UITextField.ViewMode.always
         
         let mobile = UIImageView(image: R.image.icnMobile())
         mobile.frame = CGRect(x: 0.0, y: 0.0, width: mobile.image!.size.width+10.0, height: mobile.image!.size.height);
-        mobile.contentMode = UIViewContentMode.center
+        mobile.contentMode = UIView.ContentMode.center
         mobileTextfield.rightView = mobile;
-        mobileTextfield.rightViewMode = UITextFieldViewMode.always
+        mobileTextfield.rightViewMode = UITextField.ViewMode.always
 
         
         let messageToUser = UIImageView(image: R.image.icnName())
         messageToUser.frame = CGRect(x: 0.0, y: 0.0, width: mobile.image!.size.width+10.0, height: mobile.image!.size.height);
-        messageToUser.contentMode = UIViewContentMode.center
+        messageToUser.contentMode = UIView.ContentMode.center
         messageTextfield.rightView = messageToUser;
-        messageTextfield.rightViewMode = UITextFieldViewMode.always
+        messageTextfield.rightViewMode = UITextField.ViewMode.always
 
         let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
         let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.contentMode = UIView.ContentMode.center
         plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
         let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.contentMode = UIView.ContentMode.left
         prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.leftViewMode = UITextField.ViewMode.always
         prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextfield.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextfield.leftViewMode = UITextFieldViewMode.always
+        self.mobileTextfield.leftViewMode = UITextField.ViewMode.always
         
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
         
@@ -197,8 +197,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     func peoplePickerNavigationController(_ peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecord, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
         
         UINavigationBar.appearance().tintColor = UIColor.black
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
 
 
@@ -265,8 +265,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     func peoplePickerNavigationControllerDidCancel(_ peoplePicker: ABPeoplePickerNavigationController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white,
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         //dismissViewControllerAnimated(true, completion: nil)
         UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
@@ -356,7 +356,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(cancelAction)
                 let settingsAction = UIAlertAction(title:  NSLocalizedString("addfriend.alert.settings.text", comment:""), style: .default , handler:{(alert : UIAlertAction!) in
-                    let settingsURL = UIApplicationOpenSettingsURLString
+                    let settingsURL = UIApplication.openSettingsURLString
                     UIApplication.shared.openURL(URL(string: settingsURL)!)
                     
                 })

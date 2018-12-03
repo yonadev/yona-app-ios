@@ -29,13 +29,13 @@ class YonaButtonTableViewCell : UITableViewCell{
         theButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
         theButton.layer.borderWidth = 1
         theButton.backgroundColor = UIColor.yiWhiteColor()
-        theButton.setTitleColor(UIColor.yiMidBlueColor(), for: UIControlState())
+        theButton.setTitleColor(UIColor.yiMidBlueColor(), for: UIControl.State())
     
-        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControlState())
+        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControl.State())
     }
     
     func setButtonTitle(_ title:String) {
-        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControlState())
+        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControl.State())
     
     }
     

@@ -251,7 +251,7 @@ extension SettingsViewController:UITableViewDelegate {
     
     func showAlertForEmailForUser() {
         
-        let errorAlert = UIAlertController( title: NSLocalizedString("emailsupport.title", comment: ""), message:  NSLocalizedString("emailsupport.text", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let errorAlert = UIAlertController( title: NSLocalizedString("emailsupport.title", comment: ""), message:  NSLocalizedString("emailsupport.text", comment: ""), preferredStyle: UIAlertController.Style.alert)
         let OKAction = UIAlertAction(title: NSLocalizedString("emailsupport.accept", comment: ""), style: .default) { (action) in
             self.sendMail(true)
             return
@@ -289,8 +289,8 @@ extension SettingsViewController:UITableViewDelegate {
         dismiss(animated: true, completion: nil)
         
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
         

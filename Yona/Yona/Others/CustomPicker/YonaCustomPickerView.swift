@@ -49,8 +49,8 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     
     
     func showHidePicker(isToShow show: Bool) -> YonaCustomPickerView {
-        cancelButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
-        okButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
+        cancelButtonTitle.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.yiMidBlueColor()], for: UIControl.State())
+        okButtonTitle.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.yiMidBlueColor()], for: UIControl.State())
 
         UIView.animate(withDuration: 0.3,
                                    animations: {

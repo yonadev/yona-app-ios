@@ -140,7 +140,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 if name.characters.count > 0 {//&& user?.characters.count > 0{
                     let btnName = UIButton()
                     let txt = "\(name.capitalized.characters.first!)"
-                    btnName.setTitle(txt, for: UIControlState())
+                    btnName.setTitle(txt, for: UIControl.State())
                     btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
                     
@@ -180,9 +180,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 self.notificationsButton?.hideWhenZero = true
                 self.notificationsButton?.badgeTextColor = UIColor.yiWhiteColor()
                 self.notificationsButton?.badgeBackgroundColor = UIColor.yiDarkishPinkColor()
-                self.notificationsButton?.setImage(UIImage(named: "icnNotifications"), for: UIControlState())
+                self.notificationsButton?.setImage(UIImage(named: "icnNotifications"), for: UIControl.State())
                 self.notificationsButton?.addTarget(self, action: #selector(self.showNotifications(_:)), for: .touchUpInside)
-                self.notificationsButton?.badgeEdgeInsets = UIEdgeInsetsMake(17, 0, 0, 32)
+                self.notificationsButton?.badgeEdgeInsets = UIEdgeInsets(top: 17, left: 0, bottom: 0, right: 32)
                 rightBarButton.customView = self.notificationsButton
                 self.navigationItem.rightBarButtonItems = [rightBarButton]
 

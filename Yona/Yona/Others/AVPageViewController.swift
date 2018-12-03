@@ -12,9 +12,15 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
     
     var contentViews: Array<UIViewController>?
     var presentingIndex: Int = 0
+//    
+//    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [String : Any]?) {
+//        super.init(transitionStyle: UIPageViewController.TransitionStyle.scroll, navigationOrientation: UIPageViewController.NavigationOrientation.horizontal, options: nil)
+//        self.delegate = self
+//        self.dataSource = self
+//    }
     
-    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]?) {
-        super.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
+    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
+        super.init(transitionStyle: UIPageViewController.TransitionStyle.scroll, navigationOrientation: UIPageViewController.NavigationOrientation.horizontal, options: nil)
         self.delegate = self
         self.dataSource = self
     }
@@ -27,14 +33,14 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         let viewController = NSArray(object: self.viewController(atIndex: self.presentingIndex))
         self.setViewControllers(
             viewController as? [UIViewController],
-            direction: UIPageViewControllerNavigationDirection.forward,
+            direction: UIPageViewController.NavigationDirection.forward,
             animated: true,
             completion: { [weak self] (finished: Bool) in
                 if finished {
                     DispatchQueue.main.async(execute: {
                         self!.setViewControllers(
                             viewController as? [UIViewController],
-                            direction: UIPageViewControllerNavigationDirection.forward,
+                            direction: UIPageViewController.NavigationDirection.forward,
                             animated: false,
                             completion: nil
                         )

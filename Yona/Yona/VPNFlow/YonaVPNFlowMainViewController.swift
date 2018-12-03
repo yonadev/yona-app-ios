@@ -51,7 +51,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        NotificationCenter.default.addObserver(self, selector: #selector(removeScreen), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeScreen), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,8 +71,8 @@ class YonaVPNFlowMainViewController: UIViewController {
     // MARK: - SetUp UI Methods
     func resetAllViews() {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
         progressLabel.text = ""
         infoLabel.text = ""
@@ -110,11 +110,11 @@ class YonaVPNFlowMainViewController: UIViewController {
         
         nextButton.backgroundColor = UIColor.yiDarkishPinkColor()
         nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: .normal)
-        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
+        nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControl.State.disabled)
         
         laterButton.backgroundColor = UIColor.yiDarkishPinkColor()
         laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: .normal)
-        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControlState.disabled)
+        laterButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.later", comment: ""), for: UIControl.State.disabled)
         
         openVPNStatusView.isHidden = true
         profileStatusView.isHidden = true
@@ -252,15 +252,15 @@ class YonaVPNFlowMainViewController: UIViewController {
         profileStatusView.alpha = 0.0
         profileStatusView.isHidden = false
         
-        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.openVPNStatusView.alpha = 1.0
         }, completion:  {
             completed   in
-            UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.2, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.profileStatusView.alpha = 1.0
             }, completion:  {
                 completed   in
-                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIView.AnimationOptions.curveEaseOut, animations: {
                     self.nextButton.alpha = 1.0
                     self.laterButton.alpha = 1.0
                 }, completion:  {
@@ -293,12 +293,12 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress1.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info1.text", comment: "")
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: .normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControlState.disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button1.next", comment: ""), for: UIControl.State.disabled)
         self.nextButton.isEnabled = false
         self.openVPNStatusView.setText(NSLocalizedString("YonaVPNProgressView.openvpn1.text", comment: ""))
         UserDefaults.standard.set(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         currentProgress = .openVPNAppNotInstalledShow
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
@@ -320,7 +320,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress2.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info2.text", comment: "")
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: .normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControlState.disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button.next", comment: ""), for: UIControl.State.disabled)
         self.nextButton.isEnabled = false
         self.openVPNStatusView.setText(NSLocalizedString("YonaVPNProgressView.openvpn.text", comment: ""))
         
@@ -335,15 +335,15 @@ class YonaVPNFlowMainViewController: UIViewController {
         profileStatusView.alpha = 0.0
         profileStatusView.isHidden = false
         
-        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.6, delay: 1.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.openVPNStatusView.alpha = 1.0
         }, completion:  {
             completed   in
-            UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.2, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.profileStatusView.alpha = 1.0
             }, completion:  {
                 completed   in
-                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0.2, options: UIView.AnimationOptions.curveEaseOut, animations: {
                     self.nextButton.alpha = 1.0
                     self.laterButton.alpha = 1.0
                 }, completion:  {
@@ -381,10 +381,10 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.progressLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.progress3.text", comment: "")
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info3.text", comment: "")
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: .normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControlState.disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button3.next", comment: ""), for: UIControl.State.disabled)
         
         self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: .normal)
-        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControlState.disabled)
+        self.finalShowInstructionsButton.setTitle(NSLocalizedString("vpnflowmainscreen.finalInstructions.button", comment: ""), for: UIControl.State.disabled)
         
         self.nextButton.isEnabled = false
         
@@ -392,7 +392,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         frame.size.width = view.frame.size.width/2
         nextButton.frame=frame
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.titleLabel?.alpha = 1.0
@@ -417,7 +417,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         self.infoLabel.text = NSLocalizedString("vpnflowmainscreen.appinstalled.info4.text", comment: "")
         
         self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: .normal)
-        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControlState.disabled)
+        self.nextButton.setTitle(NSLocalizedString("vpnflowmainscreen.button4.next", comment: ""), for: UIControl.State.disabled)
         yonaAppStatusView.confugureView(progressIconEnum.yonaApp, completed: true)
         openVPNStatusView.confugureView(progressIconEnum.openVPN, completed: true)
         profileStatusView.confugureView(progressIconEnum.profile, completed: true)
@@ -426,7 +426,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         nextButtonConstraint.constant = view.frame.size.width
         nextButton.setNeedsLayout()
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut,  animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut,  animations: {
             self.progressLabel.alpha = 1.0
             self.infoLabel.alpha = 1.0
             self.nextButton.alpha = 1.0

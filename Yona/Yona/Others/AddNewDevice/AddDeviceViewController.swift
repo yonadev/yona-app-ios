@@ -79,39 +79,39 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         // Adding right mode image to text fields
         let mobileImage = UIImageView(image: R.image.icnMobile())
         mobileImage.frame = CGRect(x: 0.0, y: 0.0, width: mobileImage.image!.size.width+10.0, height: mobileImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.center
+        mobileImage.contentMode = UIView.ContentMode.center
         self.mobileTextField.rightView = mobileImage;
-        self.mobileTextField.rightViewMode = UITextFieldViewMode.always
+        self.mobileTextField.rightViewMode = UITextField.ViewMode.always
         
         let passcodeImage = UIImageView(image: R.image.icnName())
         passcodeImage.frame = CGRect(x: 0.0, y: 0.0, width: passcodeImage.image!.size.width+10.0, height: passcodeImage.image!.size.height);
-        mobileImage.contentMode = UIViewContentMode.center
+        mobileImage.contentMode = UIView.ContentMode.center
         self.passcodeTextField.rightView = passcodeImage;
-        self.passcodeTextField.rightViewMode = UITextFieldViewMode.always
+        self.passcodeTextField.rightViewMode = UITextField.ViewMode.always
         
         let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
         let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.contentMode = UIView.ContentMode.center
         plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
         let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.contentMode = UIView.ContentMode.left
         prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.leftViewMode = UITextField.ViewMode.always
         prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextField.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextField.leftViewMode = UITextFieldViewMode.always
+        self.mobileTextField.leftViewMode = UITextField.ViewMode.always
     }
     
     // Go To Another ViewController

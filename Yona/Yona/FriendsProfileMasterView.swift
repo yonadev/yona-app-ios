@@ -345,8 +345,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             } else {
                 Loader.Hide()
                 if  let msg = serverMessage {
-                    let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 

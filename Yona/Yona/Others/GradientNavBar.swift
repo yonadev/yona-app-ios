@@ -39,7 +39,7 @@ class GradientNavBar: UINavigationBar {
         frame.size.height += 20
         //make sure gradient view frame is set to the same bounds as the nav bar so that is goes all the way to the top
         gradientView.frame = frame
-        self.sendSubview(toBack: gradientView)
+        self.sendSubviewToBack(gradientView)
 
     }
 }

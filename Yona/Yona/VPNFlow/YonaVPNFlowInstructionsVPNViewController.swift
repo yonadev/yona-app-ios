@@ -164,8 +164,8 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     UserDefaults.standard.set(VPNSetupStatus.openVPNAppInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
     
     UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                        NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                        NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
     
     dismiss(animated: true, completion: {
@@ -202,8 +202,8 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
     }
     func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
         dismiss(animated: true, completion: {
