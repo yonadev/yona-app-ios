@@ -37,8 +37,8 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         tracker?.send(builder?.build() as! [AnyHashable: Any])
         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
         IQKeyboardManager.shared.enable = false
-        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWasShown , name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWillBeHidden, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)) , name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
