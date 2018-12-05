@@ -35,16 +35,16 @@ class TimeZoneTableViewCell: PKSwipeTableViewCell {
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
         viewCall.frame = CGRect(x: 0,y: 0, width: self.frame.size.height, height: self.frame.size.height)
         //Add a button to perform the action when user will tap on call and add a image to display
-        let btnCall = UIButton(type: UIButtonType.custom)
+        let btnCall = UIButton(type: UIButton.ButtonType.custom)
         btnCall.frame = CGRect(x: 0,y: 0,width: viewCall.frame.size.width,height: viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControlState())
-        btnCall.addTarget(self, action: #selector(TimeZoneTableViewCell.deleteCell), for: UIControlEvents.touchUpInside)
+        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControl.State())
+        btnCall.addTarget(self, action: #selector(TimeZoneTableViewCell.deleteCell), for: UIControl.Event.touchUpInside)
         
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
         super.addRightOptionsView(viewCall)
         self.addSubview(gradientView)
-        self.sendSubview(toBack: gradientView)
+        self.sendSubviewToBack(gradientView)
 
     }
     
@@ -56,8 +56,8 @@ class TimeZoneTableViewCell: PKSwipeTableViewCell {
     }
     
     func configureWithFromTime(_ from: String, toTime to: String, fromButtonListener: @escaping fromButtonClicked, toButtonListener: @escaping toButtonClicked) {
-        fromButton.setTitle(from, for: UIControlState())
-        toButton.setTitle(to, for: UIControlState())
+        fromButton.setTitle(from, for: UIControl.State())
+        toButton.setTitle(to, for: UIControl.State())
         gFrombuttonClicked = fromButtonListener
         gTobuttonClicked = toButtonListener
     }

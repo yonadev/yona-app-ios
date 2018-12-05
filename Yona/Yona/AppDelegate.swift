@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     var isCrashlyticsInitialized = false
     static var instance: AppLifeCylcleConsumer!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initializeCrashlytics()
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
@@ -51,13 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         //set universal settings for our navigation bar
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
-        NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
         
         let barAppearace = UIBarButtonItem.appearance()
-        barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
+        barAppearace.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -60), for:UIBarMetrics.default)
         
         UINavigationBar.appearance().setBackgroundImage(
             UIImage(),
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     
     func endBackgroundUpdateTask() {
         UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
-        self.backgroundUpdateTask = UIBackgroundTaskInvalid
+        self.backgroundUpdateTask = UIBackgroundTaskIdentifier.invalid
     }
  
     func doBackgroundTask() {
@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
             
             // Do something with the result.
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.printServerStatus), userInfo: nil, repeats: true)
-            RunLoop.current.add(self.timer!, forMode: RunLoopMode.defaultRunLoopMode)
+            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
             RunLoop.current.run()
             
             // End the background task.

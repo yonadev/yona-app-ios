@@ -17,7 +17,7 @@ class LoginViewController: LoginSignupValidationMasterView {
     @IBOutlet var accountBlockedTitle: UILabel?
     
     var maxAttempts : Int = 5
-    let touchIdButton = UIButton(type: UIButtonType.custom)
+    let touchIdButton = UIButton(type: UIButton.ButtonType.custom)
     
     //MARK: - view life cycle
     override func viewDidLoad() {
@@ -25,8 +25,8 @@ class LoginViewController: LoginSignupValidationMasterView {
         AppDelegate.instance = self
         setupPincodeScreenDifferentlyWithText(NSLocalizedString("login", comment: ""), headerTitleLabelText: nil, errorLabelText: NSLocalizedString("settings_current_pin_message", comment: ""), infoLabelText: NSLocalizedString("settings_current_pin", comment: ""), avtarImageName: R.image.icnSecure())
         
-        touchIdButton.setImage(UIImage(named: "fingerPrint"), for: UIControlState())
-        touchIdButton.setTitleColor(UIColor.black, for: UIControlState())
+        touchIdButton.setImage(UIImage(named: "fingerPrint"), for: UIControl.State())
+        touchIdButton.setTitleColor(UIColor.black, for: UIControl.State())
         touchIdButton.adjustsImageWhenHighlighted = false
         touchIdButton.imageView?.contentMode = .scaleAspectFit
         touchIdButton.contentHorizontalAlignment = .center
@@ -55,14 +55,14 @@ class LoginViewController: LoginSignupValidationMasterView {
             return showUserBlockedScreen()
         }
         //keyboard functions
-        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWasShown , name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: Selector.keyboardWillBeHidden, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(_:)) , name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if isFromSettings {
             codeInputView.becomeFirstResponder()
-            closeButton  = UIBarButtonItem(image: UIImage(named: "icnBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(LoginViewController.backToSettings(_:)))
+            closeButton  = UIBarButtonItem(image: UIImage(named: "icnBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(LoginViewController.backToSettings(_:)))
             self.navigationItem.setLeftBarButton(closeButton, animated: false)
         }
     }
@@ -229,9 +229,9 @@ extension LoginViewController: CodeInputViewDelegate {
     func setCornerRadius(){
         self.pinResetButton.backgroundColor = UIColor.white
         if isFromSettings {
-            self.pinResetButton.setTitleColor(UIColor.yiMangoColor(), for: UIControlState())
+            self.pinResetButton.setTitleColor(UIColor.yiMangoColor(), for: UIControl.State())
         } else {
-            self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), for: UIControlState())
+            self.pinResetButton.setTitleColor(UIColor.yiGrapeColor(), for: UIControl.State())
         }
         pinResetButton.layer.cornerRadius = pinResetButton.frame.size.height/2
     }
@@ -257,7 +257,7 @@ private extension Selector {
 //MARK: - KeyboardProtocol Methods
 extension LoginViewController: KeyboardProtocol {
     func keyboardWasShown (_ notification: Notification) {
-        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
         if let activeField = self.pinResetButton {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
@@ -284,7 +284,7 @@ extension LoginViewController: KeyboardProtocol {
                 self.touchIdButton.isHidden = false
                 let keyBoardWindow = UIApplication.shared.windows.last
                 keyBoardWindow?.addSubview(self.touchIdButton)
-                keyBoardWindow?.bringSubview(toFront: self.touchIdButton)
+                keyBoardWindow?.bringSubviewToFront(self.touchIdButton)
                 self.touchIdButtonAction()
             }
         })

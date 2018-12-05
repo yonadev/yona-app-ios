@@ -38,10 +38,10 @@ class CommentControlCell: PKSwipeTableViewCell {
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
         viewCall.frame = CGRect(x: 0,y: 0, width: self.frame.size.height,height: self.frame.size.height)
         //Add a button to perform the action when user will tap on call and add a image to display
-        let btnCall = UIButton(type: UIButtonType.custom)
+        let btnCall = UIButton(type: UIButton.ButtonType.custom)
         btnCall.frame = CGRect(x: 0,y: 0,width: viewCall.frame.size.width,height: viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControlState())
-        btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), for: UIControlEvents.touchUpInside)
+        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControl.State())
+        btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), for: UIControl.Event.touchUpInside)
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
