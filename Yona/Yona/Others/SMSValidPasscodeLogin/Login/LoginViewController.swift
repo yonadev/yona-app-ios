@@ -210,8 +210,8 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let passcode = KeychainManager.sharedInstance.getPINCode()
-        if code ==  passcode {
+        let pin = KeychainManager.sharedInstance.getPINCode()
+        if code ==  pin {
             authenticatedSuccessFully()
             setFailedLoginAttempts(0)
         } else {

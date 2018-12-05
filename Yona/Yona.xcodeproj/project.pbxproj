@@ -117,8 +117,8 @@
 		9042C7101CD7581E00100306 /* YonaCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C70C1CD7581E00100306 /* YonaCustomPickerView.swift */; };
 		9042C7111CD7581E00100306 /* YonaCustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */; };
 		9042C72D1CD78F7200100306 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7231CD78F7200100306 /* LoginViewController.swift */; };
-		9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */; };
-		9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */; };
+		9042C72E1CD78F7200100306 /* ConfirmPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7251CD78F7200100306 /* ConfirmPinViewController.swift */; };
+		9042C7301CD78F7200100306 /* SetPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7271CD78F7200100306 /* SetPinViewController.swift */; };
 		9042C7321CD78F7200100306 /* ConfirmMobileValidationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C72A1CD78F7200100306 /* ConfirmMobileValidationVC.swift */; };
 		9042C7341CD7914500100306 /* LoginSignupValidationMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */; };
 		9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042C7391CD898E300100306 /* NSObject+AGi18n.m */; };
@@ -449,8 +449,8 @@
 		9042C70D1CD7581E00100306 /* YonaCustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaCustomPickerView.xib; sourceTree = "<group>"; };
 		9042C7221CD78F7200100306 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		9042C7231CD78F7200100306 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeViewController.swift; sourceTree = "<group>"; };
-		9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeViewController.swift; sourceTree = "<group>"; };
+		9042C7251CD78F7200100306 /* ConfirmPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPinViewController.swift; sourceTree = "<group>"; };
+		9042C7271CD78F7200100306 /* SetPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPinViewController.swift; sourceTree = "<group>"; };
 		9042C72A1CD78F7200100306 /* ConfirmMobileValidationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMobileValidationVC.swift; sourceTree = "<group>"; };
 		9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupValidationMasterView.swift; sourceTree = "<group>"; };
 		9042C7381CD898E300100306 /* NSObject+AGi18n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AGi18n.h"; sourceTree = "<group>"; };
@@ -903,7 +903,7 @@
 				9042C7221CD78F7200100306 /* Login.storyboard */,
 				9042C7331CD7914500100306 /* LoginSignupValidationMasterView.swift */,
 				9042C7201CD78F7200100306 /* Login */,
-				9042C7241CD78F7200100306 /* Passcode */,
+				9042C7241CD78F7200100306 /* Pin */,
 				9042C7281CD78F7200100306 /* SMSValidation */,
 			);
 			name = SMSValidPasscodeLogin;
@@ -918,13 +918,13 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		9042C7241CD78F7200100306 /* Passcode */ = {
+		9042C7241CD78F7200100306 /* Pin */ = {
 			isa = PBXGroup;
 			children = (
-				9042C7251CD78F7200100306 /* ConfirmPasscodeViewController.swift */,
-				9042C7271CD78F7200100306 /* SetPasscodeViewController.swift */,
+				9042C7271CD78F7200100306 /* SetPinViewController.swift */,
+				9042C7251CD78F7200100306 /* ConfirmPinViewController.swift */,
 			);
-			path = Passcode;
+			path = Pin;
 			sourceTree = "<group>";
 		};
 		9042C7281CD78F7200100306 /* SMSValidation */ = {
@@ -1820,7 +1820,7 @@
 				9042C74D1CD898E300100306 /* UIBarButtonItem+AGi18n.m in Sources */,
 				BE8254441CEA92F400F97045 /* Message.swift in Sources */,
 				90F123DD1D2E610800E2BBBA /* TimeZoneControlCell.swift in Sources */,
-				9042C72E1CD78F7200100306 /* ConfirmPasscodeViewController.swift in Sources */,
+				9042C72E1CD78F7200100306 /* ConfirmPinViewController.swift in Sources */,
 				1656A5A51D4BE6B300EB288D /* Route.m in Sources */,
 				160571621D479EF500E86CC2 /* YonaInstructionPage1.swift in Sources */,
 				906FED7B1CEDB25500029845 /* MeDashBoardMainViewController.swift in Sources */,
@@ -1848,7 +1848,7 @@
 				AD01F7241CBCC560006E6157 /* TimeBucketChallenges.swift in Sources */,
 				9042C74C1CD898E300100306 /* NSObject+AGi18n.m in Sources */,
 				1656A5D81D4BEA0B00EB288D /* HTTPFileResponse.m in Sources */,
-				9042C7301CD78F7200100306 /* SetPasscodeViewController.swift in Sources */,
+				9042C7301CD78F7200100306 /* SetPinViewController.swift in Sources */,
 				AD7FC0761CE349630043FCE1 /* AddFriendsViewController.swift in Sources */,
 				9042C7501CD898E300100306 /* UINavigationItem+AGi18n.m in Sources */,
 				1656A5A91D4BE6B300EB288D /* RoutingHTTPServer.m in Sources */,

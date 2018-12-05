@@ -13,7 +13,7 @@ class LoginSignupValidationMasterView: BaseViewController {
     var colorX : UIColor = UIColor.yiWhiteColor()
     var posi:CGFloat = 0.0
     var codeInputView = CodeInputView(frame: CGRect(x: 0, y: 0, width: 260, height: 55))
-    var passcodeString: String? //the passcode to pass to confirm passcode view
+    var pinString: String? //the passcode to pass to confirm passcode view
 
     
     @IBOutlet var infoLabel: UILabel!
@@ -49,13 +49,13 @@ class LoginSignupValidationMasterView: BaseViewController {
 
         setBackgroundColour()
         
-        if let confirmPasscodeVC = segue.destination as? ConfirmPasscodeViewController {
-            confirmPasscodeVC.isFromSettings = isFromSettings
-            confirmPasscodeVC.isFromPinReset = isFromPinReset
-            confirmPasscodeVC.passcode = passcodeString
-        } else if let passcodeVC = segue.destination as? SetPasscodeViewController {
-            passcodeVC.isFromPinReset = isFromPinReset
-            passcodeVC.isFromSettings = isFromSettings
+        if let confirmPinVC = segue.destination as? ConfirmPinViewController {
+            confirmPinVC.isFromSettings = isFromSettings
+            confirmPinVC.isFromPinReset = isFromPinReset
+            confirmPinVC.pin = pinString
+        } else if let setPinVC = segue.destination as? SetPinViewController {
+            setPinVC.isFromPinReset = isFromPinReset
+            setPinVC.isFromSettings = isFromSettings
 
         } else if let confirmMobile = segue.destination as? ConfirmMobileValidationVC {
             confirmMobile.isFromPinReset = isFromPinReset
@@ -184,7 +184,7 @@ extension LoginSignupValidationMasterView {
 }
 
 extension Selector {
-    static let keyboardWasShown = #selector(ConfirmPasscodeViewController.keyboardWasShown(_:))
-    static let keyboardWillBeHidden = #selector(ConfirmPasscodeViewController.keyboardWillBeHidden(_:))
+    static let keyboardWasShown = #selector(ConfirmPinViewController.keyboardWasShown(_:))
+    static let keyboardWillBeHidden = #selector(ConfirmPinViewController.keyboardWillBeHidden(_:))
     
 }

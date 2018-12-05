@@ -77,7 +77,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
                         self.codeInputView.resignFirstResponder()
                         //Update flag
                         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
-                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        setViewControllerToDisplay(ViewControllerTypeString.setPin, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         self.performSegue(withIdentifier: R.segue.adminOverrideValidationVC.transToSetPincode, sender: self)
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)

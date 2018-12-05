@@ -181,7 +181,7 @@ extension PinResetValidationVC: CodeInputViewDelegate {
                     //Now send user back to pinreset screen, let them enter pincode and password again
                     self.codeInputView.resignFirstResponder()
                     //Update flag
-                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    setViewControllerToDisplay(ViewControllerTypeString.setPin, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegue(withIdentifier: R.segue.pinResetValidationVC.transToSetPincode, sender: self)
                     self.codeInputView.clear()
                 })

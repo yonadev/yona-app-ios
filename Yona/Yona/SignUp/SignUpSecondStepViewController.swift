@@ -243,7 +243,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         //Update flag
         setViewControllerToDisplay(ViewControllerTypeString.signUp, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
-        if let smsValidation = R.storyboard.login.confirmPinValidationViewController(()) {
+        if let smsValidation = R.storyboard.login.confirmOTPValidationViewController(()) {
             UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }

@@ -181,7 +181,7 @@ enum validateError {
         self.aUser = user
         if let _ = user?.confirmMobileNumberLink{ 
             setViewControllerToDisplay(ViewControllerTypeString.userProfile, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
+            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmOTPValidationViewController(()) {
                 controller.isFromUserProfile = true
                 UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
                 self.navigationController?.pushViewController(controller, animated: false)

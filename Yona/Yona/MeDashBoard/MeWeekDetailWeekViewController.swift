@@ -101,7 +101,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBAction func backAction(_ sender : AnyObject) {
         DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as? [AnyHashable: Any])
             self.navigationController?.popViewController(animated: true)
         })
     
@@ -113,15 +113,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         tracker?.set(kGAIScreenName, value: "MeWeekDetailWeekViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
         correctToday = Date().addingTimeInterval(60*60*24)
 
-        if let aWeek = initialObject {
-//            if let txt = aWeek.goalName?.uppercaseString {
-//                navigationItem.title = NSLocalizedString(txt, comment: "")
-//            }
+        if initialObject != nil {
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
