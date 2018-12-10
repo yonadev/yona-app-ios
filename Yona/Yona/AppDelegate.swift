@@ -8,27 +8,27 @@
 
 import UIKit
 import HockeySDK
+import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 protocol AppLifeCylcleConsumer: UIApplicationDelegate {
     func appDidEnterForeground()
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
-    static let sharedApp = UIApplication.sharedApplication().delegate as! AppDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
+    static let sharedApp = UIApplication.shared.delegate as! AppDelegate
     var window: UIWindow?
     static var firstTime = true
     var httpServer : RoutingHTTPServer?
     var backgroundUpdateTask: UIBackgroundTaskIdentifier!
-    var timer: NSTimer?
+    var timer: Timer?
+    var isCrashlyticsInitialized = false
     static var instance: AppLifeCylcleConsumer!
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-//        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-//        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-//        NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
-//       
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        initializeCrashlytics()
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
         
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
-        gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        gai?.trackUncaughtExceptions = true  // report uncaught exceptions
+        gai?.logger.logLevel = GAILogLevel.verbose  // remove before app release
         
         updateEnvironmentSettings()
         //check for goals, no go go
@@ -46,77 +46,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
         }
         hockeyAppSetup()
 		updateEnvironmentSettings()
-        IQKeyboardManager.sharedManager().enable = true
-        IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         //set universal settings for our navigation bar
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-        NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+        NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         
-        //get rid of the pixel line in the nav bar
         
         let barAppearace = UIBarButtonItem.appearance()
-        barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:UIBarMetrics.Default)
+        barAppearace.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
         
         UINavigationBar.appearance().setBackgroundImage(
             UIImage(),
-            forBarPosition: .Any,
-            barMetrics: .Default)
+            for: .any,
+            barMetrics: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         Loader.setup()
         return true
         
     }
-        
-    func applicationWillResignActive(application: UIApplication) {
-        
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    func initializeCrashlytics(){
+        do{
+            let fabricResourceFile = R.file.fabricApikey()
+            let fabricAPIKey = try String(contentsOf: fabricResourceFile!)
+            let fabricAPIKeyTrimmed = fabricAPIKey.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if !(fabricAPIKeyTrimmed.isEmpty) {
+                Crashlytics.start(withAPIKey: fabricAPIKeyTrimmed)
+                isCrashlyticsInitialized = true
+            }
+        }catch{
+            print(error.localizedDescription);
+        }
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+    
     }
     
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         Loader.Hide()
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
-        if  !NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.vpncompleted) {
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+        if  !UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted) {
             print ("STARTING BACKGROUND TASK")
             self.doBackgroundTask()
         }
-        
-        //doTestCycleForVPN()
-
     }
     
     func beginBackgroundUpdateTask() {
-        self.backgroundUpdateTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({
+        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             self.endBackgroundUpdateTask()
         })
     }
     
     func endBackgroundUpdateTask() {
-        UIApplication.sharedApplication().endBackgroundTask(self.backgroundUpdateTask)
+        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
         self.backgroundUpdateTask = UIBackgroundTaskInvalid
     }
  
     func doBackgroundTask() {
         Loader.Hide()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             self.beginBackgroundUpdateTask()
             
             // Do something with the result.
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.printServerStatus), userInfo: nil, repeats: true)
-            NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode)
-            NSRunLoop.currentRunLoop().run()
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.printServerStatus), userInfo: nil, repeats: true)
+            RunLoop.current.add(self.timer!, forMode: RunLoopMode.defaultRunLoopMode)
+            RunLoop.current.run()
             
             // End the background task.
             self.endBackgroundUpdateTask()
         })
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         Loader.Hide()
         updateEnvironmentSettings()
        // doTestCycleForVPN()
@@ -125,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
         
     }
     
-    private func hockeyAppSetup() {
+    fileprivate func hockeyAppSetup() {
         return  // DONT need hockeyapp as we use testflight
 //        var keys: NSDictionary?
 //        
@@ -176,25 +184,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
         
     }
     
-    func printServerStatus() {
+    @objc func printServerStatus() {
         print("SERVER IS STARTED : \(self.httpServer?.isRunning())")
         
     }
     
-    func handleMobileconfigRootRequest (request :RouteRequest,  response :RouteResponse ) {
+    @objc func handleMobileconfigRootRequest (_ request :RouteRequest,  response :RouteResponse ) {
         RootRequestHelper().handleMobileconfigRootRequest(request, response: response)
         
     }
     
     /** Catches first and second attempts to load config file, and then inserts an address into safari to switch back to the app
      */
-    func handleMobileconfigLoadRequest (request : RouteRequest ,response : RouteResponse ) {
+    @objc func handleMobileconfigLoadRequest (_ request : RouteRequest ,response : RouteResponse ) {
         if AppDelegate.firstTime  {
 //            NSLog("handleMobileconfigLoadRequest, first time")
 //            NSLog("request %@", request.url())
             AppDelegate.firstTime = false
-            let resourceDocPath = NSHomeDirectory().stringByAppendingString("/Documents/user.mobileconfig")
-            let mobileconfigData: NSData? = NSData(contentsOfFile: resourceDocPath)
+            let resourceDocPath = NSHomeDirectory() + "/Documents/user.mobileconfig"
+            let mobileconfigData: Data? = try? Data(contentsOf: URL(fileURLWithPath: resourceDocPath))
 
             
 //            NSLog("----------------------------")
@@ -207,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
 //            NSLog("                            ")
 //            NSLog("----------------------------")
             response.setHeader("Content-Type", value: "application/x-apple-aspen-config")
-            response.respondWithData(mobileconfigData)
+            response.respond(with: mobileconfigData)
         } else {
             NSLog("handleMobileconfigLoadRequest, NOT first time")
             response.statusCode = 302
@@ -221,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
                 response.setHeader("Location", value: "yonaApp://yonaapp/")
             }
             
-            NSUserDefaults.standardUserDefaults().setInteger(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            UserDefaults.standard.set(VPNSetupStatus.configurationInstalled.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
             print("stopping server")
             timer?.invalidate()
             httpServer?.stop()
@@ -229,17 +237,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
     }
     
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
         
     }
     
-    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
         return true
     }
     
@@ -259,8 +267,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
      */
     func logout()
     {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.removeObject(forKey: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+        UserDefaults.standard.synchronize()
         UserRequestManager.sharedInstance.deleteUser { (success, message, code) in
             //delete user on log out
         }
@@ -281,9 +289,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
         
         // first test if VPN is installed
         if !testForOpenVPNInstalled() {
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
-            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-            NSUserDefaults.standardUserDefaults().setBool(false,   forKey: "SIMULATOR_OPENVPN")
+            UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.vpncompleted)
+            UserDefaults.standard.set(0, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+            UserDefaults.standard.set(false,   forKey: "SIMULATOR_OPENVPN")
             
             return
         }
@@ -293,32 +301,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
     
     
     func testForVpnEnabled() {
-            if let url = NSURL(string: "https://10.110.0.1:442") {
-                let request:NSURLRequest = NSURLRequest(URL:url)
-                let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-                let que = NSOperationQueue()
+            if let url = URL(string: "https://10.110.0.1:442") {
+                let request:URLRequest = URLRequest(url:url)
+                let config = URLSessionConfiguration.default
+                let que = OperationQueue()
                 config.timeoutIntervalForResource = 5
-                let session = NSURLSession(configuration: config, delegate: self, delegateQueue: que)
-                let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+                let session = Foundation.URLSession(configuration: config, delegate: self, delegateQueue: que)
+                let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
                     if let aError = error {
                         Loader.Hide()
-                        let trxt = " No access through vpn \(aError.code), \(aError.localizedDescription)"
+                        let trxt = " No access through vpn \(aError._code), \(aError.localizedDescription)"
                         let xtx = NSLocalizedString("vpnerror.notrunning.message.text",comment:"")
                         
-                        let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: xtx, preferredStyle: .Alert)
-                        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: {
+                        let alert = UIAlertController(title: NSLocalizedString("vpnerror.notrunning.title.text", comment:""), message: xtx, preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: {
                             void in
                             self.handleOpenVPNNotRuning()
                         })
                         alert.addAction(cancelAction)
-                        var rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+                        var rootViewController = UIApplication.shared.keyWindow?.rootViewController
                         if let navigationController = rootViewController as? UINavigationController {
                             rootViewController = navigationController.viewControllers.first
                         }
                         if let tabBarController = rootViewController as? UITabBarController {
                             rootViewController = tabBarController.selectedViewController
                         }
-                        rootViewController?.presentViewController(alert, animated: true, completion: nil)
+                        rootViewController?.present(alert, animated: true, completion: nil)
                         
                     }
                 });
@@ -326,24 +334,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSURLSessionDelegate {
                 task.resume()
             }
     }
-    func alertView( alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
+    func alertView( _ alertView: UIAlertView,clickedButtonAtIndex buttonIndex: Int){
         
         if buttonIndex == 1 {
             handleOpenVPNNotRuning()
         }
     }
     
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if challenge.protectionSpace.host == "10.110.0.1" {
                 if let trus = challenge.protectionSpace.serverTrust {
-                        let cred = NSURLCredential(forTrust: trus)
-                        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,cred)
+                        let cred = URLCredential(trust: trus)
+                        completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential,cred)
                 } else {
-                    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
+                    completionHandler(Foundation.URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge,nil)
                 }
             } else {
-                completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
+                completionHandler(Foundation.URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge,nil)
             }
         }
     }

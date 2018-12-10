@@ -30,7 +30,7 @@ class TimeLineHeaderCell: UITableViewCell {
         
     }
     
-    func setCellTitle (text : String) {
+    func setCellTitle (_ text : String) {
         typeTiltle.text = text
     }
     

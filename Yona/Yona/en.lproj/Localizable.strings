@@ -6,6 +6,15 @@
   Copyright © 2016 Yona. All rights reserved.
 */
 
+//Fabric API key file
+"fabric-alert-title" = "Intialization error";
+"fabric-failure" = "Fabric API key missing";
+
+//Switch UI
+"environment-alert-title" = "Enter server URL:";
+"environment-success" = "You are now using: ";
+"environment-failure" = "Failed to switch server. Reverted to: ";
+"environment-same" = "Server URL not changed";
 
 //Signup screens
 "PINCODE" = "LOGIN";
@@ -46,11 +55,6 @@
 
 "connection-not-available" = "The internet connection appears to be offline";
 
-
-
-"enter-first-name-validation" = "You need to enter a first name";
-"enter-last-name-validation" = "You need to enter a last name";
-"enter-number-validation" = "Number should be 9 digits";
 "loading" = "Loading";
 "ok" = "OK";
 
@@ -145,7 +149,7 @@
 "enter-first-name-validation" = "You need to enter a name";
 "enter-last-name-validation"  = "You need to enter a name";
 "enter-nickname-validation" = "You need to enter a nick name";
-"enter-number-validation" = "Number should be 9 digits";
+"enter-number-validation" = "Number should be 9 digits. It must start with a + sign";
 
 //ChangePin
 "settings_current_pin" = "Current pincode";

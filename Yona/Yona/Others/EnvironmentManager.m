@@ -9,7 +9,6 @@
 #import "EnvironmentManager.h"
 #import "XTSettings.h"
 
-
 typedef NS_ENUM(NSInteger, DeploymentEnvironment) {
     DeploymentEnvironmentProduction = 1,
     DeploymentEnvironmentDev,
@@ -18,39 +17,22 @@ typedef NS_ENUM(NSInteger, DeploymentEnvironment) {
 
 static NSString * baseUrl;
 
-
 @implementation EnvironmentManager
 
-// changed to set prod as standard 
+// changed to set prod as standard
 + (NSString *)baseUrlString
 {
     NSString *url = [[NSUserDefaults standardUserDefaults] stringForKey:@"YONA_URL"];
-    if (url == nil){
-//        url = @"https://beta.prd.yona.nu/";
-        url = @"https://app.prd.yona.nu/";
-//        url = @"http://mobtest.dev.yona.nu/";
+    if (url == nil || [url isEqual:@""]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:
+                          @"SecretKeys" ofType:@"plist"];
+        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:path];
+        NSString *value = [dict valueForKey:@"Production URL"];
+        url = value;
         [[NSUserDefaults standardUserDefaults] setObject:url forKey:@"YONA_URL"];
     }
     baseUrl = url;
     return baseUrl;
-   
-    /*
-    switch ([[self environment] integerValue]) {
-        case DeploymentEnvironmentDev:
-            //baseUrl = @"http://85.222.227.84/";// http://85.222.227.142/
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-        case DeploymentEnvironmentQA:
-            //baseUrl = @"http://85.222.227.84/"; // http://85.222.227.142/
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-        default:
-            //baseUrl = @"http://85.222.227.84/";
-            baseUrl = @"http://85.222.227.142/";// http://85.222.227.142/
-            break;
-    }
-    return baseUrl;
-    */
 }
 
 + (NSNumber *)environment
@@ -89,4 +71,11 @@ static NSString * baseUrl;
     }
     return changed;
 }
+
++(void)updateEnvironmentWithURLString:(NSString*)environmentURLString{
+    [[NSUserDefaults standardUserDefaults] setObject:environmentURLString forKey:@"YONA_URL"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 @end

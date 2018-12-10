@@ -20,7 +20,7 @@ struct Users{
     var userGoals : [Goal] = []
     //links
     var editLink: String?
-    var confirmMobileLink: String?
+    var confirmMobileNumberLink: String?
     var otpResendMobileLink: String?
     var getSelfLink: String?
     var messagesLink: String?
@@ -40,6 +40,7 @@ struct Users{
     var formatetMobileNumber : String!
     var editUserAvatar: String?
     var userAvatarLink: String?
+    var openAppEventLink: String?
     
     var mobilConfigFileURL: String = ""
     init(userData: BodyDataDictionary) {
@@ -58,20 +59,25 @@ struct Users{
                 
                 // this is for when parsing user body returned from add device, to get the self link to the user
                 if let yonaUserSelfLink = links[YonaConstants.jsonKeys.yonaUserSelfLink],
-                    let hrefyonaUserSelfLink = yonaUserSelfLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefyonaUserSelfLink = (yonaUserSelfLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.getSelfLink = hrefyonaUserSelfLink
                     KeychainManager.sharedInstance.saveUserSelfLink(hrefyonaUserSelfLink)
                     foundIncludeLink = true
                 }
                 
+                if let yonaOpenAppEventLink = links[YonaConstants.jsonKeys.yonaOpenAppEventLink],
+                    let hrefYonaOpenAppEventLink = (yonaOpenAppEventLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                    self.openAppEventLink = hrefYonaOpenAppEventLink
+                }
+                
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
-                    let hrefEditLink = editLink?[YonaConstants.jsonKeys.hrefKey] as? String{
+                    let hrefEditLink = (editLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.newDeviceRequestsLink = hrefEditLink
                 }
             }
         //} else {
             
-            if let firstName = userData[addUserKeys.firstNameKey.rawValue] as? String {
+            if let firstName = userData[addUserKeys.firstNameKey.rawValue] as? String {// firstName
                 self.firstName = firstName
             }
             if let lastName = userData[addUserKeys.lastNameKeys.rawValue] as? String {
@@ -90,10 +96,10 @@ struct Users{
             if let links = userData[YonaConstants.jsonKeys.linksKeys] {
                 
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
-                    let hrefEditLink = editLink?[YonaConstants.jsonKeys.hrefKey] as? String{
+                    let hrefEditLink = (editLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey]{
                     self.editLink = hrefEditLink
                     
-                    if let lastPath = NSURL(string: self.editLink!)!.lastPathComponent {
+                    if let lastPath = URL(string: self.editLink!)?.lastPathComponent {
                         self.userID = lastPath
                         KeychainManager.sharedInstance.saveUserID(self.userID)
                     }
@@ -102,86 +108,86 @@ struct Users{
                 
                 if !foundIncludeLink {
                     if let selfLinks = links[YonaConstants.jsonKeys.selfLinkKeys],
-                        let hrefSelfLinks = selfLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                        let hrefSelfLinks = (selfLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                         self.getSelfLink = hrefSelfLinks
-                        print(self.getSelfLink)
+                        print(self.getSelfLink!)
                         KeychainManager.sharedInstance.saveUserSelfLink(hrefSelfLinks)
                     }
                 }
                 
                 if let confirmLinks = links[YonaConstants.jsonKeys.yonaConfirmMobileLinkKeys],
-                    let confirmLinksHref = confirmLinks?[YonaConstants.jsonKeys.hrefKey] as? String{
-                    self.confirmMobileLink = confirmLinksHref
+                    let confirmLinksHref = (confirmLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                    self.confirmMobileNumberLink = confirmLinksHref
                 }
                 if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
-                    let hrefOTPesendMobileLink = otpResendMobileLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefOTPesendMobileLink = (otpResendMobileLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.otpResendMobileLink = hrefOTPesendMobileLink
                 }
                 
                 if let messageLinks = links[YonaConstants.jsonKeys.yonaMessages],
-                    let hrefMessageLinks = messageLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefMessageLinks = (messageLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.messagesLink = hrefMessageLinks
                 }
                 
                 if let dailyActivityReportsLinks = links[YonaConstants.jsonKeys.yonaDailyActivityReports],
-                    let hrefdailyActivityReportsLinks = dailyActivityReportsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefdailyActivityReportsLinks = (dailyActivityReportsLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.dailyActivityReportsLink = hrefdailyActivityReportsLinks
                 }
                 
                 if let weeklyActivityReportsLinks = links[YonaConstants.jsonKeys.yonaWeeklyActivityReports],
-                    let hrefWeeklyActivityReportsLinks = weeklyActivityReportsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefWeeklyActivityReportsLinks = (weeklyActivityReportsLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.weeklyActivityReportsLink = hrefWeeklyActivityReportsLinks
                 }
                 
                 if let newDeviceRequestsLinks = links[YonaConstants.jsonKeys.yonaNewDeviceRequest],
-                    let hrefnewDeviceRequestsLink = newDeviceRequestsLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefnewDeviceRequestsLink = (newDeviceRequestsLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.newDeviceRequestsLink = hrefnewDeviceRequestsLink
                 }// this is for when parsing user body returned from add device
                 else if let newDeviceRequestsLinks = userData[YonaConstants.jsonKeys.linksKeys],
                     let newDeviceRequestsLinksSelf = newDeviceRequestsLinks[YonaConstants.jsonKeys.selfLinkKeys],
-                    let newDeviceRequestsLinksSelfHref = newDeviceRequestsLinksSelf?[YonaConstants.jsonKeys.hrefKey] as? String{
+                    let newDeviceRequestsLinksSelfHref = (newDeviceRequestsLinksSelf as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.newDeviceRequestsLink = newDeviceRequestsLinksSelfHref
                 }
                 
                 if let appActivityLinks = links[YonaConstants.jsonKeys.yonaAppActivity],
-                    let hrefappActivityLinks = appActivityLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefappActivityLinks = (appActivityLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.appActivityLink = hrefappActivityLinks
                 }
                 
                 if let requestPinResetLinks = links[YonaConstants.jsonKeys.yonaPinRequest],
-                    let hrefrequestPinResetLinks = requestPinResetLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefrequestPinResetLinks = (requestPinResetLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.requestPinResetLink = hrefrequestPinResetLinks
                 }
                 
                 if let resendRequestPinResetLinks = links[YonaConstants.jsonKeys.yonaResendPinResetRequest],
-                    let hrefresendRequestPinResetLinks = resendRequestPinResetLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefresendRequestPinResetLinks = (resendRequestPinResetLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.resendRequestPinResetLinks = hrefresendRequestPinResetLinks
                 }
                 
                 if let requestPinVerifyLinks = links[YonaConstants.jsonKeys.yonaPinVerify],
-                    let hrefrequestPinVerifyLinks = requestPinVerifyLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefrequestPinVerifyLinks = (requestPinVerifyLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey]  {
                     self.requestPinVerifyLink = hrefrequestPinVerifyLinks
                 }
                 
                 if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaPinClear],
-                    let hrefrequestPinClearLinks = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let hrefrequestPinClearLinks = (requestPinClearLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.requestPinClearLink = hrefrequestPinClearLinks
                 }
                 if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaDailyActivityReportsWithBuddies],
-                    let timeline  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let timeline  = (requestPinClearLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     timeLineLink = timeline
                 }
                 if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaappleMobileConfig],
-                    let mobilconfig  = requestPinClearLinks?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let mobilconfig  = (requestPinClearLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     mobilConfigFileURL = mobilconfig
                 }
 
                 if let yonaEditPhotoLink = links[YonaConstants.jsonKeys.yonaEditUserPhoto],
-                    let href  = yonaEditPhotoLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let href  = (yonaEditPhotoLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     editUserAvatar = href
                 }
                 if let yonaPhotoLink = links[YonaConstants.jsonKeys.yonaUserPhoto],
-                    let href = yonaPhotoLink?[YonaConstants.jsonKeys.hrefKey] as? String {
+                    let href = (yonaPhotoLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     userAvatarLink = href
                 }
 
@@ -189,10 +195,10 @@ struct Users{
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
                 let yonaGoals = embedded[YonaConstants.jsonKeys.yonaGoals],
-                let goalsLink = yonaGoals?[YonaConstants.jsonKeys.linksKeys],
-                let selfGoalsLink = goalsLink?[YonaConstants.jsonKeys.selfLinkKeys],
-                let hrefSelfGoalsLink = selfGoalsLink?[YonaConstants.jsonKeys.hrefKey] as? String{
-                    self.getAllGoalsLink = hrefSelfGoalsLink
+                let goalsLink = (yonaGoals as? [String : Any])?[YonaConstants.jsonKeys.linksKeys],
+                let selfGoalsLink = (goalsLink as? [String : Any])?[YonaConstants.jsonKeys.selfLinkKeys],
+                let hrefSelfGoalsLink = (selfGoalsLink as? [String : Any])?[YonaConstants.jsonKeys.hrefKey]{
+                self.getAllGoalsLink = hrefSelfGoalsLink as? String
             }
             
             //for now this is the only way to get the activity category link
@@ -203,18 +209,18 @@ struct Users{
                 //at some point Bert will probably add Buddies so we need to parse them here too!
                 
                 //get buddies links
-                if let buddiesLinks = yonaBuddies?[YonaConstants.jsonKeys.linksKeys],
-                    let buddiesLinksSelf = buddiesLinks?[YonaConstants.jsonKeys.selfLinkKeys],
-                    let buddiesLinksSelfHref = buddiesLinksSelf?[YonaConstants.jsonKeys.hrefKey] as? String{
-                        self.buddiesLink = buddiesLinksSelfHref
+                if let buddiesLinks = (yonaBuddies as? [String : Any])?[YonaConstants.jsonKeys.linksKeys],
+                    let buddiesLinksSelf = (buddiesLinks as? [String : Any])?[YonaConstants.jsonKeys.selfLinkKeys],
+                    let buddiesLinksSelfHref = (buddiesLinksSelf as? [String : Any])?[YonaConstants.jsonKeys.hrefKey]{
+                    self.buddiesLink = buddiesLinksSelfHref as? String
                 }
             }
             
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
                 let yonabuddies = embedded[YonaConstants.jsonKeys.yonaGoals],
-                let embeddedNext = yonabuddies?[YonaConstants.jsonKeys.embedded] {
-                if let goalJSON  = embeddedNext?[YonaConstants.jsonKeys.yonaGoals] as? [BodyDataDictionary] {
+                let embeddedNext = (yonabuddies as? [String : Any])?[YonaConstants.jsonKeys.embedded] {
+                if let goalJSON  = (embeddedNext as? [String : Any])?[YonaConstants.jsonKeys.yonaGoals] as? [BodyDataDictionary] {
                     for each in goalJSON {
                         let aGoal = Goal(goalData : each, activities: [])
                         userGoals.append(aGoal)
@@ -224,13 +230,13 @@ struct Users{
             // UGLY HACK TO FIX   APPDEV-852
             // Code should be changed to NOT use the NSUserDefaults for this...
             //
-            NSUserDefaults.standardUserDefaults().setBool(userGoals.count > 0, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
+            UserDefaults.standard.set(userGoals.count > 0, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
             
             
             if let embedded = userData[YonaConstants.jsonKeys.embedded],
                 let yonabuddies = embedded[YonaConstants.jsonKeys.yonaBuddies],
-                let embeddedNext = yonabuddies?[YonaConstants.jsonKeys.embedded] {
-                    if let buddiesJSON  = embeddedNext?[YonaConstants.jsonKeys.yonaBuddies] as? [BodyDataDictionary] {
+                let embeddedNext = (yonabuddies as? [String : Any])?[YonaConstants.jsonKeys.embedded] {
+                if let buddiesJSON  = (embeddedNext as? [String : Any])?[YonaConstants.jsonKeys.yonaBuddies] as? [BodyDataDictionary] {
                             for each in buddiesJSON {
                                 let aBuddie = Buddies(buddyData: each, allActivity: [])
                                 buddies.append(aBuddie)
@@ -241,8 +247,8 @@ struct Users{
         
     }
     
-    private func formatMobileNumber() -> String {
-        let num = mobileNumber.stringByReplacingOccurrencesOfString("+31", withString: "+310")
+    fileprivate func formatMobileNumber() -> String {
+        let num = mobileNumber.replacingOccurrences(of: "+31", with: "+310")
         return num
     }
     
@@ -256,7 +262,7 @@ struct Users{
             body["lastName"] = lastName
             body["mobileNumber"] = mobileNumber
             body["nickname"] = nickname
-        return body
+        return body as BodyDataDictionary
     }
     
     

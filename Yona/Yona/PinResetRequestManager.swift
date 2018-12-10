@@ -15,7 +15,7 @@ class PinResetRequestManager {
 
     static let sharedInstance = PinResetRequestManager()
     
-    private init() {}
+    fileprivate init() {}
     
     /**
      Generic method to request, verify or clear pin requests
@@ -25,7 +25,7 @@ class PinResetRequestManager {
      - parameter body: BodyDataDictionary?, body that is needed in a POST call, can be nil
      - parameter onCompletion: APIPinResetResponse, Sends back the pin ISO code (optional) and also the server messages and success or fail of the request
      */
-    private func pinResetHelper(httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: APIPinResetResponse){
+    fileprivate func pinResetHelper(_ httpmethodParam: httpMethods, pinRequestType: pinRequestTypes, body: BodyDataDictionary?, onCompletion: @escaping APIPinResetResponse){
 
         switch pinRequestType
         {
@@ -45,10 +45,10 @@ class PinResetRequestManager {
                             }
                         }
                     } else {
-                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode))
+                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinLink, String(responseCodes.internalErrorCode.rawValue))
                     }
                 } else {
-                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode.rawValue))
                 }
             }
         case .resendResetRequest:
@@ -60,10 +60,10 @@ class PinResetRequestManager {
                             onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
-                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResendResetRequestLink, String(responseCodes.internalErrorCode))
+                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResendResetRequestLink, String(responseCodes.internalErrorCode.rawValue))
                     }
                 } else {
-                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode.rawValue))
                 }
             }
         case .verifyRequest:
@@ -75,10 +75,10 @@ class PinResetRequestManager {
                             onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
-                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
+                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode.rawValue))
                     }
                 } else {
-                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode))
+                    onCompletion(false, nil , YonaConstants.serverMessages.FailedToRetrieveUpdateUserDetails, String(responseCodes.internalErrorCode.rawValue))
                 }
             }
         case .clearRequest:
@@ -90,7 +90,7 @@ class PinResetRequestManager {
                             onCompletion(success, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error))
                         }
                     } else {
-                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode))
+                        onCompletion(false, nil , YonaConstants.serverMessages.FailedToGetResetPinVerifyLink, String(responseCodes.internalErrorCode.rawValue))
                     }
                 }
             }
@@ -102,7 +102,7 @@ class PinResetRequestManager {
      
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
-    func pinResendResetRequest(onCompletion: APIPinResetResponse) {
+    func pinResendResetRequest(_ onCompletion: @escaping APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.resendResetRequest, body: nil) { (success, ISOCode, serverMessage, serverCode) in
             onCompletion(success, ISOCode, serverMessage, serverCode)
         }
@@ -113,7 +113,7 @@ class PinResetRequestManager {
      
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
-    func pinResetRequest(onCompletion: APIPinResetResponse) {
+    func pinResetRequest(_ onCompletion: @escaping APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.resetRequest, body: nil) { (success, ISOCode, serverMessage, serverCode) in
             onCompletion(success, ISOCode, serverMessage, serverCode)
         }
@@ -125,7 +125,7 @@ class PinResetRequestManager {
      - parameter body: BodyDataDictionary, Body containing the OTP sent by text to user
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
-    func pinResetVerify(body: BodyDataDictionary, onCompletion: APIPinResetResponse) {
+    func pinResetVerify(_ body: BodyDataDictionary, onCompletion: @escaping APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.verifyRequest, body: body) { (success, nil, serverMessage, serverCode) in
             onCompletion(success, nil, serverMessage, serverCode)
 
@@ -137,7 +137,7 @@ class PinResetRequestManager {
      
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
-    func pinResetClear(onCompletion: APIPinResetResponse) {
+    func pinResetClear(_ onCompletion: @escaping APIPinResetResponse) {
         pinResetHelper(httpMethods.post, pinRequestType: pinRequestTypes.clearRequest, body: nil) { (success, nil, serverMessage, serverCode) in
             if success {
                 onCompletion(true, nil, serverMessage, serverCode)

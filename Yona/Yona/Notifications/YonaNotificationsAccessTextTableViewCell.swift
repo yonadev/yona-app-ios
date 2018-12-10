@@ -18,14 +18,14 @@ class YonaNotificationsAccessTextTableViewCell: UITableViewCell {
         aTextLabel.adjustsFontSizeToFitWidth = true
     }
 
-    func setPhoneNumber(aMessage : Message) {
+    func setPhoneNumber(_ aMessage : Message) {
         let num = aMessage.UserRequestmobileNumber
         let text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
 
         aTextLabel.text = text
     }
 
-    func setMessageFromPoster(aMessage : Message) {
+    func setMessageFromPoster(_ aMessage : Message) {
             aTextLabel.text = aMessage.message
         
     }

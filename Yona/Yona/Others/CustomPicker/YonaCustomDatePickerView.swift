@@ -7,10 +7,10 @@ class YonaCustomDatePickerView: UIView {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     typealias CancelListener = () -> ()
-    typealias DoneListener = (NSDate) -> ()
+    typealias DoneListener = (Date) -> ()
     var gCancelListener: CancelListener?
     var gDoneListener: DoneListener?
-    var selectedValue: NSDate?
+    var selectedValue: Date?
     var parentView: UIView?
     
     @IBOutlet weak var cancelButtonTitle: UIBarButtonItem!
@@ -18,48 +18,48 @@ class YonaCustomDatePickerView: UIView {
     @IBOutlet weak var pickerTitleLabel: UIBarButtonItem!
     @IBOutlet weak var title: UIBarButtonItem!
 
-    @IBAction func cancelAction(sender: AnyObject) {
+    @IBAction func cancelAction(_ sender: AnyObject) {
         gCancelListener?()
     }
     
-    @IBAction func doneAction(sender: AnyObject) {
+    @IBAction func doneAction(_ sender: AnyObject) {
         if selectedValue != nil{
             gDoneListener?(selectedValue!)
         }else{
-            gDoneListener?(NSDate())
+            gDoneListener?(Date())
         }
         
     }
     
-    @IBAction func datePickerAction(sender: AnyObject) {
+    @IBAction func datePickerAction(_ sender: AnyObject) {
         selectedValue = datePicker.date
     }
     
     func loadDatePickerView() -> UIView {
-        var views = NSBundle.mainBundle().loadNibNamed("YonaCustomDatePickerView", owner: self, options: nil)
+        var views = Bundle.main.loadNibNamed("YonaCustomDatePickerView", owner: self, options: nil)
         let view = views![0] as! UIView
-        view.frame.origin.y = UIScreen.mainScreen().bounds.height + 200
-        view.frame.size.width = UIScreen.mainScreen().bounds.width
+        view.frame.origin.y = UIScreen.main.bounds.height + 200
+        view.frame.size.width = UIScreen.main.bounds.width
         return view
     }
     
     
-    func configure(onView v:UIView, withCancelListener cancel: CancelListener, andDoneListener done: DoneListener) {
+    func configure(onView v:UIView, withCancelListener cancel: @escaping CancelListener, andDoneListener done: @escaping DoneListener) {
         gCancelListener = cancel
         gDoneListener = done
         parentView = v
-        title.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiBlackColor()], forState: UIControlState.Normal)
-        UIApplication.sharedApplication().keyWindow?.addSubview(self)
+        title.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiBlackColor()], for: UIControlState())
+        UIApplication.shared.keyWindow?.addSubview(self)
     }
     
-    func pickerTitleLabel(title: String) {
+    func pickerTitleLabel(_ title: String) {
         self.pickerTitleLabel.title = title
     }
     
     func hideShowDatePickerView(isToShow show: Bool) -> YonaCustomDatePickerView {
-        cancelButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
-        okButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
-        UIView.animateWithDuration(0.3,
+        cancelButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
+        okButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
+        UIView.animate(withDuration: 0.3,
                                    animations: {
                                     if show {
                                         self.frame.origin.y = self.parentView!.frame.size.height - 200
@@ -72,7 +72,7 @@ class YonaCustomDatePickerView: UIView {
     }
     
     
-    func configureWithTime(date: NSDate) {
+    func configureWithTime(_ date: Date) {
         selectedValue = date
         self.datePicker.setDate(date, animated: true)
     }

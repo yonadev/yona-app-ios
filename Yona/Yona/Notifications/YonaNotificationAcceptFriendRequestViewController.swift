@@ -40,15 +40,15 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         tableView.backgroundColor = UIColor.yiTableBGGreyColor()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaNotificationAcceptFriendRequestViewController")
+        tracker?.set(kGAIScreenName, value: "YonaNotificationAcceptFriendRequestViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = navbarColor1
         let navbar = navigationController?.navigationBar as! GradientNavBar
         navbar.gradientColor = navbarColor
@@ -57,40 +57,40 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserHeaderWithTwoTabTableViewCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
+        tableView.register(nib, forCellReuseIdentifier: "YonaUserHeaderWithTwoTabTableViewCell")
         nib = UINib(nibName: "YonaTwoButtonTableViewCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "YonaTwoButtonTableViewCell")
+        tableView.register(nib, forCellReuseIdentifier: "YonaTwoButtonTableViewCell")
     
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     // MARK: - Actions
-    @IBAction func backAction (sender : AnyObject) {
+    @IBAction func backAction (_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as [NSObject : AnyObject])
-        navigationController?.popViewControllerAnimated(true)
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as! [AnyHashable: Any])
+        navigationController?.popViewController(animated: true)
         
     }
     
     // MARK: - tableview methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
 
-            let cell: YonaUserHeaderWithTwoTabTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserHeaderWithTwoTabTableViewCell", forIndexPath: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell
+            let cell: YonaUserHeaderWithTwoTabTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserHeaderWithTwoTabTableViewCell", for: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell
             cell.setAcceptFriendsMode()
             if let aBuddy = aBuddy {
                 cell.setBuddy(aBuddy)
@@ -100,7 +100,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             }
             return cell
         case acceptFriendRequest.buttons.rawValue:
-            let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaTwoButtonTableViewCell", forIndexPath: indexPath) as! YonaTwoButtonTableViewCell
+            let cell: YonaTwoButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaTwoButtonTableViewCell", for: indexPath) as! YonaTwoButtonTableViewCell
             cell.delegate = self
             if let msg = aMessage {
                 cell.setNumber(msg)
@@ -109,11 +109,11 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     
             
         default:
-            return UITableViewCell(frame: CGRectZero)
+            return UITableViewCell(frame: CGRect.zero)
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
             return 221
@@ -129,17 +129,17 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     
     // MARK - YonaTowButtonCellProtocol
     
-    func didSelectLeftButton(button: UIButton) {
+    func didSelectLeftButton(_ button: UIButton) {
     
-        view.userInteractionEnabled = false
+        view.isUserInteractionEnabled = false
         Loader.Show()
         if let mes = aMessage {
             MessageRequestManager.sharedInstance.postRejectMessage(mes, onCompletion: { (success, message, code) in
                 Loader.Hide()
                 if success {
                     // TODO:  add the reject server method
-                    self.view.userInteractionEnabled = true
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.view.isUserInteractionEnabled = true
+                    self.navigationController?.popViewController(animated: true)
                 }
             })
         }
@@ -147,15 +147,15 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
 
         
     }
-    func didSelectRightButton(button: UIButton) {
-        view.userInteractionEnabled = false
+    func didSelectRightButton(_ button: UIButton) {
+        view.isUserInteractionEnabled = false
         Loader.Show()
         if let mes = aMessage {
             MessageRequestManager.sharedInstance.postAcceptMessage(mes, onCompletion:  {success, json, error in
                 Loader.Hide()
                 if success {
-                    self.view.userInteractionEnabled = true
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.view.isUserInteractionEnabled = true
+                    self.navigationController?.popViewController(animated: true)
                 }
             })
         }

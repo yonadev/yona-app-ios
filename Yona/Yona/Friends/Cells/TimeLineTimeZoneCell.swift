@@ -72,7 +72,7 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
     
     
     
-    func setTimeLineData (timelineDayActivity : TimeLinedayActivitiesForUsers, animated: Bool) {
+    func setTimeLineData (_ timelineDayActivity : TimeLinedayActivitiesForUsers, animated: Bool) {
         spreadCells = timelineDayActivity.spread
         activitySpread = timelineDayActivity.spreadCells
         
@@ -96,9 +96,9 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
     }
 
     
-    private func dravTheUser () {
+    fileprivate func dravTheUser () {
         if nickname.characters.count > 0 {
-            userInitial.text = "\(nickname.capitalizedString.characters.first!)"
+            userInitial.text = "\(nickname.capitalized.characters.first!)"
         }
 
         //will crash if empty

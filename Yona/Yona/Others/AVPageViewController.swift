@@ -13,13 +13,13 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
     var contentViews: Array<UIViewController>?
     var presentingIndex: Int = 0
     
-    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : AnyObject]?) {
-        super.init(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]?) {
+        super.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         self.delegate = self
         self.dataSource = self
     }
     
-    func setupControllers(contentViews: Array<UIViewController>, viewControllerFrameRect: CGRect, withPresentingViewControllerIndex index:Int) {
+    func setupControllers(_ contentViews: Array<UIViewController>, viewControllerFrameRect: CGRect, withPresentingViewControllerIndex index:Int) {
         self.contentViews = contentViews
         self.presentingIndex = index
         self.setupViewControllerIndex(contentViews)
@@ -27,14 +27,14 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         let viewController = NSArray(object: self.viewController(atIndex: self.presentingIndex))
         self.setViewControllers(
             viewController as? [UIViewController],
-            direction: UIPageViewControllerNavigationDirection.Forward,
+            direction: UIPageViewControllerNavigationDirection.forward,
             animated: true,
             completion: { [weak self] (finished: Bool) in
                 if finished {
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self!.setViewControllers(
                             viewController as? [UIViewController],
-                            direction: UIPageViewControllerNavigationDirection.Forward,
+                            direction: UIPageViewControllerNavigationDirection.forward,
                             animated: false,
                             completion: nil
                         )
@@ -54,14 +54,14 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         return vc
     }
     
-    func setupViewControllerIndex(viewControllers: Array<UIViewController>) {
+    func setupViewControllerIndex(_ viewControllers: Array<UIViewController>) {
         for i in 0 ..< viewControllers.count - 1 {
             let vc = self.contentViews![i] as! AVPageContentViewController
             vc.viewControllerIndex = i
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let viewController = viewController as! AVPageContentViewController
         var index = viewController.viewControllerIndex as Int
         
@@ -72,7 +72,7 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         return self.viewController(atIndex: index)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let viewController = viewController as! AVPageContentViewController
         var index = viewController.viewControllerIndex as Int
         
@@ -83,7 +83,7 @@ class AVPageViewController: UIPageViewController, UIPageViewControllerDataSource
         return self.viewController(atIndex: index)
     }
     
-    func gotoNextViewController(index: Int) {
+    func gotoNextViewController(_ index: Int) {
         setupControllers(self.contentViews!, viewControllerFrameRect: self.view.frame, withPresentingViewControllerIndex: index)
     }
 }

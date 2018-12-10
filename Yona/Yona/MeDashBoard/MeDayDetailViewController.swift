@@ -8,7 +8,7 @@
 //
 
 import Foundation
-
+import IQKeyboardManagerSwift
 
 enum detailDayRows : Int  {
     case activity = 0
@@ -27,16 +27,18 @@ enum detailDaySections : Int  {
 }
 
 class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate  {
- 
+    
     @IBOutlet weak var tableView : UITableView!
-    var correctToday = NSDate()
+    @IBOutlet weak var sendCommentFooter : SendCommentControl?
+    
+    var correctToday = Date()
     var singleDayData : [String: DaySingleActivityDetail] = [:]
     var dayData : DaySingleActivityDetail?
     var activityGoal : ActivitiesGoal?
     var initialObjectLink : String?
     var goalName : String?
     var goalType : String?
-    var currentDate : NSDate = NSDate()
+    var currentDate : Date = Date()
     var currentDay : String?
     var nextLink : String?
     var prevLink : String?
@@ -50,116 +52,102 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     var navbarColor1 : UIColor?
     var navbarColor : UIColor?
     
-    var violationStartTime : NSDate?
-    var violationEndTime : NSDate?
+    var violationStartTime : Date?
+    var violationEndTime : Date?
     var violationLinkURL : String?
     
     //paging
     var totalSize: Int = 0
     var totalPages : Int = 0
-    
-    @IBOutlet weak var sendCommentFooter : SendCommentControl?
-
     var comments = [Comment]() {
         didSet{
             //everytime savedarticles is added to or deleted from table is refreshed
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.previousThreadID = ""
                 self.tableView.reloadData()
-
                 if self.comments.count > 0 && self.moveToBottomRequired {
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.comments.count - 1, inSection: 1), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+                    self.tableView.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 1), at: UITableViewScrollPosition.bottom, animated: false)
                 }
-                
             }
         }
     }
     
+    // MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = goalName?.uppercased()
         self.comments = []
         if let activityGoal = activityGoal {
             initialObjectLink = activityGoal.dayDetailLinks
-            currentDate = activityGoal.date
+            currentDate = activityGoal.date as Date
             goalName = activityGoal.goalName
             goalType = activityGoal.goalType
-            
         }
         registreTableViewCells()
         self.sendCommentFooter?.commentControlDelegate = self
         self.sendCommentFooter?.alpha = 0
-        
     }
     
-    @IBAction func backAction(sender : AnyObject) {
-        dispatch_async(dispatch_get_main_queue(), {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: "MeDayDetailViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        
+        correctToday = Date().addingTimeInterval(60*60*24)
+        self.loadData(.own)
+    }
+    
+    //MARK: - button action
+    @IBAction func backAction(_ sender : AnyObject) {
+        DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as [NSObject : AnyObject])
-
-            self.navigationController?.popViewControllerAnimated(true)
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as! [AnyHashable: Any])
+            
+            self.navigationController?.popViewController(animated: true)
         })
-        
     }
     
-    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+    fileprivate func shouldAnimate(_ cell : IndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
-        
-        if animatedCells.indexOf(txt) == nil {
+        if animatedCells.index(of: txt) == nil {
             print("Animated \(txt)")
             animatedCells.append(txt)
             return true
         }
         print("NO animated \(txt)")
         return false
-        
-    }
-
-    func registreTableViewCells () {
-        
-        var nib = UINib(nibName: "SpreadCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
-        
-        nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
-        
-        nib = UINib(nibName: "NoGoCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
-        
-        nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeZoneControlCell")
-        
-        nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
-        
-        nib = UINib(nibName: "CommentTableHeader", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
-        
-        nib = UINib(nibName: "CommentControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
-        
-//        nib = UINib(nibName: "SendCommentControl", bundle: nil)
-//        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
-        
-        nib = UINib(nibName: "ReplyToComment", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
-
-        
-        nib = UINib(nibName: "DayViewLinkCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "DayViewLinkCell")
-
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "MeDayDetailViewController")
+    func registreTableViewCells () {
+        var nib = UINib(nibName: "SpreadCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "SpreadCell")
         
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
-        correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
-        self.loadData(.own)
-
+        nib = UINib(nibName: "NoGoCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "NoGoCell")
+        
+        nib = UINib(nibName: "TimeZoneControlCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "TimeZoneControlCell")
+        
+        nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
+        
+        nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
+        
+        nib = UINib(nibName: "ReplyToComment", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ReplyToComment")
+        
+        nib = UINib(nibName: "DayViewLinkCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DayViewLinkCell")
     }
     
     //MARK: Protocol implementation
@@ -172,128 +160,134 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         loadData(.next)
     }
     
+    //MARK: - load data
+    func loadData (_ typeToLoad : loadType = .own) {
+        Loader.Show()
+        if typeToLoad == .own {
+            loadOwnData()
+        }
+        else if typeToLoad == .prev {
+            loadPreviousData()
+        }
+        else if typeToLoad == .next {
+            loadNextData()
+        }
+        Loader.Hide()
+        self.tableView.reloadData()
+    }
+    
+    fileprivate func loadOwnData() {
+        if let path = initialObjectLink {
+            ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                if success {
+                    if let data = dayActivity {
+                        self.currentDate = data.date!
+                        self.currentDay = data.dayOfWeek
+                        self.dayData  = data
+                        self.goalType = data.goalType
+                        if let commentsLink = data.messageLink {
+                            self.getComments(commentsLink)
+                        }
+                        //make sure the commentview has the right link to post comments to
+                        if self.dayData?.commentLink != nil {
+                            self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                            self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                        }
+                    }
+                    if let _ = self.dayData?.goalType {
+                        self.tableView.reloadData()
+                        
+                    } else {
+                        self.noGoalTypeInResponse()
+                    }
+                }
+            })
+        }
+    }
+    
+    fileprivate func loadPreviousData() {
+        if let path = dayData!.prevLink {
+            ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                if success {
+                    if let data = dayActivity {
+                        self.currentDate = data.date!
+                        self.currentDay = data.dayOfWeek
+                        self.dayData  = data
+                        if let commentsLink = data.messageLink {
+                            self.getComments(commentsLink)
+                        }
+                        //make sure the commentview has the right link to post comments to
+                        if self.dayData?.commentLink != nil {
+                            self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                            self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
+    fileprivate func loadNextData() {
+        if let path = dayData!.nextLink {
+            ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                if success {
+                    if let data = dayActivity {
+                        self.currentDate = data.date!
+                        self.currentDay = data.dayOfWeek
+                        self.dayData  = data
+                        if let commentsLink = data.messageLink {
+                            self.getComments(commentsLink)
+                        }
+                        //make sure the commentview has the right link to post comments to
+                        if self.dayData?.commentLink != nil {
+                            self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
+                            self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
     func noGoalTypeInResponse() {
         let alert = UIAlertController(title: NSLocalizedString("nogo-data-not-found-title", comment: ""),
                                       message: NSLocalizedString("nogo-data-not-found-description", comment: ""),
-                                      preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .Default, handler: { action in
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .default, handler: { action in
             switch action.style {
-            case .Default:
-                self.navigationController?.popViewControllerAnimated(true)
+            case .default:
+                self.navigationController?.popViewController(animated: true)
             default:
                 break
             }
         }))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func loadData (typeToLoad : loadType = .own) {
-        
-        Loader.Show()
-//        size = 4
-//        page = 1
-        if typeToLoad == .own {
-            if let path = initialObjectLink {
-                ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                    if success {
-                        
-                        if let data = dayActivity {
-                            self.currentDate = data.date!
-                            self.currentDay = data.dayOfWeek
-                            self.dayData  = data
-                            self.goalType = data.goalType
-                            self.navigationItem.title = self.dayData?.goalName.uppercaseString //only need to do this in the first original data
-
-                            if let commentsLink = data.messageLink {
-                                self.getComments(commentsLink)
-                            }
-                            //make sure the commentview has the right link to post comments to
-                            if self.dayData?.commentLink != nil {
-                                self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
-                                self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                            }
-                        }
-                        
-                        Loader.Hide()
-                        if let _ = self.dayData?.goalType {
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            self.noGoalTypeInResponse()
-                        }
-                        
-                    } else {
-                        Loader.Hide()
-                    }
-                })
-            }
-        }
-        else if typeToLoad == .prev {
-                if let path = dayData!.prevLink {
-                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                        if success {
-                            
-                            if let data = dayActivity {
-                                self.currentDate = data.date!
-                                self.currentDay = data.dayOfWeek
-                                self.dayData  = data
-                                if let commentsLink = data.messageLink {
-                                    self.getComments(commentsLink)
-                                }
-                                //make sure the commentview has the right link to post comments to
-                                if self.dayData?.commentLink != nil {
-                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
-                                    self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                                }
-                            }
-                            
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
-                }
-            
-        }
-        else if typeToLoad == .next {
-                if let path = dayData!.nextLink {
-                    ActivitiesRequestManager.sharedInstance.getDayActivityDetails(path, date: currentDate, onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
-                        if success {
-                            
-                            if let data = dayActivity {
-                                self.currentDate = data.date!
-                                self.currentDay = data.dayOfWeek
-                                self.dayData  = data
-                                if let commentsLink = data.messageLink {
-                                    self.getComments(commentsLink)
-                                }
-                                //make sure the commentview has the right link to post comments to
-                                if self.dayData?.commentLink != nil {
-                                    self.sendCommentFooter!.alpha = self.dayData?.commentLink != nil ? 1 : 0
-                                    self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
-                                }
-                            }
-                            Loader.Hide()
-                            self.tableView.reloadData()
-                            
-                        } else {
-                            Loader.Hide()
-                        }
-                    })
-                }
-        }
-        
-        //Loader.Hide()
-        self.tableView.reloadData()
-        
+    // MARK: - UITableviewDelegate Methods
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+        return 2
     }
     
-// MARK: - tableview Override
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if  dayData == nil {
+            return 0
+        }
+        var numberOfRows = 2
+        if violationLinkURL != nil {
+            numberOfRows = 3
+        }
+        if section == 1 {
+            numberOfRows = self.comments.count // number of comments
+        } else if section == 2 {
+            numberOfRows = 1
+        }
+        return numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -305,18 +299,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     cellHeight = 135
                 }
             }
-            
             if indexPath.row == detailDayRows.spreadCell.rawValue{
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
             return UITableViewAutomaticDimension
         }
-        
         return CGFloat(cellHeight)
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -328,18 +320,16 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     cellHeight = 135
                 }
             }
-            
             if indexPath.row == detailDayRows.spreadCell.rawValue{
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
             cellHeight = 165
         }
-        
         return CGFloat(cellHeight)
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 44.0
         } else if section == 1 && self.comments.count > 0{
@@ -348,169 +338,172 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         return 0.0
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+    fileprivate func getSpreadCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
+        if let data = dayData  {
+            cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
+        }
+        return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if  dayData == nil {
-            return 0
+    fileprivate func getTimeBucketControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
+        if let data = dayData  {
+            cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
         }
-        
-        var numberOfSections = 2
-        if violationLinkURL != nil {
-            numberOfSections = 3
-        }
-        
-        if section == 1 {
-            numberOfSections = self.comments.count // number of comments
-        } else if section == 2 {
-            numberOfSections = 1
-        }
-        return numberOfSections
+        return cell
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+    fileprivate func getTimeZoneControlCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell: TimeZoneControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeZoneControlCell", for: indexPath) as! TimeZoneControlCell
+        if let data = dayData  {
+            cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
+        }
+        return cell
+    }
+    
+    fileprivate func getNoGoCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell: NoGoCell = tableView.dequeueReusableCell(withIdentifier: "NoGoCell", for: indexPath) as! NoGoCell
+        if let data = dayData  {
+            cell.setDayActivityDetailForView(data)
+        }
+        return cell
+    }
+    
+    fileprivate func getDayViewLinkCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell: DayViewLinkCell = tableView.dequeueReusableCell(withIdentifier: "DayViewLinkCell", for: indexPath) as! DayViewLinkCell
+        cell.setData(violationLinkURL!, startDate: violationStartTime!)
+        return cell
+    }
+    
+    fileprivate func getCommentControlCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
+        let cell: CommentControlCell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as! CommentControlCell
+        cell.setBuddyCommentData(comment)
+        cell.indexPath = indexPath
+        cell.commentDelegate = self
+        cell.hideShowReplyButton(self.dayData?.commentLink != nil && comment.replyLink == nil)
+        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
+        return cell
+    }
+    
+    fileprivate func getReplyToCommentCell(_ tableView: UITableView, _ indexPath: IndexPath, _ comment: Comment) -> UITableViewCell {
+        let cell: ReplyToComment = tableView.dequeueReusableCell(withIdentifier: "ReplyToComment", for: indexPath) as! ReplyToComment
+        cell.setBuddyCommentData(comment)
+        cell.indexPath = indexPath
+        cell.commentDelegate = self
+        cell.hideShowReplyButton(comment.replyLink == nil)
+        self.sendCommentFooter?.alpha = 0
+        return cell
+    }
+    
+    func getCellForSectionZero(indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == detailDayRows.spreadCell.rawValue {
+            return getSpreadCell(tableView, indexPath)
+        }
+        if indexPath.row == detailDayRows.activity.rawValue {
+            if goalType == GoalType.BudgetGoalString.rawValue {
+                return getTimeBucketControlCell(tableView, indexPath)
+            } else if goalType == GoalType.TimeZoneGoalString.rawValue {
+                return getTimeZoneControlCell(tableView, indexPath)
+            } else if goalType == GoalType.NoGoGoalString.rawValue {
+                return getNoGoCell(tableView, indexPath)
+            }
+        }
+        if indexPath.row == detailDayRows.linkCell.rawValue {
+            return getDayViewLinkCell(tableView, indexPath)
+        }
+        return UITableViewCell(frame: CGRect.zero)
+    }
+    
+    fileprivate func getNextCommentThreadId(_ indexPath: IndexPath, _ nextThreadID: inout String, _ previousThreadID: inout String) {
+        if indexPath.row + 1 < self.comments.count {
+            if let nextThreadMessageId = self.comments[indexPath.row + 1].threadHeadMessageID {
+                nextThreadID = nextThreadMessageId
+            }
+        } else {
+            nextThreadID = ""
+        }
+        //check for a previous row
+        if indexPath.row != 0{
+            // then get the thread id of this row
+            if let previousThreadMessageId = self.comments[indexPath.row - 1].threadHeadMessageID {
+                previousThreadID = previousThreadMessageId
+            }
+        }
+    }
+    
+    func getCellForSectionOne(indexPath: IndexPath) -> UITableViewCell {
+        let comment = self.comments[indexPath.row]
+        let currentThreadID = comment.threadHeadMessageID
+        var previousThreadID = ""
+        var nextThreadID = ""
+        
+        getNextCommentThreadId(indexPath, &nextThreadID, &previousThreadID)
+        
+        if self.dayData?.messageLink != nil && indexPath.section == 1 {
+            if currentThreadID != previousThreadID { //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
+                return getCommentControlCell(tableView, indexPath, comment)
+            } else {  // if the thread id is the same then show the reply to comment cell
+                return getReplyToCommentCell(tableView, indexPath, comment)
+            }
+        }
+        return UITableViewCell(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if indexPath.row == detailDayRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
-                if let data = dayData  {
-                    cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
-                }
-                return cell
-                
-            }
-            if indexPath.row == detailDayRows.activity.rawValue {
-
-                if goalType == GoalType.BudgetGoalString.rawValue {
-                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
-                    if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
-                    }
-                    return cell
-                } else if goalType == GoalType.TimeZoneGoalString.rawValue {
-                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
-                    if let data = dayData  {
-                        cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
-                    }
-                    return cell
-                } else if goalType == GoalType.NoGoGoalString.rawValue {
-                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
-                    if let data = dayData  {
-                        cell.setDayActivityDetailForView(data)
-                    }
-                    return cell
-                }
-                
-            }
-            
-            if indexPath.row == detailDayRows.linkCell.rawValue {
-                let cell: DayViewLinkCell = tableView.dequeueReusableCellWithIdentifier("DayViewLinkCell", forIndexPath: indexPath) as! DayViewLinkCell
-                cell.setData(violationLinkURL!, startDate: violationStartTime!)
-                return cell
-                
-            
-            }
-            
-            
+            return getCellForSectionZero(indexPath: indexPath)
         } else if self.dayData?.messageLink != nil && indexPath.section == 1 {
-            let comment = self.comments[indexPath.row]
-            let currentThreadID = comment.threadHeadMessageID
-            var previousThreadID = ""
-            var nextThreadID = ""
-
-            if indexPath.row + 1 < self.comments.count {
-                if let nextThreadMessageId = self.comments[indexPath.row + 1].threadHeadMessageID {
-                    nextThreadID = nextThreadMessageId
-                }
-            } else {
-                nextThreadID = ""
-            }
-            //check for a previous row
-            if indexPath.row != 0{
-                // then get the thread id of this row
-                if let previousThreadMessageId = self.comments[indexPath.row - 1].threadHeadMessageID {
-                    previousThreadID = previousThreadMessageId
-                }
-            }
-            
-            if self.dayData?.messageLink != nil && indexPath.section == 1 {
-                //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
-                if currentThreadID != previousThreadID {
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
-                        cell.setBuddyCommentData(comment)
-                        cell.indexPath = indexPath
-                        cell.commentDelegate = self
-                        cell.hideShowReplyButton(self.dayData?.commentLink != nil && comment.replyLink == nil)
-                        self.sendCommentFooter!.setLinks(comment.replyLink, commentLink: self.dayData?.commentLink)
-                        return cell
-                    }
-                } else {
-                    // if the thread id is the same then show the reply to comment cell
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
-                        cell.setBuddyCommentData(comment)
-                        cell.indexPath = indexPath
-                        cell.commentDelegate = self
-                        cell.hideShowReplyButton(comment.replyLink == nil)
-                        self.sendCommentFooter?.alpha = 0
-                        return cell
-                    }
-                }
-            }
-            
+            return getCellForSectionOne(indexPath: indexPath)
         }
-        return UITableViewCell(frame: CGRectZero)
-        
+        return UITableViewCell(frame: CGRect.zero)
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    fileprivate func headerViewForSectionZero(_ tableView: UITableView) -> UIView? {
+        let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
+        cell.delegate = self
+        if currentDate.isToday() {
+            cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
+        } else if currentDate.isYesterday() {
+            cell.headerTextLabel.text = NSLocalizedString("yesterday", comment: "")
+        } else {
+            cell.headerTextLabel.text = currentDate.fullDayMonthDateString()
+        }
+        //if date prievious to that show
+        if let data = dayData {
+            var next = false
+            var prev = false
+            cell.configureWithNone()
+            if let _ = data.nextLink  {
+                next = true
+                cell.configureAsLast()
+            }
+            if let _ = data.prevLink  {
+                prev = true
+                cell.configureAsFirst()
+            }
+            if next && prev {
+                cell.configureWithBoth()
+            }
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
-            cell.delegate = self
-
-            if currentDate.isToday() {
-                cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
-            } else if currentDate.isYesterday() {
-                cell.headerTextLabel.text = NSLocalizedString("yesterday", comment: "")
-            } else {
-                cell.headerTextLabel.text = currentDate.fullDayMonthDateString()
-            }
-            
-            //if date prievious to that show
-            if let data = dayData {
-                var next = false
-                var prev = false
-                cell.configureWithNone()
-                if let _ = data.nextLink  {
-                    next = true
-                    cell.configureAsLast()
-                }
-                if let _ = data.prevLink  {
-                    prev = true
-                    cell.configureAsFirst()
-                }
-                if next && prev {
-                    cell.configureWithBoth()
-                }
-                
-            }
-            
-            return cell
+            return headerViewForSectionZero(tableView)
         } else if section == 1 && self.comments.count > 0{
-            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+            let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentTableHeader") as! CommentTableHeader
             return cell
         }
         return nil
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
         if self.comments.count > 0{
             if indexPath.section == 1 {
-                print(indexPath.row)
                 if indexPath.row == page * size - 1 && page < self.totalPages {
                     page = page + 1
-                    
                     if let commentsLink = self.dayData?.messageLink {
                         Loader.Show()
                         CommentRequestManager.sharedInstance.getComments(commentsLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
@@ -526,41 +519,37 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                     }
                 }
             }
-            
-
         }
     }
     
     // MARK: - CommentCellDelegate
-    func deleteComment(cell: CommentControlCell, comment: Comment){
+    func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
             if success {
-                self.comments.removeAtIndex((cell.indexPath?.row)!)
+                self.comments.remove(at: (cell.indexPath?.row)!)
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
             }
         })
     }
     
-    func showSendComment(comment: Comment?) {
+    func showSendComment(_ comment: Comment?) {
         self.comments = []
         if let comment = comment {
             self.comments.append(comment)
         }
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.sendCommentFooter!.alpha = 1
         })
-
     }
     
     // MARK: - SendCommentControlProtocol
-    
-    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
-        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+    func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
-    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+    func textFieldEndEdit(_ commentTextField: UITextField, comment: Comment?){
         moveToBottomRequired = true
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
@@ -572,7 +561,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     }
     
     // MARK: - get comment data
-    func getComments(commentLink: String) {
+    func getComments(_ commentLink: String) {
         CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []

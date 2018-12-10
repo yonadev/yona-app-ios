@@ -18,15 +18,15 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         self.sendCommentFooter!.alpha = 1
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "FriendsWeekDetailWeekController")
+        tracker?.set(kGAIScreenName, value: "FriendsWeekDetailWeekController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
             if initialObject!.goalType == GoalType.BudgetGoalString.rawValue {
@@ -52,12 +52,12 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
 //    }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
             
             if indexPath.row == detailRows.weekoverview.rawValue {
-                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+                let cell: WeekScoreControlCell = tableView.dequeueReusableCell(withIdentifier: "WeekScoreControlCell", for: indexPath) as! WeekScoreControlCell
                 
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setSingleActivity(data ,isScore: shouldAnimate(indexPath))
@@ -69,7 +69,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             if indexPath.row == detailRows.activity.rawValue {
                 if let data = week[currentWeek.yearWeek]  {
                     if self.goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
-                        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                        let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
                         cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                         return cell
                     }
@@ -77,7 +77,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             }
             
             if indexPath.row == detailRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
@@ -88,26 +88,26 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
             self.sendCommentFooter!.alpha = data.commentLink != nil ? 1 : 0
             if data.messageLink != nil && indexPath.section == 1 {
                 let comment = self.comments[indexPath.row]
-                if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as? CommentControlCell {
                     cell.setBuddyCommentData(comment)
                     cell.indexPath = indexPath
                     cell.commentDelegate = self
                     if data.commentLink != nil {
-                        cell.replyToComment.hidden = true
+                        cell.replyToComment.isHidden = true
                         self.sendCommentFooter!.postCommentLink = data.commentLink
                     } else if comment.replyLink != nil {
-                        cell.replyToComment.hidden = false
+                        cell.replyToComment.isHidden = false
                         self.sendCommentFooter!.postReplyLink = comment.replyLink
                     }
                     return cell
                 }
             }
         }
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(frame: CGRect.zero)
         
     }
     
-    override func loadData (typeToLoad : loadType = .own) {
+    override func loadData (_ typeToLoad : loadType = .own) {
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
         // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()

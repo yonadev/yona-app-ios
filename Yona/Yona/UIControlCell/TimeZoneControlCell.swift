@@ -99,7 +99,7 @@ class TimeZoneControlCell : UITableViewCell {
         for currentSpread in activitySpread {
             let spreadX = CGFloat(currentSpread) * CGFloat(pxPerSpread) //value int
             let spreadWidth = CGFloat(pxPerSpread)//CGFloat(currentSpread) * CGFloat(pxPerMinute)
-            let timeZoneView = UIView(frame: CGRectMake(spreadX, 0, spreadWidth, backgroundMinsView.frame.height))
+            let timeZoneView = UIView(frame: CGRect(x: spreadX, y: 0, width: spreadWidth, height: backgroundMinsView.frame.height))
             timeZoneView.backgroundColor = UIColor.yiPeaColor()
             backgroundMinsView.addSubview(timeZoneView)
             spreadCellsValue += 1
@@ -117,7 +117,7 @@ class TimeZoneControlCell : UITableViewCell {
 
         for spreadCell in spreadCells {
             //set frame of timezone
-            let timeZoneView = TimeZoneCustomView.init(frame: CGRectZero)
+            let timeZoneView = TimeZoneCustomView.init(frame: CGRect.zero)
             timeZoneView.animated = self.shouldAnimate
             if activitySpread.contains(spreadValue){ //if activity goal spread cells contains
                 timeZoneView.timeZoneColour = UIColor.yiMidBlueColor()
@@ -149,7 +149,7 @@ class TimeZoneControlCell : UITableViewCell {
         }
     }
     
-    func setDataForView (activityGoal : ActivitiesGoal, animated: Bool) {
+    func setDataForView (_ activityGoal : ActivitiesGoal, animated: Bool) {
         self.shouldAnimate = animated
         spreadCells = activityGoal.spread
         activitySpread = activityGoal.spreadCells
@@ -160,7 +160,7 @@ class TimeZoneControlCell : UITableViewCell {
         totalActivityDurationMinutes = activityGoal.totalActivityDurationMinutes
     }
     
-    func setDayActivityDetailForView (dayActivity: DaySingleActivityDetail, animated: Bool) {
+    func setDayActivityDetailForView (_ dayActivity: DaySingleActivityDetail, animated: Bool) {
         self.shouldAnimate = animated
         spreadCells = dayActivity.daySpread
         activitySpread = dayActivity.spreadCells

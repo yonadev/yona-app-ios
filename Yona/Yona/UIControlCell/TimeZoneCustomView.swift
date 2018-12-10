@@ -34,7 +34,7 @@ class TimeZoneCustomView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func rightAlign (spreadValue: Int, spreadCells : [Int], pxPerMinute: CGFloat, pxPerSpread: CGFloat){
+    func rightAlign (_ spreadValue: Int, spreadCells : [Int], pxPerMinute: CGFloat, pxPerSpread: CGFloat){
         //right align
         if (spreadValue + 1) < spreadCells.count && (spreadValue - 1) >= 0 { ///don't go out of bounds
             if spreadCells[spreadValue + 1] == 15 //if next cell is full
@@ -53,7 +53,7 @@ class TimeZoneCustomView: UIView {
         }
 
   // YOU must set the calculated frame and the backgroundcolor
-        frame = CGRectMake(spreadX, 0, spreadWidth!, spreadHeight)
+        frame = CGRect(x: spreadX, y: 0, width: spreadWidth!, height: spreadHeight)
         backgroundColor = timeZoneColour
         //print (self)
     }

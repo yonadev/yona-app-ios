@@ -24,13 +24,13 @@ class UserAPIServiceTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testDeleteUser() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
         
         let body =
@@ -52,11 +52,11 @@ class UserAPIServiceTests: XCTestCase {
             
             
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
     
     func testUserRequestReturnsData() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
 
         let body =
@@ -82,13 +82,13 @@ class UserAPIServiceTests: XCTestCase {
             
 
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
     
     func testConfirmMobileReturnsData(){
 
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
 
         let body =
@@ -113,11 +113,11 @@ class UserAPIServiceTests: XCTestCase {
                     
                 })
             }
-        waitForExpectationsWithTimeout(15.0, handler:nil)
+        waitForExpectations(timeout: 15.0, handler:nil)
     }
     
     func testConfirmMobileOTPResend() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
             ["firstName": "Richard",
@@ -137,12 +137,12 @@ class UserAPIServiceTests: XCTestCase {
             }
             
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testGetUserActuallyReturnsTheUserWeJustPosted() {
         //setup new user
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
             ["firstName": "Richard",
@@ -173,13 +173,13 @@ class UserAPIServiceTests: XCTestCase {
             }
         }
         
-        waitForExpectationsWithTimeout(15.0, handler:nil)
+        waitForExpectations(timeout: 15.0, handler:nil)
 
     }
     
     func testUpdateUser(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = String(Int(arc4random_uniform(9999999)))
         let body =
             ["firstName": "Richard",
@@ -217,12 +217,12 @@ class UserAPIServiceTests: XCTestCase {
                 })
             }
         }
-        waitForExpectationsWithTimeout(15.0, handler:nil)
+        waitForExpectations(timeout: 15.0, handler:nil)
     }
     
     func testConfirmMobileNumber(){
         //setup
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(99999999))
         let body =
             ["firstName": "Richard",
@@ -249,7 +249,7 @@ class UserAPIServiceTests: XCTestCase {
                 XCTFail(message ?? "Unknown error")
             }
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
 
 }

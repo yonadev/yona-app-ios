@@ -27,32 +27,32 @@ class YonaButtonsTableHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
-    @IBAction func leftButtonPushed(sender :UIButton) {
+    @IBAction func leftButtonPushed(_ sender :UIButton) {
         delegate?.leftButtonPushed()
     }
 
-    @IBAction func rightButtonPushed(sender :UIButton) {
+    @IBAction func rightButtonPushed(_ sender :UIButton) {
         delegate?.rightButtonPushed()
     }
 
     func configureAsLast() {
-        leftButton.hidden = true
-        rightButton.hidden = false
+        leftButton.isHidden = true
+        rightButton.isHidden = false
     }
 
     func configureAsFirst() {
-        leftButton.hidden = false
-        rightButton.hidden = true
+        leftButton.isHidden = false
+        rightButton.isHidden = true
     }
 
     func configureWithNone() {
-        leftButton.hidden = true
-        rightButton.hidden = true
+        leftButton.isHidden = true
+        rightButton.isHidden = true
     }
     
     func configureWithBoth() {
-        leftButton.hidden = false
-        rightButton.hidden = false
+        leftButton.isHidden = false
+        rightButton.isHidden = false
     }
 
 }

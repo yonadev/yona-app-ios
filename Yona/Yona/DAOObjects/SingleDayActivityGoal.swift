@@ -53,23 +53,23 @@ class SingleDayActivityGoal : NSObject {
     }
     
         
-     class func dayOfWeekFromString(day:String) -> DayOfWeek {
-        if day.lowercaseString == "sunday" {
-            return .Sunday
-        } else if day.lowercaseString == "monday" {
-            return .Monday
-        } else if day.lowercaseString == "tuesday" {
-            return .Tuesday
-        } else if day.lowercaseString == "wednesday" {
-            return .Wednesday
-        } else if day.lowercaseString == "thursday" {
-            return .Thursday
-        } else if day.lowercaseString == "friday" {
-            return .Friday
-        } else if day.lowercaseString == "saturday" {
-            return .Saturday
+     class func dayOfWeekFromString(_ day:String) -> DayOfWeek {
+        if day.lowercased() == "sunday" {
+            return .sunday
+        } else if day.lowercased() == "monday" {
+            return .monday
+        } else if day.lowercased() == "tuesday" {
+            return .tuesday
+        } else if day.lowercased() == "wednesday" {
+            return .wednesday
+        } else if day.lowercased() == "thursday" {
+            return .thursday
+        } else if day.lowercased() == "friday" {
+            return .friday
+        } else if day.lowercased() == "saturday" {
+            return .saturday
         }
-        return .Sunday
+        return .sunday
     }
     
 

@@ -9,13 +9,13 @@
 import Foundation
 
 enum DayOfWeek : Int {
-    case Sunday = 1
-    case Monday
-    case Tuesday
-    case Wednesday
-    case Thursday
-    case Friday
-    case Saturday
+    case sunday = 1
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
 }
 
 enum loadType {
@@ -27,12 +27,14 @@ enum loadType {
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"
-    case confirmMobileValidation = "confirmPinValidationViewController"
+    case confirmMobileNumberValidation = "confirmPinValidationViewController"
     case pinResetValidation = "pinResetValidationController"
     case adminOverrideValidation = "adminOverrideValidationViewController"
     case passcode = "Passcode"
     case login = "Login"
     case dashboard = "Dashboard"
+    case userProfile = "ProfileStoryboard"
+    case signUp = "SignUpSecondStepViewController"
 }
 
 enum GoalType: String {
@@ -71,7 +73,7 @@ enum httpMethods: String{
 }
 
 enum alertButtonType{
-    case OK
+    case ok
     case cancel
 }
 
@@ -176,6 +178,7 @@ enum getMessagesKeys : String {
     case selfKey = "self"
     case links = "_links"
     case edit = "edit"
+    case userPhoto = "yona:userPhoto"
     case yonaUser = "yona:user"
     case href = "href"
     case UserRequestfirstName = "firstName"
@@ -206,21 +209,21 @@ enum addUserKeys : String {
 
 // Used in Profile 
 enum ProfileCategoryHeader : Int {
-    case FirstName = 0
-    case LastName
-    case NickName
-    case CellNumber
+    case firstName = 0
+    case lastName
+    case nickName
+    case cellNumber
     
     
     func headerText() -> String{
         switch self {
-        case ProfileCategoryHeader.FirstName:
+        case ProfileCategoryHeader.firstName:
             return  NSLocalizedString("profile.user.data.firstname", comment: "ProfileCell FirstName header")
-        case ProfileCategoryHeader.LastName:
+        case ProfileCategoryHeader.lastName:
             return  NSLocalizedString("profile.user.data.lastname", comment: "ProfileCell LastName header")
-        case ProfileCategoryHeader.NickName:
+        case ProfileCategoryHeader.nickName:
             return  NSLocalizedString("profile.user.data.nickname", comment: "ProfileCell NickName header")
-        case ProfileCategoryHeader.CellNumber:
+        case ProfileCategoryHeader.cellNumber:
             return  NSLocalizedString("profile.user.data.mobilenumber", comment: "ProfileCell Mobile Phone header")
         }
     }
@@ -228,13 +231,13 @@ enum ProfileCategoryHeader : Int {
     func imageType() -> UIImage {
         
         switch self {
-        case ProfileCategoryHeader.FirstName:
+        case ProfileCategoryHeader.firstName:
             return  UIImage(named: "icnName")!
-        case ProfileCategoryHeader.LastName:
+        case ProfileCategoryHeader.lastName:
             return  UIImage(named: "icnName")!
-        case ProfileCategoryHeader.NickName:
+        case ProfileCategoryHeader.nickName:
             return  UIImage(named: "icnNickname")!
-        case ProfileCategoryHeader.CellNumber:
+        case ProfileCategoryHeader.cellNumber:
             return  UIImage(named: "icnMobile")!
         }
     }
@@ -243,21 +246,21 @@ enum ProfileCategoryHeader : Int {
 
 // Used in Profile
 enum FriendsProfileCategoryHeader : Int {
-    case Name = 0
-    case LastName
-    case NickName
-    case CellNumber
+    case name = 0
+    case lastName
+    case nickName
+    case cellNumber
     
     
     func headerText() -> String{
         switch self {
-        case FriendsProfileCategoryHeader.Name:
+        case FriendsProfileCategoryHeader.name:
             return  NSLocalizedString("profile.user.data.firstname", comment: "ProfileCell FirstName header")
-        case FriendsProfileCategoryHeader.LastName:
+        case FriendsProfileCategoryHeader.lastName:
             return  NSLocalizedString("profile.user.data.lastname", comment: "ProfileCell FirstName header")
-        case FriendsProfileCategoryHeader.NickName:
+        case FriendsProfileCategoryHeader.nickName:
             return  NSLocalizedString("profile.user.data.nickname", comment: "ProfileCell NickName header")
-        case FriendsProfileCategoryHeader.CellNumber:
+        case FriendsProfileCategoryHeader.cellNumber:
             return  NSLocalizedString("profile.user.data.mobilenumber", comment: "ProfileCell Mobile Phone header")
         }
     }
@@ -265,13 +268,13 @@ enum FriendsProfileCategoryHeader : Int {
     func imageType() -> UIImage {
         
         switch self {
-        case FriendsProfileCategoryHeader.Name:
+        case FriendsProfileCategoryHeader.name:
             return  UIImage(named: "icnName")!
-        case FriendsProfileCategoryHeader.LastName:
+        case FriendsProfileCategoryHeader.lastName:
             return  UIImage(named: "icnName")!
-        case FriendsProfileCategoryHeader.NickName:
+        case FriendsProfileCategoryHeader.nickName:
             return  UIImage(named: "icnNickname")!
-        case FriendsProfileCategoryHeader.CellNumber:
+        case FriendsProfileCategoryHeader.cellNumber:
             return  UIImage(named: "icnMobile")!
         }
     }

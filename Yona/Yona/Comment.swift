@@ -36,7 +36,7 @@ enum commentKeys : String {
 }
 
 struct Comment{
-    var creationTime: NSDate?
+    var creationTime: Date?
     var message: String?
     var threadHeadMessageID: String?
     var nickname: String?
@@ -61,16 +61,16 @@ struct Comment{
     
     init(commentData: BodyDataDictionary) {
         
-        creationTime = NSDate.init()
+        creationTime = Date.init()
         if let data = commentData[commentKeys.commentType.rawValue] as? String{
             if let type  = notificationType(rawValue:data) {
                 commentType = type
             }
         }
         if let aCreationTime = commentData[commentKeys.creationTime.rawValue] as? String{
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = getMessagesKeys.dateFormat.rawValue
-            if let aDate = dateFormatter.dateFromString(aCreationTime) {
+            if let aDate = dateFormatter.date(from: aCreationTime) {
                 creationTime = aDate
             }
         }

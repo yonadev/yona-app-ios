@@ -23,15 +23,15 @@ class NewDeviceAPIServiceTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     func testPutNewDevice() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        let password = NSUUID().UUIDString
+        let password = UUID().uuidString
         let keychain = KeychainSwift()
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
         
@@ -68,13 +68,13 @@ class NewDeviceAPIServiceTests: XCTestCase {
             
 
         }
-        waitForExpectationsWithTimeout(10.0, handler:nil)
+        waitForExpectations(timeout: 10.0, handler:nil)
     }
     
     func testGetNewDevice() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        let password = NSUUID().UUIDString
+        let password = UUID().uuidString
         let keychain = KeychainSwift()
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
         
@@ -116,13 +116,13 @@ class NewDeviceAPIServiceTests: XCTestCase {
             
             
         }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
     
     func testDeleteNewDeviceRequest() {
-        let expectation = expectationWithDescription("Waiting to respond")
+        let expectation = self.expectation(description: "Waiting to respond")
         let randomPhoneNumber = Int(arc4random_uniform(9999999))
-        let password = NSUUID().UUIDString
+        let password = UUID().uuidString
         let keychain = KeychainSwift()
         keychain.set(password, forKey: YonaConstants.keychain.yonaPassword)
         
@@ -159,6 +159,6 @@ class NewDeviceAPIServiceTests: XCTestCase {
                 }
                 
             }
-        waitForExpectationsWithTimeout(100.0, handler:nil)
+        waitForExpectations(timeout: 100.0, handler:nil)
     }
 }

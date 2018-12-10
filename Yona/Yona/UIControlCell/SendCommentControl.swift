@@ -9,8 +9,8 @@
 import Foundation
 
 protocol SendCommentControlProtocol {
-    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField)
-    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?)
+    func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField)
+    func textFieldEndEdit(_ commentTextField: UITextField, comment: Comment?)
 }
 
 class SendCommentControl : UIView {
@@ -40,57 +40,57 @@ class SendCommentControl : UIView {
         }
     }
 
-    private func nibSetup() {
-        backgroundColor = .clearColor()
+    fileprivate func nibSetup() {
+        backgroundColor = .clear
         
         let view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         
         addSubview(view)
     }
     
     
-    private func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
-        let nibView = nib.instantiateWithOwner(self, options: nil).first as! UIView
+    fileprivate func loadViewFromNib() -> UIView {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+        let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         return nibView
     }
     
-    func setLinks(replyLink: String?, commentLink: String?) {
+    func setLinks(_ replyLink: String?, commentLink: String?) {
         if replyLink != nil {
             postReplyLink = replyLink
         }
         postCommentLink = commentLink
     }
     
-    @IBAction func sendComment(sender: UIButton) {
+    @IBAction func sendComment(_ sender: UIButton) {
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "sendComment", label: "Send comment button pressed", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendComment", label: "Send comment button pressed", value: nil).build() as! [AnyHashable: Any])
         
         if let commentText = self.commentTextField.text{
             if commentText.characters.count == 0 {
                 return
             }
             
-            sender.enabled = false
+            sender.isEnabled = false
             var messageBody: [String:AnyObject]
             if let postCommentLink = postCommentLink {
                 messageBody = [
-                    "message": commentText
+                    "message": commentText as AnyObject
                 ]
                 CommentRequestManager.sharedInstance.postComment(postCommentLink, messageBody: messageBody) { (success, comment, nil, message, code) in
                     
                     if let _ = message {
-                        sender.enabled = true
+                        sender.isEnabled = true
                     }
                     
                     if success {
-                        sender.enabled = true
+                        sender.isEnabled = true
                         self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
@@ -100,15 +100,15 @@ class SendCommentControl : UIView {
                     [
                         "message" : commentText
                     ]
-                ]
+                    ] as [String : AnyObject]
                 CommentRequestManager.sharedInstance.postReply(postReplyLink, messageBody: messageBody) { (success, comment, comments, message, code) in
                     
                     if let _ = message {
-                        sender.enabled = true
+                        sender.isEnabled = true
                     }
                     
                     if success {
-                        sender.enabled = true
+                        sender.isEnabled = true
                         self.commentControlDelegate?.textFieldEndEdit(self.commentTextField, comment: comment)
                     }
                     print(comment)
@@ -120,11 +120,11 @@ class SendCommentControl : UIView {
 
 extension SendCommentControl: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         commentControlDelegate?.textFieldBeginEdit(textField, commentTextField: commentTextField)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

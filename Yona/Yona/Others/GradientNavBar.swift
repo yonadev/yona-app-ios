@@ -25,7 +25,7 @@ class GradientNavBar: UINavigationBar {
         //set gradient view to the colour set by our inspectable property
         gradientView.setGradient(gradientColor, color2: gradientColor)
         gradientView.backgroundColor = self.backgroundColor
-        gradientView.userInteractionEnabled = false
+        gradientView.isUserInteractionEnabled = false
 
         self.addSubview(gradientView)
 
@@ -39,7 +39,7 @@ class GradientNavBar: UINavigationBar {
         frame.size.height += 20
         //make sure gradient view frame is set to the same bounds as the nav bar so that is goes all the way to the top
         gradientView.frame = frame
-        self.sendSubviewToBack(gradientView)
+        self.sendSubview(toBack: gradientView)
 
     }
 }

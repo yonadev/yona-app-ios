@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IQKeyboardManagerSwift
 
 enum detailRows : Int  {
     case weekoverview = 0
@@ -19,9 +20,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var initialObjectLink : String?
     var goalType : String?
     var week : [String:WeekSingleActivityDetail] = [:]
-    var firstWeek :  NSDate = NSDate()
-    var currentWeek : NSDate = NSDate()
-    var correctToday = NSDate()
+    var firstWeek :  Date = Date()
+    var currentWeek : Date = Date()
+    var correctToday = Date()
     
     
     @IBOutlet weak var tableView : UITableView!
@@ -40,7 +41,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     var comments = [Comment]() {
         didSet{
             //everytime add comments refresh table
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.previousThreadID = ""
                 self.tableView.reloadData()
             }
@@ -55,10 +56,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         self.sendCommentFooter?.commentControlDelegate = self
     }
     
-    func shouldAnimate(cell : NSIndexPath) -> Bool {
+    func shouldAnimate(_ cell : IndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
-        if animatedCells.indexOf(txt) == nil {
+        if animatedCells.index(of: txt) == nil {
             print("Animated \(txt)")
             animatedCells.append(txt)
             return true
@@ -70,52 +71,52 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "TimeBucketControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "TimeBucketControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "TimeBucketControlCell")
         
         nib = UINib(nibName: "NoGoCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "NoGoCell")
+        tableView.register(nib, forCellReuseIdentifier: "NoGoCell")
         
         nib = UINib(nibName: "SpreadCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SpreadCell")
+        tableView.register(nib, forCellReuseIdentifier: "SpreadCell")
         
         nib = UINib(nibName: "WeekScoreControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "WeekScoreControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "WeekScoreControlCell")
         
         nib = UINib(nibName: "YonaButtonsTableHeaderView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "YonaButtonsTableHeaderView")
         
         nib = UINib(nibName: "CommentTableHeader", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
         
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
         
         nib = UINib(nibName: "SendCommentControl", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "SendCommentControl")
+        tableView.register(nib, forCellReuseIdentifier: "SendCommentControl")
         
         nib = UINib(nibName: "ReplyToComment", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "ReplyToComment")
+        tableView.register(nib, forCellReuseIdentifier: "ReplyToComment")
     }
 
-    @IBAction func backAction(sender : AnyObject) {
-        dispatch_async(dispatch_get_main_queue(), {
+    @IBAction func backAction(_ sender : AnyObject) {
+        DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as [NSObject : AnyObject])
-            self.navigationController?.popViewControllerAnimated(true)
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as! [AnyHashable: Any])
+            self.navigationController?.popViewController(animated: true)
         })
     
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "MeWeekDetailWeekViewController")
+        tracker?.set(kGAIScreenName, value: "MeWeekDetailWeekViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
-        correctToday = NSDate().dateByAddingTimeInterval(60*60*24)
+        correctToday = Date().addingTimeInterval(60*60*24)
 
         if let aWeek = initialObject {
 //            if let txt = aWeek.goalName?.uppercaseString {
@@ -129,11 +130,11 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     
     // MARK: - tableview Override
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if week[currentWeek.yearWeek] == nil {
             return 0
         }
@@ -151,12 +152,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
 
             if indexPath.row == detailRows.weekoverview.rawValue {
-                let cell: WeekScoreControlCell = tableView.dequeueReusableCellWithIdentifier("WeekScoreControlCell", forIndexPath: indexPath) as! WeekScoreControlCell
+                let cell: WeekScoreControlCell = tableView.dequeueReusableCell(withIdentifier: "WeekScoreControlCell", for: indexPath) as! WeekScoreControlCell
                 
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setSingleActivity(data ,isScore: shouldAnimate(indexPath))
@@ -168,7 +169,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             if indexPath.row == detailRows.activity.rawValue {
                 if let data = week[currentWeek.yearWeek]  {
                     if goalType != GoalType.NoGoGoalString.rawValue && data.goalType != GoalType.TimeZoneGoalString.rawValue{
-                        let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                        let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
                         cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                         return cell
                     }
@@ -176,7 +177,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             }
             
             if indexPath.row == detailRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
                 if let data = week[currentWeek.yearWeek]  {
                     cell.setWeekActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
@@ -208,7 +209,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 if data.messageLink != nil && indexPath.section == 1 {
                     //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
                     if currentThreadID != previousThreadID {
-                        if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as? CommentControlCell {
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
@@ -218,7 +219,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                         }
                     } else {
                         // if the thread id is the same then show the reply to comment cell
-                        if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyToComment", for: indexPath) as? ReplyToComment {
                             cell.setBuddyCommentData(comment)
                             cell.indexPath = indexPath
                             cell.commentDelegate = self
@@ -231,18 +232,18 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
 
             }
         }
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(frame: CGRect.zero)
 
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let data = week[currentWeek.yearWeek] {
             if section == 0 {
-                let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
+                let cell : YonaButtonsTableHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YonaButtonsTableHeaderView") as! YonaButtonsTableHeaderView
                 cell.delegate = self
                 
                 let other = week[currentWeek.yearWeek]?.date.yearWeek
-                let otherDateStart = correctToday.dateByAddingTimeInterval(-60*60*24*7)
+                let otherDateStart = correctToday.addingTimeInterval(-60*60*24*7)
                 let otherDate = otherDateStart.yearWeek
                 
                 if correctToday.yearWeek == other {
@@ -250,7 +251,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 } else if other == otherDate {
                     cell.headerTextLabel.text =  NSLocalizedString("last_week", comment: "")
                 } else {
-                    cell.headerTextLabel.text = "\(otherDateStart.shortDayMonthDateString()) - \(otherDateStart.dateByAddingTimeInterval(7*60*60*24).shortDayMonthDateString())"
+                    cell.headerTextLabel.text = "\(otherDateStart.shortDayMonthDateString()) - \(otherDateStart.addingTimeInterval(7*60*60*24).shortDayMonthDateString())"
                 }
                 var next = false
                 var prev = false
@@ -268,14 +269,14 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                 }
                 return cell
             } else if section == 1 && self.comments.count > 0{
-                let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CommentTableHeader") as! CommentTableHeader
+                let cell : CommentTableHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentTableHeader") as! CommentTableHeader
                 return cell
             }
         }
         return nil
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {
             if goalType == GoalType.BudgetGoalString.rawValue {
@@ -294,7 +295,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 44.0
         } else if section == 1 && self.comments.count > 0{
@@ -303,7 +304,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         return 0.0
     }
 
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
         if self.comments.count > 0{
             if indexPath.section == 1 {
                 print(indexPath.row)
@@ -339,7 +340,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
 
     
-    func loadData (typeToLoad : loadType = .own) {
+    func loadData (_ typeToLoad : loadType = .own) {
         // SKAL ALTID HENTE DATA FØRSTE GANG FOR UGEN
         // ALWAYS DOWNLOAD DATA FIRST TIME FOR THE WEEK
         Loader.Show()
@@ -362,7 +363,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
                     if success {
                         
                         if let data = activitygoals {
-                            self.navigationItem.title = data.goalName?.uppercaseString
+                            self.navigationItem.title = data.goalName?.uppercased()
                             self.currentWeek = data.date
                             self.week[data.date.yearWeek] = data
                             self.goalType = data.goalType
@@ -444,33 +445,33 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     // MARK: - CommentCellDelegate
-    func deleteComment(cell: CommentControlCell, comment: Comment){
+    func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
             if success {
-                self.comments.removeAtIndex((cell.indexPath?.row)!)
+                self.comments.remove(at: (cell.indexPath?.row)!)
             } else {
                 self.displayAlertMessage(message!, alertDescription: "")
             }
         })
     }
     
-    func showSendComment(comment: Comment?) {
+    func showSendComment(_ comment: Comment?) {
         self.comments = []
         if let comment = comment {
             self.comments.append(comment)
         }
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.sendCommentFooter!.alpha = 1
         })
     }
     
     // MARK: - SendCommentControlProtocol
-    func textFieldBeginEdit(textField: UITextField, commentTextField: UITextField) {
-        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+    func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
-    func textFieldEndEdit(commentTextField: UITextField, comment: Comment?){
+    func textFieldEndEdit(_ commentTextField: UITextField, comment: Comment?){
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
         if let data = week[currentWeek.yearWeek],
@@ -482,7 +483,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     }
     
     // MARK: - get comment data
-    func getComments(commentLink: String) {
+    func getComments(_ commentLink: String) {
         CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
             if success {
                 self.comments = []

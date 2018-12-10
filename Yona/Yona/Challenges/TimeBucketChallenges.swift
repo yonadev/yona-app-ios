@@ -8,16 +8,29 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
+}
+
 
 class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChallengeDelegate, TimeZoneChallengeDelegate, NoGoChallengeDelegate {
     
     enum SelectedCategoryHeader {
-        case BudgetGoal
-        case BudgetActivity
-        case TimeZoneGoal
-        case TimeZoneActivity
-        case NoGoGoal
-        case NoGoActivity
+        case budgetGoal
+        case budgetActivity
+        case timeZoneGoal
+        case timeZoneActivity
+        case noGoGoal
+        case noGoActivity
     }
     
     @IBOutlet var headerView: UIView!
@@ -40,7 +53,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     @IBOutlet var budgetViewBottomBorder: UIView!
     @IBOutlet var timezoneViewBottomBorder: UIView!
     @IBOutlet var nogoViewBottomBorder: UIView!
-        
+    
     var selectedCategoryView: UIView!
     var activityCategoriesArrayBudget = [Activities]()
     var activityCategoriesArrayTimeZone = [Activities]()
@@ -53,22 +66,22 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     var activitySelected: Activities?
     var budgetGoalSelected: Goal?
     
-    var categoryHeader = SelectedCategoryHeader.BudgetGoal
+    var categoryHeader = SelectedCategoryHeader.budgetGoal
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //It will select NoGo tab by default
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "TimeBucketChallenges")
+        tracker?.set(kGAIScreenName, value: "TimeBucketChallenges")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
         self.callActivityCategory()
         setDeselectOtherCategory()
-
+        
         budgetGoalSelected = nil
         
         if let tabName = getTabToDisplay(YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay) {
@@ -95,7 +108,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         }
     }
     
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
         
     }
@@ -109,20 +122,20 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     
     // MARK: - private functions
     
-    private func setDeselectOtherCategory() {
-        self.budgetViewBottomBorder.hidden = true
-        self.timezoneViewBottomBorder.hidden = true
-        self.nogoViewBottomBorder.hidden = true
+    fileprivate func setDeselectOtherCategory() {
+        self.budgetViewBottomBorder.isHidden = true
+        self.timezoneViewBottomBorder.isHidden = true
+        self.nogoViewBottomBorder.isHidden = true
         
         budgetView.alpha = 0.5
         timezoneView.alpha = 0.5
         nogoView.alpha = 0.5
     }
     
-    private func setSelectedCategory(categoryView: UIView) {
-//        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+    fileprivate func setSelectedCategory(_ categoryView: UIView) {
+        //        self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
         self.navigationItem.leftBarButtonItem = nil
-
+        
         selectedCategoryView = categoryView
         
         categoryView.alpha = 1.0
@@ -130,24 +143,24 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         switch categoryView {
             
         case budgetView:
-            addNewGoalButton.hidden = !(self.activityCategoriesArrayBudget.count > 0)
-            categoryHeader = .BudgetGoal
-            self.budgetViewBottomBorder.hidden = false
-        
-            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.budget.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
-
+            addNewGoalButton.isHidden = !(self.activityCategoriesArrayBudget.count > 0)
+            categoryHeader = .budgetGoal
+            self.budgetViewBottomBorder.isHidden = false
+            
+            UserDefaults.standard.set(timeBucketTabNames.budget.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+            
             
         case timezoneView:
-            addNewGoalButton.hidden = !(self.activityCategoriesArrayTimeZone.count > 0)
-            categoryHeader = .TimeZoneGoal
-            self.timezoneViewBottomBorder.hidden = false
-            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.timeZone.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+            addNewGoalButton.isHidden = !(self.activityCategoriesArrayTimeZone.count > 0)
+            categoryHeader = .timeZoneGoal
+            self.timezoneViewBottomBorder.isHidden = false
+            UserDefaults.standard.set(timeBucketTabNames.timeZone.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
             
         case nogoView:
-            addNewGoalButton.hidden = !(self.activityCategoriesArrayNoGoGoal.count > 0)
-            categoryHeader = .NoGoGoal
-            self.nogoViewBottomBorder.hidden = false
-            NSUserDefaults.standardUserDefaults().setObject(timeBucketTabNames.noGo.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
+            addNewGoalButton.isHidden = !(self.activityCategoriesArrayNoGoGoal.count > 0)
+            categoryHeader = .noGoGoal
+            self.nogoViewBottomBorder.isHidden = false
+            UserDefaults.standard.set(timeBucketTabNames.noGo.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.timeBucketTabToDisplay)
             
         default:
             print("")
@@ -157,28 +170,28 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         self.tableView.reloadData()
     }
     
-    private func updateUI(goal: GoalType, timeBucketData: [Goal]) {
-        let arrayData = timeBucketData.sort { $0.GoalName < $1.GoalName }
+    fileprivate func updateUI(_ goal: GoalType, timeBucketData: [Goal]) {
+        let arrayData = timeBucketData.sorted { $0.GoalName < $1.GoalName }
         switch goal {
         case .BudgetGoalString:
             self.budgetArray = arrayData
-            self.budgetBadgeLabel.hidden = self.budgetArray.count > 0 ? false : true
+            self.budgetBadgeLabel.isHidden = self.budgetArray.count > 0 ? false : true
             self.budgetBadgeLabel.text = String(self.budgetArray.count)
             
         case .TimeZoneGoalString:
             self.timeZoneArray = arrayData
-            self.timezoneBadgeLabel.hidden = self.timeZoneArray.count > 0 ? false : true
+            self.timezoneBadgeLabel.isHidden = self.timeZoneArray.count > 0 ? false : true
             self.timezoneBadgeLabel.text = String(self.timeZoneArray.count)
             
         case .NoGoGoalString:
             self.nogoArray = arrayData
-            self.nogoBadgeLabel.hidden = self.nogoArray.count > 0 ? false : true
+            self.nogoBadgeLabel.isHidden = self.nogoArray.count > 0 ? false : true
             self.nogoBadgeLabel.text = String(self.nogoArray.count)
         }
         self.tableView.reloadData()
     }
     
-    private func timeBucketData(goaltype: GoalType) {
+    fileprivate func timeBucketData(_ goaltype: GoalType) {
         //switch statemetn for goaltype here, update UI with teh array of goal type
         switch goaltype {
         case .BudgetGoalString:
@@ -187,16 +200,16 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
             self.updateUI(goaltype, timeBucketData: self.timeZoneArray)
         case .NoGoGoalString:
             self.updateUI(goaltype, timeBucketData: self.nogoArray)
-
+            
         }
     }
     
-//    private func callGoals(activities: [Activities], goals: [Goal]?) {
-        private func callGoals( goals: [Goal]?) {
+    //    private func callGoals(activities: [Activities], goals: [Goal]?) {
+    fileprivate func callGoals( _ goals: [Goal]?) {
         #if DEBUG
         print("****** GOALS CALLED ******")
         #endif
-
+        
         if let goalsUnwrap = goals {
             self.budgetArray = GoalsRequestManager.sharedInstance.sortGoalsIntoArray(GoalType.BudgetGoalString, goals: goalsUnwrap)
             self.timeBucketData(.BudgetGoalString)
@@ -209,11 +222,11 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         }
     }
     
-    private func callActivityCategory() {
+    fileprivate func callActivityCategory() {
         #if DEBUG
         print("****** ACTIVITY CALLED ******")
         #endif
-        if NSUserDefaults.standardUserDefaults().boolForKey(YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
+        if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn) {
             Loader.Show()
             ActivitiesRequestManager.sharedInstance.getActivitiesNotAddedWithTheUsersGoals{ (success, message, code, budgetactivities,timezoneactivity,nogogoalactivity, goals, error) in
                 Loader.Hide()
@@ -222,8 +235,8 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                     self.activityCategoriesArrayTimeZone = timezoneactivity!
                     self.activityCategoriesArrayNoGoGoal = nogogoalactivity!
                     
-//                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
-//                    self.callGoals(self.activityCategoriesArray, goals: goals)
+                    //                    self.addNewGoalButton.hidden = !(self.activityCategoriesArray.count > 0)
+                    //                    self.callGoals(self.activityCategoriesArray, goals: goals)
                     self.callGoals( goals)
                     self.setSelectedCategory(self.selectedCategoryView)
                 } else {
@@ -234,13 +247,13 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
                 }
             }
         }
-
+        
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
         
         self.navigationItem.leftBarButtonItem = nil
         //    Looks for single or multiple taps.
@@ -253,74 +266,74 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         let nogoTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.categoryTapEvent)
         self.nogoView.addGestureRecognizer(nogoTap)
         
-
         
-        self.budgetBadgeLabel.hidden = true
-        self.nogoBadgeLabel.hidden = true
-        self.timezoneBadgeLabel.hidden = true
+        
+        self.budgetBadgeLabel.isHidden = true
+        self.nogoBadgeLabel.isHidden = true
+        self.timezoneBadgeLabel.isHidden = true
         
         setDeselectOtherCategory()
-           // setSelectedCategory(self.nogoView)
-
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        // setSelectedCategory(self.nogoView)
+        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     
     func setHeaderTitleLabel() {
         switch categoryHeader {
-        case .BudgetGoal:
+        case .budgetGoal:
             headerLabel.text = NSLocalizedString("challenges.user.budgetGoalHeader", comment: "")
-        case .BudgetActivity:
+        case .budgetActivity:
             headerLabel.text = NSLocalizedString("challenges.user.budgetCategoryHeader", comment: "")
-        case .TimeZoneGoal:
+        case .timeZoneGoal:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneGoalHeader", comment: "")
-        case .TimeZoneActivity:
+        case .timeZoneActivity:
             headerLabel.text = NSLocalizedString("challenges.user.timezoneCategoryHeader", comment: "")
-        case .NoGoGoal:
+        case .noGoGoal:
             headerLabel.text = NSLocalizedString("challenges.user.nogoGoalHeader", comment: "")
-        case .NoGoActivity:
+        case .noGoActivity:
             headerLabel.text = NSLocalizedString("challenges.user.nogoCategoryHeader", comment: "")
         }
     }
     
     
     // MARK: - Tapgesture category view tap events
-    func categoryTapEvent(sender: UITapGestureRecognizer? = nil) {
+    @objc func categoryTapEvent(_ sender: UITapGestureRecognizer? = nil) {
         setDeselectOtherCategory()
         setSelectedCategory((sender?.view)!)
     }
     
     // MARK: - Actions
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil).build() as! [AnyHashable: Any])
         
         self.setSelectedCategory(selectedCategoryView)
     }
     
-    @IBAction func addNewGoalbuttonTapped(sender: UIButton) {
+    @IBAction func addNewGoalbuttonTapped(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil).build() as! [AnyHashable: Any])
         
-        sender.hidden = true
+        sender.isHidden = true
         self.navigationItem.leftBarButtonItem = self.backButton
         if selectedCategoryView == budgetView {
-            categoryHeader = .BudgetActivity
+            categoryHeader = .budgetActivity
             
         } else if selectedCategoryView == timezoneView {
-            categoryHeader = .TimeZoneActivity
+            categoryHeader = .timeZoneActivity
         } else if selectedCategoryView == nogoView {
-            categoryHeader = .NoGoActivity
+            categoryHeader = .noGoActivity
         }
         self.setHeaderTitleLabel()
         self.tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destinationViewController = segue.destinationViewController
+        let destinationViewController = segue.destination
         var isfromActivity:Bool = true
-        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal{
+        if categoryHeader == .budgetGoal || categoryHeader == .timeZoneGoal || categoryHeader == .noGoGoal{
             isfromActivity = false
         }
         if let segueIdentifier = segue.identifier,
@@ -366,85 +379,85 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
 
 extension TimeBucketChallenges {
     // MARK: - Table view data source
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch categoryHeader {
             
-        case .BudgetGoal:
+        case .budgetGoal:
             return self.budgetArray.count
             
-        case .TimeZoneGoal:
+        case .timeZoneGoal:
             return self.timeZoneArray.count
             
-        case .NoGoGoal:
+        case .noGoGoal:
             return self.nogoArray.count
             
-        case .BudgetActivity:
+        case .budgetActivity:
             return self.activityCategoriesArrayBudget.count
             
-        case .TimeZoneActivity:
+        case .timeZoneActivity:
             return self.activityCategoriesArrayTimeZone.count
             
-        case .NoGoActivity:
+        case .noGoActivity:
             return self.activityCategoriesArrayNoGoGoal.count
         }
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("challengeCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath)
         
         switch categoryHeader {
-        case .BudgetGoal:
+        case .budgetGoal:
             if let activityCategoryNameUnwrap = self.budgetArray[indexPath.row].GoalName,
                 let maxDurationMinutesUnwrap = self.budgetArray[indexPath.row].maxDurationMinutes {
                 let localizedString = NSLocalizedString("challenges.user.budgetGoalDescriptionText", comment: "")
-                let title = NSString(format: localizedString, String(maxDurationMinutesUnwrap), String(activityCategoryNameUnwrap))
+                let title = NSString(format: localizedString as NSString, String(maxDurationMinutesUnwrap), String(activityCategoryNameUnwrap))
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = title as String
                 cell.detailTextLabel?.numberOfLines = 0
             }
             
-        case .BudgetActivity:
+        case .budgetActivity:
             cell.textLabel?.text = self.activityCategoriesArrayBudget[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
             
-        case .TimeZoneGoal:
+        case .timeZoneGoal:
             if let activityCategoryNameUnwrap = self.timeZoneArray[indexPath.row].GoalName {
                 var andConcate = [String]()
                 for time in self.timeZoneArray[indexPath.row].zones {
                     let arr = time.dashRemoval()
-                    let a = arr.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionAndText", comment: ""))
+                    let a = arr.joined(separator: NSLocalizedString("challenges.user.TimeZoneGoalDescriptionAndText", comment: ""))
                     andConcate.append(a)
                 }
-                let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "") + andConcate.joinWithSeparator(NSLocalizedString("challenges.user.TimeZoneGoalDescriptionBetweenText", comment: ""))
+                let localizedString = NSLocalizedString("challenges.user.TimeZoneGoalDescriptionText", comment: "") + andConcate.joined(separator: NSLocalizedString("challenges.user.TimeZoneGoalDescriptionBetweenText", comment: ""))
                 
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = localizedString
                 cell.detailTextLabel?.numberOfLines = 2
-                cell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+                cell.detailTextLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
                 //cell.detailTextLabel?.
             }
             
-        case .TimeZoneActivity:
+        case .timeZoneActivity:
             cell.textLabel?.text = self.activityCategoriesArrayTimeZone[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
             
-        case .NoGoGoal:
+        case .noGoGoal:
             if let activityCategoryNameUnwrap = self.nogoArray[indexPath.row].GoalName,
                 let _ = self.nogoArray[indexPath.row].maxDurationMinutes {
                 let localizedString = NSLocalizedString("challenges.user.nogoGoalDescriptionText", comment: "")
-                let title = NSString(format: localizedString, String(activityCategoryNameUnwrap))
+                let title = NSString(format: localizedString as NSString, String(activityCategoryNameUnwrap))
                 cell.textLabel?.text = activityCategoryNameUnwrap
                 cell.detailTextLabel?.text = title as String
                 cell.detailTextLabel?.numberOfLines = 0
             }
             
-        case .NoGoActivity:
+        case .noGoActivity:
             cell.textLabel?.text = self.activityCategoriesArrayNoGoGoal[indexPath.row].activityCategoryName!
             cell.detailTextLabel?.text = ""
         }
@@ -453,58 +466,58 @@ extension TimeBucketChallenges {
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if categoryHeader == .BudgetGoal || categoryHeader == .BudgetActivity{
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        if categoryHeader == .budgetGoal || categoryHeader == .budgetActivity{
             switch categoryHeader {
-            case .BudgetActivity:
+            case .budgetActivity:
                 self.activitySelected = self.activityCategoriesArrayBudget[indexPath.row]
-            case .BudgetGoal:
+            case .budgetGoal:
                 self.budgetGoalSelected = self.budgetArray[indexPath.row]
             default:
                 break
             }
-            performSegueWithIdentifier(R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
-        } else if categoryHeader == .TimeZoneGoal  || categoryHeader == .TimeZoneActivity {
+            performSegue(withIdentifier: R.segue.timeBucketChallenges.budgetChallengeSegue, sender: self)
+        } else if categoryHeader == .timeZoneGoal  || categoryHeader == .timeZoneActivity {
             switch categoryHeader {
-            case .TimeZoneActivity:
+            case .timeZoneActivity:
                 self.activitySelected = self.activityCategoriesArrayTimeZone[indexPath.row]
-            case .TimeZoneGoal:
+            case .timeZoneGoal:
                 self.budgetGoalSelected = self.timeZoneArray[indexPath.row]
             default:
                 break
             }
-            performSegueWithIdentifier(R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)
-        } else if categoryHeader == .NoGoGoal  || categoryHeader == .NoGoActivity {
+            performSegue(withIdentifier: R.segue.timeBucketChallenges.timezoneChallengeSegue, sender: self)
+        } else if categoryHeader == .noGoGoal  || categoryHeader == .noGoActivity {
             switch categoryHeader {
-            case .NoGoActivity:
+            case .noGoActivity:
                 self.activitySelected = self.activityCategoriesArrayNoGoGoal[indexPath.row]
-            case .NoGoGoal:
+            case .noGoGoal:
                 self.budgetGoalSelected = self.nogoArray[indexPath.row]
             default:
                 break
             }
-            performSegueWithIdentifier(R.segue.timeBucketChallenges.noGoChallengeSegue, sender: self)
+            performSegue(withIdentifier: R.segue.timeBucketChallenges.noGoChallengeSegue, sender: self)
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        if categoryHeader == .BudgetGoal || categoryHeader == .TimeZoneGoal || categoryHeader == .NoGoGoal {
+        if categoryHeader == .budgetGoal || categoryHeader == .timeZoneGoal || categoryHeader == .noGoGoal {
             tableView.rowHeight =  100.0
         } else {
             tableView.rowHeight =  60.0
         }
         
         return self.tableView.rowHeight
-
+        
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
+    func tableView(_ tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
         print(tableView.estimatedRowHeight)
         print(tableView.rowHeight)
-        cell.contentView.layer.configureGradientBackground(tableView.rowHeight,colors: UIColor.yiBgGradientTwoColor().CGColor, UIColor.yiBgGradientOneColor().CGColor)
+        cell.contentView.layer.configureGradientBackground(tableView.rowHeight,colors: UIColor.yiBgGradientTwoColor().cgColor, UIColor.yiBgGradientOneColor().cgColor)
     }
 }
 
@@ -518,8 +531,9 @@ private extension Selector {
 
 // MARK: Touch Event of Custom Segment
 extension TimeBucketChallenges {
-    @IBAction func unwindToTimeBucketChallenges(segue: UIStoryboardSegue) {
-        print(segue.sourceViewController)
+    @IBAction func unwindToTimeBucketChallenges(_ segue: UIStoryboardSegue) {
+        print(segue.source)
     }
 }
+
 

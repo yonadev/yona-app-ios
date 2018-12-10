@@ -31,16 +31,16 @@ class GradientView: UIView {
         }
     }
     
-    func setGradient(color1: UIColor, color2: UIColor) {
+    func setGradient(_ color1: UIColor, color2: UIColor) {
         gradientColor = color1
         gradientColor2 = color2
         shapeLayer.frame = self.bounds
         shapeLayer.path = getPath()
         shapeLayer.lineWidth = 1.0
-        shapeLayer.strokeColor = gradientColor.CGColor
-        shapeLayer.fillColor = gradientColor2.CGColor
+        shapeLayer.strokeColor = gradientColor.cgColor
+        shapeLayer.fillColor = gradientColor2.cgColor
         
-        self.layer.insertSublayer(shapeLayer, atIndex: 0)
+        self.layer.insertSublayer(shapeLayer, at: 0)
         
     }
     
@@ -52,13 +52,20 @@ class GradientView: UIView {
     
     func getPath() -> CGPath {
         let size = self.bounds.size
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
-        CGPathMoveToPoint(path, nil, 0, 0)
-        CGPathAddLineToPoint(path, nil, (size.width/3)*2, 0)
-        CGPathAddLineToPoint(path, nil, 0, size.height-15)
-        CGPathAddLineToPoint(path, nil, 0, 0)
+        //CGPathMoveToPoint(path, nil, 0, 0)
+        path.move(to: CGPoint(x:0,y:0))
         
+        //CGPathAddLineToPoint(path, nil, (size.width/3)*2, 0)
+        path.addLine(to: CGPoint(x:(size.width/3)*2,y:0))
+        
+        //CGPathAddLineToPoint(path, nil, 0, size.height-15)
+        path.addLine(to: CGPoint(x:0,y:size.height-15))
+
+        // CGPathAddLineToPoint(path, nil, 0, 0)
+        path.addLine(to: CGPoint(x:0,y:0))
+
         return path
     }
 }

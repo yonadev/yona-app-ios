@@ -57,7 +57,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
         
         self.iconAddAvatarButton.frame = avatarImageView.frame
-        self.iconAddAvatarButton.enabled = false
+        self.iconAddAvatarButton.isEnabled = false
 
         iconAddAvatarImageView.alpha = 0.0
         configureColors(isBuddy: false)
@@ -73,38 +73,38 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     }
     
     
-    func configureColors(isBuddy isBuddy: Bool = false) {
+    func configureColors(isBuddy: Bool = false) {
         if isBuddy {
-            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().CGColor
+            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().cgColor
             self.avatarImageView.layer.borderWidth = 1.0
             self.avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
             contentView.backgroundColor = UIColor.yiWindowsBlueColor()
             profileTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
             badgesTabMainView.backgroundColor = UIColor.yiWindowsBlueColor()
         } else {
-            avatarImageView.layer.borderColor = UIColor.yiGrapeTwoColor().CGColor
+            avatarImageView.layer.borderColor = UIColor.yiGrapeTwoColor().cgColor
             self.avatarImageView.backgroundColor = UIColor.yiGrapeColor()
             contentView.backgroundColor = UIColor.yiGrapeColor()
             profileTabMainView.backgroundColor = UIColor.yiGrapeColor()
             badgesTabMainView.backgroundColor = UIColor.yiGrapeColor()
-            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().CGColor
+            self.avatarImageView.layer.borderColor = UIColor.yiWhiteColor().cgColor
             self.avatarImageView.layer.borderWidth = 1.0
         }
     
     }
     
-    func setMessage (aMessage : Message) {
+    func setMessage (_ aMessage : Message) {
         configureColors(isBuddy: true)
         nameLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
         nicknameLabel.text = aMessage.nickname
         if aMessage.UserRequestfirstName.characters.count > 0 && aMessage.UserRequestlastName.characters.count > 0{
-            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalizedString.characters.first!) \(aMessage.UserRequestlastName.capitalizedString.characters.first!)"
+            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalized.characters.first!) \(aMessage.UserRequestlastName.capitalized.characters.first!)"
         }
 
         
     }
     
-    func setUser(userModel : Users){
+    func setUser(_ userModel : Users){
         configureColors(isBuddy: false)
         aUser = userModel
         var tmpFirst = ""
@@ -121,18 +121,18 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         }
    
         if let link = userModel.userAvatarLink,
-            let URL = NSURL(string: link) {
-            avatarImageView.kf_setImageWithURL(URL)
+            let URL = URL(string: link) {
+            avatarImageView.kf.setImage(with: URL)
         } else {
             if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
-                avatraInitialsLabel.text =  "\(userModel.firstName.capitalizedString.characters.first!) \(userModel.lastName.capitalizedString.characters.first!)"
+                avatraInitialsLabel.text =  "\(userModel.firstName.capitalized.characters.first!) \(userModel.lastName.capitalized.characters.first!)"
             }
         }
         
     }
 
     
-    func setBuddy(buddy : Buddies){
+    func setBuddy(_ buddy : Buddies){
         configureColors(isBuddy: true)
         aBuddy = buddy
         var tmpFirst = ""
@@ -147,30 +147,30 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         if let txt = aBuddy?.buddyNickName {
             nicknameLabel.text = txt
         }
-        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalizedString.characters.first!) \(buddy.UserRequestlastName.capitalizedString.characters.first!)"
+        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.characters.first!) \(buddy.UserRequestlastName.capitalized.characters.first!)"
         
     }
 
     
-    func showProfileTab () {
+    @objc func showProfileTab () {
         profileTabLabel.alpha = 1.0
-        profileTabSelcetionView.hidden = false
+        profileTabSelcetionView.isHidden = false
         
-        badgesTabSelectionsView.hidden = true
+        badgesTabSelectionsView.isHidden = true
         badgesTabLabel.alpha = 0.5
         delegate?.didSelectProfileTab()
     }
     
-    @IBAction func showBadgesTab (sender : AnyObject) {
+    @IBAction func showBadgesTab (_ sender : AnyObject) {
         profileTabLabel.alpha = 0.5
-        profileTabSelcetionView.hidden = true
+        profileTabSelcetionView.isHidden = true
         
-        badgesTabSelectionsView.hidden = false
+        badgesTabSelectionsView.isHidden = false
         badgesTabLabel.alpha = 1.0
         delegate?.didSelectBadgesTab()
     }
 
-    @IBAction func addProfileImage (sender : AnyObject) {
+    @IBAction func addProfileImage (_ sender : AnyObject) {
         //if self.badgesTabMainView.hidden == true {
             delegate?.didAskToAddProfileImage()
         //}
@@ -181,8 +181,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     // MARK: - hide both tabs
     
     func setAcceptFriendsMode () {
-        profileTabMainView.hidden = true
-        badgesTabMainView.hidden = true
+        profileTabMainView.isHidden = true
+        badgesTabMainView.isHidden = true
     }
     
     
@@ -200,10 +200,10 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         iconframe.origin.y = avatarframe.origin.y + (avatarframe.size.height/2-iconframe.size.height/2)
         
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.avatarImageView.frame = avatarframe
             self.iconAddAvatarButton.frame = avatarframe
-            self.iconAddAvatarButton.enabled = true
+            self.iconAddAvatarButton.isEnabled = true
             self.avatarImageView.alpha = 0.3
             self.nameLabel.alpha = 0.0
             self.nicknameLabel.alpha = 0.0
@@ -215,8 +215,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             self.avatraInitialsLabel.alpha = 0.0
             
             }, completion: {finished in
-                self.badgesTabMainView.hidden = true
-                self.profileTabMainView.hidden = true
+                self.badgesTabMainView.isHidden = true
+                self.profileTabMainView.isHidden = true
         })
      
      }
@@ -236,11 +236,11 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         iconframe.origin.y = avatarframe.origin.y + (avatarframe.size.height/2-iconframe.size.height/2)
         
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.avatarImageView.frame = avatarframe
             self.avatarImageView.alpha = 1.0
             self.iconAddAvatarButton.frame = avatarframe
-            self.iconAddAvatarButton.enabled = false
+            self.iconAddAvatarButton.isEnabled = false
             self.nameLabel.alpha = 1.0
             self.nicknameLabel.alpha = 1.0
             self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2
@@ -251,8 +251,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             self.badgesTabMainView.alpha = 1.0
             self.profileTabMainView.alpha = 1.0
             }, completion: {finished in
-                self.badgesTabMainView.hidden = false
-                self.profileTabMainView.hidden = false
+                self.badgesTabMainView.isHidden = false
+                self.profileTabMainView.isHidden = false
         })
      
      }

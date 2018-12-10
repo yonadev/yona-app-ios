@@ -19,14 +19,14 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     override func registreTableViewCells () {
         super.registreTableViewCells()
         var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
         
         nib = UINib(nibName: "CommentControlCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "CommentControlCell")
+        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navbarColor1 = navbarColor1,
             let navbarColor = navbarColor {
@@ -41,15 +41,15 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         if let name = buddy?.UserRequestfirstName {
             if name.characters.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
-                let txt = "\(name.capitalizedString.characters.first!)"
-                btnName.setTitle(txt, forState: .Normal)
-                btnName.frame = CGRectMake(0, 0, 32, 32)
-                btnName.addTarget(self, action: #selector(showUserProfile(_:)), forControlEvents: .TouchUpInside)
+                let txt = "\(name.capitalized.characters.first!)"
+                btnName.setTitle(txt, for: UIControlState())
+                btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+                btnName.addTarget(self, action: #selector(showUserProfile(_:)), for: .touchUpInside)
                 
-                btnName.backgroundColor = UIColor.clearColor()
+                btnName.backgroundColor = UIColor.clear
                 btnName.layer.cornerRadius = btnName.frame.size.width/2
                 btnName.layer.borderWidth = 1
-                btnName.layer.borderColor = UIColor.whiteColor().CGColor
+                btnName.layer.borderColor = UIColor.white.cgColor
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 self.navigationItem.rightBarButtonItem = rightBarButton
@@ -57,21 +57,21 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         }
     }
     
-    func showUserProfile(sender : AnyObject) {
-        performSegueWithIdentifier("friendsProfile", sender: self)
+    @objc func showUserProfile(_ sender : AnyObject) {
+        performSegue(withIdentifier: "friendsProfile", sender: self)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is FriendsProfileViewController {
-            let controller = segue.destinationViewController as! FriendsProfileViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendsProfileViewController {
+            let controller = segue.destination as! FriendsProfileViewController
             controller.aUser = buddy
         }
     }
-    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+    fileprivate func shouldAnimate(_ cell : IndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
-        if animatedCells.indexOf(txt) == nil {
+        if animatedCells.index(of: txt) == nil {
             print("Animated \(txt)")
             animatedCells.append(txt)
             return true
@@ -87,17 +87,17 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         configureRightButton()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "FriendsDayDetailViewController")
+        tracker?.set(kGAIScreenName, value: "FriendsDayDetailViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         super.tableView(tableView, heightForHeaderInSection: section)
         var heightOfHeader : CGFloat = 45
         if section == 1 && self.comments.count > 0{
@@ -106,7 +106,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         return heightOfHeader
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -129,7 +129,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         return CGFloat(cellHeight)
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.section == detailDaySections.activity.rawValue && indexPath.row == detailDayRows.activity.rawValue {
             if indexPath.row == detailDayRows.activity.rawValue {
@@ -152,12 +152,12 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         return CGFloat(cellHeight)
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
 //        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
 
         if indexPath.section == 0 {
             if indexPath.row == detailDayRows.spreadCell.rawValue {
-                let cell: SpreadCell = tableView.dequeueReusableCellWithIdentifier("SpreadCell", forIndexPath: indexPath) as! SpreadCell
+                let cell: SpreadCell = tableView.dequeueReusableCell(withIdentifier: "SpreadCell", for: indexPath) as! SpreadCell
                 if let data = dayData  {
                     cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                 }
@@ -167,19 +167,19 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             if indexPath.row == detailDayRows.activity.rawValue {
                 
                 if goalType == GoalType.BudgetGoalString.rawValue || activityGoal?.goalType == GoalType.BudgetGoalString.rawValue {
-                    let cell: TimeBucketControlCell = tableView.dequeueReusableCellWithIdentifier("TimeBucketControlCell", forIndexPath: indexPath) as! TimeBucketControlCell
+                    let cell: TimeBucketControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeBucketControlCell", for: indexPath) as! TimeBucketControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if goalType == GoalType.TimeZoneGoalString.rawValue || activityGoal?.goalType == GoalType.TimeZoneGoalString.rawValue {
-                    let cell: TimeZoneControlCell = tableView.dequeueReusableCellWithIdentifier("TimeZoneControlCell", forIndexPath: indexPath) as! TimeZoneControlCell
+                    let cell: TimeZoneControlCell = tableView.dequeueReusableCell(withIdentifier: "TimeZoneControlCell", for: indexPath) as! TimeZoneControlCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data, animated: shouldAnimate(indexPath))
                     }
                     return cell
                 } else if goalType == GoalType.NoGoGoalString.rawValue || activityGoal?.goalType == GoalType.NoGoGoalString.rawValue {
-                    let cell: NoGoCell = tableView.dequeueReusableCellWithIdentifier("NoGoCell", forIndexPath: indexPath) as! NoGoCell
+                    let cell: NoGoCell = tableView.dequeueReusableCell(withIdentifier: "NoGoCell", for: indexPath) as! NoGoCell
                     if let data = dayData  {
                         cell.setDayActivityDetailForView(data)
                     }
@@ -211,22 +211,22 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             if self.dayData?.messageLink != nil && indexPath.section == 1 {
                 //if we ahve a thread id that is different in the current comment as in the previous one show ccomment control
                 if currentThreadID != previousThreadID {
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("CommentControlCell", forIndexPath: indexPath) as? CommentControlCell {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentControlCell", for: indexPath) as? CommentControlCell {
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
                         if self.dayData?.commentLink != nil {
-                            cell.replyToComment.hidden = true
+                            cell.replyToComment.isHidden = true
                             self.sendCommentFooter!.postCommentLink = self.dayData?.commentLink
                         } else if comment.replyLink != nil {
-                            cell.replyToComment.hidden = false
+                            cell.replyToComment.isHidden = false
                             self.sendCommentFooter!.postReplyLink = comment.replyLink
                         }
                         return cell
                     }
                 } else {
                     // if the thread id is the same then show the reply to comment cell
-                    if let cell = tableView.dequeueReusableCellWithIdentifier("ReplyToComment", forIndexPath: indexPath) as? ReplyToComment {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyToComment", for: indexPath) as? ReplyToComment {
                         cell.setBuddyCommentData(comment)
                         cell.indexPath = indexPath
                         cell.commentDelegate = self
@@ -238,11 +238,11 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             }
             
         }
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(frame: CGRect.zero)
     }
 
 
-    override func loadData (typeToLoad : loadType = .own) {
+    override func loadData (_ typeToLoad : loadType = .own) {
         
         Loader.Show()
         //        size = 4
@@ -258,7 +258,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
                             self.goalType = data.goalType
-                            self.navigationItem.title = self.dayData?.goalName.uppercaseString //only need to do this in the first original data
+                            self.navigationItem.title = self.dayData?.goalName.uppercased() //only need to do this in the first original data
                             
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)

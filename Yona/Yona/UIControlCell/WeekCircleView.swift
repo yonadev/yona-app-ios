@@ -17,7 +17,7 @@ enum circleViewStatus {
     
     func circleColor() -> UIColor{
         switch self {
-        case overGoal:
+        case .overGoal:
             return UIColor.yiDarkishPinkColor()
         case .underGoal:
             return UIColor.yiPeaColor()
@@ -30,7 +30,7 @@ enum circleViewStatus {
 
     func circleBorderColor() -> UIColor{
         switch self {
-        case overGoal:
+        case .overGoal:
             return UIColor.yiDarkishPinkBorderColor()
         case .underGoal:
             return UIColor.yiPeaColor()
@@ -47,19 +47,19 @@ class WeekCircleView: UIView {
 
     
     @IBOutlet weak var dateText : UILabel!
-    var theData : NSDate?
+    var theData : Date?
     var activity : SingleDayActivityGoal?
     var status : circleViewStatus = .noData
     override func awakeFromNib() {
         layer.cornerRadius = frame.size.height/2
         layer.masksToBounds = true
-        layer.backgroundColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.backgroundColor = UIColor.yiGraphBarTwoColor().cgColor
         dateText.textColor = UIColor.yiWhiteColor()
         
-        layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.borderColor = UIColor.yiGraphBarTwoColor().cgColor
         layer.borderWidth = 1.0
-        layer.backgroundColor = status.circleColor().CGColor
-        layer.borderColor = status.circleBorderColor().CGColor
+        layer.backgroundColor = status.circleColor().cgColor
+        layer.borderColor = status.circleBorderColor().cgColor
 
         
         
@@ -69,25 +69,25 @@ class WeekCircleView: UIView {
         super.layoutSubviews()
         layer.cornerRadius = frame.size.height/2
         layer.masksToBounds = true
-        layer.backgroundColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.backgroundColor = UIColor.yiGraphBarTwoColor().cgColor
         dateText.textColor = UIColor.yiWhiteColor()
         
-        layer.borderColor = UIColor.yiGraphBarTwoColor().CGColor
+        layer.borderColor = UIColor.yiGraphBarTwoColor().cgColor
         layer.borderWidth = 1.0
 
-        layer.backgroundColor = status.circleColor().CGColor
-        layer.borderColor = status.circleBorderColor().CGColor
+        layer.backgroundColor = status.circleColor().cgColor
+        layer.borderColor = status.circleBorderColor().cgColor
 
     }
     
-    func configureUI(aDate : NSDate, status : circleViewStatus = .noData) {
+    func configureUI(_ aDate : Date, status : circleViewStatus = .noData) {
         theData = aDate
         self.status = status
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EE\nd"
-        dateText.text = dateFormatter.stringFromDate(aDate)
-        layer.backgroundColor = status.circleColor().CGColor
-        layer.borderColor = status.circleBorderColor().CGColor
+        dateText.text = dateFormatter.string(from: aDate)
+        layer.backgroundColor = status.circleColor().cgColor
+        layer.borderColor = status.circleBorderColor().cgColor
     }
     
 }

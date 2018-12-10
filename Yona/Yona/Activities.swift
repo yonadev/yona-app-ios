@@ -38,7 +38,7 @@ struct Activities {
             if let selfLink = links[YonaConstants.jsonKeys.selfLinkKeys] as? [String: AnyObject],
                 let href = selfLink[YonaConstants.jsonKeys.hrefKey] as? String{
                 self.selfLinks = href
-                if let lastPath = NSURL(string: href)?.lastPathComponent {
+                if let lastPath = URL(string: href)?.lastPathComponent {
                     self.activityID = lastPath
                 }
             }

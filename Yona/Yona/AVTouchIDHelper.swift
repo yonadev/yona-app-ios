@@ -13,7 +13,7 @@ typealias Success = () -> ()
 typealias Failure = (NSError) -> ()
 
 class AVTouchIDHelper: NSObject {    
-    private var context: LAContext!
+    fileprivate var context: LAContext!
     
     
     override init() {
@@ -23,35 +23,35 @@ class AVTouchIDHelper: NSObject {
     
     func isBiometricSupported() -> Bool {
         var error: NSError?
-        guard context.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             return false
         }
         
         return true
     }
     
-    func authenticateUser(withDesc desc: String, success: Success, failure: Failure) {
+    func authenticateUser(withDesc desc: String, success: @escaping Success, failure: @escaping Failure) {
         
         var error: NSError?
         
-        guard context.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
-            dispatch_async(dispatch_get_main_queue(), {
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            DispatchQueue.main.async(execute: {
                 failure(error!)
             })
             return
         }
         
         
-        context.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics,
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                localizedReason: desc,
                                reply: { (status, error) in
                                 if status {
-                                    dispatch_async(dispatch_get_main_queue(), {
+                                    DispatchQueue.main.async(execute: {
                                         success()
                                     })
                                 } else {
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        failure(error!)
+                                    DispatchQueue.main.async(execute: {
+                                        failure(error! as NSError)
                                     })
                                 }
         })

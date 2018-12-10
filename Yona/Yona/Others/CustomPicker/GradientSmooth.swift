@@ -9,17 +9,17 @@
 import Foundation
 class GradientSmooth: GradientView {
 
-    func setGradientSmooth(color1: UIColor, color2: UIColor) {
+    func setGradientSmooth(_ color1: UIColor, color2: UIColor) {
         
         // 1
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         
         // 2
-        gradientLayer.frame = CGRect(origin: self.bounds.origin, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: self.bounds.height))
+        gradientLayer.frame = CGRect(origin: self.bounds.origin, size: CGSize(width: UIScreen.main.bounds.width, height: self.bounds.height))
         
         // 3
-        let color1 = color1.CGColor as CGColorRef
-        let color2 = color2.CGColor as CGColorRef
+        let color1 = color1.cgColor as CGColor
+        let color2 = color2.cgColor as CGColor
         gradientLayer.colors = [color1, color2]
         
         // 4
@@ -29,7 +29,7 @@ class GradientSmooth: GradientView {
         self.layer.addSublayer(gradientLayer)
         
     }
-    func setSolid(color1: UIColor) {
+    func setSolid(_ color1: UIColor) {
         self.backgroundColor = color1
         gradientLayer.removeFromSuperlayer()
     }

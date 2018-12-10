@@ -9,8 +9,8 @@
 import Foundation
 
 protocol YonaTwoButtonTableViewCellProtocol {
-    func didSelectRightButton(button: UIButton)
-    func didSelectLeftButton(button: UIButton)
+    func didSelectRightButton(_ button: UIButton)
+    func didSelectLeftButton(_ button: UIButton)
 }
 
 class YonaTwoButtonTableViewCell : UITableViewCell {
@@ -41,17 +41,17 @@ class YonaTwoButtonTableViewCell : UITableViewCell {
         leftButton.backgroundColor = UIColor.yiDarkishPinkColor()
         leftButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
         
-        leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), forState: UIControlState.Normal)
+        leftButton.setTitle(NSLocalizedString("notifications.accept.reject", comment: ""), for: UIControlState())
         
        /* rightButton.layer.cornerRadius = rightButton.frame.size.height/2
         rightButton.layer.masksToBounds = true
         rightButton.backgroundColor = UIColor.yiPeaColor()
         rightButton.setTitleColor(UIColor.yiWhiteColor(), forState: UIControlState.Normal) */
     
-        rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), forState: UIControlState.Normal)
+        rightButton.setTitle(NSLocalizedString("notifications.accept.accept", comment: ""), for: UIControlState())
     }
     
-    func setNumber(message: Message){
+    func setNumber(_ message: Message){
         self.message = message
         let num = message.UserRequestmobileNumber
         let text = String(format:  NSLocalizedString("notifications.accept.number", comment: ""), num)
@@ -60,19 +60,19 @@ class YonaTwoButtonTableViewCell : UITableViewCell {
 
     }
     
-    @IBAction func rightButtonAction(sender: UIButton) {
+    @IBAction func rightButtonAction(_ sender: UIButton) {
         delegate?.didSelectRightButton(sender)
     }
     
     
-    @IBAction func leftButtonAction(sender: UIButton) {
+    @IBAction func leftButtonAction(_ sender: UIButton) {
        delegate?.didSelectLeftButton(sender)
     }
     
     func addGradient() {
         
-        let colorTop =  UIColor.yiBgGradientOneColor().CGColor
-        let colorBottom = UIColor.yiBgGradientTwoColor().CGColor
+        let colorTop =  UIColor.yiBgGradientOneColor().cgColor
+        let colorBottom = UIColor.yiBgGradientTwoColor().cgColor
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [ colorTop, colorBottom]
@@ -85,8 +85,8 @@ class YonaTwoButtonTableViewCell : UITableViewCell {
     
     @IBAction func callNumber () {
         if let msg = message {
-            if let aURL = NSURL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
-                UIApplication.sharedApplication().openURL(aURL)
+            if let aURL = URL(string: "telprompt://\(msg.UserRequestmobileNumber)") {
+                UIApplication.shared.openURL(aURL)
             }
         }
 

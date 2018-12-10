@@ -37,29 +37,29 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         theIconImage.image = cellType.imageType()
         if delegate is FriendsProfileViewController {
             let controller = delegate as! FriendsProfileViewController
-            theTextField.keyboardType = UIKeyboardType.Default
+            theTextField.keyboardType = UIKeyboardType.default
             switch buddyCellType! {
             
-            case FriendsProfileCategoryHeader.Name:
+            case FriendsProfileCategoryHeader.name:
                 var tmpFirst = ""
                 if let txt = controller.aUser?.UserRequestfirstName {
                     tmpFirst = txt
                 }
                 theTextField.text = tmpFirst
-            case FriendsProfileCategoryHeader.LastName:
+            case FriendsProfileCategoryHeader.lastName:
                 var tmpLast = ""
                 if let txt = controller.aUser?.UserRequestlastName {
                     tmpLast = txt
                 }
                 theTextField.text = tmpLast
                 
-            case FriendsProfileCategoryHeader.NickName:
+            case FriendsProfileCategoryHeader.nickName:
                 theTextField.text = controller.aUser?.buddyNickName
-            case FriendsProfileCategoryHeader.CellNumber:
-                theTextField.formatting = .PhoneNumber
+            case FriendsProfileCategoryHeader.cellNumber:
+                theTextField.formatting = .phoneNumber
                 theTextField.text = ""
                 theTextField.text = controller.aUser?.formattetMobileNumber
-                theTextField.keyboardType = UIKeyboardType.PhonePad
+                theTextField.keyboardType = UIKeyboardType.phonePad
             }
             
         }
@@ -71,35 +71,33 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         delegate = theDelegate
         theTitleLable.text = cellType.headerText()
         theIconImage.image = cellType.imageType()
-        theTextField.keyboardType = UIKeyboardType.Default
+        theTextField.keyboardType = UIKeyboardType.default
         if delegate is YonaUserProfileViewController {
             let controller = delegate as! YonaUserProfileViewController
             switch theCellType! {
-            case .FirstName:
+            case .firstName:
                 theTextField.text = controller.aUser?.firstName
-            case ProfileCategoryHeader.LastName:
+            case ProfileCategoryHeader.lastName:
                 theTextField.text = controller.aUser?.lastName
-            case ProfileCategoryHeader.NickName:
+            case ProfileCategoryHeader.nickName:
                 theTextField.text = controller.aUser?.nickname
-            case ProfileCategoryHeader.CellNumber:
+            case ProfileCategoryHeader.cellNumber:
                 theTextField.text = ""
                 theTextField.text = controller.aUser?.formatetMobileNumber
-                //theTextField.text = num?.stringByReplacingOccurrencesOfString("+31", withString: nederlandPhonePrefix)
-                theTextField.keyboardType = UIKeyboardType.PhonePad
+                theTextField.placeholder = "+31612345678"
+                theTextField.keyboardType = UIKeyboardType.phonePad
             }
         }
-
-    
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if delegate is YonaUserProfileViewController {
             let controller = delegate as! YonaUserProfileViewController
             controller.userDidStartEdit()
         }
         
     }
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let txt = textField.text {
             updateUser(txt)
         }
@@ -109,16 +107,16 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        if theCellType == ProfileCategoryHeader.CellNumber {
+        if theCellType == ProfileCategoryHeader.cellNumber {
         // Create a button bar for the number pad
             let keyboardDoneButtonView = UIToolbar()
             keyboardDoneButtonView.sizeToFit()
             
             // Setup the buttons to be put in the system.
-            let item1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-            let item = UIBarButtonItem(title: NSLocalizedString("Done", comment: "done text"), style: UIBarButtonItemStyle.Bordered, target: self, action: #selector(YonaUserDisplayTableViewCell.endEditingNow) )
+            let item1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+            let item = UIBarButtonItem(title: NSLocalizedString("Done", comment: "done text"), style: UIBarButtonItemStyle.bordered, target: self, action: #selector(YonaUserDisplayTableViewCell.endEditingNow) )
             item.tintColor = UIColor.yiBlackColor()
             let toolbarButtons = [item1,item]
             
@@ -128,49 +126,49 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
         } else {
         textField.inputAccessoryView = nil
         }
-        return self.editing
+        return self.isEditing
 
         
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     
-    func updateUser(textToSet :String) {
+    func updateUser(_ textToSet :String) {
         if delegate is FriendsProfileViewController {
             let controller = delegate as! FriendsProfileViewController
             switch buddyCellType! {
-            case .Name:
+            case .name:
                 controller.aUser?.UserRequestfirstName = textToSet
-            case .LastName:
+            case .lastName:
                 controller.aUser?.UserRequestlastName = textToSet
-            case .NickName:
+            case .nickName:
                 controller.aUser?.buddyNickName = textToSet
-            case .CellNumber:
+            case .cellNumber:
                 controller.aUser?.UserRequestmobileNumber = textToSet
             }
         
         } else if delegate is YonaUserProfileViewController {
             let controller = delegate as! YonaUserProfileViewController
             switch theCellType! {
-            case .FirstName:
+            case .firstName:
                 controller.aUser?.firstName = textToSet
-            case ProfileCategoryHeader.LastName:
+            case ProfileCategoryHeader.lastName:
                 controller.aUser?.lastName = textToSet
-            case ProfileCategoryHeader.NickName:
+            case ProfileCategoryHeader.nickName:
                 controller.aUser?.nickname = textToSet
-            case ProfileCategoryHeader.CellNumber:
+            case ProfileCategoryHeader.cellNumber:
                 controller.aUser?.mobileNumber = textToSet
             }
         }
     }
     
     //MARK: - Helper Methods
-    func endEditingNow(){
+    @objc func endEditingNow(){
         theTextField.resignFirstResponder()
     }
     

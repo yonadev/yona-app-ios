@@ -55,14 +55,14 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         //showLeftTab(leftTabMainView)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "FriendsProfileMasterView")
+        tracker?.set(kGAIScreenName, value: "FriendsProfileMasterView")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
         setupUI()
         leftPage = 0
@@ -79,31 +79,31 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     func setupUI() {
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        theTableView.tableFooterView = UIView(frame: CGRectZero)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
+        theTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     func registreTableViewCells () {
         var nib = UINib(nibName: "YonaUserTableViewCell", bundle: nil)
-        theTableView.registerNib(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
+        theTableView.register(nib, forCellReuseIdentifier: "YonaUserTableViewCell")
         nib = UINib(nibName: "TimeLineHeaderCell", bundle: nil)
-        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineHeaderCell")
+        theTableView.register(nib, forCellReuseIdentifier: "TimeLineHeaderCell")
         nib = UINib(nibName: "TimeLineTimeBucketCell", bundle: nil)
-        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineTimeBucketCell")
+        theTableView.register(nib, forCellReuseIdentifier: "TimeLineTimeBucketCell")
         nib = UINib(nibName: "TimeLineTimeZoneCell", bundle: nil)
-        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineTimeZoneCell")
+        theTableView.register(nib, forCellReuseIdentifier: "TimeLineTimeZoneCell")
         nib = UINib(nibName: "TimeLineNoGoCell", bundle: nil)
-        theTableView.registerNib(nib, forCellReuseIdentifier: "TimeLineNoGoCell")
+        theTableView.register(nib, forCellReuseIdentifier: "TimeLineNoGoCell")
         nib = UINib(nibName: "YonaDefaultTableHeaderView", bundle: nil)
-        theTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
+        theTableView.register(nib, forHeaderFooterViewReuseIdentifier: "YonaDefaultTableHeaderView")
         
         
         
     }
-    private func shouldAnimate(cell : NSIndexPath) -> Bool {
+    fileprivate func shouldAnimate(_ cell : IndexPath) -> Bool {
         let txt = "\(cell.section)-\(cell.row)"
         
-        if animatedCells.indexOf(txt) == nil {
+        if animatedCells.index(of: txt) == nil {
             print("Animated \(txt)")
             animatedCells.append(txt)
             return true
@@ -115,7 +115,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     // MARK: - Table view data source
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset
         let bounds = scrollView.bounds
         let size = scrollView.contentSize
@@ -134,11 +134,11 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             scrolling = false
         }
     }
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrolling = false
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if selectedTab == .left {
             return 44
         }
@@ -152,9 +152,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
+        let cell : YonaDefaultTableHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YonaDefaultTableHeaderView") as! YonaDefaultTableHeaderView
         if selectedTab == .left {
             if timeLineData[section].date.isToday() {
                 cell.headerTextLabel.text = NSLocalizedString("today", comment: "")
@@ -179,7 +179,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if selectedTab == .left {
             
             return heightForTimeLineCell(indexPath)
@@ -189,7 +189,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if selectedTab == .left {
             
             return timeLineData.count
@@ -198,7 +198,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedTab == .left {
             
             return timeLineData[section].tableViewCells.count
@@ -215,12 +215,12 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if selectedTab == .left {
             return cellForTimeLineView(indexPath)
         } else {
             
-            let cell: YonaUserTableViewCell = tableView.dequeueReusableCellWithIdentifier("YonaUserTableViewCell", forIndexPath: indexPath) as! YonaUserTableViewCell
+            let cell: YonaUserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserTableViewCell", for: indexPath) as! YonaUserTableViewCell
             cell.isPanEnabled = false
             if indexPath.section == friendsSections.connected.rawValue {
                     cell.setBuddie(AcceptedBuddy[indexPath.row])
@@ -232,24 +232,24 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if selectedTab == .right {
             
             if indexPath.section == friendsSections.connected.rawValue {
-                performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
+                performSegue(withIdentifier: R.segue.friendsProfileMasterView.showFriendDetails, sender: self)
             } else {
-                tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                tableView.deselectRow(at: indexPath, animated: false)
             }
         } else {
             
             if timeLineData[indexPath.section].tableViewCells[indexPath.row] is TimeLinedayActivitiesForUsers {
                 let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row] as! TimeLinedayActivitiesForUsers
                 if obj.buddyLink != nil {
-                    performSegueWithIdentifier(R.segue.friendsProfileMasterView.showFriendsDetailDay, sender: self)
+                    performSegue(withIdentifier: R.segue.friendsProfileMasterView.showFriendsDetailDay, sender: self)
                 } else {
                     
                     let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("MeDayDetailViewController") as! MeDayDetailViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "MeDayDetailViewController") as! MeDayDetailViewController
                     vc.goalType = GoalType.NoGoGoalString.rawValue
                     let activitygoal = ActivitiesGoal(timeLinedayActivitiesForUsers: obj)
                     vc.activityGoal = activitygoal
@@ -270,9 +270,9 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destinationViewController is FriendsDayViewController {
-            let controller = segue.destinationViewController as! FriendsDayViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendsDayViewController {
+            let controller = segue.destination as! FriendsDayViewController
             if let indexpath = theTableView.indexPathForSelectedRow {
                 
                 if indexpath.section == friendsSections.connected.rawValue {
@@ -281,11 +281,11 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                 } else if indexpath.section == friendsSections.pending.rawValue {
                     controller.buddyToShow = AcceptedBuddy[indexpath.row]
                 }
-                theTableView.deselectRowAtIndexPath(indexpath, animated: false)
+                theTableView.deselectRow(at: indexpath, animated: false)
             }
         }
-        if segue.destinationViewController is FriendsDayDetailViewController {
-            let controller = segue.destinationViewController as! FriendsDayDetailViewController
+        if segue.destination is FriendsDayDetailViewController {
+            let controller = segue.destination as! FriendsDayDetailViewController
             if let section : Int = theTableView.indexPathForSelectedRow!.section {
                 let data = timeLineData[section].tableViewCells[theTableView.indexPathForSelectedRow!.row] as! TimeLinedayActivitiesForUsers
                 if let link = data.dayDetailLink {
@@ -319,7 +319,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     
-    func loadDataForTimeLine(page : Int) {
+    func loadDataForTimeLine(_ page : Int) {
         Loader.Show()
         //Not sure why but the completion block is called twice
         // Once empty and once filled, So taking the boolean to reload table and hide loader,
@@ -335,7 +335,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     if self.leftPage == 0 {
                         self.timeLineData = timeLineDayActivityOverview!
                     } else {
-                        self.timeLineData.appendContentsOf(timeLineDayActivityOverview!)
+                        self.timeLineData.append(contentsOf: timeLineDayActivityOverview!)
                     }
                     self.leftPage += 1
                 }
@@ -345,16 +345,16 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             } else {
                 Loader.Hide()
                 if  let msg = serverMessage {
-                    let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
                 
                 
             }
             //Loader.Hide()
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 if  isFirstCompletionCall == false {
                     self.theTableView.reloadData()
                     Loader.Hide()
@@ -379,7 +379,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
     
-    func loadAllBuddyList(sender:AnyObject) {
+    func loadAllBuddyList(_ sender:AnyObject) {
         Loader.Show()
         BuddyRequestManager.sharedInstance.getAllbuddies { (success, serverMessage, ServerCode, Buddies, buddies) in
             if success{
@@ -397,14 +397,14 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
                     }
                     //print(self.AcceptedBuddy)
                     //print(self.RequestedBuddy)
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.theTableView.reloadData()
                         Loader.Hide()
                     })
                     
                 } else {
                     print("No buddies")
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.theTableView.reloadData()
                         Loader.Hide()
                     })
@@ -419,16 +419,16 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
     }
     
-    @IBAction func unwindToFriendsOverview(segue: UIStoryboardSegue) {
+    @IBAction func unwindToFriendsOverview(_ segue: UIStoryboardSegue) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil).build() as! [AnyHashable: Any])
         
-        print(segue.sourceViewController)
+        print(segue.source)
     }
     
     
     //MARK: - timeline cells
-    func heightForTimeLineCell(indexPath :NSIndexPath) -> CGFloat {
+    func heightForTimeLineCell(_ indexPath :IndexPath) -> CGFloat {
         if timeLineData[indexPath.section].tableViewCells[indexPath.row] is String {
             
             return 30
@@ -454,10 +454,10 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     
-    func cellForTimeLineView (indexPath :NSIndexPath) -> UITableViewCell {
+    func cellForTimeLineView (_ indexPath :IndexPath) -> UITableViewCell {
         let obj = timeLineData[indexPath.section].tableViewCells[indexPath.row]
         if obj  is String {
-            let cell: TimeLineHeaderCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineHeaderCell", forIndexPath: indexPath) as! TimeLineHeaderCell
+            let cell: TimeLineHeaderCell = theTableView.dequeueReusableCell(withIdentifier: "TimeLineHeaderCell", for: indexPath) as! TimeLineHeaderCell
             cell.setCellTitle(timeLineData[indexPath.section].tableViewCells[indexPath.row] as! String)
             return cell
         } else if obj is TimeLinedayActivitiesForUsers {
@@ -465,19 +465,19 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             let theObj = obj as! TimeLinedayActivitiesForUsers
             
             if theObj.goalType == "BudgetGoal" {
-                let cell: TimeLineTimeBucketCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineTimeBucketCell", forIndexPath: indexPath) as! TimeLineTimeBucketCell
+                let cell: TimeLineTimeBucketCell = theTableView.dequeueReusableCell(withIdentifier: "TimeLineTimeBucketCell", for: indexPath) as! TimeLineTimeBucketCell
                 
                 cell.setData(theObj, animated: shouldAnimate(indexPath))
                 return cell
             }
             if theObj.goalType == "TimeZoneGoal" {
-                let cell: TimeLineTimeZoneCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineTimeZoneCell", forIndexPath: indexPath) as! TimeLineTimeZoneCell
+                let cell: TimeLineTimeZoneCell = theTableView.dequeueReusableCell(withIdentifier: "TimeLineTimeZoneCell", for: indexPath) as! TimeLineTimeZoneCell
                 
                 cell.setTimeLineData(theObj, animated: shouldAnimate(indexPath))
                 return cell
             }
             if theObj.goalType == "NoGoGoal" {
-                let cell: TimeLineNoGoCell = theTableView.dequeueReusableCellWithIdentifier("TimeLineNoGoCell", forIndexPath: indexPath) as! TimeLineNoGoCell
+                let cell: TimeLineNoGoCell = theTableView.dequeueReusableCell(withIdentifier: "TimeLineNoGoCell", for: indexPath) as! TimeLineNoGoCell
                 
                 cell.setData(theObj)
                 return cell
@@ -486,7 +486,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             
         }
         
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(frame: CGRect.zero)
     }
     
 }

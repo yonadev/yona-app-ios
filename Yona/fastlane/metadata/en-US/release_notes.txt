@@ -1,0 +1,1 @@
+APPDEV-1192 It's no possible to go from buddy info change message to buddy details screen

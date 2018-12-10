@@ -29,14 +29,14 @@ class DayViewLinkCell: UITableViewCell {
     }
 
 
-    func setData(linkURL : String, startDate : NSDate) {
+    func setData(_ linkURL : String, startDate : Date) {
         cellTitle.text = NSLocalizedString("link.cell.title", comment: "")
         
         violationLinkURL.text = linkURL
         violationLinkURL.sizeToFit()
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        let txt = formatter.stringFromDate(startDate)
+        let txt = formatter.string(from: startDate)
         violationTime.text = txt
     
     

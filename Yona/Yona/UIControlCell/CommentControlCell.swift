@@ -18,7 +18,7 @@ class CommentControlCell: PKSwipeTableViewCell {
     @IBOutlet weak var separator: UIView!
     @IBOutlet weak var replyButtonHeightConstraint: NSLayoutConstraint!
     var comment: Comment?
-    var indexPath: NSIndexPath?
+    var indexPath: IndexPath?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,12 +36,12 @@ class CommentControlCell: PKSwipeTableViewCell {
         //Create a view that will display when user swipe the cell in right
         let viewCall = UIView()
         viewCall.backgroundColor = UIColor.yiDarkishPinkColor()
-        viewCall.frame = CGRectMake(0,0, self.frame.size.height,self.frame.size.height)
+        viewCall.frame = CGRect(x: 0,y: 0, width: self.frame.size.height,height: self.frame.size.height)
         //Add a button to perform the action when user will tap on call and add a image to display
-        let btnCall = UIButton(type: UIButtonType.Custom)
-        btnCall.frame = CGRectMake(0,0,viewCall.frame.size.width,viewCall.frame.size.height)
-        btnCall.setImage(UIImage(named: "icnDelete"), forState: UIControlState.Normal)
-        btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), forControlEvents: UIControlEvents.TouchUpInside)
+        let btnCall = UIButton(type: UIButtonType.custom)
+        btnCall.frame = CGRect(x: 0,y: 0,width: viewCall.frame.size.width,height: viewCall.frame.size.height)
+        btnCall.setImage(UIImage(named: "icnDelete"), for: UIControlState())
+        btnCall.addTarget(self, action: #selector(CommentControlCell.deleteMessage), for: UIControlEvents.touchUpInside)
         avatarImageView.backgroundColor = UIColor.yiGrapeColor()
         viewCall.addSubview(btnCall)
         //Call the super addRightOptions to set the view that will display while swiping
@@ -49,19 +49,19 @@ class CommentControlCell: PKSwipeTableViewCell {
     }
     
     
-    func deleteMessage(){
+    @objc func deleteMessage(){
         if let commentDelegate = commentDelegate,
             let comment = comment{
             commentDelegate.deleteComment(self, comment: comment)
         }
     }
     
-    func setBuddyCommentData(comment: Comment) {
+    func setBuddyCommentData(_ comment: Comment) {
         self.comment = comment
         self.commentLabel.text = comment.message
         self.name.text = comment.nickname
         
-        if self.isKindOfClass(ReplyToComment) {
+        if self.isKind(of: ReplyToComment.self) {
             avatarImageView.backgroundColor = UIColor.yiWindowsBlueColor()
         } else {
             avatarImageView.backgroundColor = UIColor.yiGrapeColor()
@@ -70,24 +70,24 @@ class CommentControlCell: PKSwipeTableViewCell {
         
         
         if let nickname = comment.nickname {
-            avatarNameLabel.text = "\(nickname.capitalizedString.characters.first!)"
+            avatarNameLabel.text = "\(nickname.capitalized.characters.first!)"
         }
         
         
         
     }
 
-    func hideShowReplyButton(hide: Bool) {
-        self.replyToComment.hidden = hide
-        self.separator.hidden = hide
+    func hideShowReplyButton(_ hide: Bool) {
+        self.replyToComment.isHidden = hide
+        self.separator.isHidden = hide
         if hide {
             replyButtonHeightConstraint.constant = -80
         }
     }
     
-    @IBAction func replyToCommentButton(sender: UIButton) {
+    @IBAction func replyToCommentButton(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "replyToCommentButton", label: "Replying to comment button press", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "replyToCommentButton", label: "Replying to comment button press", value: nil).build() as! [AnyHashable: Any])
         
         commentDelegate?.showSendComment(comment)
     }

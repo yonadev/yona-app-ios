@@ -15,20 +15,20 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
-        let requestObj = NSURLRequest(URL: NSURL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
+        let requestObj = URLRequest(url: URL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
         self.privacyView.loadRequest(requestObj)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "PrivacyStatementVC")
+        tracker?.set(kGAIScreenName, value: "PrivacyStatementVC")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
     //when webview is loaded stop the loading wheel and hide the view
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         Loader.Hide()
     }
 }

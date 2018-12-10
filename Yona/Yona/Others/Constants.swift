@@ -14,6 +14,9 @@ typealias PinCode = String
 typealias AddDeviceCode = String
 
 struct YonaConstants {
+    static let profileImageWidth = 32
+    static let profileImageHeight = 32
+    
     struct urlLinks {
         static let privacyStatementURLString = "http://www.yona.nu/app/privacy"
     }
@@ -29,12 +32,10 @@ struct YonaConstants {
     
     struct commands {
         static let users = "users/"
-        static let appOpened = "users/{id}/openApp/"
         static let adminRequestOverride = "admin/requestUserOverwrite/?mobileNumber=" //hard coded not in the feed
         static let userRequestOverrideCode = "?overwriteUserConfirmationCode="
         static let activityCategories = "activityCategories/"
         static let newDeviceRequests = "newDeviceRequests/"
-
     }
 
     struct keychain {
@@ -69,7 +70,7 @@ struct YonaConstants {
         static let  yonaActivityCategories = "yona:activityCategories"
         //links
         static let  yonaUserSelfLink = "yona:user"
-//        static let  yonaUserSelfLink = "self"//"yona:user"
+        static let  yonaOpenAppEventLink = "yona:postOpenAppEvent"
         static let  linksKeys = "_links"
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"
@@ -206,10 +207,7 @@ struct YonaConstants {
         static let mobileMiddleSpace = 9
         static let mobileLastSpace = 13
     }
-    
-    struct mobileDucthPrefix {
-        static let txt = "+31 (0)"
-    }
+  
     struct testKeys{
         static let otpTestCode = "1234"
     }
@@ -223,10 +221,14 @@ struct YonaConstants {
         static let screenToDisplay = "screenToDisplay"
         static let timeBucketTabToDisplay = "timeBucketTabToDisplay"
         static let adminOverride = "adminOverride"
-        static let userToOverride = "userToOverride"
+        static let userBody = "userBody"
         static let isGoalsAdded = "isGoalsAdded"
         static let vpncompleted = "vpncompleted"
         static let vpnSetupStatus = "vpnSetupStatus"
         static let fromAddressBook = "fromAddressBook"
-    }   
+        static let savedUser = "savedUser"
+        static let confirmPinFromProfile = "ConfirmPinFromProfile"
+        static let confirmPinFromSignUp = "confirmPinFromSignUp"
+        static let numberOfFailedLoginAttempts = "numberOfFailedLoginAttempts"
+    }
 }

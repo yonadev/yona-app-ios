@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     var activeField : UITextField?
@@ -27,60 +28,60 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "SignUpFirstStepViewController")
+        tracker?.set(kGAIScreenName, value: "SignUpFirstStepViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
-        
-        IQKeyboardManager.sharedManager().enable = false
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
+        IQKeyboardManager.shared.enable = false
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        IQKeyboardManager.sharedManager().enable = true
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        IQKeyboardManager.shared.enable = true
+        NotificationCenter.default.removeObserver(self)
     }
 
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == R.segue.signUpFirstStepViewController.signUpSecondStepViewController.identifier,
-            let vc = segue.destinationViewController as? SignUpSecondStepViewController {
+            let vc = segue.destination as? SignUpSecondStepViewController {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "nextSignupSecondStep", label: "Go to step 2 signup", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextSignupSecondStep", label: "Go to step 2 signup", value: nil).build() as! [AnyHashable: Any])
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text
         }
     }
     
-    func keyboardWillShow(notification: NSNotification)
+    @objc func keyboardWillShow(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 96;
-        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
-        UIView.animateWithDuration(animationDiration) {
+        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    func keyboardWillHiden(notification: NSNotification)
+    @objc func keyboardWillHiden(_ notification: Notification)
     {
         self.topViewHeightConstraint.constant = 210;
-        let animationDiration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!;
-        let animationCurve = UIViewAnimationCurve.init(rawValue: Int(notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]!.intValue!))!
-        UIView.animateWithDuration(animationDiration) {
+        let animationDiration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue!;
+        let animationCurve = UIViewAnimationCurve.init(rawValue: Int((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value!))!
+        UIView.animate(withDuration: animationDiration, animations: {
             UIView.setAnimationCurve(animationCurve)
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         // Text Delegates
         firstnameTextField.delegate = self
         lastnameTextField.delegate = self
@@ -90,34 +91,34 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         view.addGestureRecognizer(tap)
         
         // Adding right mode image to text fields
-        let firstname = UIImageView(image: R.image.icnName)
-        firstname.frame = CGRectMake(0.0, 0.0, firstname.image!.size.width+10.0, firstname.image!.size.height);
-        firstname.contentMode = UIViewContentMode.Center
+        let firstname = UIImageView(image: R.image.icnName())
+        firstname.frame = CGRect(x: 0.0, y: 0.0, width: firstname.image!.size.width+10.0, height: firstname.image!.size.height);
+        firstname.contentMode = UIViewContentMode.center
         self.firstnameTextField.rightView = firstname;
-        self.firstnameTextField.rightViewMode = UITextFieldViewMode.Always
+        self.firstnameTextField.rightViewMode = UITextFieldViewMode.always
         
         
-        let lastname = UIImageView(image: R.image.icnName)
-        lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
-        lastname.contentMode = UIViewContentMode.Center
+        let lastname = UIImageView(image: R.image.icnName())
+        lastname.frame = CGRect(x: 0.0, y: 0.0, width: lastname.image!.size.width+10.0, height: lastname.image!.size.height);
+        lastname.contentMode = UIViewContentMode.center
         self.lastnameTextField.rightView = lastname;
-        self.lastnameTextField.rightViewMode = UITextFieldViewMode.Always
+        self.lastnameTextField.rightViewMode = UITextFieldViewMode.always
         
     }
     
     // Go Back To Previous VC
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil).build() as! [AnyHashable: Any])
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func unwindToFirstStep(segue: UIStoryboardSegue) {
+    @IBAction func unwindToFirstStep(_ segue: UIStoryboardSegue) {
 
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if self.firstnameTextField.text!.characters.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:
                 "Please input a First Name.")
@@ -139,7 +140,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
 
 extension SignUpFirstStepViewController: UITextFieldDelegate {
     // Text Field Return Resign First Responder
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField == firstnameTextField) {
             lastnameTextField.becomeFirstResponder()
             
@@ -148,9 +149,17 @@ extension SignUpFirstStepViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == firstnameTextField || textField == lastnameTextField {
+            IQKeyboardManager.shared.enableAutoToolbar = true
+        } else {
+            IQKeyboardManager.shared.enableAutoToolbar = false
+        }
+    }
 
     //Calls this function when the tap is recognized.
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
 }

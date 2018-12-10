@@ -9,7 +9,7 @@
 import Foundation
 
 protocol YonaButtonTableViewCellProtocol {
-    func didSelectButton(button: UIButton)
+    func didSelectButton(_ button: UIButton)
     
 }
 
@@ -26,20 +26,20 @@ class YonaButtonTableViewCell : UITableViewCell{
        
         theButton.layer.cornerRadius = theButton.frame.size.height/2
         theButton.layer.masksToBounds = true
-        theButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
+        theButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
         theButton.layer.borderWidth = 1
         theButton.backgroundColor = UIColor.yiWhiteColor()
-        theButton.setTitleColor(UIColor.yiMidBlueColor(), forState: UIControlState.Normal)
+        theButton.setTitleColor(UIColor.yiMidBlueColor(), for: UIControlState())
     
-        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), forState: UIControlState.Normal)
+        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControlState())
     }
     
-    func setButtonTitle(title:String) {
-        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), forState: UIControlState.Normal)
+    func setButtonTitle(_ title:String) {
+        theButton.setTitle(NSLocalizedString("friendprofile.button.title", comment: ""), for: UIControlState())
     
     }
     
-    @IBAction func buttonAction(sender: UIButton) {
+    @IBAction func buttonAction(_ sender: UIButton) {
        delegate?.didSelectButton(sender)
     }
 }

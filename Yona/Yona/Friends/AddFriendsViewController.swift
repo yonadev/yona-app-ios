@@ -10,6 +10,31 @@
 import UIKit
 import AddressBook
 import AddressBookUI
+import IQKeyboardManagerSwift
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIAlertViewDelegate {
     
@@ -26,14 +51,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     @IBOutlet var lastnameTextfield: UITextField!
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var mobileTextfield: UITextField!
-    private var mobilePrefixTextField: UITextField!
+    fileprivate var mobilePrefixTextField: UITextField!
     @IBOutlet var messageTextfield: UITextField!
     @IBOutlet var inviteFriendButton: UIButton!
     @IBOutlet var screenTitle: UILabel!
-    var addressBook: ABAddressBookRef?
+    var addressBook: ABAddressBook?
     var people = ABPeoplePickerNavigationController()
     var previousRange: NSRange!
-    private let nederlandPhonePrefix = "31"
+    fileprivate let nederlandPhonePrefix = "31"
 
     // MARK: - View
     override func viewDidLoad() {
@@ -46,117 +71,117 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         self.setupUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "AddFriendsViewController")
+        tracker?.set(kGAIScreenName, value: "AddFriendsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
-        ManualTabAction(UIButton)
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        ManualTabAction(UIButton())
 //        UIToolbar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().barTintColor = UIColor.yellowColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        UIToolbar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
 //        UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     }
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
     
         
     //This is an ugly hack to handle the situation where the app returns from the Addresbook, and BaseTabViewController kicks in
-    NSUserDefaults.standardUserDefaults().setBool(false, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
+    UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
 
     }
     
     // MARK: - private functions
-    private func setupUI() {
+    fileprivate func setupUI() {
         if var label = previousRange {
             label.length = 1
         }
         
         //Nav bar Back button.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector.dismissKeyboard)
         self.view.addGestureRecognizer(tap)
         
         //Invite friend button design.
-        inviteFriendButton.backgroundColor = UIColor.clearColor()
+        inviteFriendButton.backgroundColor = UIColor.clear
         inviteFriendButton.layer.cornerRadius = inviteFriendButton.frame.size.height/2
         inviteFriendButton.layer.borderWidth = 1.5
-        inviteFriendButton.layer.borderColor = UIColor.yiMidBlueColor().CGColor
+        inviteFriendButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
         
         // Adding right mode image to text fields
-        let firstname = UIImageView(image: R.image.icnName)
-        firstname.frame = CGRectMake(0.0, 0.0, firstname.image!.size.width+10.0, firstname.image!.size.height);
-        firstname.contentMode = UIViewContentMode.Center
+        let firstname = UIImageView(image: R.image.icnName())
+        firstname.frame = CGRect(x: 0.0, y: 0.0, width: firstname.image!.size.width+10.0, height: firstname.image!.size.height);
+        firstname.contentMode = UIViewContentMode.center
         firstnameTextfield.rightView = firstname;
-        firstnameTextfield.rightViewMode = UITextFieldViewMode.Always
+        firstnameTextfield.rightViewMode = UITextFieldViewMode.always
        
-        let lastname = UIImageView(image: R.image.icnName)
-        lastname.frame = CGRectMake(0.0, 0.0, lastname.image!.size.width+10.0, lastname.image!.size.height);
-        lastname.contentMode = UIViewContentMode.Center
+        let lastname = UIImageView(image: R.image.icnName())
+        lastname.frame = CGRect(x: 0.0, y: 0.0, width: lastname.image!.size.width+10.0, height: lastname.image!.size.height);
+        lastname.contentMode = UIViewContentMode.center
         lastnameTextfield.rightView = lastname;
-        lastnameTextfield.rightViewMode = UITextFieldViewMode.Always
+        lastnameTextfield.rightViewMode = UITextFieldViewMode.always
         
-        let email = UIImageView(image: R.image.icnMail)
-        email.frame = CGRectMake(0.0, 0.0, email.image!.size.width+10.0, email.image!.size.height);
-        email.contentMode = UIViewContentMode.Center
+        let email = UIImageView(image: R.image.icnMail())
+        email.frame = CGRect(x: 0.0, y: 0.0, width: email.image!.size.width+10.0, height: email.image!.size.height);
+        email.contentMode = UIViewContentMode.center
         emailTextfield.rightView = email;
-        emailTextfield.rightViewMode = UITextFieldViewMode.Always
+        emailTextfield.rightViewMode = UITextFieldViewMode.always
         
-        let mobile = UIImageView(image: R.image.icnMobile)
-        mobile.frame = CGRectMake(0.0, 0.0, mobile.image!.size.width+10.0, mobile.image!.size.height);
-        mobile.contentMode = UIViewContentMode.Center
+        let mobile = UIImageView(image: R.image.icnMobile())
+        mobile.frame = CGRect(x: 0.0, y: 0.0, width: mobile.image!.size.width+10.0, height: mobile.image!.size.height);
+        mobile.contentMode = UIViewContentMode.center
         mobileTextfield.rightView = mobile;
-        mobileTextfield.rightViewMode = UITextFieldViewMode.Always
+        mobileTextfield.rightViewMode = UITextFieldViewMode.always
 
         
-        let messageToUser = UIImageView(image: R.image.icnName)
-        messageToUser.frame = CGRectMake(0.0, 0.0, mobile.image!.size.width+10.0, mobile.image!.size.height);
-        messageToUser.contentMode = UIViewContentMode.Center
+        let messageToUser = UIImageView(image: R.image.icnName())
+        messageToUser.frame = CGRect(x: 0.0, y: 0.0, width: mobile.image!.size.width+10.0, height: mobile.image!.size.height);
+        messageToUser.contentMode = UIViewContentMode.center
         messageTextfield.rightView = messageToUser;
-        messageTextfield.rightViewMode = UITextFieldViewMode.Always
+        messageTextfield.rightViewMode = UITextFieldViewMode.always
 
-        let mobileNumberView = UIView(frame: CGRectMake(0, 0, 50, 50))
+        let mobileNumberView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
-        let plusLabel = UILabel(frame: CGRectMake(0, 0, 10, 50))
+        let plusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         plusLabel.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         plusLabel.textColor = UIColor.yiBlackColor()
-        plusLabel.contentMode = UIViewContentMode.Center
-        plusLabel.textAlignment = NSTextAlignment.Center
+        plusLabel.contentMode = UIViewContentMode.center
+        plusLabel.textAlignment = NSTextAlignment.center
         plusLabel.text = "+"
         
-        let prefixTextField = UITextField(frame: CGRectMake(10, 0, 40, 50))
+        let prefixTextField = UITextField(frame: CGRect(x: 10, y: 0, width: 40, height: 50))
         prefixTextField.font = UIFont(name: "SFUIDisplay-Regular", size: 11)
         prefixTextField.textColor = UIColor.yiBlackColor()
-        prefixTextField.contentMode = UIViewContentMode.Left
-        prefixTextField.textAlignment = NSTextAlignment.Left
+        prefixTextField.contentMode = UIViewContentMode.left
+        prefixTextField.textAlignment = NSTextAlignment.left
         prefixTextField.text = nederlandPhonePrefix
         prefixTextField.leftView = plusLabel
-        prefixTextField.leftViewMode = UITextFieldViewMode.Always
-        prefixTextField.keyboardType = UIKeyboardType.NumberPad
+        prefixTextField.leftViewMode = UITextFieldViewMode.always
+        prefixTextField.keyboardType = UIKeyboardType.numberPad
         mobileNumberView.addSubview(prefixTextField)
         self.mobilePrefixTextField = prefixTextField
         self.mobileTextfield.leftView = mobileNumberView
         self.mobilePrefixTextField.delegate = self
-        self.mobileTextfield.leftViewMode = UITextFieldViewMode.Always
+        self.mobileTextfield.leftViewMode = UITextFieldViewMode.always
         
         UITextField.connectFields([firstnameTextfield, lastnameTextfield, emailTextfield, mobileTextfield])
         
@@ -169,16 +194,16 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         
     }
     
-    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
+    func peoplePickerNavigationController(_ peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecord, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
         
-        UINavigationBar.appearance().tintColor = UIColor.blackColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.yiWhiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
 
 
         
-        let multiValue: ABMultiValueRef = ABRecordCopyValue(person, property).takeRetainedValue()
+        let multiValue: ABMultiValue = ABRecordCopyValue(person, property).takeRetainedValue()
         let index = ABMultiValueGetIndexForIdentifier(multiValue, identifier)
         
         //Get Name
@@ -186,7 +211,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         let firstNameObj = ABRecordCopyValue(person, kABPersonFirstNameProperty);
         
         if(firstNameObj != nil) {
-            firstName = firstNameObj.takeRetainedValue() as? String;
+            firstName = firstNameObj?.takeRetainedValue() as? String;
         } else {
             firstName = "";
         }
@@ -195,7 +220,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         var lastName:String?;
         let lastNameObj = ABRecordCopyValue(person, kABPersonLastNameProperty);
         if(lastNameObj != nil) {
-            lastName = lastNameObj.takeRetainedValue() as? String;
+            lastName = lastNameObj?.takeRetainedValue() as? String;
         } else {
             lastName = "";
         }
@@ -213,20 +238,20 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             }
             print(phoneNumber)
             if let strippedPhoneNumber = phoneNumber {
-                let tempNumber = strippedPhoneNumber.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
+                let tempNumber = strippedPhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
                 var index = 9
                 if tempNumber.characters.count < 9 {
                     index = tempNumber.characters.count
                 }
                 index *= -1
-                phoneNumber = tempNumber.substringFromIndex(tempNumber.endIndex.advancedBy(index))
+                phoneNumber = tempNumber.substring(from: tempNumber.characters.index(tempNumber.endIndex, offsetBy: index))
             }
             
             mobileTextfield.text = phoneNumber;
         }
         
         //Get email
-        let emails: ABMultiValueRef = ABRecordCopyValue(person, kABPersonEmailProperty).takeRetainedValue()
+        let emails: ABMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty).takeRetainedValue()
         if ABMultiValueGetCount(emails) > 0 {
             let index = 0 as CFIndex
             let emailAddress = ABMultiValueCopyValueAtIndex(emails, index).takeRetainedValue() as! String
@@ -234,32 +259,32 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         } else {
             emailTextfield.text = ""
         }
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
-        peoplePicker.dismissViewControllerAnimated(true, completion: nil)
+        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
+        peoplePicker.dismiss(animated: true, completion: nil)
     }
     
-    func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
+    func peoplePickerNavigationControllerDidCancel(_ peoplePicker: ABPeoplePickerNavigationController) {
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                                                            NSFontAttributeName: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
+                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
         //dismissViewControllerAnimated(true, completion: nil)
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
+        UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.fromAddressBook)
     }
  
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
     
-    @IBAction func addNewBuddyButtonTapped(sender: UIButton) {
+    @IBAction func addNewBuddyButtonTapped(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as [NSObject : AnyObject])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as! [AnyHashable: Any])
         
-        if firstnameTextfield.text!.characters.count == 0 {
+        if firstnameTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-first-name-validation", comment: ""))
         }
-        else if lastnameTextfield.text!.characters.count == 0 {
+        else if lastnameTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-last-name-validation", comment: ""))
             
@@ -267,45 +292,39 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enteremailvalidation", comment: ""))
             
-        } else if mobileTextfield.text!.characters.count == 0 {
+        } else if mobileTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
                 NSLocalizedString("enter-number-validation", comment: ""))
             
             } else {
             var number = ""
-            if let mobilenum = mobileTextfield.text {
-                if let prefix = mobilePrefixTextField.text {
-                    number = "+" + prefix + mobilenum
-                }
-                
-                let trimmedWhiteSpaceString = number.removeWhitespace()
-                let trimmedString = trimmedWhiteSpaceString.removeBrackets()
-                
-                if trimmedString.validateMobileNumber() == false {
-                    self.displayAlertMessage("", alertDescription:
-                        NSLocalizedString("enter-number-validation", comment: ""))
+                if let mobileNum = mobileTextfield.text, let prefix = mobilePrefixTextField.text {
+                    number = mobileNum.formatNumber(prefix: prefix)
                     
-                }
-
+                    if !number.isValidMobileNumber(){
+                        self.displayAlertMessage("", alertDescription:
+                            NSLocalizedString("enter-number-validation", comment: ""))
+                        return
+                    }
                 
                     let postBuddyBody: [String:AnyObject] = [
-                        postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                        postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue,
-                        postBuddyBodyKeys.message.rawValue : messageTextfield.text ?? "",//"Hi there, would you want to become my buddy?",
+                        postBuddyBodyKeys.sendingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue as AnyObject,
+                        postBuddyBodyKeys.receivingStatus.rawValue: buddyRequestStatus.REQUESTED.rawValue as AnyObject,
+                        postBuddyBodyKeys.message.rawValue : messageTextfield.text as AnyObject ,//"Hi there, would you want to become my buddy?",
                         postBuddyBodyKeys.embedded.rawValue: [
                             postBuddyBodyKeys.yonaUser.rawValue: [  //this is the details of the person you are adding
                                 addUserKeys.emailAddress.rawValue: emailTextfield.text ?? "",
                                 addUserKeys.firstNameKey.rawValue: firstnameTextfield.text ?? "",
                                 addUserKeys.lastNameKeys.rawValue: lastnameTextfield.text ?? "",
-                                addUserKeys.mobileNumberKeys.rawValue: trimmedString //this is the number of the person you are adding as a buddy
+                                addUserKeys.mobileNumberKeys.rawValue: number //this is the number of the person you are adding as a buddy
                             ]
-                        ]
+                        ]as AnyObject
                     ]
                     
                     BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
                         
                         if success {
-                            self.navigationController?.popViewControllerAnimated(true)
+                            self.navigationController?.popViewController(animated: true)
                         } else {
                             if let message = message {
                                 self.displayAlertMessage("", alertDescription:message)
@@ -320,32 +339,32 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     func addressbookAccess() {
         switch ABAddressBookGetAuthorizationStatus(){
-        case .Authorized:
+        case .authorized:
             print("Already authorized")
             
             createAddressBook()
             people.peoplePickerDelegate = self
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.people.topViewController?.view.backgroundColor = .yiMidBlueColor()
                 UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
                 UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
-                self.presentViewController(self.people, animated: true, completion: nil)
+                self.present(self.people, animated: true, completion: nil)
             })
             /* Access the address book */
-        case .Denied:
-                let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.text", comment:""), preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+        case .denied:
+                let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment:""), message: NSLocalizedString("addfriend.alert.text", comment:""), preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(cancelAction)
-                let settingsAction = UIAlertAction(title:  NSLocalizedString("addfriend.alert.settings.text", comment:""), style: .Default , handler:{(alert : UIAlertAction!) in
+                let settingsAction = UIAlertAction(title:  NSLocalizedString("addfriend.alert.settings.text", comment:""), style: .default , handler:{(alert : UIAlertAction!) in
                     let settingsURL = UIApplicationOpenSettingsURLString
-                    UIApplication.sharedApplication().openURL(NSURL(string: settingsURL)!)
+                    UIApplication.shared.openURL(URL(string: settingsURL)!)
                     
                 })
                 alert.addAction(settingsAction)
-                presentViewController(alert, animated: true, completion:nil )
-        case .NotDetermined:
+                present(alert, animated: true, completion:nil )
+        case .notDetermined:
             createAddressBook()
-            if let theBook: ABAddressBookRef = addressBook{
+            if let theBook: ABAddressBook = addressBook{
                 ABAddressBookRequestAccessWithCompletion(theBook,
                                                          {(granted: Bool, error: CFError!) in
                                                             
@@ -355,8 +374,8 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                                                                 UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
                                                                 UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
-                                                                dispatch_async(dispatch_get_main_queue(), {
-                                                                    self.presentViewController(self.people, animated: true, completion: nil)
+                                                                DispatchQueue.main.async(execute: {
+                                                                    self.present(self.people, animated: true, completion: nil)
                                                                 })
                                                             } else {
                                                                 print("Access not granted")
@@ -365,7 +384,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                 })
             }
             
-        case .Restricted:
+        case .restricted:
             print("Access restricted")
         }
     }
@@ -375,24 +394,24 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     // MARK: Touch Event of Custom Segment
     extension AddFriendsViewController {
         
-        @IBAction func ManualTabAction(sender: AnyObject) {
+        @IBAction func ManualTabAction(_ sender: AnyObject) {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil).build() as! [AnyHashable: Any])
             
             addressBookTabView.alpha = 0.5
-            addressBookTabBottomBorder.hidden = true
+            addressBookTabBottomBorder.isHidden = true
             manualTabView.alpha = 1.0
-            manualTabBottomBorder.hidden = false
+            manualTabBottomBorder.isHidden = false
         }
         
-        @IBAction func AddressBookTabAction(sender: AnyObject) {
+        @IBAction func AddressBookTabAction(_ sender: AnyObject) {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil).build() as [NSObject : AnyObject])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil).build() as! [AnyHashable: Any])
             
             manualTabView.alpha = 0.5
-            manualTabBottomBorder.hidden = true
+            manualTabBottomBorder.isHidden = true
             addressBookTabView.alpha = 1.0
-            addressBookTabBottomBorder.hidden = false
+            addressBookTabBottomBorder.isHidden = false
             
             addressbookAccess()
             
@@ -402,15 +421,15 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     extension AddFriendsViewController: UITextFieldDelegate {
         
-        func textFieldDidBeginEditing(textField: UITextField) {
+        func textFieldDidBeginEditing(_ textField: UITextField) {
             if textField == mobileTextfield {
-                IQKeyboardManager.sharedManager().enableAutoToolbar = true
+                IQKeyboardManager.shared.enableAutoToolbar = true
             } else {
-                IQKeyboardManager.sharedManager().enableAutoToolbar = false
+                IQKeyboardManager.shared.enableAutoToolbar = false
             }
         }
         
-        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             if (textField == mobileTextfield) {
                 if ((previousRange?.location >= range.location) ) {
                     if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
@@ -444,16 +463,16 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
 
 
 extension UITextField {
-    class func connectFields(fields:[UITextField]) -> Void {
+    class func connectFields(_ fields:[UITextField]) -> Void {
         guard let last = fields.last else {
             return
         }
         for i in 0 ..< fields.count - 1 {
-            fields[i].returnKeyType = .Next
-            fields[i].addTarget(fields[i+1], action: #selector(UIResponder.becomeFirstResponder), forControlEvents: .EditingDidEndOnExit)
+            fields[i].returnKeyType = .next
+            fields[i].addTarget(fields[i+1], action: #selector(UIResponder.becomeFirstResponder), for: .editingDidEndOnExit)
         }
-        last.returnKeyType = .Done
-        last.addTarget(last, action: #selector(UIResponder.resignFirstResponder), forControlEvents: .EditingDidEndOnExit)
+        last.returnKeyType = .done
+        last.addTarget(last, action: #selector(UIResponder.resignFirstResponder), for: .editingDidEndOnExit)
     }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 protocol YonaInstructionsProtocol {
     
     
-    func didFinishAnimations(sender : AnyObject)
+    func didFinishAnimations(_ sender : AnyObject)
     func didRequestReRun()
     
     
@@ -31,20 +31,20 @@ class YonaVPNInstructionsViewController : UIViewController {
         view.backgroundColor = UIColor.yiGrapeColor()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "YonaVPNInstructionsViewController")
+        tracker?.set(kGAIScreenName, value: "YonaVPNInstructionsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
 //MARK: Protocol impl
     func startAnimation(){
     
         overlayImage.alpha = 0.0
-        overlayImage.hidden = false
-        UIView.animateWithDuration(animationDuration, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn,animations: {
+        overlayImage.isHidden = false
+        UIView.animate(withDuration: animationDuration, delay: 0.5, options: UIViewAnimationOptions.curveEaseIn,animations: {
             self.overlayImage.alpha = 1.0
             }, completion: {
                 completed in
@@ -53,7 +53,7 @@ class YonaVPNInstructionsViewController : UIViewController {
     }
     
     
-    @IBAction func userDidPressScreen (sender : AnyObject){
+    @IBAction func userDidPressScreen (_ sender : AnyObject){
         self.delegate?.didFinishAnimations(self)
     }
 

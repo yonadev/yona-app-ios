@@ -18,11 +18,11 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     var selectedValue: String?
     var parentView: UIView?
     
-    @IBAction func cancelAction(sender: AnyObject) {
+    @IBAction func cancelAction(_ sender: AnyObject) {
         gCancelListener?()
     }
     
-    @IBAction func doneAction(sender: AnyObject) {
+    @IBAction func doneAction(_ sender: AnyObject) {
         
         if selectedValue != nil{
             gDoneListener?(selectedValue!)
@@ -33,26 +33,26 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
 
     
     func loadPickerView() -> UIView {
-        var views = NSBundle.mainBundle().loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
+        var views = Bundle.main.loadNibNamed("YonaCustomPickerView", owner: self, options: nil)
         
         return views![0] as! UIView
     }
     
     
-    func setData(onView v:UIView, data d: AnyObject, withCancelListener cancel: CancelListener, andDoneListener done: DoneListener) {
+    func setData(onView v:UIView, data d: AnyObject, withCancelListener cancel: @escaping CancelListener, andDoneListener done: @escaping DoneListener) {
         data = d
         gCancelListener = cancel
         gDoneListener = done
         parentView = v
-        UIApplication.sharedApplication().keyWindow?.addSubview(self)
+        UIApplication.shared.keyWindow?.addSubview(self)
     }
     
     
     func showHidePicker(isToShow show: Bool) -> YonaCustomPickerView {
-        cancelButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
-        okButtonTitle.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.yiMidBlueColor()], forState: UIControlState.Normal)
+        cancelButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
+        okButtonTitle.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.yiMidBlueColor()], for: UIControlState())
 
-        UIView.animateWithDuration(0.3,
+        UIView.animate(withDuration: 0.3,
                                    animations: {
                                     if show {
                                         self.frame.origin.y = self.parentView!.frame.size.height - 200
@@ -65,19 +65,19 @@ class YonaCustomPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return data.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(data.objectAtIndex(row) as! Int)
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(data.object(at: row) as! Int)
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedValue = String(data.objectAtIndex(row) as! Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedValue = String(data.object(at: row) as! Int)
     }
 }

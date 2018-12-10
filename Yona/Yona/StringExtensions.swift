@@ -9,8 +9,8 @@
 import Foundation
 
 extension String {
-    private func replace(string:String, replacement:String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    fileprivate func replace(_ string:String, replacement:String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
     }
     
     func removeWhitespace() -> String {
@@ -27,30 +27,46 @@ extension String {
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,20}"
         let emailTest  = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(self)
+        return emailTest.evaluate(with: self)
     }
     //validate PhoneNumber
     var isPhoneNumber: Bool {
         
-        let character  = NSCharacterSet(charactersInString: "+0123456789").invertedSet
-        var filtered:NSString!
-        let inputString:NSArray = self.componentsSeparatedByCharactersInSet(character)
-        filtered = inputString.componentsJoinedByString("")
+        let character  = CharacterSet(charactersIn: "+0123456789").inverted
+        var filtered:String!
+        let inputString:NSArray = self.components(separatedBy: character) as NSArray
+        filtered = inputString.componentsJoined(by: "") as String?
         
         return  self == filtered
         
     }
     
-    func validateMobileNumber() -> Bool {
-        let character  = NSCharacterSet(charactersInString: "+0123456789").invertedSet
-        let inputString:NSArray = self.componentsSeparatedByCharactersInSet(character)
-        let filtered = inputString.componentsJoinedByString("")
-        
-        if (self != filtered || self.characters.count == 0 || self.characters.count <= YonaConstants.mobilePhoneLength.netherlands || self == "+31") {
-            return false
-        } else {
-            return true
+    func formatNumber(prefix: String) -> String {
+        var number = self
+        if !prefix.isEmpty && !number.hasPrefix("+") {
+            number = "+" + prefix + number
         }
+        return number.removeWhitespace().removeBrackets().formatDutchCountryCodePrefix()
+    }
+    
+    func isValidMobileNumber() -> Bool {
+        let phoneNumberRegex = "^\\+[0-9]{6,20}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex)
+        return phoneTest.evaluate(with: self)
+    }
+    
+    func formatDutchCountryCodePrefix()->String{
+        var mobileNumber = self
+        let wrongDutchPrefix = "+310"
+        if mobileNumber.hasPrefix(wrongDutchPrefix) {
+            mobileNumber = mobileNumber.deletePrefix(wrongDutchPrefix)
+            mobileNumber = "+31" + mobileNumber
+        }
+        return mobileNumber
+    }
+    
+    func deletePrefix(_ prefix: String) -> String {
+        return String(self.dropFirst(prefix.count))
     }
     
     func randomAlphaNumericString() -> String {
@@ -61,7 +77,7 @@ extension String {
         
         for _ in (0..<length) {
             let randomNum = Int(arc4random_uniform(allowedCharsCount))
-            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            let newCharacter = allowedChars[allowedChars.characters.index(allowedChars.startIndex, offsetBy: randomNum)]
             randomString += String(newCharacter)
         }
         print(randomString)
@@ -97,12 +113,11 @@ extension String {
             if val >= "0" && val <= "9" {
                 
                 // We need to know whether or not the value is singular ('1') or not ('11', '23').
-                if let safeDisplayedString = displayedString as String!
-                    where displayedString!.characters.count > 0 && val == "1" {
+                if let safeDisplayedString = displayedString as String!, displayedString!.characters.count > 0 && val == "1" {
                     
                     let lastIndex = safeDisplayedString.characters.count - 1
                     
-                    let lastChar = safeDisplayedString[safeDisplayedString.startIndex.advancedBy(lastIndex)]
+                    let lastChar = safeDisplayedString[safeDisplayedString.characters.index(safeDisplayedString.startIndex, offsetBy: lastIndex)]
                     
                     //test if the current last char in the displayed string is a space (" "). If it is then we will say it's singular until proven otherwise.
                     if lastChar == " " {
@@ -221,11 +236,11 @@ extension String {
         return self.characters.split{$0 == "-"}.map(String.init)
     }
     
-    func heightForWithFont(font: UIFont, width: CGFloat, insets: UIEdgeInsets) -> CGFloat {
+    func heightForWithFont(_ font: UIFont, width: CGFloat, insets: UIEdgeInsets) -> CGFloat {
         
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, width + insets.left + insets.right, CGFloat.max))
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width + insets.left + insets.right, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = font
         label.text = self
         

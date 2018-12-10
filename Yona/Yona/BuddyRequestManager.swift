@@ -14,10 +14,10 @@ class BuddyRequestManager {
     static let sharedInstance = BuddyRequestManager()
     var buddy: Buddies?
     var buddies: [Buddies] = []
-    private init() {}
+    fileprivate init() {}
 
     
-    private func genericBuddyRequest(httpMethod: httpMethods, buddyBody: BodyDataDictionary?, buddy: Buddies?, onCompletion: APIBuddiesResponse) {
+    fileprivate func genericBuddyRequest(_ httpMethod: httpMethods, buddyBody: BodyDataDictionary?, buddy: Buddies?, onCompletion: @escaping APIBuddiesResponse) {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.notAllowed){ (success, serverMessage, serverCode, user) in
             switch httpMethod {
             case .get:
@@ -104,20 +104,20 @@ class BuddyRequestManager {
         }
     }
     
-    func requestNewbuddy(buddyBody: BodyDataDictionary, onCompletion: APIBuddiesResponse) {
+    func requestNewbuddy(_ buddyBody: BodyDataDictionary, onCompletion: @escaping APIBuddiesResponse) {
         self.genericBuddyRequest(httpMethods.post, buddyBody: buddyBody, buddy: nil, onCompletion: onCompletion)
     }
     
-    func getAllbuddies(onCompletion: APIBuddiesResponse) {
+    func getAllbuddies(_ onCompletion: @escaping APIBuddiesResponse) {
         self.genericBuddyRequest(httpMethods.get, buddyBody: nil, buddy: nil, onCompletion: onCompletion)
     }
     
-    func deleteBuddy(buddy: Buddies?, onCompletion: APIBuddiesResponse) {
+    func deleteBuddy(_ buddy: Buddies?, onCompletion: @escaping APIBuddiesResponse) {
         self.genericBuddyRequest(httpMethods.delete, buddyBody: nil, buddy: buddy, onCompletion: onCompletion)
     }
     
     
-    func getBuddy(buddiesLink: String?, onCompletion: APIBuddiesResponse) {
+    func getBuddy(_ buddiesLink: String?, onCompletion: @escaping APIBuddiesResponse) {
         if let buddieLink = buddiesLink {
             ActivitiesRequestManager.sharedInstance.getActivityCategories{ (success, message, serverCode, activities, error) in
                 if success {

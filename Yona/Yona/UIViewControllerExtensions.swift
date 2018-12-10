@@ -12,8 +12,8 @@ import UIKit
 typealias DisplayAlertResponse = (alertButtonType) -> Void
 
 extension UIViewController {
-    func resetTheView(position: CGFloat, scrollView: UIScrollView, view: UIView) -> CGFloat? {
-        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    func resetTheView(_ position: CGFloat, scrollView: UIScrollView, view: UIView) -> CGFloat? {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         
         if (position > 0) {
             view.frame.origin.y += position
@@ -29,7 +29,7 @@ extension UIViewController {
      - parameter alertDescription:String detailed message description
      - return none
      */
-    func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
+    func displayAlertMessage(_ alertTitle:String, alertDescription:String) -> Void {
         let errorAlert = UIAlertView(title:alertTitle, message:alertDescription, delegate:nil, cancelButtonTitle:"OK")
         errorAlert.show()
     }
@@ -41,16 +41,16 @@ extension UIViewController {
      - parameter userData: BodyDataDictionary? Optional data of the user that is trying to be posted
      - return none
      */
-    func displayAlertOption(alertTitle:String, cancelButton: Bool, alertDescription:String, onCompletion: DisplayAlertResponse) -> Void {
+    func displayAlertOption(_ alertTitle:String, cancelButton: Bool, alertDescription:String, onCompletion: @escaping DisplayAlertResponse) -> Void {
         if #available(iOS 8.0, *) {
-            let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.Alert)
-            let OKAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default) { (action) in
-                onCompletion(alertButtonType.OK)
+            let errorAlert = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.alert)
+            let OKAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) in
+                onCompletion(alertButtonType.ok)
                 return
             }
             
             if cancelButton {
-                let CANCELAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Default) { (action) in
+                let CANCELAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .default) { (action) in
                     onCompletion(alertButtonType.cancel)
                     return
                 }
@@ -59,7 +59,7 @@ extension UIViewController {
             errorAlert.addAction(OKAction)
             
 
-            self.presentViewController(errorAlert, animated: true) {
+            self.present(errorAlert, animated: true) {
                 return
             }
 
