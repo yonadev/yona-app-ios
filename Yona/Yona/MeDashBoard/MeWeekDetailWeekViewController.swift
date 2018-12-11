@@ -15,7 +15,7 @@ enum detailRows : Int  {
     case spreadCell
 }
 
-class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
+class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
     var initialObjectLink : String?
     var goalType : String?
@@ -441,7 +441,21 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
     }
     
+    // MARK: - get comment data
+    func getComments(_ commentLink: String) {
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                self.comments = []
+                if let comments = comments {
+                    self.comments = comments
+                    self.totalPages = comments[0].totalPages!
+                }
+            }
+        }
+    }
+}
     // MARK: - CommentCellDelegate
+extension MeWeekDetailWeekViewController: CommentCellDelegate {
     func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
@@ -462,8 +476,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             self.sendCommentFooter!.alpha = 1
         })
     }
-    
+}
+
     // MARK: - SendCommentControlProtocol
+extension MeWeekDetailWeekViewController: SendCommentControlProtocol {
     func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
@@ -473,22 +489,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         commentTextField.text = ""
         if let data = week[currentWeek.yearWeek],
             let commentsLink = data.messageLink {
-                size = 4
-                page = 1
-                self.getComments(commentsLink)
-        }
-    }
-    
-    // MARK: - get comment data
-    func getComments(_ commentLink: String) {
-        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
-            if success {
-                self.comments = []
-                if let comments = comments {
-                    self.comments = comments
-                    self.totalPages = comments[0].totalPages!
-                }
-            }
+            size = 4
+            page = 1
+            self.getComments(commentsLink)
         }
     }
 }

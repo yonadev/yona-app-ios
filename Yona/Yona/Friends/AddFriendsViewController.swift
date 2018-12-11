@@ -418,7 +418,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         }
     }
     
-    
+    // MARK: UITextFieldDelegate
     extension AddFriendsViewController: UITextFieldDelegate {
         
         func textFieldDidBeginEditing(_ textField: UITextField) {

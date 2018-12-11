@@ -31,7 +31,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class NotificationsViewController: UITableViewController, YonaUserSwipeCellDelegate {
+class NotificationsViewController: UITableViewController {
     
     @IBOutlet weak var tableHeaderView: UIView!
     
@@ -284,19 +284,6 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
         return cell
     }
     
-    // MARK: - YonaUserCellDelegate
-    func messageNeedToBeDeleted(_ cell: YonaUserTableViewCell, message: Message) {
-        let aMessage = message as Message
-        MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
-            if success {
-                self.messages.removeAll()
-                self.loadMessages()
-            } else {
-                self.displayAlertMessage(message!, alertDescription: "")
-            }
-        })
-    }
-    
     fileprivate func getOldMessages(_ oldMessages: inout [Message]) {
         if  ((self.messages.count) > 0) {
             for sectionArray in (self.messages) {
@@ -388,5 +375,20 @@ class NotificationsViewController: UITableViewController, YonaUserSwipeCellDeleg
             controller.aUser = buddy
             self.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+}
+
+    // MARK: - YonaUserCellDelegate
+extension NotificationsViewController: YonaUserSwipeCellDelegate{
+    func messageNeedToBeDeleted(_ cell: YonaUserTableViewCell, message: Message) {
+        let aMessage = message as Message
+        MessageRequestManager.sharedInstance.deleteMessage(aMessage, onCompletion: { (success, message, code) in
+            if success {
+                self.messages.removeAll()
+                self.loadMessages()
+            } else {
+                self.displayAlertMessage(message!, alertDescription: "")
+            }
+        })
     }
 }

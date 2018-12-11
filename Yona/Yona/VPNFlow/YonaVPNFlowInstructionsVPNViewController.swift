@@ -9,7 +9,7 @@
 import Foundation
 import StoreKit
 
-class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstructionsProtocol, SKStoreProductViewControllerDelegate{
+class YonaVPNFlowInstructionsVPNViewController : UIViewController{
     @IBOutlet weak var progressPageControl: UIPageControl!
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var actionButton : UIButton!
@@ -106,47 +106,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         }
         
     }
-
-    
-    
-    //MARK: Protocol implementation
-    
-    
-    func didFinishAnimations(_ sender : AnyObject) {
-        if sender is YonaInstructionPage1 {
-            addScrollViews(2)
-            scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
-            progressPageControl.currentPage = 1
-            page2?.startAnimation()
-        }
-        if sender is YonaInstructionPage2 {
-            addScrollViews(3)
-            scrollView.scrollRectToVisible((page3?.view!.frame)!, animated: true)
-            progressPageControl.currentPage = 2
-            page3?.startAnimation()
-        }
-
-        if sender is YonaInstructionPage3{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.actionButton.alpha = 1.0
-            })
-            
-        }
-
-    }
-    
-    func didRequestReRun() {
-        scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
-        progressPageControl.currentPage = 0
-        UIView.animate(withDuration: 0.2, animations: {
-            self.actionButton.alpha = 0.0
-        })
-        page1?.startAnimation()
-
-    }
-
-    
-    
+ 
     // Mark: - buttons actions
     
     @IBAction func downloadOpenVPNAction(_ sender : UIButton) {
@@ -209,5 +169,40 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController , YonaInstruct
         dismiss(animated: true, completion: {
             self.navigationController?.popViewController(animated: true)
         })
+    }
+}
+
+    //MARK: YonaInstructionsProtocol
+
+extension YonaVPNFlowInstructionsVPNViewController: YonaInstructionsProtocol {
+    
+    func didFinishAnimations(_ sender : AnyObject) {
+        if sender is YonaInstructionPage1 {
+            addScrollViews(2)
+            scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
+            progressPageControl.currentPage = 1
+            page2?.startAnimation()
+        }
+        if sender is YonaInstructionPage2 {
+            addScrollViews(3)
+            scrollView.scrollRectToVisible((page3?.view!.frame)!, animated: true)
+            progressPageControl.currentPage = 2
+            page3?.startAnimation()
+        }
+        if sender is YonaInstructionPage3{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.actionButton.alpha = 1.0
+            })
+        }
+    }
+    
+    func didRequestReRun() {
+        scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
+        progressPageControl.currentPage = 0
+        UIView.animate(withDuration: 0.2, animations: {
+            self.actionButton.alpha = 0.0
+        })
+        page1?.startAnimation()
+        
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardNavigationViewController: UINavigationController, UITabBarDelegate {
+class DashboardNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,11 @@ class DashboardNavigationViewController: UINavigationController, UITabBarDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
+
+    //MARK: UITabBarDelegate
+extension DashboardNavigationViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print(item)
     }
-
 }

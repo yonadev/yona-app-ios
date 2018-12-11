@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , YonaInstructionsProtocol {
+class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController {
     @IBOutlet weak var progressPageControl: UIPageControl!
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var actionButton : UIButton!
@@ -144,50 +144,6 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     }
     
-    //MARK: Protocol implementation
-    
-    
-    func didFinishAnimations(_ sender : AnyObject) {
-        if sender is YonaInstructionMobilePage1 {
-            addScrollViews(2)
-            scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
-            progressPageControl.currentPage = 1
-            page2?.startAnimation()
-        }
-        if sender is YonaInstructionMobilePage2 {
-            addScrollViews(3)
-            scrollView.scrollRectToVisible((page3?.view!.frame)!, animated: true)
-            progressPageControl.currentPage = 2
-            page3?.startAnimation()
-        }
-        
-        if sender is YonaInstructionMobilePage3 {
-            addScrollViews(4)
-            scrollView.scrollRectToVisible((page4?.view!.frame)!, animated: true)
-            progressPageControl.currentPage = 3
-            page4?.startAnimation()
-        }
-        if sender is YonaInstructionMobilePage4{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.actionButton.alpha = 1.0
-            })
-            
-        }
-        
-    }
-    
-    func didRequestReRun() {
-        scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
-        progressPageControl.currentPage = 0
-        UIView.animate(withDuration: 0.2, animations: {
-            self.actionButton.alpha = 0.0
-        })
-        page1?.startAnimation()
-        
-    }
-    
-    
-    
     // Mark: - buttons actions
     
     @IBAction func installMobilConfigFile(_ sender : UIButton) {
@@ -201,4 +157,44 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     }
     
     
+}
+
+    //MARK: YonaInstructionsProtocol
+
+extension YonaVPNFlowInstructionsMobileConfigViewController: YonaInstructionsProtocol {
+    func didFinishAnimations(_ sender : AnyObject) {
+        if sender is YonaInstructionMobilePage1 {
+            addScrollViews(2)
+            scrollView.scrollRectToVisible((page2?.view!.frame)!, animated: true)
+            progressPageControl.currentPage = 1
+            page2?.startAnimation()
+        }
+        if sender is YonaInstructionMobilePage2 {
+            addScrollViews(3)
+            scrollView.scrollRectToVisible((page3?.view!.frame)!, animated: true)
+            progressPageControl.currentPage = 2
+            page3?.startAnimation()
+        }
+        if sender is YonaInstructionMobilePage3 {
+            addScrollViews(4)
+            scrollView.scrollRectToVisible((page4?.view!.frame)!, animated: true)
+            progressPageControl.currentPage = 3
+            page4?.startAnimation()
+        }
+        if sender is YonaInstructionMobilePage4{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.actionButton.alpha = 1.0
+            })
+        }
+    }
+    
+    func didRequestReRun() {
+        scrollView.scrollRectToVisible((page1?.view!.frame)!, animated: true)
+        progressPageControl.currentPage = 0
+        UIView.animate(withDuration: 0.2, animations: {
+            self.actionButton.alpha = 0.0
+        })
+        page1?.startAnimation()
+        
+    }
 }

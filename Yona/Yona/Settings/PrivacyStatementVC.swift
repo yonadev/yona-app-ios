@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
+class PrivacyStatementVC: UIViewController {
     @IBOutlet var privacyView: UIWebView!
     
     override func viewDidLoad() {
@@ -26,8 +26,10 @@ class PrivacyStatementVC: UIViewController, UIWebViewDelegate{
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
-    
-    //when webview is loaded stop the loading wheel and hide the view
+}
+
+    //MARK: UIWebViewDelegate
+extension PrivacyStatementVC: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         Loader.Hide()
     }

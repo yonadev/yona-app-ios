@@ -41,7 +41,7 @@ enum  settingsOptions : Int {
 }
 
 
-class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UIViewController {
     var settingsArray:NSArray!
     @IBOutlet var tableView:UITableView!
     var gradientView: GradientSmooth!
@@ -284,26 +284,7 @@ extension SettingsViewController:UITableViewDelegate {
 
     
     }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        dismiss(animated: true, completion: nil)
-        
-        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
-                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
-        UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
 
-        
-        if result == .sent {
-            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.finished.title", comment: ""), message: NSLocalizedString("emailsupport.finished.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-            sendMailErrorAlert.show()
-        } else  if result == .failed {
-            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.error.title", comment: ""), message: NSLocalizedString("emailsupport.error.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-            sendMailErrorAlert.show()
-        
-        }
-    }
-    
     func sendMail(_ showPassword : Bool) {
         if !MFMailComposeViewController.canSendMail() {
             showSendMailErrorAlert()
@@ -347,4 +328,26 @@ extension SettingsViewController:UITableViewDelegate {
         sendMailErrorAlert.show()
     }
 
+}
+
+    //MARK: MFMailComposeViewControllerDelegate
+extension SettingsViewController: MFMailComposeViewControllerDelegate{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+        
+        UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.yiWhiteColor(),
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
+        
+        
+        if result == .sent {
+            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.finished.title", comment: ""), message: NSLocalizedString("emailsupport.finished.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+            sendMailErrorAlert.show()
+        } else  if result == .failed {
+            let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.error.title", comment: ""), message: NSLocalizedString("emailsupport.error.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+            sendMailErrorAlert.show()
+            
+        }
+    }
 }
