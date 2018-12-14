@@ -34,7 +34,7 @@ class ValidationMasterView: LoginSignupValidationMasterView {
         tracker?.set(kGAIScreenName, value: "ValidationMasterView")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController {
         tracker?.set(kGAIScreenName, value: "SettingsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func didReceiveMemoryWarning() {

@@ -29,7 +29,7 @@ final class ConfirmPinViewController:  LoginSignupValidationMasterView {
         tracker?.set(kGAIScreenName, value: "ConfirmPinViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
@@ -61,7 +61,7 @@ final class ConfirmPinViewController:  LoginSignupValidationMasterView {
     // Go Back To Previous VC
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil).build() as? [AnyHashable: Any])
         
         self.navigationController?.popViewController(animated: true)
     }

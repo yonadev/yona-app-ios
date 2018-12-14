@@ -43,7 +43,7 @@ class FriendsProfileViewController: UIViewController {
         tracker?.set(kGAIScreenName, value: "FriendsProfileViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         navbarColor1 = self.navigationController?.navigationBar.backgroundColor
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
@@ -86,7 +86,7 @@ class FriendsProfileViewController: UIViewController {
     // MARK: - Actions
     @IBAction func backAction(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionFriendsProfileView", label: "Back from friends profile view page", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionFriendsProfileView", label: "Back from friends profile view page", value: nil).build() as? [AnyHashable: Any])
         
         DispatchQueue.main.async(execute: {
             self.navigationController?.popViewController(animated: true)

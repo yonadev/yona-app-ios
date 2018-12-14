@@ -31,7 +31,7 @@ class NotificationDetailViewController: UIViewController {
         self.title = ""
         
         if let nickname = aMessage?.nickname {
-            avatarLabel.text = "\(nickname.capitalized.characters.first!)"
+            avatarLabel.text = "\(nickname.capitalized.first!)"
         }
         titleLabel.text = NSLocalizedString("message.type.systemMessage", comment: "")
         descriptionLabel.text = aMessage?.message

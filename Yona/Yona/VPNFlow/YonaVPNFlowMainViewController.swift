@@ -59,7 +59,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "YonaVPNFlowMainViewController")
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,7 +138,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     // MARK: - IBAction Methods
     @IBAction func finalInstrucsionsButtonAction (_ sender :UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "finalInstrucsionsButtonAction", label: "Last instruction button tapped", value: nil).build() as? [AnyHashable: Any])
         DispatchQueue.main.async(execute: {
             self.navigationItem.hidesBackButton = true
             self.performSegue(withIdentifier: R.segue.yonaVPNFlowMainViewController.mobileInstruction, sender: self)
@@ -156,7 +156,7 @@ class YonaVPNFlowMainViewController: UIViewController {
     @IBAction func buttonAction (_ sender :UIButton) {
         if currentProgress == .openVPNAppNotInstalledShow {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app not installed", value: nil).build() as? [AnyHashable: Any])
             DispatchQueue.main.async(execute: {
                 UserDefaults.standard.set(VPNSetupStatus.openVPNAppNotInstalledSetup.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
                 self.currentProgress = .openVPNAppNotInstalledSetup
@@ -167,13 +167,13 @@ class YonaVPNFlowMainViewController: UIViewController {
         }
         if currentProgress == .openVPNAppInstalledStep3 {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Open VPN app installed step 3", value: nil).build() as? [AnyHashable: Any])
             downloadFileFromServer()
             return
         }
         if currentProgress == .configurationInstalled {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "VPNInstallButton", label: "Configuration final installed", value: nil).build() as? [AnyHashable: Any])
             UserDefaults.standard.set(true, forKey:YonaConstants.nsUserDefaultsKeys.vpncompleted)
             self.dismiss(animated: true, completion: {})
             return
@@ -525,7 +525,7 @@ class YonaVPNFlowMainViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: delayTime){
             if let running = (UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning() {
                 if  running {
-                    print("SERVER IS STARTED : \((UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning())")
+                    print("SERVER IS STARTED : \(String(describing: (UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning()))")
                     if let url = URL(string:"http://localhost:8089/start/") {
                         UIApplication.shared.openURL(url)
                     }
@@ -538,7 +538,7 @@ class YonaVPNFlowMainViewController: UIViewController {
                         })
                     // end
                 } else {
-                    print("SERVER IS NOT STARTED : \((UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning())")
+                    print("SERVER IS NOT STARTED : \(String(describing: (UIApplication.shared.delegate as! AppDelegate).httpServer?.isRunning()))")
                     print("re-trying")
                     self.testForServerAndContinue()
                 }

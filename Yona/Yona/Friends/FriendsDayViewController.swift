@@ -22,8 +22,8 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let navbarColor1 = navbarColor1,
-            let navbarColor = navbarColor {
+        if let _ = navbarColor1,
+            let _ = navbarColor {
             self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
             let navbar = navigationController?.navigationBar as! GradientNavBar
             navbar.gradientColor = UIColor.yiMidBlueColor()
@@ -38,7 +38,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         tracker?.set(kGAIScreenName, value: "FriendsDayViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         
         
@@ -87,9 +87,9 @@ class FriendsDayViewController: MeDashBoardMainViewController {
             
             navigationItem.title = name
             
-            if name.characters.count > 0 {//&& user?.characters.count > 0{
+            if name.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
-                let txt = "\(name.capitalized.characters.first!)"
+                let txt = "\(name.capitalized.first!)"
                 btnName.setTitle(txt, for: UIControl.State())
                 btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                 btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
@@ -116,7 +116,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
     // MARK: - ACTION
     @IBAction func didChooseUserProfile(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as? [AnyHashable: Any])
         performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendProfile, sender: self)
     }
     
@@ -132,7 +132,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                 controller.initialObjectLink = path
                 weekDayDetailLink = nil
                 controller.buddy = buddyToShow
-            } else if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            } else if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.activityGoal = data
                 controller.buddy = buddyToShow
@@ -140,7 +140,7 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
         if segue.destination is FriendsWeekDetailWeekController {
             let controller = segue.destination as! FriendsWeekDetailWeekController
-            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
                 controller.initialObject = data
                 controller.buddy = buddyToShow

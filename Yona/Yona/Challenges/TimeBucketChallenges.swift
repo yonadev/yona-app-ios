@@ -75,7 +75,7 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
         tracker?.set(kGAIScreenName, value: "TimeBucketChallenges")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         self.tableView.estimatedRowHeight = 100
         self.setupUI()
@@ -306,14 +306,14 @@ class TimeBucketChallenges: BaseViewController, UIScrollViewDelegate, BudgetChal
     // MARK: - Actions
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionBucketChallenges", label: "Back from time bucket challenge page", value: nil).build() as? [AnyHashable: Any])
         
         self.setSelectedCategory(selectedCategoryView)
     }
     
     @IBAction func addNewGoalbuttonTapped(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewGoalbuttonTapped", label: "Add new goal pressed", value: nil).build() as? [AnyHashable: Any])
         
         sender.isHidden = true
         self.navigationItem.leftBarButtonItem = self.backButton

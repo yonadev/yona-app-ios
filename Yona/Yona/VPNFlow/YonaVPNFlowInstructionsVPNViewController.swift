@@ -30,7 +30,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController{
         tracker?.set(kGAIScreenName, value: "YonaVPNFlowInstructionsVPNViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
  
     override func viewDidAppear(_ animated: Bool) {
@@ -111,7 +111,7 @@ class YonaVPNFlowInstructionsVPNViewController : UIViewController{
     
     @IBAction func downloadOpenVPNAction(_ sender : UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "downloadOpenVPNAction", label: "Download VPN action button pressed to go to appstore", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "downloadOpenVPNAction", label: "Download VPN action button pressed to go to appstore", value: nil).build() as? [AnyHashable: Any])
         
         appStoreCall()
     

@@ -39,9 +39,9 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     
     func configureRightButton() {
         if let name = buddy?.UserRequestfirstName {
-            if name.characters.count > 0 {//&& user?.characters.count > 0{
+            if name.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
-                let txt = "\(name.capitalized.characters.first!)"
+                let txt = "\(name.capitalized.first!)"
                 btnName.setTitle(txt, for: UIControl.State())
                 btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                 btnName.addTarget(self, action: #selector(showUserProfile(_:)), for: .touchUpInside)
@@ -94,7 +94,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         tracker?.set(kGAIScreenName, value: "FriendsDayDetailViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -97,8 +97,8 @@ class TimeLineTimeZoneCell : TimeZoneControlCell {
 
     
     fileprivate func dravTheUser () {
-        if nickname.characters.count > 0 {
-            userInitial.text = "\(nickname.capitalized.characters.first!)"
+        if nickname.count > 0 {
+            userInitial.text = "\(nickname.capitalized.first!)"
         }
 
         //will crash if empty

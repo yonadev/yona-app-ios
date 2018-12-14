@@ -94,7 +94,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         tracker?.set(kGAIScreenName, value: "MeDayDetailViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         correctToday = Date().addingTimeInterval(60*60*24)
         self.loadData(.own)
@@ -104,7 +104,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     @IBAction func backAction(_ sender : AnyObject) {
         DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as? [AnyHashable: Any])
             
             self.navigationController?.popViewController(animated: true)
         })

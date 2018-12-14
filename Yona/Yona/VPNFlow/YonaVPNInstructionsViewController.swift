@@ -36,7 +36,7 @@ class YonaVPNInstructionsViewController : UIViewController {
         tracker?.set(kGAIScreenName, value: "YonaVPNInstructionsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
 //MARK: Protocol impl

@@ -45,7 +45,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController {
         tracker?.set(kGAIScreenName, value: "YonaNotificationAcceptFriendRequestViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +69,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController {
     // MARK: - Actions
     @IBAction func backAction (_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as? [AnyHashable: Any])
         navigationController?.popViewController(animated: true)
         
     }

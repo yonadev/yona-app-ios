@@ -61,7 +61,7 @@ class NotificationsViewController: UITableViewController {
         tracker?.set(kGAIScreenName, value: "NotificationsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiGrapeColor()
         let navbar = navigationController?.navigationBar as! GradientNavBar
         navbar.gradientColor = UIColor.yiGrapeTwoColor()

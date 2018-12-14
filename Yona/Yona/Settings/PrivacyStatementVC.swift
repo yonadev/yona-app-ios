@@ -24,7 +24,7 @@ class PrivacyStatementVC: UIViewController {
         tracker?.set(kGAIScreenName, value: "PrivacyStatementVC")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
 }
 

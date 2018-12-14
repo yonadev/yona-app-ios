@@ -66,7 +66,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "SignUpSecondStepViewController")
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         IQKeyboardManager.shared.enable = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)) , name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHiden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -169,14 +169,14 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     // Go Back To Previous VC
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backFromSecondStep", label: "Back to first step in signup", value: nil).build() as? [AnyHashable: Any])
         self.navigationController?.popViewController(animated: true)
     }
     
     // Go To Another ViewController
     @IBAction func nextPressed(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextPressedAfterSignupSecond", label: "Step 2 finished, next step in sign up", value: nil).build() as? [AnyHashable: Any])
         var number = ""
         if let mobilenum = mobileTextField.text {
             if let prefix = mobilePrefixTextField.text {
@@ -283,8 +283,8 @@ extension SignUpSecondStepViewController: UITextFieldDelegate {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
-                    textField.text = String(textField.text!.characters.dropLast())
-                    textField.text = String(textField.text!.characters.dropLast())
+                    textField.text = String(textField.text!.dropLast())
+                    textField.text = String(textField.text!.dropLast())
                 }
             } else  {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {

@@ -40,7 +40,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController {
         tracker?.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         DispatchQueue.main.async(execute: {
             
@@ -148,7 +148,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController {
     
     @IBAction func installMobilConfigFile(_ sender : UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as? [AnyHashable: Any])
         
         UserDefaults.standard.set(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
         delegate?.installMobileProfile()

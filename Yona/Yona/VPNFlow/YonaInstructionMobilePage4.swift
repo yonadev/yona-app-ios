@@ -23,7 +23,7 @@ class YonaInstructionMobilePage4 : YonaVPNInstructionsViewController{
         tracker?.set(kGAIScreenName, value: "YonaInstructionMobilePage4")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
 
     @IBAction func requestReRun(_ sender: AnyObject){

@@ -70,10 +70,10 @@ class SendCommentControl : UIView {
     @IBAction func sendComment(_ sender: UIButton) {
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendComment", label: "Send comment button pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendComment", label: "Send comment button pressed", value: nil).build() as? [AnyHashable: Any])
         
         if let commentText = self.commentTextField.text{
-            if commentText.characters.count == 0 {
+            if commentText.count == 0 {
                 return
             }
             

@@ -77,7 +77,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         tracker?.set(kGAIScreenName, value: "AddFriendsViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         ManualTabAction(UIButton())
 //        UIToolbar.appearance().tintColor = UIColor.yellowColor()
 //        UINavigationBar.appearance().tintColor = UIColor.yellowColor()
@@ -236,15 +236,14 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             } else {
                 phoneNumber = "";
             }
-            print(phoneNumber)
             if let strippedPhoneNumber = phoneNumber {
                 let tempNumber = strippedPhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
                 var index = 9
-                if tempNumber.characters.count < 9 {
-                    index = tempNumber.characters.count
+                if tempNumber.count < 9 {
+                    index = tempNumber.count
                 }
                 index *= -1
-                phoneNumber = tempNumber.substring(from: tempNumber.characters.index(tempNumber.endIndex, offsetBy: index))
+                phoneNumber = tempNumber.substring(from: tempNumber.index(tempNumber.endIndex, offsetBy: index))
             }
             
             mobileTextfield.text = phoneNumber;
@@ -278,7 +277,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
     
     @IBAction func addNewBuddyButtonTapped(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "addNewBuddyButtonTapped", label: "Add new buddy button pressed", value: nil).build() as? [AnyHashable: Any])
         
         if firstnameTextfield.text!.count == 0 {
             self.displayAlertMessage("", alertDescription:
@@ -396,7 +395,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         
         @IBAction func ManualTabAction(_ sender: AnyObject) {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ManualTabAction", label: "Tap on a tab", value: nil).build() as? [AnyHashable: Any])
             
             addressBookTabView.alpha = 0.5
             addressBookTabBottomBorder.isHidden = true
@@ -406,7 +405,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
         
         @IBAction func AddressBookTabAction(_ sender: AnyObject) {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "AddressBookTabAction", label: "Tap on a tab", value: nil).build() as? [AnyHashable: Any])
             
             manualTabView.alpha = 0.5
             manualTabBottomBorder.isHidden = true
@@ -433,7 +432,7 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
             if (textField == mobileTextfield) {
                 if ((previousRange?.location >= range.location) ) {
                     if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
-                        textField.text = String(textField.text!.characters.dropLast())
+                        textField.text = String(textField.text!.dropLast())
                     }
                 } else  {
                     if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
