@@ -501,7 +501,7 @@ extension TimeBucketChallenges {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         if categoryHeader == .budgetGoal || categoryHeader == .timeZoneGoal || categoryHeader == .noGoGoal {
             tableView.rowHeight =  100.0

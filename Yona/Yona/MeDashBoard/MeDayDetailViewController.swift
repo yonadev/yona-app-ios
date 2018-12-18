@@ -66,7 +66,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 self.previousThreadID = ""
                 self.tableView.reloadData()
                 if self.comments.count > 0 && self.moveToBottomRequired {
-                    self.tableView.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 1), at: UITableViewScrollPosition.bottom, animated: false)
+                    self.tableView.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 1), at: UITableView.ScrollPosition.bottom, animated: false)
                 }
             }
         }
@@ -254,7 +254,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     func noGoalTypeInResponse() {
         let alert = UIAlertController(title: NSLocalizedString("nogo-data-not-found-title", comment: ""),
                                       message: NSLocalizedString("nogo-data-not-found-description", comment: ""),
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("dashboard.error.button", comment: ""), style: .default, handler: { action in
             switch action.style {
             case .default:
@@ -303,7 +303,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         return CGFloat(cellHeight)
     }

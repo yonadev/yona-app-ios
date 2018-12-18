@@ -38,7 +38,7 @@ class BaseTabViewController: UITabBarController {
 
         
         updateSelectedIndex()
-        NotificationCenter.default.addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BaseTabViewController.presentLoginScreen), name: UIApplication.willEnterForegroundNotification, object: nil)
         self.presentView()
 
     }

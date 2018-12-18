@@ -53,7 +53,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         // Configure the view for the selected state
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         if #available(iOS 8.0, *) {
             initializeCell()
@@ -98,7 +98,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         let viewBackground = UIView(frame: cellFrame)
         self.backgroundView = viewBackground
         self.backview =  UIView(frame:cellFrame)
-        self.backview.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        self.backview.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         self.isExclusiveTouch = true
         self.contentView.isExclusiveTouch = true
         self.backview.isExclusiveTouch = true
@@ -141,13 +141,13 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         let panOffset = translation.x
         let actualTranslation = CGPoint(x: panOffset, y: translation.y)
         
-        if panGestureRecognizer.state == UIGestureRecognizerState.began && panGestureRecognizer.numberOfTouches > 0 {
+        if panGestureRecognizer.state == UIGestureRecognizer.State.began && panGestureRecognizer.numberOfTouches > 0 {
             //start swipe
             self.backgroundView!.addSubview(backview)
-            self.backgroundView?.bringSubview(toFront: self.backview)
-            self.backview.autoresizingMask = [UIViewAutoresizing.flexibleHeight ,UIViewAutoresizing.flexibleWidth]
+            self.backgroundView?.bringSubviewToFront(self.backview)
+            self.backview.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight ,UIView.AutoresizingMask.flexibleWidth]
             animateContentViewForPoint(actualTranslation, velocity: velocity)
-        } else if(panGestureRecognizer.state == UIGestureRecognizerState.changed && panGestureRecognizer.numberOfTouches > 0) {
+        } else if(panGestureRecognizer.state == UIGestureRecognizer.State.changed && panGestureRecognizer.numberOfTouches > 0) {
             //animate
             animateContentViewForPoint(actualTranslation, velocity: velocity)
         } else {
@@ -226,7 +226,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     internal func addRightOptionsView(_ view:UIView) {
         viewRightAccessory.removeFromSuperview()
         viewRightAccessory = view
-        viewRightAccessory.autoresizingMask = UIViewAutoresizing.flexibleLeftMargin
+        viewRightAccessory.autoresizingMask = UIView.AutoresizingMask.flexibleLeftMargin
         self.backview.addSubview(viewRightAccessory)
     }
 

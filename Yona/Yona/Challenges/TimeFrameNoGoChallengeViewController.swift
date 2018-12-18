@@ -64,7 +64,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
         
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
-        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercased(), for: UIControlState())
+        self.setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercased(), for: UIControl.State())
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.NoGoChallengeDescription", comment: "")
         if isFromActivity == true {
             setChallengeButton.isEnabled = true
@@ -170,9 +170,9 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTappedNoGo", label: "Delete No Go Challenge", value: nil).build() as! [AnyHashable: Any])
         
         if #available(iOS 8, *)  {
-            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: {void in
+            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: {void in
                 self.deleteGoal()
             }))
             self.present(alert, animated: true, completion: nil)

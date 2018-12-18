@@ -289,7 +289,7 @@ extension Manager {
 
         let mimetype = "image/*"
         let boundary = generateBoundaryString()
-        guard let image_data = UIImagePNGRepresentation(img) else {
+        guard let image_data = img.pngData() else {
             return Data()
         }
         

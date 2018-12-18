@@ -39,7 +39,7 @@ extension UIBarButtonItem {
         // Initialize Badge
         let badge = CAShapeLayer()
         let radius : CGFloat = 12
-        let location = CGPoint(x: (view as AnyObject).frame.width/2, y: radius+2 )
+        let location = CGPoint(x: (view as! UIView).frame.width/2, y: radius+2 )
         badge.drawCircleAtLocation(location, withRadius: radius, andColor: UIColor.white, filled: false)
         if #available(iOS 8.0, *) {
             (view as AnyObject).layer.addSublayer(badge)
@@ -64,7 +64,7 @@ extension UIBarButtonItem {
         // Initialiaze Badge's label
         let label = CATextLayer()
         label.string = "\(number)"
-        label.alignmentMode = kCAAlignmentCenter
+        label.alignmentMode = CATextLayerAlignmentMode.center
         label.fontSize = 11
         label.frame = CGRect(origin: CGPoint(x: location.x - 4, y: offset.y), size: CGSize(width: 8, height: 16))
         label.foregroundColor = filled ? UIColor.white.cgColor : color.cgColor

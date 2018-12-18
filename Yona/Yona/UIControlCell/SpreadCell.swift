@@ -89,7 +89,7 @@ class SpreadCell : UITableViewCell {
             determineCellColour(spreadCellView, spreadCellsValue: spreadCellsValue, currentSpread: currentSpread)
             
             if isAnimated {
-                UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(),
+                UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions(),
                                            animations: {
                                             spreadCellView.frame = spreadCellView.frame
                     }, completion: {finished in

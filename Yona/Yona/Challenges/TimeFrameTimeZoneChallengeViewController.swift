@@ -156,7 +156,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         setChallengeButton.layer.borderWidth = 1.5
         setChallengeButton.layer.borderColor = UIColor.yiMidBlueColor().cgColor
         footerGradientView.colors = [UIColor.yiWhiteTwoColor(), UIColor.yiWhiteTwoColor()]
-        setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercased(), for: UIControlState())
+        setChallengeButton.setTitle(NSLocalizedString("challenges.addBudgetGoal.setChallengeButton", comment: "").uppercased(), for: UIControl.State())
         
        // bottomLabelText.text = NSLocalizedString("challenges.addBudgetGoal.bottomLabelText", comment: "")
         let localizedString = NSLocalizedString("challenges.addBudgetGoal.TimeZoneChallengeDescription", comment: "")
@@ -300,7 +300,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.picker?.pickerTitleLabel(NSLocalizedString("from", comment: ""))
             self.picker?.okButtonTitle.title = NSLocalizedString("challenge-next", comment: "")
             self.picker?.cancelButtonTitle.title = NSLocalizedString("challenge-cancel", comment: "")
-            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
+            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCell.EditingStyle.delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].fromDate)
         }) { (cell) in
             
             self.activeIndexPath = indexPath
@@ -310,7 +310,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
             self.picker?.pickerTitleLabel(NSLocalizedString("to", comment: ""))
             self.picker?.okButtonTitle.title = NSLocalizedString("challenge-done", comment: "")
             self.picker?.cancelButtonTitle.title = NSLocalizedString("challenge-prev", comment: "")
-            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCellEditingStyle.delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
+            self.picker?.hideShowDatePickerView(isToShow: (cell.editingStyle ==  UITableViewCell.EditingStyle.delete ? false:true)).configureWithTime(self.zonesArrayDate[indexPath.row].toDate)
         }
         
         return cell
@@ -373,9 +373,9 @@ extension TimeFrameTimeZoneChallengeViewController {
         self.isSaved = false
 
         if #available(iOS 8, *)  {
-            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: {void in
+            let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: {void in
                 self.deleteGoal()
             }))
             self.present(alert, animated: true, completion: nil)

@@ -38,10 +38,8 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         
        
         //keyboard functions
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: Selector.keyboardWasShown, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        notificationCenter.addObserver(self, selector: Selector.keyboardWillBeHidden, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(_:)) , name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)    }
     
     override func viewDidAppear(_ animated: Bool) {
         codeInputView.becomeFirstResponder()
@@ -108,7 +106,7 @@ private extension Selector {
 extension ConfirmPasscodeViewController: KeyboardProtocol {
     @objc func keyboardWasShown (_ notification: Notification) {
         
-        if let activeField = self.codeView, let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let activeField = self.codeView, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets

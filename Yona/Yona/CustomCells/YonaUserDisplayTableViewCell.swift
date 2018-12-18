@@ -115,8 +115,8 @@ class YonaUserDisplayTableViewCell: UITableViewCell, UITextFieldDelegate {
             keyboardDoneButtonView.sizeToFit()
             
             // Setup the buttons to be put in the system.
-            let item1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-            let item = UIBarButtonItem(title: NSLocalizedString("Done", comment: "done text"), style: UIBarButtonItemStyle.bordered, target: self, action: #selector(YonaUserDisplayTableViewCell.endEditingNow) )
+            let item1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+            let item = UIBarButtonItem(title: NSLocalizedString("Done", comment: "done text"), style: UIBarButtonItem.Style.bordered, target: self, action: #selector(YonaUserDisplayTableViewCell.endEditingNow) )
             item.tintColor = UIColor.yiBlackColor()
             let toolbarButtons = [item1,item]
             

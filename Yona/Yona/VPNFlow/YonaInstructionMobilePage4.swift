@@ -34,11 +34,11 @@ class YonaInstructionMobilePage4 : YonaVPNInstructionsViewController{
         
         overlayImage.alpha = 0.0
         overlayImage.isHidden = false
-        UIView.animate(withDuration: animationDuration, delay: 0.5, options: UIViewAnimationOptions.curveEaseIn,animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0.5, options: UIView.AnimationOptions.curveEaseIn,animations: {
             self.overlayImage.alpha = 1.0
             }, completion: {
                 completed in
-                UIView.animate(withDuration: 0.0  , delay: 0.5, options: UIViewAnimationOptions.curveEaseIn,animations: {
+                UIView.animate(withDuration: 0.0  , delay: 0.5, options: UIView.AnimationOptions.curveEaseIn,animations: {
                     
                     }, completion: {
                         completed in

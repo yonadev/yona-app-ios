@@ -48,7 +48,7 @@ enum validateError {
             self.navigationItem.hidesBackButton = true
             self.tabBarController?.tabBar.isHidden = true
         } else {
-            let backBtn:UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "icnBack"), style: UIBarButtonItemStyle.plain, target:self, action:#selector(self.backBtnAction))
+            let backBtn:UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "icnBack"), style: UIBarButtonItem.Style.plain, target:self, action:#selector(self.backBtnAction))
             self.navigationItem.setLeftBarButtonItems([backBtn], animated: true)
             self.navigationItem.hidesBackButton = false
             self.tabBarController?.tabBar.isHidden = false
@@ -350,8 +350,8 @@ enum validateError {
         return 87 // section 1 , YonaUserDisplayTableViewCell height which is fixed in xib(cell UI design)
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.none
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -362,12 +362,12 @@ enum validateError {
  //MARK: UIImagePickerControllerDelegate
  extension YonaUserProfileViewController: UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         var image : UIImage!
-        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let img = info[.editedImage] as? UIImage {
             image = img
         }
-        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        else if let img = info[.originalImage] as? UIImage {
             image = img
         }
         currentImage =  resizeImage(image, targetSize: CGSize(width:200, height: 200))
@@ -375,16 +375,16 @@ enum validateError {
         topCell!.avatraInitialsLabel.text = ""
         picker.dismiss( animated: true, completion: nil)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white,
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss( animated: true, completion: nil)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                            NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white,
+                                                            NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 14)!]
         UINavigationBar.appearance().barTintColor = UIColor.yiWhiteColor()
     }
  }

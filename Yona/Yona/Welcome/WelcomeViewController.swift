@@ -54,7 +54,7 @@ class WelcomeViewController: BaseViewController {
         let alert = UIAlertController(title: NSLocalizedString("environment-alert-title", comment:""), message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (textField) -> Void in
             textField.text = currentBaseURLString
-            textField.addTarget(self, action: #selector(WelcomeViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+            textField.addTarget(self, action: #selector(WelcomeViewController.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         })
         addAlertAction(alert, currentBaseURLString)
         self.present(alert, animated: true, completion: nil)

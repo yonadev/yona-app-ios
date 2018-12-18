@@ -42,7 +42,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
             if name.characters.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
                 let txt = "\(name.capitalized.characters.first!)"
-                btnName.setTitle(txt, for: UIControlState())
+                btnName.setTitle(txt, for: UIControl.State())
                 btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                 btnName.addTarget(self, action: #selector(showUserProfile(_:)), for: .touchUpInside)
                 
@@ -123,7 +123,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                 cellHeight = 165
             }
         } else if indexPath.section == detailDaySections.comment.rawValue {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
 
         return CGFloat(cellHeight)
