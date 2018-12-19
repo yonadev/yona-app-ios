@@ -1,1 +1,18 @@
-APPDEV-1192 Het is nu mogelijk om van een wijzigingsbericht van een vriend naar het overzichtsscherm van hem/haar te gaan
+RELEASE 1.1
+Totaal 85 problemen afgehandeld.
+Er is veel aandacht besteed aan het stabiel maken van de Yona app op verschillende versies van iOS
+
+USER INTERFACE VERBETERINGEN
+* Profielfoto's
+* Dashboard scherm
+* Vriendentijdslijn
+* Weergeven van challenges
+* Notificaties
+
+ANDERE VERBETERINGEN
+* Juiste support e-mailadres
+* Uitnodigen vriend
+* Controle en opmaak telefoonnummer 
+* Crashes opgelost en tooling ingebouwd voor analyse van crashes
+
+Mail ons voor gedetailleerde release notes
