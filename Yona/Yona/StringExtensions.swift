@@ -72,12 +72,12 @@ extension String {
     func randomAlphaNumericString() -> String {
         let length = 6
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        let allowedCharsCount = UInt32(allowedChars.count)
         var randomString = ""
         
         for _ in (0..<length) {
             let randomNum = Int(arc4random_uniform(allowedCharsCount))
-            let newCharacter = allowedChars[allowedChars.characters.index(allowedChars.startIndex, offsetBy: randomNum)]
+            let newCharacter = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomNum)]
             randomString += String(newCharacter)
         }
         print(randomString)
@@ -113,11 +113,11 @@ extension String {
             if val >= "0" && val <= "9" {
                 
                 // We need to know whether or not the value is singular ('1') or not ('11', '23').
-                if let safeDisplayedString = displayedString as String!, displayedString!.characters.count > 0 && val == "1" {
+                if let safeDisplayedString = displayedString as String!, displayedString!.count > 0 && val == "1" {
                     
-                    let lastIndex = safeDisplayedString.characters.count - 1
+                    let lastIndex = safeDisplayedString.count - 1
                     
-                    let lastChar = safeDisplayedString[safeDisplayedString.characters.index(safeDisplayedString.startIndex, offsetBy: lastIndex)]
+                    let lastChar = safeDisplayedString[safeDisplayedString.index(safeDisplayedString.startIndex, offsetBy: lastIndex)]
                     
                     //test if the current last char in the displayed string is a space (" "). If it is then we will say it's singular until proven otherwise.
                     if lastChar == " " {
@@ -233,7 +233,7 @@ extension String {
     }
     
     func dashRemoval() -> Array<String> {
-        return self.characters.split{$0 == "-"}.map(String.init)
+        return self.split{$0 == "-"}.map(String.init)
     }
     
     func heightForWithFont(_ font: UIFont, width: CGFloat, insets: UIEdgeInsets) -> CGFloat {

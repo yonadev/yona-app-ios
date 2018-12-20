@@ -109,7 +109,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
         tracker?.set(kGAIScreenName, value: "TimeFrameNoGoChallengeViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     func listActivities(_ activities: [String]){
@@ -124,7 +124,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     // MARK: - Actions
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameNoGoChallengeViewController", label: "Back from no go challenge page", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameNoGoChallengeViewController", label: "Back from no go challenge page", value: nil).build() as? [AnyHashable: Any])
         
         self.navigationController?.popViewController(animated: true)
         
@@ -132,7 +132,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     @IBAction func postNewNoGoChallengeButtonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewNoGoChallengeButtonTapped", label: "Post No Go Challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewNoGoChallengeButtonTapped", label: "Post No Go Challenge", value: nil).build() as? [AnyHashable: Any])
         
         if let activityCategoryLink = activitiyToPost?.selfLinks! {
             let bodyBudgetGoal: [String: AnyObject] = [
@@ -167,7 +167,7 @@ class TimeFrameNoGoChallengeViewController: BaseViewController ,UIAlertViewDeleg
     
     @IBAction func deletebuttonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTappedNoGo", label: "Delete No Go Challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTappedNoGo", label: "Delete No Go Challenge", value: nil).build() as? [AnyHashable: Any])
         
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertController.Style.alert)

@@ -62,7 +62,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         tracker?.set(kGAIScreenName, value: "FriendsProfileMasterView")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         setupUI()
         leftPage = 0
@@ -208,9 +208,6 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
             } else {
                 return RequestedBuddy.count
             }
-            if section == 0 {
-                return 0
-            }
         }
     }
     
@@ -286,7 +283,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
         }
         if segue.destination is FriendsDayDetailViewController {
             let controller = segue.destination as! FriendsDayDetailViewController
-            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = timeLineData[section].tableViewCells[theTableView.indexPathForSelectedRow!.row] as! TimeLinedayActivitiesForUsers
                 if let link = data.dayDetailLink {
                     controller.initialObjectLink = link
@@ -421,7 +418,7 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     
     @IBAction func unwindToFriendsOverview(_ segue: UIStoryboardSegue) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "unwindToFriendsOverview", label: "Back from friends profile to overview", value: nil).build() as? [AnyHashable: Any])
         
         print(segue.source)
     }

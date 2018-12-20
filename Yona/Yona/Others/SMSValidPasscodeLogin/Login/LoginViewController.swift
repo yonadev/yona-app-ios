@@ -38,7 +38,7 @@ class LoginViewController: LoginSignupValidationMasterView {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "LoginViewController")
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         if !isFromSettings {
             //Get user call
             pinResetButton.isHidden = true
@@ -210,8 +210,8 @@ extension LoginViewController: CodeInputViewDelegate {
     }
     
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        let passcode = KeychainManager.sharedInstance.getPINCode()
-        if code ==  passcode {
+        let pin = KeychainManager.sharedInstance.getPINCode()
+        if code ==  pin {
             authenticatedSuccessFully()
             setFailedLoginAttempts(0)
         } else {
@@ -238,14 +238,14 @@ extension LoginViewController: CodeInputViewDelegate {
     
     @IBAction func pinResetTapped(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "pinResetTapped", label: "Reset the pin button pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "pinResetTapped", label: "Reset the pin button pressed", value: nil).build() as? [AnyHashable: Any])
         self.pinResetTapped()
     }
     
     // Go Back To Previous VC
     @IBAction func backToSettings(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backToSettings", label: "Back to settings from pinreset", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backToSettings", label: "Back to settings from pinreset", value: nil).build() as? [AnyHashable: Any])
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
@@ -256,7 +256,7 @@ private extension Selector {
 
 //MARK: - KeyboardProtocol Methods
 extension LoginViewController: KeyboardProtocol {
-    func keyboardWasShown (_ notification: Notification) {
+    @objc func keyboardWasShown (_ notification: Notification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
         if let activeField = self.pinResetButton {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
@@ -290,7 +290,7 @@ extension LoginViewController: KeyboardProtocol {
         })
     }
     
-    func keyboardWillBeHidden(_ notification: Notification) {
+    @objc func keyboardWillBeHidden(_ notification: Notification) {
         DispatchQueue.main.async(execute: {
             self.touchIdButton.removeFromSuperview()
         })

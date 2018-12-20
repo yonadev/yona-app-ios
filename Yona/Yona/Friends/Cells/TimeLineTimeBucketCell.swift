@@ -93,8 +93,8 @@ class TimeLineTimeBucketCell : UITableViewCell {
 //        if firstName.characters.count > 0 && lastName.characters.count > 0{
 //            userInitial.text =  "\(firstName.capitalizedString.characters.first!) \(lastName.capitalizedString.characters.first!)"
 //        }
-        if nickName.characters.count > 0 {
-            userInitial.text = "\(nickName.capitalized.characters.first!)"
+        if nickName.count > 0 {
+            userInitial.text = "\(nickName.capitalized.first!)"
         }
         
     }

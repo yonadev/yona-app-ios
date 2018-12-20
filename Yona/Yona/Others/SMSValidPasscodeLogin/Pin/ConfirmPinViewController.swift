@@ -1,5 +1,5 @@
 //
-//  ConfirmPasscodeViewController.swift
+//  ConfirmPinViewController.swift
 //  Yona
 //
 //  Created by Chandan on 04/04/16.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
+final class ConfirmPinViewController:  LoginSignupValidationMasterView {
 
-    var passcode: String?
+    var pin: String?
     var newUser: Users?
     
     override func viewDidLoad() {
@@ -26,10 +26,10 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "ConfirmPasscodeViewController")
+        tracker?.set(kGAIScreenName, value: "ConfirmPinViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         self.codeInputView.delegate = self
         self.codeInputView.secure = true
@@ -61,14 +61,14 @@ final class ConfirmPasscodeViewController:  LoginSignupValidationMasterView {
     // Go Back To Previous VC
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "ConfirmPasscodeBack", label: "Back from confirm passcode pressed", value: nil).build() as? [AnyHashable: Any])
         
         self.navigationController?.popViewController(animated: true)
     }
     
 }
 
-extension ConfirmPasscodeViewController: CodeInputViewDelegate {
+extension ConfirmPinViewController: CodeInputViewDelegate {
     //post open app event after successfully signup
     func postOpenAppEvent() {
         if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser) {
@@ -83,7 +83,7 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
     }
     
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        if (passcode == code) {
+        if (pin == code) {
             codeInputView.resignFirstResponder()
             KeychainManager.sharedInstance.savePINCode(code)
             UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isLoggedIn)
@@ -99,11 +99,11 @@ extension ConfirmPasscodeViewController: CodeInputViewDelegate {
 }
 
 private extension Selector {
-    static let back = #selector(ConfirmPasscodeViewController.back(_:))
+    static let back = #selector(ConfirmPinViewController.back(_:))
 }
 
 
-extension ConfirmPasscodeViewController: KeyboardProtocol {
+extension ConfirmPinViewController: KeyboardProtocol {
     @objc func keyboardWasShown (_ notification: Notification) {
         
         if let activeField = self.codeView, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {

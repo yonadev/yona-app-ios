@@ -18,7 +18,7 @@ class AdminOverrideValidationVC: ValidationMasterView {
         tracker?.set(kGAIScreenName, value: "AdminOverrideValidationVC")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         setBackgroundColour()
         self.navigationController?.isNavigationBarHidden = false
@@ -33,7 +33,7 @@ class AdminOverrideValidationVC: ValidationMasterView {
     
     @IBAction func sendAdminRequestOTPConfirmMobileAgain(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil).build() as? [AnyHashable: Any])
         
         Loader.Show()
         if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
@@ -77,7 +77,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
                         self.codeInputView.resignFirstResponder()
                         //Update flag
                         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
-                        setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                        setViewControllerToDisplay(ViewControllerTypeString.setPin, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                         self.performSegue(withIdentifier: R.segue.adminOverrideValidationVC.transToSetPincode, sender: self)
                     } else {
                         self.checkCodeMessageShowAlert(message, serverMessageCode: serverCode, codeInputView: codeInputView)
@@ -89,7 +89,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
 }
  
  extension AdminOverrideValidationVC: KeyboardProtocol {
-    func keyboardWasShown (_ notification: Notification) {
+    @objc func keyboardWasShown (_ notification: Notification) {
         
         if let activeField = self.resendOTPConfirmCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
@@ -107,7 +107,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
         }
     }
     
-    func keyboardWillBeHidden(_ notification: Notification) {
+    @objc func keyboardWillBeHidden(_ notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets

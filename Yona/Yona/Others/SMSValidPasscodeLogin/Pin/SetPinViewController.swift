@@ -1,5 +1,5 @@
 //
-//  SetPasscodeViewController.swift
+//  SetPinViewController.swift
 //  Yona
 //
 //  Created by Chandan on 04/04/16.
@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class SetPasscodeViewController: LoginSignupValidationMasterView {
+class SetPinViewController: LoginSignupValidationMasterView {
     
     @IBOutlet weak var bottomViewLayout: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -33,10 +33,10 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "SetPasscodeViewController")
+        tracker?.set(kGAIScreenName, value: "SetPinViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         codeInputView.delegate = self
         codeInputView.secure = true
@@ -73,21 +73,21 @@ class SetPasscodeViewController: LoginSignupValidationMasterView {
 
 
 
-extension SetPasscodeViewController: CodeInputViewDelegate {
+extension SetPinViewController: CodeInputViewDelegate {
     func codeInputView(_ codeInputView: CodeInputView, didFinishWithCode code: String) {
-        passcodeString = code
-        performSegue(withIdentifier: R.segue.setPasscodeViewController.transToConfirmPincode, sender: self)
+        pinString = code
+        performSegue(withIdentifier: R.segue.setPinViewController.transToConfirmPincode, sender: self)
         self.codeInputView.clear()
     }
 }
 
 private extension Selector {
-    static let back = #selector(SetPasscodeViewController.back(_:))
+    static let back = #selector(SetPinViewController.back(_:))
 }
 
 
-extension SetPasscodeViewController: KeyboardProtocol {
-    func keyboardWasShown (_ notification: Notification) {
+extension SetPinViewController: KeyboardProtocol {
+    @objc func keyboardWasShown (_ notification: Notification) {
         
         if let activeField = self.codeView, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
@@ -105,7 +105,7 @@ extension SetPasscodeViewController: KeyboardProtocol {
         }
     }
     
-    func keyboardWillBeHidden(_ notification: Notification) {
+    @objc func keyboardWillBeHidden(_ notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets

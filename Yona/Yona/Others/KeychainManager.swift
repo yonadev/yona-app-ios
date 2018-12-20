@@ -65,8 +65,8 @@ extension KeychainManager {
         // WARNING this should be removed!
         var link = userSelfLink
         if link.hasPrefix(EnvironmentManager.baseUrlString()){
-            let length = EnvironmentManager.baseUrlString().characters.count
-            let range = link.startIndex ..< link.characters.index(link.startIndex, offsetBy: length)
+            let length = EnvironmentManager.baseUrlString().count
+            let range = link.startIndex ..< link.index(link.startIndex, offsetBy: length)
             
             link.removeSubrange(range)
         }

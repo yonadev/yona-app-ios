@@ -27,10 +27,10 @@ enum loadType {
 enum ViewControllerTypeString: String {
     case walkThrough = "WalkThrough"
     case welcome = "Welcome"
-    case confirmMobileNumberValidation = "confirmPinValidationViewController"
+    case confirmMobileNumberValidation = "confirmOTPValidationViewController"
     case pinResetValidation = "pinResetValidationController"
     case adminOverrideValidation = "adminOverrideValidationViewController"
-    case passcode = "Passcode"
+    case setPin = "SetPin"
     case login = "Login"
     case dashboard = "Dashboard"
     case userProfile = "ProfileStoryboard"

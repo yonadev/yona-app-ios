@@ -64,7 +64,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
         tracker?.set(kGAIScreenName, value: "AddDeviceViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     fileprivate func setupUI() {
@@ -117,7 +117,7 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
     // Go To Another ViewController
     @IBAction func loginPressed(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "loginPressed", label: "AddDeviceViewController login pressed", value: nil).build() as? [AnyHashable: Any])
         
         var number = ""
         if let mobileNum = mobileTextField.text, let prefix = mobilePrefixTextField.text {
@@ -137,9 +137,9 @@ class AddDeviceViewController: BaseViewController, UIScrollViewDelegate {
                     if success {
                         //Update flag
                         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed , onCompletion: { (success, bool, code, user) in
-                            setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-                            if let passcode = R.storyboard.login.passcodeViewController(()) {
-                                self.navigationController?.pushViewController(passcode, animated: false)
+                            setViewControllerToDisplay(ViewControllerTypeString.setPin, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                            if let setPinVC = R.storyboard.login.setPinViewController(()) {
+                                self.navigationController?.pushViewController(setPinVC, animated: false)
                             }
                         })
                     } else {
@@ -176,8 +176,8 @@ extension AddDeviceViewController: UITextFieldDelegate {
         if (textField == mobileTextField) {
             if ((previousRange?.location >= range.location) ) {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {
-                    textField.text = String(textField.text!.characters.dropLast())
-                    textField.text = String(textField.text!.characters.dropLast())
+                    textField.text = String(textField.text!.dropLast())
+                    textField.text = String(textField.text!.dropLast())
                 }
             } else  {
                 if (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length ==  YonaConstants.mobilePhoneSpace.mobileFirstSpace || (textField.text?.utf16.count ?? 0) + string.utf16.count - range.length == YonaConstants.mobilePhoneSpace.mobileMiddleSpace {

@@ -46,7 +46,7 @@ class YonaTwoButtonsTableViewController: UIViewController, UITableViewDelegate, 
         tracker?.set(kGAIScreenName, value: "YonaTwoButtonsTableViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
     }

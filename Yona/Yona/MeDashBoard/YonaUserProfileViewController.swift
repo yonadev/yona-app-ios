@@ -41,7 +41,7 @@ enum validateError {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "YonaUserProfileViewController")
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         if UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile) {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem()
@@ -129,7 +129,7 @@ enum validateError {
     
     @IBAction func userDidSelectEdit(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "userDidSelectEditUserProfile", label: "Edit user profile button selected", value: nil).build() as? [AnyHashable: Any])
         
         if tableView.isEditing {
             showUserProfileInNormalMode()
@@ -181,7 +181,7 @@ enum validateError {
         self.aUser = user
         if let _ = user?.confirmMobileNumberLink{ 
             setViewControllerToDisplay(ViewControllerTypeString.userProfile, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
-            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmPinValidationViewController(()) {
+            if let controller : ConfirmMobileValidationVC = R.storyboard.login.confirmOTPValidationViewController(()) {
                 controller.isFromUserProfile = true
                 UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromProfile)
                 self.navigationController?.pushViewController(controller, animated: false)

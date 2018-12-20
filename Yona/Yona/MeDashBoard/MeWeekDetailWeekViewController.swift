@@ -15,7 +15,7 @@ enum detailRows : Int  {
     case spreadCell
 }
 
-class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate {
+class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     var initialObject : WeekSingleActivityGoal?
     var initialObjectLink : String?
     var goalType : String?
@@ -101,7 +101,7 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
     @IBAction func backAction(_ sender : AnyObject) {
         DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeWeekDetailWeekViewController", value: nil).build() as? [AnyHashable: Any])
             self.navigationController?.popViewController(animated: true)
         })
     
@@ -113,15 +113,12 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         tracker?.set(kGAIScreenName, value: "MeWeekDetailWeekViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         UIBarButtonItem.appearance().tintColor = UIColor.yiWhiteColor()
         correctToday = Date().addingTimeInterval(60*60*24)
 
-        if let aWeek = initialObject {
-//            if let txt = aWeek.goalName?.uppercaseString {
-//                navigationItem.title = NSLocalizedString(txt, comment: "")
-//            }
+        if initialObject != nil {
             loadData(.own)
         } else if initialObjectLink != nil {
             loadData(.own)
@@ -444,7 +441,21 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         
     }
     
+    // MARK: - get comment data
+    func getComments(_ commentLink: String) {
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                self.comments = []
+                if let comments = comments {
+                    self.comments = comments
+                    self.totalPages = comments[0].totalPages!
+                }
+            }
+        }
+    }
+}
     // MARK: - CommentCellDelegate
+extension MeWeekDetailWeekViewController: CommentCellDelegate {
     func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
@@ -465,8 +476,10 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
             self.sendCommentFooter!.alpha = 1
         })
     }
-    
+}
+
     // MARK: - SendCommentControlProtocol
+extension MeWeekDetailWeekViewController: SendCommentControlProtocol {
     func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
@@ -476,22 +489,9 @@ class MeWeekDetailWeekViewController: UIViewController, YonaButtonsTableHeaderVi
         commentTextField.text = ""
         if let data = week[currentWeek.yearWeek],
             let commentsLink = data.messageLink {
-                size = 4
-                page = 1
-                self.getComments(commentsLink)
-        }
-    }
-    
-    // MARK: - get comment data
-    func getComments(_ commentLink: String) {
-        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
-            if success {
-                self.comments = []
-                if let comments = comments {
-                    self.comments = comments
-                    self.totalPages = comments[0].totalPages!
-                }
-            }
+            size = 4
+            page = 1
+            self.getComments(commentsLink)
         }
     }
 }
