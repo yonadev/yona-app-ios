@@ -162,38 +162,29 @@ class UserRequestManager{
     }
     
     /**
-     Resends the One Time Password (OTP) code that is sent to the user when they are required to confirm their account
+     Resends the confirmation code that is sent to the user when they are required to confirm their account
 
      - parameter onCompletion: APIResponse, returns success or fail of the method and server messages
      */
-    func otpResendMobile(_ onCompletion: @escaping APIResponse) {
+    func resendConfirmationCodeMobile(_ onCompletion: @escaping APIResponse) {
         if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
             genericUserRequest(httpMethods.get, path: selfUserLink, userRequestType: userRequestTypes.getUser, body: nil) {(success, message, code, user) in
-                if let otpResendMobileLink = user?.otpResendMobileLink{
-                    self.genericUserRequest(httpMethods.post, path: otpResendMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
+                if let resendConfirmationCodeMobileLink = user?.resendConfirmationCodeMobileLink{
+                    self.genericUserRequest(httpMethods.post, path: resendConfirmationCodeMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
                         onCompletion(success, message, code)
                     })
                 } else {
-                    //Failed to retrive details for otp resend request
-                    onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveOTP, String(describing: responseCodes.internalErrorCode))
+                    //Failed to retrive details for confirmation code resend request
+                    onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveConfirmationCode, String(describing: responseCodes.internalErrorCode))
                 }
             }
         }
-        
-//        if let otpResendMobileLink = self.newUser?.otpResendMobileLink{
-//            genericUserRequest(httpMethods.post, path: otpResendMobileLink, userRequestType: userRequestTypes.resendMobileConfirmCode, body: nil, onCompletion: { (success, message, code, user) in
-//                onCompletion(success, message, code)
-//            })
-//        } else {
-//            //Failed to retrive details for otp resend request
-//            onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveOTP, String(responseCodes.internalErrorCode))
-//        }
     }
     
     /**
-     Called when the user is required to confirm their mobile number after signup, they are sent a text with the One Time Password (OTP) code in which they have to enter, this code is then sent through in the body and then the request can be made to confirm this mobile, if the code is wrong the server sends back messages saying as much...they have 5 attempts, after which the app is locked
+     Called when the user is required to confirm their mobile number after signup, they are sent a text with the confimation code in which they have to enter, this code is then sent through in the body and then the request can be made to confirm this mobile, if the code is wrong the server sends back messages saying as much...they have 5 attempts, after which the app is locked
      
-     - parameter body: BodyDataDictionary?, The body must take the form of this, the code is the OTP sent by text
+     - parameter body: BodyDataDictionary?, The body must take the form of this, the code is the confirmation code sent by text
                      {
                      "code": "1234"
                      }

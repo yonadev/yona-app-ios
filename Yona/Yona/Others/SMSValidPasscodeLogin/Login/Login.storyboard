@@ -556,7 +556,7 @@
         <!--join-->
         <scene sceneID="ugD-cH-7XQ">
             <objects>
-                <viewController storyboardIdentifier="confirmOTPValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmationCodeValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OCL-ox-qpy"/>
                         <viewControllerLayoutGuide type="bottom" id="vhI-uD-xhe"/>
@@ -610,7 +610,7 @@
                                                     <constraint firstAttribute="height" constant="55" id="sFQ-9H-bQC"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF" userLabel="Resend OTP Confirm Mobile">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF" userLabel="Resend Confirmation Code">
                                                 <rect key="frame" x="90" y="361" width="195" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="195" id="0xh-Ph-VMn"/>
@@ -621,7 +621,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendOTPConfirmMobileAgain:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="xQK-DA-wD7"/>
+                                                    <action selector="resendConfirmationCodeAction:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="m55-u0-1zH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -686,7 +686,7 @@
                         <outlet property="headerTitleLabel" destination="Y3U-jd-qFN" id="sa0-6m-ZHv"/>
                         <outlet property="infoLabel" destination="HZF-No-bKb" id="oTm-o2-QWW"/>
                         <outlet property="progressView" destination="8uv-mB-Hzi" id="cUD-r9-3wx"/>
-                        <outlet property="resendOTPConfirmCodeButton" destination="S6z-Uu-baF" id="JvH-gT-G1V"/>
+                        <outlet property="resendConfirmCodeButton" destination="S6z-Uu-baF" id="I6k-zf-1uy"/>
                         <outlet property="scrollView" destination="aBW-v4-tiq" id="0ny-Lf-s2M"/>
                         <outlet property="topView" destination="RT0-uA-aN2" id="fkg-MP-mqd"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="csq-qR-NzM"/>
@@ -850,7 +850,7 @@
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendCode"/>
                                                 <connections>
-                                                    <action selector="resendPinResetRequestOTPCode:" destination="z24-12-ZEv" eventType="touchUpInside" id="fp3-cT-c00"/>
+                                                    <action selector="resendConfirmationCodeAction:" destination="z24-12-ZEv" eventType="touchUpInside" id="VUx-UQ-Pbm"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-Kx-ebN">
@@ -923,7 +923,7 @@
                         <outlet property="remainingHoursLabel" destination="iCO-iI-ZCh" id="DB6-iY-XzG"/>
                         <outlet property="remainingMinutesLabel" destination="6c9-jT-WXl" id="bLa-uA-1kM"/>
                         <outlet property="remainingSecondsLabel" destination="3Av-xp-Eaf" id="jdL-qX-yWT"/>
-                        <outlet property="resendOTPResetCode" destination="nKs-XF-BWF" id="eko-XP-kmj"/>
+                        <outlet property="resendConfirmationCodeButton" destination="nKs-XF-BWF" id="ab9-68-Nmb"/>
                         <outlet property="scrollView" destination="ZUV-dI-feb" id="gxK-8V-m0z"/>
                         <outlet property="topView" destination="ChD-co-TJf" id="gik-kd-hKK"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="BLL-RE-SXW"/>
@@ -1000,7 +1000,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendAdminRequestOTPConfirmMobileAgain:" destination="IYW-3h-xN3" eventType="touchUpInside" id="N5v-oh-xeZ"/>
+                                                    <action selector="sendAdminRequestConfirmationCodeAction:" destination="IYW-3h-xN3" eventType="touchUpInside" id="wQR-aM-5cL"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1065,7 +1065,7 @@
                         <outlet property="headerTitleLabel" destination="DEN-t8-Ffh" id="Z38-yp-hzn"/>
                         <outlet property="infoLabel" destination="IFo-Rw-FBt" id="PWO-c6-Tjm"/>
                         <outlet property="progressView" destination="PnJ-hF-gQt" id="XJh-D6-XCj"/>
-                        <outlet property="resendOTPConfirmCodeButton" destination="Jc0-4o-7sq" id="UsZ-6j-LOB"/>
+                        <outlet property="resendConfirmationCodeButton" destination="Jc0-4o-7sq" id="o7w-AE-hQC"/>
                         <outlet property="scrollView" destination="OtL-Am-Zph" id="hhx-At-guq"/>
                         <outlet property="topView" destination="y3h-DL-j1n" id="sWy-DM-KfV"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="JfZ-TS-1eC"/>
@@ -1084,6 +1084,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="csq-qR-NzM"/>
+        <segue reference="JfZ-TS-1eC"/>
     </inferredMetricsTieBreakers>
 </document>

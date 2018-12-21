@@ -14,7 +14,7 @@
 import UIKit
 
 class ConfirmMobileValidationVC: ValidationMasterView {
-    @IBOutlet var resendOTPConfirmCodeButton: UIButton!
+    @IBOutlet var resendConfirmCodeButton: UIButton!
     var isFromUserProfile : Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,17 +36,17 @@ class ConfirmMobileValidationVC: ValidationMasterView {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @IBAction func sendOTPConfirmMobileAgain(_ sender: UIButton) {
+    @IBAction func resendConfirmationCodeAction(_ sender: UIButton) {
         Loader.Show()
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendOTPConfirmMobileAgain", label: "Send confirm OTP mobile again", value: nil).build() as? [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendConfirmationCodeAgain", label: "Send confirmationCode again", value: nil).build() as? [AnyHashable: Any])
         
-        UserRequestManager.sharedInstance.otpResendMobile{ (success, message, code) in
+        UserRequestManager.sharedInstance.resendConfirmationCodeMobile{ (success, message, code) in
             if success {
                 Loader.Hide()
                 self.codeInputView.isUserInteractionEnabled = true
                 #if DEBUG
-                    print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
+                    print ("pincode is \(YonaConstants.testKeys.testConfirmationCode)")
                 #endif
             } else {
                 Loader.Hide()
@@ -104,7 +104,7 @@ extension ConfirmMobileValidationVC: CodeInputViewDelegate {
 extension ConfirmMobileValidationVC: KeyboardProtocol {
     @objc func keyboardWasShown (_ notification: Notification) {
         
-        if let activeField = self.resendOTPConfirmCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let activeField = self.resendConfirmCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets

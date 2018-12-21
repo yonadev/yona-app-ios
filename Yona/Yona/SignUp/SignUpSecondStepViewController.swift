@@ -226,7 +226,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
     
     func handleOkButtonAction(body:Dictionary<String, String>) {
         AdminRequestManager.sharedInstance.adminRequestOverride(body["mobileNumber"]) { (success, message, code) in
-            if success { //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+            if success { //if success then the user is sent confirmation code, they are taken to this screen, get an confirmation code in text message must enter it
                 UserDefaults.standard.set(body, forKey: YonaConstants.nsUserDefaultsKeys.userBody)
                 UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                 self.sendToAdminOverrideValidation()
@@ -243,7 +243,7 @@ class SignUpSecondStepViewController: BaseViewController,UIScrollViewDelegate {
         //Update flag
         setViewControllerToDisplay(ViewControllerTypeString.signUp, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
         // update some UI
-        if let smsValidation = R.storyboard.login.confirmOTPValidationViewController(()) {
+        if let smsValidation = R.storyboard.login.confirmationCodeValidationViewController(()) {
             UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
             self.navigationController?.pushViewController(smsValidation, animated: false)
         }

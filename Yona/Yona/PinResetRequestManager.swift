@@ -120,9 +120,9 @@ class PinResetRequestManager {
     }
     
     /**
-     Called when the user enters the OTP sent to them after 24 hours so that the reset password can be verified
+     Called when the user enters the confirmation code sent to them after 24 hours so that the reset password can be verified
      
-     - parameter body: BodyDataDictionary, Body containing the OTP sent by text to user
+     - parameter body: BodyDataDictionary, Body containing the confirmation code sent by text to user
      - parameter onCompletion: APIPinResetResponse, Returns the pincode in ISO (if available as optional) format so UI knows how long the user has to wait, also success, fail and server messages
      */
     func pinResetVerify(_ body: BodyDataDictionary, onCompletion: @escaping APIPinResetResponse) {

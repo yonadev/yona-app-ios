@@ -9,7 +9,7 @@
 import Foundation
 
 class AdminOverrideValidationVC: ValidationMasterView {
-    @IBOutlet var resendOTPConfirmCodeButton: UIButton!
+    @IBOutlet var resendConfirmationCodeButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,16 +31,16 @@ class AdminOverrideValidationVC: ValidationMasterView {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @IBAction func sendAdminRequestOTPConfirmMobileAgain(_ sender: UIButton) {
+    @IBAction func sendAdminRequestConfirmationCodeAction(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendAdminRequestOTPConfirmMobileAgain", label: "Send Admin Request for new OTP confirm mobile code", value: nil).build() as? [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "sendAdminRequestConfirmationCode", label: "Send Admin Request for new confirmation code", value: nil).build() as? [AnyHashable: Any])
         
         Loader.Show()
         if let userBody = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.userBody) as? BodyDataDictionary {
             if let mobileNumber = userBody["mobileNumber"] as? String {
                 AdminRequestManager.sharedInstance.adminRequestOverride(mobileNumber){ (success, message, code) in
                     Loader.Hide()
-                    //if success then the user is sent OTP code, they are taken to this screen, get an OTP in text message must enter it
+                    //if success then the user is sent Confirmation code, they are taken to this screen, get a Confirmation code in text message must enter it
                     if success {
                         UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.adminOverride)
                     } else {
@@ -91,7 +91,7 @@ extension AdminOverrideValidationVC: CodeInputViewDelegate {
  extension AdminOverrideValidationVC: KeyboardProtocol {
     @objc func keyboardWasShown (_ notification: Notification) {
         
-        if let activeField = self.resendOTPConfirmCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let activeField = self.resendConfirmationCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets

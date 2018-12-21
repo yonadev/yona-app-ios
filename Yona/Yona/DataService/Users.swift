@@ -21,7 +21,7 @@ struct Users{
     //links
     var editLink: String?
     var confirmMobileNumberLink: String?
-    var otpResendMobileLink: String?
+    var resendConfirmationCodeMobileLink: String?
     var getSelfLink: String?
     var messagesLink: String?
     var dailyActivityReportsLink: String?
@@ -119,9 +119,9 @@ struct Users{
                     let confirmLinksHref = (confirmLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.confirmMobileNumberLink = confirmLinksHref
                 }
-                if let otpResendMobileLink = links[YonaConstants.jsonKeys.yonaOtpResendMobileLinkKey],
-                    let hrefOTPesendMobileLink = (otpResendMobileLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
-                    self.otpResendMobileLink = hrefOTPesendMobileLink
+                if let resendMobileNumberConfirmationCodeLink = links[YonaConstants.jsonKeys.yonaResendMobileNumberConfirmationCodeLinkKey],
+                    let hrefResendMobileNumberConfirmationCodeLink = (resendMobileNumberConfirmationCodeLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                    self.resendConfirmationCodeMobileLink = hrefResendMobileNumberConfirmationCodeLink
                 }
                 
                 if let messageLinks = links[YonaConstants.jsonKeys.yonaMessages],
