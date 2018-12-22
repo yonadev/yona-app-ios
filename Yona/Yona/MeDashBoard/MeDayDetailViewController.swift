@@ -26,7 +26,7 @@ enum detailDaySections : Int  {
     case comment
 }
 
-class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol, SendCommentControlProtocol, CommentCellDelegate  {
+class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewProtocol {
     
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var sendCommentFooter : SendCommentControl?
@@ -94,7 +94,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         tracker?.set(kGAIScreenName, value: "MeDayDetailViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         correctToday = Date().addingTimeInterval(60*60*24)
         self.loadData(.own)
@@ -104,7 +104,7 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
     @IBAction func backAction(_ sender : AnyObject) {
         DispatchQueue.main.async(execute: {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDayDetailViewController", value: nil).build() as? [AnyHashable: Any])
             
             self.navigationController?.popViewController(animated: true)
         })
@@ -521,8 +521,23 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             }
         }
     }
-    
-    // MARK: - CommentCellDelegate
+
+    // MARK: - get comment data
+    func getComments(_ commentLink: String) {
+        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
+            if success {
+                self.comments = []
+                if let comments = comments {
+                    self.comments = comments
+                    self.totalPages = comments[0].totalPages!
+                }
+            }
+        }
+    }
+}
+
+// MARK: - CommentCellDelegate
+extension MeDayDetailViewController: CommentCellDelegate {
     func deleteComment(_ cell: CommentControlCell, comment: Comment){
         let aComment = comment as Comment
         CommentRequestManager.sharedInstance.deleteComment(aComment, onCompletion: { (success, message, code) in
@@ -544,7 +559,10 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
         })
     }
     
-    // MARK: - SendCommentControlProtocol
+}
+
+// MARK: - SendCommentControlProtocol
+extension MeDayDetailViewController: SendCommentControlProtocol {
     func textFieldBeginEdit(_ textField: UITextField, commentTextField: UITextField) {
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
@@ -557,19 +575,6 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
             size = 4
             page = 1
             self.getComments(commentsLink)
-        }
-    }
-    
-    // MARK: - get comment data
-    func getComments(_ commentLink: String) {
-        CommentRequestManager.sharedInstance.getComments(commentLink, size: size, page: page) { (success, comment, comments, serverMessage, serverCode) in
-            if success {
-                self.comments = []
-                if let comments = comments {
-                    self.comments = comments
-                    self.totalPages = comments[0].totalPages!
-                }
-            }
         }
     }
 }

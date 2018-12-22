@@ -92,7 +92,7 @@ open class KeychainSwift {
         ] as [String : Any]
         
         query = addAccessGroupWhenPresent(query as! [String : NSObject])
-        lastQueryParameters = query as! [String : NSObject]
+        lastQueryParameters = query as? [String : NSObject]
         
         lastResultCode = SecItemAdd(query as CFDictionary, nil)
         
@@ -135,7 +135,7 @@ open class KeychainSwift {
      */
     open func get(_ key: String) -> String? {
         if let data = getData(key) {
-            if let currentString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
+            if let currentString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? {
                 return currentString
             }
             

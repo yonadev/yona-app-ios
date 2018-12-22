@@ -15,7 +15,7 @@ enum FriendsProfileTableViewOrder : Int{
     case button
 }
 
-class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YonaUserHeaderTabProtocol, YonaButtonTableViewCellProtocol {
+class FriendsProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,7 +31,6 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         
-
         registreTableViewCells()
         dataLoading()
     }
@@ -44,7 +43,7 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         tracker?.set(kGAIScreenName, value: "FriendsProfileViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         navbarColor1 = self.navigationController?.navigationBar.backgroundColor
         self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
@@ -79,29 +78,24 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         }
         
     }
-
     
     func dataLoading () {
         self.tableView.reloadData()
-        
-        
     }
     
     // MARK: - Actions
-    
-    func didSelectProfileTab() {
-        isShowingProfile = true
-        tableView.reloadData()
+    @IBAction func backAction(_ sender : AnyObject) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionFriendsProfileView", label: "Back from friends profile view page", value: nil).build() as? [AnyHashable: Any])
+        
+        DispatchQueue.main.async(execute: {
+            self.navigationController?.popViewController(animated: true)
+        })
     }
-    
-    func didSelectBadgesTab() {
-        isShowingProfile = false
-        tableView.reloadData()
-    }
-    
-    func didAskToAddProfileImage() {}
-    
-    // MARK: - tableView methods
+}
+
+    // MARK: - UITableViewDelegate and UITableViewDataSource methods
+extension FriendsProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -110,7 +104,6 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         if section == FriendsProfileTableViewOrder.header.rawValue {
             return 1
         }
-
         if section == FriendsProfileTableViewOrder.button.rawValue {
             if isShowingProfile {
                 return 1
@@ -118,13 +111,11 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
                 return 0
             }
         }
-        
         if isShowingProfile {
             return 4
         } else {
             return 0
         }
-
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -145,22 +136,22 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if indexPath.section == FriendsProfileTableViewOrder.button.rawValue {
-        
+            
             let cell: YonaButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaButtonTableViewCell", for: indexPath) as! YonaButtonTableViewCell
             cell.delegate = self
             cell.backgroundColor = UIColor.yiGraphBarOneColor()
             return cell
-          
+            
             
         }
         if isShowingProfile {
             let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserDisplayTableViewCell", for: indexPath) as! YonaUserDisplayTableViewCell
-                cell.setBuddyData(delegate: self, cellType: FriendsProfileCategoryHeader(rawValue: indexPath.row)!)
+            cell.setBuddyData(delegate: self, cellType: FriendsProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
         } else {
             // must be changed to show badges
             let cell: YonaUserDisplayTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserDisplayTableViewCell", for: indexPath) as! YonaUserDisplayTableViewCell
-//            cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
+            //            cell.setData(delegate: self, cellType: ProfileCategoryHeader(rawValue: indexPath.row)!)
             return cell
             
         }
@@ -182,18 +173,9 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
-    @IBAction func backAction(_ sender : AnyObject) {
-        weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionFriendsProfileView", label: "Back from friends profile view page", value: nil).build() as! [AnyHashable: Any])
-        
-        DispatchQueue.main.async(execute: {
-            self.navigationController?.popViewController(animated: true)
-        })
-    }
-    
- 
-    
+}
+//MARK: YonaButtonTableViewCellProtocol
+extension FriendsProfileViewController: YonaButtonTableViewCellProtocol{
     func didSelectButton(_ button: UIButton) {
         Loader.Show()
         BuddyRequestManager.sharedInstance.deleteBuddy(aUser, onCompletion: {(succes, ServerMessage, ServerCode, theBuddy, buddies) in
@@ -204,6 +186,21 @@ class FriendsProfileViewController: UIViewController, UITableViewDelegate, UITab
                 print("user refreshed afer delete \(succes)")
             })
         })
+    }
+}
+
+//MARK: YonaUserHeaderTabProtocol
+extension FriendsProfileViewController: YonaUserHeaderTabProtocol {
+    func didAskToAddProfileImage() {
+    }
     
+    func didSelectProfileTab() {
+        isShowingProfile = true
+        tableView.reloadData()
+    }
+    
+    func didSelectBadgesTab() {
+        isShowingProfile = false
+        tableView.reloadData()
     }
 }

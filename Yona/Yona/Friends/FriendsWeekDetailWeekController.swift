@@ -23,7 +23,7 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         tracker?.set(kGAIScreenName, value: "FriendsWeekDetailWeekController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {

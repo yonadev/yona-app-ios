@@ -110,7 +110,7 @@ class TimeFrameTimeZoneChallengeViewController: BaseViewController, DeleteTimezo
         tracker?.set(kGAIScreenName, value: "TimeFrameTimeZoneChallengeViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -328,14 +328,14 @@ extension TimeFrameTimeZoneChallengeViewController {
             self.displayAlertOption(NSLocalizedString("addfriend.alert.title.text", comment: ""), cancelButton: true, alertDescription: NSLocalizedString("challenges.user.TimeZoneNotSaved", comment: ""), onCompletion: { (buttonType) in
                 if buttonType == .ok {
                     weak var tracker = GAI.sharedInstance().defaultTracker
-                    tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as! [AnyHashable: Any])
+                    tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as? [AnyHashable: Any])
                     
                     self.navigationController?.popViewController(animated: true)
                 }
             })
         } else {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameTimeZoneChallengeViewController", label: "Back from timezone challenge page", value: nil).build() as? [AnyHashable: Any])
             
             self.navigationController?.popViewController(animated: true)
         }
@@ -344,7 +344,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func postNewTimeZoneChallengeButtonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewTimeZoneChallengeButtonTapped", label: "Add timezone challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewTimeZoneChallengeButtonTapped", label: "Add timezone challenge", value: nil).build() as? [AnyHashable: Any])
         
         self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: true)
         if isFromActivity == true {
@@ -369,7 +369,7 @@ extension TimeFrameTimeZoneChallengeViewController {
     
     @IBAction func deletebuttonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTappedTimeZone", label: "Delete timezone challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTappedTimeZone", label: "Delete timezone challenge", value: nil).build() as? [AnyHashable: Any])
         self.isSaved = false
 
         if #available(iOS 8, *)  {

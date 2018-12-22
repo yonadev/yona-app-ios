@@ -20,6 +20,6 @@ class YonaInstructionPage2 : YonaVPNInstructionsViewController {
         tracker?.set(kGAIScreenName, value: "YonaInstructionPage2")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
 }

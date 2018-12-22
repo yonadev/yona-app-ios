@@ -121,7 +121,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
         tracker?.set(kGAIScreenName, value: "TimeFrameBudgetChallengeViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     // MARK: - functions
@@ -142,21 +142,21 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     // MARK: - Actions
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionTimeFrameBudgetChallengeViewController", label: "Back from time budget challenge page", value: nil).build() as? [AnyHashable: Any])
         
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func minutesDidChange(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "minutesDidChange", label: "Change minutes", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "minutesDidChange", label: "Change minutes", value: nil).build() as? [AnyHashable: Any])
         
         maxDurationMinutes = String(Int(minutesSlider.value))
         self.updateValues()
     }
     @IBAction func postNewBudgetChallengeButtonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "postNewBudgetChallengeButtonTapped", label: "Post new budget challenge", value: nil).build() as? [AnyHashable: Any])
         
         if isFromActivity == true {
             if let activityCategoryLink = activitiyToPost?.selfLinks! {
@@ -178,7 +178,6 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
                         }
                         self.navigationItem.rightBarButtonItem = self.deleteGoalButton
                         self.navigationController?.popToRootViewController(animated: true)
-                        YonaConstants.nsUserDefaultsKeys.isGoalsAdded
                         UserDefaults.standard.set(true, forKey: YonaConstants.nsUserDefaultsKeys.isGoalsAdded)
                         UserDefaults.standard.synchronize()
                         
@@ -223,7 +222,7 @@ class TimeFrameBudgetChallengeViewController: BaseViewController,UIAlertViewDele
     
     @IBAction func deletebuttonTapped(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deletebuttonTapped", label: "Delete time bucket challenge", value: nil).build() as? [AnyHashable: Any])
         
         if #available(iOS 8, *)  {
             let alert = UIAlertController(title: NSLocalizedString("addfriend.alert.title.text", comment: ""), message: NSLocalizedString("challenges.timezone.deletetimezonemessage", comment: ""), preferredStyle: UIAlertController.Style.alert)

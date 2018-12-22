@@ -9,7 +9,7 @@
 import Foundation
 
 final class PinResetValidationVC: ValidationMasterView {
-    @IBOutlet var resendOTPResetCode: UIButton!
+    @IBOutlet var resendConfirmationCodeButton: UIButton!
 
     
     //MARK: Pin reset Count down
@@ -28,7 +28,7 @@ final class PinResetValidationVC: ValidationMasterView {
         tracker?.set(kGAIScreenName, value: "PinResetValidationVC")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         setBackgroundColour()
         displayPincodeRemainingMessage()
@@ -48,11 +48,11 @@ final class PinResetValidationVC: ValidationMasterView {
         }
     }
     
-    @IBAction func resendPinResetRequestOTPCode(_ sender: UIButton) {
+    @IBAction func resendConfirmationCodeAction(_ sender: UIButton) {
         Loader.Show()
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "resendPinResetRequestOTPCode", label: "Resend the OTP pin reset code", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "resendConfirmationCode", label: "Resend the confirmation code", value: nil).build() as? [AnyHashable: Any])
         
         PinResetRequestManager.sharedInstance.pinResendResetRequest{ (success, nil, message, code) in
             if success {
@@ -60,7 +60,7 @@ final class PinResetValidationVC: ValidationMasterView {
                 //self.codeInputView.userInteractionEnabled = true
                 
                 #if DEBUG
-                    print ("pincode is \(code)")
+                print ("pincode is \(String(describing: code))")
                 #endif
             } else {
                 PinResetRequestManager.sharedInstance.pinResetRequest({ (success, pincode, message, code) in
@@ -146,7 +146,7 @@ final class PinResetValidationVC: ValidationMasterView {
     if (remainingHours > 0 || remainingMinutes > 0 || remainingSeconds > 0) && master < 0{
             //update our labels...
             codeView.isHidden = true
-            resendOTPResetCode.isHidden = true
+            resendConfirmationCodeButton.isHidden = true
             pinResetCountDownContainer.isHidden = false
             remainingHoursLabel.text = "\(remainingHours)"
             remainingMinutesLabel.text = "\(remainingMinutes)"
@@ -157,7 +157,7 @@ final class PinResetValidationVC: ValidationMasterView {
             infoLabel.text = NSLocalizedString("smsvalidation.user.infomessage", comment:"")
             pinResetCountDownContainer.isHidden = true
             codeView.isHidden = false
-            resendOTPResetCode.isHidden = false
+            resendConfirmationCodeButton.isHidden = false
             pinResetCountDownTimer?.invalidate()
             codeInputView.becomeFirstResponder()
         }
@@ -181,7 +181,7 @@ extension PinResetValidationVC: CodeInputViewDelegate {
                     //Now send user back to pinreset screen, let them enter pincode and password again
                     self.codeInputView.resignFirstResponder()
                     //Update flag
-                    setViewControllerToDisplay(ViewControllerTypeString.passcode, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
+                    setViewControllerToDisplay(ViewControllerTypeString.setPin, key: YonaConstants.nsUserDefaultsKeys.screenToDisplay)
                     self.performSegue(withIdentifier: R.segue.pinResetValidationVC.transToSetPincode, sender: self)
                     self.codeInputView.clear()
                 })
@@ -195,9 +195,9 @@ extension PinResetValidationVC: CodeInputViewDelegate {
 }
 
 extension PinResetValidationVC: KeyboardProtocol {
-    func keyboardWasShown (_ notification: Notification) {
+    @objc func keyboardWasShown (_ notification: Notification) {
         
-        if let activeField = self.resendOTPResetCode, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let activeField = self.resendConfirmationCodeButton, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
@@ -213,7 +213,7 @@ extension PinResetValidationVC: KeyboardProtocol {
         }
     }
     
-    func keyboardWillBeHidden(_ notification: Notification) {
+    @objc func keyboardWillBeHidden(_ notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets

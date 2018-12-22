@@ -61,7 +61,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
     
     @IBAction func deleteMessage(_ sender: UIButton){
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "deleteMessage", label: "Delete notification message", value: nil).build() as? [AnyHashable: Any])
         
         if let yonaUserSwipeDelegate = yonaUserSwipeDelegate,
             let aMessage = aMessage{

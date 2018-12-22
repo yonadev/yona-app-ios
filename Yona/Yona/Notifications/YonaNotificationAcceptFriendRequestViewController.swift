@@ -14,7 +14,7 @@ enum acceptFriendRequest : Int {
     case buttons
 }
 
-class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, YonaTwoButtonTableViewCellProtocol {
+class YonaNotificationAcceptFriendRequestViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,7 +45,7 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
         tracker?.set(kGAIScreenName, value: "YonaNotificationAcceptFriendRequestViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,12 +69,14 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     // MARK: - Actions
     @IBAction func backAction (_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "YonaNotificationAcceptFriendRequestViewController", value: nil).build() as? [AnyHashable: Any])
         navigationController?.popViewController(animated: true)
         
     }
-    
-    // MARK: - tableview methods
+}
+
+    // MARK: - UITableViewDelegate and UITableViewDataSource methods
+extension YonaNotificationAcceptFriendRequestViewController :UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -82,14 +84,10 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
         case acceptFriendRequest.profile.rawValue:
-
             let cell: YonaUserHeaderWithTwoTabTableViewCell = tableView.dequeueReusableCell(withIdentifier: "YonaUserHeaderWithTwoTabTableViewCell", for: indexPath) as! YonaUserHeaderWithTwoTabTableViewCell
             cell.setAcceptFriendsMode()
             if let aBuddy = aBuddy {
@@ -106,8 +104,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                 cell.setNumber(msg)
             }
             return cell
-    
-            
         default:
             return UITableViewCell(frame: CGRect.zero)
         }
@@ -119,18 +115,15 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
             return 221
         case acceptFriendRequest.buttons.rawValue:
             return 227
-        
         default:
             return 40
         }
     }
-    
-    
-    
+}
+
     // MARK - YonaTowButtonCellProtocol
-    
+extension YonaNotificationAcceptFriendRequestViewController :YonaTwoButtonTableViewCellProtocol{
     func didSelectLeftButton(_ button: UIButton) {
-    
         view.isUserInteractionEnabled = false
         Loader.Show()
         if let mes = aMessage {
@@ -143,10 +136,8 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                 }
             })
         }
-
-
-        
     }
+    
     func didSelectRightButton(_ button: UIButton) {
         view.isUserInteractionEnabled = false
         Loader.Show()
@@ -159,7 +150,6 @@ class YonaNotificationAcceptFriendRequestViewController: UIViewController,UITabl
                 }
             })
         }
-
     }
 }
 

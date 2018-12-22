@@ -22,12 +22,12 @@ struct YonaConstants {
     }
     
     struct YonaErrorTypes {
-        static let FailedToGetActivityLink = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToGetActivityLink ?? "Unknown Error"])
-        static let UserRequestFailed = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveGetUserDetails ?? "Unknown Error"])
-        static let UserPasswordRequestFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrievePassword ?? "Unknown Error"])
-        static let GetMessagesLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToGetGetMessagesLink ?? "Unknown Error"])
-        static let GetBuddyLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveBuddyLink ?? "Unknown Error"])
-        static let Success = NSError.init(domain: errorDomains.successDomain.rawValue, code: responseCodes.ok200.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.OK ?? "Unknown Error"])
+        static let FailedToGetActivityLink = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToGetActivityLink ])
+        static let UserRequestFailed = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo: [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveGetUserDetails ])
+        static let UserPasswordRequestFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrievePassword ])
+        static let GetMessagesLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToGetGetMessagesLink ])
+        static let GetBuddyLinkFail = NSError.init(domain: errorDomains.internalErrorDomain.rawValue, code: responseCodes.internalErrorCode.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.FailedToRetrieveBuddyLink ])
+        static let Success = NSError.init(domain: errorDomains.successDomain.rawValue, code: responseCodes.ok200.rawValue, userInfo:  [NSLocalizedDescriptionKey: serverMessages.OK ])
     }
     
     struct commands {
@@ -75,7 +75,7 @@ struct YonaConstants {
         static let  selfLinkKeys = "self"
         static let  editLinkKeys = "edit"
         static let  yonaConfirmMobileLinkKeys = "yona:confirmMobileNumber"
-        static let  yonaOtpResendMobileLinkKey = "yona:resendMobileNumberConfirmationCode"
+        static let  yonaResendMobileNumberConfirmationCodeLinkKey = "yona:resendMobileNumberConfirmationCode"
         static let  yonaMessages = "yona:messages"
         static let  yonaDailyActivityReports = "yona:dailyActivityReports"
         static let  yonaWeeklyActivityReports = "yona:weeklyActivityReports"
@@ -144,15 +144,15 @@ struct YonaConstants {
         static let errorUserExists = "error.user.exists"
         static let errorAddBuddyUserExists = "error.user.exists.created.on.buddy.request"
         static let errorUserNotFound = "error.user.not.found.id"
-        static let tooManyOTPAttemps = "error.too.many.wrong.attempts"
-        static let tooManyFailedConfirmOTPAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
+        static let tooManyConfirmationCodeAttemps = "error.too.many.wrong.attempts"
+        static let tooManyFailedConfirmConfirmationCodeAttemps = "error.mobile.number.confirmation.code.too.many.failed.attempts"
         static let tooManyPinResetAttemps = "error.pin.reset.request.confirmation.code.too.many.failed.attempts"
         static let cannotAddSecondGoalOnSameCategory = "error.goal.cannot.add.second.on.activity.category"
         static let cannotRemoveMandatoryGoal = "error.goal.cannot.remove.mandatory"
         static let OK = "OK"
         static let networkConnectionProblem = "NetworkConnectionProblem"
         static let noJsonReturned = "JsonNil"
-        static let FailedToRetrieveOTP = "RetrievingOTPFail"
+        static let FailedToRetrieveConfirmationCode = "RetrievingConfirmationCodeFail"
         static let FailedToRetrieveConfirmMobile = "RetrievingConfirmMobileFail"
         static let FailedToRetrieveGetUserDetails = "getUserFail"
         static let FailedToRetrieveUpdateUserDetails = "updateUserFail"
@@ -170,7 +170,7 @@ struct YonaConstants {
         static let noJsonReturned = "No JSON returned from request"
         static let FailedToRetrievePassword = "Failed to get user password"
         static let FailedToRetrieveBuddyLink = "Failed to retrieve buddy link"
-        static let FailedToRetrieveOTP = "Failed to retrieve details for OTP"
+        static let FailedToRetrieveConfirmationCode = "Failed to retrieve details for ConfirmationCode"
         static let FailedToRetrieveProcessLink = "Failed to retrieve process link for friend request"
         static let FailedToRetrieveAcceptLink = "Failed to retrieve accept link for friend request"
         static let FailedToRetrieveRejectLink = "Failed to retrieve accept link for friend request"
@@ -209,7 +209,7 @@ struct YonaConstants {
     }
   
     struct testKeys{
-        static let otpTestCode = "1234"
+        static let testConfirmationCode = "1234"
     }
 
     struct nsUserDefaultsKeys{

@@ -68,7 +68,7 @@ class CodeInputView: UIView, UIKeyInput {
             nextTag -= 1
             (self.viewWithTag(nextTag) as! UILabel).text = " "
             
-            secureCode = String(secureCode.characters.dropLast())
+            secureCode = String(secureCode.dropLast())
         }
     }
 

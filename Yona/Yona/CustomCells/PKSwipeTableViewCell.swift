@@ -79,7 +79,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isKind(of: UIPanGestureRecognizer.classForCoder()) {
             let point =  (gestureRecognizer as! UIPanGestureRecognizer).translation(in: self.superview)
-            return ((fabs(point.x) / fabs(point.y))) > 1 ? true : false
+            return ((abs(point.x) / abs(point.y))) > 1 ? true : false
         }
         return false
     }
@@ -133,7 +133,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
                 cell?.resetCellState()
             }
         }
-        if  ((self.pkdelegate?.responds(to: Selector.init(stringLiteral: "swipeBeginInCell"))) != nil) {
+        if  ((self.pkdelegate?.responds(to: #selector(PKSwipeTableViewCell.swipeBeginInCell(_:)))) != nil) {
             self.pkdelegate?.swipeBeginInCell(self)
         }
         let translation =  panGestureRecognizer.translation(in: panGestureRecognizer.view)
@@ -241,7 +241,7 @@ class PKSwipeTableViewCell: UITableViewCell , PKSwipeCellDelegateProtocol {
         }) 
     }
     
-    func swipeBeginInCell(_ cell: PKSwipeTableViewCell) {
+    @objc func swipeBeginInCell(_ cell: PKSwipeTableViewCell) {
     }
     
     @objc func swipeDoneOnPreviousCell() -> PKSwipeTableViewCell? {

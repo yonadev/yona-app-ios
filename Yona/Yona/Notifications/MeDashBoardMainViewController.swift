@@ -52,7 +52,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         tracker?.set(kGAIScreenName, value: "MeDashBoardMainViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         self.tabBarController?.tabBar.isHidden = false
         
         configurProfileBarItem()
@@ -86,7 +86,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     @IBAction func backAction(_ sender : AnyObject) {
         
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDashboard", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backAction", label: "MeDashboard", value: nil).build() as? [AnyHashable: Any])
 
         DispatchQueue.main.async(execute: {
             self.navigationController?.popViewController(animated: true)
@@ -137,9 +137,9 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 //                    }
 //                )
             } else if let name = user?.firstName {
-                if name.characters.count > 0 {//&& user?.characters.count > 0{
+                if name.count > 0 {//&& user?.characters.count > 0{
                     let btnName = UIButton()
-                    let txt = "\(name.capitalized.characters.first!)"
+                    let txt = "\(name.capitalized.first!)"
                     btnName.setTitle(txt, for: UIControl.State())
                     btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                     btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
@@ -372,7 +372,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     @IBAction func showUserProfile(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "showUserProfileFromDashboard", label: "Show user profile from dashboard", value: nil).build() as? [AnyHashable: Any])
 
         performSegue(withIdentifier: R.segue.meDashBoardMainViewController.showProfile, sender: self)
         
@@ -380,7 +380,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
 
     @IBAction func showNotifications(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "showNotifications", label: "Show Notifications button pressed", value: nil).build() as? [AnyHashable: Any])
         
         performSegue(withIdentifier: R.segue.meDashBoardMainViewController.showNotifications, sender: self)
     }
@@ -540,7 +540,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is MeWeekDetailWeekViewController {
             let controller = segue.destination as! MeWeekDetailWeekViewController
-            if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
                 controller.title = data.goalName?.uppercased()
                 controller.initialObject = data
@@ -554,7 +554,7 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
                 controller.initialObjectLink = path
                 weekDayDetailLink = nil
                 
-            } else  if let section : Int = theTableView.indexPathForSelectedRow!.section {
+            } else  if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = leftTabData[section].activites[theTableView.indexPathForSelectedRow!.row]
                 controller.title = data.goalName?.uppercased()
                 controller.activityGoal = data

@@ -23,7 +23,7 @@ class AVPageContentViewController: BaseViewController {
         tracker?.set(kGAIScreenName, value: "AVPageContentViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func didReceiveMemoryWarning() {

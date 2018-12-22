@@ -97,8 +97,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         configureColors(isBuddy: true)
         nameLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
         nicknameLabel.text = aMessage.nickname
-        if aMessage.UserRequestfirstName.characters.count > 0 && aMessage.UserRequestlastName.characters.count > 0{
-            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalized.characters.first!) \(aMessage.UserRequestlastName.capitalized.characters.first!)"
+        if aMessage.UserRequestfirstName.count > 0 && aMessage.UserRequestlastName.count > 0{
+            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalized.first!) \(aMessage.UserRequestlastName.capitalized.first!)"
         }
 
         
@@ -124,8 +124,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             let URL = URL(string: link) {
             avatarImageView.kf.setImage(with: URL)
         } else {
-            if userModel.firstName.characters.count > 0 && userModel.lastName.characters.count > 0{
-                avatraInitialsLabel.text =  "\(userModel.firstName.capitalized.characters.first!) \(userModel.lastName.capitalized.characters.first!)"
+            if userModel.firstName.count > 0 && userModel.lastName.count > 0{
+                avatraInitialsLabel.text =  "\(userModel.firstName.capitalized.first!) \(userModel.lastName.capitalized.first!)"
             }
         }
         
@@ -147,7 +147,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         if let txt = aBuddy?.buddyNickName {
             nicknameLabel.text = txt
         }
-        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.characters.first!) \(buddy.UserRequestlastName.capitalized.characters.first!)"
+        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.first!) \(buddy.UserRequestlastName.capitalized.first!)"
         
     }
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lZQ-TZ-ft8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lZQ-TZ-ft8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -307,7 +306,7 @@
         <!--ConfirmPasscode-->
         <scene sceneID="i7a-iD-5Oh">
             <objects>
-                <viewController storyboardIdentifier="ConfirmPasscodeViewController" id="3Ev-hk-3Tr" userLabel="ConfirmPasscode" customClass="ConfirmPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmPinViewController" id="3Ev-hk-3Tr" userLabel="ConfirmPasscode" customClass="ConfirmPinViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cdj-54-fvN"/>
                         <viewControllerLayoutGuide type="bottom" id="Y64-Jh-Ep7"/>
@@ -425,7 +424,7 @@
         <!--PINCODE-->
         <scene sceneID="opM-6p-xR7">
             <objects>
-                <viewController storyboardIdentifier="PasscodeViewController" id="x8m-IB-u9n" customClass="SetPasscodeViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetPinViewController" id="x8m-IB-u9n" customClass="SetPinViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EcW-hZ-u6R"/>
                         <viewControllerLayoutGuide type="bottom" id="RHG-2k-yU8"/>
@@ -557,7 +556,7 @@
         <!--join-->
         <scene sceneID="ugD-cH-7XQ">
             <objects>
-                <viewController storyboardIdentifier="confirmPinValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmationCodeValidationViewController" id="Xgc-vU-mdu" customClass="ConfirmMobileValidationVC" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OCL-ox-qpy"/>
                         <viewControllerLayoutGuide type="bottom" id="vhI-uD-xhe"/>
@@ -569,18 +568,18 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBW-v4-tiq">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RT0-uA-aN2" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="439"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT0-uA-aN2" userLabel="TopView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="L1l-qz-vR4">
-                                                <rect key="frame" x="268" y="37" width="64" height="64"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="L1l-qz-vR4">
+                                                <rect key="frame" x="155.5" y="37" width="64" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="91H-GT-z98"/>
                                                     <constraint firstAttribute="width" constant="64" id="ZAt-pB-Kur"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="smsvalidation.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-jd-qFN">
-                                                <rect key="frame" x="15" y="126" width="570" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="smsvalidation.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-jd-qFN">
+                                                <rect key="frame" x="15" y="126" width="345" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="BgJ-k0-CVS"/>
                                                 </constraints>
@@ -588,15 +587,15 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8uv-mB-Hzi">
-                                                <rect key="frame" x="30" y="176" width="540" height="2"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uv-mB-Hzi">
+                                                <rect key="frame" x="30" y="176" width="315" height="2"/>
                                                 <color key="backgroundColor" red="0.90980392160000001" green="0.83442824958763451" blue="0.86410910971606847" alpha="0.20193728890000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="NoL-5m-9rc"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-No-bKb">
-                                                <rect key="frame" x="15" y="202" width="570" height="45"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-No-bKb">
+                                                <rect key="frame" x="15" y="202" width="345" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="O0j-jL-QZ8"/>
                                                 </constraints>
@@ -604,15 +603,15 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-Ei-xzT">
-                                                <rect key="frame" x="170" y="287" width="260" height="55"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-Ei-xzT">
+                                                <rect key="frame" x="57.5" y="287" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="dVN-rr-KgL"/>
                                                     <constraint firstAttribute="height" constant="55" id="sFQ-9H-bQC"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF" userLabel="Resend OTP Confirm Mobile">
-                                                <rect key="frame" x="203" y="361" width="195" height="28"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-Uu-baF" userLabel="Resend Confirmation Code">
+                                                <rect key="frame" x="90" y="361" width="195" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="195" id="0xh-Ph-VMn"/>
                                                     <constraint firstAttribute="height" constant="28" id="UL6-eR-UYa"/>
@@ -622,7 +621,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendOTPConfirmMobileAgain:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="xQK-DA-wD7"/>
+                                                    <action selector="resendConfirmationCodeAction:" destination="Xgc-vU-mdu" eventType="touchUpInside" id="m55-u0-1zH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -687,7 +686,7 @@
                         <outlet property="headerTitleLabel" destination="Y3U-jd-qFN" id="sa0-6m-ZHv"/>
                         <outlet property="infoLabel" destination="HZF-No-bKb" id="oTm-o2-QWW"/>
                         <outlet property="progressView" destination="8uv-mB-Hzi" id="cUD-r9-3wx"/>
-                        <outlet property="resendOTPConfirmCodeButton" destination="S6z-Uu-baF" id="JvH-gT-G1V"/>
+                        <outlet property="resendConfirmCodeButton" destination="S6z-Uu-baF" id="I6k-zf-1uy"/>
                         <outlet property="scrollView" destination="aBW-v4-tiq" id="0ny-Lf-s2M"/>
                         <outlet property="topView" destination="RT0-uA-aN2" id="fkg-MP-mqd"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="csq-qR-NzM"/>
@@ -851,7 +850,7 @@
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                 <state key="normal" title="smsvalidation.button.resendCode"/>
                                                 <connections>
-                                                    <action selector="resendPinResetRequestOTPCode:" destination="z24-12-ZEv" eventType="touchUpInside" id="fp3-cT-c00"/>
+                                                    <action selector="resendConfirmationCodeAction:" destination="z24-12-ZEv" eventType="touchUpInside" id="VUx-UQ-Pbm"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-Kx-ebN">
@@ -924,7 +923,7 @@
                         <outlet property="remainingHoursLabel" destination="iCO-iI-ZCh" id="DB6-iY-XzG"/>
                         <outlet property="remainingMinutesLabel" destination="6c9-jT-WXl" id="bLa-uA-1kM"/>
                         <outlet property="remainingSecondsLabel" destination="3Av-xp-Eaf" id="jdL-qX-yWT"/>
-                        <outlet property="resendOTPResetCode" destination="nKs-XF-BWF" id="eko-XP-kmj"/>
+                        <outlet property="resendConfirmationCodeButton" destination="nKs-XF-BWF" id="ab9-68-Nmb"/>
                         <outlet property="scrollView" destination="ZUV-dI-feb" id="gxK-8V-m0z"/>
                         <outlet property="topView" destination="ChD-co-TJf" id="gik-kd-hKK"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="BLL-RE-SXW"/>
@@ -949,18 +948,18 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtL-Am-Zph">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3h-DL-j1n" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="439"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3h-DL-j1n" userLabel="TopView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="k9y-vM-uKk">
-                                                <rect key="frame" x="268" y="37" width="64" height="64"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="k9y-vM-uKk">
+                                                <rect key="frame" x="155.5" y="37" width="64" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="VGv-Pl-vtN"/>
                                                     <constraint firstAttribute="height" constant="64" id="Zdp-DT-mvq"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="smsvalidation.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DEN-t8-Ffh">
-                                                <rect key="frame" x="15" y="126" width="570" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="smsvalidation.user.headerTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DEN-t8-Ffh">
+                                                <rect key="frame" x="15" y="126" width="345" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="Gcn-NE-VGS"/>
                                                 </constraints>
@@ -968,15 +967,15 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-hF-gQt">
-                                                <rect key="frame" x="30" y="176" width="540" height="2"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-hF-gQt">
+                                                <rect key="frame" x="30" y="176" width="315" height="2"/>
                                                 <color key="backgroundColor" red="0.90284739636354061" green="0.86142588602449388" blue="0.90980392160000001" alpha="0.20193728890000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="wLK-Gf-5nv"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFo-Rw-FBt">
-                                                <rect key="frame" x="15" y="202" width="570" height="45"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smsvalidation.user.infomessage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFo-Rw-FBt">
+                                                <rect key="frame" x="15" y="202" width="345" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="gFV-IY-FWq"/>
                                                 </constraints>
@@ -984,15 +983,15 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-2m-xlP">
-                                                <rect key="frame" x="170" y="287" width="260" height="55"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-2m-xlP">
+                                                <rect key="frame" x="57.5" y="287" width="260" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="6JL-yf-ooD"/>
                                                     <constraint firstAttribute="height" constant="55" id="PVv-UF-Onz"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc0-4o-7sq" userLabel="Resend OTP Confirm Mobile">
-                                                <rect key="frame" x="158" y="360" width="284" height="28"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc0-4o-7sq" userLabel="Resend OTP Confirm Mobile">
+                                                <rect key="frame" x="45.5" y="360" width="284" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="284" id="LgJ-Sn-thp"/>
                                                 </constraints>
@@ -1001,7 +1000,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendAdminRequestOTPConfirmMobileAgain:" destination="IYW-3h-xN3" eventType="touchUpInside" id="N5v-oh-xeZ"/>
+                                                    <action selector="sendAdminRequestConfirmationCodeAction:" destination="IYW-3h-xN3" eventType="touchUpInside" id="wQR-aM-5cL"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1066,7 +1065,7 @@
                         <outlet property="headerTitleLabel" destination="DEN-t8-Ffh" id="Z38-yp-hzn"/>
                         <outlet property="infoLabel" destination="IFo-Rw-FBt" id="PWO-c6-Tjm"/>
                         <outlet property="progressView" destination="PnJ-hF-gQt" id="XJh-D6-XCj"/>
-                        <outlet property="resendOTPConfirmCodeButton" destination="Jc0-4o-7sq" id="UsZ-6j-LOB"/>
+                        <outlet property="resendConfirmationCodeButton" destination="Jc0-4o-7sq" id="o7w-AE-hQC"/>
                         <outlet property="scrollView" destination="OtL-Am-Zph" id="hhx-At-guq"/>
                         <outlet property="topView" destination="y3h-DL-j1n" id="sWy-DM-KfV"/>
                         <segue destination="x8m-IB-u9n" kind="show" identifier="transToSetPincode" id="JfZ-TS-1eC"/>
@@ -1085,6 +1084,6 @@
         <image name="icnY" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="csq-qR-NzM"/>
+        <segue reference="JfZ-TS-1eC"/>
     </inferredMetricsTieBreakers>
 </document>

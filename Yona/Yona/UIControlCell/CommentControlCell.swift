@@ -70,7 +70,7 @@ class CommentControlCell: PKSwipeTableViewCell {
         
         
         if let nickname = comment.nickname {
-            avatarNameLabel.text = "\(nickname.capitalized.characters.first!)"
+            avatarNameLabel.text = "\(nickname.capitalized.first!)"
         }
         
         
@@ -87,7 +87,7 @@ class CommentControlCell: PKSwipeTableViewCell {
     
     @IBAction func replyToCommentButton(_ sender: UIButton) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "replyToCommentButton", label: "Replying to comment button press", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "replyToCommentButton", label: "Replying to comment button press", value: nil).build() as? [AnyHashable: Any])
         
         commentDelegate?.showSendComment(comment)
     }

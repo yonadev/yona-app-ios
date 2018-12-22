@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , YonaInstructionsProtocol {
+class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController {
     @IBOutlet weak var progressPageControl: UIPageControl!
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var actionButton : UIButton!
@@ -40,7 +40,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
         tracker?.set(kGAIScreenName, value: "YonaVPNFlowInstructionsMobileConfigViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         
         DispatchQueue.main.async(execute: {
             
@@ -144,9 +144,24 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
     
     }
     
-    //MARK: Protocol implementation
+    // Mark: - buttons actions
+    
+    @IBAction func installMobilConfigFile(_ sender : UIButton) {
+        weak var tracker = GAI.sharedInstance().defaultTracker
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as? [AnyHashable: Any])
+        
+        UserDefaults.standard.set(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
+        delegate?.installMobileProfile()
+        
+        
+    }
     
     
+}
+
+    //MARK: YonaInstructionsProtocol
+
+extension YonaVPNFlowInstructionsMobileConfigViewController: YonaInstructionsProtocol {
     func didFinishAnimations(_ sender : AnyObject) {
         if sender is YonaInstructionMobilePage1 {
             addScrollViews(2)
@@ -160,7 +175,6 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
             progressPageControl.currentPage = 2
             page3?.startAnimation()
         }
-        
         if sender is YonaInstructionMobilePage3 {
             addScrollViews(4)
             scrollView.scrollRectToVisible((page4?.view!.frame)!, animated: true)
@@ -171,9 +185,7 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
             UIView.animate(withDuration: 0.3, animations: {
                 self.actionButton.alpha = 1.0
             })
-            
         }
-        
     }
     
     func didRequestReRun() {
@@ -185,20 +197,4 @@ class YonaVPNFlowInstructionsMobileConfigViewController : UIViewController , Yon
         page1?.startAnimation()
         
     }
-    
-    
-    
-    // Mark: - buttons actions
-    
-    @IBAction func installMobilConfigFile(_ sender : UIButton) {
-        weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "installMobilConfigFile", label: "Install mobile config button pressed", value: nil).build() as! [AnyHashable: Any])
-        
-        UserDefaults.standard.set(VPNSetupStatus.configurationInstaling.rawValue, forKey: YonaConstants.nsUserDefaultsKeys.vpnSetupStatus)
-        delegate?.installMobileProfile()
-        
-        
-    }
-    
-    
 }

@@ -25,7 +25,7 @@ class ValidationMasterView: LoginSignupValidationMasterView {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         #if DEBUG
-            print ("pincode is \(YonaConstants.testKeys.otpTestCode)")
+            print ("pincode is \(YonaConstants.testKeys.testConfirmationCode)")
         #endif
     }
     
@@ -34,7 +34,7 @@ class ValidationMasterView: LoginSignupValidationMasterView {
         tracker?.set(kGAIScreenName, value: "ValidationMasterView")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class ValidationMasterView: LoginSignupValidationMasterView {
     func checkCodeMessageShowAlert(_ message: String?, serverMessageCode: String?, codeInputView: CodeInputView){
         if let codeMessage = serverMessageCode,
             let serverMessage = message {
-            if codeMessage == YonaConstants.serverCodes.tooManyFailedConfirmOTPAttemps {
+            if codeMessage == YonaConstants.serverCodes.tooManyFailedConfirmConfirmationCodeAttemps {
                 self.codeInputView.isUserInteractionEnabled = false
                 self.infoLabel.text = serverMessage
             }//too many pin verify attempts so we need to clear and the user needs to request another one

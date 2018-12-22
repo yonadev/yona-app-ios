@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
         
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
         
         do {
             try  self.httpServer?.start()
-            print("SERVER STARTET \(self.httpServer?.name())")
+            print("SERVER STARTET \(String(describing: self.httpServer?.name()))")
             
         } catch {
             return
@@ -185,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,URLSessionDelegate {
     }
     
     @objc func printServerStatus() {
-        print("SERVER IS STARTED : \(self.httpServer?.isRunning())")
+        print("SERVER IS STARTED : \(String(describing: self.httpServer?.isRunning()))")
         
     }
     

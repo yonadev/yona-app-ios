@@ -34,7 +34,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         tracker?.set(kGAIScreenName, value: "SignUpFirstStepViewController")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
         UserDefaults.standard.set(false, forKey: YonaConstants.nsUserDefaultsKeys.confirmPinFromSignUp)
         IQKeyboardManager.shared.enable = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)) , name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -52,7 +52,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
         if segue.identifier == R.segue.signUpFirstStepViewController.signUpSecondStepViewController.identifier,
             let vc = segue.destination as? SignUpSecondStepViewController {
             weak var tracker = GAI.sharedInstance().defaultTracker
-            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextSignupSecondStep", label: "Go to step 2 signup", value: nil).build() as! [AnyHashable: Any])
+            tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "nextSignupSecondStep", label: "Go to step 2 signup", value: nil).build() as? [AnyHashable: Any])
             vc.userFirstName = firstnameTextField.text
             vc.userLastName = lastnameTextField.text
         }
@@ -108,7 +108,7 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     // Go Back To Previous VC
     @IBAction func back(_ sender: AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "backActionSignUpFirstStep", label: "Back from first step signup", value: nil).build() as? [AnyHashable: Any])
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -118,12 +118,12 @@ class SignUpFirstStepViewController: BaseViewController, UIScrollViewDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if self.firstnameTextField.text!.characters.count == 0 {
+        if self.firstnameTextField.text!.count == 0 {
             self.displayAlertMessage("Invalid First Name", alertDescription:
                 "Please input a First Name.")
             return false
 
-        } else if self.lastnameTextField.text!.characters.count == 0 {
+        } else if self.lastnameTextField.text!.count == 0 {
             self.displayAlertMessage("Invalid Last Name", alertDescription:
                 "Please input a Last Name.")
             return false

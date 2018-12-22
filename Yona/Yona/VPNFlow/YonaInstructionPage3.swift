@@ -23,12 +23,12 @@ class YonaInstructionPage3 : YonaVPNInstructionsViewController {
         tracker?.set(kGAIScreenName, value: "YonaInstructionPage3")
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     @IBAction func requestReRun(_ sender: AnyObject){
         weak var tracker = GAI.sharedInstance().defaultTracker
-        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "requestReRun", label: "Request re run of instructions", value: nil).build() as! [AnyHashable: Any])
+        tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "requestReRun", label: "Request re run of instructions", value: nil).build() as? [AnyHashable: Any])
         
         delegate?.didRequestReRun()
     }

@@ -40,7 +40,7 @@ class BuddyRequestManager {
                                                     }
                                                     
                                                     if let buddy = self.buddy {
-                                                        if buddy.UserRequestmobileNumber.characters.count > 0 {
+                                                        if buddy.UserRequestmobileNumber.count > 0 {
                                                             self.buddies.append(buddy)
                                                         }
                                                     }
