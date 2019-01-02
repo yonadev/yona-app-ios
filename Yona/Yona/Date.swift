@@ -119,6 +119,7 @@ extension Foundation.Date {
         static let formatterDDMMM: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd MMM"
+            formatter.timeZone = TimeZone.init(abbreviation: "UTC")
             return formatter
         }()
         

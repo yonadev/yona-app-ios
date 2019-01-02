@@ -66,7 +66,7 @@
 		166CB84A1D2C5688008B425D /* MeWeekDetailWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8491D2C5688008B425D /* MeWeekDetailWeekViewController.swift */; };
 		166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */; };
 		166CB84E1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */; };
-		166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB84F1D2E640A008B425D /* FriendsDayViewController.swift */; };
+		166CB8501D2E640A008B425D /* FriendsDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB84F1D2E640A008B425D /* FriendsDashBoardViewController.swift */; };
 		166CB8521D2F05C4008B425D /* FriendsProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8511D2F05C4008B425D /* FriendsProfileViewController.swift */; };
 		166CB8551D2FA200008B425D /* YonaButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CB8531D2FA200008B425D /* YonaButtonTableViewCell.swift */; };
 		166CB8561D2FA200008B425D /* YonaButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */; };
@@ -389,7 +389,7 @@
 		166CB8491D2C5688008B425D /* MeWeekDetailWeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeWeekDetailWeekViewController.swift; sourceTree = "<group>"; };
 		166CB84B1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaButtonsTableHeaderView.swift; sourceTree = "<group>"; };
 		166CB84C1D2C5E58008B425D /* YonaButtonsTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaButtonsTableHeaderView.xib; sourceTree = "<group>"; };
-		166CB84F1D2E640A008B425D /* FriendsDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDayViewController.swift; sourceTree = "<group>"; };
+		166CB84F1D2E640A008B425D /* FriendsDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDashBoardViewController.swift; sourceTree = "<group>"; };
 		166CB8511D2F05C4008B425D /* FriendsProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsProfileViewController.swift; sourceTree = "<group>"; };
 		166CB8531D2FA200008B425D /* YonaButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YonaButtonTableViewCell.swift; sourceTree = "<group>"; };
 		166CB8541D2FA200008B425D /* YonaButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YonaButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1111,7 +1111,7 @@
 				AD291D6C1CA9407A008CAFB1 /* Friends.storyboard */,
 				906FED7F1CEDB81400029845 /* FriendsProfileMasterView.swift */,
 				AD7FC0751CE349630043FCE1 /* AddFriendsViewController.swift */,
-				166CB84F1D2E640A008B425D /* FriendsDayViewController.swift */,
+				166CB84F1D2E640A008B425D /* FriendsDashBoardViewController.swift */,
 				166CB8511D2F05C4008B425D /* FriendsProfileViewController.swift */,
 				1656A5E01D520AC000EB288D /* FriendsDayDetailViewController.swift */,
 				1656A5E21D522ACE00EB288D /* FriendsWeekDetailWeekController.swift */,
@@ -1803,7 +1803,7 @@
 				16FDABE31D55C13000B847DB /* TimeLineHeaderCell.swift in Sources */,
 				90F123F31D3F6D7E00E2BBBA /* SpreadCell.swift in Sources */,
 				AD291D711CA940B0008CAFB1 /* YonaUserProfileViewController.swift in Sources */,
-				166CB8501D2E640A008B425D /* FriendsDayViewController.swift in Sources */,
+				166CB8501D2E640A008B425D /* FriendsDashBoardViewController.swift in Sources */,
 				166CB84D1D2C5E58008B425D /* YonaButtonsTableHeaderView.swift in Sources */,
 				1656A3ED1D4A79A500EB288D /* YonaInstructionMobilePage3.swift in Sources */,
 				90DE879E1CD23AA600C1E706 /* UserRequestManager.swift in Sources */,
