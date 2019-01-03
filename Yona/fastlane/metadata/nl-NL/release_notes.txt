@@ -1,1 +1,1 @@
-Interne veranderingen zonder functionele impact
+APPDEV-1229 Probleem in het scrollen in het vriendenoverzicht opgelost

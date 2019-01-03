@@ -1,1 +1,1 @@
-Internal enhancements without functional changes
+APPDEV-1229 Fix for scroll issue in friend dashboard
