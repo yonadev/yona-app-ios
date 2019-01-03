@@ -8,13 +8,15 @@
 
 import Foundation
 
-class FriendsDayViewController: MeDashBoardMainViewController {
+class FriendsDashboardViewController: MeDashBoardMainViewController {
     
     var buddyToShow :Buddies?
     var navbarColor1 : UIColor?
     var navbarColor : UIColor?
     
     @IBOutlet weak var rightNavBarItem : UIBarButtonItem!
+    
+    //MARK: - View life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("", comment: "")
@@ -28,96 +30,71 @@ class FriendsDayViewController: MeDashBoardMainViewController {
             let navbar = navigationController?.navigationBar as! GradientNavBar
             navbar.gradientColor = UIColor.yiMidBlueColor()
         }
-        
-        
-
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "FriendsDayViewController")
-        
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as? [AnyHashable: Any])
-        
-        
-        
         if buddyToShow != nil {
             navbarColor1 = self.navigationController?.navigationBar.backgroundColor
             self.navigationController?.navigationBar.backgroundColor = UIColor.yiWindowsBlueColor()
             let navbar = self.navigationController?.navigationBar as! GradientNavBar
-            
             navbarColor = navbar.gradientColor
             navbar.gradientColor = UIColor.yiMidBlueColor()
-            
-            
         }
         navigationItem.rightBarButtonItems = nil
         navigationItem.rightBarButtonItem = nil
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configurProfileBarItem()
-        //navigationItem.rightBarButtonItems = nil
-        //configurProfileBarItem()
     }
     
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
-        loadActivitiesForDay()
+        loadActivitiesForDay(leftPage)
         // The subController must override this to have any action after the tabe selection
-        
+
     }
     //MARK: - week delegate methods
     override func didSelectDayInWeek(_ goal: SingleDayActivityGoal, aDate : Date) {
-        
         weekDayDetailLink = goal.yonadayDetails
-        performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+        performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailDay, sender: self)
     }
-
+    
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        loadActivitiesForWeek()
+        loadActivitiesForWeek(rightPage)
     }
-
+    
     override func configurProfileBarItem () {
         if let name = buddyToShow?.UserRequestfirstName {
-            
             navigationItem.title = name
-            
             if name.count > 0 {//&& user?.characters.count > 0{
                 let btnName = UIButton()
                 let txt = "\(name.capitalized.first!)"
                 btnName.setTitle(txt, for: UIControl.State())
                 btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
                 btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
-                
                 btnName.backgroundColor = UIColor.clear
                 btnName.layer.cornerRadius = btnName.frame.size.width/2
                 btnName.layer.borderWidth = 1
                 btnName.layer.borderColor = UIColor.white.cgColor
-                
                 let rightBarButton = UIBarButtonItem()
                 rightBarButton.customView = btnName
                 navigationItem.rightBarButtonItems = [rightBarButton]
             }
-
-            
-//            if name.characters.count > 0 {//&& user?.characters.count > 0{
-//                self.rightNavBarItem.title = "\(name.capitalizedString.characters.first!)"
-//                self.rightNavBarItem.addCircle()
-//            }
         }
     }
-
     
     // MARK: - ACTION
     @IBAction func didChooseUserProfile(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as? [AnyHashable: Any])
-        performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendProfile, sender: self)
+        performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendProfile, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,7 +104,6 @@ class FriendsDayViewController: MeDashBoardMainViewController {
         }
         if segue.destination is FriendsDayDetailViewController {
             let controller = segue.destination as! FriendsDayDetailViewController
-            
             if let path = weekDayDetailLink {
                 controller.initialObjectLink = path
                 weekDayDetailLink = nil
@@ -144,64 +120,95 @@ class FriendsDayViewController: MeDashBoardMainViewController {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
                 controller.initialObject = data
                 controller.buddy = buddyToShow
-                
             }
         }
-
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-//        if selectedTab == .right {
-//            performSegueWithIdentifier(R.segue.friendsDayViewController.showFriendsDetailWeek, sender: self)
-//        }
-        
         if selectedTab == .left {
-            performSegue(withIdentifier: R.segue.friendsDayViewController.showFriendsDetailDay, sender: self)
+            performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailDay, sender: self)
         }
     }
-
     
     // MARK: - Data loaders
+    fileprivate func handleBuddyPerDayActivity(_ activitygoals: [DayActivityOverview]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                self.animatedCells.removeAll()
+                if self.leftPage == 0 {
+                    self.leftTabData = data
+                } else {
+                    self.leftTabData.append(contentsOf: data)
+                }
+                self.leftPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
+        })
+    }
     
     override func loadActivitiesForDay(_ page : Int = 0) {
-        print("Entering day loader")
+        if loading {
+            return
+        }
+        loading = true
+        Loader.Show()
         if let buddy = buddyToShow  {
-            Loader.Show()
-            ActivitiesRequestManager.sharedInstance.getBuddieActivityPrDay(buddy, size: 3, page:0, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+            ActivitiesRequestManager.sharedInstance.getBuddieActivityPrDay(buddy, size: size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
-                    
-                    if let data = activitygoals {
-                        self.animatedCells.removeAll()
-                        self.leftTabData = data
-                    }
-                    Loader.Hide()
-                    self.theTableView.reloadData()
+                    self.handleBuddyPerDayActivity(activitygoals)
                 } else {
-                    self.leftTabData = []
                     Loader.Hide()
+                    self.loading = false
+                    DispatchQueue.main.async(execute: {
+                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                        alert.show()
+                    })
                 }
             })
         }
     }
-
+    
+    fileprivate func handleBuddyPerWeekActivity(_ activitygoals: [WeekActivityGoal]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                if self.rightPage == 0 {
+                    self.rightTabData = data
+                } else {
+                    self.rightTabData.append(contentsOf: data)
+                }
+                self.rightPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
+        })
+    }
+    
     override func loadActivitiesForWeek(_ page : Int = 0) {
+        if loading {
+            return
+        }
+        loading = true
+        Loader.Show()
         if let buddy = buddyToShow  {
-            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
-                    
-                    if let data = activitygoals {
-                        self.rightTabData = data
-                    }
-                    
-                    Loader.Hide()
-                    self.theTableView.reloadData()
-                    
+                    self.handleBuddyPerWeekActivity(activitygoals)
                 } else {
                     Loader.Hide()
+                    self.loading = false
+                    DispatchQueue.main.async(execute: {
+                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                        alert.show()
+                    })
                 }
             })
         }
     }
-
 }
