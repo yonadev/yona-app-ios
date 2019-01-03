@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FriendsDashBoardViewController: MeDashBoardMainViewController {
+class FriendsDashboardViewController: MeDashBoardMainViewController {
     
     var buddyToShow :Buddies?
     var navbarColor1 : UIColor?
@@ -55,19 +55,19 @@ class FriendsDashBoardViewController: MeDashBoardMainViewController {
     
     //MARK: - implementations metods
     override func actionsAfterLeftButtonPush() {
-        loadActivitiesForDay()
+        loadActivitiesForDay(leftPage)
         // The subController must override this to have any action after the tabe selection
 
     }
     //MARK: - week delegate methods
     override func didSelectDayInWeek(_ goal: SingleDayActivityGoal, aDate : Date) {
         weekDayDetailLink = goal.yonadayDetails
-        performSegue(withIdentifier: R.segue.friendsDashBoardViewController.showFriendsDetailDay, sender: self)
+        performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailDay, sender: self)
     }
     
     override func actionsAfterRightButtonPush() {
         // The subController must override this to have any action after the tabe selection
-        loadActivitiesForWeek()
+        loadActivitiesForWeek(rightPage)
     }
     
     override func configurProfileBarItem () {
@@ -94,7 +94,7 @@ class FriendsDashBoardViewController: MeDashBoardMainViewController {
     @IBAction func didChooseUserProfile(_ sender : AnyObject) {
         weak var tracker = GAI.sharedInstance().defaultTracker
         tracker!.send(GAIDictionaryBuilder.createEvent(withCategory: "ui_action", action: "UserProfilePressed", label: "Choose to look at user profile", value: nil).build() as? [AnyHashable: Any])
-        performSegue(withIdentifier: R.segue.friendsDashBoardViewController.showFriendProfile, sender: self)
+        performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendProfile, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,11 +126,30 @@ class FriendsDashBoardViewController: MeDashBoardMainViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if selectedTab == .left {
-            performSegue(withIdentifier: R.segue.friendsDashBoardViewController.showFriendsDetailDay, sender: self)
+            performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailDay, sender: self)
         }
     }
     
     // MARK: - Data loaders
+    fileprivate func handleBuddyPerDayActivity(_ activitygoals: [DayActivityOverview]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                self.animatedCells.removeAll()
+                if self.leftPage == 0 {
+                    self.leftTabData = data
+                } else {
+                    self.leftTabData.append(contentsOf: data)
+                }
+                self.leftPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
+        })
+    }
+    
     override func loadActivitiesForDay(_ page : Int = 0) {
         if loading {
             return
@@ -140,35 +159,35 @@ class FriendsDashBoardViewController: MeDashBoardMainViewController {
         if let buddy = buddyToShow  {
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrDay(buddy, size: size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
-                    if let data = activitygoals {
-                        if data.count > 0  {
-                            self.animatedCells.removeAll()
-                            if self.leftPage == 0 {
-                                self.leftTabData = data
-                            } else {
-                                self.leftTabData.append(contentsOf: data)
-                            }
-                            self.leftPage += 1
-                        }
-                    }
-                    Loader.Hide()
-                    self.loading = false
-                    DispatchQueue.main.async(execute: {
-                        self.theTableView.reloadData()
-                    })
+                    self.handleBuddyPerDayActivity(activitygoals)
                 } else {
                     Loader.Hide()
                     self.loading = false
                     DispatchQueue.main.async(execute: {
-                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                                                     message: err?.localizedDescription,
-                                                     delegate: nil,
-                                                     cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                         alert.show()
                     })
                 }
             })
         }
+    }
+    
+    fileprivate func handleBuddyPerWeekActivity(_ activitygoals: [WeekActivityGoal]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                if self.rightPage == 0 {
+                    self.rightTabData = data
+                } else {
+                    self.rightTabData.append(contentsOf: data)
+                }
+                self.rightPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
+        })
     }
     
     override func loadActivitiesForWeek(_ page : Int = 0) {
@@ -180,29 +199,12 @@ class FriendsDashBoardViewController: MeDashBoardMainViewController {
         if let buddy = buddyToShow  {
             ActivitiesRequestManager.sharedInstance.getBuddieActivityPrWeek(buddy, size:3, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
                 if success {
-                    if let data = activitygoals {
-                        if data.count > 0  {
-                            if self.rightPage == 0 {
-                                self.rightTabData = data
-                            } else {
-                                self.rightTabData.append(contentsOf: data)
-                            }
-                            self.rightPage += 1
-                        }
-                    }
-                    Loader.Hide()
-                    self.loading = false
-                    DispatchQueue.main.async(execute: {
-                        self.theTableView.reloadData()
-                    })
+                    self.handleBuddyPerWeekActivity(activitygoals)
                 } else {
                     Loader.Hide()
                     self.loading = false
                     DispatchQueue.main.async(execute: {
-                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                                                     message: err?.localizedDescription,
-                                                     delegate: nil,
-                                                     cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                        let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                         alert.show()
                     })
                 }

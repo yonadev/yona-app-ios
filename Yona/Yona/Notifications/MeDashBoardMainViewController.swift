@@ -373,6 +373,25 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         }
     }
     
+    fileprivate func handleMePerDayActivity(_ activitygoals: [DayActivityOverview]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                self.animatedCells.removeAll()
+                if self.leftPage == 0 {
+                    self.leftTabData = data
+                } else {
+                    self.leftTabData.append(contentsOf: data)
+                }
+                self.leftPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
+        })
+    }
+    
     func loadActivitiesForDay(_ page : Int = 0) {
         if loading {
             return
@@ -381,33 +400,33 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrDay(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
-                if let data = activitygoals {
-                    if data.count > 0  {
-                        self.animatedCells.removeAll()
-                        if self.leftPage == 0 {
-                            self.leftTabData = data
-                        } else {
-                            self.leftTabData.append(contentsOf: data)
-                        }
-                        self.leftPage += 1
-                    }
-                }
-                Loader.Hide()
-                self.loading = false
-                DispatchQueue.main.async(execute: {
-                    self.theTableView.reloadData()
-                })
+                self.handleMePerDayActivity(activitygoals)
             } else {
                 Loader.Hide()
                 self.loading = false
                 DispatchQueue.main.async(execute: {
-                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                        message: err?.localizedDescription,
-                        delegate: nil,
-                        cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                     alert.show()
                 })
             }
+        })
+    }
+    
+    fileprivate func handleMePerWeekActivity(_ activitygoals: [WeekActivityGoal]?) {
+        if let data = activitygoals {
+            if data.count > 0  {
+                if self.rightPage == 0 {
+                    self.rightTabData = data
+                } else {
+                    self.rightTabData.append(contentsOf: data)
+                }
+                self.rightPage += 1
+            }
+        }
+        Loader.Hide()
+        self.loading = false
+        DispatchQueue.main.async(execute: {
+            self.theTableView.reloadData()
         })
     }
     
@@ -419,29 +438,12 @@ class MeDashBoardMainViewController: YonaTwoButtonsTableViewController {
         Loader.Show()
         ActivitiesRequestManager.sharedInstance.getActivityPrWeek(size, page:page, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
             if success {
-                if let data = activitygoals {
-                    if data.count > 0  {
-                        if self.rightPage == 0 {
-                            self.rightTabData = data
-                        } else {
-                            self.rightTabData.append(contentsOf: data)
-                        }
-                        self.rightPage += 1
-                    }
-                }
-                Loader.Hide()
-                self.loading = false
-                DispatchQueue.main.async(execute: {
-                    self.theTableView.reloadData()
-                })
+                self.handleMePerWeekActivity(activitygoals)
             } else {
                 Loader.Hide()
                 self.loading = false
                 DispatchQueue.main.async(execute: {
-                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""),
-                        message: err?.localizedDescription,
-                        delegate: nil,
-                        cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
+                    let alert = UIAlertView.init(title: NSLocalizedString("dashboard.error.title", comment: ""), message: err?.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("dashboard.error.button", comment: ""))
                     alert.show()
                 })
             }

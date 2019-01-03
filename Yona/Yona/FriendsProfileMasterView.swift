@@ -223,8 +223,8 @@ class FriendsProfileMasterView: YonaTwoButtonsTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is FriendsDashBoardViewController {
-            let controller = segue.destination as! FriendsDashBoardViewController
+        if segue.destination is FriendsDashboardViewController {
+            let controller = segue.destination as! FriendsDashboardViewController
             if let indexpath = theTableView.indexPathForSelectedRow {
                 if indexpath.section == friendsSections.connected.rawValue {
                     controller.buddyToShow = AcceptedBuddy[indexpath.row]
