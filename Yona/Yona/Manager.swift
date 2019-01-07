@@ -160,7 +160,7 @@ extension Manager {
                             
                             let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
                             print(jsonData)
-                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error as NSError?)
+                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, response: response as? HTTPURLResponse, error: error as NSError?)
                             let userInfo = [
                                 NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
                             ]
@@ -176,7 +176,7 @@ extension Manager {
                             }
                         }
                     } else {
-                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error as NSError?)
+                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, response: response as? HTTPURLResponse, error: error as NSError?)
                         //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
                         let userInfo = [
                             NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
