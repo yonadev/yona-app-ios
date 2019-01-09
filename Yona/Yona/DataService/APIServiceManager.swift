@@ -97,24 +97,22 @@ class APIServiceManager {
      - parameter error: NSError?, the http response code we need to check (200-204 success, other is fail
      - return requestResult A struct used for error requests containing our codes and messages of the error
      */
-    func setServerCodeMessage(_ json:BodyDataDictionary?, error: NSError?) -> requestResult{
+    func setServerCodeMessage(_ json:BodyDataDictionary?, response: HTTPURLResponse? ,error: NSError?) -> requestResult{
         //If there is a json response and we have the key Error then we know there is and
-        if let jsonUnwrapped = json,
-            let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String{
-            if let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
-                return requestResult.init(success: false, errorMessage: message, errorCode: responseCodes.yonaErrorCode.rawValue, domain: serverCode)
-            }
+        if (response?.statusCode)! <= responseCodes.ok299.rawValue {
+            return requestResult.init(isSuccess: true, errorMessage: responseMessages.success.rawValue, errorCode: responseCodes.ok200.rawValue, domain: errorDomains.successDomain.rawValue)
+        } else if let jsonUnwrapped = json, let message = jsonUnwrapped[YonaConstants.serverResponseKeys.message] as? String, let serverCode = jsonUnwrapped[YonaConstants.serverResponseKeys.code] as? String{
+            return requestResult.init(isSuccess: false, errorMessage: message, errorCode: responseCodes.yonaErrorCode.rawValue, domain: serverCode)
         } else if let error = error {
             //for any error between 500 to 599 return server problem, else return network error
             if case responseCodes.serverProblem500.rawValue ... responseCodes.serverProblem599.rawValue = error.code {
-                return requestResult.init(success: false, errorMessage: responseMessages.serverProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
+                return requestResult.init(isSuccess: false, errorMessage: responseMessages.serverProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
             } else {
                 //if there is possibly any other just return the systems error
-                return requestResult.init(success: false, errorMessage: responseMessages.networkConnectionProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
+                return requestResult.init(isSuccess: false, errorMessage: responseMessages.networkConnectionProblem.rawValue, errorCode: error.code, domain: errorDomains.networkErrorDomain.rawValue)
             }
         }
-        //success so return that with a success domain
-        return requestResult.init(success: true, errorMessage: responseMessages.success.rawValue, errorCode: responseCodes.ok200.rawValue, domain: errorDomains.successDomain.rawValue)
+        return requestResult.init(isSuccess: false, errorMessage: responseMessages.YonaError.rawValue, errorCode: (response?.statusCode)!, domain: errorDomains.yonaErrorDomain.rawValue)
     }
     
     

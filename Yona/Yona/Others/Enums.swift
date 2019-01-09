@@ -108,7 +108,7 @@ enum GetUserRequest{
 
 enum responseCodes: Int{
     case ok200 = 200
-    case ok399 = 399
+    case ok299 = 299
     case connectionFail400 = 400
     case connectionFail499 = 499
     case serverProblem500 = 500

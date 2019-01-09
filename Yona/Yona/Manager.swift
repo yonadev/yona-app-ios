@@ -133,6 +133,24 @@ class Manager: NSObject {
 //MARK: - User Manager methods
 extension Manager {
     
+    fileprivate func handleError(_ error: Error?, _ onCompletion: @escaping APIServiceResponse) {
+        if error != nil {
+            DispatchQueue.main.async {
+                onCompletion(false, nil, error as NSError?)
+                return
+            }
+        }
+    }
+    
+    fileprivate func handleResponse(_ jsonData: BodyDataDictionary?, _ response: URLResponse?, _ error: Error?, _ onCompletion: @escaping APIServiceResponse) {
+        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData, response: response as? HTTPURLResponse, error: error as NSError?)
+        let userInfo = [NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"]
+        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
+        DispatchQueue.main.async {
+            onCompletion(requestResult.isSuccess, jsonData, omdbError)
+        }
+    }
+    
     /**
      This is a generic method that can make any request to YONA API. It creates a request with the given parameters and an NSURLSession, then executes the session and gets the responses passing it back as a dictionary and a success or fail of the operation. The body is optional as some request do not require it.
      
@@ -146,54 +164,25 @@ extension Manager {
     {
         do{
             let request = try setupRequest(path, body: body, httpHeader: httpHeader, httpMethod: httpMethod)
-            let session = URLSession.shared
-            let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-                if error != nil{
-                    DispatchQueue.main.async {
-                        onCompletion(false, nil, error as NSError?)
-                        return
-                    }
-                }
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                self.handleError(error, onCompletion)
                 if response != nil{
                     if data != nil && data?.count > 0{ //don't try to parse 0 data, even tho it isn't nil
                         do{
-                            
                             let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
                             print(jsonData)
-                            let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(jsonData  as? BodyDataDictionary, error: error as NSError?)
-                            let userInfo = [
-                                NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
-                            ]
-                            let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
-                            
-                            DispatchQueue.main.async {
-                                onCompletion(requestResult.success, jsonData as? BodyDataDictionary, omdbError)
-                            }
-                        } catch let error as NSError{
-                            DispatchQueue.main.async {
-                                onCompletion(false, nil, error)
-                                return
-                            }
+                            self.handleResponse(jsonData as? BodyDataDictionary, response, error, onCompletion)
+                        } catch let error as NSError {
+                            self.handleError(error, onCompletion)
                         }
                     } else {
-                        let requestResult = APIServiceManager.sharedInstance.setServerCodeMessage(nil, error: error as NSError?)
-                        //This passes back the errors we retrieve, looks in the different optionals which may or may not be nil
-                        let userInfo = [
-                            NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"
-                        ]
-                        let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
-                        DispatchQueue.main.async {
-                            onCompletion(requestResult.success, nil, omdbError)
-                        }
+                        self.handleResponse(nil, response, error, onCompletion)
                     }
                 }
             })
             task.resume()
         } catch let error as NSError{
-            DispatchQueue.main.async {
-                onCompletion(false, nil, error)
-            }
-            
+            self.handleError(error, onCompletion)
         }
     }
 
