@@ -134,7 +134,7 @@ class Manager: NSObject {
 extension Manager {
     
     fileprivate func handleError(_ error: Error?, _ onCompletion: @escaping APIServiceResponse) {
-        if error != nil{
+        if error != nil {
             DispatchQueue.main.async {
                 onCompletion(false, nil, error as NSError?)
                 return
@@ -147,7 +147,7 @@ extension Manager {
         let userInfo = [NSLocalizedDescriptionKey: requestResult.errorMessage ?? "Unknown Error"]
         let omdbError = NSError(domain: requestResult.domain, code: requestResult.errorCode, userInfo: userInfo)
         DispatchQueue.main.async {
-            onCompletion(requestResult.status, jsonData, omdbError)
+            onCompletion(requestResult.isSuccess, jsonData, omdbError)
         }
     }
     
