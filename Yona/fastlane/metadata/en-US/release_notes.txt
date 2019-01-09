@@ -1,1 +1,1 @@
-APPDEV-1229 Fix for scroll issue in friend dashboard
+APPDEV-1112 No functional changes in the app
