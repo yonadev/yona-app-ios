@@ -18,6 +18,7 @@ struct Users{
     
     var buddies : [Buddies] = []
     var userGoals : [Goal] = []
+    var devices : [Device] = []
     //links
     var editLink: String?
     var confirmMobileNumberLink: String?
@@ -27,7 +28,6 @@ struct Users{
     var dailyActivityReportsLink: String?
     var weeklyActivityReportsLink: String?
     var newDeviceRequestsLink: String?
-    var appActivityLink: String?
     var activityCategoryLink: String?
     var requestPinResetLink: String?
     var requestPinVerifyLink: String?
@@ -40,9 +40,7 @@ struct Users{
     var formatetMobileNumber : String!
     var editUserAvatar: String?
     var userAvatarLink: String?
-    var openAppEventLink: String?
     
-    var mobilConfigFileURL: String = ""
     init(userData: BodyDataDictionary) {
         
         userID = "NOID"
@@ -56,7 +54,6 @@ struct Users{
             KeychainManager.sharedInstance.setPassword(yonapassword)
             //get the links
             if let links = userData[YonaConstants.jsonKeys.linksKeys] {
-                
                 // this is for when parsing user body returned from add device, to get the self link to the user
                 if let yonaUserSelfLink = links[YonaConstants.jsonKeys.yonaUserSelfLink],
                     let hrefyonaUserSelfLink = (yonaUserSelfLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
@@ -65,17 +62,11 @@ struct Users{
                     foundIncludeLink = true
                 }
                 
-                if let yonaOpenAppEventLink = links[YonaConstants.jsonKeys.yonaOpenAppEventLink],
-                    let hrefYonaOpenAppEventLink = (yonaOpenAppEventLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
-                    self.openAppEventLink = hrefYonaOpenAppEventLink
-                }
-                
                 if let editLink = links[YonaConstants.jsonKeys.editLinkKeys],
                     let hrefEditLink = (editLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.newDeviceRequestsLink = hrefEditLink
                 }
             }
-        //} else {
             
             if let firstName = userData[addUserKeys.firstNameKey.rawValue] as? String {// firstName
                 self.firstName = firstName
@@ -149,11 +140,6 @@ struct Users{
                     self.newDeviceRequestsLink = newDeviceRequestsLinksSelfHref
                 }
                 
-                if let appActivityLinks = links[YonaConstants.jsonKeys.yonaAppActivity],
-                    let hrefappActivityLinks = (appActivityLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
-                    self.appActivityLink = hrefappActivityLinks
-                }
-                
                 if let requestPinResetLinks = links[YonaConstants.jsonKeys.yonaPinRequest],
                     let hrefrequestPinResetLinks = (requestPinResetLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     self.requestPinResetLink = hrefrequestPinResetLinks
@@ -177,10 +163,6 @@ struct Users{
                     let timeline  = (requestPinClearLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
                     timeLineLink = timeline
                 }
-                if let requestPinClearLinks = links[YonaConstants.jsonKeys.yonaappleMobileConfig],
-                    let mobilconfig  = (requestPinClearLinks as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
-                    mobilConfigFileURL = mobilconfig
-                }
 
                 if let yonaEditPhotoLink = links[YonaConstants.jsonKeys.yonaEditUserPhoto],
                     let href  = (yonaEditPhotoLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
@@ -199,6 +181,17 @@ struct Users{
                 let selfGoalsLink = (goalsLink as? [String : Any])?[YonaConstants.jsonKeys.selfLinkKeys],
                 let hrefSelfGoalsLink = (selfGoalsLink as? [String : Any])?[YonaConstants.jsonKeys.hrefKey]{
                 self.getAllGoalsLink = hrefSelfGoalsLink as? String
+            }
+            
+            if let embedded = userData[YonaConstants.jsonKeys.embedded],
+                let yonaDevice = embedded[YonaConstants.jsonKeys.yonaDevice],
+                let embeddedNext = (yonaDevice as? [String : Any])?[YonaConstants.jsonKeys.embedded] {
+                if let DevicesJSON  = (embeddedNext as? [String : Any])?[YonaConstants.jsonKeys.yonaDevice] as? [BodyDataDictionary] {
+                    for each in DevicesJSON {
+                        let aDevice = Device(deviceData: each)
+                        devices.append(aDevice)
+                    }
+                }
             }
             
             //for now this is the only way to get the activity category link
@@ -264,8 +257,4 @@ struct Users{
             body["nickname"] = nickname
         return body as BodyDataDictionary
     }
-    
-    
-    
-
 }
