@@ -75,16 +75,10 @@ class UserRequestManager{
     
     
     func postOpenAppEvent(_ user: Users, onCompletion: @escaping APIResponse) {
-        var openAppEventLinkPath: String?
-        for temp in user.devices {
-            if temp.isRequestingDevice! {
-                openAppEventLinkPath = temp.openAppEventLink
-            }
-        }
-        
+        let openAppEventLinkPath = user.devices.first(where: { $0.isRequestingDevice! }).map {$0.openAppEventLink}
         if let path = openAppEventLinkPath, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
             let bodyForOpenAppEvent = ["operatingSystem": "IOS", "appVersion": appVersion, "appVersionCode":appVersionCode] as BodyDataDictionary
-            genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { (success, message, code, nil) in
+            genericUserRequest(httpMethods.post, path: path!, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { (success, message, code, nil) in
                 onCompletion(success, message, code)
             })
         } else {
@@ -217,14 +211,9 @@ class UserRequestManager{
     }
     
     func getMobileConfigFile( _ onCompletion: @escaping APIMobileConfigResponse) {
-        var mobileConfigFileURL: String?
-        for temp in (self.newUser?.devices)! {
-            if temp.isRequestingDevice! {
-                mobileConfigFileURL = temp.mobileConfigLink
-            }
-        }
+        let mobileConfigFileURL = self.newUser?.devices.first(where: { $0.isRequestingDevice! }).map {$0.mobileConfigLink}
         if let mobileConfigURL = mobileConfigFileURL {
-            APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL, httpMethod: httpMethods.get, onCompletion: onCompletion)
+            APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL!, httpMethod: httpMethods.get, onCompletion: onCompletion)
         }
     }
     
