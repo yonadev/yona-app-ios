@@ -1,1 +1,1 @@
-APPDEV-1112 Geen functionele wijzigingen in de app
+APPDEV-1113 Voorbereiding voor het toevoegen van apparaatbeheer

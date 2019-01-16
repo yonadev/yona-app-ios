@@ -1,1 +1,1 @@
-APPDEV-1112 No functional changes in the app
+APPDEV-1113 Preparation for adding device management
