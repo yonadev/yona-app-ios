@@ -296,7 +296,7 @@ extension SettingsViewController:UITableViewDelegate {
             let subject = NSLocalizedString("emailsupport.subject", comment: "")
             var body = ""
             if (showPassword) {
-                body = userlink + "\n\n" + "Password: '" + yonaPassword + "'" + "\n\n" + "Version: " + appVersion + "\n" + "Build: " + appVersionCode + "\n" + "iOS Version: " + UIDevice.current.systemVersion + "\n" + "Device: " + UIDevice.current.deviceType.displayName
+                body = userlink + "\n\n" + "Password: '" + yonaPassword + "'" + "\n\n" + "App version: " + appVersion + "\n" + "App build: " + appVersionCode + "\n" + "iOS Version: " + UIDevice.current.systemVersion + "\n" + "Device: " + UIDevice.current.deviceType.displayName
             }
             UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
             UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
