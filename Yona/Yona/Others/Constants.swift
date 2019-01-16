@@ -59,7 +59,8 @@ struct YonaConstants {
         static let  yonaGoals = "yona:goals"
         static let  yonaBuddies = "yona:buddies"
         static let  yonaBuddy = "yona:buddy"
-
+        static let  yonaDevice = "yona:devices"
+        static let  requestingDevice = "requestingDevice"
         static let  name = "name"
         static let  applications = "applications"
         static let  description = "description"
@@ -92,8 +93,7 @@ struct YonaConstants {
         static let  hrefKey = "href"
 
         
-        static let  yonaappleMobileConfig = "yona:appleMobileConfig"
-        
+        static let  yonaAppleMobileConfig = "yona:appleMobileConfig"
         static let  dayActivities = "dayActivities"
         static let  dayActivitiesForUsers = "dayActivitiesForUsers"
         static let  yonaDayActivityOverviews = "yona:dayActivityOverviews"

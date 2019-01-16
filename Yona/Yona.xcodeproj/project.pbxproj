@@ -293,6 +293,7 @@
 		E55BC485211091D90023FA43 /* fabric_script.sh in Resources */ = {isa = PBXBuildFile; fileRef = E55BC484211091D90023FA43 /* fabric_script.sh */; };
 		E58A11342119B2C2004E8086 /* MobileNumberValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A11332119B2C2004E8086 /* MobileNumberValidationTests.swift */; };
 		E5B93782210F42CC00B5413B /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = E5B93781210F42CC00B5413B /* fabric.apikey */; };
+		E5CD909221EC676D005AEF60 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD909121EC676D005AEF60 /* Device.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -650,6 +651,7 @@
 		E55BC484211091D90023FA43 /* fabric_script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fabric_script.sh; sourceTree = "<group>"; };
 		E58A11332119B2C2004E8086 /* MobileNumberValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNumberValidationTests.swift; sourceTree = "<group>"; };
 		E5B93781210F42CC00B5413B /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
+		E5CD909121EC676D005AEF60 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		F96A01827A243F17998DC35A /* Pods_Yona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1023,6 +1025,7 @@
 				16FDABDD1D53D2BE00B847DB /* TimeLineDayActivityOverview.swift */,
 				16FDABDB1D53D2A000B847DB /* TimeLineDayActivities.swift */,
 				16FDABDF1D53D2E500B847DB /* TimeLineDayActivitiesForUsers.swift */,
+				E5CD909121EC676D005AEF60 /* Device.swift */,
 			);
 			name = DAOObjects;
 			sourceTree = "<group>";
@@ -1786,6 +1789,7 @@
 				ADD108311CC7CB920048852F /* TimeFrameBudgetChallengeViewController.swift in Sources */,
 				D9C7902D1CC2E989007DDF46 /* Extensions.swift in Sources */,
 				1656A5A61D4BE6B300EB288D /* RouteRequest.m in Sources */,
+				E5CD909221EC676D005AEF60 /* Device.swift in Sources */,
 				9054D54A1D65EBAC0060D22E /* ReplyToComment.swift in Sources */,
 				9042C74F1CD898E300100306 /* UILabel+AGi18n.m in Sources */,
 				1656A3EE1D4A79A500EB288D /* YonaInstructionMobilePage4.swift in Sources */,

@@ -75,9 +75,10 @@ class UserRequestManager{
     
     
     func postOpenAppEvent(_ user: Users, onCompletion: @escaping APIResponse) {
-        if let path = user.openAppEventLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
+        let openAppEventLinkPath = user.devices.first(where: { $0.isRequestingDevice! }).map {$0.openAppEventLink}
+        if let path = openAppEventLinkPath, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
             let bodyForOpenAppEvent = ["operatingSystem": "IOS", "appVersion": appVersion, "appVersionCode":appVersionCode] as BodyDataDictionary
-            genericUserRequest(httpMethods.post, path: path, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { (success, message, code, nil) in
+            genericUserRequest(httpMethods.post, path: path!, userRequestType: userRequestTypes.postUser, body: bodyForOpenAppEvent, onCompletion: { (success, message, code, nil) in
                 onCompletion(success, message, code)
             })
         } else {
@@ -210,9 +211,10 @@ class UserRequestManager{
     }
     
     func getMobileConfigFile( _ onCompletion: @escaping APIMobileConfigResponse) {
-       if let mobileConfigURL = self.newUser?.mobilConfigFileURL {
-           APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL, httpMethod: httpMethods.get, onCompletion: onCompletion)
-            }
+        let mobileConfigFileURL = self.newUser?.devices.first(where: { $0.isRequestingDevice! }).map {$0.mobileConfigLink}
+        if let mobileConfigURL = mobileConfigFileURL {
+            APIServiceManager.sharedInstance.callRequestWithAPIMobileConfigResponse(nil, path: mobileConfigURL!, httpMethod: httpMethods.get, onCompletion: onCompletion)
+        }
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
