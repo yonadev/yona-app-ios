@@ -294,10 +294,11 @@ extension SettingsViewController:UITableViewDelegate {
         
         if let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword(), let userlink = UserRequestManager.sharedInstance.newUser?.getSelfLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String  {
             let subject = NSLocalizedString("emailsupport.subject", comment: "")
-            var body = ""
+            var body = userlink + "\n\n"
             if (showPassword) {
-                body = userlink + "\n\n" + "Password: '" + yonaPassword + "'" + "\n\n" + "App version: " + appVersion + "\n" + "App build: " + appVersionCode + "\n" + "iOS Version: " + UIDevice.current.systemVersion + "\n" + "Device: " + UIDevice.current.deviceType.displayName
+                body += "Password: '" + yonaPassword + "'\n\n"
             }
+            body += "App version: " + appVersion + "\n" + "App build: " + appVersionCode + "\n" + "iOS Version: " + UIDevice.current.systemVersion + "\n" + "Device: " + UIDevice.current.deviceType.displayName
             UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
             UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
             let picker = MFMailComposeViewController()
