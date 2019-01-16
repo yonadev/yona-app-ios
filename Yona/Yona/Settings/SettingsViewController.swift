@@ -9,6 +9,7 @@
 import UIKit
 import Messages
 import MessageUI
+import Device_swift
 
 enum  settingsOptions : Int {
     case changepin = 0
@@ -291,43 +292,27 @@ extension SettingsViewController:UITableViewDelegate {
             return
         }
         
-        if let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword(),
-            let userlink = UserRequestManager.sharedInstance.newUser?.getSelfLink {
-        
-            
-            
+        if let yonaPassword =  KeychainManager.sharedInstance.getYonaPassword(), let userlink = UserRequestManager.sharedInstance.newUser?.getSelfLink, let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as? String, let appVersionCode = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String  {
             let subject = NSLocalizedString("emailsupport.subject", comment: "")
             var body = ""
             if (showPassword) {
-                
-                 body = userlink + "\n\n" + "Password: '" + yonaPassword + "'"
+                body = userlink + "\n\n" + "Password: '" + yonaPassword + "'" + "\n\n" + "Version: " + appVersion + "\n" + "Build: " + appVersionCode + "\n" + "iOS Version: " + UIDevice.current.systemVersion + "\n" + "Device: " + UIDevice.current.deviceType.displayName
             }
-            let email = "support@yona.nu"
-        
-        
             UINavigationBar.appearance().tintColor = UIColor.yiMidBlueColor()
             UIBarButtonItem.appearance().tintColor = UIColor.yiMidBlueColor()
-            
-            
             let picker = MFMailComposeViewController()
-  
             picker.mailComposeDelegate = self
             picker.setSubject(subject)
-            picker.setToRecipients([email])
+            picker.setToRecipients([YonaConstants.supportEmail])
             picker.setMessageBody(body, isHTML: false)
-        
-
-
-            
-            
             present(picker, animated: true, completion: nil)
         }
     }
+    
     func showSendMailErrorAlert() {
         let sendMailErrorAlert = UIAlertView(title: NSLocalizedString("emailsupport.error.title", comment: ""), message: NSLocalizedString("emailsupport.error.text", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
         sendMailErrorAlert.show()
     }
-
 }
 
     //MARK: MFMailComposeViewControllerDelegate

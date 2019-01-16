@@ -11,6 +11,7 @@ target 'Yona' do
    pod 'IQKeyboardManagerSwift'
    pod 'Fabric'
    pod 'Crashlytics'
+   pod 'Device.swift'
    
    target 'YonaTests' do
        inherit! :search_paths
