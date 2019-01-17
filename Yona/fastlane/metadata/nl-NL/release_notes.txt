@@ -1,1 +1,1 @@
-APPDEV-1235 Versie-informatie wordt nu toegevoegd in de aan de e-mail naar Yona support
+Geen functionele veranderingen

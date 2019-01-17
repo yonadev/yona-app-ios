@@ -1,1 +1,1 @@
-APPDEV-1235 Now includes version information in the support email
+No functional changes
