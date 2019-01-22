@@ -15,6 +15,7 @@ struct Buddies{
     var sendingStatus: buddyRequestStatus?
     var receivingStatus: buddyRequestStatus?
     var lastMonitoredActivityDate: String?
+    var buddyGoalSelfLink: String?
 
     //details of user who made request
     var UserRequestfirstName: String
@@ -128,7 +129,9 @@ struct Buddies{
             
         }
         
-
+        if let embeddedNext = buddyData[YonaConstants.jsonKeys.embedded], let yonaGoal = (embeddedNext as? [String : Any])?[YonaConstants.jsonKeys.yonaGoals], let goalLink = (yonaGoal as? [String : Any])?[YonaConstants.jsonKeys.linksKeys], let goalSelfLink = (goalLink as? [String : Any])?[YonaConstants.jsonKeys.selfLinkKeys], let goalSelfLinkHref = (goalSelfLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+            self.buddyGoalSelfLink = goalSelfLinkHref
+        }
     }
     
     fileprivate func formatMobileNumber() -> String {

@@ -521,7 +521,6 @@ class ActivitiesRequestManager {
      - parameter onCompletion: APIActivityGoalResponse, returns the activity requested as an Activities object
      */
     func getBuddieActivityPrDay(_ buddy: Buddies,size : Int, page : Int,onCompletion: @escaping APIActivityGoalResponse){
-        
         if let path = buddy.dailyActivityReports {
             let aPath = path + "?size=" + String(size) + "&page=" + String(page)
             self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
@@ -533,13 +532,9 @@ class ActivitiesRequestManager {
                     var newData : [DayActivityOverview] = []
                     newData = self.getBuddieActivtyPrDayhandleActivieResponse( json)
                     if newData.count > 0 {
-                        
                         self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
-                            
                             if activities?.count > 0 {
-                                
                                 GoalsRequestManager.sharedInstance.getAllTheBuddyGoals(buddy, activities: activities!, onCompletion: { (success, servermessage, servercode, nil, goals, error) in
-                                    
                                     if success  {
                                         if let theGoals = goals {
                                             for singleDayActivty in newData {
@@ -549,24 +544,21 @@ class ActivitiesRequestManager {
                                             }
                                         }
                                         onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), newData, error)
-                                        
+                                    } else {
+                                        onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                     }
-                                    
                                 })
                             } else {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                             }
                         })
                     }
-                    
                 } else {
                     //response from request failed
                     onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                 }
             }
-            
         }
-        
     }
     
     fileprivate func getBuddieActivtyPrDayhandleActivieResponse(_ theJson : BodyDataDictionary) -> [DayActivityOverview] {
