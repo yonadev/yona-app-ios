@@ -1,8 +1,8 @@
 PODS:
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
   - Device.swift (1.2.1)
-  - Fabric (1.9.0)
+  - Fabric (1.7.9)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -17,14 +17,14 @@ PODS:
   - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleToolboxForMac/Defines (2.2.0)
-  - "GoogleToolboxForMac/NSData+zlib (2.2.0)":
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - IQKeyboardManagerSwift (6.2.0)
-  - Kingfisher (4.10.1)
-  - R.swift (5.0.2):
-    - R.swift.Library (~> 5.0.0)
-  - R.swift.Library (5.0.0)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - IQKeyboardManagerSwift (6.1.0)
+  - Kingfisher (4.8.0)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - Fabric
   - Google/Analytics
   - IQKeyboardManagerSwift
-  - Kingfisher
+  - Kingfisher (~> 4.0)
   - R.swift
 
 SPEC REPOS:
@@ -52,20 +52,20 @@ SPEC REPOS:
     - R.swift.Library
 
 SPEC CHECKSUMS:
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   Device.swift: ab71b078c0f3b827090e2051be67eb5d0bbbdf48
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
-  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
-  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  IQKeyboardManagerSwift: f5004f5860d9a8ed23a7ef7a156ae168828eb018
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
 
-PODFILE CHECKSUM: 2226ed8929724663a0d19e596f2caea4bce82084
+PODFILE CHECKSUM: e95f43ac74c3cb0c6a54e0c109962e56ce91e164
 
 COCOAPODS: 1.5.3
