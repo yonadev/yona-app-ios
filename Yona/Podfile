@@ -5,13 +5,13 @@ use_frameworks!
 
 target 'Yona' do
    
-   pod 'R.swift'
-   pod 'Google/Analytics'
-   pod 'Kingfisher', '~> 4.0'
-   pod 'IQKeyboardManagerSwift'
-   pod 'Fabric'
-   pod 'Crashlytics'
-   pod 'Device.swift'
+   pod 'R.swift', '~> 5.0.2'
+   pod 'Google/Analytics', '~> 3.17.0'
+   pod 'Kingfisher', '~> 4.10.1'
+   pod 'IQKeyboardManagerSwift', '~> 6.2.0'
+   pod 'Fabric', '~> 1.9.0'
+   pod 'Crashlytics', '~> 3.12.0'
+   pod 'Device.swift', '~> 1.2.1'
    
    target 'YonaTests' do
        inherit! :search_paths
