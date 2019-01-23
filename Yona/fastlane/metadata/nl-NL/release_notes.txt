@@ -1,1 +1,1 @@
-Geen functionele wijzigingen
+APPDEV-1243 Probleem opgelost in de vriendentijdslijn
