@@ -1,1 +1,1 @@
-APPDEV-1243 Probleem opgelost in de vriendentijdslijn
+APPDEV-1107 Geen functionele wijzigingen in de app
