@@ -135,20 +135,19 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     func setBuddy(_ buddy : Buddies){
         configureColors(isBuddy: true)
         aBuddy = buddy
-        var tmpFirst = ""
-        var tmpLast = ""
-        if let txt = aBuddy?.UserRequestfirstName {
-            tmpFirst = txt
+        if let firstName = aBuddy?.UserRequestfirstName, let lastName = aBuddy?.UserRequestlastName {
+            nameLabel.text = "\(firstName) \(lastName)"
         }
-        if let txt = aBuddy?.UserRequestlastName {
-            tmpLast = txt
+        if let nickName = aBuddy?.buddyNickName {
+            nicknameLabel.text = nickName
         }
-        nameLabel.text = "\(tmpFirst) \(tmpLast)"
-        if let txt = aBuddy?.buddyNickName {
-            nicknameLabel.text = txt
+        if let link = buddy.buddyAvatarURL, let URL = URL(string: link) {
+            avatarImageView.kf.setImage(with: URL)
+        } else {
+            if buddy.UserRequestfirstName.count > 0 && buddy.UserRequestlastName.count > 0{
+                avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.first!) \(buddy.UserRequestlastName.capitalized.first!)"
+            }
         }
-        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.first!) \(buddy.UserRequestlastName.capitalized.first!)"
-        
     }
 
     
