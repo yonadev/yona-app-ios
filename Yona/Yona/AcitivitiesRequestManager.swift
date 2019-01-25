@@ -342,22 +342,18 @@ class ActivitiesRequestManager {
         UserRequestManager.sharedInstance.getUser(GetUserRequest.allowed) { (success, message, code, user) in
             
             if success {
-                print("getActivityPrDay %@",user!)
                 if let path = user?.dailyActivityReportsLink {
                     //if the newActivites object has been filled then we can get the link to display activity
                     
                     let aPath = path + "?size=" + String(size) + "&page=" + String(page)
-                    //                    NSLog("getActivityPrDay %@",aPath)
                     self.APIService.callRequestWithAPIServiceResponse(nil, path: aPath, httpMethod: httpMethods.get) { success, json, error in
                         if let json = json {
-                            //           print (json)
                             guard success == true else {
                                 onCompletion(success, error?.userInfo[NSLocalizedDescriptionKey] as? String, self.APIService.determineErrorCode(error), nil, error)
                                 return
                             }
                             var newData : [DayActivityOverview] = []
                             newData = self.getActivtyPrDayhandleActivieResponse( json)
-                            //      print (newData)
                             if newData.count > 0 {
                                 
                                 self.getActivityCategories(  {(success, ServerMessage, ServerCode, activities, error) in
