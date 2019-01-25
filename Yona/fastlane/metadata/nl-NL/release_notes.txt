@@ -1,1 +1,1 @@
-APPDEV-1249 Crash in het activiteitenscherm opgelost
+APPDEV-1246 Probleem in kop vriendentijdslijn opgelost
