@@ -71,23 +71,28 @@ class FriendsDashboardViewController: MeDashBoardMainViewController {
     }
     
     override func configurProfileBarItem () {
-        if let name = buddyToShow?.UserRequestfirstName {
-            navigationItem.title = name
-            if name.count > 0 {//&& user?.characters.count > 0{
-                let btnName = UIButton()
-                let txt = "\(name.capitalized.first!)"
-                btnName.setTitle(txt, for: UIControl.State())
-                btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-                btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
-                btnName.backgroundColor = UIColor.clear
-                btnName.layer.cornerRadius = btnName.frame.size.width/2
-                btnName.layer.borderWidth = 1
-                btnName.layer.borderColor = UIColor.white.cgColor
-                let rightBarButton = UIBarButtonItem()
-                rightBarButton.customView = btnName
-                navigationItem.rightBarButtonItems = [rightBarButton]
-            }
+        if let firstName = buddyToShow?.UserRequestfirstName, let lastName = buddyToShow?.UserRequestlastName {
+            self.navigationItem.title = firstName + " " + lastName
         }
+        let btnName = UIButton.init(frame: CGRect(x:0, y:0, width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+        let rightBarButton = UIBarButtonItem()
+        if let link = buddyToShow?.buddyAvatarURL, let URL = URL(string: link) {
+            self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+                let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                btnName.setImage(resizedImage, for: .normal)
+                btnName.backgroundColor = UIColor.clear
+                btnName.clipsToBounds = true
+            })
+        } else if let nickName = buddyToShow?.buddyNickName {
+            btnName.setTitle("\(nickName.capitalized.first!)", for: UIControl.State())
+            btnName.backgroundColor = UIColor.yiGrapeTwoColor()
+        }
+        btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
+        btnName.layer.cornerRadius = btnName.frame.size.width/2
+        btnName.layer.borderWidth = 1
+        btnName.layer.borderColor = UIColor.white.cgColor
+        rightBarButton.customView = btnName
+        self.navigationItem.rightBarButtonItems = [rightBarButton]
     }
     
     // MARK: - ACTION

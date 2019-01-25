@@ -23,7 +23,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var iconAddAvatarImageView: UIImageView!
     @IBOutlet weak var iconAddAvatarButton: UIButton!
-    @IBOutlet weak var avatraInitialsLabel: UILabel!
+    @IBOutlet weak var avatarInitialsLabel: UILabel!
     
     @IBOutlet weak var profileTabMainView: UIView!
     @IBOutlet weak var profileTabLabel: UILabel!
@@ -46,8 +46,8 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         nicknameLabel.text = ""
         nicknameLabel.textColor = UIColor.yiWhiteColor()
         
-        avatraInitialsLabel.text = ""
-        avatraInitialsLabel.textColor = UIColor.yiWhiteColor()
+        avatarInitialsLabel.text = ""
+        avatarInitialsLabel.textColor = UIColor.yiWhiteColor()
         
         profileTabLabel.text = NSLocalizedString("profile.tab.profile", comment: "profileTabLabel")
         badgesTabLabel.text = NSLocalizedString("profile.tab.badges", comment: "badgesTabLabel")
@@ -98,7 +98,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
         nameLabel.text = "\(aMessage.UserRequestfirstName) \(aMessage.UserRequestlastName)"
         nicknameLabel.text = aMessage.nickname
         if aMessage.UserRequestfirstName.count > 0 && aMessage.UserRequestlastName.count > 0{
-            avatraInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalized.first!) \(aMessage.UserRequestlastName.capitalized.first!)"
+            avatarInitialsLabel.text =  "\(aMessage.UserRequestfirstName.capitalized.first!) \(aMessage.UserRequestlastName.capitalized.first!)"
         }
 
         
@@ -107,48 +107,34 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
     func setUser(_ userModel : Users){
         configureColors(isBuddy: false)
         aUser = userModel
-        var tmpFirst = ""
-        var tmpLast = ""
-        if let txt = aUser?.firstName {
-            tmpFirst = txt
+        if let firstName = aUser?.firstName, let lastName = aUser?.lastName {
+            nameLabel.text = "\(firstName) \(lastName)"
         }
-        if let txt = aUser?.lastName {
-            tmpLast = txt
+        if let nickName = aUser?.nickname {
+            nicknameLabel.text = nickName
         }
-        nameLabel.text = "\(tmpFirst) \(tmpLast)"
-        if let txt = aUser?.nickname {
-            nicknameLabel.text = txt
-        }
-   
-        if let link = userModel.userAvatarLink,
-            let URL = URL(string: link) {
+        if let link = userModel.userAvatarLink, let URL = URL(string: link) {
             avatarImageView.kf.setImage(with: URL)
         } else {
-            if userModel.firstName.count > 0 && userModel.lastName.count > 0{
-                avatraInitialsLabel.text =  "\(userModel.firstName.capitalized.first!) \(userModel.lastName.capitalized.first!)"
-            }
+            avatarInitialsLabel.text =  "\(userModel.firstName.capitalized.first!) \(userModel.lastName.capitalized.first!)"
         }
-        
     }
 
     
     func setBuddy(_ buddy : Buddies){
         configureColors(isBuddy: true)
         aBuddy = buddy
-        var tmpFirst = ""
-        var tmpLast = ""
-        if let txt = aBuddy?.UserRequestfirstName {
-            tmpFirst = txt
+        if let firstName = aBuddy?.UserRequestfirstName, let lastName = aBuddy?.UserRequestlastName {
+            nameLabel.text = "\(firstName) \(lastName)"
         }
-        if let txt = aBuddy?.UserRequestlastName {
-            tmpLast = txt
+        if let nickName = aBuddy?.buddyNickName {
+            nicknameLabel.text = nickName
         }
-        nameLabel.text = "\(tmpFirst) \(tmpLast)"
-        if let txt = aBuddy?.buddyNickName {
-            nicknameLabel.text = txt
+        if let link = buddy.buddyAvatarURL, let URL = URL(string: link) {
+            avatarImageView.kf.setImage(with: URL)
+        } else {
+            avatarInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.first!) \(buddy.UserRequestlastName.capitalized.first!)"
         }
-        avatraInitialsLabel.text =  "\(buddy.UserRequestfirstName.capitalized.first!) \(buddy.UserRequestlastName.capitalized.first!)"
-        
     }
 
     
@@ -212,7 +198,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2
             self.iconAddAvatarImageView.frame = iconframe
             self.iconAddAvatarImageView.alpha = 1.0
-            self.avatraInitialsLabel.alpha = 0.0
+            self.avatarInitialsLabel.alpha = 0.0
             
             }, completion: {finished in
                 self.badgesTabMainView.isHidden = true
@@ -247,7 +233,7 @@ class YonaUserHeaderWithTwoTabTableViewCell: UITableViewCell {
             self.iconAddAvatarImageView.frame = iconframe
             self.iconAddAvatarImageView.alpha = 0.0
             
-            self.avatraInitialsLabel.alpha = 1.0
+            self.avatarInitialsLabel.alpha = 1.0
             self.badgesTabMainView.alpha = 1.0
             self.profileTabMainView.alpha = 1.0
             }, completion: {finished in

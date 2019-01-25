@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="17D102" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,34 +23,34 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="221"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bc4-Wl-ZFM" id="BaQ-Uo-jjA">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="220"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="220.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="62z-M1-1qt" userLabel="AvatarView">
-                        <rect key="frame" x="260" y="9" width="80" height="80"/>
+                        <rect key="frame" x="260" y="12" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="OUb-jF-HQg"/>
                             <constraint firstAttribute="width" constant="80" id="mum-h1-KCu"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnAddPicture" translatesAutoresizingMaskIntoConstraints="NO" id="dur-iy-XeQ">
-                        <rect key="frame" x="276" y="35" width="48" height="48"/>
+                        <rect key="frame" x="276" y="38" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="JCt-Zq-w1P"/>
                             <constraint firstAttribute="height" constant="48" id="psv-ds-Trs"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ho-3J-yNH" userLabel="ProfileTab">
-                        <rect key="frame" x="0.0" y="173" width="300" height="48"/>
+                        <rect key="frame" x="12" y="176" width="288" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFg-bD-Pvq">
-                                <rect key="frame" x="0.0" y="14" width="300" height="21"/>
+                                <rect key="frame" x="0.0" y="14" width="288" height="21"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNb-L6-R9U">
-                                <rect key="frame" x="0.0" y="44" width="300" height="4"/>
+                                <rect key="frame" x="0.0" y="44" width="288" height="4"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="Bd1-CO-UCK"/>
@@ -78,17 +77,17 @@
                         </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehV-oV-g5b" userLabel="BadgesTab">
-                        <rect key="frame" x="300" y="173" width="300" height="48"/>
+                        <rect key="frame" x="300" y="176" width="288" height="48"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrt-3W-OaL">
-                                <rect key="frame" x="0.0" y="44" width="300" height="4"/>
+                                <rect key="frame" x="0.0" y="44" width="288" height="4"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="z20-v7-0y8"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4i-iR-NaK">
-                                <rect key="frame" x="0.0" y="14" width="300" height="21"/>
+                                <rect key="frame" x="0.0" y="14" width="288" height="21"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -114,7 +113,7 @@
                         </variation>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryB-Lf-FQa">
-                        <rect key="frame" x="32" y="109" width="536" height="29"/>
+                        <rect key="frame" x="44" y="112" width="512" height="29"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="29" id="5t5-AR-VGz"/>
                         </constraints>
@@ -123,7 +122,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-l9-AD2">
-                        <rect key="frame" x="22" y="143" width="556" height="16"/>
+                        <rect key="frame" x="34" y="146" width="532" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="kdk-2f-7jX"/>
                         </constraints>
@@ -132,7 +131,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGy-Mn-r9R">
-                        <rect key="frame" x="260" y="34" width="80" height="30"/>
+                        <rect key="frame" x="260" y="37" width="80" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="AZK-ju-OUF"/>
                             <constraint firstAttribute="height" constant="30" id="NFm-qH-C86"/>
@@ -142,7 +141,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-Ne-0jN">
-                        <rect key="frame" x="277" y="40" width="46" height="49"/>
+                        <rect key="frame" x="277" y="43" width="46" height="49"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="49" id="Shb-bv-3Zu"/>
@@ -185,7 +184,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="62z-M1-1qt" id="EAW-vE-a9r"/>
-                <outlet property="avatraInitialsLabel" destination="HGy-Mn-r9R" id="eNr-ph-mGZ"/>
+                <outlet property="avatarInitialsLabel" destination="HGy-Mn-r9R" id="6gJ-aV-QtY"/>
                 <outlet property="badgesTabLabel" destination="j4i-iR-NaK" id="fvS-fr-wRx"/>
                 <outlet property="badgesTabMainView" destination="ehV-oV-g5b" id="hRK-dx-YzT"/>
                 <outlet property="badgesTabSelectionsView" destination="mrt-3W-OaL" id="ti5-ZX-Jzb"/>
