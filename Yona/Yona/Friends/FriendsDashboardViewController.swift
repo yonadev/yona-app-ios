@@ -84,10 +84,8 @@ class FriendsDashboardViewController: MeDashBoardMainViewController {
                 btnName.clipsToBounds = true
             })
         } else if let nickName = buddyToShow?.buddyNickName {
-            if nickName.count > 0 {
-                btnName.setTitle("\(nickName.capitalized.first!)", for: UIControl.State())
-                btnName.backgroundColor = UIColor.yiGrapeTwoColor()
-            }
+            btnName.setTitle("\(nickName.capitalized.first!)", for: UIControl.State())
+            btnName.backgroundColor = UIColor.yiGrapeTwoColor()
         }
         btnName.addTarget(self, action: #selector(self.didChooseUserProfile(_:)), for: .touchUpInside)
         btnName.layer.cornerRadius = btnName.frame.size.width/2
