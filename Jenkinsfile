@@ -28,6 +28,8 @@ pipeline {
                 submitter: 'authenticated',
                 parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the Dutch release notes', name: 'Dutch']]
             nlReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
+            echo "English release notes: ${enReleaseNotes}"
+            echo "Dutch release notes: ${nlReleaseNotes}"
             writeFile file: "fastlane/metadata/en-US/release_notes.txt", text: "${enReleaseNotes}"
             writeFile file: "fastlane/metadata/nl-NL/release_notes.txt", text: "${nlReleaseNotes}"
           }
