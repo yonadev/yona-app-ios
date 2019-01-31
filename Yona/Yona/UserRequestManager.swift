@@ -126,7 +126,7 @@ class UserRequestManager{
     func getUser(_ userRequestType: GetUserRequest, onCompletion: @escaping APIUserResponse) {
         
         if var selfUserLink = KeychainManager.sharedInstance.getUserSelfLink(){
-            selfUserLink = getUserFetchURL()
+            selfUserLink = correctUserFetchUrlIfNeeded(storedUserUrl: selfUserLink)
             if self.newUser == nil || UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == GetUserRequest.allowed { //if blocked because of pinreset
                 #if DEBUG
                     print("***** Get User API call ******")
@@ -143,18 +143,17 @@ class UserRequestManager{
         }
     }
     
-    func getUserFetchURL() -> String {
-        return compareAndSwapSchemes(leftURL: getSavedUserFromUserDefaults().getSelfLink!, rightURL: EnvironmentManager.baseUrlString()!,userLinkFromKeychain: KeychainManager.sharedInstance.getUserSelfLink()!)
-    }
+    func correctUserFetchUrlIfNeeded(storedUserUrl: String) -> String {
+        return compareAndSwapSchemes(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)    }
     
-    func compareAndSwapSchemes(leftURL:String, rightURL:String, userLinkFromKeychain:String) -> String {
-        let userURL = URL(string: leftURL)
-        let environmentBaseURL = URL(string: rightURL)
+    func compareAndSwapSchemes(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
+        let userURL = URL(string: userURLStr)
+        let environmentBaseURL = URL(string: environmentBaseURLStr)
         if userURL?.scheme != environmentBaseURL?.scheme {
             let formattedURLString = userURL?.absoluteString.deletePrefix((userURL?.scheme)!)
             return environmentBaseURL!.scheme! + formattedURLString!
         }
-        return userLinkFromKeychain //return as there is no mess up of URLs which is cause of the issue YD-621
+        return storedUserUrlStr //return as there is no mess up of URLs which is cause of the issue YD-621
     }
     
     func getSavedUserFromUserDefaults() -> Users {

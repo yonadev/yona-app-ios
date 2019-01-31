@@ -35,7 +35,7 @@ class EnvironmentSwitchTests: XCTestCase {
         let environmentURL = "https://app.prd.yona.nu/"
         let keychainURL = "/xyz"
         let expectedURL = "https://app.prd.yona.nu/xyz"
-        let result = UserRequestManager.sharedInstance.compareAndSwapSchemes(leftURL: userDBURL, rightURL: environmentURL, userLinkFromKeychain: keychainURL)
+        let result = UserRequestManager.sharedInstance.compareAndSwapSchemes(userURLStr: userDBURL, environmentBaseURLStr: environmentURL, storedUserUrlStr: keychainURL)
          XCTAssertEqual(result, expectedURL)
     }
     
@@ -44,7 +44,7 @@ class EnvironmentSwitchTests: XCTestCase {
         let environmentURL = "https://app.prd.yona.nu/"
         let keychainURL = "/xyz"
         let expectedURL = keychainURL
-        let result = UserRequestManager.sharedInstance.compareAndSwapSchemes(leftURL: userDBURL, rightURL: environmentURL, userLinkFromKeychain: keychainURL)
+        let result = UserRequestManager.sharedInstance.compareAndSwapSchemes(userURLStr: userDBURL, environmentBaseURLStr: environmentURL, storedUserUrlStr: keychainURL)
          XCTAssertEqual(result, expectedURL)
     }
 }
