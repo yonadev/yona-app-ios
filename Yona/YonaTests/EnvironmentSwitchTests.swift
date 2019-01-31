@@ -12,6 +12,7 @@ import XCTest
 class EnvironmentSwitchTests: XCTestCase {
     
     let welcome = WelcomeViewController()
+    let user = UserRequestManager.sharedInstance
     
     override func setUp() {
         super.setUp()
@@ -27,5 +28,23 @@ class EnvironmentSwitchTests: XCTestCase {
         let expectedURL = "https://app.prd.yona.nu/"
         let result = welcome.removeWhitespaceFromURL(url: "https://app.prd.yona.nu/      ")
         XCTAssertEqual(result, expectedURL)
+    }
+    
+    func testcompareAndSwapSchemes_positive(){
+        let userDBURL = "http://app.prd.yona.nu/xyz"
+        let environmentURL = "https://app.prd.yona.nu/"
+        let keychainURL = "/xyz"
+        let expectedURL = "https://app.prd.yona.nu/xyz"
+        let result = UserRequestManager.sharedInstance.correctUserFetchUrlIfNeeded(userURLStr: userDBURL, environmentBaseURLStr: environmentURL, storedUserUrlStr: keychainURL)
+         XCTAssertEqual(result, expectedURL)
+    }
+    
+    func testcompareAndSwapSchemes_negative(){
+        let userDBURL = "https://app.prd.yona.nu/xyz"
+        let environmentURL = "https://app.prd.yona.nu/"
+        let keychainURL = "/xyz"
+        let expectedURL = keychainURL
+        let result = UserRequestManager.sharedInstance.correctUserFetchUrlIfNeeded(userURLStr: userDBURL, environmentBaseURLStr: environmentURL, storedUserUrlStr: keychainURL)
+         XCTAssertEqual(result, expectedURL)
     }
 }
