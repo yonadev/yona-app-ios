@@ -1,1 +1,1 @@
-APPDEV-1246 Fixed issue in header in buddy timeline
+APPDEV-1254 Fixed issue that caused some users to open the app

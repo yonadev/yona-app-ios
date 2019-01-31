@@ -1,1 +1,1 @@
-APPDEV-1246 Probleem in kop vriendentijdslijn opgelost
+APPDEV-1254 Sommige gebruikers konden de app niet meer openen. Dit is nu opgelost.
