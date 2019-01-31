@@ -154,7 +154,7 @@ class UserRequestManager{
             let formattedURLString = userURL?.absoluteString.deletePrefix((userURL?.scheme)!)
             return environmentBaseURL!.scheme! + formattedURLString!
         }
-        return userLinkFromKeychain //return as there is no mess up of URLs which is cause of the issue YD-612
+        return userLinkFromKeychain //return as there is no mess up of URLs which is cause of the issue YD-621
     }
     
     func getSavedUserFromUserDefaults() -> Users {
