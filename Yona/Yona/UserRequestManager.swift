@@ -144,9 +144,9 @@ class UserRequestManager{
     }
     
     func correctUserFetchUrlIfNeeded(storedUserUrl: String) -> String {
-        return compareAndSwapSchemes(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)    }
+        return correctUserFetchUrlIfNeeded(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)    }
     
-    func compareAndSwapSchemes(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
+    func correctUserFetchUrlIfNeeded(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
         let userURL = URL(string: userURLStr)
         let environmentBaseURL = URL(string: environmentBaseURLStr)
         if userURL?.scheme != environmentBaseURL?.scheme {
