@@ -124,7 +124,9 @@ class UserRequestManager{
      - parameter userRequestType: GetUserRequest, This can be allowed (so we will allow an API call to the User Request) or not allowed (we will not allow whoever is call ing this to call the API for get User, but just return the stored User body). This changes depending on where we call the get user in the code
      */
     func getUser(_ userRequestType: GetUserRequest, onCompletion: @escaping APIUserResponse) {
-        if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
+        
+        if var selfUserLink = KeychainManager.sharedInstance.getUserSelfLink(){
+            selfUserLink = getUserFetchURL()
             if self.newUser == nil || UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == GetUserRequest.allowed { //if blocked because of pinreset
                 #if DEBUG
                     print("***** Get User API call ******")
@@ -139,6 +141,27 @@ class UserRequestManager{
             //Failed to retrive details for GET user details request
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(describing: responseCodes.internalErrorCode), nil)
         }
+    }
+    
+    func getUserFetchURL() -> String {
+        return compareAndSwapSchemes(leftURL: getSavedUserFromUserDefaults().getSelfLink!, rightURL: EnvironmentManager.baseUrlString()!,userLinkFromKeychain: KeychainManager.sharedInstance.getUserSelfLink()!)
+    }
+    
+    func compareAndSwapSchemes(leftURL:String, rightURL:String, userLinkFromKeychain:String) -> String {
+        let userURL = URL(string: leftURL)
+        let environmentBaseURL = URL(string: rightURL)
+        if userURL?.scheme != environmentBaseURL?.scheme {
+            let formattedURLString = userURL?.absoluteString.deletePrefix((userURL?.scheme)!)
+            return environmentBaseURL!.scheme! + formattedURLString!
+        }
+        return userLinkFromKeychain //return as there is no mess up of URLs which is cause of the issue YD-612
+    }
+    
+    func getSavedUserFromUserDefaults() -> Users {
+        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser), let user = convertToDictionary(text: savedUser as! String) {
+            return Users.init(userData: user as BodyDataDictionary)
+        }
+        return Users.init(userData: [:])
     }
     
     /**
