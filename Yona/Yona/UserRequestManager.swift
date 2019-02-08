@@ -155,7 +155,6 @@ class UserRequestManager{
             return storedUserUrl
         }
         return correctUserFetchUrlIfNeeded(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)
-        
     }
     
     func correctUserFetchUrlIfNeeded(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
