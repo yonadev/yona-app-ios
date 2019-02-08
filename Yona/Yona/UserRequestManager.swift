@@ -31,6 +31,13 @@ class UserRequestManager{
         self.newUser = Users.init(userData: json)
     }
     
+    func getSavedUserFromUserDefaults() -> Users {
+        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser), let user = convertToDictionary(text: savedUser as! String) {
+            return Users.init(userData: user as BodyDataDictionary)
+        }
+        return Users.init(userData: [:])
+    }
+    
     fileprivate func genericUserRequest(_ httpmethodParam: httpMethods, path: String, userRequestType: userRequestTypes, body: BodyDataDictionary?, onCompletion: @escaping APIUserResponse){
         ///now post updated user data
         APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
@@ -144,7 +151,12 @@ class UserRequestManager{
     }
     
     func correctUserFetchUrlIfNeeded(storedUserUrl: String) -> String {
-        return correctUserFetchUrlIfNeeded(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)    }
+        if getSavedUserFromUserDefaults().getSelfLink == nil {
+            return storedUserUrl
+        }
+        return correctUserFetchUrlIfNeeded(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)
+        
+    }
     
     func correctUserFetchUrlIfNeeded(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
         let userURL = URL(string: userURLStr)
@@ -154,13 +166,6 @@ class UserRequestManager{
             return environmentBaseURL!.scheme! + formattedURLString!
         }
         return storedUserUrlStr //return as there is no mess up of URLs which is cause of the issue YD-621
-    }
-    
-    func getSavedUserFromUserDefaults() -> Users {
-        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser), let user = convertToDictionary(text: savedUser as! String) {
-            return Users.init(userData: user as BodyDataDictionary)
-        }
-        return Users.init(userData: [:])
     }
     
     /**
