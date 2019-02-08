@@ -1,1 +1,1 @@
-APPDEV-1254 Sommige gebruikers konden de app niet meer openen. Dit is nu opgelost.
+APPDEV-1261 Bij het toevoegen van een apparaat kon de app crashen. Dit is opgelost.

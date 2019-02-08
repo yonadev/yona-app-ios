@@ -1,1 +1,1 @@
-APPDEV-1254 Fixed issue that caused some users to open the app
+APPDEV-1261 Fixed a crash that occurred when adding a device
