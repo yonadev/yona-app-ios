@@ -23,7 +23,7 @@ class DaySingleActivityDetail: NSObject {
     var prevLink : String?
     var messageLink : String?
     var commentLink : String?
-    var goalName : String = ""
+    var goalName : String?
     var goalType: String?
     
     var totalActivityDurationMinutes : Int = 0
@@ -114,14 +114,12 @@ class DaySingleActivityDetail: NSObject {
     }
     
     fileprivate func retrieveGoalDetails(_ allGoals: [Goal]) {
-        for goal in allGoals {
+        if let goal = allGoals.first(where: { goalLinks == $0.selfLinks }) {
             goalType = goal.goalType
             zones = goal.zones
             spreadCells = goal.spreadCells
             maxDurationMinutes = goal.maxDurationMinutes
-            if let txt = goal.GoalName {
-                goalName = txt
-            }
+            goalName = goal.GoalName
         }
     }
 }
