@@ -39,6 +39,7 @@ class NotificationsViewController: UITableViewController {
     var buddyData : Buddies?
     var page : Int = 1
     var size : Int = 20
+    var currentDate : Date = Date()
     
     //paging
     var totalSize: Int = 0
@@ -111,10 +112,26 @@ class NotificationsViewController: UITableViewController {
     
     fileprivate func handleActivityCommentMessage(_ aMessage: Message) {
         if aMessage.dayDetailsLink != nil {
-            self.performSegue(withIdentifier: R.segue.notificationsViewController.showDayDetailMessage, sender: self)
+            ActivitiesRequestManager.sharedInstance.getDayActivityDetails(aMessage.dayDetailsLink!, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
+                if success {
+                    if dayActivity?.yonaBuddyLink == nil {
+                        self.navigateToMeDayDetailView(aMessage)
+                    } else {
+                        self.navigateToFriendsDayDetailView(aMessage, isGoalConflict: false)
+                    }
+                }
+            })
             return
         } else if aMessage.weekDetailsLink != nil {
-            self.performSegue(withIdentifier: R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+            ActivitiesRequestManager.sharedInstance.getActivityDetails(aMessage.weekDetailsLink!, date: currentDate, onCompletion: { (success, serverMessage, serverCode, weekActivity, err) in
+                if success {
+                    if weekActivity?.yonaBuddyLink == nil {
+                        self.performSegue(withIdentifier: R.segue.notificationsViewController.showWeekDetailMessage, sender: self)
+                    } else {
+                        self.navigateToFriendsWeekDetailView(aMessage)
+                    }
+                }
+            })
             return
         }
     }
@@ -130,7 +147,7 @@ class NotificationsViewController: UITableViewController {
         }
     }
     
-    fileprivate func navigateToMeDashBoard(_ aMessage: Message) {
+    fileprivate func navigateToMeDayDetailView(_ aMessage: Message) {
         let storyboard = UIStoryboard(name: "MeDashBoard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MeDayDetailViewController") as! MeDayDetailViewController
         vc.goalType = GoalType.NoGoGoalString.rawValue
@@ -144,11 +161,11 @@ class NotificationsViewController: UITableViewController {
         return
     }
     
-    fileprivate func navigateToFriendsDayDetailView(_ aMessage: Message) {
+    fileprivate func navigateToFriendsDayDetailView(_ aMessage: Message, isGoalConflict: Bool) {
         let storyboard = UIStoryboard(name: "Friends", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FriendsDayDetailViewController") as! FriendsDayDetailViewController
         vc.buddy = self.buddyData
-        vc.goalType = GoalType.NoGoGoalString.rawValue
+        vc.goalType = isGoalConflict ? GoalType.NoGoGoalString.rawValue : ""
         vc.currentDate = aMessage.creationTime
         vc.initialObjectLink = aMessage.dayDetailsLink
         vc.navbarColor1 = self.navigationController?.navigationBar.backgroundColor
@@ -156,6 +173,17 @@ class NotificationsViewController: UITableViewController {
         let navbar = self.navigationController?.navigationBar as! GradientNavBar
         vc.navbarColor = navbar.gradientColor
         navbar.gradientColor = UIColor.yiMidBlueColor()
+        self.navigationController?.pushViewController(vc, animated: true)
+        return
+    }
+    
+    fileprivate func navigateToFriendsWeekDetailView(_ aMessage: Message) {
+        self.retriveBuddyDataFromWeekActivityLink()
+        let storyboard = UIStoryboard(name: "Friends", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "FriendsWeekDetailWeekController") as! FriendsWeekDetailWeekController
+        vc.initialObjectLink = aMessage.weekDetailsLink
+        vc.currentWeek = aMessage.creationTime
+        vc.buddy = self.buddyData
         self.navigationController?.pushViewController(vc, animated: true)
         return
     }
@@ -168,9 +196,9 @@ class NotificationsViewController: UITableViewController {
             selflink = aSelfLink
         }
         if selflink.range(of: userid) != nil{
-            return navigateToMeDashBoard(aMessage)
+            return navigateToMeDayDetailView(aMessage)
         }  else {
-            return navigateToFriendsDayDetailView(aMessage)
+            return navigateToFriendsDayDetailView(aMessage, isGoalConflict: true)
         }
     }
     
@@ -186,10 +214,23 @@ class NotificationsViewController: UITableViewController {
     fileprivate func retriveBuddyDataFromDailyActivityLink() {
         //this gets the buddy that matches the link in hte message for daily activity reports, so we can pass VC the correct buddy data
         if let buddies = UserRequestManager.sharedInstance.newUser?.buddies {
-            for each in buddies {
-                if let dailyActivityLink = each.dailyActivityReports {
-                    if dailyActivityLink == aMessage?.dayDetailsLink {
-                        self.buddyData = each
+            for abuddy in buddies {
+                if let dailyActivityLink = abuddy.dailyActivityReports, let messageDayDetailLink = aMessage?.dayDetailsLink {
+                    if messageDayDetailLink.contains(dailyActivityLink) {
+                        self.buddyData = abuddy
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func retriveBuddyDataFromWeekActivityLink() {
+        //this gets the buddy that matches the link in hte message for daily activity reports, so we can pass VC the correct buddy data
+        if let buddies = UserRequestManager.sharedInstance.newUser?.buddies {
+            for abuddy in buddies {
+                if let weekActivityLink = abuddy.weeklyActivityReports, let messageDayDetailLink = aMessage?.weekDetailsLink {
+                    if messageDayDetailLink.contains(weekActivityLink) {
+                        self.buddyData = abuddy
                     }
                 }
             }
@@ -208,7 +249,7 @@ class NotificationsViewController: UITableViewController {
             case .BuddyConnectResponseMessage:
                 break
             case .GoalConflictMessage:
-                handleGoalConflictMessage(aMessage)
+                handleActivityCommentMessage(aMessage)
             case .GoalChangeMessage:
                 break
             case .DisclosureResponseMessage:

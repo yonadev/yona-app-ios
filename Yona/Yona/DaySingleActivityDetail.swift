@@ -25,6 +25,7 @@ class DaySingleActivityDetail: NSObject {
     var commentLink : String?
     var goalName : String?
     var goalType: String?
+    var yonaBuddyLink: String?
     
     var totalActivityDurationMinutes : Int = 0
     var goalAccomplished : Bool = false
@@ -109,6 +110,10 @@ class DaySingleActivityDetail: NSObject {
             if let link = links[YonaConstants.jsonKeys.commentLink] as? [String: AnyObject],
                 let aCommentLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
                 commentLink = aCommentLink
+            }
+            if let link = links[YonaConstants.jsonKeys.yonaBuddy] as? [String: AnyObject],
+                let buddyLink = link[YonaConstants.jsonKeys.hrefKey] as? String{
+                yonaBuddyLink = buddyLink
             }
         }
     }
