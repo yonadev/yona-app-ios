@@ -110,19 +110,21 @@ class NotificationsViewController: UITableViewController {
         return messages[section].count
     }
     
-    fileprivate func handleActivityCommentMessage(_ aMessage: Message) {
+    fileprivate func handleActivityMessage(_ aMessage: Message, isGoalConflict: Bool) {
         if aMessage.dayDetailsLink != nil {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getDayActivityDetails(aMessage.dayDetailsLink!, date: currentDate , onCompletion: { (success, serverMessage, serverCode, dayActivity, err) in
                 if success {
                     if dayActivity?.yonaBuddyLink == nil {
                         self.navigateToMeDayDetailView(aMessage)
                     } else {
-                        self.navigateToFriendsDayDetailView(aMessage, isGoalConflict: false)
+                        self.navigateToFriendsDayDetailView(aMessage, isGoalConflict: isGoalConflict)
                     }
                 }
+                Loader.Hide()
             })
-            return
         } else if aMessage.weekDetailsLink != nil {
+            Loader.Show()
             ActivitiesRequestManager.sharedInstance.getActivityDetails(aMessage.weekDetailsLink!, date: currentDate, onCompletion: { (success, serverMessage, serverCode, weekActivity, err) in
                 if success {
                     if weekActivity?.yonaBuddyLink == nil {
@@ -131,8 +133,8 @@ class NotificationsViewController: UITableViewController {
                         self.navigateToFriendsWeekDetailView(aMessage)
                     }
                 }
+                Loader.Hide()
             })
-            return
         }
     }
     
@@ -188,20 +190,6 @@ class NotificationsViewController: UITableViewController {
         return
     }
     
-    fileprivate func handleGoalConflictMessage(_ aMessage: Message) {
-        var selflink = "hg"
-        var userid = ""
-        if let aUserid = UserRequestManager.sharedInstance.newUser?.userID, let aSelfLink = aMessage.selfLink {
-            userid = aUserid
-            selflink = aSelfLink
-        }
-        if selflink.range(of: userid) != nil{
-            return navigateToMeDayDetailView(aMessage)
-        }  else {
-            return navigateToFriendsDayDetailView(aMessage, isGoalConflict: true)
-        }
-    }
-    
     fileprivate func postUserReadMessageToServer() {
         if !(aMessage?.isRead)! {
             aMessage?.isRead = true
@@ -241,7 +229,7 @@ class NotificationsViewController: UITableViewController {
         if let aMessage = self.aMessage {
             switch aMessage.messageType {
             case .ActivityCommentMessage:
-                handleActivityCommentMessage(aMessage)
+                handleActivityMessage(aMessage, isGoalConflict: false)
             case .BuddyConnectRequestMessage:
                 handleBuddyConnectRequestMessage(aMessage)
             case .BuddyDisconnectMessage:
@@ -249,7 +237,7 @@ class NotificationsViewController: UITableViewController {
             case .BuddyConnectResponseMessage:
                 break
             case .GoalConflictMessage:
-                handleActivityCommentMessage(aMessage)
+                handleActivityMessage(aMessage, isGoalConflict: true)
             case .GoalChangeMessage:
                 break
             case .DisclosureResponseMessage:
