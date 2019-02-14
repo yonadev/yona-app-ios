@@ -11,7 +11,8 @@ import Foundation
 class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
   
     var buddy : Buddies?
-
+    
+    //MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.comments = []
@@ -21,9 +22,11 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
     override func viewWillAppear(_ animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: "FriendsWeekDetailWeekController")
-        
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker?.send(builder?.build() as? [AnyHashable: Any])
+        if initialObject != nil || initialObjectLink != nil {
+            loadData(.own)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
@@ -44,13 +47,6 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         return CGFloat(cellHeight)
         
     }
-    
-//    func didSelectDayInWeek(goal: SingleDayActivityGoal, aDate : NSDate) {
-//        
-//        weekDayDetailLink = goal.yonadayDetails
-//        performSegueWithIdentifier(R.segue.meDashBoardMainViewController.showDayDetail, sender: self)
-//    }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
 
@@ -113,32 +109,37 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         Loader.Show()
         if let theBuddy = buddy {
             if typeToLoad == .own {
-                if let data = initialObject  {
-                    if let path = data.weekDetailLink {
-                        ActivitiesRequestManager.sharedInstance.getActivityDetails(theBuddy, activityLink: path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
-                            if success {
-                                
-                                if let data = activitygoals {
-                                    self.currentWeek = data.date
-                                    self.week[data.date.yearWeek] = data
-                                    print (data.date.yearWeek)
-                                    if let commentsLink = data.messageLink {
-                                        self.getComments(commentsLink)
-                                    }
-                                    if data.commentLink != nil {
-                                        self.sendCommentFooter!.postCommentLink = data.commentLink
-                                    }
+                var path : String?
+                if let url = initialObjectLink {
+                    path = url
+                } else if let url = initialObject?.weekDetailLink {
+                    path = url
+                }
+                if let path = path {
+                    ActivitiesRequestManager.sharedInstance.getActivityDetails(theBuddy, activityLink: path, date: currentWeek, onCompletion: { (success, serverMessage, serverCode, activitygoals, err) in
+                        if success {
+                            if let data = activitygoals {
+                                self.currentWeek = data.date
+                                self.initialObject = data
+                                self.week[data.date.yearWeek] = data
+                                self.navigationItem.title = data.goalName?.uppercased()
+                                print (data.date.yearWeek)
+                                if let commentsLink = data.messageLink {
+                                    self.getComments(commentsLink)
                                 }
-                                
-                                
-                                Loader.Hide()
-                                self.tableView.reloadData()
-                                
-                            } else {
-                                Loader.Hide()
+                                if data.commentLink != nil {
+                                    self.sendCommentFooter!.postCommentLink = data.commentLink
+                                }
                             }
-                        })
-                    }
+                            
+                            
+                            Loader.Hide()
+                            self.tableView.reloadData()
+                            
+                        } else {
+                            Loader.Hide()
+                        }
+                    })
                 }
             } else  if typeToLoad == .prev {
                 if let data = week[currentWeek.yearWeek]  {
