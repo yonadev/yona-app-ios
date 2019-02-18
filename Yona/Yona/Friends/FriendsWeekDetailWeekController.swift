@@ -11,12 +11,14 @@ import Foundation
 class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
   
     var buddy : Buddies?
+    var avtarImg : UIImageView = UIImageView()
     
     //MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.comments = []
         self.sendCommentFooter!.alpha = 1
+        self.configureRightButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +31,39 @@ class FriendsWeekDetailWeekController : MeWeekDetailWeekViewController {
         }
     }
     
+    func configureRightButton() {
+        let btnName = UIButton.init(frame: CGRect(x:0, y:0, width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+        let rightBarButton = UIBarButtonItem()
+        if let link = buddy?.buddyAvatarURL, let URL = URL(string: link) {
+            self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+                let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                btnName.setImage(resizedImage, for: .normal)
+                btnName.backgroundColor = UIColor.clear
+                btnName.clipsToBounds = true
+            })
+        } else if let nickName = buddy?.buddyNickName {
+            btnName.setTitle("\(nickName.capitalized.first!)", for: UIControl.State())
+            btnName.backgroundColor = UIColor.yiGrapeTwoColor()
+        }
+        btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
+        btnName.layer.cornerRadius = btnName.frame.size.width/2
+        btnName.layer.borderWidth = 1
+        btnName.layer.borderColor = UIColor.white.cgColor
+        rightBarButton.customView = btnName
+        self.navigationItem.rightBarButtonItems = [rightBarButton]
+    }
+    
+    @objc func showUserProfile(_ sender : AnyObject) {
+        performSegue(withIdentifier: R.segue.friendsWeekDetailWeekController.showFriendProfile, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendsProfileViewController {
+            let controller = segue.destination as! FriendsProfileViewController
+            controller.aUser = buddy
+        }
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         var cellHeight = 165
         if indexPath.row == detailRows.activity.rawValue {

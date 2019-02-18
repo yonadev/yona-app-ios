@@ -77,8 +77,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     @objc func showUserProfile(_ sender : AnyObject) {
-        performSegue(withIdentifier: "friendsProfile", sender: self)
-        
+        performSegue(withIdentifier: R.segue.friendsDayDetailViewController.showFriendProfile, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -495,7 +495,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1670" y="277"/>
+            <point key="canvasLocation" x="1887" y="100"/>
         </scene>
         <!--Friends Dashboard View Controller-->
         <scene sceneID="cKj-uQ-IPV">
@@ -715,7 +715,7 @@
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1Z-HZ-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2599" y="1088"/>
+            <point key="canvasLocation" x="2132" y="1966"/>
         </scene>
         <!--Friends Day Detail View Controller-->
         <scene sceneID="EBs-hP-bnN">
@@ -767,7 +767,7 @@
                     <connections>
                         <outlet property="sendCommentFooter" destination="kHT-DJ-rWP" id="iRa-lx-cHW"/>
                         <outlet property="tableView" destination="kFV-m3-iuu" id="6vo-vj-wNr"/>
-                        <segue destination="1Xa-hD-zS7" kind="show" identifier="friendsProfile" id="oN8-sB-hrc"/>
+                        <segue destination="1Xa-hD-zS7" kind="show" identifier="showFriendProfile" id="oN8-sB-hrc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3l-n5-bME" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -823,11 +823,12 @@
                     <connections>
                         <outlet property="sendCommentFooter" destination="itp-Nv-Czt" id="njt-I3-REJ"/>
                         <outlet property="tableView" destination="hpX-Jy-atY" id="taD-64-QMp"/>
+                        <segue destination="1Xa-hD-zS7" kind="show" identifier="showFriendProfile" id="iP7-7J-MnM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9O-yf-jPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994.4000000000001" y="1965.9670164917543"/>
+            <point key="canvasLocation" x="2977" y="1966"/>
         </scene>
     </scenes>
     <resources>
@@ -835,7 +836,7 @@
         <image name="icnBack" width="13" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qBF-uj-5D3"/>
+        <segue reference="fkA-FJ-c4C"/>
         <segue reference="oN8-sB-hrc"/>
     </inferredMetricsTieBreakers>
 </document>
