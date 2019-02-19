@@ -1,1 +1,1 @@
-APPDEV-1261 Fixed a crash that occurred when adding a device
+APPDEV-1151 No functional changes in the app

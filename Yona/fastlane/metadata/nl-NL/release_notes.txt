@@ -1,1 +1,1 @@
-APPDEV-1261 Bij het toevoegen van een apparaat kon de app crashen. Dit is opgelost.
+APPDEV-1151 Geen functionele veranderingen in de app
