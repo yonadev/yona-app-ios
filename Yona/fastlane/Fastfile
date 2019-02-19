@@ -21,7 +21,7 @@ platform :ios do
   lane :alpha do
     pilot(
       distribute_external:false,
-      ipa: "BuildOutput/Yona-Release.ipa/Yona.ipa",
+      ipa: "BuildOutput/Yona-Production.ipa/Yona.ipa",
       changelog: File.read("metadata/en-US/release_notes.txt"),
       groups: ["Alpha testers"]
     )
