@@ -1,1 +1,1 @@
-APPDEV-1151 No functional changes in the app
+APPDEV-1228 Fixed an issue in notifications

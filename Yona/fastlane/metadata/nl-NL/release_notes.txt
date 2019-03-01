@@ -1,1 +1,1 @@
-APPDEV-1151 Geen functionele veranderingen in de app
+APPDEV-1228 Probleem in meldingen opgelost
