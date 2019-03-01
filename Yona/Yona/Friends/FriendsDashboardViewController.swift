@@ -123,6 +123,7 @@ class FriendsDashboardViewController: MeDashBoardMainViewController {
             let controller = segue.destination as! FriendsWeekDetailWeekController
             if let section : Int = theTableView.indexPathForSelectedRow?.section {
                 let data = rightTabData[section].activity[theTableView.indexPathForSelectedRow!.row]
+                controller.title = data.goalName?.uppercased()
                 controller.initialObject = data
                 controller.buddy = buddyToShow
             }
@@ -132,6 +133,9 @@ class FriendsDashboardViewController: MeDashBoardMainViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if selectedTab == .left {
             performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailDay, sender: self)
+        }
+        if selectedTab == .right {
+            performSegue(withIdentifier: R.segue.friendsDashboardViewController.showFriendsDetailWeek, sender: self)
         }
     }
     
