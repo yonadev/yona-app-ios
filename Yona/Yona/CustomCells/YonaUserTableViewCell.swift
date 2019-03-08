@@ -119,7 +119,7 @@ class YonaUserTableViewCell: PKSwipeTableViewCell {
         
         normalLineLabel.text = "\(aMessage.nickname)"
      
-        if aMessage.nickname.count > 0 && aMessage.userPhotoLink == nil {
+        if aMessage.nickname.count > 0 && aMessage.userPhotoLink == nil && aMessage.messageType != notificationType.GoalConflictMessage {
             avatarNameLabel.text = "\(aMessage.nickname.capitalized.first!)"
         } else {
             avatarNameLabel.text = ""
