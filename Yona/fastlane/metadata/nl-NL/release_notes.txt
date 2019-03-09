@@ -1,1 +1,3 @@
-APPDEV-1228 Probleem in meldingen opgelost
+APPDEV-1257 Probleem opgelost met Nederlandse tekst in Engelse app
+APPDEV-1258 Het was mogelijk hetzelfde vriendschapsverzoek twee keer te versturen. Dit is nu opgelost
+APPDEV-1262 Probleem met overlappende emoji opgelost
