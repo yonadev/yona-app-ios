@@ -15,6 +15,7 @@ class PrivacyStatementVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Loader.Show()
+        self.view.backgroundColor = UIColor.yiMangoColor()
         let requestObj = URLRequest(url: URL(string: YonaConstants.urlLinks.privacyStatementURLString)!);
         self.privacyView.loadRequest(requestObj)
     }

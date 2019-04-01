@@ -51,6 +51,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.view.backgroundColor = UIColor.yiMangoColor()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.backgroundColor = UIColor.yiTableBGGreyColor()
 
