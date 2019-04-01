@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PNY-eg-Y3c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PNY-eg-Y3c">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -387,11 +387,11 @@
                         <viewControllerLayoutGuide type="bottom" id="OwB-cu-gft"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fFP-lo-Jgd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7P-Qr-AAA">
-                                <rect key="frame" x="0.0" y="0.0" width="410" height="77"/>
+                                <rect key="frame" x="0.0" y="88" width="410" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEY-zB-U5t">
                                         <rect key="frame" x="33" y="22" width="32" height="32"/>
@@ -439,7 +439,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbo-bE-6VJ">
-                                <rect key="frame" x="4" y="77" width="406" height="66"/>
+                                <rect key="frame" x="4" y="165" width="406" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2t-0C-prX">
                                         <rect key="frame" x="33" y="8" width="362" height="18"/>
@@ -503,8 +503,8 @@
         <scene sceneID="2b2-Hb-0BV">
             <objects>
                 <tableViewController autoresizesArchivedViewToFullSize="NO" id="vEb-Ig-NeG" userLabel="NotificationViewController" customClass="NotificationsViewController" customModule="Yona" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="JiQ-iU-Aml">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="JiQ-iU-Aml">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -522,7 +522,7 @@
                             <outlet property="backBarButtonItem" destination="hcZ-EF-ROd" id="vZW-tM-Rn7"/>
                         </connections>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="WCO-lA-rh6" kind="show" identifier="showAcceptFriend" id="dQJ-b8-YTO"/>
                         <segue destination="UbE-Mh-h0r" kind="show" identifier="showWeekDetailMessage" id="i6A-dg-q6c"/>
@@ -544,11 +544,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Y2U-3w-9Mx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UPR-ON-f3l">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5aQ-qF-D8T">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.96055269241333008" green="0.96052390336990356" blue="0.96054017543792725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WCO-lA-rh6" id="4ao-NF-rUx"/>
@@ -556,7 +556,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.34509803921568627" green="0.14509803921568626" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.21960784310000001" green="0.50588235290000005" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Y2U-3w-9Mx" firstAttribute="top" secondItem="5aQ-qF-D8T" secondAttribute="bottom" id="IGn-Uu-wxe"/>
                             <constraint firstItem="5aQ-qF-D8T" firstAttribute="top" secondItem="UPR-ON-f3l" secondAttribute="topMargin" id="QZP-Yj-iMJ"/>
@@ -589,7 +589,7 @@
         <image name="icnReminder" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KjT-n8-LgP"/>
-        <segue reference="8eJ-V0-7GW"/>
+        <segue reference="i6A-dg-q6c"/>
+        <segue reference="rQa-zh-Tis"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="U6O-cp-2EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="U6O-cp-2EY">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -506,11 +506,11 @@
                         <viewControllerLayoutGuide type="bottom" id="584-SY-AUP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Czx-Zi-LyV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehn-o4-VZo" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="48"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2X-SU-YBm" userLabel="PerDayTabView">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="48"/>
@@ -596,7 +596,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-mm-cWb">
-                                <rect key="frame" x="0.0" y="48" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="30a-nZ-Iva" id="TIJ-R8-rRT"/>
@@ -615,7 +615,6 @@
                             <constraint firstItem="584-SY-AUP" firstAttribute="top" secondItem="6uE-mm-cWb" secondAttribute="bottom" id="hCc-MU-qze"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oxJ-mE-kxE">
                         <barButtonItem key="leftBarButtonItem" image="icnBack" id="Htj-TK-Ekc">
@@ -730,9 +729,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-m3-iuu">
-                                <rect key="frame" x="0.0" y="88" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WCB-5H-QxB" id="CNu-cF-ZHB"/>
                                     <outlet property="delegate" destination="WCB-5H-QxB" id="DSJ-fZ-gsk"/>
@@ -754,7 +752,7 @@
                             <constraint firstItem="kHT-DJ-rWP" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="bOA-QQ-rUV"/>
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="top" secondItem="VoO-I8-mfV" secondAttribute="bottom" id="sTE-CI-2MD"/>
                             <constraint firstItem="kFV-m3-iuu" firstAttribute="leading" secondItem="IKH-GV-2zB" secondAttribute="leading" id="wfe-5w-Mck"/>
-                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" constant="2" id="x3S-Ev-TxH"/>
+                            <constraint firstItem="kHT-DJ-rWP" firstAttribute="top" secondItem="kFV-m3-iuu" secondAttribute="bottom" id="x3S-Ev-TxH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SYv-oO-LjM">
@@ -787,7 +785,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hpX-Jy-atY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="728"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="lqa-d1-gYJ" id="grw-gh-mDw"/>
@@ -809,7 +807,7 @@
                             <constraint firstItem="hpX-Jy-atY" firstAttribute="leading" secondItem="5K8-7N-nN1" secondAttribute="leading" id="aBX-fR-H7U"/>
                             <constraint firstAttribute="trailing" secondItem="hpX-Jy-atY" secondAttribute="trailing" id="aKV-7g-lCE"/>
                             <constraint firstAttribute="trailing" secondItem="itp-Nv-Czt" secondAttribute="trailing" id="bZU-NE-PMO"/>
-                            <constraint firstItem="itp-Nv-Czt" firstAttribute="top" secondItem="hpX-Jy-atY" secondAttribute="bottom" constant="2" id="i0j-sM-JfH"/>
+                            <constraint firstItem="itp-Nv-Czt" firstAttribute="top" secondItem="hpX-Jy-atY" secondAttribute="bottom" id="i0j-sM-JfH"/>
                             <constraint firstItem="9yG-JP-Y8i" firstAttribute="top" secondItem="itp-Nv-Czt" secondAttribute="bottom" id="n5q-uf-hV1"/>
                         </constraints>
                     </view>
@@ -837,6 +835,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qBF-uj-5D3"/>
-        <segue reference="iP7-7J-MnM"/>
+        <segue reference="pyy-L8-aSA"/>
     </inferredMetricsTieBreakers>
 </document>
