@@ -1,1 +1,3 @@
-APPDEV-1228 Fixed an issue in notifications
+APPDEV-1257 Localization issue
+APPDEV-1258 Fixed loader issue
+APPDEV-1262 Fixed notification sad emoji overlapping issue
