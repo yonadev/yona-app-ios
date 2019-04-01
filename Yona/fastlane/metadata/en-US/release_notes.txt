@@ -1,3 +1,1 @@
-APPDEV-1257 Localization issue
-APPDEV-1258 Fixed loader issue
-APPDEV-1262 Fixed notification sad emoji overlapping issue
+APPDEV-1136 Fixed UI issues on iPhone X, Xs, Xs max and Xr

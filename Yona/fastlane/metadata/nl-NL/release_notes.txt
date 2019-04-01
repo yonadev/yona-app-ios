@@ -1,3 +1,1 @@
-APPDEV-1257 Probleem opgelost met Nederlandse tekst in Engelse app
-APPDEV-1258 Het was mogelijk hetzelfde vriendschapsverzoek twee keer te versturen. Dit is nu opgelost
-APPDEV-1262 Probleem met overlappende emoji opgelost
+APPDEV-1136 UI opmaakproblemen op iPhone X, Xs, Xs max en Xr opgelost
