@@ -18,7 +18,7 @@ pipeline {
       steps {
         checkout scm
         dir(path: 'Yona') {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
           script {
             def enReleaseNotes = input message: 'User input required',
                 submitter: 'authenticated',
@@ -64,10 +64,10 @@ pipeline {
           junit 'Yona/BuildOutput/**/*.xml'
         }
         success {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} succeeded"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} succeeded"
         }
         failure {
-          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} failed"
+          slackSend color: 'danger', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} failed"
         }
       }
     }
@@ -94,10 +94,10 @@ pipeline {
       }
       post {
         success {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER_TO_DEPLOY}> on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
         }
         failure {
-          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} failed to upload to TestFlight"
+          slackSend color: 'danger', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER_TO_DEPLOY}> on branch ${BRANCH_NAME} failed to upload to TestFlight"
         }
       }
     }
