@@ -185,6 +185,8 @@ class MeDayDetailViewController: UIViewController, YonaButtonsTableHeaderViewPro
                         self.currentDay = data.dayOfWeek
                         self.dayData  = data
                         self.goalType = data.goalType
+                        self.navigationItem.title = data.goalName?.uppercased() //only need to do this in the first original data
+
                         if let commentsLink = data.messageLink {
                             self.getComments(commentsLink)
                         }

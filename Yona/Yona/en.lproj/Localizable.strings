@@ -249,8 +249,8 @@
 
 
 "notifications.accept.title" = "ACCEPT REQUEST";
-"notifications.accept.type"  = "Vriendschapsverzoek";
-"notifications.accept.number"  = "Let op: dit verzoek kan door iemand anders zijn verstuurd. Controleer het telefoonnummer: %@";
+"notifications.accept.type"  = "Friend request";
+"notifications.accept.number"  = "Note: This request may have been sent by someone else. Check the phone number: %@";
 "notifications.accept.reject" = "REJECT";
 "notifications.accept.accept" = "ACCEPT";
 "notifications.delete" = "delete";

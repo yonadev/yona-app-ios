@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QvV-Rl-xbI">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QvV-Rl-xbI">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -36,17 +35,17 @@
                         <viewControllerLayoutGuide type="bottom" id="5QO-v2-pRk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UEW-nE-2vl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V23-83-bue" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="136"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9n2-uU-zvC">
-                                        <rect key="frame" x="0.0" y="9" width="200" height="127"/>
+                                        <rect key="frame" x="0.0" y="9" width="138" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-Li-jFh">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
+                                                <rect key="frame" x="39" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="j2e-PW-wcG">
                                                         <rect key="frame" x="8" y="8" width="46" height="48"/>
@@ -92,13 +91,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.budgetGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-1a-SmO">
-                                                <rect key="frame" x="28.5" y="84" width="143.5" height="43"/>
+                                                <rect key="frame" x="-2.6666666666666714" y="84" width="143.33333333333337" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                 <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BW9-cX-IBl">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
+                                                <rect key="frame" x="0.0" y="123" width="138" height="4"/>
                                                 <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="yOG-te-JCC"/>
@@ -118,10 +117,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6Y-AC-ecS">
-                                        <rect key="frame" x="200" y="9" width="200" height="127"/>
+                                        <rect key="frame" x="138" y="9" width="138" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4W-2r-SbL">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
+                                                <rect key="frame" x="39" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimezone" translatesAutoresizingMaskIntoConstraints="NO" id="McW-pJ-kx1">
                                                         <rect key="frame" x="8" y="8" width="46" height="48"/>
@@ -167,13 +166,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.timezoneGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZH-AW-9OW">
-                                                <rect key="frame" x="22" y="84" width="154" height="43"/>
+                                                <rect key="frame" x="-9" y="84" width="154" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                 <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yt4-Dg-5ye">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
+                                                <rect key="frame" x="0.0" y="123" width="138" height="4"/>
                                                 <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="OrV-Ck-CJf"/>
@@ -193,10 +192,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDi-d9-n1S">
-                                        <rect key="frame" x="400" y="9" width="200" height="127"/>
+                                        <rect key="frame" x="276" y="9" width="138" height="127"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-uP-nTt">
-                                                <rect key="frame" x="70" y="27" width="60" height="60"/>
+                                                <rect key="frame" x="39" y="27" width="60" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeNogo" translatesAutoresizingMaskIntoConstraints="NO" id="tSA-ii-4f3">
                                                         <rect key="frame" x="8" y="8" width="46" height="48"/>
@@ -242,20 +241,20 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges.nogoGoal.Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-De-XRH">
-                                                <rect key="frame" x="33.5" y="98" width="133" height="13.5"/>
+                                                <rect key="frame" x="2.6666666666666856" y="98" width="133" height="13.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="11"/>
                                                 <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7i9-CW-sSM">
-                                                <rect key="frame" x="0.0" y="123" width="200" height="4"/>
+                                                <rect key="frame" x="0.0" y="123" width="138" height="4"/>
                                                 <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="4" id="F3e-rm-msO"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.51937901973724365" green="0.72150778770446777" blue="0.096967101097106934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.51764705882352935" green="0.72156862745098038" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="bxp-De-XRH" firstAttribute="top" secondItem="Olf-uP-nTt" secondAttribute="bottom" constant="11" id="2rF-5C-FHa"/>
                                             <constraint firstAttribute="trailing" secondItem="7i9-CW-sSM" secondAttribute="trailing" id="9cA-WI-htA"/>
@@ -286,20 +285,20 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="438-xm-SYq">
-                                <rect key="frame" x="0.0" y="136" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="638"/>
                                 <color key="backgroundColor" red="0.94097667932510376" green="0.940948486328125" blue="0.9409644603729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SQq-2J-rok" userLabel="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-7P-Xxd">
-                                            <rect key="frame" x="40" y="42" width="844" height="0.0"/>
+                                            <rect key="frame" x="40" y="42" width="258" height="0.0"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-lS-sgm">
-                                            <rect key="frame" x="914" y="15.5" width="56" height="49"/>
+                                            <rect key="frame" x="328" y="15.666666666666664" width="56" height="48.999999999999993"/>
                                             <state key="normal" image="addCircel"/>
                                             <connections>
                                                 <action selector="addNewGoalbuttonTapped:" destination="QvV-Rl-xbI" eventType="touchUpInside" id="LS0-Dg-9NM"/>
@@ -317,27 +316,27 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="f0A-2f-o4g">
-                                    <rect key="frame" x="0.0" y="260" width="600" height="137"/>
+                                    <rect key="frame" x="0.0" y="260" width="414" height="137"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.94097667932510376" green="0.940948486328125" blue="0.9409644603729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationLevel="2" indentationWidth="10" reuseIdentifier="challengeCell" textLabel="fnS-Hn-gy6" detailTextLabel="aH3-I2-fwM" style="IBUITableViewCellStyleSubtitle" id="6IM-BH-3BE">
-                                        <rect key="frame" x="0.0" y="160" width="600" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="2" indentationWidth="10" reuseIdentifier="challengeCell" textLabel="fnS-Hn-gy6" detailTextLabel="aH3-I2-fwM" style="IBUITableViewCellStyleSubtitle" id="6IM-BH-3BE">
+                                        <rect key="frame" x="0.0" y="160" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6IM-BH-3BE" id="7IK-Sg-nWP">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fnS-Hn-gy6">
-                                                    <rect key="frame" x="35" y="30.5" width="28.5" height="17.5"/>
+                                                    <rect key="frame" x="40" y="22.333333333333329" width="29.666666666666668" height="17.666666666666668"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="left" text="Je kunt per dag 30 minuten op social media doorbrengen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH3-I2-fwM">
-                                                    <rect key="frame" x="35" y="50.5" width="359" height="16.5"/>
+                                                    <rect key="frame" x="40" y="42.666666666666671" width="277" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -354,7 +353,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.51764705882352935" green="0.72156862745098038" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="V23-83-bue" firstAttribute="leading" secondItem="UEW-nE-2vl" secondAttribute="leadingMargin" constant="-20" id="Bb2-a3-GO0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="438-xm-SYq" secondAttribute="trailing" constant="-20" id="Fud-8j-pGQ"/>
@@ -374,7 +373,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="addNewGoalButton" destination="bDM-lS-sgm" id="Ikk-gG-HDk"/>
                         <outlet property="backButton" destination="baL-u7-gFB" id="6gc-h2-gnY"/>
@@ -397,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khv-li-k0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="-105"/>
+            <point key="canvasLocation" x="372" y="-105"/>
         </scene>
         <!--challenges.addBudgetGoal.TimeZoneChallengeMainTitle-->
         <scene sceneID="zPg-pe-rSp">
@@ -408,17 +406,17 @@
                         <viewControllerLayoutGuide type="bottom" id="S5w-n3-FsC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="haG-ns-RC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="730"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-Hr-9Ds">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="730"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Nb-LNL" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="256"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5j-Dx-cxe">
-                                                <rect key="frame" x="245" y="30" width="110" height="110"/>
+                                                <rect key="frame" x="152" y="30" width="110" height="110"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimezone" translatesAutoresizingMaskIntoConstraints="NO" id="N5Z-V7-Xhc">
                                                         <rect key="frame" x="34" y="33" width="42" height="44"/>
@@ -440,13 +438,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-sQ-VHj">
-                                                <rect key="frame" x="15" y="166" width="570" height="19.5"/>
+                                                <rect key="frame" x="15" y="166" width="384" height="19.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
                                                 <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Bepaal hier wanneer je wel of geen tijd aan social media wilt besteden" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Em-cj-kPG">
-                                                <rect key="frame" x="15" y="198.5" width="570" height="35"/>
+                                                <rect key="frame" x="15" y="198.66666666666669" width="384" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="n0M-wQ-usK"/>
                                                     <constraint firstAttribute="height" constant="35" id="tca-FB-NsH"/>
@@ -490,14 +488,14 @@
                                         </variation>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jH-BO-Lpn">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="430"/>
+                                        <rect key="frame" x="0.0" y="256" width="414" height="430"/>
                                         <color key="backgroundColor" red="0.94097667932510376" green="0.940948486328125" blue="0.9409644603729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="36q-b6-Ss1" userLabel="HeaderView">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="86"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlA-3P-HIA">
-                                                    <rect key="frame" x="924" y="10" width="56" height="56"/>
+                                                    <rect key="frame" x="338" y="10" width="56" height="56"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="1Pz-4n-tqe"/>
                                                         <constraint firstAttribute="width" constant="56" id="he3-UD-xVQ"/>
@@ -508,7 +506,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenges-zone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-8c-6az">
-                                                    <rect key="frame" x="30" y="27" width="880" height="18"/>
+                                                    <rect key="frame" x="30" y="27" width="294" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
                                                     <color key="textColor" red="0.13834245502948761" green="0.13833828270435333" blue="0.13834065198898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -536,14 +534,14 @@
                                             </constraints>
                                         </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="qwx-DA-pmH" userLabel="FooterView">
-                                            <rect key="frame" x="0.0" y="202" width="600" height="266"/>
+                                            <rect key="frame" x="0.0" y="202" width="414" height="266"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-fZ-zwR">
-                                                    <rect key="frame" x="0.0" y="90" width="1000" height="355"/>
+                                                    <rect key="frame" x="0.0" y="90" width="414" height="355"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-TY-GOx">
-                                                            <rect key="frame" x="50" y="75" width="900" height="33.5"/>
+                                                            <rect key="frame" x="50" y="74.666666666666657" width="314" height="33.666666666666657"/>
                                                             <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -551,7 +549,7 @@ Pinterest, Instagram, Snapchat</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-jn-Qwz" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="30"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
                                                             <color key="backgroundColor" red="0.88286077976226807" green="0.88283431529998779" blue="0.88284933567047119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="G8V-ac-6Mh"/>
@@ -559,7 +557,7 @@ Pinterest, Instagram, Snapchat</string>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUC-r3-f9U">
-                                                            <rect key="frame" x="50" y="38" width="900" height="29"/>
+                                                            <rect key="frame" x="50" y="38" width="314" height="28.666666666666671"/>
                                                             <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -583,7 +581,7 @@ onderdeel van deze challenge:</string>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-ti-haz">
-                                                    <rect key="frame" x="30" y="20" width="940" height="50"/>
+                                                    <rect key="frame" x="30" y="20" width="354" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="l3I-Ai-S91"/>
                                                     </constraints>
@@ -609,14 +607,14 @@ onderdeel van deze challenge:</string>
                                         </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timeZoneCell" rowHeight="88" id="gzG-bm-yd8" customClass="TimeZoneTableViewCell" customModule="Yona" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="114" width="600" height="88"/>
+                                                <rect key="frame" x="0.0" y="114" width="414" height="88"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzG-bm-yd8" id="hky-3O-ibL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f3-4G-yVi" userLabel="Left container">
-                                                            <rect key="frame" x="69" y="3" width="459" height="82"/>
+                                                            <rect key="frame" x="74" y="3" width="161" height="82"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sG-V2-oHJ">
                                                                     <rect key="frame" x="245" y="0.0" width="1" height="85"/>
@@ -676,7 +674,7 @@ onderdeel van deze challenge:</string>
                                                             </constraints>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnLock" translatesAutoresizingMaskIntoConstraints="NO" id="aaP-rn-ytS">
-                                                            <rect key="frame" x="28" y="32" width="24" height="24"/>
+                                                            <rect key="frame" x="33" y="32" width="24" height="24"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="L7V-gV-WmZ"/>
@@ -684,7 +682,7 @@ onderdeel van deze challenge:</string>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKd-p1-n60" userLabel="Right container">
-                                                            <rect key="frame" x="526" y="3" width="459" height="82"/>
+                                                            <rect key="frame" x="233" y="3" width="161" height="82"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrh-tp-jSu" userLabel="divider">
                                                                     <rect key="frame" x="0.0" y="0.0" width="1" height="82"/>
@@ -765,23 +763,23 @@ onderdeel van deze challenge:</string>
                                 <color key="backgroundColor" red="0.92144894599914551" green="0.9206315279006958" blue="0.9457707405090332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9jH-BO-Lpn" secondAttribute="trailing" id="36R-Df-NKC"/>
-                                    <constraint firstItem="73d-Nb-LNL" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="top" constant="44" id="65h-ud-DgV"/>
                                     <constraint firstAttribute="bottom" secondItem="9jH-BO-Lpn" secondAttribute="bottom" id="IJi-gg-hq2"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="centerX" secondItem="wSu-Hr-9Ds" secondAttribute="centerX" id="PEm-cp-Cot"/>
                                     <constraint firstItem="73d-Nb-LNL" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="T9o-l9-kwZ"/>
                                     <constraint firstAttribute="trailing" secondItem="73d-Nb-LNL" secondAttribute="trailing" id="VVW-GU-oXn"/>
                                     <constraint firstAttribute="bottom" secondItem="73d-Nb-LNL" secondAttribute="bottom" constant="430" id="Wye-wv-pDO"/>
-                                    <constraint firstItem="9jH-BO-Lpn" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="bottom" id="iGp-7p-xzM"/>
                                     <constraint firstItem="9jH-BO-Lpn" firstAttribute="leading" secondItem="wSu-Hr-9Ds" secondAttribute="leading" id="jwV-5X-CL0"/>
+                                    <constraint firstItem="73d-Nb-LNL" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="top" id="ubb-KN-1s7"/>
+                                    <constraint firstItem="9jH-BO-Lpn" firstAttribute="top" secondItem="73d-Nb-LNL" secondAttribute="bottom" id="vd7-tK-ssw"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94097667932510376" green="0.940948486328125" blue="0.9409644603729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.51764705882352935" green="0.72156862745098038" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wSu-Hr-9Ds" firstAttribute="leading" secondItem="haG-ns-RC4" secondAttribute="leading" id="ANY-0c-M6C"/>
                             <constraint firstAttribute="trailing" secondItem="wSu-Hr-9Ds" secondAttribute="trailing" id="FqB-U7-mQ6"/>
+                            <constraint firstItem="wSu-Hr-9Ds" firstAttribute="top" secondItem="wRH-yg-dpd" secondAttribute="bottom" id="JEr-vj-SBg"/>
                             <constraint firstItem="S5w-n3-FsC" firstAttribute="top" secondItem="wSu-Hr-9Ds" secondAttribute="bottom" constant="-44" id="di6-vz-LRg"/>
-                            <constraint firstItem="wSu-Hr-9Ds" firstAttribute="top" secondItem="haG-ns-RC4" secondAttribute="top" id="gu4-9U-5U8"/>
                         </constraints>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
@@ -806,7 +804,6 @@ onderdeel van deze challenge:</string>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="730"/>
                     <connections>
                         <outlet property="appList" destination="yfN-TY-GOx" id="V2P-Aq-9cm"/>
                         <outlet property="bottomLabelText" destination="tUC-r3-f9U" id="xA1-FG-HQQ"/>
@@ -822,7 +819,7 @@ onderdeel van deze challenge:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9X-P9-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1412" y="557"/>
+            <point key="canvasLocation" x="2721.739130434783" y="-105.13392857142857"/>
         </scene>
         <!--challenges.addBudgetGoal.budgetChallengeMainTitle-->
         <scene sceneID="AZF-4l-d6e">
@@ -833,20 +830,20 @@ onderdeel van deze challenge:</string>
                         <viewControllerLayoutGuide type="bottom" id="YrI-3o-KYc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EmJ-Eh-oJa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-1L-Uwf">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-LU-eee">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="602"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="602"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3C-hk-9oT" userLabel="TopView">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="236"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEI-aB-5HT">
-                                                        <rect key="frame" x="247" y="30" width="110" height="110"/>
+                                                        <rect key="frame" x="154" y="30" width="110" height="110"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeTimebucket" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-CO-4xe">
                                                                 <rect key="frame" x="34" y="34" width="42" height="42"/>
@@ -864,13 +861,13 @@ onderdeel van deze challenge:</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-ba-ZYU">
-                                                        <rect key="frame" x="15" y="189.5" width="574" height="17"/>
+                                                        <rect key="frame" x="15" y="189.66666666666669" width="388" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZg-5a-C9x">
-                                                        <rect key="frame" x="15" y="157" width="574" height="19.5"/>
+                                                        <rect key="frame" x="15" y="157" width="388" height="19.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="16"/>
                                                         <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -898,28 +895,28 @@ onderdeel van deze challenge:</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0G-at-WY5" userLabel="HeaderView">
-                                                <rect key="frame" x="0.0" y="236" width="600" height="100"/>
+                                                <rect key="frame" x="0.0" y="236" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tegoed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APG-DO-NcS">
-                                                        <rect key="frame" x="30" y="27" width="484" height="18"/>
+                                                        <rect key="frame" x="30" y="27" width="298" height="18"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="15"/>
                                                         <color key="textColor" red="0.13834245502948761" green="0.13833828270435333" blue="0.13834065198898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minuten per dag" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpN-kc-503">
-                                                        <rect key="frame" x="30" y="49" width="484" height="17"/>
+                                                        <rect key="frame" x="30" y="49" width="298" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <color key="textColor" red="0.13834245502948761" green="0.13833828270435333" blue="0.13834065198898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-WC-0pb">
-                                                        <rect key="frame" x="557" y="29.5" width="29.5" height="43.5"/>
+                                                        <rect key="frame" x="371" y="29.666666666666686" width="29.666666666666686" height="43"/>
                                                         <fontDescription key="fontDescription" name="Oswald-Light" family="Oswald" pointSize="32"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="aht-yC-Voh">
-                                                        <rect key="frame" x="28" y="70" width="560.5" height="31"/>
+                                                        <rect key="frame" x="28" y="70" width="374.66666666666669" height="31"/>
                                                         <color key="minimumTrackTintColor" red="0.45542192459106445" green="0.66857236623764038" blue="0.11630380153656006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="thumbTintColor" red="0.45542192459106445" green="0.66857236623764038" blue="0.11630380153656006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
@@ -944,13 +941,13 @@ onderdeel van deze challenge:</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWS-2Z-Kub" userLabel="FooterView">
-                                                <rect key="frame" x="0.0" y="336" width="600" height="266"/>
+                                                <rect key="frame" x="0.0" y="336" width="414" height="266"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoa-6t-2LM">
-                                                        <rect key="frame" x="0.0" y="89" width="604" height="345"/>
+                                                        <rect key="frame" x="0.0" y="89" width="418" height="345"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-8k-rUN" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="604" height="24"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="418" height="24"/>
                                                                 <color key="backgroundColor" red="0.88286077976226807" green="0.88283431529998779" blue="0.88284933567047119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="63f-PM-W9d"/>
@@ -958,7 +955,7 @@ onderdeel van deze challenge:</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNz-P2-HmF">
-                                                                <rect key="frame" x="50" y="44" width="504" height="29"/>
+                                                                <rect key="frame" x="50" y="44" width="318" height="28.666666666666671"/>
                                                                 <string key="text">De volgende apps zijn 
 onderdeel van deze challenge:</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
@@ -966,7 +963,7 @@ onderdeel van deze challenge:</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-1I-HdL">
-                                                                <rect key="frame" x="50" y="88" width="504" height="33.5"/>
+                                                                <rect key="frame" x="50" y="87.666666666666629" width="318" height="33.666666666666657"/>
                                                                 <string key="text">Whatsapp, Facebook, Twitter, 
 Pinterest, Instagram, Snapchat</string>
                                                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
@@ -992,7 +989,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-m0-g2j">
-                                                        <rect key="frame" x="30" y="20" width="544" height="50"/>
+                                                        <rect key="frame" x="30" y="20" width="358" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="e6V-Pt-FZy"/>
                                                         </constraints>
@@ -1028,11 +1025,11 @@ Pinterest, Instagram, Snapchat</string>
                                         <constraints>
                                             <constraint firstItem="E3C-hk-9oT" firstAttribute="top" secondItem="KDC-LU-eee" secondAttribute="top" id="1tw-vc-vpR"/>
                                             <constraint firstItem="yWS-2Z-Kub" firstAttribute="top" secondItem="Z0G-at-WY5" secondAttribute="bottom" id="JEo-jo-uiw"/>
-                                            <constraint firstItem="E3C-hk-9oT" firstAttribute="leading" secondItem="KDC-LU-eee" secondAttribute="leading" id="Png-V6-Ijw"/>
+                                            <constraint firstAttribute="trailing" secondItem="E3C-hk-9oT" secondAttribute="trailing" id="T26-Z0-PAl"/>
+                                            <constraint firstItem="E3C-hk-9oT" firstAttribute="leading" secondItem="KDC-LU-eee" secondAttribute="leading" id="fMk-s6-N1g"/>
                                             <constraint firstItem="yWS-2Z-Kub" firstAttribute="leading" secondItem="KDC-LU-eee" secondAttribute="leading" id="gHY-hz-Ixe"/>
                                             <constraint firstAttribute="trailing" secondItem="Z0G-at-WY5" secondAttribute="trailing" id="hIh-Dz-ivb"/>
                                             <constraint firstAttribute="bottom" secondItem="yWS-2Z-Kub" secondAttribute="bottom" id="hsg-rl-A8b"/>
-                                            <constraint firstAttribute="trailing" secondItem="E3C-hk-9oT" secondAttribute="trailing" id="nzC-cB-o4T"/>
                                             <constraint firstItem="Z0G-at-WY5" firstAttribute="leading" secondItem="KDC-LU-eee" secondAttribute="leading" id="o1p-u6-i1L"/>
                                             <constraint firstAttribute="trailing" secondItem="yWS-2Z-Kub" secondAttribute="trailing" id="wYQ-xG-TZb"/>
                                             <constraint firstItem="Z0G-at-WY5" firstAttribute="top" secondItem="E3C-hk-9oT" secondAttribute="bottom" id="zGI-uX-WbF"/>
@@ -1048,7 +1045,7 @@ Pinterest, Instagram, Snapchat</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.51764705882352935" green="0.72156862745098038" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cdb-1L-Uwf" firstAttribute="width" secondItem="EmJ-Eh-oJa" secondAttribute="width" id="1y3-Gl-YWY"/>
                             <constraint firstItem="cdb-1L-Uwf" firstAttribute="leading" secondItem="EmJ-Eh-oJa" secondAttribute="leadingMargin" constant="-20" id="20J-R0-0M4"/>
@@ -1079,7 +1076,6 @@ Pinterest, Instagram, Snapchat</string>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="appList" destination="4Ug-1I-HdL" id="nks-gp-mgf"/>
                         <outlet property="bottomLabelText" destination="PNz-P2-HmF" id="jWN-KZ-aAb"/>
@@ -1099,7 +1095,7 @@ Pinterest, Instagram, Snapchat</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1au-i2-6uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tkr-FY-jUl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1468" y="-494"/>
+            <point key="canvasLocation" x="1800" y="-510"/>
         </scene>
         <!--challenges.addBudgetGoal.NoGoChallengeMainTitle-->
         <scene sceneID="dB4-QS-vSu">
@@ -1110,20 +1106,20 @@ Pinterest, Instagram, Snapchat</string>
                         <viewControllerLayoutGuide type="bottom" id="Vka-bA-L1K"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MMi-lG-Qob">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdq-PV-C5B">
-                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZD-Xm-So9">
-                                        <rect key="frame" x="0.0" y="0.0" width="379" height="544"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="418" height="544"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olM-AX-pnp" userLabel="TopView">
-                                                <rect key="frame" x="0.0" y="0.0" width="379" height="256"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="418" height="256"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-dg-Et7">
-                                                        <rect key="frame" x="134.5" y="26" width="110" height="110"/>
+                                                        <rect key="frame" x="154" y="26" width="110" height="110"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnChallengeNogo" translatesAutoresizingMaskIntoConstraints="NO" id="ube-g2-H23">
                                                                 <rect key="frame" x="31" y="31" width="48" height="48"/>
@@ -1145,7 +1141,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sociale media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkc-fL-yGV">
-                                                        <rect key="frame" x="15" y="161" width="349" height="20"/>
+                                                        <rect key="frame" x="15" y="161" width="388" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="fa0-fV-2yc"/>
                                                         </constraints>
@@ -1154,7 +1150,7 @@ Pinterest, Instagram, Snapchat</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bepaal hier hoeveel tijd je aan social media wilt besteden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-Zu-XzU">
-                                                        <rect key="frame" x="15" y="194" width="349" height="39"/>
+                                                        <rect key="frame" x="15" y="194" width="388" height="39"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="39" id="skz-F6-aUp"/>
                                                         </constraints>
@@ -1185,13 +1181,13 @@ Pinterest, Instagram, Snapchat</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9H-xl-pNz" userLabel="FooterView">
-                                                <rect key="frame" x="0.0" y="256" width="379" height="290"/>
+                                                <rect key="frame" x="0.0" y="256" width="418" height="290"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiI-R9-Lps">
-                                                        <rect key="frame" x="0.0" y="0.0" width="379" height="147.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="418" height="148"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNe-wI-qBq">
-                                                                <rect key="frame" x="30" y="30" width="319" height="50"/>
+                                                                <rect key="frame" x="30" y="30" width="358" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="nKp-W1-9tM"/>
                                                                 </constraints>
@@ -1211,20 +1207,17 @@ Pinterest, Instagram, Snapchat</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-6Q-RTF" customClass="GradientLargeView" customModule="Yona" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="146.5" width="379" height="30"/>
+                                                        <rect key="frame" x="0.0" y="147" width="418" height="29"/>
                                                         <color key="backgroundColor" red="0.88286077976226807" green="0.88283431529998779" blue="0.88284933567047119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="fCw-Fv-q3N"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-Dh-0Hg">
-                                                        <rect key="frame" x="0.0" y="176.5" width="379" height="198.5"/>
+                                                        <rect key="frame" x="0.0" y="176" width="418" height="199"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psd-ww-wDc">
-                                                                <rect key="frame" x="0.0" y="7.5" width="379" height="100"/>
+                                                                <rect key="frame" x="0.0" y="8" width="418" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-pc-qS6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="379" height="29"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="418" height="29"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="29" id="A3q-ud-RNA"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="IxZ-Bz-8sp"/>
@@ -1242,7 +1235,7 @@ onderdeel van deze challenge:</string>
                                                                         </variation>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-Rt-DQg">
-                                                                        <rect key="frame" x="70" y="37" width="231" height="51"/>
+                                                                        <rect key="frame" x="70" y="37" width="270" height="51"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="g8S-s9-nVc"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="hY9-9L-7Uv"/>
@@ -1349,7 +1342,7 @@ Pinterest, Instagram, Snapchat</string>
                                 </variation>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.51764705882352935" green="0.72156862745098038" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vka-bA-L1K" firstAttribute="top" secondItem="Pdq-PV-C5B" secondAttribute="bottom" id="7S1-4L-fnU"/>
                             <constraint firstItem="Pdq-PV-C5B" firstAttribute="top" secondItem="QLa-s9-8hR" secondAttribute="bottom" id="7w3-ZN-hqc"/>
@@ -1388,7 +1381,7 @@ Pinterest, Instagram, Snapchat</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyo-fp-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tdz-E5-cn5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="80"/>
+            <point key="canvasLocation" x="1800" y="368"/>
         </scene>
     </scenes>
     <resources>

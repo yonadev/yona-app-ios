@@ -15,6 +15,7 @@ struct Buddies{
     var sendingStatus: buddyRequestStatus?
     var receivingStatus: buddyRequestStatus?
     var lastMonitoredActivityDate: String?
+    var buddyGoalSelfLink: String?
 
     //details of user who made request
     var UserRequestfirstName: String
@@ -70,7 +71,6 @@ struct Buddies{
                 let linksSelfHref = linksSelf[postBuddyBodyKeys.href.rawValue] as? String{
                 self.selfLink = linksSelfHref
             }
-            
             if let editLink = links[postBuddyBodyKeys.editKey.rawValue],
                 let editLinkHref = editLink[postBuddyBodyKeys.href.rawValue] as? String{
                 self.editLink = editLinkHref
@@ -83,20 +83,18 @@ struct Buddies{
                 let editLinkHref = weekly[postBuddyBodyKeys.href.rawValue] as? String{
                 self.weeklyActivityReports = editLinkHref
             }
-
-
-        }
-        //store nickname 
-        if let txt = buddyData[getMessagesKeys.nickname.rawValue] as? String {
-            buddyNickName = txt
         }
         
         if let activityDate = buddyData[getMessagesKeys.lastMonitoredActivityDate.rawValue] as? String {
             lastMonitoredActivityDate = activityDate
         }
+        
         //store user who made the request
         if let embedded = buddyData[postBuddyBodyKeys.embedded.rawValue],
             let userDetails = embedded[postBuddyBodyKeys.yonaUser.rawValue] as? BodyDataDictionary{
+            if let nickName = userDetails[getMessagesKeys.nickname.rawValue] as? String {
+                self.buddyNickName = nickName
+            }
             if let lastName = userDetails[getMessagesKeys.UserRequestlastName.rawValue] as? String {
                 self.UserRequestlastName = lastName
             }
@@ -107,28 +105,29 @@ struct Buddies{
                 self.UserRequestmobileNumber = mobileNumber
                 formattetMobileNumber = formatMobileNumber()
             }
-            
             if let linksRequest = userDetails[getMessagesKeys.links.rawValue] as? BodyDataDictionary,
                 let linksRequestSelf = linksRequest[getMessagesKeys.selfKey.rawValue] as? BodyDataDictionary,
                 let linksRequestSelfHref = linksRequestSelf[getMessagesKeys.href.rawValue] as? String {
                 self.UserRequestSelfLink = linksRequestSelfHref
             }
-
-            if let moreembedded = embedded[YonaConstants.jsonKeys.yonaGoals]  as? BodyDataDictionary,
-                let goalsembeded = moreembedded[YonaConstants.jsonKeys.embedded] as? BodyDataDictionary,
-                   let theembeddedGoals = goalsembeded[YonaConstants.jsonKeys.yonaGoals]  as? [BodyDataDictionary] {
-                        for goal in theembeddedGoals {
-
-                                let newGoal = Goal.init(goalData: goal, activities: allActivity)
-                                if !newGoal.isHistoryItem {
-                                    self.buddyGoals.append(newGoal)
-                            }
-                        }
-                    }
             
+            if let embeddedMore = userDetails[YonaConstants.jsonKeys.embedded]  as? BodyDataDictionary, let embededGoals = embeddedMore[YonaConstants.jsonKeys.yonaGoals] as? BodyDataDictionary, let embeddedNext = embededGoals[YonaConstants.jsonKeys.embedded]  as? BodyDataDictionary, let buddyGoals = embeddedNext[YonaConstants.jsonKeys.yonaGoals]  as? [BodyDataDictionary] {
+                for goal in buddyGoals {
+                    let newGoal = Goal.init(goalData: goal, activities: allActivity)
+                    if !newGoal.isHistoryItem {
+                        self.buddyGoals.append(newGoal)
+                    }
+                }
+            }
+            
+            if let embeddedNext = userDetails[YonaConstants.jsonKeys.embedded], let yonaGoal = (embeddedNext as? [String : Any])?[YonaConstants.jsonKeys.yonaGoals], let goalLink = (yonaGoal as? [String : Any])?[YonaConstants.jsonKeys.linksKeys], let goalSelfLink = (goalLink as? [String : Any])?[YonaConstants.jsonKeys.selfLinkKeys], let goalSelfLinkHref = (goalSelfLink as? [String : String])?[YonaConstants.jsonKeys.hrefKey] {
+                self.buddyGoalSelfLink = goalSelfLinkHref
+            }
+            
+            if let links = userDetails[getMessagesKeys.links.rawValue] as? BodyDataDictionary, let buddyPhotoURL = links[getMessagesKeys.userPhoto.rawValue] as? BodyDataDictionary, let buddyPhotoURLHref = buddyPhotoURL[getMessagesKeys.href.rawValue] as? String {
+                self.buddyAvatarURL = buddyPhotoURLHref
+            }
         }
-        
-
     }
     
     fileprivate func formatMobileNumber() -> String {

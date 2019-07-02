@@ -1,1 +1,1 @@
-No functional changes
+APPDEV-1136 Fixed UI issues on iPhone X, Xs, Xs max and Xr

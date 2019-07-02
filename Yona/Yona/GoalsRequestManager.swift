@@ -164,11 +164,7 @@ class GoalsRequestManager {
     
     
     func getAllTheBuddyGoals(_ buddy : Buddies, activities: [Activities], onCompletion: @escaping APIGoalResponse) {
-        if let buddypath = buddy.selfLink {
-            let path = "\(buddypath)/goals/"
-            
-            //success so get the user?
-            
+        if let path = buddy.buddyGoalSelfLink {
             self.goalsHelper(httpMethods.get, body: nil, goalLinkAction: path) { (success, message, server, goal, goals, error) in
                 #if DEBUG
                     print("Get all goals API call: " + String(success))

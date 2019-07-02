@@ -1,1 +1,1 @@
-Geen functionele veranderingen
+APPDEV-1136 UI opmaakproblemen op iPhone X, Xs, Xs max en Xr opgelost

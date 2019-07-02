@@ -18,7 +18,7 @@ pipeline {
       steps {
         checkout scm
         dir(path: 'Yona') {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} is awaiting release notes input to start the build"
           script {
             def enReleaseNotes = input message: 'User input required',
                 submitter: 'authenticated',
@@ -28,6 +28,8 @@ pipeline {
                 submitter: 'authenticated',
                 parameters: [[$class: 'TextParameterDefinition', defaultValue: '', description: 'Paste the Dutch release notes', name: 'Dutch']]
             nlReleaseNotes.length() >= 500 && error("Release notes can be at most 500 characters") // Not sure for Apple
+            echo "English release notes: ${enReleaseNotes}"
+            echo "Dutch release notes: ${nlReleaseNotes}"
             writeFile file: "fastlane/metadata/en-US/release_notes.txt", text: "${enReleaseNotes}"
             writeFile file: "fastlane/metadata/nl-NL/release_notes.txt", text: "${nlReleaseNotes}"
           }
@@ -41,8 +43,8 @@ pipeline {
             sh 'security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_PASS ${KEYCHAIN}'
             sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Debug -scheme Yona archive -archivePath ./BuildOutput/Yona-Debug.xcarchive'
             sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Debug.xcarchive -exportPath ./BuildOutput/Yona-Debug.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsDebug.plist'
-            sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Release -scheme Yona archive -archivePath ./BuildOutput/Yona-Release.xcarchive'
-            sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Release.xcarchive -exportPath ./BuildOutput/Yona-Release.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsRelease.plist'
+            sh 'xcodebuild -allowProvisioningUpdates -workspace Yona.xcworkspace -configuration Production -scheme Yona archive -archivePath ./BuildOutput/Yona-Production.xcarchive'
+            sh 'xcodebuild -exportArchive -archivePath ./BuildOutput/Yona-Production.xcarchive -exportPath ./BuildOutput/Yona-Production.ipa -exportOptionsPlist ./ExportOptions/ExportOptionsProduction.plist'
             sh 'git config --global user.email build@yona.nu'
             sh 'git config --global user.name yonabuild'
             sh 'git add -u'
@@ -62,10 +64,10 @@ pipeline {
           junit 'Yona/BuildOutput/**/*.xml'
         }
         success {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} succeeded"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} succeeded"
         }
         failure {
-          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER} on branch ${BRANCH_NAME} failed"
+          slackSend color: 'danger', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER}> on branch ${BRANCH_NAME} failed"
         }
       }
     }
@@ -92,10 +94,10 @@ pipeline {
       }
       post {
         success {
-          slackSend color: 'good', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
+          slackSend color: 'good', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER_TO_DEPLOY}> on branch ${BRANCH_NAME} successfully uploaded to TestFlight"
         }
         failure {
-          slackSend color: 'danger', channel: '#dev', message: "iOS app build ${env.BUILD_NUMBER_TO_DEPLOY} on branch ${BRANCH_NAME} failed to upload to TestFlight"
+          slackSend color: 'danger', channel: '#dev', message: "<${currentBuild.absoluteUrl}|iOS app build ${env.BUILD_NUMBER_TO_DEPLOY}> on branch ${BRANCH_NAME} failed to upload to TestFlight"
         }
       }
     }

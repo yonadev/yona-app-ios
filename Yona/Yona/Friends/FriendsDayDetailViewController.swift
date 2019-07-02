@@ -16,14 +16,21 @@ enum DayDetailSecions : Int{
 class FriendsDayDetailViewController : MeDayDetailViewController {
 
     var buddy : Buddies?
-    override func registreTableViewCells () {
-        super.registreTableViewCells()
-        var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
-        
-        nib = UINib(nibName: "CommentControlCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
-
+    var avtarImg : UIImageView = UIImageView()
+    
+    //MARK: - View life cycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.comments = []
+        configureRightButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: "FriendsDayDetailViewController")
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,28 +45,39 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
     }
     
     func configureRightButton() {
-        if let name = buddy?.UserRequestfirstName {
-            if name.count > 0 {//&& user?.characters.count > 0{
-                let btnName = UIButton()
-                let txt = "\(name.capitalized.first!)"
-                btnName.setTitle(txt, for: UIControl.State())
-                btnName.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-                btnName.addTarget(self, action: #selector(showUserProfile(_:)), for: .touchUpInside)
-                
+        let btnName = UIButton.init(frame: CGRect(x:0, y:0, width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+        let rightBarButton = UIBarButtonItem()
+        if let link = buddy?.buddyAvatarURL, let URL = URL(string: link) {
+            self.avtarImg.kf.setImage(with: URL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+                let resizedImage:UIImage = UIImage.resizeImage(image: image!, targetSize: CGSize(width:YonaConstants.profileImageWidth, height:YonaConstants.profileImageHeight))
+                btnName.setImage(resizedImage, for: .normal)
                 btnName.backgroundColor = UIColor.clear
-                btnName.layer.cornerRadius = btnName.frame.size.width/2
-                btnName.layer.borderWidth = 1
-                btnName.layer.borderColor = UIColor.white.cgColor
-                let rightBarButton = UIBarButtonItem()
-                rightBarButton.customView = btnName
-                self.navigationItem.rightBarButtonItem = rightBarButton
-            }
+                btnName.clipsToBounds = true
+            })
+        } else if let nickName = buddy?.buddyNickName {
+            btnName.setTitle("\(nickName.capitalized.first!)", for: UIControl.State())
+            btnName.backgroundColor = UIColor.yiGrapeTwoColor()
         }
+        btnName.addTarget(self, action: #selector(self.showUserProfile(_:)), for: .touchUpInside)
+        btnName.layer.cornerRadius = btnName.frame.size.width/2
+        btnName.layer.borderWidth = 1
+        btnName.layer.borderColor = UIColor.white.cgColor
+        rightBarButton.customView = btnName
+        self.navigationItem.rightBarButtonItems = [rightBarButton]
+    }
+    
+    override func registreTableViewCells () {
+        super.registreTableViewCells()
+        var nib = UINib(nibName: "CommentTableHeader", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CommentTableHeader")
+        
+        nib = UINib(nibName: "CommentControlCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CommentControlCell")
+        
     }
     
     @objc func showUserProfile(_ sender : AnyObject) {
-        performSegue(withIdentifier: "friendsProfile", sender: self)
-        
+        performSegue(withIdentifier: R.segue.friendsDayDetailViewController.showFriendProfile, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,25 +96,8 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
         }
         print("NO animated \(txt)")
         return false
-        
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.comments = []
-        configureRightButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "FriendsDayDetailViewController")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as? [AnyHashable: Any])
-    }
-
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         super.tableView(tableView, heightForHeaderInSection: section)
         var heightOfHeader : CGFloat = 45
@@ -258,8 +259,7 @@ class FriendsDayDetailViewController : MeDayDetailViewController {
                             self.currentDay = data.dayOfWeek
                             self.dayData  = data
                             self.goalType = data.goalType
-                            self.navigationItem.title = self.dayData?.goalName.uppercased() //only need to do this in the first original data
-                            
+                            self.navigationItem.title = self.dayData?.goalName!.uppercased()
                             if let commentsLink = data.messageLink {
                                 self.getComments(commentsLink)
                             }

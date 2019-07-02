@@ -319,12 +319,13 @@ class AddFriendsViewController: UIViewController, UIScrollViewDelegate, UINaviga
                             ]
                         ]as AnyObject
                     ]
-                    
+                    Loader.Show()
                     BuddyRequestManager.sharedInstance.requestNewbuddy(postBuddyBody, onCompletion: { (success, message, code, buddy, buddies) in
                         
                         if success {
                             self.navigationController?.popViewController(animated: true)
                         } else {
+                            Loader.Hide()
                             if let message = message {
                                 self.displayAlertMessage("", alertDescription:message)
                             }

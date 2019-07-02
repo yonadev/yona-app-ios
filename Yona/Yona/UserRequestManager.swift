@@ -31,6 +31,13 @@ class UserRequestManager{
         self.newUser = Users.init(userData: json)
     }
     
+    func getSavedUserFromUserDefaults() -> Users {
+        if let savedUser = UserDefaults.standard.object(forKey: YonaConstants.nsUserDefaultsKeys.savedUser), let user = convertToDictionary(text: savedUser as! String) {
+            return Users.init(userData: user as BodyDataDictionary)
+        }
+        return Users.init(userData: [:])
+    }
+    
     fileprivate func genericUserRequest(_ httpmethodParam: httpMethods, path: String, userRequestType: userRequestTypes, body: BodyDataDictionary?, onCompletion: @escaping APIUserResponse){
         ///now post updated user data
         APIService.callRequestWithAPIServiceResponse(body, path: path, httpMethod: httpmethodParam, onCompletion: { success, json, error in
@@ -124,7 +131,9 @@ class UserRequestManager{
      - parameter userRequestType: GetUserRequest, This can be allowed (so we will allow an API call to the User Request) or not allowed (we will not allow whoever is call ing this to call the API for get User, but just return the stored User body). This changes depending on where we call the get user in the code
      */
     func getUser(_ userRequestType: GetUserRequest, onCompletion: @escaping APIUserResponse) {
-        if let selfUserLink = KeychainManager.sharedInstance.getUserSelfLink() {
+        
+        if var selfUserLink = KeychainManager.sharedInstance.getUserSelfLink(){
+            selfUserLink = correctUserFetchUrlIfNeeded(storedUserUrl: selfUserLink)
             if self.newUser == nil || UserDefaults.standard.bool(forKey: YonaConstants.nsUserDefaultsKeys.isBlocked) || userRequestType == GetUserRequest.allowed { //if blocked because of pinreset
                 #if DEBUG
                     print("***** Get User API call ******")
@@ -139,6 +148,23 @@ class UserRequestManager{
             //Failed to retrive details for GET user details request
             onCompletion(false, YonaConstants.serverMessages.FailedToRetrieveGetUserDetails, String(describing: responseCodes.internalErrorCode), nil)
         }
+    }
+    
+    func correctUserFetchUrlIfNeeded(storedUserUrl: String) -> String {
+        if getSavedUserFromUserDefaults().getSelfLink == nil {
+            return storedUserUrl
+        }
+        return correctUserFetchUrlIfNeeded(userURLStr: getSavedUserFromUserDefaults().getSelfLink!, environmentBaseURLStr: EnvironmentManager.baseUrlString()!,storedUserUrlStr: storedUserUrl)
+    }
+    
+    func correctUserFetchUrlIfNeeded(userURLStr:String, environmentBaseURLStr:String, storedUserUrlStr:String) -> String {
+        let userURL = URL(string: userURLStr)
+        let environmentBaseURL = URL(string: environmentBaseURLStr)
+        if userURL?.scheme != environmentBaseURL?.scheme {
+            let formattedURLString = userURL?.absoluteString.deletePrefix((userURL?.scheme)!)
+            return environmentBaseURL!.scheme! + formattedURLString!
+        }
+        return storedUserUrlStr //return as there is no mess up of URLs which is cause of the issue YD-621
     }
     
     /**

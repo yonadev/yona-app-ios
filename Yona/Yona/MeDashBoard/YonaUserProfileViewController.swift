@@ -372,7 +372,7 @@ enum validateError {
         }
         currentImage =  resizeImage(image, targetSize: CGSize(width:200, height: 200))
         topCell!.avatarImageView.image = currentImage
-        topCell!.avatraInitialsLabel.text = ""
+        topCell!.avatarInitialsLabel.text = ""
         picker.dismiss( animated: true, completion: nil)
         UINavigationBar.appearance().tintColor = UIColor.yiWhiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white,
