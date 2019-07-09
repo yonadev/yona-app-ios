@@ -2046,8 +2046,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sivateja B (5JXR9QWHSA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sivateja B (5JXR9QWHSA)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Stichting Yona Foundation (KMR2VE49BG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Stichting Yona Foundation (KMR2VE49BG)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 163;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
