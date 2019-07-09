@@ -1,1 +1,1 @@
-APPDEV-1136 Fixed UI issues on iPhone X, Xs, Xs max and Xr
+This release contains various bug fixes and paves the way to an update that brings push notifications.
