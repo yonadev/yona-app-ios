@@ -2156,8 +2156,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Yona/Yona.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yona Foundation (GPZVVAFA6X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yona Foundation (GPZVVAFA6X)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 164;
 				DEVELOPMENT_TEAM = KMR2VE49BG;
@@ -2171,8 +2171,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.yonafoundation.yona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db48546f-da06-40a4-a0f6-66fc1cc59379";
-				PROVISIONING_PROFILE_SPECIFIER = yonaAppstoreDist;
+				PROVISIONING_PROFILE = "81eb2e19-2769-47d6-b144-427b32967ee0";
+				PROVISIONING_PROFILE_SPECIFIER = "Yona App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yona/Others/Yona-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
