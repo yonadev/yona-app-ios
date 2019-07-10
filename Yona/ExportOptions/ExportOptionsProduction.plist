@@ -7,7 +7,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>nl.yonafoundation.yona</key>
-		<string>yonaAppstoreDist</string>
+		<string>81eb2e19-2769-47d6-b144-427b32967ee0</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>iPhone Distribution</string>
